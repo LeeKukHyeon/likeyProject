@@ -12,13 +12,7 @@
 	<th:block layout:fragment="customContents">
 		<div class="container">
 			
-				<div class="sub_contents_wrap wrap">
-
-
-	<style>
-		.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:30px;}
-		.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;padding-left:20px;font-size:13px;color:#6e6e6e;}
-		</style>
+			<div class="sub_contents_wrap wrap">
 
 		<div class="sub_navi_text"> 
 			<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
@@ -26,10 +20,7 @@
 
 
 	<style>
-	.mypage_main_title > div {float:left;}
-	.mypage_main_title > div:first-child {background:url(image/S_mypage_icon_01.gif) 0 50% no-repeat;font-size:27px;color:#f76c87;font-weight:bold;padding:0 20px 0 44px;}
-	.mypage_main_title > div:last-child {font-size:13px;color:#515151;padding-top:13px;}
-	.mypage_main_title > div:last-child font {color:#ff9520;font-weight:bold;}
+	
 	
 	.mypage_top_menu  {padding-top:13px;}
 	.mypage_top_menu > li {float:right;padding-left:23px;}
@@ -53,7 +44,7 @@
 	<!-- 마이페이지 -->
 	<div class="mypage_main_title">
 		<div>마이페이지</div>
-		<div>다음 등급인 호야새싹 레벨로 상향되려면, <font>2</font>건 더 이용하시면 됩니다.</div>
+		<div>다음 등급인 호야새싹 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
 	</div>
 	
 	<ul class="mypage_top_menu">
@@ -667,7 +658,399 @@
 		.shipping_return .return_table td .bt1 {display:inline-block;height:23px;line-height:23px;padding:0 2px;border:1px solid #cccccc;}
 		.shipping_return .return_table td .bt1 a {font-size:12px;color:#515151;}
 		</style>
+		
+		<script>
+		var autonum=1;
+
+		//교체
+		function returntab(layerid){
+			
+			//이미지교체
+			for(i=1 ; i<=2 ; i++){
+				$(".return_tab_"+i).hide();
+			}
+
+			$(".return_tab_"+layerid).show();
+
+			//버튼교체
+
+			for(var i=1 ; i<=2 ; i++){
+				$(".return_tab_"+i+"_bt").css({"background-color":"#f8f8f8","border-bottom":"1px solid #cccccc"});
+			}
+			$(".return_tab_"+layerid+"_bt").css({"background-color":"#ffffff","border-bottom":"1px solid #ffffff"});
+			
+		}
+		</script>
+		
+		
+		<!-- 반품 -->
+		<div class="shipping_return" id="returnList">
+		</div>
+		<!-- //반품 -->
+		
+
+		
+		<ul class="list_bt">
+			<li><a href="javascript:void(0);" onClick="doAction('delOrder')">신청서 삭제</a></li>
+			<li><a href="return_list.html">반송신청 하러가기</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more4')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<li><a href="javascript:void(0);" onClick="doAction('delivery')" >보류해지</a></li>
+			<li><a href="javascript:void(0);" onClick="doAction('pending')" >출고보류</a></li>
+			<li><a href="javascript:void(0);" onClick="doAction('divide')" >상품분할</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more3')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<!--<li style="background-color:#8f8f8f"><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 취소하기</a></li>-->
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more2')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<li><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 신청하기</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more1')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+		</ul>
+		
+		<div style="clear:both;"></div>
+		
+		
+		<style>
+		.more_info {position:relative;display:none;}
+		.more_info > div {position:absolute;width:1140px;height:205px;left:0;top:-375px;border:2px solid #ff9520;background-color:#ffffff;padding:30px;}
+		.more_info > div .sub_title {position:relative;height:41px;border-bottom:1px solid #cccccc;}
+		.more_info > div .sub_title > div:first-child {font-size:20px;color:#3f3f3f;font-weight:bold;}
+		.more_info > div .sub_title .close {position:absolute;width:27px;right:0;top:0px;}
+
+		.more_info > div .more_text1 {margin-top:20px;}
+		.more_info > div .more_text1 > div {font-size:14px;color:#565656;line-height:25px;}
+		</style>
+		
+		<!-- 묶음배송 신청하기 -->
+		<div class="more1 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>묶음배송 신청하기</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more1')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 묶음 배송 신청하기에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- //묶음배송 신청하기 -->
+
+
+
+		<!-- 묶음배송 취소하기 -->
+		<div class="more2 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>묶음배송 취소하기</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more2')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 묶음 배송 취소하기에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- //묶음배송 신청하기 -->
+		
+		<!-- 상품 분할 -->
+		<div class="more3 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>상품 분할</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more3')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 상품 분할에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- //상품 분할 -->
+
+
+
+		<!-- 반품 신청서 -->
+		<div class="more4 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>반품 신청서</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more4')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 반품 신청서에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- 반품 신청서 -->
+
+
+
+		
+
+		<form action='mypage.html' method='GET' name='f'>
+			<input type='hidden' name='action_type' value='query'>
+			
+			<div class="open_search">
+				<div class="search_option">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option1">
+						<tr>
+					    <td width="90">검색범위</td>
+						<td width="351" class="select">
+							<div>
+								<select name="q_order_type">
+									<option value='' selected >서비스 종류</option>
+									<option value='1'  >배송대행</option>
+									<option value='2'  >구매대행</option>
+								</select>
+							</div>
+							<div>
+								<select name="q_loc_cd">
+									<option value='' selected >국가 (지역)</option>
+									<option value='NJ'  >US NJ(NJ)</option>
+									<option value='DE'  >US DE(DE)</option>
+								</select>
+							</div>
+						</td>
+						<td width="70">검색기간</td>
+						<td class="date_input">
+							<div class="box">
+								<div><input type="text" name="q_from_date" value="2022-08-20" readonly></div>
+								<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_from_date);"></div>
+							</div>
+							<div style="width:23px;text-align:center;line-height:32px;">~</div>
+							<div class="box">
+								<div><input type="text" name="q_to_date" value="2022-09-21" readonly></div>
+								<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_to_date);"></div>
+							</div>
+							<div onClick="document.f.q_from_date.value='';document.f.q_to_date.value='';" class="bt" style="cursor:pointer">전체기간</div>
+						</td>
+					  </tr>
+					</table>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option2">
+						<tr>
+							<td width="90">검색어</td>
+							<td width="580">
+								<input type="radio" name="q_field" value="t1.invoice_no" checked > 신청번호&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.mall_order_no"  > 오더번호&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t2.package_name"  > 상품명&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.recipient_name"  > 수령인&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t2.tracking_num"  > 트레킹&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.mall_cd"  > 쇼핑몰주소&nbsp;&nbsp;&nbsp;
+							</td>
+							<td class="search2"><input type="text" name="q_keyword" value="" placeholder='검색어 입력' > </td>
+						</tr>
+					</table>
+				</div>
+				<div class="search_bt" style="width:160px;"><a href="javascript:void(0);" onClick="OrderQuery('Form')">검색</a></div>
+			</div>
+		</form>
+		<div style="clear:both;"></div>
+		
+		<style>
+		.shipping_applications_search {margin-top:30px;}
+
+		.shipping_applications_search .applications_table {border-collapse:collapse;margin-top:12px;border:1px solid #cccccc}
+		.shipping_applications_search .applications_table th, .shipping_applications_search .applications_table td {border-left:1px solid #cccccc}
+
+		.shipping_applications_search .applications_table th {padding:5px 0;font-size:14px;color:#515151;font-weight:bold;text-align:center;background-color:#f8f8f8;border-bottom:1px solid #cccccc;}
+		.shipping_applications_search .applications_table th font {font-size:12px;color:#979797;font-weight:normal;}
+		.shipping_applications_search .applications_table th.td0 {width:30px}
+		.shipping_applications_search .applications_table th.td1 {width:45px}
+		.shipping_applications_search .applications_table th.td2 {width:150px}
+		.shipping_applications_search .applications_table th.td3 {width:137px}
+		.shipping_applications_search .applications_table th.td4 {width:157px}
+		.shipping_applications_search .applications_table th.td5 {width:75px}
+		.shipping_applications_search .applications_table th.td6 {width:96px}
+		.shipping_applications_search .applications_table th.td7 {width:115px}
+		.shipping_applications_search .applications_table th.td8 {width:142px}
+		.shipping_applications_search .applications_table th.td9 {width:85px}
+		.shipping_applications_search .applications_table th.td10 {width:*}
+
+		.shipping_applications_search .applications_table td {word-break:break-all;padding:3px 3px;vertical-align:middle;text-align:center;font-size:12px;color:#515151;line-height:13px;border-bottom:1px solid #cccccc;}
+		.shipping_applications_search .applications_table td.td1, .shipping_applications_search .applications_table /* td.td6 */ {vertical-align:middle;}
+		.shipping_applications_search .applications_table td font {color:#4c87a9}
+		.shipping_applications_search .applications_table td .text1 {height:auto;font-size:13px;color:#515151;line-height:20px;}
+		.shipping_applications_search .applications_table td .bt1 {display:inline-block;height:23px;line-height:23px;padding:0 13px;border:1px solid #A6A6A6;}
+		.shipping_applications_search .applications_table td .bt1 a {font-size:12px;color:#515151;}
+		.shipping_applications_search .applications_table td .bt2 {display:inline-block;height:23px;line-height:23px;padding:0 13px;border:1px solid #515151;background-color:#515151;}
+		.shipping_applications_search .applications_table td .bt2 a {font-size:12px;color:#ffffff;}
+		</style>
+
+		<!-- 배송대행 신청 검색 -->
+		<div class="shipping_applications_search" id="shipOrderList"></div>
+		<!-- //배송대행 신청 검색 -->
+		<div style="height:0px;"></div>
 	</div>
+	<!------------------------------------ 오픈 여기까지 ------------------------------------>
+	
+	<style>
+	.mypage_sub_title1 {margin-top:30px;}
+	.mypage_sub_title1 > div {float:left;}
+	.mypage_sub_title1 > div:first-child {font-size:23px;color:#3f3f3f;font-weight:bold;}
+	.mypage_sub_title1 > div:last-child {font-size:13px;color:#ff9520;padding:5px 0 0 15px;}
+
+	.mypage_warehousing_table {margin-top:20px;border-collapse:collapse;}
+	.mypage_warehousing_table td {width:14%;border:1px solid #cccccc;text-align:center;padding:20px 0 20px;}
+	.mypage_warehousing_table .country {font-size:15px;color:#3f3f3f;padding:13px 0 7px;}
+	.mypage_warehousing_table .date {font-size:14px;color:#ff9520;font-weight:bold;}
+	</style>
+	<!-- 센터별 입출고 현황 안내 -->
+	<div class="mypage_sub_title1">
+		<div>- 센터별 입출고 현황 안내</div>
+		<div>(현지시각 기준)</div>
+	</div>
+
+	<div style="clear:both;"></div>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_warehousing_table">
+	  <tr>
+
+	    <td>
+			<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+			<div class='country'>US NJ(NJ)</div>
+			<div class='date'>09.19 [도착입고중]</div>
+		</td>
+	    <td>
+			<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+			<div class='country'>US DE(DE)</div>
+			<div class='date'>09.16 [도착입고중]</div>
+		</td>
+	  </tr>
+	</table>
+	<!-- //센터별 입출고 현황 안내 -->
+	
+	<style>
+	.mypage_management_box {margin-top:25px;border:1px solid #cccccc}
+	.mypage_management_box .title {height:60px;background-color:#f8f8f8;padding:0 29px;}
+	.mypage_management_box .title span {display:inline-block;line-height:67px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_09.gif) 0 50% no-repeat;padding-left:43px;}
+
+	.management_type_table{margin:30px 0 0 63px;}
+
+	.management_type_table td {width:30%;padding-bottom:45px;}
+	.management_type_table td > div {float:left;}
+
+	.management_type_table td .left_title {width:80px;padding-top:10px;text-align:center;}
+	.management_type_table td .left_title > div:last-child {font-size:16px;color:#ff9520;font-weight:bold;padding-top:8px;}
+
+	.management_type_table td .right_text {padding-left:15px;}
+	.management_type_table td .right_text ul li a {font-size:14px;color:#3f3f3f;line-height:30px;}
+	</style>
+	
+	<!-- 마이페이지 관리하기 -->
+	<div class="mypage_management_box">
+		<div class="title"><span>마이페이지 관리하기</span></div>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="management_type_table">
+		  <tr>
+		    <td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_10.gif"></div>
+					<div>계정관리</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="/mem_edit.html">- 비밀번호, 회원정보 변경</a></li>
+						<li><a href="">- 나의 멤버십 등급</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_11.gif"></div>
+					<div>마이캐시</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="#myCash">- 마이캐시 충전하기</a></li>
+						<li><a href="mycash_list.html">- 사용한 마이캐시 내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<!--
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_12.gif"></div>
+					<div>결제방법</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="">- 신용카드 및 체크카드관리</a></li>
+						<li><a href="">- 신용카드 및 체크카드추가</a></li>
+					</ul>
+				</div>
+			</td>
+			-->
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_13.gif"></div>
+					<div>고객센터</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="qna_list.html">- 1:1 Q&A</a></li>
+						<li><a href="msg_list.html">- 알림함</a></li>
+						<li><a href="sub_1_1.html">- 도움말</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+			&nbsp;
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_14.gif"></div>
+					<div>쿠폰</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="cpn_valid_list.html">- 사용 가능한 쿠폰내역</a></li>
+						<li><a href="cpn_closed_list.html">- 사용한 쿠폰내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_15.gif"></div>
+					<div>호야리워드</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="/mypoint_list.html">- 포인트 적립내역</a></li>
+						<li><a href="/mypoint_list.html">- 포인트 사용내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_16.gif"></div>
+					<div>마이프로필</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="myaddr_list.html">- 나의 주소록</a></li>
+						<li><a href="myaddr_list.html">- 새주소 추가하기</a></li>
+						<li><a href="javascript:void(0);" onclick="top_search(); window.scrollTo(0,0);">- 나의 호야USA 해외주소</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+			&nbsp;
+			</td>
+		  </tr>
+		</table>
+		
+	</div>
+	<!-- //마이페이지 관리하기 -->
 	
 	
 	
