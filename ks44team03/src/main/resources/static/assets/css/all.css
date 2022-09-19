@@ -4327,3 +4327,13 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+  
+
+/* mypage style */
+.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:30px;}
+.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;padding-left:0px;font-size:13px;color:#6e6e6e;}
+
+.mypage_main_title > div {float:left;}
+.mypage_main_title > div:first-child {background:url(image/S_mypage_icon_01.gif) 0 50% no-repeat;font-size:27px;color:#f76c87;font-weight:bold;padding:0 20px 0 0px;}
+.mypage_main_title > div:last-child {font-size:13px;color:#515151;padding-top:13px;}
+.mypage_main_title > div:last-child font {color:#ff9520;font-weight:bold;}
