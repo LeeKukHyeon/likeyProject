@@ -25,6 +25,29 @@ public class CompanyInfoController {
 	  
 		return "company/companyRegister"; 
 	}
-	  
+	
+	@GetMapping("workplace/workPlaceRegister")
+	public String workPlaceRegister(Model model) {
+		
+		model.addAttribute("title", "사업장등록");
+		
+		return "company/workplace/workPlaceRegister";
+	}
+	
+	@GetMapping("department/departmentRegister")
+	public String departmentRegister(Model model) {
+		
+		model.addAttribute("title", "부서등록");
+		
+		return "company/department/departmentRegister";
+	}
+	
+	@GetMapping("employee/employeeRegister")
+	public String employeeRegister(Model model) {
+		
+		model.addAttribute("title", "사원등록");
+		
+		return "company/employee/employeeRegister";
+	}
 	
 }

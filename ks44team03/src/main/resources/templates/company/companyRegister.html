@@ -6,9 +6,50 @@
 </head>
 <body>
 	<h1 th:text="${title}">회사 등록</h1>
-	
-	
-		<input type="text" name=companyCode placeholder="회사코드">
+	<from id="companyRegFrom">
+		<table>
+			<tr>	
+				<td>
+					<input type="text" name=companyCode placeholder="회사코드">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyNum placeholder="회사번호">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyName placeholder="회사이름">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyDelegateNum placeholder="회사대리인번호">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyAddr placeholder="회사주소">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyCate placeholder="회사종목">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyBirth placeholder="회사등록날짜">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=companyInfoName placeholder="회사정보">	
+				</td>
+			</tr>
+		</table>
+	</from>
 		
 		
 	
