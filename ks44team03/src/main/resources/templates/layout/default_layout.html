@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+<head th:replace="fragments/head :: headFragment">
+	<meta charset="UTF-8">
+	<title>thymeleaf layout</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+</head>
+<body>
+	<div class="container-scroller">
+	 
+	   	<!-- start header  -->
+	    <div th:replace="fragments/header :: headerFragment"></div>
+	    <!-- end header  -->
+	    
+	    <!-- start customContents -->
+	    <th:block layout:fragment="customContents"></th:block>
+	    <!-- end customContents -->
+	    
+	  	<!-- start footer  -->
+		<div th:replace="fragments/footer :: footerFragment"></div>
+	  	<!-- end footer  -->
+	    
+	</div>
+</body>
+</html>
