@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lagn="ko"
+<html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       
-<head th:replace="fragments/head :: headFragment">
-	<meta charset="UTF-8">
-	<title>thymeleaf layout</title>
-	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
-</head>
-<body>
-	<div class="container-scroller">
-	 
-	   	<!-- start header  -->
-	    <div th:replace="fragments/header :: headerFragment"></div>
-	    <!-- end header  -->
-	    
-	    <!-- start customContents -->
-	    <th:block layout:fragment="customContents"></th:block>
-	    <!-- end customContents -->
-	    
-	  	<!-- start footer  -->
-		<div th:replace="fragments/footer :: footerFragment"></div>
-	  	<!-- end footer  -->
-	    
-	</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>thymeleaf layout</title>
+		<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+		
+		<!-- config.html -->
+	        <th:block th:replace="fragments/config::configFragment"></th:block>
+	</head>
+
+		<!-- start header  -->
+	<header th:replace="fragments/header::headerFragment"></header>
+		<!-- end header  -->
+	
+	
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+	<body layout:fragment="content"></body>
+		    
+		<!-- start footer  -->
+	<footer th:replace="fragments/footer::footerFragment"></footer>
+		<!-- end footer  -->
+
 </html>
