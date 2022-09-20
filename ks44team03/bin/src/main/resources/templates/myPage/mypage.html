@@ -1,17 +1,1061 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/mypage}">
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="content">
+        <!-- code -->
 	
 	<th:block layout:fragment="customContents">
 		<div class="container">
-			<div class="row">
+			
+			<div class="sub_contents_wrap wrap">
+
+		<div class="sub_navi_text"> 
+			<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
+		</div>
+
+
+	<style>
+	
+	
+	.mypage_top_menu  {padding-top:13px;}
+	.mypage_top_menu > li {float:right;padding-left:23px;}
+	.mypage_top_menu > li > a {display:inline-block;background:url(image/S_mypage_icon_05.gif) 0 50% no-repeat;padding-left:10px;font-size:14px;color:#3f3f3f;font-weight:bold;}
+
+	.mypage_info_table {border-collapse:collapse;margin-top:10px;}
+	.mypage_info_table td, .mypage_info_table th {border:1px solid #e2e2e2;}
+	.mypage_info_table th {height:40px;font-size:14px;color:#ffffff;font-weight:bold;text-align:center;background-color:#3f3f3f;}
+	.mypage_info_table th span {display:inline-block;background:url(image/S_mypage_icon_04.gif) right 50% no-repeat;padding:0 20px;}
+	.mypage_info_table th.rank {width:144px;background-color:#f76c87}
+	.mypage_info_table th.rank span {background:url(image/S_mypage_icon_03.gif) right 50% no-repeat;}
+	.mypage_info_table th.point {width:156px;}
+	.mypage_info_table th.coupon {width:144px;}
+	.mypage_info_table th.code {width:144px;}
+	.mypage_info_table th.hcash {width:144px;}
+	.mypage_info_table td {height:45px;background-color:#f8f8f8;text-align:center;font-size:14px;}
+	.mypage_info_table td font {color:#ff9520;font-weight:bold;}
+	</style>
+
+
+	<!-- 마이페이지 -->
+	<div class="mypage_main_title">
+		<div>마이페이지</div>
+		<div>다음 등급인 호야새싹 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
+	</div>
+	
+	<ul class="mypage_top_menu">
+		<li><a href="mem_edit.html">나의 정보</a></li>
+		
+		<li><a href="">나의 송장꾸미기 </a></li>
+		<li><a href="">배송요금표 보기</a></li>
+	</ul>
+
+	<div style="clear:both;"></div>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
+	  <tr>
+	    <th class="rank">
+			<span>등급</span>
+						<div style="position:relative;">
+				<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
+					<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
+				</div>
+			</div>
+					</th>
+		
+		<th class="coupon"><span>쿠폰</span></th>
+		<!-- <th class="code"><span>추천코드</span></th> -->
+		<th class="hcash"><span>마이캐시</span></th>
+		<th class="usage"><span>이용실적</span></th>
+	  </tr>
+	  <tr>
+	    <td class="rank">#</td>
+		
+		<td class="coupon"><a href="cpn_valid_list.html"><font>1</font>장</a></td>
+		<!-- <td class="code">US123456</td> -->
+		<td class="hcash"><a href="mycash_list.html">0.00</a></td>
+		<td class="usage">
+			전월 이용건수 : <font>0</font>건&nbsp;&nbsp;&nbsp;
+			당월 이용건수 : <font>0</font>건&nbsp;&nbsp;&nbsp;
+			총 이용건수 : <font>0</font>건
+		</td>
+	  </tr>
+	</table>	
+	<!-- //마이페이지 -->
 				
+		
+		</div>
+		
+		
+	<style>
+	.mypage_shipping_status {margin-top:30px;}
+	.mypage_shipping_status .title {line-height:32px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_18.gif) 0 50% no-repeat;padding-left:47px;}
+
+	.mypage_shipping_status {position:relative;}
+	.mypage_shipping_status .bt1 {position:absolute; width:190px;height:40px;z-index:1;right:200px;top:-5px;text-align:center;background-color:#ff9520;}
+	.mypage_shipping_status .bt1 a {display:inline-block;font-size:14px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_order_icon_01.gif) 0 50% no-repeat;padding-left:25px;line-height:40px;}
+	.mypage_shipping_status .bt2 {position:absolute; width:190px;height:36px;z-index:1;right:0px;top:-5px;text-align:center;background-color:#ffffff;border:2px solid #ff9520;}
+	.mypage_shipping_status .bt2 a {display:inline-block;font-size:14px;color:#ff9520;font-weight:bold;background:url(image/S_mypage_order_icon_02.gif) 0 50% no-repeat;padding-left:25px;line-height:36px;}
+
+	.mypage_shipping_status .status_1 {border:1px solid #cccccc;margin-top:15px;padding:9px 0}
+	.mypage_shipping_status .status_1 table td {border-left:1px dashed #cccccc;text-align:center;}
+	.mypage_shipping_status .status_1 table td:first-child {border:0;}
+
+	.mypage_shipping_status .status_1 table td .text {padding-top:10px;line-height:31px;font-size:15px;color:#484848;font-weight:bold;}
+	.mypage_shipping_status .status_1 table td .text span {display:inline-block;width:33px;height:33px;background-color:#ff9520;border-radius:33px;text-align:center;font-size:15px;color:#ffffff;font-weight:bold;}
+
+	.mypage_shipping_status .status_1 table td .shipping_bt {width:294px;height:68px;margin:0 auto;background-color:#3f3f3f;border-radius:5px;text-align:center;line-height:67px;}
+	.mypage_shipping_status .status_1 table td .shipping_bt a {display:inline-block;font-size:20px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_icon_22.gif) right 50% no-repeat;padding-right:37px;}
+
+	.mypage_shipping_status .status_2 {border:1px solid #cccccc;border-top:0;}
+	.mypage_shipping_status .status_2 table td:first-child {width:189px;height:160px;background-color:#f8f8f8;font-size:15px;color:#484848;font-weight:bold;line-height:36px;padding-left:20px;}
+	.mypage_shipping_status .status_2 table td:first-child font {color:#f76c87;}
+
+	.mypage_shipping_status .status_2 table td .progress {padding-left:43px;}
+	.mypage_shipping_status .status_2 table td .progress li {float:left;width:100px;height:100px;border-radius:110px;margin-left:17px;border:5px solid #dddddd;text-align:center;}
+	.mypage_shipping_status .status_2 table td .progress li > div:first-child {height:30px;font-size:14px;color:#484848;line-height:17px;padding-top:30px;}
+	.mypage_shipping_status .status_2 table td .progress li > div:last-child {font-size:18px;color:#484848;font-weight:bold;}
+
+	.shipping_list_open {display:inline-block;border:1px solid #c2c2c2;border-top:0;border-radius:0 0 5px 5px;height:36px;line-height:35px;padding:0 22px;}
+	.shipping_list_open span {display:inline-block;font-size:14px;color:#8f8f8f;font-weight:bold;background:url(image/S_mypage_icon_06.gif) right 50% no-repeat;padding-right:21px;}
+	.shipping_list_open span font {color:#ff9520;}
+	.progress {height:120px;}
+	.progress li div {height:40px;padding-top:15px;}
+	</style>
+	
+	<div class="mypage_shipping_status">
+			<div class="title">나의 배송 현황</div>
+
+		<div class="order_bt">
+			<div class="bt1"><a href="">구매대행 주문 조회</a></div>
+			<div class="bt2"><a href="">SHOP 주문 배송 조회</a></div>
+		</div>
+		<div class="status_1">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+			  <tr>
+			    <td width="273">
+					<div class="icon"><a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><img src="image/S_mypage_icon_19.gif"></a></div>
+					<div class="text"><a href="javascript:void(0);" style="color:black;" onClick="OrderQuery('noPaid');">통합결제 &nbsp;&nbsp; <span>0</span></a></div>
+				</td>
+				<td width="255">
+					<div class="icon"><a href="msg_list.html"><img src="image/S_mypage_icon_20.gif"></a></div>
+					<div class="text" ><a href="msg_list.html" style="color:black;">알림 &nbsp;&nbsp; <span>0</span></a></div>
+				</td>
+				<td width="258">
+					<div class="icon"><img src="image/S_mypage_icon_21.gif"></div>
+					<div class="text">미신청건 &nbsp;&nbsp; <span>0</span></div>
+				</td>
+				<td>
+					<a href="shipping.html"><div class="shipping_bt">배송신청서 작성</a></div>
+				</td>
+			  </tr>
+			</table>
+		</div>
+		
+		<div class="status_2">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td>
+					- <a href="javascript:void(0);" onClick="OrderQuery('All');"><font>전체 : 0</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('Err');"><font>오류입고 : 0</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('noDataCnt');"><font>신청서 미작성 입고 : 0</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><font>미결제 : 0</a></font>
+					</td>
+					
+					<td>
+						<ul class="progress">
+							<li>
+								<div onClick="OrderQuery('Imsi');" style="cursor:pointer">임시 저장</div>
+								<div onClick="OrderQuery('Imsi');" style="cursor:pointer">0</div>
+							</li>
+							
+							<li>
+								<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
+								<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;">0</div>
+							</li>
+							
+							<li>
+								<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
+								<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">0</div>
+							</li>
+							<li>
+								<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
+								<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;">0</div>
+							</li>
+							
+							<li>
+								<div onClick="OrderQuery('Out');" style="cursor:pointer">한국 출고</div>
+								<div onClick="OrderQuery('Out');" style="cursor:pointer">0</div>
+							</li>
+							<li>
+								<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
+								<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">0</div>
+							</li>
+							<li>
+								<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">배송완료</div>
+								<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">0</div>
+							</li>
+						</ul>
+					</td>
 				
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- //나의 배송현황 -->
+	
+	
+	<div style="margin:0 auto;" align="center">
+		<div class="shipping_list_open"><span>배송 신청 내역 <font id="shipping_list_toggle">닫기</font></span></div>
+	</div>
+	
+	<script type="text/javascript">
+	$(function(){
+		$(".shipping_list_open").click(function(){
+			//$(".shipping_details_list").slideToggle();
+			
+			$('.shipping_details_list').slideToggle('slow', function () {
+				if ($('.shipping_details_list').is(':visible')) {
+					$("#shipping_list_toggle").text("닫기");
+				}
+				else {
+					$("#shipping_list_toggle").text("열기");
+				}
+			});
+		})
+	})
+	</script>
+	
+	
+	
+	<style>
+	.shipping_details_list {margin-top:35px;position:relative;display:none;}
+
+	.shipping_details_list .title > div {float:left;}
+	.shipping_details_list .title > div:first-child {background:url(image/S_mypage_icon_25.gif) 0 50% no-repeat;font-size:23px;color:#3f3f3f;font-weight:bold;line-height:31px;padding:0 13px 0 42px;}
+	.shipping_details_list .title > div:last-child {font-size:13px;color:#515151;padding-top:10px;}
+	.shipping_details_list .title > div:last-child font {color:#ff9520;}
+
+	.shipping_details_list .search {position:absolute;width:152px;height:38px;right:0;top:0;background-color:#3f3f3f;text-align:center;}
+	.shipping_details_list .search > a {display:inline-block;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;font-size:14px;color:#ffffff;font-weight:bold;padding-right:22px;line-height:38px;}
+
+	.shipping_details_list .list_table {margin-top:19px;border-collapse:collapse;}
+	.shipping_details_list .list_table td {width:24.7%;height:40px;border:1px solid #cccccc;background-color:#f8f8f8;}
+	.shipping_details_list .list_table td > div {float:left;}
+	.shipping_details_list .list_table td > div:first-child {width:220px;padding-left:17px;font-size:13px;color:#515151;}
+	.shipping_details_list .list_table td > div:last-child {width:60px;font-size:14px;color:#ff9520;font-weight:bold;text-align:center;}
+	.shipping_details_list .list_table td > div.ov {font-weight:bold;}
+
+	.shipping_details_list .list_bt {margin-top:40px}
+	.shipping_details_list .list_bt li {float:right;height:38px;line-height:38px;background-color:#ff9520;border-radius:5px;margin-left:6px;padding:0 16px;text-align:center;}
+	.shipping_details_list .list_bt li a {font-size:14px;color:#ffffff;font-weight:bold;}
+	.shipping_details_list .list_bt li.more {background:none;padding:13px 0 0 4px;line-height:0px;}
+
+
+
+	.shipping_details_list .open_search {height:96px;border-top:2px solid #8d8d8d;border-bottom:1px solid #e0e0e0;margin-top:15px;}
+	.shipping_details_list .open_search > div {float:left;}
+
+	.shipping_details_list .open_search .search_option {width:947px;}
+	.shipping_details_list .open_search .search_option .option1 {border-bottom:1px solid #e0e0e0}
+	.shipping_details_list .open_search .search_option .option1 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
+	.shipping_details_list .open_search .search_option .option1 .select > div {display:inline-block;}
+	.shipping_details_list .open_search .search_option .option1 .select > div select {width:136px;height:34px;border:1px solid #cccccc;margin-right:3px;text-align: center;}
+	.shipping_details_list .open_search .search_option .option1 .date_input div {float:left;}
+	.shipping_details_list .open_search .search_option .option1 .date_input .box {border:1px solid #cccccc;}
+	.shipping_details_list .open_search .search_option .option1 .date_input > div input {width:100px;height:32px;border:0; text-align: center;}
+	.shipping_details_list .open_search .search_option .option1 .date_input .bt {margin-left:21px;width:95px;height:34px;background-color:#8d8d8d;line-height:34px;text-align:center;font-size:14px;color:#ffffff;font-weight:bold;}
+
+	.shipping_details_list .open_search .search_option .option2 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
+	.shipping_details_list .open_search .search_option .option2 .search2 input {width:239px;height:32px;border:1px solid #cccccc;padding-left:5px;text-align:center;font-size:14px;}
+
+	.shipping_details_list .open_search .search_bt {margin:4px 0 0 31px;width:191px;height:86px;background-color:#3f3f3f;border-radius:5px;text-align:center;}
+	.shipping_details_list .open_search .search_bt a {font-size:19px;color:#ffffff;font-weight:bold;line-height:88px;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;padding-right:25px;}
+	</style>
+	
+	
+	<div class="shipping_details_list">
+		<!-- 배송신청 내역 -->
+		<div class="title">
+			<div>배송 신청 내역</div>
+			<div><font>★</font> 각 항목을 클릭하시면 <font>상세보기 및 수정 가능</font>합니다.</div>
+		</div>
+		<div style="clear:both;"></div>
+
+		<div class="search">
+			<a href="">배송신청서 검색</a>
+		</div>
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="list_table">
+		  <tr>
+		    <td>
+				<div id="orderCnt_1" onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">배송대행신청 미작성 입고(노데이터)</div>
+				<div onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_2" onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">무게측정 및 출고대기 / 결제대기</div>
+				<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 한국으로 배송 중</div>
+				<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국내 배송 중</div>
+				<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_5" onClick="OrderQuery('Imsi');" style="cursor:pointer">임시저장</div>
+				<div onClick="OrderQuery('Imsi');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
+				<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국내도착 (통관중)</div>
+				<div onClick="OrderQuery('customsing');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_8" onClick="OrderQuery('ShipClosed');" style="cursor:pointer">국내 배송 완료</div>
+				<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_9" onClick="OrderQuery('orderType1');" style="cursor:pointer">배송대행신청 완료</div>
+				<div onClick="OrderQuery('orderType1');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_10" onClick="OrderQuery('weightShipHold');" style="cursor:pointer">무게측정 및 출고보류</div>
+				<div onClick="OrderQuery('weightShipHold');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_11" onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
+				<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_12" onClick="OrderQuery('addPay');" style="cursor:pointer">추가 결제 대기</div>
+				<div onClick="OrderQuery('addPay');" style="cursor:pointer">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_13" onClick="OrderQuery('buyingItem');" style="cursor:pointer">구매대행 신청완료</div>
+				<div onClick="OrderQuery('buyingItem');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 / 결제대기</div>
+				<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">0</div>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<div id="orderCnt_15" onClick="OrderQuery('rtnCnt');" style="cursor:pointer">반송 현황</div>
+				<div onClick="OrderQuery('rtnCnt');" style="cursor:pointer">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
+				<div onClick="OrderQuery('Arrived');" style="cursor:pointer">0</div>
+			</td>
+			<td>
+				<div id="orderCnt_14" onClick="OrderQuery('outPaid');" style="cursor:pointer">항공사 인계예정 / 결제완료</div>
+				<div onClick="OrderQuery('outPaid');" style="cursor:pointer">0</div>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
+				<div onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_18" onClick="OrderQuery('PartialStock');" style="cursor:pointer">일부입고</div>
+				<div onClick="OrderQuery('PartialStock');" style="cursor:pointer">0</div>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>
+				<div id="orderCnt_19" onClick="OrderQuery('DePickup');" style="cursor:pointer">DE 픽업요청 중</div>
+				<div onClick="OrderQuery('DePickup');" style="cursor:pointer">0</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_20" onClick="OrderQuery('AllIn');" style="cursor:pointer">도착(입고) 완료</div>
+				<div onClick="OrderQuery('AllIn');" style="cursor:pointer">0</div>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div id="orderCnt_21" onClick="OrderQuery('Err');" style="cursor:pointer">오류입고(확인요망)</div>
+				<div onClick="OrderQuery('Err');" style="cursor:pointer">0</div>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		  </tr>
+		</table>
+		
+		<script>
+		//열기
+		function hd_bg(t,url){
+			$(".more_div").fadeIn();
+			$("."+t).fadeIn();
+
+		}
+
+		//닫기
+		function hd_bg_close(t){
+			$("."+t).fadeOut();
+			$(".more_div").fadeOut();
+		}
+		</script>
+		
+		<!-- //배송신청 내역 -->
+
+		<div class="more_div" onclick="hd_bg_close('more1');hd_bg_close('more2');hd_bg_close('more3');hd_bg_close('more4');"></div>
+
+
+
+
+
+
+
+	
+		<style>
+		.shipping_important_text {margin-top:12px;border:1px solid #cccccc;}
+		.shipping_important_text .title {background-color:#f8f8f8;height:50px;line-height:50px;font-size:18px;color:#ff9520;font-weight:bold;padding-left:40px;}
+
+		.shipping_important_text .text_box {padding:10px 40px;}
+		.shipping_important_text .text_box .text1 {font-size:14px;color:#515151;margin-bottom:10px;background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;line-height:19px;}
+		.shipping_important_text .text_box .text2 {font-size:15px;color:#515151;font-weight:bold;margin-bottom:5px;background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;}
+		.shipping_important_text .text_box .text3 {line-height:25px;margin-bottom:20px;}
+		.shipping_important_text .text_box .text3 li {font-size:14px;color:#515151}
+		</style>
+		
+		<div id="ship_step_info"></div>
+
+		
+		<style>
+		.shipping_nowrite_table {margin-top:5px;border:1px solid #cccccc;background-color:#f8f8f8;padding:20px 42px;}
+		.shipping_nowrite_table > ul > li {float:left;width:348px;background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;font-size:14px;color:#515151}
+		.shipping_nowrite_table .text {background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;font-size:14px;color:#515151;}
+		</style>
+
+		<!-- 배송대행신청 미작성 입고 건수 -->
+		<div class="shipping_nowrite_table" id="nodata_cnt">
+			<ul>
+				<li>2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+				<li>2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+				<li>2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+			</ul>
+			<div style="clear:both;height:15px;"></div>
+			<div class="text">미작성 입고 건수는 <font color="#ff9520"><b>입고일자</b></font> 기준입니다.</div>
+		</div>
+		
+		<!-- //배송대행신청 미작성 입고 건수 -->
+
+
+		<style>
+		.nodata_wrap {width:100%;background-color:#ffffff;}
+		
+		.nodata_wrap .nodate_list .bt1 {position:absolute; width:190px;height:40px;z-index:1;right:200px;top:-5px;text-align:center;background-color:#ff9520;}
+
+		.nodata_wrap .nodate_list .list_bt {margin-top:56px;}
+		.nodata_wrap .nodate_list .list_bt li {float:right;height:38px;line-height:38px;background-color:#ff9520;border-radius:5px;margin-left:15px;padding:0 16px;text-align:center;}
+		.nodata_wrap .nodate_list .list_bt li a {font-size:14px;color:#ffffff;font-weight:bold;}
+		.nodata_wrap .nodate_list .list_bt li.more {background:none;padding:13px 0 0 4px;line-height:0px;}
+		.nodata_wrap .nodate_list .list_bt div {float:right;line-height:38px;font-size:14px;color:#6a6a6a;}
+		.nodata_wrap .nodate_list .list_bt div.icon_text {padding:14px 0 0 3px;}
+		
+
+		.nodata_wrap .nodate_list {margin-left:0px;margin-top:30px;position:relative;}
+		
+		.nodata_wrap .nodate_list .title {float:left;background:url(image/S_sub_icon_01.gif) 0 80% no-repeat;padding-left:17px;font-size:14px;color:#3f3f3f;font-weight:bold;padding-top:15px;}
+
+		.nodata_wrap .nodate_list .close {position:absolute;right:0;top:-5px;}
+		
+		
+		.nodata_wrap .nodate_list .data_table {border-collapse:collapse;margin-top:7px;}
+		.nodata_wrap .nodate_list .data_table th, .nodate_list .data_table td {border:1px solid #cccccc;padding:5px 5px;} 
+		.nodata_wrap .nodate_list .data_table th {height:40px;background-color:#f8f8f8;text-align:center;font-size:13px;color:#7f7f7f;font-weight:bold;}
+		.nodata_wrap .nodate_list .data_table td {height:35px;text-align:center;font-size:13px;color:#3f3f3f;}
+
+		.nodata_wrap .nodate_list .list_table1 {height:43px;border:1px solid #cccccc;background-color:#f8f8f8;}
+		.nodata_wrap .nodate_list .list_table1 th {font-size:14px;color:#939393;font-weight:bold;background:url(image/S_sub_icon_03.gif) 0 50% no-repeat;text-align:center;}
+		.nodata_wrap .nodate_list .list_table1 th:first-child {background:none;}
+		.nodata_wrap .nodate_list .list_table1 th.td0 {width:30px}
+		.nodata_wrap .nodate_list .list_table1 th.td1 {width:121px;}
+		.nodata_wrap .nodate_list .list_table1 th.td2 {width:155px;}
+		.nodata_wrap .nodate_list .list_table1 th.td3 {width:134px;}
+		.nodata_wrap .nodate_list .list_table1 th.td4 {width:147px;}
+		.nodata_wrap .nodate_list .list_table1 th.td5 {width:120px;}
+		.nodata_wrap .nodate_list .list_table1 th.td6 {width:150px;}
+
+		.nodata_wrap .nodate_list .list_table2 td {height:43px;font-size:14px;color:#848484;text-align:center;}
+		.nodata_wrap .nodate_list .list_table2 td.td0 {width:30px}
+		.nodata_wrap .nodate_list .list_table2 td.td1 {width:121px;}
+		.nodata_wrap .nodate_list .list_table2 td.td2 {width:155px;}
+		.nodata_wrap .nodate_list .list_table2 td.td3 {width:134px;}
+		.nodata_wrap .nodate_list .list_table2 td.td4 {width:147px;}
+		.nodata_wrap .nodate_list .list_table2 td.td5 {width:120px;}
+		.nodata_wrap .nodate_list .list_table2 td.td6 {width:150px;}
+		.nodata_wrap .nodate_list .list_table2 td.td7 table .img {padding:10px 0 10px 15px}
+		.nodata_wrap .nodate_list .list_table2 td.td7 table .img img {width:50px;height:50px;}
+
+		.nodata_wrap .nodate_list .nodata_search {border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;padding:9px 0;}
+		.nodata_wrap .nodate_list .nodata_search table {margin:0 auto;}
+		.nodata_wrap .nodate_list .nodata_search table td:first-child {padding-right:5px;}
+		.nodata_wrap .nodate_list .nodata_search table td:last-child {padding-left:17px;}
+		.nodata_wrap .nodate_list .nodata_search table td select {width:135px;height:38px;border:1px solid #c2c2c2;}
+		.nodata_wrap .nodate_list .nodata_search table td input {width:280px;height:36px;border:1px solid #c2c2c2;line-height:36px;padding-left:13px;}
+		.nodata_wrap .nodate_list .nodata_search table td a {display:inline-block;width:135px;height:38px;background-color:#535353;font-size:15px;color:#ffffff;font-weight:bold;text-align:center;line-height:37px;}
+
+		.nodata_wrap .nodate_text {background-color:#f8f8f8;padding:32px 45px;}
+		.nodata_wrap .nodate_text > div:first-child {font-size:16px;color:#272727;font-weight:bold;padding-bottom:20px;}
+		.nodata_wrap .nodate_text > div:last-child {font-size:14px;color:#535353;line-height:25px;}
+
+		.nodata_wrap .img_box {position:relative;display:none;}
+		.nodata_wrap .img_box > div {position:absolute;right:0;top:0;width:200px;height:200px;border:1px solid #e7e7e7;background-color:#ffffff;}
+		.nodata_wrap .img_box .close {position:absolute;width:27px;right:-1px;top:-1px;}
+		</style>
+		
+		<div class="nodata_wrap" id="nodata_list">
+		</div>
+		
+		<style>
+		.data_list {margin-left:0px;margin-top:30px;position:relative;}
+		.data_list .title {float:left;background:url(image/S_sub_icon_01.gif) 0 80% no-repeat;padding-left:17px;font-size:14px;color:#3f3f3f;font-weight:bold;padding-top:15px;}
+
+		.data_list .data_table {border-collapse:collapse;margin-top:7px;}
+		.data_list .data_table th, .data_list .data_table td {border:1px solid #cccccc;padding:5px 5px;} 
+		.data_list .data_table th {height:40px;background-color:#f8f8f8;text-align:center;font-size:13px;color:#7f7f7f;font-weight:bold;}
+		.data_list .data_table td {height:35px;text-align:center;font-size:13px;color:#3f3f3f;}
+		</style>
+		<div id="addPayList">
+		</div>
+
+		<style>
+		.shipping_important_text {margin-top:12px;border:1px solid #cccccc;}
+		.shipping_important_text .title {background-color:#f8f8f8;height:65px;line-height:64px;font-size:20px;color:#3f3f3f;font-weight:bold;padding-left:40px;}
+
+		.shipping_important_text .text_box {padding:30px 40px;}
+		.shipping_important_text .text_box .text1 {font-size:15px;color:#515151;margin-bottom:17px;background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;line-height:21px;}
+		.shipping_important_text .text_box .text2 {font-size:17px;color:#515151;font-weight:bold;margin-bottom:13px;background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding-left:12px;}
+		.shipping_important_text .text_box .text3 {line-height:30px;margin-bottom:22px;}
+		.shipping_important_text .text_box .text3 li {font-size:15px;color:#515151}
+		</style>
+
+		
+		
+		<!-- 배송대행신청 미작성 입고 건수 -->
+		<div class="shipping_nowrite_table" id="de_pickup_cnt">
+			<ul>
+				<li>2022년 09월 DE 도착 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+				<li>2022년 09월 픽업중 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+				<li>2022년 09월 NJ 도착 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+			</ul>
+
+			<div style="clear:both;"></div>
+		</div>
+		<!-- //배송대행신청 미작성 입고 건수 -->
+		<style>
+		.shipping_pickup_check {margin-top:42px;}
+		.shipping_pickup_check .title {font-size:17px;color:#515151;font-weight:bold;}
+		.shipping_pickup_check .title font {font-size:13px;font-weight:normal;}
+
+		.shipping_pickup_check .search_bt {margin-top:13px;}
+		.shipping_pickup_check .search_bt .select select {width:126px;height:34px;border:1px solid #cccccc}
+		.shipping_pickup_check .search_bt .input {padding:0 8px 0 4px}
+		.shipping_pickup_check .search_bt .input input {width:314px;height:32px;line-height:31px;color:#515151;padding-left:20px;border:1px solid #cccccc;}
+		.shipping_pickup_check .search_bt .input_bt a {display:inline-block;width:94px;height:34px;background-color:#515151;line-height:34px;text-align:center;text-align:center;font-size:14px;color:#ffffff;font-weight:bold;}
+
+		.shipping_pickup_check .pickup_check_table {border-collapse:collapse;margin-top:12px;border:1px solid #cccccc}
+		.shipping_pickup_check .pickup_check_table th, .shipping_pickup_check .pickup_check_table td {border-left:1px solid #cccccc}
+		.shipping_pickup_check .pickup_check_table th {height:37px;font-size:14px;color:#515151;font-weight:bold;text-align:center;background-color:#f8f8f8}
+		.shipping_pickup_check .pickup_check_table th.td1 {width:125px;}
+		.shipping_pickup_check .pickup_check_table th.td2 {width:225px;}
+		.shipping_pickup_check .pickup_check_table th.td3 {width:167px;}
+		.shipping_pickup_check .pickup_check_table th.td4 {width:512px;}
+		.shipping_pickup_check .pickup_check_table td {height:40px;font-size:14px;color:#515151;text-align:center;}
+		.shipping_pickup_check .pickup_check_table td.td5 {color:#f76c87}
+
+		.shipping_pickup_check .reference_text {font-size:13px;color:#515151;font-weight:bold;margin-top:10px;}
+		</style>
+
+		<!-- 상품 픽업 여부 확인 -->
+		<div class="shipping_pickup_check">
+			<div class="title">- 상품 픽업 여부 확인 &nbsp;<font>(최근 1개월 이내 이력만 확인됩니다)</font></div>
+
+			<table border="0" cellspacing="0" cellpadding="0" class="search_bt">
+			  <tr>
+				<td class="select">
+					<select name="pickup_loc_cd">
+						<option value="DE">미국(D.E)</option>
+					</select>
+				</td>
+				<td class="input"><input type="text" name="pickup_tracking_num" placeholder='상품 트레킹 번호 입력'></td>
+				<td class="input_bt"><a href="javascript:void(0);" onClick="pickupQuery();">검색</a></td>
+			  </tr>
+			</table>
+
+			<div id="pickupList">
+			</div>
+			
+			<div class="reference_text"><font color="#ff9520">*</font>  
+			일치하는 노데이터 목록이 존재하지 않을 경우 1:1 문의게시판에 문의해주세요.</div>
+		</div>
+		
+		<!-- //상품 픽업 여부 확인 -->
+
+
+
+
+
+
+		
+		<style>
+		.shipping_return {margin-top:25px;}
+
+		.shipping_return .return_tab {border-collapse:collapse;border-bottom:1px solid #cccccc}
+		.shipping_return .return_tab td {height:38px;border:1px solid #cccccc;font-size:13px;color:#515151;font-weight:bold;text-align:center;background-color:#f8f8f8;}
+		.shipping_return .return_tab td:last-child {border:0;background:none;}
+		.shipping_return .return_tab td > span {color:#a6a6a6}
+		.shipping_return .return_tab td > span > font {color:#ff9520}
+
+		.shipping_return .return_table {border-collapse:collapse;margin-top:12px;border:1px solid #cccccc}
+		.shipping_return .return_table th, .shipping_return .return_table td {border:1px solid #cccccc}
+
+		.shipping_return .return_table th {padding:5px 0;font-size:13px;color:#515151;font-weight:bold;text-align:center;background-color:#f8f8f8}
+		.shipping_return .return_table th.td1 {width:35px}
+		.shipping_return .return_table th.td2 {width:90px}
+		.shipping_return .return_table th.td3 {width:85px}
+		.shipping_return .return_table th.td4 {width:108px}
+		.shipping_return .return_table th.td5 {width:85px}
+		
+		.shipping_return .return_table th.td7 {width:108px}
+		.shipping_return .return_table th.td8 {width:108px}
+		.shipping_return .return_table th.td9 {width:108px}
+		.shipping_return .return_table th.td10 {width:128px}
+		.shipping_return .return_table th.td10 {width:95px}
+
+		.shipping_return .return_table td {padding:2px 0;font-size:13px;color:#515151;text-align:center;line-height:20px;}
+
+		.shipping_return .return_bt {width:150px;height:43px;margin:20px auto;background-color:#ff9520;border-radius:5px;text-align:center;}
+		.shipping_return .return_bt a {font-size:14px;color:#ffffff;font-weight:bold;line-height:42px;}
+		
+		.shipping_return .return_table td .bt1 {display:inline-block;height:23px;line-height:23px;padding:0 2px;border:1px solid #cccccc;}
+		.shipping_return .return_table td .bt1 a {font-size:12px;color:#515151;}
+		</style>
+		
+		<script>
+		var autonum=1;
+
+		//교체
+		function returntab(layerid){
+			
+			//이미지교체
+			for(i=1 ; i<=2 ; i++){
+				$(".return_tab_"+i).hide();
+			}
+
+			$(".return_tab_"+layerid).show();
+
+			//버튼교체
+
+			for(var i=1 ; i<=2 ; i++){
+				$(".return_tab_"+i+"_bt").css({"background-color":"#f8f8f8","border-bottom":"1px solid #cccccc"});
+			}
+			$(".return_tab_"+layerid+"_bt").css({"background-color":"#ffffff","border-bottom":"1px solid #ffffff"});
+			
+		}
+		</script>
+		
+		
+		<!-- 반품 -->
+		<div class="shipping_return" id="returnList">
+		</div>
+		<!-- //반품 -->
+		
+
+		
+		<ul class="list_bt">
+			<li><a href="javascript:void(0);" onClick="doAction('delOrder')">신청서 삭제</a></li>
+			<li><a href="return_list.html">반송신청 하러가기</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more4')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<li><a href="javascript:void(0);" onClick="doAction('delivery')" >보류해지</a></li>
+			<li><a href="javascript:void(0);" onClick="doAction('pending')" >출고보류</a></li>
+			<li><a href="javascript:void(0);" onClick="doAction('divide')" >상품분할</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more3')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<!--<li style="background-color:#8f8f8f"><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 취소하기</a></li>-->
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more2')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+			<li><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 신청하기</a></li>
+			<!--<li class="more"><a href="#none" onclick="hd_bg('more1')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+		</ul>
+		
+		<div style="clear:both;"></div>
+		
+		
+		<style>
+		.more_info {position:relative;display:none;}
+		.more_info > div {position:absolute;width:1140px;height:205px;left:0;top:-375px;border:2px solid #ff9520;background-color:#ffffff;padding:30px;}
+		.more_info > div .sub_title {position:relative;height:41px;border-bottom:1px solid #cccccc;}
+		.more_info > div .sub_title > div:first-child {font-size:20px;color:#3f3f3f;font-weight:bold;}
+		.more_info > div .sub_title .close {position:absolute;width:27px;right:0;top:0px;}
+
+		.more_info > div .more_text1 {margin-top:20px;}
+		.more_info > div .more_text1 > div {font-size:14px;color:#565656;line-height:25px;}
+		</style>
+		
+		<!-- 묶음배송 신청하기 -->
+		<div class="more1 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>묶음배송 신청하기</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more1')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 묶음 배송 신청하기에 관한 내용을 적어주세요.</div>
+				</div>
+			
 			</div>
 		</div>
+		<!-- //묶음배송 신청하기 -->
+
+
+
+		<!-- 묶음배송 취소하기 -->
+		<div class="more2 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>묶음배송 취소하기</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more2')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 묶음 배송 취소하기에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- //묶음배송 신청하기 -->
+		
+		<!-- 상품 분할 -->
+		<div class="more3 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>상품 분할</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more3')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 상품 분할에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- //상품 분할 -->
+
+
+
+		<!-- 반품 신청서 -->
+		<div class="more4 more_info">
+			<div>
+			
+				<div class="sub_title">
+					<div>반품 신청서</div>
+					<div class="close"><a href="#none" onclick="hd_bg_close('more4')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+				</div>
+
+				<div class="more_text1">
+					<div>- 반품 신청서에 관한 내용을 적어주세요.</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- 반품 신청서 -->
+
+
+
+		
+
+		<form action='mypage.html' method='GET' name='f'>
+			<input type='hidden' name='action_type' value='query'>
+			
+			<div class="open_search">
+				<div class="search_option">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option1">
+						<tr>
+					    <td width="90">검색범위</td>
+						<td width="351" class="select">
+							<div>
+								<select name="q_order_type">
+									<option value='' selected >서비스 종류</option>
+									<option value='1'  >배송대행</option>
+									<option value='2'  >구매대행</option>
+								</select>
+							</div>
+							<div>
+								<select name="q_loc_cd">
+									<option value='' selected >국가 (지역)</option>
+									<option value='NJ'  >US NJ(NJ)</option>
+									<option value='DE'  >US DE(DE)</option>
+								</select>
+							</div>
+						</td>
+						<td width="70">검색기간</td>
+						<td class="date_input">
+							<div class="box">
+								<div><input type="text" name="q_from_date" value="2022-08-20" readonly></div>
+								<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_from_date);"></div>
+							</div>
+							<div style="width:23px;text-align:center;line-height:32px;">~</div>
+							<div class="box">
+								<div><input type="text" name="q_to_date" value="2022-09-21" readonly></div>
+								<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_to_date);"></div>
+							</div>
+							<div onClick="document.f.q_from_date.value='';document.f.q_to_date.value='';" class="bt" style="cursor:pointer">전체기간</div>
+						</td>
+					  </tr>
+					</table>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option2">
+						<tr>
+							<td width="90">검색어</td>
+							<td width="580">
+								<input type="radio" name="q_field" value="t1.invoice_no" checked > 신청번호&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.mall_order_no"  > 오더번호&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t2.package_name"  > 상품명&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.recipient_name"  > 수령인&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t2.tracking_num"  > 트레킹&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="q_field" value="t1.mall_cd"  > 쇼핑몰주소&nbsp;&nbsp;&nbsp;
+							</td>
+							<td class="search2"><input type="text" name="q_keyword" value="" placeholder='검색어 입력' > </td>
+						</tr>
+					</table>
+				</div>
+				<div class="search_bt" style="width:160px;"><a href="javascript:void(0);" onClick="OrderQuery('Form')">검색</a></div>
+			</div>
+		</form>
+		<div style="clear:both;"></div>
+		
+		<style>
+		.shipping_applications_search {margin-top:30px;}
+
+		.shipping_applications_search .applications_table {border-collapse:collapse;margin-top:12px;border:1px solid #cccccc}
+		.shipping_applications_search .applications_table th, .shipping_applications_search .applications_table td {border-left:1px solid #cccccc}
+
+		.shipping_applications_search .applications_table th {padding:5px 0;font-size:14px;color:#515151;font-weight:bold;text-align:center;background-color:#f8f8f8;border-bottom:1px solid #cccccc;}
+		.shipping_applications_search .applications_table th font {font-size:12px;color:#979797;font-weight:normal;}
+		.shipping_applications_search .applications_table th.td0 {width:30px}
+		.shipping_applications_search .applications_table th.td1 {width:45px}
+		.shipping_applications_search .applications_table th.td2 {width:150px}
+		.shipping_applications_search .applications_table th.td3 {width:137px}
+		.shipping_applications_search .applications_table th.td4 {width:157px}
+		.shipping_applications_search .applications_table th.td5 {width:75px}
+		.shipping_applications_search .applications_table th.td6 {width:96px}
+		.shipping_applications_search .applications_table th.td7 {width:115px}
+		.shipping_applications_search .applications_table th.td8 {width:142px}
+		.shipping_applications_search .applications_table th.td9 {width:85px}
+		.shipping_applications_search .applications_table th.td10 {width:*}
+
+		.shipping_applications_search .applications_table td {word-break:break-all;padding:3px 3px;vertical-align:middle;text-align:center;font-size:12px;color:#515151;line-height:13px;border-bottom:1px solid #cccccc;}
+		.shipping_applications_search .applications_table td.td1, .shipping_applications_search .applications_table /* td.td6 */ {vertical-align:middle;}
+		.shipping_applications_search .applications_table td font {color:#4c87a9}
+		.shipping_applications_search .applications_table td .text1 {height:auto;font-size:13px;color:#515151;line-height:20px;}
+		.shipping_applications_search .applications_table td .bt1 {display:inline-block;height:23px;line-height:23px;padding:0 13px;border:1px solid #A6A6A6;}
+		.shipping_applications_search .applications_table td .bt1 a {font-size:12px;color:#515151;}
+		.shipping_applications_search .applications_table td .bt2 {display:inline-block;height:23px;line-height:23px;padding:0 13px;border:1px solid #515151;background-color:#515151;}
+		.shipping_applications_search .applications_table td .bt2 a {font-size:12px;color:#ffffff;}
+		</style>
+
+		<!-- 배송대행 신청 검색 -->
+		<div class="shipping_applications_search" id="shipOrderList"></div>
+		<!-- //배송대행 신청 검색 -->
+		<div style="height:0px;"></div>
+	</div>
+	<!------------------------------------ 오픈 여기까지 ------------------------------------>
+	
+	<style>
+	.mypage_sub_title1 {margin-top:30px;}
+	.mypage_sub_title1 > div {float:left;}
+	.mypage_sub_title1 > div:first-child {font-size:23px;color:#3f3f3f;font-weight:bold;}
+	.mypage_sub_title1 > div:last-child {font-size:13px;color:#ff9520;padding:5px 0 0 15px;}
+
+	.mypage_warehousing_table {margin-top:20px;border-collapse:collapse;}
+	.mypage_warehousing_table td {width:14%;border:1px solid #cccccc;text-align:center;padding:20px 0 20px;}
+	.mypage_warehousing_table .country {font-size:15px;color:#3f3f3f;padding:13px 0 7px;}
+	.mypage_warehousing_table .date {font-size:14px;color:#ff9520;font-weight:bold;}
+	</style>
+	<!-- 센터별 입출고 현황 안내 -->
+	<div class="mypage_sub_title1">
+		<div>- 센터별 입출고 현황 안내</div>
+		<div>(현지시각 기준)</div>
+	</div>
+
+	<div style="clear:both;"></div>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_warehousing_table">
+	  <tr>
+
+	    <td>
+			<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+			<div class='country'>US NJ(NJ)</div>
+			<div class='date'>09.19 [도착입고중]</div>
+		</td>
+	    <td>
+			<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+			<div class='country'>US DE(DE)</div>
+			<div class='date'>09.16 [도착입고중]</div>
+		</td>
+	  </tr>
+	</table>
+	<!-- //센터별 입출고 현황 안내 -->
+	
+	<style>
+	.mypage_management_box {margin-top:25px;border:1px solid #cccccc}
+	.mypage_management_box .title {height:60px;background-color:#f8f8f8;padding:0 29px;}
+	.mypage_management_box .title span {display:inline-block;line-height:67px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_09.gif) 0 50% no-repeat;padding-left:43px;}
+
+	.management_type_table{margin:30px 0 0 63px;}
+
+	.management_type_table td {width:30%;padding-bottom:45px;}
+	.management_type_table td > div {float:left;}
+
+	.management_type_table td .left_title {width:80px;padding-top:10px;text-align:center;}
+	.management_type_table td .left_title > div:last-child {font-size:16px;color:#ff9520;font-weight:bold;padding-top:8px;}
+
+	.management_type_table td .right_text {padding-left:15px;}
+	.management_type_table td .right_text ul li a {font-size:14px;color:#3f3f3f;line-height:30px;}
+	</style>
+	
+	<!-- 마이페이지 관리하기 -->
+	<div class="mypage_management_box">
+		<div class="title"><span>마이페이지 관리하기</span></div>
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="management_type_table">
+		  <tr>
+		    <td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_10.gif"></div>
+					<div>계정관리</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="/mem_edit.html">- 비밀번호, 회원정보 변경</a></li>
+						<li><a href="">- 나의 멤버십 등급</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_11.gif"></div>
+					<div>마이캐시</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="#myCash">- 마이캐시 충전하기</a></li>
+						<li><a href="mycash_list.html">- 사용한 마이캐시 내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<!--
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_12.gif"></div>
+					<div>결제방법</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="">- 신용카드 및 체크카드관리</a></li>
+						<li><a href="">- 신용카드 및 체크카드추가</a></li>
+					</ul>
+				</div>
+			</td>
+			-->
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_13.gif"></div>
+					<div>고객센터</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="qna_list.html">- 1:1 Q&A</a></li>
+						<li><a href="msg_list.html">- 알림함</a></li>
+						<li><a href="sub_1_1.html">- 도움말</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+			&nbsp;
+			</td>
+		  </tr>
+		  <tr>
+		    <td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_14.gif"></div>
+					<div>쿠폰</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="cpn_valid_list.html">- 사용 가능한 쿠폰내역</a></li>
+						<li><a href="cpn_closed_list.html">- 사용한 쿠폰내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_15.gif"></div>
+					<div>호야리워드</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="/mypoint_list.html">- 포인트 적립내역</a></li>
+						<li><a href="/mypoint_list.html">- 포인트 사용내역</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div class="left_title">
+					<div><img src="image/S_mypage_icon_16.gif"></div>
+					<div>마이프로필</div>
+				</div>
+				<div class="right_text">
+					<ul>
+						<li><a href="myaddr_list.html">- 나의 주소록</a></li>
+						<li><a href="myaddr_list.html">- 새주소 추가하기</a></li>
+						<li><a href="javascript:void(0);" onclick="top_search(); window.scrollTo(0,0);">- 나의 호야USA 해외주소</a></li>
+					</ul>
+				</div>
+			</td>
+			<td>
+			&nbsp;
+			</td>
+		  </tr>
+		</table>
+		
+	</div>
+	<!-- //마이페이지 관리하기 -->
+	
+	
+	
 	</th:block>
 
-
+    </body>
+    
 </html>
