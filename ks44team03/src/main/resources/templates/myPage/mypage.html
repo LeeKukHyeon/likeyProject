@@ -11,123 +11,82 @@
 	
 	<th:block layout:fragment="customContents">
 		<div class="container">
-			
+			<!-- 마이페이지 상단부분 -->
 			<div class="sub_contents_wrap wrap">
-
-		<div class="sub_navi_text"> 
-			<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
-		</div>
-
-		<!-- 마이페이지 -->
-		<div class="mypage_main_title">
-			<div>마이페이지</div>
-			<div>다음 등급인 호야새싹 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
-		</div>
-		
-		<ul class="mypage_top_menu">
-			<li><a href="mem_edit.html">나의 정보</a></li>
-			
-			<li><a href="">나의 송장꾸미기 </a></li>
-			<li><a href="">배송요금표 보기</a></li>
-		</ul>
-	
-		<div style="clear:both;"></div>
-
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
-	  <tr>
-	    <th class="rank">
-			<span>등급</span>
-						<div style="position:relative;">
-				<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
-					<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
-				</div>
+			<!-- 마이페이지 -->
+			<div class="mypage_main_title">
+				<div>마이페이지</div>
+				<div>다음 등급인 # 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
 			</div>
-					</th>
 		
-		<th class="coupon"><span>쿠폰</span></th>
-		<!-- <th class="code"><span>추천코드</span></th> -->
-		<th class="hcash"><span>마이캐시</span></th>
-		<th class="usage"><span>이용실적</span></th>
-	  </tr>
-	  <tr>
-	    <td class="rank">#</td>
-		
-		<td class="coupon"><a href="cpn_valid_list.html"><font>1</font>장</a></td>
-		<!-- <td class="code">US123456</td> -->
-		<td class="hcash"><a href="mycash_list.html">0.00</a></td>
-		<td class="usage">
-			전월 이용건수 : <font>0</font>건&nbsp;&nbsp;&nbsp;
-			당월 이용건수 : <font>0</font>건&nbsp;&nbsp;&nbsp;
-			총 이용건수 : <font>0</font>건
-		</td>
-	  </tr>
-	</table>	
-	<!-- //마이페이지 -->
+			<ul class="mypage_top_menu">
+				<li><a href="mem_edit.html">#나의 정보</a></li>
 				
-		
+				<li><a href="#">#나의 송장꾸미기 </a></li>
+				<li><a href="#">#배송요금표 보기</a></li>
+			</ul>
+	
+			<div style="clear:both;"></div>
+	
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
+			  <tr>
+			    <th class="rank">
+					<span>등급</span>
+					<div style="position:relative;">
+						<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
+							<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
+						</div>
+					</div>
+				</th>
+				
+				<th class="coupon"><span>쿠폰</span></th>
+				<!-- <th class="code"><span>추천코드</span></th> -->
+				<th class="hcash"><span>마이캐시</span></th>
+				<th class="usage"><span>이용실적</span></th>
+			  </tr>
+			  <tr>
+			    <td class="rank">#</td>
+				
+				<td class="coupon"><a href="cpn_valid_list.html"><font>#</font>장</a></td>
+				<!-- <td class="code">US123456</td> -->
+				<td class="hcash"><a href="mycash_list.html">#</a></td>
+				<td class="usage">
+					전월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
+					당월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
+					총 이용건수 : <font>#</font>건
+				</td>
+			  </tr>
+			</table>	
+		<!-- //마이페이지 상단 끝 -->
 		</div>
 		
 		
-	<style>
-	.mypage_shipping_status {margin-top:30px;}
-	.mypage_shipping_status .title {line-height:32px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_18.gif) 0 50% no-repeat;padding-left:47px;}
 
-	.mypage_shipping_status {position:relative;}
-	.mypage_shipping_status .bt1 {position:absolute; width:190px;height:40px;z-index:1;right:200px;top:-5px;text-align:center;background-color:#ff9520;}
-	.mypage_shipping_status .bt1 a {display:inline-block;font-size:14px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_order_icon_01.gif) 0 50% no-repeat;padding-left:25px;line-height:40px;}
-	.mypage_shipping_status .bt2 {position:absolute; width:190px;height:36px;z-index:1;right:0px;top:-5px;text-align:center;background-color:#ffffff;border:2px solid #ff9520;}
-	.mypage_shipping_status .bt2 a {display:inline-block;font-size:14px;color:#ff9520;font-weight:bold;background:url(image/S_mypage_order_icon_02.gif) 0 50% no-repeat;padding-left:25px;line-height:36px;}
-
-	.mypage_shipping_status .status_1 {border:1px solid #cccccc;margin-top:15px;padding:9px 0}
-	.mypage_shipping_status .status_1 table td {border-left:1px dashed #cccccc;text-align:center;}
-	.mypage_shipping_status .status_1 table td:first-child {border:0;}
-
-	.mypage_shipping_status .status_1 table td .text {padding-top:10px;line-height:31px;font-size:15px;color:#484848;font-weight:bold;}
-	.mypage_shipping_status .status_1 table td .text span {display:inline-block;width:33px;height:33px;background-color:#ff9520;border-radius:33px;text-align:center;font-size:15px;color:#ffffff;font-weight:bold;}
-
-	.mypage_shipping_status .status_1 table td .shipping_bt {width:294px;height:68px;margin:0 auto;background-color:#3f3f3f;border-radius:5px;text-align:center;line-height:67px;}
-	.mypage_shipping_status .status_1 table td .shipping_bt a {display:inline-block;font-size:20px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_icon_22.gif) right 50% no-repeat;padding-right:37px;}
-
-	.mypage_shipping_status .status_2 {border:1px solid #cccccc;border-top:0;}
-	.mypage_shipping_status .status_2 table td:first-child {width:189px;height:160px;background-color:#f8f8f8;font-size:15px;color:#484848;font-weight:bold;line-height:36px;padding-left:20px;}
-	.mypage_shipping_status .status_2 table td:first-child font {color:#f76c87;}
-
-	.mypage_shipping_status .status_2 table td .progress {padding-left:43px;}
-	.mypage_shipping_status .status_2 table td .progress li {float:left;width:100px;height:100px;border-radius:110px;margin-left:17px;border:5px solid #dddddd;text-align:center;}
-	.mypage_shipping_status .status_2 table td .progress li > div:first-child {height:30px;font-size:14px;color:#484848;line-height:17px;padding-top:30px;}
-	.mypage_shipping_status .status_2 table td .progress li > div:last-child {font-size:18px;color:#484848;font-weight:bold;}
-
-	.shipping_list_open {display:inline-block;border:1px solid #c2c2c2;border-top:0;border-radius:0 0 5px 5px;height:36px;line-height:35px;padding:0 22px;}
-	.shipping_list_open span {display:inline-block;font-size:14px;color:#8f8f8f;font-weight:bold;background:url(image/S_mypage_icon_06.gif) right 50% no-repeat;padding-right:21px;}
-	.shipping_list_open span font {color:#ff9520;}
-	.progress {height:120px;}
-	.progress li div {height:40px;padding-top:15px;}
-	</style>
-	
+	<!-- //나의 배송현황 -->
 	<div class="mypage_shipping_status">
-			<div class="title">나의 배송 현황</div>
+		<div class="title">나의 배송 현황</div>
 
 		<div class="order_bt">
-			<div class="bt1"><a href="">구매대행 주문 조회</a></div>
-			<div class="bt2"><a href="">SHOP 주문 배송 조회</a></div>
+			<div class="bt1"><a href="">#구매대행 주문 조회</a></div>
+			<div class="bt2"><a href="">#SHOP 주문 배송 조회</a></div>
 		</div>
 		<div class="status_1">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 			  <tr>
 			    <td width="273">
 					<div class="icon"><a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><img src="image/S_mypage_icon_19.gif"></a></div>
-					<div class="text"><a href="javascript:void(0);" style="color:black;" onClick="OrderQuery('noPaid');">통합결제 &nbsp;&nbsp; <span>0</span></a></div>
+					<div class="text"><a href="javascript:void(0);" style="color:black;" onClick="OrderQuery('noPaid');">#통합결제 &nbsp;&nbsp; <span>0</span></a></div>
 				</td>
 				<td width="255">
 					<div class="icon"><a href="msg_list.html"><img src="image/S_mypage_icon_20.gif"></a></div>
-					<div class="text" ><a href="msg_list.html" style="color:black;">알림 &nbsp;&nbsp; <span>0</span></a></div>
+					<div class="text" ><a href="msg_list.html" style="color:black;">#알림 &nbsp;&nbsp; <span>0</span></a></div>
 				</td>
 				<td width="258">
 					<div class="icon"><img src="image/S_mypage_icon_21.gif"></div>
-					<div class="text">미신청건 &nbsp;&nbsp; <span>0</span></div>
+					<div class="text">#미신청건 &nbsp;&nbsp; <span>0</span></div>
 				</td>
 				<td>
-					<a href="shipping.html"><div class="shipping_bt">배송신청서 작성</a></div>
+					<a href="shipping.html"><div class="shipping_bt">#배송신청서 작성</a></div>
 				</td>
 			  </tr>
 			</table>
@@ -137,44 +96,44 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 				<tr>
 					<td>
-					- <a href="javascript:void(0);" onClick="OrderQuery('All');"><font>전체 : 0</a></font><br>
-					- <a href="javascript:void(0);" onClick="OrderQuery('Err');"><font>오류입고 : 0</a></font><br>
-					- <a href="javascript:void(0);" onClick="OrderQuery('noDataCnt');"><font>신청서 미작성 입고 : 0</a></font><br>
-					- <a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><font>미결제 : 0</a></font>
+					- <a href="javascript:void(0);" onClick="OrderQuery('All');"><font>전체 : #</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('Err');"><font>오류입고 : #</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('noDataCnt');"><font>신청서 미작성 입고 : #</a></font><br>
+					- <a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><font>미결제 : #</a></font>
 					</td>
 					
 					<td>
 						<ul class="progress">
 							<li>
 								<div onClick="OrderQuery('Imsi');" style="cursor:pointer">임시 저장</div>
-								<div onClick="OrderQuery('Imsi');" style="cursor:pointer">0</div>
+								<div onClick="OrderQuery('Imsi');" style="cursor:pointer">#</div>
 							</li>
 							
 							<li>
 								<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
-								<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;">0</div>
+								<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;">#</div>
 							</li>
 							
 							<li>
 								<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
-								<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">0</div>
+								<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">#</div>
 							</li>
 							<li>
 								<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
-								<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;">0</div>
+								<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;">#</div>
 							</li>
 							
 							<li>
 								<div onClick="OrderQuery('Out');" style="cursor:pointer">한국 출고</div>
-								<div onClick="OrderQuery('Out');" style="cursor:pointer">0</div>
+								<div onClick="OrderQuery('Out');" style="cursor:pointer">#</div>
 							</li>
 							<li>
 								<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
-								<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">0</div>
+								<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#</div>
 							</li>
 							<li>
 								<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">배송완료</div>
-								<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">0</div>
+								<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#</div>
 							</li>
 						</ul>
 					</td>
@@ -187,7 +146,7 @@
 	
 	
 	<div style="margin:0 auto;" align="center">
-		<div class="shipping_list_open"><span>배송 신청 내역 <font id="shipping_list_toggle">닫기</font></span></div>
+		<div class="shipping_list_open"><span>배송 신청 내역 <font id="shipping_list_toggle">열기</font></span></div>
 	</div>
 	
 	<script type="text/javascript">
@@ -206,55 +165,7 @@
 		})
 	})
 	</script>
-	
-	
-	
-	<style>
-	.shipping_details_list {margin-top:35px;position:relative;display:none;}
-
-	.shipping_details_list .title > div {float:left;}
-	.shipping_details_list .title > div:first-child {background:url(image/S_mypage_icon_25.gif) 0 50% no-repeat;font-size:23px;color:#3f3f3f;font-weight:bold;line-height:31px;padding:0 13px 0 42px;}
-	.shipping_details_list .title > div:last-child {font-size:13px;color:#515151;padding-top:10px;}
-	.shipping_details_list .title > div:last-child font {color:#ff9520;}
-
-	.shipping_details_list .search {position:absolute;width:152px;height:38px;right:0;top:0;background-color:#3f3f3f;text-align:center;}
-	.shipping_details_list .search > a {display:inline-block;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;font-size:14px;color:#ffffff;font-weight:bold;padding-right:22px;line-height:38px;}
-
-	.shipping_details_list .list_table {margin-top:19px;border-collapse:collapse;}
-	.shipping_details_list .list_table td {width:24.7%;height:40px;border:1px solid #cccccc;background-color:#f8f8f8;}
-	.shipping_details_list .list_table td > div {float:left;}
-	.shipping_details_list .list_table td > div:first-child {width:220px;padding-left:17px;font-size:13px;color:#515151;}
-	.shipping_details_list .list_table td > div:last-child {width:60px;font-size:14px;color:#ff9520;font-weight:bold;text-align:center;}
-	.shipping_details_list .list_table td > div.ov {font-weight:bold;}
-
-	.shipping_details_list .list_bt {margin-top:40px}
-	.shipping_details_list .list_bt li {float:right;height:38px;line-height:38px;background-color:#ff9520;border-radius:5px;margin-left:6px;padding:0 16px;text-align:center;}
-	.shipping_details_list .list_bt li a {font-size:14px;color:#ffffff;font-weight:bold;}
-	.shipping_details_list .list_bt li.more {background:none;padding:13px 0 0 4px;line-height:0px;}
-
-
-
-	.shipping_details_list .open_search {height:96px;border-top:2px solid #8d8d8d;border-bottom:1px solid #e0e0e0;margin-top:15px;}
-	.shipping_details_list .open_search > div {float:left;}
-
-	.shipping_details_list .open_search .search_option {width:947px;}
-	.shipping_details_list .open_search .search_option .option1 {border-bottom:1px solid #e0e0e0}
-	.shipping_details_list .open_search .search_option .option1 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
-	.shipping_details_list .open_search .search_option .option1 .select > div {display:inline-block;}
-	.shipping_details_list .open_search .search_option .option1 .select > div select {width:136px;height:34px;border:1px solid #cccccc;margin-right:3px;text-align: center;}
-	.shipping_details_list .open_search .search_option .option1 .date_input div {float:left;}
-	.shipping_details_list .open_search .search_option .option1 .date_input .box {border:1px solid #cccccc;}
-	.shipping_details_list .open_search .search_option .option1 .date_input > div input {width:100px;height:32px;border:0; text-align: center;}
-	.shipping_details_list .open_search .search_option .option1 .date_input .bt {margin-left:21px;width:95px;height:34px;background-color:#8d8d8d;line-height:34px;text-align:center;font-size:14px;color:#ffffff;font-weight:bold;}
-
-	.shipping_details_list .open_search .search_option .option2 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
-	.shipping_details_list .open_search .search_option .option2 .search2 input {width:239px;height:32px;border:1px solid #cccccc;padding-left:5px;text-align:center;font-size:14px;}
-
-	.shipping_details_list .open_search .search_bt {margin:4px 0 0 31px;width:191px;height:86px;background-color:#3f3f3f;border-radius:5px;text-align:center;}
-	.shipping_details_list .open_search .search_bt a {font-size:19px;color:#ffffff;font-weight:bold;line-height:88px;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;padding-right:25px;}
-	</style>
-	
-	
+		
 	<div class="shipping_details_list">
 		<!-- 배송신청 내역 -->
 		<div class="title">
