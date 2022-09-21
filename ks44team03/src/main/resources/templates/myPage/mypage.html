@@ -946,4 +946,125 @@
 
     </body>
     
+    
+    <script>
+	    function OrderQuery(qType)
+	    {
+	    	viewInfo(qType);
+	    	shipStepInfo(qType);
+	    	var arrData=[];
+	    	if(qType=="noDataCnt") {
+	    		arrData['q_query_type']='noDataCnt';
+	    		OrderQueryCss(1);
+	    		nodataQuery();
+	    	}
+	    }
+    
+	    function OrderQueryCss(num)
+	    {
+	    	for(var i=1 ; i<=22 ; i++){
+	    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
+	    	}
+	    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
+	    }
+	    
+	    
+	    function viewInfo(mode)
+	    {
+	    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
+	    		$(".list_bt").hide();
+	    		$(".open_search").hide();
+	    		$(".shipping_applications_search").hide();
+	    	} else {
+	    		$(".list_bt").show();
+	    		$(".open_search").show();
+	    		$(".shipping_applications_search").show();
+	    	}
+	    	
+	    	if(mode=="addPay" || mode=="noPaid") {
+	    		$("#addPayList").show();
+	    	} else {
+	    		$("#addPayList").hide();
+	    	}
+	    	
+	    	
+	    	if(mode=="noDataCnt") {
+	    		// $("#nodata_info").show();
+	    		$("#nodata_cnt").show();
+	    		$("#nodata_list").show();
+	    	} else {
+	    		// $("#nodata_info").hide();
+	    		$("#nodata_cnt").hide();
+	    		$("#nodata_list").hide();
+	    	}
+	
+	    	if(mode=="DePickup") {
+	    		//$("#de_pickup_info").show();
+	    		$("#de_pickup_cnt").show();
+	    		$(".shipping_pickup_check").show();
+	    	} else {
+	    		//$("#de_pickup_info").hide();
+	    		$("#de_pickup_cnt").hide();
+	    		$(".shipping_pickup_check").hide();
+	    	}
+	
+	    	if(mode=="rtnCnt") {
+	    		//$("#return_info").show();
+	    		$(".shipping_return").show();
+	    	} else {
+	    		//$("#return_info").hide();
+	    		$(".shipping_return").hide();
+	    	}
+	    	
+	    	$(".shipping_details_list").show();
+	
+	    }
+    	
+	    function shipStepInfo(qType)
+	    {
+	    	$.ajax({
+	    			type: 'POST',
+	    			url: "/api/ship_step_info_api.html",
+	    			async:false,
+	    			data: {q_ship_step_type:qType,
+	    					action_type : 'ship_step_info'},
+	    			success: function(data) 
+	    			{
+	    				var content = $('#ship_step_info').html(data);
+	    				content.trigger( "create" );
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) 
+	    			{
+	    				alert("호출에 실패했습니다." + errorThrown );
+	    			}
+	    		})
+	    }
+	    
+	    function nodataQuery()
+	    {
+	    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
+	    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
+	    	
+	    	$.ajax({
+	    			type: 'POST',
+	    			url: "https://www.hoyausa.co.kr/api/nodata_api.html",
+	    			async:false,
+	    			data: {q_nodata_field:q_nodata_field,
+	    					q_nodata_search:q_nodata_search,
+	    					action_type : 'noDataList'},
+	    			success: function(data) 
+	    			{
+	    				var content = $('#nodata_list').html(data);
+	    				content.trigger( "create" );
+	    				
+	    				var content = $('#shipOrderList').html('');
+	    				content.trigger( "create" );
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) 
+	    			{
+	    				alert("호출에 실패했습니다." + errorThrown );
+	    			}
+	    		})
+	    }
+    </script>
 </html>
