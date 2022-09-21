@@ -4428,4 +4428,26 @@ readers do not read off random characters that represent icons */
 
 .shipping_details_list .open_search .search_bt {margin:4px 0 0 31px;width:191px;height:86px;background-color:#3f3f3f;border-radius:5px;text-align:center;}
 .shipping_details_list .open_search .search_bt a {font-size:19px;color:#ffffff;font-weight:bold;line-height:88px;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;padding-right:25px;}
->>>>>>> branch 'lkh' of https://github.com/LeeKukHyeon/likeyProject.git
+.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:30px;}
+.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;font-size:13px;color:#6e6e6e;}
+
+
+<!-- 사이드 바 css ->
+.sub_contents_wrap {margin-top:30px;}
+.sub_contents_wrap > div {float:left; }
+
+.sub_contents_wrap .left_menu {width:179px;margin-right:70px;margin-left:50px;}
+.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+
+.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
+.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;}
+.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
+
+.right_text {width:951px;letter-spacing:-1px;}
