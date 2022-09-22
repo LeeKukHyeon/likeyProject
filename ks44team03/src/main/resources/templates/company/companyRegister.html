@@ -3,7 +3,7 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default_layout}">
+      layout:decorate="~{adminLayout/adminDefault_layout}">
 <!-- <meta charset="UTF-8"> -->
 <head>
 <style>
@@ -13,10 +13,10 @@
 	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
 
 	.next_button {
-	  background-color: #5b95e5;
+	  background-color: #535353;
 	  border: none;
 	  color: white;
-	  padding: 10px 27px;
+	  padding: 10px 10px;
 	  text-align: center;
 	  text-decoration: none;
 	  display: inline-block;
@@ -24,19 +24,21 @@
 	  margin: 4px 2px;
 	  cursor: pointer;
 	  font-weight:bold;
+	  border-radius: 10px;
 		}
 
 	.cancel_button {
 	    background-color: #535353;
-	    border: none;
+	    border: 1px solid;
 	    color: white;
-	    padding: 10px 27px;
+	    padding: 10px 20px;
 	    text-align: center;
 	    text-decoration: none;
 	    display: inline-block;
 	    font-size: 17px;
 	    margin: 4px 2px;
 	    cursor: pointer;
+	    border-radius: 10px;
 		}
 	.sub_navi_text {
 	    height: 30px;
@@ -95,7 +97,7 @@
 	    height: 30px;
 	    background-color: #f8f8f8;
 	    font-size: 15px;
-	    color: #447b9a;
+	    color: #535353;
 	    font-weight: bold;
 	    text-align: center;
 		}
@@ -113,20 +115,21 @@
 	    text-align: -internal-center;
 	}
 	input{
-		padding-right: 75px;
+		padding-right: 200px;
 	}
 	.button2{
-		margin-left: 150px;
+		margin-left: 393px;
 	}
 	
 </style>
 </head>
-<body layout:fragment="content">
+<body layout:fragment="adminContent">
+	<div class="content-wrapper">
 	
-	<div class="right_text"  style="margin-left: 30%; margin-right: 10%;">
-	<h1 th:text="${title}" style=" padding-top:40px;">회사 등록</h1>
+	<div class="right_text"  style="margin-left: %; margin-right: 10%;">
+	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">회사 등록</h2>
 	<form name="form1" id="form1">
-		<table class="input_table" style="width:90%;">	
+		<table class="input_table" style="width:110%;">	
 		<colgroup>
 				<col width="15%"/><col width="35%"/>
 				<col width="15%"/><col width="35%"/>
@@ -180,6 +183,7 @@
 	<div class="button2">
 	<button type="submit"  class="next_button">회사등록</button>
 	<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
+	</div>
 	</div>
 	</div>
 	
