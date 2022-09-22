@@ -4436,7 +4436,7 @@ readers do not read off random characters that represent icons */
 
 
 
-/*사이드바 css*/
+<!-- 사이드 바 css ->
 
 
 .sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
@@ -4462,6 +4462,7 @@ readers do not read off random characters that represent icons */
 .sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
 .input_table th {height: 30px; background-color: #f8f8f8; font-size: 15px; color: #447b9a; font-weight: bold; text-align: center; }
 .input_table th, .input_table td {border: 1px solid #c6c6c6;}
+
 
 /*주문상세내역조회*/
 
@@ -4523,3 +4524,4 @@ readers do not read off random characters that represent icons */
 .main_list_box .list_box .line_box .table_03 td.td5 {width:124px;}
 .main_list_box .list_box .line_box .table_03 .th {background-color:#f3f3f3;text-align:center;font-size:13px;color:#447b9a;font-weight:bold;}
 .main_list_box .list_box .line_box .table_03 td font {color:#f47a27;}
+
