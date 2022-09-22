@@ -4337,7 +4337,7 @@ readers do not read off random characters that represent icons */
 .mypage_main_title > div:first-child {background:url(image/S_mypage_icon_01.gif) 0 50% no-repeat;font-size:27px;color:#f76c87;font-weight:bold;padding:0 20px 0 0px;}
 .mypage_main_title > div:last-child {font-size:13px;color:#515151;padding-top:13px;}
 .mypage_main_title > div:last-child font {color:#ff9520;font-weight:bold;}
-<<<<<<< HEAD
+
 
 .mypage_top_menu  {padding-top:13px;}
 .mypage_top_menu > li {float:right;padding-left:23px;}
@@ -4355,23 +4355,9 @@ readers do not read off random characters that represent icons */
 .mypage_info_table th.hcash {width:144px;}
 .mypage_info_table td {height:45px;background-color:#f8f8f8;text-align:center;font-size:14px;}
 .mypage_info_table td font {color:#ff9520;font-weight:bold;}
-=======
-.mypage_top_menu  {padding-top:13px;}
-.mypage_top_menu > li {float:right;padding-left:23px;}
-.mypage_top_menu > li > a {display:inline-block;background:url(image/S_mypage_icon_05.gif) 0 50% no-repeat;padding-left:10px;font-size:14px;color:#3f3f3f;font-weight:bold;}
 
-.mypage_info_table {border-collapse:collapse;margin-top:10px;}
-.mypage_info_table td, .mypage_info_table th {border:1px solid #e2e2e2;}
-.mypage_info_table th {height:40px;font-size:14px;color:#ffffff;font-weight:bold;text-align:center;background-color:#3f3f3f;}
-.mypage_info_table th span {display:inline-block;background:url(image/S_mypage_icon_04.gif) right 50% no-repeat;padding:0 20px;}
-.mypage_info_table th.rank {width:144px;background-color:#f76c87}
-.mypage_info_table th.rank span {background:url(image/S_mypage_icon_03.gif) right 50% no-repeat;}
-.mypage_info_table th.point {width:156px;}
-.mypage_info_table th.coupon {width:144px;}
-.mypage_info_table th.code {width:144px;}
-.mypage_info_table th.hcash {width:144px;}
-.mypage_info_table td {height:45px;background-color:#f8f8f8;text-align:center;font-size:14px;}
-.mypage_info_table td font {color:#ff9520;font-weight:bold;}
+
+
 .mypage_shipping_status {margin-top:30px;}
 .mypage_shipping_status .title {line-height:32px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_18.gif) 0 50% no-repeat;}
 
@@ -4446,5 +4432,40 @@ readers do not read off random characters that represent icons */
 
 .shipping_details_list .open_search .search_bt {margin:4px 0 0 31px;width:191px;height:86px;background-color:#3f3f3f;border-radius:5px;text-align:center;}
 .shipping_details_list .open_search .search_bt a {font-size:19px;color:#ffffff;font-weight:bold;line-height:88px;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;padding-right:25px;}
->>>>>>> branch 'develop' of https://github.com/LeeKukHyeon/likeyProject.git
+
+
+
+
+<!-- 사이드 바 css ->
+.sub_contents_wrap {margin-top:30px;margin-left:50px;}
+
+.sub_contents_wrap .left_menu {width:179px;margin-right:70px;margin-left:50px;}
+.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+
+.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
+.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;}
+.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
+
+.right_text {width:951px;letter-spacing:-1px;}
+
+#sidebar {margin-left:5%;}
+.sub_title_main {margin-bottom : 10px;font-size: 24px;color: #f76c87;font-weight: bold;padding: 0px 20px 20px 4px;}
+
+/*회원수정화면*/
+.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
+.input_table .hp > div:nth-child(2) > div {float:left;}
+.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
+.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
+.input_table th {height: 30px; background-color: #f8f8f8; font-size: 15px; color: #447b9a; font-weight: bold; text-align: center; }
+.input_table th, .input_table td {border: 1px solid #c6c6c6;}
+
+
 
