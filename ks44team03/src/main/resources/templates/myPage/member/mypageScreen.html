@@ -11,60 +11,59 @@
 	
 	<th:block layout:fragment="customContents">
 		<div class="container">
+		
+			
 			<!-- 마이페이지 상단부분 -->
 			<div class="sub_contents_wrap wrap">
-
-
 				<div class="sub_navi_text"> 
 					<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
-	
 				</div>
-				<!-- 마이페이지 -->
-				<div class="mypage_main_title">
-					<div>마이페이지</div>
-					<div>다음 등급인 # 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
-				</div>
-			
-				<ul class="mypage_top_menu">
-					<li><a href="mem_edit.html">#나의 정보</a></li>
-					
-					<li><a href="#">#나의 송장꾸미기 </a></li>
-					<li><a href="#">#배송요금표 보기</a></li>
-				</ul>
-		
-				<div style="clear:both;"></div>
-		
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
-				  <tr>
-				    <th class="rank">
-						<span>등급</span>
-						<div style="position:relative;">
-							<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
-								<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
-							</div>
-						</div>
-					</th>
-					
-					<th class="coupon"><span>쿠폰</span></th>
-					<!-- <th class="code"><span>추천코드</span></th> -->
-					<th class="hcash"><span>마이캐시</span></th>
-					<th class="usage"><span>이용실적</span></th>
-				  </tr>
-				  <tr>
-				    <td class="rank">#</td>
-					
-					<td class="coupon"><a href="cpn_valid_list.html"><font>#</font>장</a></td>
-					<!-- <td class="code">US123456</td> -->
-					<td class="hcash"><a href="mycash_list.html">#</a></td>
-					<td class="usage">
-						전월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
-						당월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
-						총 이용건수 : <font>#</font>건
-					</td>
-				  </tr>
-				</table>	
-			<!-- //마이페이지 상단 끝 -->
+			<!-- 마이페이지 -->
+			<div class="mypage_main_title">
+				<div>마이페이지</div>
+				<div>다음 등급인 # 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
 			</div>
+		
+			<ul class="mypage_top_menu">
+				<li><a href="memberModify">회원정보 수정</a></li>
+				
+				<li><a href="myAddrList">나의 주소록</a></li>
+				<li><a href="#">#배송요금표 보기</a></li>
+			</ul>
+	
+			<div style="clear:both;"></div>
+	
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
+			  <tr>
+			    <th class="rank">
+					<span>등급</span>
+					<div style="position:relative;">
+						<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
+							<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
+						</div>
+					</div>
+				</th>
+				
+				<th class="coupon"><span>쿠폰</span></th>
+				<!-- <th class="code"><span>추천코드</span></th> -->
+				<th class="hcash"><span>마이캐시</span></th>
+				<th class="usage"><span>이용실적</span></th>
+			  </tr>
+			  <tr>
+			    <td class="rank">#</td>
+				
+				<td class="coupon"><a href="cpn_valid_list.html"><font>#</font>장</a></td>
+				<!-- <td class="code">US123456</td> -->
+				<td class="hcash"><a href="mycash_list.html">#</a></td>
+				<td class="usage">
+					전월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
+					당월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
+					총 이용건수 : <font>#</font>건
+				</td>
+			  </tr>
+			</table>	
+		<!-- //마이페이지 상단 끝 -->
+		</div>
 		
 		
 
@@ -912,18 +911,7 @@
 					</ul>
 				</div>
 			</td>
-			<td>
-				<div class="left_title">
-					<div><img src="image/S_mypage_icon_15.gif"></div>
-					<div>호야리워드</div>
-				</div>
-				<div class="right_text">
-					<ul>
-						<li><a href="/mypoint_list.html">- 포인트 적립내역</a></li>
-						<li><a href="/mypoint_list.html">- 포인트 사용내역</a></li>
-					</ul>
-				</div>
-			</td>
+			
 			<td>
 				<div class="left_title">
 					<div><img src="image/S_mypage_icon_16.gif"></div>
@@ -952,4 +940,125 @@
 
     </body>
     
+    
+    <script>
+	    function OrderQuery(qType)
+	    {
+	    	viewInfo(qType);
+	    	shipStepInfo(qType);
+	    	var arrData=[];
+	    	if(qType=="noDataCnt") {
+	    		arrData['q_query_type']='noDataCnt';
+	    		OrderQueryCss(1);
+	    		nodataQuery();
+	    	}
+	    }
+    
+	    function OrderQueryCss(num)
+	    {
+	    	for(var i=1 ; i<=22 ; i++){
+	    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
+	    	}
+	    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
+	    }
+	    
+	    
+	    function viewInfo(mode)
+	    {
+	    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
+	    		$(".list_bt").hide();
+	    		$(".open_search").hide();
+	    		$(".shipping_applications_search").hide();
+	    	} else {
+	    		$(".list_bt").show();
+	    		$(".open_search").show();
+	    		$(".shipping_applications_search").show();
+	    	}
+	    	
+	    	if(mode=="addPay" || mode=="noPaid") {
+	    		$("#addPayList").show();
+	    	} else {
+	    		$("#addPayList").hide();
+	    	}
+	    	
+	    	
+	    	if(mode=="noDataCnt") {
+	    		// $("#nodata_info").show();
+	    		$("#nodata_cnt").show();
+	    		$("#nodata_list").show();
+	    	} else {
+	    		// $("#nodata_info").hide();
+	    		$("#nodata_cnt").hide();
+	    		$("#nodata_list").hide();
+	    	}
+	
+	    	if(mode=="DePickup") {
+	    		//$("#de_pickup_info").show();
+	    		$("#de_pickup_cnt").show();
+	    		$(".shipping_pickup_check").show();
+	    	} else {
+	    		//$("#de_pickup_info").hide();
+	    		$("#de_pickup_cnt").hide();
+	    		$(".shipping_pickup_check").hide();
+	    	}
+	
+	    	if(mode=="rtnCnt") {
+	    		//$("#return_info").show();
+	    		$(".shipping_return").show();
+	    	} else {
+	    		//$("#return_info").hide();
+	    		$(".shipping_return").hide();
+	    	}
+	    	
+	    	$(".shipping_details_list").show();
+	
+	    }
+    	
+	    function shipStepInfo(qType)
+	    {
+	    	$.ajax({
+	    			type: 'POST',
+	    			url: "/api/ship_step_info_api.html",
+	    			async:false,
+	    			data: {q_ship_step_type:qType,
+	    					action_type : 'ship_step_info'},
+	    			success: function(data) 
+	    			{
+	    				var content = $('#ship_step_info').html(data);
+	    				content.trigger( "create" );
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) 
+	    			{
+	    				alert("호출에 실패했습니다." + errorThrown );
+	    			}
+	    		})
+	    }
+	    
+	    function nodataQuery()
+	    {
+	    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
+	    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
+	    	
+	    	$.ajax({
+	    			type: 'POST',
+	    			url: "https://www.hoyausa.co.kr/api/nodata_api.html",
+	    			async:false,
+	    			data: {q_nodata_field:q_nodata_field,
+	    					q_nodata_search:q_nodata_search,
+	    					action_type : 'noDataList'},
+	    			success: function(data) 
+	    			{
+	    				var content = $('#nodata_list').html(data);
+	    				content.trigger( "create" );
+	    				
+	    				var content = $('#shipOrderList').html('');
+	    				content.trigger( "create" );
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) 
+	    			{
+	    				alert("호출에 실패했습니다." + errorThrown );
+	    			}
+	    		})
+	    }
+    </script>
 </html>

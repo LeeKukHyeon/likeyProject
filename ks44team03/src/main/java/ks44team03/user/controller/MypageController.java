@@ -11,10 +11,28 @@ public class MypageController {
 	
 	
 	
-	@GetMapping("/mypage")
+	
+	@GetMapping("/myAddrList")
+	public String myAddrList() {
+		
+		
+		return "myPage/member/myAddrList";
+	}
+	
+	
+	
+	@GetMapping("/memberModify")
+	public String modifyMemberInfo() {
+		
+		
+		return "myPage/member/memberModify";
+	}
+	
+	
+	@GetMapping("/mypageScreen")
 	public String mypage() {
 		
 		
-		return "myPage/mypage";
+		return "myPage/member/mypageScreen";
 	}
 }
