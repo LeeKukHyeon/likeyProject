@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout_sidebar.html}">
+
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="content">
+	
+			
+        <!-- code -->
+        	<div class="right_text col-lg-8 mb-5 mb-lg-0">
+        	
+
+				<div class="sub_navi_text"> 
+					<div>HOME &nbsp;>&nbsp; 마이페이지 &nbsp;>&nbsp; <b>나의 사용가능 쿠폰함</b></div>
+				</div>
+			
+				<div class="sub_title_main">- 나의 쿠폰 내역</div>
+        		<div style="font-size:14px;color:#808080; margin-bottom: 15px;">※ 모든 쿠폰은 최대 $20 까지 할인 적용 됩니다.</div>
+        		<div class="reward_point_tab">
+        			<script>
+						var autonum=1;
+			
+						//교체
+						function rewardtab(layerid){
+							
+							//이미지교체
+							for(i=1 ; i<=2 ; i++){
+								$(".reward_tab_"+i).hide();
+							}
+			
+							$(".reward_tab_"+layerid).show();
+			
+							//버튼교체
+							for(var i=1 ; i<=2 ; i++){
+								$(".reward_tab_"+i+"_bt").css({"background-color":"#f8f8f8","border-bottom":"1px solid #cccccc","border-top":"1px solid #cccccc"});
+							}
+							$(".reward_tab_"+layerid+"_bt").css({"background-color":"#ffffff","border-bottom":"1px solid #ffffff","border-top":"2px solid #ff9520"});
+							
+							document.next_action.q_tab.value=layerid;
+							}
+					</script>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="reward_tab">
+					  <tr>
+						<td class="reward_tab_1_bt" onclick="rewardtab('1')" width="290" style="background-color:#ffffff;border-bottom:1px solid #ffffff;border-top:2px solid #ff9520">나의 사용가능 쿠폰함</td>
+						<td class="reward_tab_2_bt" onclick="rewardtab('2')" width="290">나의 사용완료 쿠폰함</td>
+						<td></td>
+					  </tr>
+					</table>
+					
+					<!-- tab1 시작 -->
+		
+		
+					<div class="reward_contents reward_tab_1 coupon_tab_1">
+						<form name='frmMain' method='get' action='#'>
+							<input type='hidden' name='action_type'>
+							
+							<table border='1' bordercolor='black' bordercolorlight='#97D1D2' cellspacing="0" class="type-row type-wordbreak type-align-center type-bordered type-background-thead type-content" summary="">
+								<colgroup>
+									<col width="5%" />
+									<col width="*" />
+									<col width="10%" />
+									<col width="15%" />
+									<col width="12%" />
+									<col width="12%" />
+								
+								</colgroup>
+								<thead>
+									<tr>
+										<th>
+											<div class="item">No.</div>
+										</th>
+										<th>
+											<div class="item">쿠폰명</div>
+										</th>
+										<th>
+											<div class="item">할인액(율)</div>
+										</th>
+										<th>
+											<div class="item">유효기간</div>
+										</th>
+										<th>
+											<div class="item">남은일수</div>
+										</th>
+										<th>
+											<div class="item">발급일</div>
+										</th>
+										
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									  <tr>
+										<td>#1</td>
+										<td style='text-align:left'>#노동절기념이벤트쿠폰</td>
+										<td>#10%</td>
+										<td>#2022-09-07 ~ 2022-10-06</td>
+										<td>#14</td>
+										<td>#2022-09-07</td>
+										
+									</tr>
+								</tbody>
+							</table>
+							
+							<div class="pagination a1">
+								<span class='direction prev'><a href='javascript:NaviForm(1)' style="color:black">&laquo; 처음&nbsp;</a></span>
+							  &nbsp;<strong>1</strong><span class='direction next'><a href='javascript:NaviForm(1)' style="color:black">&nbsp;끝 &raquo;</a></span>
+						</form>
+					
+					</div>
+					
+        		</div>
+        			
+
+					<!-- tab2 시작 -->
+					<div class="reward_contents reward_tab_2" style="display:none;">
+						<form name='frmMain' method='get' action='#'>
+							<input type='hidden' name='action_type'>
+								<table border='1' bordercolor='black' bordercolorlight='#97D1D2' cellspacing="0" class="type-row type-wordbreak type-align-center type-bordered type-background-thead type-content" summary="">
+									<colgroup>
+										<col width="5%" />
+										<col width="*" />
+										<col width="10%" />
+										<col width="15%" />
+										<col width="15%" />
+										<col width="15%" />
+										<col width="15%" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th>
+												<div class="item">No.</div>
+											</th>
+											<th>
+												<div class="item">쿠폰명</div>
+											</th>
+											<th>
+												<div class="item">할인액(율)</div>
+											</th>
+											<th>
+												<div class="item">유효기간</div>
+											</th>
+											<th>
+												<div class="item">발급일</div>
+											</th>
+											<th>
+												<div class="item">사용일시</div>
+											</th>
+											<th>
+												<div class="item">사용내용</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+					
+										  <tr>
+											<td>2</td>
+											<td style='text-align:left'>회원가입 감사 10% 할인쿠폰</td>
+											<td>10%</td>
+											<td>2022-08-16 ~ 2022-09-15</td>
+											<td>2022-08-16</td>
+											<td></td>
+											<td>유효기간 만료</td>
+										</tr>
+						
+										  <tr>
+											<td>1</td>
+											<td style='text-align:left'>회원가입 감사 10% 할인쿠폰</td>
+											<td>10%</td>
+											<td>2022-08-16 ~ 2022-09-15</td>
+											<td>2022-08-16</td>
+											<td></td>
+											<td>유효기간 만료</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</form>
+						
+						<div class="pagination a1" >
+							<span class='direction prev'><a href='javascript:NaviForm(1)' style ="color:black;" >&laquo; 처음&nbsp;</a></span>
+						 	 &nbsp;<strong>#1</strong><span class='direction next'><a href='javascript:NaviForm(1)' style ="color:black;">&nbsp;끝 &raquo;</a></span>				
+						 </div>
+					</div>
+					<!-- tab2 닫음 -->
+				
+		<script>
+		jQuery( document ).ready( function(){
+
+			var layerid=1;	rewardtab(layerid);
+			} );
+		
+		function NaviForm(page) {
+			var form = document.next_action;
+			form.page.value=page;
+			form.submit();
+		}
+		
+		</script>
+		
+	</body>
+</html>

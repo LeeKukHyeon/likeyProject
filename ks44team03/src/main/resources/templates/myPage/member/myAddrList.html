@@ -3,7 +3,7 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default_layout_sidebar.html}">
+      layout:decorate="~{layout/mypage_layout_sidebar.html}">
 
 	<!-- default_layout.html에 정의한 main page 부분 -->
 	<body layout:fragment="content">
@@ -19,21 +19,21 @@
 				<div class="sub_title_main">- 자주 사용하는 배송지 주소를 등록해 주세요.</div>
 
 
-				<form action='' method='post' target='_blank'>
-				<input type=hidden name='where' value=" where  t1.member_id = 'lkh8150' ">
-				<div class="page-info">
-					<span>
-						<button type="button" onClick="javascript:screenPop('/myaddr_form.html?menu_popup_flag=Y','myaddr_form','yes',800,300)" style="height:25px;width:50px;">등록</button>
-						<button type="button" OnClick="item_delete(1);"  style="height:25px;width:50px;">삭제</button>
-					</span>
-					<span style="float:right!important;vertical-align:bottom;">
-						전체 : <strong>0</strong> ( 1 / 0 페이지)<strong class="color-blue" style="padding-left:20px;"></strong><strong class="color-red select-cnt" style="padding-left:20px;"></strong>
-					</span>
-				</div>
+				<form action='#' method='post' target='_blank'>
+					<input type=hidden name='where' value=" # ">
+						<div class="page-info">
+							<span>
+								<button type="button" onClick="javascript:screenPop('/myaddr_form.html?menu_popup_flag=Y','myaddr_form','yes',800,300)" style="height:25px;width:50px; color:black;">등록</button>
+								<button type="button" OnClick="item_delete(1);"  style="height:25px;width:50px; color:black;">삭제</button>
+							</span>
+							<span style="float:right!important;vertical-align:bottom;">
+								전체 : <strong>0</strong> ( 1 / 0 페이지)<strong class="color-blue" style="padding-left:20px;"></strong><strong class="color-red select-cnt" style="padding-left:20px;"></strong>
+							</span>
+						</div>
 				</form>
 
-				<form name='frmMain' method='get' action='myaddr_process.html'>
-				<input type='hidden' name='action_type'>
+				<form name='frmMain' method='get' action='#'>
+					<input type='hidden' name='action_type'>
 					<table border='1' bordercolor='black' bordercolorlight='#97D1D2' cellspacing="0" class="type-row type-wordbreak type-align-center type-bordered type-background-thead type-content" summary="">
 						<colgroup>
 							<col width="5%" />
@@ -46,7 +46,7 @@
 						<thead>
 							<tr>
 								<th><input type="checkbox" name="allCheck" /></th>
-								<th>
+								<th style="width: 45px;">
 									<div class="item">No.</div>
 								</th>
 								<th>
@@ -64,14 +64,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr valign=middle bgcolor='#FFFFFF'><td colspan='6' align=center><b>데이타가 존재하지 않습니다</b></td></tr>      			
+							<tr valign=middle bgcolor='#FFFFFF'><td colspan='6' align=center><b>데이터가 존재하지 않습니다</b></td></tr>      			
 						</tbody>
 							</table>
 				</form>
 		
 				<div class="pagination a1">
-					<span class='direction prev'><a href='javascript:NaviForm(1)'>&laquo; 처음&nbsp;</a></span>
-		          <span class='direction next'><a href='javascript:NaviForm(1)'>&nbsp;끝 &raquo;</a></span>		
+					<span class='direction prev'><a style="color:black;" href='javascript:NaviForm(1)'>&laquo; 처음&nbsp;</a></span>###
+		          <span class='direction next'><a style="color:black;" href='javascript:NaviForm(1)'>&nbsp;끝 &raquo;</a></span>		
 				</div>
 		
 			</div>

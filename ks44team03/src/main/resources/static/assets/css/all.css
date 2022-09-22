@@ -4433,8 +4433,7 @@ readers do not read off random characters that represent icons */
 
 
 <!-- 사이드 바 css ->
-.sub_contents_wrap {margin-top:30px;}
-.sub_contents_wrap > div {float:left; }
+.sub_contents_wrap {margin-top:30px;margin-left:50px;}
 
 .sub_contents_wrap .left_menu {width:179px;margin-right:70px;margin-left:50px;}
 .sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
@@ -4451,3 +4450,17 @@ readers do not read off random characters that represent icons */
 .sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
 
 .right_text {width:951px;letter-spacing:-1px;}
+
+#sidebar {margin-left:5%;}
+.sub_title_main {margin-bottom : 10px;font-size: 24px;color: #f76c87;font-weight: bold;padding: 0px 20px 20px 4px;}
+
+<!-- 회원수정화면-->
+.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
+.input_table .hp > div:nth-child(2) > div {float:left;}
+.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
+.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
+.input_table th {height: 30px; background-color: #f8f8f8; font-size: 15px; color: #447b9a; font-weight: bold; text-align: center; }
+.input_table th, .input_table td {border: 1px solid #c6c6c6;}
+
+

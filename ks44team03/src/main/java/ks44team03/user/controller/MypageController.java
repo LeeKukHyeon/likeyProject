@@ -11,21 +11,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MypageController {
 	
-	@GetMapping("/mem_edit")
-	public String memEdit() {
-		return "myPage/mem_edit";
+	@GetMapping("/applicationDetail")
+	public String applicationDetailList() {
+		return "myPage/applicationDetailSearch";
 	}
 	
-	@GetMapping("/myaddr_list")
+	
+	
+	@GetMapping("/memberModify")
+	public String modifyMemberInfo() {
+		return "myPage/member/memberModify";
+	}
+	
+	@GetMapping("/myAddrList")
 	public String myaddrList() {
-		return "myPage/myaddr_list";
+		return "myPage/member/myAddrList";
 	}
 		
 	
-	@GetMapping("/mypage")
+	@GetMapping("/mypageScreen")
 	public String mypage() {
 		
 		
-		return "myPage/mypage";
+	
+		
+		return "myPage/member/mypageScreen";
 	}
 }
