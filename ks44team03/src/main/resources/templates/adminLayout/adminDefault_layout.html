@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+
+	<th:block th:replace="adminFragments/adminConfig::adminConfigFragment"></th:block>
+
+		<!-- start header  -->
+	<header th:replace="adminFragments/adminHeader::adminHeaderFragment"></header>
+		<!-- end header  -->
+	
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+	<body layout:fragment="adminContent"></body>
+		    
+		<!-- start footer  -->
+	<footer th:replace="adminFragments/adminFooter::adminFooterFragment"></footer>
+		<!-- end footer  -->
+
+</html>
