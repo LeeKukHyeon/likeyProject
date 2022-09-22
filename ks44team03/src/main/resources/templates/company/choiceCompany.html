@@ -5,13 +5,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 
+<meta charset="UTF-8">
+
 <!-- 관리자 회사관련 선택화면 -->
 <body>
 	<th:block layout:fragment="content">
 		<div class="container">
 			<div class="row">
 				<button type="button">
-					<a th:href="@{/company/companyRegister}">회사등록</a>
+					<a th:href="@{/companyRegister}">회사등록</a>
 				</button>
 				<button type="button">
 					<a th:href="@{/company/workplace/workPlaceRegister}">사업장등록</a>
@@ -25,5 +27,6 @@
 			</div>
 	</div>
 	</th:block>
+	
 </body>
 </html>

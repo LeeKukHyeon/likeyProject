@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<head>
+<style>
+	.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
+	.input_table .hp > div:nth-child(2) > div {float:left;}
+	.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
+	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+
+	.next_button {
+	  background-color: #5b95e5;
+	  border: none;
+	  color: white;
+	  padding: 15px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 17px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+		}
+
+	.cancel_button {
+	    background-color: #535353;
+	    border: none;
+	    color: white;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 17px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+		}
+	.sub_navi_text {
+	    height: 30px;
+	    border-bottom: 1px solid #d6d6d6;
+	    margin-bottom: 30px;
+		}
+	.sub_navi_text > div {
+	    background: url(/image/S_navi_home.gif) 0 50% no-repeat;
+	    padding-left: 20px;
+	    font-size: 13px;
+	    color: #6e6e6e;
+		}
+	.sub_contents_wrap {
+	    margin-top: 30px;
+		}
+	.wrap {
+	    width: 1200px;
+	    margin: 0 auto;
+		}
+		
+	.sub_contents_wrap {margin-top:30px;}
+	.sub_contents_wrap > div {float:left;}
+	
+	.sub_contents_wrap .left_menu {
+		width:210px;
+		margin-right:50px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1em;
+        border: none;
+	}
+	.sub_contents_wrap .left_menu > div {
+		height:38px;padding-left:20px;background-c   olor:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+	.sub_contents_wrap .left_menu a {
+		letter-spacing:-1px;}
+	.sub_contents_wrap .left_menu > ul {
+		width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+	.sub_contents_wrap .left_menu > ul > li > div {
+		height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
+	.sub_contents_wrap .left_menu > ul > li > div > a {
+		display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;padding-left:9px;}
+	
+	.sub_contents_wrap .left_menu > ul > li > ul > li {
+		background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+	.sub_contents_wrap .left_menu > ul > li > ul > li > a {
+		display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+	
+	.sub_contents_wrap .left_menu > ul > li > ul > li > ul {
+		background-color:#ffffff;padding:10px 0 10px 19px;}
+	.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {
+		font-size:13px;color:#878787;line-height:33px;}
+	
+	.sub_contents_wrap .right_text {
+		width:951px;letter-spacing:-1px;}
+	.input_table th {
+	    height: 30px;
+	    background-color: #f8f8f8;
+	    font-size: 15px;
+	    color: #447b9a;
+	    font-weight: bold;
+	    text-align: center;
+		}
+	.input_table th, .input_table td {
+	    border: 1px solid #c6c6c6;
+		}
+	address, caption, em, cite, th {
+	    font-weight: normal;
+	    font-style: normal;
+		}
+	th {
+	    display: table-cell;
+	    vertical-align: inherit;
+	    font-weight: bold;
+	    text-align: -internal-center;
+	}
+	
+	
+	
+</style>
+
+</head>
+
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="content">
+
+	<div class="sub_contents_wrap wrap">
+
+	<!-- 왼쪽 메뉴 -->
+	<div class="left_menu">
+		<div>회원관리</div>
+		<ul>
+			<li>
+				<div><a href="#" style='font-weight:bold;' >회원가입</a></div>
+			<li>
+			<li>
+				<div><a href="#"  >로그인</a></div>
+			<li>
+			<li>
+				<div><a href="#"  >아이디/비밀번호 찾기</a></div>
+			<li>
+			<li>
+				<div><a href="#"   >이용약관</a></div>
+			<li>
+			<li>
+				<div><a href="#"  >개인정보취급방침</a></div>
+			<li>
+		</ul>
+	</div>
+	<!-- //왼쪽 메뉴 -->
+
+
+
+	<!-- 오른쪽 내용 -->
+	<div class="right_text">
+		<div class="sub_navi_text"> 
+			<div>HOME &nbsp;>&nbsp; 회원관리 &nbsp;>&nbsp; <b>회원가입</b></div>
+		</div>
+		
+		<div class="sub_title_main">- 회원가입 신청서 작성</div>
+
+		<p class="step_txt">
+		회원가입시 신규 가입 <strong>10% 할인쿠폰</strong>을 증정합니다.<br/>
+		친구 추천을 하면, <strong>7% 할인쿠폰 2장</strong>을 드립니다.
+		</p>
+		
+
+
+		<form name="form1" id="form1" method="post" action="member_process.html">
+		<input type="hidden" name="action_type" value="MemJoin">
+		<input type="hidden" name="auth_num" value="">
+		
+		<table class="input_table" style="width:100%;" >
+			<colgroup>
+				<col width="15%"/><col width="35%"/>
+				<col width="15%"/><col width="35%"/>
+			</colgroup>
+			<tbody>
+
+			<tr>
+				<th class="td1">아이디 <span class="required-addon">*</span></th>
+				<td class="td2" colspan="3">
+					<input type="text"  name="user_id" id="user_id" maxlength="20" style="width:150px;" class="input_add" /> 
+					 4~20자의 영문 소문자와 숫자만 입력하세요.
+					<div id="user_id-errmsg"></div>
+				</td> 
+			</tr>   
+
+			<tr>
+				<th class="td1">닉네임 <span class="required-addon">*</span></th>
+				<td class="td2">
+					<input type="text" name="nickname" id="nickname" maxlength="20" style="width:150px;" class="input_add" value="" />
+					<div id="nickname-errmsg"></div>
+				</td>
+				<th class="td1">생년월일 <span class="required-addon">*</span></th>
+				<td class="td2 select_add">
+
+					<select name="birth_y" id="birth_y" class="select_add">
+						<option value="">년도</option>
+<option value='2007'>2007</option><option value='2006'>2006</option><option value='2005'>2005</option><option value='2004'>2004</option><option value='2003'>2003</option><option value='2002'>2002</option><option value='2001'>2001</option><option value='2000'>2000</option><option value='1999'>1999</option><option value='1998'>1998</option><option value='1997'>1997</option><option value='1996'>1996</option><option value='1995'>1995</option><option value='1994'>1994</option><option value='1993'>1993</option><option value='1992'>1992</option><option value='1991'>1991</option><option value='1990'>1990</option><option value='1989'>1989</option><option value='1988'>1988</option><option value='1987'>1987</option><option value='1986'>1986</option><option value='1985'>1985</option><option value='1984'>1984</option><option value='1983'>1983</option><option value='1982'>1982</option><option value='1981'>1981</option><option value='1980'>1980</option><option value='1979'>1979</option><option value='1978'>1978</option><option value='1977'>1977</option><option value='1976'>1976</option><option value='1975'>1975</option><option value='1974'>1974</option><option value='1973'>1973</option><option value='1972'>1972</option><option value='1971'>1971</option><option value='1970'>1970</option><option value='1969'>1969</option><option value='1968'>1968</option><option value='1967'>1967</option><option value='1966'>1966</option><option value='1965'>1965</option><option value='1964'>1964</option><option value='1963'>1963</option><option value='1962'>1962</option><option value='1961'>1961</option><option value='1960'>1960</option><option value='1959'>1959</option><option value='1958'>1958</option><option value='1957'>1957</option><option value='1956'>1956</option><option value='1955'>1955</option><option value='1954'>1954</option><option value='1953'>1953</option><option value='1952'>1952</option><option value='1951'>1951</option><option value='1950'>1950</option><option value='1949'>1949</option><option value='1948'>1948</option><option value='1947'>1947</option><option value='1946'>1946</option><option value='1945'>1945</option><option value='1944'>1944</option><option value='1943'>1943</option><option value='1942'>1942</option><option value='1941'>1941</option><option value='1940'>1940</option><option value='1939'>1939</option><option value='1938'>1938</option><option value='1937'>1937</option><option value='1936'>1936</option><option value='1935'>1935</option><option value='1934'>1934</option><option value='1933'>1933</option><option value='1932'>1932</option><option value='1931'>1931</option><option value='1930'>1930</option><option value='1929'>1929</option><option value='1928'>1928</option><option value='1927'>1927</option><option value='1926'>1926</option><option value='1925'>1925</option><option value='1924'>1924</option><option value='1923'>1923</option><option value='1922'>1922</option><option value='1921'>1921</option><option value='1920'>1920</option><option value='1919'>1919</option><option value='1918'>1918</option>			
+					</select>
+
+					-
+
+					<select name="birth_m" id="birth_m" class="select_add">
+						<option value="">월</option>
+<option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option>					</select>
+
+					-
+
+					<select name="birth_d" id="birth_d" class="select_add">
+						<option value="">일</option>
+<option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option><option value='26'>26</option><option value='27'>27</option><option value='28'>28</option><option value='29'>29</option><option value='30'>30</option><option value='31'>31</option>					</select>
+					<div id="birth_y-errmsg"></div><div id="birth_m-errmsg"></div><div id="birth_d-errmsg"></div>
+				</td>
+			</tr>   
+			<tr>
+				<th class="td1">이름 <span class="required-addon">*</span></th>
+				<td class="td2">
+					<input type="text" name="name" id="name" maxlength="30" class="input_add" value="" />
+					<div id="name-errmsg">
+				</td>
+				<th class="td1">영문이름 <span class="required-addon">*</span></th>
+				<td class="td2">
+					<input type="text" name="name_eng" id="name_eng" maxlength="30" class="input_add" value="" />
+					<div id="name_eng-errmsg">
+				</td>
+			</tr>   
+			<tr>
+				<th class="td1">비밀번호 <span class="required-addon">*</span></th>
+				<td class="td2">
+					<input type="password" name="user_pwd" id="user_pwd" maxlength="20" class="input_add" value="" />
+					<div id="user_pwd-errmsg">
+				</td>
+				<th class="td1">비번확인 <span class="required-addon">*</span></th>
+				<td class="td2">
+					<input type="password" name="user_repwd" id="user_repwd" maxlength="20" class="input_add" value="" />
+					<div id="user_repwd-errmsg">
+				</td>
+			</tr>   
+			<tr> 
+				<th class="td1">휴대폰 <span class="required-addon">*</span></th>
+				<td class="td2 hp">
+	
+					<div>
+						<div>
+						<select name='hp1' id='hp1' class="select_add">
+						<option value='010' >010</option>
+						<option value='011' >011</option>
+						<option value='016' >016</option>
+						<option value='017' >017</option>
+						<option value='018' >018</option>
+						<option value='019' >019</option>
+						</select> - 
+						<input type="text" name="hp2" id="hp2" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
+						<input type="text" name="hp3" id="hp3" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" />
+						</div>
+						<div class="save_bt"><a href="javascript:fnMobSmsAuthSend();">인증</a></div>
+					
+					
+						<div id="hp1-errmsg"></div><div id="hp3-errmsg"></div>
+					</div>
+				</td>
+				<th class="td1">전화번호</th>
+				<td class="td2">
+					<input type="text" name="tel1" id="tel1" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
+					<input type="text" name="tel2" id="tel2" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
+					<input type="text" name="tel3" id="tel3" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+				</td>
+			</tr>
+			<tr> 
+				<th class="td1">이메일 수신</th>
+				<td class="td2">
+					<label><input type="radio" name="email_flag" id="email_flag_y" class="input_chk2" value="Y" checked /> 예</label> &nbsp;
+					<label><input type="radio" name="email_flag" id="email_flag_n" class="input_chk2" value="N"  /> 아니오</label>
+				</td>
+				<th class="td1">SMS 수신</th>
+				<td class="td2">
+					<label><input type="radio" name="sms_flag" id="sms_flag_y" class="input_chk2" value="Y" checked /> 예</label> &nbsp;
+					<label><input type="radio" name="sms_flag" id="sms_flag_n" class="input_chk2" value="N"  /> 아니오</label>
+				</td>
+			</tr>   
+			<tr>
+				<th class="td1">이메일 <span class="required-addon">*</span></th>
+				<td class="td2" colspan="3"><input type="text" id="email1" name="email1" maxlength="30" class="input_add" value=""/>&nbsp @ &nbsp; 
+					<input type="text" id="email2" name="email2" maxlength="30" class="input_add" value="" />&nbsp;
+					<select name="selEmail" id="selEmail" class="select_add"> 
+					<option value=''>직접입력</option>
+					<option value='naver.com'  >naver.com</option>
+					<option value='hanmail.net'  >hanmail.net</option>
+					<option value='hotmail.com'  >hotmail.com</option>
+					<option value='daum.net'  >daum.net</option>
+					<option value='nate.com'  >nate.com</option>
+					<option value='gmail.com'  >gmail.com</option>
+					</select>&nbsp;&nbsp;
+					
+					<div id="email1-errmsg"></div><div id="email2-errmsg"></div><div id="selEmail-errmsg"></div><div id="email-errmsg"></div>
+				</td>
+			</tr>    
+			<tr>
+			<tr>
+			
+				<th class="td1">추천인(ID)</th>
+				<td class="td2">
+					<input type="text" name="recomm_id" id="recomm_id" maxlength="30" class="input_add" value="" />
+					<div id="recomm_id-errmsg">
+				</td>
+				<th class="td1">가입경로</th>
+				<td class="td2">
+					<select name="" id="join_cd" class="select_add">
+						<option value="">=== 가입경로 선택 ===</option>
+						<option value="카페내 검색으로" >카페내 검색으로</option>
+						<option value="추천을 받음" >추천을 받음</option>
+						<option value="타까페를 통해서" >타까페를 통해서</option>
+						<option value="네이버블로그" >네이버블로그</option>
+					</select>
+				</td> 
+			</tr>
+
+			</tbody>
+		</table>
+
+		<div class=" sub1_tab_box">
+			<div class="sub1_title">개인정보 수집 및 이용에 대한 안내</div>
+			<div class="sub1_text">
+				수집항목 : 성명(국문, 영문), 이메일, 비밀번호, 휴대폰번호<br/>
+				수집목적 : 홈페이지 회원가입 및 관리, 민원사무 처리, 재화 또는 서비스 제공, 마케팅 및 광고에의 활용<br/>
+				이용기한 : 수집ㆍ이용에 관한 동의일로부터 회원 탈퇴일까지<br/><br/>	
+				<div style="border-top:1px dashed #d6d6d6;font-size:14px;color:#252525;line-height:34px;padding-top:15px;">
+				
+				<input type="checkbox" name="mem_agree" id="mem_agree"> <label for="mem_agree">이용약관에 동의합니다. </label>
+				<a href="/mem_join_terms.html" target="_blank" class="fColor1">[전문보기]</a>
+				<div id="mem_agree-errmsg"></div>
+				<br>
+				<input type="checkbox" name="data_agree" id="data_agree"> <label for="data_agree">개인정보 수집 및 이용에 동의 합니다. </label> 
+				<a href="/mem_data_terms.html" target="_blank" class="fColor1">[전문보기]</a>
+				<div id="data_agree-errmsg"></div>
+				</div>
+			</div>
+		</div>
+			
+
+
+		<table border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+		  <tr>
+		    <td style="padding-right:9px;">
+				<button type="submit"  class="next_button">회원가입</button>
+			</td>
+			<td><button type="button" onClick="location.href='/';" class="cancel_button">취소</button></td>
+		  </tr>
+		</table>	
+		</form>
+	</div>
+	<!-- //오른쪽 내용 -->
+
+	</div>
+
+
+	
+	
+	</body>
+</html>

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CompanyInfoController {
 	
 	
-	@GetMapping("/choiceCompany")
+	@GetMapping("/adminPage")
 	public String choiceCompany(Model model) {
 		
-		model.addAttribute("title", "선택");
+		model.addAttribute("title", "회사등록");
 		
-		return "company/choiceCompany";
+		return "adminPage";
 	}
 	
 	@GetMapping("/companyRegister") 
