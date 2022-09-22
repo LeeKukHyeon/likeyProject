@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+.schedule_board_list th {height:39px;border:1px solid #dddddd;border-right:0;text-align:center;font-size:14px;color:#3f3f3f;font-weight:bold;background-color:#f5f5f5;}
+.schedule_board_list th.number {width:69px;border-left:0;}
+.schedule_board_list th.date {width:127px;}
+.schedule_board_list th.hit {width:96px;}
+
+.schedule_board_list td {height:39px;border-bottom:1px solid #dddddd;border-left:1px solid #dddddd;text-align:center;font-size:14px;color:#3f3f3f;}
+.schedule_board_list td.number {width:69px;border-left:0;}
+.schedule_board_list td.subject {text-align:left;padding-left:30px;}
+.schedule_board_list td.date {width:127px;font-size:12px;}
+.schedule_board_list td.hit {width:96px;font-size:12px;}
+.schedule_board_list td a {color: black;}
+.number span {color: pink;}
+.subject b:hover {color: pink;}
+.subject a:hover {color: pink;}
+#notice_page_move a {color: black;}
+#notice_page_move a:hover {color: pink;}
+button {cursor:pointer;}
+.mtm_table {padding-left: 18px;}

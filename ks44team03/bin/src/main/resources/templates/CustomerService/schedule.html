@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+      
+    <!-- css 연결  -->
+    <link rel="stylesheet" href="assets/css/temporarily.css">
+
+<body layout:fragment="content">
+	<div align="center">
+		<!-- 게시판 -->
+		<table width="50%" border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_list" style="margin: auto;">
+		  <tbody><tr>
+		    <th class="number">번호</th>
+			<th class="subject">제목</th>
+			<th class="date">등록일</th>
+			<th class="hit">조회</th>
+		  </tr>
+	  
+	
+		  <tr>
+		    <td class="number"> 15</td>
+			<td class="subject" style="width: 30%"><a href="schedule_view.html?plan_month=2022-09">likey 2022년 9월 배송스케쥴 안내</a></td>
+			<td class="date">2022-08-26</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 14</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-08">likey 2022년 8월 배송스케쥴 안내</a></td>
+			<td class="date">2022-07-29</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 13</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-07">likey 2022년 7월 배송스케쥴 안내</a></td>
+			<td class="date">2022-06-24</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 12</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-06">likey 2022년 6월 배송스케쥴 안내</a></td>
+			<td class="date">2022-05-27</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 11</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-05">likey 2022년 5월 배송스케쥴 안내</a></td>
+			<td class="date">2022-04-29</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 10</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-04">likey 2022년 4월 배송스케쥴 안내</a></td>
+			<td class="date">2022-03-25</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 9</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-03">likey 2022년 3월 배송스케쥴 안내</a></td>
+			<td class="date">2022-02-25</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 8</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-02">likey 2022년 2월 배송스케쥴 안내</a></td>
+			<td class="date">2022-01-28</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 7</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2022-01">likey 2022년 1월 배송스케쥴 안내</a></td>
+			<td class="date">2021-12-31</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		  <tr>
+		    <td class="number"> 6</td>
+			<td class="subject"><a href="schedule_view.html?plan_month=2021-12">likey 2021년 12월 배송스케쥴 안내</a></td>
+			<td class="date">2021-11-26</td>
+			<td class="hit">0</td>
+		  </tr>
+      
+		</tbody></table>
+		<!-- //게시판 -->
+		<div style="width: 950px" align="left">
+                 <input type="submit" style="margin-bottom: 5mm; margin-top: 3mm;" value="문의하기" onclick="alert('로그인이 필요합니다.')">
+        </div>
+		<div style="height: 15px"></div>
+
+		<!-- 숫자 -->
+		<table border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_num">
+		  <tbody><tr>
+			<td class="numbering">
+				<table border="0" cellspacing="0" cellpadding="0" align="center">
+				  <tbody><tr>
+				    <td><a href="#" style="color: black;">1</a>|&nbsp</td>
+					<td><a href="#" style="color: black;">2</a>&nbsp|&nbsp</td>
+					<td><a href="#" style="color: black;">3</a></td>
+				  </tr>
+				</tbody></table>
+			</td>
+		  </tr>
+		</tbody></table>
+		<!-- //숫자 -->
+			
+	</div>
+</body>
+
+</html>
