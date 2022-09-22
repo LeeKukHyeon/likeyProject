@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
+	
 	@GetMapping("/")
 	public String main(Model model) {
-		return "CustomerService/notice";
+		return "CustomerService/personalQuestionRegister";
 	}
 }
