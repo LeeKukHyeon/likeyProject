@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<h1 th:text="${title}">사원 등록</h1>
+	<from id="employeeRegFrom">
+		<table>
+			<tr>	
+				<td>
+					<input type="text" name=employeeCode placeholder="사원코드">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=employeeLevel placeholder="사원권한">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=departmentCode placeholder="부서코드">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=employeeName placeholder="사원명">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=employeePw placeholder="사원비밀번호">	
+				</td>
+			</tr>
+		</table>
+	</from>
+		
+		
+	
+	
+</body>
+</html>
