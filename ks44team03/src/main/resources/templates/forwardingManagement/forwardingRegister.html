@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+<style>
+	h2 {
+		margin-bottom: 25px;
+		padding-bottom: 10px;
+		font-weight: bold;
+		border-bottom: 1px solid #c6c6c6;
+	}
+	td h2 {
+		margin-top: 20px;
+	}
+	.forwarding_register {
+		font-size: 15px;
+	}
+	#sub_btn{margin:0 auto; width:350px; height:65px; line-height:65px; background:#8d8d8d; color:#fff; font-size:18px; font-weight:bold; text-align:center; transition:0.5s all; overflow:hidden; float: left; margin-top: 30px; border: none;}
+	#sub_btn:hover{transform:scale(1.1);}
+	#sub_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
+	#sub_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
+	input {
+		margin-bottom: 5px;
+	}
+	.group {
+		border-bottom: 20px solid #F4F5F7;
+	}
+	.volume_group {
+		padding-left: 3px;
+	}
+	.trans_group {
+		width: 182px;
+		margin-left: 3px;
+		margin-bottom: 5px;
+	}
+	.radio_group {
+		padding-left: 135px;
+	}
+	#req_option_impli_n, #postpone_n, #sum_post_n, #approval_n {
+		margin-top: 5px;
+		margin-left: 10px;
+	}
+</style>
+<!-- 출고등록 -->
+<title>출고등록</title>
+</head>
+
+<!-- ========== 출고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 출고등록 화면 시작 ========== -->
+				<h2>출고등록</h2>
+				<div class="forwarding_register">
+					<form>
+						<table>
+							<!-- 출고등록 고객 정보 -->
+							<tr>
+								<td><label for="name">수령인</label></td>
+								<td>&nbsp;<input type="text" id="name"></td>
+							</tr>
+							<tr>
+								<td><label for="nation">국가</label></td>
+								<td>&nbsp;<input type="text" id="nation"></td>
+							</tr>
+							<tr>
+								<td><label for="addr">주소</label></td>
+								<td>&nbsp;<input type="text" id="addr"></td>
+							</tr>
+							<tr>
+								<td><label for="post_num">우편번호</label></td>
+								<td>&nbsp;<input type="text" id="post_num"></td>
+							</tr>
+							<tr>
+								<td><label for="phone">전화번호</label></td>
+								<td>&nbsp;<input type="text" id="phone"></td>
+							</tr>
+							<tr>
+								<td><label for="option">옵션</label></td>
+								<td>&nbsp;<input type="text" id="option"></td>
+							</tr>
+							<tr class="group">
+								<td><label for="request">요청사항</label></td>
+								<td>&nbsp;<input type="text" id="request"></td>
+							</tr>
+							
+							<!-- 출고등록 배송 정보 -->
+							<tr>
+								<td><label for="transportation">운송수단</label></td>
+								<td>
+									<select class="trans_group">
+										<option disabled selected>선택</option>
+										<option value="domestic">국내 운송</option>
+										<option value="air transport">항공 운송</option>
+										<option value="shipping">해상 운송</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="out_company">배송회사</label></td>
+								<td>&nbsp;<input type="text" id="out_company"></td>
+							</tr>
+							<tr>
+								<td><label for="out_tracking_num">운송장 번호</label></td>
+								<td>&nbsp;<input type="text" id="out_tracking_num"></td>
+							</tr>
+							<tr>
+								<td><label for="volume_width">부피</label></td>
+								<td>&nbsp;
+									<div class="volume_group">
+										<input type="text" id="volume_width" placeholder="가로"> cm<br/>
+										<input type="text" id="volume_length" placeholder="세로"> cm<br/>
+										<input type="text" id="volume_height" placeholder="높이"> cm<br/>
+									</div>
+								</td>
+							</tr>
+							<tr class="group">
+								<td><label for="weight">중량</label></td>
+								<td>&nbsp;<input type="text" id="weight"> kg</td>
+							</tr>
+							
+							<!-- 출고등록 기타 정보 -->
+							<tr>
+								<td colspan="2">
+									<h2>확인사항</h2>
+								</td>
+							</tr>
+							<tr>
+								<td><label for="req_option_impli">요청 옵션 이행 여부</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="req_option_impli_y"> Y <input type="radio" id="req_option_impli_n"> N</td>
+							</tr>
+							<tr>
+								<td><label for="postpone">출고보류 여부</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="postpone_y"> Y <input type="radio" id="postpone_n"> N</td>
+							</tr>
+							<tr>
+								<td><label for="sum_post">묶음배송 여부</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="sum_post_y"> Y <input type="radio" id="sum_post_n"> N</td>
+							</tr>
+							<tr>
+								<td><label for="approval">관리자 출고승인 여부</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="approval_y"> Y <input type="radio" id="approval_n"> N</td>
+							</tr>
+						</table>
+						<button type="submit" id="sub_btn">등록</button>
+					</form>
+				</div>
+				
+				<!-- ========== 출고등록 화면 끝 ========== -->
+			</div>
+          </div>
+        </div>
+
+
+</body>
+</html>
