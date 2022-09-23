@@ -20,6 +20,17 @@
 	#sub_btn:hover{transform:scale(1.1);}
 	#sub_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
 	#sub_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
+	input {
+		margin-bottom: 5px;
+	}
+	.radio_group {
+		padding-left: 115px;
+	}
+	#likey_pass_n {
+		margin-top: 10px;
+		margin-left: 10px;
+		margin-bottom: 15px;
+	}
 </style>
 <!-- 입고등록 -->
 <title>입고등록</title>
@@ -37,12 +48,20 @@
 					<form>
 						<table>
 							<tr>
-								<td>운송장 번호</td>
-								<td>&nbsp;<input type="text" id="incoming_tracking"></td>
+								<td><label for="incoming_name">수령인</label></td>
+								<td>&nbsp;<input type="text" id="name"></td>
 							</tr>
 							<tr>
-								<td>사서함 번호</td>
-								<td>&nbsp;<input type="text" id="incoming_pobox"></td>
+								<td><label for="tracking_num">운송장 번호</label></td>
+								<td>&nbsp;<input type="text" id="tracking_num"></td>
+							</tr>
+							<tr>
+								<td><label for="user_pobox_code">사서함 번호</label></td>
+								<td>&nbsp;<input type="text" id="user_pobox_code"></td>
+							</tr>
+							<tr>
+								<td><label for="likey_pass">라이키 패스</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="likey_pass_y"> Y <input type="radio" id="likey_pass_n"> N</td>
 							</tr>
 						</table>
 						<button type="submit" id="sub_btn">등록</button>

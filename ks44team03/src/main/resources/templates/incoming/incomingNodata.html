@@ -30,7 +30,9 @@
 		background-color: #8d8d8d;
 		color: white;
 	}
-	
+	input {
+		margin-bottom: 5px;
+	}
 </style>
 <!-- 노데이터 입고등록 -->
 <title>노데이터 입고등록</title>
@@ -49,19 +51,19 @@
 					<form>
 						<table>
 							<tr>
-								<td>수취인명</td>
+								<td><label for="nod_recipient">수취인명</label></td>
 								<td>&nbsp;<input type="text" id="nod_recipient"></td>
 							</tr>
 							<tr>
-								<td>배송회사</td>
+								<td><label for="nod_tracking_company">배송회사</label></td>
 								<td>&nbsp;<input type="text" id="nod_tracking_company"></td>
 							</tr>
 							<tr>
-								<td>운송장 번호</td>
+								<td><label for="nod_tracking_num">운송장 번호</label></td>
 								<td>&nbsp;<input type="text" id="nod_tracking_num"></td>
 							</tr>
 							<tr>
-								<td>사서함번호</td>
+								<td><label for="nod_user_pobox_code">사서함번호</label></td>
 								<td>&nbsp;<input type="text" id="nod_user_pobox_code"></td>
 							</tr>
 							<tr>
@@ -71,7 +73,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>입고일</td>
+								<td><label for="nod_arrival_date">입고일</label></td>
 								<td>&nbsp;<input type="text" id="nod_arrival_date"></td>
 							</tr>
 						</table>
