@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/community_layout_sidebar}">
+<head>
+<style>
+	th{
+		border-bottom-radius: 10px;
+		background-color: black;
+		color: white;
+	
+	}
+
+</style>
+</head>
+<body layout:fragment="content">
+	
+	<div>
+		<h2 th:text="${title}" style="border-bottom: 1px solid #c6c6c6;"></h2>
+		<table id="reviewBorde" border="1" style="border: 1px solid;">
+		<colgroup>
+				<col width="15%"/><col width="35%"/>
+				<col width="15%"/><col width="35%"/>
+		</colgroup>	
+			<tr>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>조회수</th>
+				<th>등록일</th>
+			</tr>
+			<tbody>
+				<tr>
+					<td>제목입니다.</td>
+					<td>글쓴이입니다.</td>
+					<td>23000</td>
+					<td>2022-09-23</td>
+				</tr>
+				<tr>
+					<td>제목입니다2.</td>
+					<td>글쓴이입니다.2</td>
+					<td>230002</td>
+					<td>2022-09-232</td>
+				</tr>
+				<tr>
+					<td>제목입니다.3</td>
+					<td>글쓴이입니다.3</td>
+					<td>230003</td>
+					<td>2022-09-233</td>
+				</tr>
+				<tr>
+					<td>제목입니다.4</td>
+					<td>글쓴이입니다.4</td>
+					<td>23000</td>
+					<td>2022-09-23</td>
+				</tr>
+				<tr>
+					<td>제목입니다.5</td>
+					<td>글쓴이입니다.5</td>
+					<td>23000</td>
+					<td>2022-09-23</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+
+</html>
