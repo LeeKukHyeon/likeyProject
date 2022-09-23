@@ -2,14 +2,14 @@ package ks44team03.dto;
 
 public class CompanyInfo {
 
-	private String companyCode;
-	private String companyNum;
-	private String companyName;
-	private String companyDelegateNum;
-	private String companyAddr;
-	private String companyCate;
-	private String companyBirth;
-	private String companyInfoName;
+	private String companyCode; //회사코드
+	private String companyNum; //사업자등록번호
+	private String companyName; //회사명
+	private String companyDelegateNum; //대표자주민등록번호
+	private String companyAddr; //회사주소
+	private String companyCate; //회사종목
+	private String companyBirth; //회사설립날짜
+	private String companyInfoName; //대표자성명
 	
 	
 	public String getCompanyCode() {

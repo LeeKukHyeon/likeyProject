@@ -5,7 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 
-<meta charset="UTF-8">
+
 <head>
 	<style>
 	h2{
@@ -29,6 +29,9 @@
 		text-decoration: none;
 		color: black;
 	}
+	a:hover{
+		color: white;
+	}
 	</style>
 </head>
 <!-- 관리자 회사관련 선택화면 -->
@@ -43,16 +46,16 @@
 						</button>
 						
 						<button type="button">
-							<strong><a th:href="@{/company/workplace/workPlaceRegister}">사업장등록</a></strong>
+							<strong><a th:href="@{/workPlaceRegister}">사업장등록</a></strong>
 						</button>
 						<button type="button">
-							<strong><a th:href="@{/company/department/departmentRegister}">부서등록</a></strong>
+							<strong><a th:href="@{/departmentRegister}">부서등록</a></strong>
 						</button>
 						<button type="button">
-							<strong><a th:href="@{/company/employee/employeeRegister}">사원등록</a></strong>
+							<strong><a th:href="@{/employeeRegister}">사원등록</a></strong>
 						</button>	
 					</div>
-								      
+				</div>				      
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html

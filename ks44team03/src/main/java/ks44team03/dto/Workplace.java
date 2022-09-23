@@ -2,15 +2,14 @@ package ks44team03.dto;
 
 public class Workplace {
 
-	private String workplaceCode;
-	private String companyNumber;
-	private String workPlaceName;
-	// 대표자 성명 workplaceRepresentative
-	private String workplaceRepresentative;
-	private String workplaceDelegateNum;
-	private String workplaceAddr;
-	private String workplaceCate;
-	private String workplaceBirth;
+	private String workplaceCode; //사업장코드
+	private String companyNumber; //사업자등록번호
+	private String workPlaceName; //사업장 명 
+	private String workplaceRepresentative; //대표자성명
+	private String workplaceDelegateNum; //사업장대표자 주민등록번호
+	private String workplaceAddr; //사업장주소
+	private String workplaceCate; //회사종목
+	private String workplaceBirth; //개업날짜
 	
 	
 	public String getWorkplaceCode() {
