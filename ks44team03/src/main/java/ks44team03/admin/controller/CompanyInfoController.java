@@ -11,11 +11,19 @@ public class CompanyInfoController {
 	
 	
 	@GetMapping("/adminPage")
-	public String choiceCompany(Model model) {
+	public String adminPage(Model model) {
 		
-		model.addAttribute("title", "회사등록");
+		model.addAttribute("title", "관리자페이지");
 		
 		return "adminPage";
+	}
+	
+	@GetMapping("/choiceCompany")
+	public String choiceCompany(Model model) {
+		
+		model.addAttribute("title", "관리등록 선택");
+		
+		return "company/choiceCompany";
 	}
 	
 	@GetMapping("/companyRegister") 
