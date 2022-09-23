@@ -4,15 +4,17 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
+
+
 <head>
-<style>
+	<style>
 	.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
 	.input_table .hp > div:nth-child(2) > div {float:left;}
 	.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
 	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
 
-	.add_button {
-	  background-color: #797979;
+	.next_button {
+	  background-color: #535353;
 	  border: none;
 	  color: white;
 	  padding: 10px 10px;
@@ -25,11 +27,9 @@
 	  font-weight:bold;
 	  border-radius: 10px;
 		}
-	.add_button:hover{
-	  background-color: #535353;
-	}
+
 	.cancel_button {
-	    background-color: #797979;
+	    background-color: #535353;
 	    border: 1px solid;
 	    color: white;
 	    padding: 10px 10px;
@@ -42,9 +42,6 @@
 	    font-weight:bold;
 	    border-radius: 10px;
 		}
-	.cancel_button:hover{
-		background-color: #535353;
-	}
 	.sub_navi_text {
 	    height: 30px;
 	    border-bottom: 1px solid #d6d6d6;
@@ -99,7 +96,6 @@
 	.sub_contents_wrap .right_text {
 		width:951px;letter-spacing:-1px;}
 	.input_table th {
-	    height: 30px;
 	    background-color: #f8f8f8;
 	    font-size: 15px;
 	    color: #535353;
@@ -123,55 +119,47 @@
 		padding-right: 200px;
 	}
 	.button2{
-		margin-left: 399px;
+		margin-left: 461px;
 	}
-	
+	h2{
+		border-bottom: 1px solid #c6c6c6;
+		padding-bottom: 10px;
+	}
 </style>
 </head>
-<body layout:fragment="adminContent">
-	<div class="content-wrapper">
-	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">사원 등록</h2>
-	<from id="employeeRegFrom">
-		<table class="input_table" style="width:36%;">
-			<tr>	
-				<th class="td1">사원코드</th>
-				<td>
-					<input type="text" name=employeeCode placeholder="사원코드">	
-				</td>
-			</tr>
-			<tr>
-				<th class="td1">사원권한</th>	
-				<td>
-					<input type="text" name=employeeLevel placeholder="사원권한">	
-				</td>
-			</tr>
-			<tr>
-				<th class="td1">부서코드</th>	
-				<td>
-					<input type="text" name=departmentCode placeholder="부서코드">	
-				</td>
-			</tr>
-			<tr>
-				<th class="td1">사원명</th>	
-				<td>
-					<input type="text" name=employeeName placeholder="사원명">	
-				</td>
-			</tr>
-			<tr>
-				<th class="td1">사원비밀번호</th>	
-				<td>
-					<input type="text" name=employeePw placeholder="사원비밀번호">	
-				</td>
-			</tr>
-		</table>
-	</from>
-	<div class="button2">
-		<button type="submit"  class="add_button">등록</button>
-		<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
-	</div>
-	</div>
-		
-	
-	
+<!-- 관리자 회사관련 선택화면 -->
+<body layout:fragment="adminContent">	
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+						<colgroup>
+							<col width="10%"/><col width="10%"/>
+							<col width="15%"/><col width="10%"/>
+						</colgroup>	
+							<tr>
+								<th>부서코드</th>
+								<th>부서 명</th>
+								<th>사업장코드</th>
+								<th>부서 적용날짜</th>
+							</tr>
+							<tbody>
+								<tr>
+									<td><input type="checkbox" class="companyCheckbox">임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      
 </body>
 </html>

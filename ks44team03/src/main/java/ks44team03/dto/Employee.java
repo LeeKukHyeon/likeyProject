@@ -2,15 +2,13 @@ package ks44team03.dto;
 
 public class Employee {
 
-	private String employeeCode;
-	private String employeeLevel;
-	private String departmentCode;
-	private String employeeName;
-	private String employeePw;
-	// 입사일
-	private String employeeDate;
-	// 퇴사일
-	private String employeeResignDate;
+	private String employeeCode; //사원코드
+	private String employeeLevel; //권한코드
+	private String departmentCode; //부서코드
+	private String employeeName; //사원이름
+	private String employeePw; //비밀번호
+	private String employeeDate; //입사일	
+	private String employeeResignDate; //퇴사일
 	
 	
 	public String getEmployeeCode() {

@@ -12,34 +12,40 @@
 	.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
 	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
 
-	.next_button {
-	  background-color: #535353;
+	.add_button {
+	  background-color: #797979;
 	  border: none;
 	  color: white;
 	  padding: 10px 10px;
 	  text-align: center;
 	  text-decoration: none;
 	  display: inline-block;
-	  font-size: 17px;
+	  font-size: 13px;
 	  margin: 4px 2px;
 	  cursor: pointer;
 	  font-weight:bold;
 	  border-radius: 10px;
 		}
-
+	.add_button:hover{
+	  background-color: #535353;
+	}
 	.cancel_button {
-	    background-color: #535353;
+	    background-color: #797979;
 	    border: 1px solid;
 	    color: white;
-	    padding: 10px 20px;
+	    padding: 10px 10px;
 	    text-align: center;
 	    text-decoration: none;
 	    display: inline-block;
-	    font-size: 17px;
+	    font-size: 13px;
 	    margin: 4px 2px;
 	    cursor: pointer;
+	    font-weight:bold;
 	    border-radius: 10px;
 		}
+	.cancel_button:hover{
+		background-color: #535353;
+	}
 	.sub_navi_text {
 	    height: 30px;
 	    border-bottom: 1px solid #d6d6d6;
@@ -118,18 +124,19 @@
 		padding-right: 200px;
 	}
 	.button2{
-		margin-left: 393px;
+		margin-left: 461px;
 	}
 	
 </style>
 </head>
+
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
 	
 	<div class="right_text"  style="margin-left: %; margin-right: 10%;">
 	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">회사 등록</h2>
 	<form name="form1" id="form1">
-		<table class="input_table" style="width:110%;">	
+		<table class="input_table" style="width:90%;">	
 		<colgroup>
 				<col width="15%"/><col width="35%"/>
 				<col width="15%"/><col width="35%"/>
@@ -179,18 +186,15 @@
 			</tr>
 		</tbody>
 		</table>
+		<div class="button2">
+		<button type="submit"  class="add_button">등록</button>
+		<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
+		</div>
 	</form>
-	<div class="button2">
-	<button type="submit"  class="next_button">회사등록</button>
-	<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
-	</div>
 	</div>
 	</div>
 	
-	
-		
-		
-	
+
 	
 </body>
 </html>

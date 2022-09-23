@@ -10,4 +10,7 @@ public interface CompanyInfoMapper {
 	
 	//회사 등록
 	public int addCompany(CompanyInfo companyInfo);
+	
+	//회사 목록 조회
+	
 }

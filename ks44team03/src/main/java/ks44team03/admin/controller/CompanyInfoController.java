@@ -18,6 +18,7 @@ public class CompanyInfoController {
 		return "adminPage";
 	}
 	
+	// 회사관리 등록 관련 맵핑 - 처음
 	@GetMapping("/choiceCompany")
 	public String choiceCompany(Model model) {
 		
@@ -34,7 +35,7 @@ public class CompanyInfoController {
 		return "company/companyRegister"; 
 	}
 	
-	@GetMapping("workplace/workPlaceRegister")
+	@GetMapping("/workPlaceRegister")
 	public String workPlaceRegister(Model model) {
 		
 		model.addAttribute("title", "사업장등록");
@@ -42,7 +43,7 @@ public class CompanyInfoController {
 		return "company/workplace/workPlaceRegister";
 	}
 	
-	@GetMapping("department/departmentRegister")
+	@GetMapping("/departmentRegister")
 	public String departmentRegister(Model model) {
 		
 		model.addAttribute("title", "부서등록");
@@ -50,12 +51,50 @@ public class CompanyInfoController {
 		return "company/department/departmentRegister";
 	}
 	
-	@GetMapping("employee/employeeRegister")
+	@GetMapping("/employeeRegister")
 	public String employeeRegister(Model model) {
 		
 		model.addAttribute("title", "사원등록");
 		
 		return "company/employee/employeeRegister";
 	}
+	// 회사관리 등록 관련 맵핑 - 끝
 	
+	// 회사관리 목록조회 관련 맵핑 - 처음
+	@GetMapping("/companyManagement")
+	public String companyManagement(Model model) {
+		
+		model.addAttribute("title", "회사관리");
+		
+		return "company/companyManagement";
+	}
+	
+	@GetMapping("/companyList")
+	public String companyList(Model model) {
+		
+		model.addAttribute("title", "회사목록");
+		
+		return "company/companyList";
+	}
+	
+	@GetMapping("/workPlaceList")
+	public String workPlaceList(Model model) {
+		
+		model.addAttribute("title", "사업장 목록");
+		return "company/workplace/workPlaceList";
+	}
+	
+	@GetMapping("/employeeList")
+	public String employeeList(Model model) {
+		
+		model.addAttribute("title", "사원 목록");
+		return "company/employee/employeeList";
+	}
+	@GetMapping("/departmentList")
+	public String departmentList(Model model) {
+		
+		model.addAttribute("title", "부서 목록");
+		return "company/department/departmentList";
+	}
+	// 회사관리 등록 관련 맵핑 - 끝
 }
