@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberController {
 
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginProcess() {
 		return "login/loginForm";
 	}
 	
@@ -17,10 +17,6 @@ public class MemberController {
 		return "login/findIdPw";
 	}
 	
-	@GetMapping("/userForm")
-	public String userForm() {
-		return "registration/userForm";
-	}
 	
 	@GetMapping ("userSignUp")
 	public String userSignUp(){
