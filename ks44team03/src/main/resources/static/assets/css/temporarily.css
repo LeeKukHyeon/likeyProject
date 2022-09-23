@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 
+/* 고객센터 css */
 .schedule_board_list th {height:39px;border:1px solid #dddddd;border-right:0;text-align:center;font-size:14px;color:#3f3f3f;font-weight:bold;background-color:#f5f5f5;}
 .schedule_board_list th.number {width:69px;border-left:0;}
 .schedule_board_list th.date {width:127px;}
@@ -18,4 +19,10 @@
 #notice_page_move a {color: black;}
 #notice_page_move a:hover {color: pink;}
 button {cursor:pointer;}
-.mtm_table {padding: 18px;}
+
+/* faqSearch css */
+.faqSort {background: #D2E1FF; color: yellow; height: 20mm;font-size: 16px; padding-top: 23px;}
+a:hover {color:pink;}
+.faqSortList li {height: 8mm; margin-left: 3mm;}
+.faqSortList {background-color: #dcdcdc; flex: auto;}
+.faqSortM {margin: 0px 3px 0px 3px;}
