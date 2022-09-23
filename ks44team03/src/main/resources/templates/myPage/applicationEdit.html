@@ -5,29 +5,51 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 
-	<!-- default_layout.html에 정의한 main page 부분 -->
-	<body layout:fragment="content">
-        <!-- code -->
-	
-	<th:block layout:fragment="customContents">
-		<div class="container">
-		
-			
-	
-			<div class="sub_contents_wrap wrap ml-0">
-				
-			</div>
-		
+	<head>
 
-		
-					
-		</div>
-				
-			
-				
+
 	
-	</th:block>
+	</head>
+	
+
+
+	<body layout:fragment="content">
+		<div class="container max-wid" >
 		
-    </body>
- 
+				<div class="sub_contents_wrap wrap ">
+					<div class="sub_navi_text"> 
+						<div>HOME &nbsp;>&nbsp;마이페이지 &nbsp;>&nbsp;<b>배송대행 상세 내역</b></div>
+					</div>
+				
+					<div class="detail_title">
+						<span class="text1">배송대행 신청 상세 내역</span>
+					</div>
+					
+					
+				</div>
+				
+				<div class="detail_box1_wrap">
+				<div class="title">물류센터 : <font>NJ</font></div>
+		
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_box">
+				  <tr>
+				    <td class="td1">신청번호</td>
+					<td class="td2">AF2710</td>
+				  </tr>
+				  <tr>
+				    <td class="td1">주문번호</td>
+					<td class="td2"><input type="text" name="mall_order_no" value="a"  maxlength='40' class="input_"></td>
+				  </tr>
+				  <tr>
+				    <td class="td1">구매 사이트</td>
+					<td class="td2"><input type="text" name="mall_cd" value="a"  maxlength='100' class="input_"></td>
+				  </tr>
+				  <tr>
+				    <td class="td1">대표 상품명</td>
+					<td class="td2"><input type="text" readonly value="a" class="input_"></td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+	</body>
 </html>
