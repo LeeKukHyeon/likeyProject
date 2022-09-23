@@ -11,7 +11,7 @@ public class MainController {
 	@GetMapping("/")
 	public String main(Model model) {
 
-		return "CustomerService/personalQuestionRegister";
+		return "registration/userForm";
 
 	}
 }

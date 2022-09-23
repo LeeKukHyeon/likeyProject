@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
+
+<head>
+	<style>
+	.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
+	.input_table .hp > div:nth-child(2) > div {float:left;}
+	.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
+	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+
+	.next_button {
+	  background-color: #535353;
+	  border: none;
+	  color: white;
+	  padding: 10px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 13px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+	  border-radius: 10px;
+		}
+
+	.cancel_button {
+	    background-color: #535353;
+	    border: 1px solid;
+	    color: white;
+	    padding: 10px 10px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 13px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	    font-weight:bold;
+	    border-radius: 10px;
+		}
+	.sub_navi_text {
+	    height: 30px;
+	    border-bottom: 1px solid #d6d6d6;
+	    margin-bottom: 30px;
+		}
+	.sub_navi_text > div {
+	    background: url(/image/S_navi_home.gif) 0 50% no-repeat;
+	    padding-left: 20px;
+	    font-size: 13px;
+	    color: #6e6e6e;
+		}
+	.sub_contents_wrap {
+	    margin-top: 30px;
+		}
+	.wrap {
+	    width: 1200px;
+	    margin: 0 auto;
+		}
+		
+	.sub_contents_wrap {margin-top:30px;}
+	.sub_contents_wrap > div {float:left;}
+	
+	.sub_contents_wrap .left_menu {
+		width:210px;
+		margin-right:50px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1em;
+        border: none;
+	}
+	.sub_contents_wrap .left_menu > div {
+		height:38px;padding-left:20px;background-c   olor:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+	.sub_contents_wrap .left_menu a {
+		letter-spacing:-1px;}
+	.sub_contents_wrap .left_menu > ul {
+		width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+	.sub_contents_wrap .left_menu > ul > li > div {
+		height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
+	.sub_contents_wrap .left_menu > ul > li > div > a {
+		display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;padding-left:9px;}
+	
+	.sub_contents_wrap .left_menu > ul > li > ul > li {
+		background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+	.sub_contents_wrap .left_menu > ul > li > ul > li > a {
+		display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+	
+	.sub_contents_wrap .left_menu > ul > li > ul > li > ul {
+		background-color:#ffffff;padding:10px 0 10px 19px;}
+	.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {
+		font-size:13px;color:#878787;line-height:33px;}
+	
+	.sub_contents_wrap .right_text {
+		width:951px;letter-spacing:-1px;}
+	.input_table th {
+	    background-color: #f8f8f8;
+	    font-size: 15px;
+	    color: #535353;
+	    font-weight: bold;
+	    text-align: center;
+		}
+	.input_table th, .input_table td {
+	    border: 1px solid #c6c6c6;
+		}
+	address, caption, em, cite, th {
+	    font-weight: normal;
+	    font-style: normal;
+		}
+	th {
+	    display: table-cell;
+	    vertical-align: inherit;
+	    font-weight: bold;
+	    text-align: -internal-center;
+	}
+	input{
+		padding-right: 200px;
+	}
+	.button2{
+		margin-left: 461px;
+	}
+	h2{
+		border-bottom: 1px solid #c6c6c6;
+		padding-bottom: 10px;
+	}
+</style>
+</head>
+<!-- 관리자 회사관련 선택화면 -->
+<body layout:fragment="adminContent">	
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+						<colgroup>
+							<col width="10%"/><col width="10%"/>
+							<col width="15%"/><col width="10%"/>
+						</colgroup>	
+							<tr>
+								<th>부서코드</th>
+								<th>부서 명</th>
+								<th>사업장코드</th>
+								<th>부서 적용날짜</th>
+							</tr>
+							<tbody>
+								<tr>
+									<td><input type="checkbox" class="companyCheckbox">임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      
+</body>
+</html>

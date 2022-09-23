@@ -1,22 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
 <meta charset="UTF-8">
-<!-- 관리자 회사관련 선택화면 -->
-<title th:text="${title}"></title>
+<head>
+	<style>
+	h2{
+		border-bottom: 1px solid #c6c6c6;
+		padding-bottom: 10px;
+	}
+	.content-wrapper button{
+			width: 10%;
+			height: 150px;
+			border-radius: 10px;
+			margin: 15px;
+			background-color: white;
+			border: 1px solid #c6c6c6;
+				
+		}
+	.content-wrapper button:hover{
+			background-color: #535353;
+			
+	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	</style>
 </head>
-<body>
-		<button type="button">
-			<a th:href="@{/company/companyRegister}">회사등록</a>
-		</button>
-		<button type="button">
-			<a href="#">사업장등록</a>
-		</button>
-		<button type="button">
-			<a href="#">부서등록</a>
-		</button>
-		<button type="button">
-			<a href="#">사원등록</a>
-		</button>			
+<!-- 관리자 회사관련 선택화면 -->
+<body layout:fragment="adminContent">	
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<button type="button">
+							<strong><a th:href="@{/companyRegister}">회사등록</a></strong>
+						</button>
+						
+						<button type="button">
+							<strong><a th:href="@{/company/workplace/workPlaceRegister}">사업장등록</a></strong>
+						</button>
+						<button type="button">
+							<strong><a th:href="@{/company/department/departmentRegister}">부서등록</a></strong>
+						</button>
+						<button type="button">
+							<strong><a th:href="@{/company/employee/employeeRegister}">사원등록</a></strong>
+						</button>	
+					</div>
+								      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      
 </body>
 </html>

@@ -4337,3 +4337,128 @@ readers do not read off random characters that represent icons */
 .mypage_main_title > div:first-child {background:url(image/S_mypage_icon_01.gif) 0 50% no-repeat;font-size:27px;color:#f76c87;font-weight:bold;padding:0 20px 0 0px;}
 .mypage_main_title > div:last-child {font-size:13px;color:#515151;padding-top:13px;}
 .mypage_main_title > div:last-child font {color:#ff9520;font-weight:bold;}
+
+
+.mypage_top_menu  {padding-top:13px;}
+.mypage_top_menu > li {float:right;padding-left:23px;}
+.mypage_top_menu > li > a {display:inline-block;background:url(image/S_mypage_icon_05.gif) 0 50% no-repeat;padding-left:10px;font-size:14px;color:#3f3f3f;font-weight:bold;}
+
+.mypage_info_table {border-collapse:collapse;margin-top:10px;}
+.mypage_info_table td, .mypage_info_table th {border:1px solid #e2e2e2;}
+.mypage_info_table th {height:40px;font-size:14px;color:#ffffff;font-weight:bold;text-align:center;background-color:#3f3f3f;}
+.mypage_info_table th span {display:inline-block;background:url(image/S_mypage_icon_04.gif) right 50% no-repeat;padding:0 20px;}
+.mypage_info_table th.rank {width:144px;background-color:#f76c87}
+.mypage_info_table th.rank span {background:url(image/S_mypage_icon_03.gif) right 50% no-repeat;}
+.mypage_info_table th.point {width:156px;}
+.mypage_info_table th.coupon {width:144px;}
+.mypage_info_table th.code {width:144px;}
+.mypage_info_table th.hcash {width:144px;}
+.mypage_info_table td {height:45px;background-color:#f8f8f8;text-align:center;font-size:14px;}
+.mypage_info_table td font {color:#ff9520;font-weight:bold;}
+
+
+
+.mypage_shipping_status {margin-top:30px;}
+.mypage_shipping_status .title {line-height:32px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_18.gif) 0 50% no-repeat;}
+
+.mypage_shipping_status {position:relative;}
+.mypage_shipping_status .bt1 {position:absolute; width:190px;height:40px;z-index:1;right:200px;top:-5px;text-align:center;background-color:#ff9520;}
+.mypage_shipping_status .bt1 a {display:inline-block;font-size:14px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_order_icon_01.gif) 0 50% no-repeat;line-height:40px;}
+.mypage_shipping_status .bt2 {position:absolute; width:190px;height:40px;z-index:1;right:0px;top:-5px;text-align:center;background-color:#ffffff;border:2px solid #ff9520;}
+.mypage_shipping_status .bt2 a {display:inline-block;font-size:14px;color:#ff9520;font-weight:bold;background:url(image/S_mypage_order_icon_02.gif) 0 50% no-repeat;line-height:36px;}
+
+.mypage_shipping_status .status_1 {border:1px solid #cccccc;margin-top:15px;padding:9px 0}
+.mypage_shipping_status .status_1 table td {border-left:1px dashed #cccccc;text-align:center;}
+.mypage_shipping_status .status_1 table td:first-child {border:0;}
+
+.mypage_shipping_status .status_1 table td .text {padding-top:10px;line-height:31px;font-size:15px;color:#484848;font-weight:bold;}
+.mypage_shipping_status .status_1 table td .text span {display:inline-block;width:33px;height:33px;background-color:#ff9520;border-radius:33px;text-align:center;font-size:15px;color:#ffffff;font-weight:bold;}
+
+.mypage_shipping_status .status_1 table td .shipping_bt {width:294px;height:68px;margin:0 auto;background-color:#3f3f3f;border-radius:5px;text-align:center;line-height:67px;}
+.mypage_shipping_status .status_1 table td .shipping_bt a {display:inline-block;font-size:20px;color:#ffffff;font-weight:bold;background:url(image/S_mypage_icon_22.gif) right 50% no-repeat;text-align : center;}
+
+.mypage_shipping_status .status_2 {border:1px solid #cccccc;border-top:0;}
+.mypage_shipping_status .status_2 table td:first-child {width:189px;height:160px;background-color:#f8f8f8;font-size:15px;color:#484848;font-weight:bold;line-height:36px;padding-left:20px;}
+.mypage_shipping_status .status_2 table td:first-child font {color:#f76c87;}
+
+.mypage_shipping_status .status_2 table td .progress {padding-left:43px;}
+.mypage_shipping_status .status_2 table td .progress li {float:left;width:100px;height:100px;border-radius:110px;margin-left:17px;border:5px solid #dddddd;text-align:center;}
+.mypage_shipping_status .status_2 table td .progress li > div:first-child {height:30px;font-size:14px;color:#484848;line-height:17px;padding-top:30px;}
+.mypage_shipping_status .status_2 table td .progress li > div:last-child {font-size:18px;color:#484848;font-weight:bold;}
+
+.shipping_list_open {display:inline-block;border:1px solid #c2c2c2;border-top:0;border-radius:0 0 5px 5px;height:36px;line-height:35px;padding:0 22px;}
+.shipping_list_open span {display:inline-block;font-size:14px;color:#8f8f8f;font-weight:bold;background:url(image/S_mypage_icon_06.gif) right 50% no-repeat;padding-right:21px;}
+.shipping_list_open span font {color:#ff9520;}
+.progress {height:120px;background-color: white ;}
+.progress li div {height:40px;padding-top:15px;}
+
+.shipping_details_list {margin-top:35px;position:relative;display:none;}
+
+.shipping_details_list .title > div {float:left;}
+.shipping_details_list .title > div:first-child {background:url(image/S_mypage_icon_25.gif) 0 50% no-repeat;font-size:23px;color:#3f3f3f;font-weight:bold;line-height:31px;padding:0 13px 0 0;}
+.shipping_details_list .title > div:last-child {font-size:13px;color:#515151;padding-top:10px;}
+.shipping_details_list .title > div:last-child font {color:#ff9520;}
+
+.shipping_details_list .search {position:absolute;width:152px;height:38px;right:0;top:0;background-color:#3f3f3f;text-align:center;}
+.shipping_details_list .search > a {display:inline-block;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;font-size:14px;color:#ffffff;font-weight:bold;padding-right:22px;line-height:38px;}
+
+.shipping_details_list .list_table {margin-top:19px;border-collapse:collapse;}
+.shipping_details_list .list_table td {width:24.7%;height:40px;border:1px solid #cccccc;background-color:#f8f8f8;}
+.shipping_details_list .list_table td > div {float:left;}
+.shipping_details_list .list_table td > div:first-child {width:220px;padding-left:17px;font-size:13px;color:#515151;}
+.shipping_details_list .list_table td > div:last-child {width:60px;font-size:14px;color:#ff9520;font-weight:bold;text-align:center;}
+.shipping_details_list .list_table td > div.ov {font-weight:bold;}
+
+.shipping_details_list .list_bt {margin-top:40px}
+.shipping_details_list .list_bt li {float:right;height:38px;line-height:38px;background-color:#ff9520;border-radius:5px;margin-left:6px;padding:0 16px;text-align:center;}
+.shipping_details_list .list_bt li a {font-size:14px;color:#ffffff;font-weight:bold;}
+.shipping_details_list .list_bt li.more {background:none;padding:13px 0 0 4px;line-height:0px;}
+
+.shipping_details_list .open_search {height:96px;border-top:2px solid #8d8d8d;border-bottom:1px solid #e0e0e0;margin-top:15px;}
+.shipping_details_list .open_search > div {float:left;}
+
+.shipping_details_list .open_search .search_option {width:947px;}
+.shipping_details_list .open_search .search_option .option1 {border-bottom:1px solid #e0e0e0}
+.shipping_details_list .open_search .search_option .option1 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
+.shipping_details_list .open_search .search_option .option1 .select > div {display:inline-block;}
+.shipping_details_list .open_search .search_option .option1 .select > div select {width:136px;height:34px;border:1px solid #cccccc;margin-right:3px;text-align: center;}
+.shipping_details_list .open_search .search_option .option1 .date_input div {float:left;}
+.shipping_details_list .open_search .search_option .option1 .date_input .box {border:1px solid #cccccc;}
+.shipping_details_list .open_search .search_option .option1 .date_input > div input {width:100px;height:32px;border:0; text-align: center;}
+.shipping_details_list .open_search .search_option .option1 .date_input .bt {margin-left:21px;width:95px;height:34px;background-color:#8d8d8d;line-height:34px;text-align:center;font-size:14px;color:#ffffff;font-weight:bold;}
+
+.shipping_details_list .open_search .search_option .option2 td {padding:7px 0;font-size:14px;color:#3f3f3f;font-weight:bold;}
+.shipping_details_list .open_search .search_option .option2 .search2 input {width:239px;height:32px;border:1px solid #cccccc;padding-left:5px;text-align:center;font-size:14px;}
+
+.shipping_details_list .open_search .search_bt {margin:4px 0 0 31px;width:191px;height:86px;background-color:#3f3f3f;border-radius:5px;text-align:center;}
+.shipping_details_list .open_search .search_bt a {font-size:19px;color:#ffffff;font-weight:bold;line-height:88px;background:url(image/S_mypage_icon_26.gif) right 50% no-repeat;padding-right:25px;}
+
+
+
+
+<!-- 사이드 바 css ->
+
+
+.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+
+.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
+.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;}
+.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
+
+.right_text {width:951px;letter-spacing:-1px;}
+
+/*회원수정화면*/
+.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
+.input_table .hp > div:nth-child(2) > div {float:left;}
+.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
+.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
+.input_table th {height: 30px; background-color: #f8f8f8; font-size: 15px; color: #447b9a; font-weight: bold; text-align: center; }
+.input_table th, .input_table td {border: 1px solid #c6c6c6;}

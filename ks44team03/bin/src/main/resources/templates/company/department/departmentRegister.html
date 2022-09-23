@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<h1 th:text="${title}">부서 등록</h1>
+	<from id="departmentRegFrom">
+		<table>
+			<tr>	
+				<td>
+					<input type="text" name=departmentCode placeholder="부서코드">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=departmentName placeholder="부서명">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=workplaceCode placeholder="사업장코드">	
+				</td>
+			</tr>
+			<tr>	
+				<td>
+					<input type="text" name=departmentDate placeholder="부서적용날짜">	
+				</td>
+			</tr>
+		</table>
+	</from>
+		
+		
+	
+	
+</body>
+</html>

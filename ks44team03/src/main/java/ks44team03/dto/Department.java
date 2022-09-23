@@ -3,10 +3,10 @@ package ks44team03.dto;
 public class Department {
 
 	
-	private String departmentCode;
-	private String departmentName;
-	private String workplaceCode;
-	private String departmentDate;
+	private String departmentCode; //부서코드
+	private String departmentName; //부서 명
+	private String workplaceCode; //사업장코드
+	private String departmentDate; //부서 적용날짜
 	
 	
 	public String getDepartmentCode() {
