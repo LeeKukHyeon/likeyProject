@@ -23,6 +23,14 @@
 	input {
 		margin-bottom: 5px;
 	}
+	.radio_group {
+		padding-left: 115px;
+	}
+	#likey_pass_n {
+		margin-top: 10px;
+		margin-left: 10px;
+		margin-bottom: 15px;
+	}
 </style>
 <!-- 입고등록 -->
 <title>입고등록</title>
@@ -50,6 +58,10 @@
 							<tr>
 								<td><label for="user_pobox_code">사서함 번호</label></td>
 								<td>&nbsp;<input type="text" id="user_pobox_code"></td>
+							</tr>
+							<tr>
+								<td><label for="likey_pass">라이키 패스</label></td>
+								<td class="radio_group">&nbsp;<input type="radio" id="likey_pass_y"> Y <input type="radio" id="likey_pass_n"> N</td>
 							</tr>
 						</table>
 						<button type="submit" id="sub_btn">등록</button>
