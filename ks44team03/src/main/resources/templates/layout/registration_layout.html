@@ -16,16 +16,14 @@
 	<header th:replace="fragments/header::headerFragment"></header>
 		<!-- end header  -->
 	
-	<!-- start footer  -->
+	
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
 	<div class="container-fluid">
 		<div class="row">
-			<body th:replace="fragments/mypage_sidebar::sidebarFragment"></body>
+			<body th:replace="fragments/registration_sidebar::sidebarFragment"></body>
 			<body layout:fragment="content"></body>
 		</div>
 	</div>
-		<!-- end footer  -->
-	
-		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
 	
 		    
 		<!-- start footer  -->
