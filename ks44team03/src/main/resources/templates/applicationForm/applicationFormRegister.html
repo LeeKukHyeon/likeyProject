@@ -225,11 +225,11 @@
                                             ㅤ
                                     
                                     <div class="col-12 mb-3">
-                                        주문 번호
+                                       	 주문 번호
                                         <input type="text" class="form-control" id="company" placeholder="상품을 구매 하신 해당 사이트에서 발급한 주문 번호 (Order Number)를 입력해주세요." value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        구매 사이트
+                                        	구매 사이트
                                         <input type="text" class="form-control" id="company" placeholder="상품을 구매 하신 사이트 주소를 입력해주세요." value="" required>
                                    
                                     </div>
@@ -238,11 +238,19 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-4 mb-3">
+                                                
+                                                	<div class="img_wrap">
+														<div id="previewImg" class="image">
+															<a href="dfsfds" class="preview" target="_blank">
+																<img src="image/S_shipping_form_img_11.gif" border="0" width="223" height="223">
+															</a>
+														</div>
+                                                    
                                                     <div class="upload">
                                                         <div>
-                                                            <input type="radio" name="image" value="up" class="radio_bt" checked>
+                                                            <input type="radio" name="image" value="up" class="radio_bt" checked="">
                                                         </div>
-
+			
                                                         <div class="bt_01">
                                                             <a href="javascript:void(0);" style="position:relative;">이미지파일 업로드
                                                                 <input type="file" id='package_img_file0' onChange="return ajaxFileUpload('package_img_file0', 0, 0);" name="package_img_file[]" 
@@ -259,7 +267,9 @@
                                                             <div><input type="radio"  name="image" value="url" class="radio_bt"></div>
                                                             <div class="bt_02"><input type="text"  name="package_url[]" value="" maxlength="950"  placeholder="제품 URL 직접 입력"></div>
                                                         </div>
-                                                    </div>
+                                                      </div>
+                                                     </div>
+                                  
 
                                                 </div>
                                                 <div class="col-md-4 mb-3" style="font-size:13px;">

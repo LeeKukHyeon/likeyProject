@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberController {
 
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginProcess() {
 		return "login/loginForm";
 	}
 	
