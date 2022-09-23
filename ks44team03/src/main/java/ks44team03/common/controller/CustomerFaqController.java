@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CustomerFaqController {
 
 	@GetMapping("/faqSearch")
-	public String faqSearch(Model model) {
+	public String viewFaq(Model model) {
 		return "/CustomerService/faqSearch";
 	}
 }
