@@ -1,6 +1,7 @@
-<!doctype html>
-
-<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="ko">
+<!DOCTYPE html>
+<html lang="ko"
+	  class="no-js"
+	  xmlns:th="http://www.thymeleaf.org">
 <style>
 .sub_contents_wrap {margin-top:30px;margin-left:10px;}
 
@@ -14,18 +15,23 @@
 		
 			<div class="sub_contents_wrap wrap col-lg-4">
 				<div class="left_menu">
-					<div>마이페이지</div>
+					<div>회원관리</div>
 						<ul>
 							<li>
-								<div><a href="/mypageScreen">마이홈</a></div>
+								<div><a href="/userForm">회원가입</a></div>
 							</li>
 							<li>
-								<div><a href="/memberModify">회원정보수정</a></div>
+								<div><a href="/loginForm">로그인</a></div>
 							</li>
 							<li>
-								<div><a href="/myAddrList" >나의 주소록 </a></div>
+								<div><a href="/findIdPw" >아이디/비밀번호 찾기</a></div>
 							</li>
-
+							<li>
+								<div><a href="#" >이용약관</a></div>
+							</li>
+							<li>
+								<div><a href="#" >개인정보취급방침</a></div>
+							</li>
 						</ul>
 					</div>	<!-- //왼쪽 메뉴 -->
 				
