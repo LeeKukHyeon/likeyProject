@@ -17,3 +17,76 @@
 .detail_box1_wrap .table_box td.td1 {width:70px;padding:0 42px 0 255px;font-size:14px;color:#3f3f3f;font-weight:bold;}
 .detail_box1_wrap .table_box td.td2 {font-size:14px;color:#3f3f3f;}
 .detail_box1_wrap .table_box td.td2 .input_ {width:558px;height:36px;line-height:36px;font-size:14px;color:#3f3f3f;background-color:#f8f8f8;border:1px solid #c2c2c2;padding-left:13px;}
+
+
+/*마이페이지 센터별 입출고 현황*/
+.mypage_sub_title1 {margin-top:30px;}
+.mypage_sub_title1 > div {float:left;}
+.mypage_sub_title1 > div:first-child {font-size:23px;color:#3f3f3f;font-weight:bold;}
+.mypage_sub_title1 > div:last-child {font-size:13px;color:#ff9520;padding:5px 0 0 15px;}
+
+.mypage_warehousing_table {margin-top:20px;border-collapse:collapse;}
+.mypage_warehousing_table td {width:14%;border:1px solid #cccccc;text-align:center;padding:20px 0 20px;}
+.mypage_warehousing_table .country {font-size:15px;color:#3f3f3f;padding:13px 0 7px;}
+.mypage_warehousing_table .date {font-size:14px;color:#ff9520;font-weight:bold;}
+
+/*마이페이지 관리하기*/
+.mypage_management_box {margin-top:25px;border:1px solid #cccccc}
+.mypage_management_box .title {height:60px;background-color:#f8f8f8;padding:0 29px;}
+.mypage_management_box .title span {display:inline-block;line-height:67px;font-size:23px;color:#3f3f3f;font-weight:bold;background:url(image/S_mypage_icon_09.gif) 0 50% no-repeat;padding-left:43px;}
+
+.mypage_management_box table {margin:30px 0 0 63px;}
+
+.mypage_management_box td {width:30%;padding-bottom:45px; }
+.mypage_management_box td > div {float:left; }
+
+.mypage_management_box td .left_title {width:80px;padding-top:10px;text-align:center; }
+.mypage_management_box td .left_title > div:last-child {font-size:16px;color:#ff9520;font-weight:bold;padding-top:8px;}
+
+.mypage_management_box td .right_text {padding-left:15px; width:200px;}
+.mypage_management_box td .right_text ul li a {font-size:14px;color:#3f3f3f;line-height:30px;}
+
+
+/*마이페이지 공지,질문 */
+
+.mypage_bbs_table {margin-top:30px;border-collapse:collapse;}
+.mypage_bbs_table td {border:1px solid #d5d5d5;}
+.mypage_bbs_table td table td {border:0;}
+.mypage_bbs_table .borard_box {width:33%;background-color:#f8f8f8;vertical-align:top;}
+
+.mypage_bbs_table .borard_box > div {position:relative;padding:0 30px;}
+.mypage_bbs_table .borard_box > div .title {height:54px;line-height:53px;font-size:17px;color:#404040;font-weight:bold;border-bottom:2px solid #d5d5d5;}
+.mypage_bbs_table .borard_box > div .title font {font-size:13px;color:#808080;font-weight:normal;}
+.mypage_bbs_table .borard_box > div .more {position:absolute;width:38px;top:35px;right:20px; font-size: 10px; color:black;}
+.mypage_bbs_table .borard_box > div .more a {color: black;}
+.mypage_bbs_table .borard_box > div table {margin:5px 0 15px;}
+.mypage_bbs_table .borard_box > div table .td1 a {font-size:13px;color:#7f7f7f;font-weight:bold;line-height:29px;}
+.mypage_bbs_table .borard_box > div table .td2 {font-size:10px;color:#cccccc;text-align:right}
+
+.mypage_bbs_table .exchange_box {padding:0 31px;}
+.mypage_bbs_table .exchange_box .title {height:45px;font-size:17px;color:#404040;font-weight:bold;line-height:0px;}
+
+.mypage_bbs_table .exchange_box .exchange_info > div {float:left;}
+.mypage_bbs_table .exchange_box .exchange_info .date {width:100px;border:1px solid #d5d5d5;margin-right:3px;}
+.mypage_bbs_table .exchange_box .exchange_info .date > div:first-child {height:42px;line-height:40px;background-color:#f8f8f8;text-align:center;font-size:19px;color:#292929;font-weight:bold;}
+.mypage_bbs_table .exchange_box .exchange_info .date > div:last-child {height:42px;line-height:40px;text-align:center;font-size:16px;color:#7f7f7f;font-weight:bold;}
+
+.mypage_bbs_table .exchange_box .country_exc {width:220px;}
+.mypage_bbs_table .exchange_box .country_exc table {height:40px;background-color:#f8f8f8;border:1px solid #d5d5d5;margin-bottom:5px;}
+.mypage_bbs_table .exchange_box .country_exc table td {background:url(image/S_mypage_icon_29.gif) 0 50% no-repeat;text-align:center;}
+.mypage_bbs_table .exchange_box .country_exc table td:first-child {width:61px;font-size:14px;color:#7f7f7f;font-weight:bold;background:none;}
+.mypage_bbs_table .exchange_box .country_exc table td:nth-child(2) {width:46px;font-size:14px;color:#ff9520;font-weight:bold;} 
+.mypage_bbs_table .exchange_box .country_exc table td:nth-child(3) {text-align:right;padding-right:14px;color:#2b2b2b;font-weight:bold;}
+
+
+.mypage_point_use {margin-top:30px;}
+.mypage_point_use .title {font-size:22px;color:#3f3f3f;font-weight:bold;}
+
+.mypage_point_use .use_table {border-collapse:collapse;margin-top:17px;}
+.mypage_point_use .use_table th, .mypage_point_use .use_table td {border:1px solid #cccccc;} 
+.mypage_point_use .use_table th {height:33px;background-color:#f8f8f8;text-align:center;font-size:13px;color:#7f7f7f;font-weight:bold;}
+.mypage_point_use .use_table th.date {width:209px;}
+.mypage_point_use .use_table th.point {width:259px;}
+.mypage_point_use .use_table td {height:35px;text-align:center;font-size:13px;color:#3f3f3f;}
+.mypage_point_use .use_table td font {color:#ff9520;font-weight:bold;}
+.mypage_point_use .use_table td.use {text-align:center;padding:0 30px;}
