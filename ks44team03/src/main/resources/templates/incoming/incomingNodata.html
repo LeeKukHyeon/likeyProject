@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+<style>
+	h2 {
+		margin-bottom: 25px;
+		padding-bottom: 10px;
+		font-weight: bold;
+		border-bottom: 1px solid #c6c6c6;
+	}
+	.nodata_register {
+		font-size: 15px;
+	}
+	#sub_btn {
+		margin-top: 20px;
+		margin-left: 85px;
+		width: 150px;
+		border-radius: 20px;
+		font-size: 20px;
+	}
+	#add_btn, #sub_btn {
+		border: 1px solid #8d8d8d;
+		background-color: rgba(0,0,0,0);
+		color: #8d8d8d;
+		padding: 2px;
+	}
+	#sub_btn:hover, #add_btn:hover {
+		background-color: #8d8d8d;
+		color: white;
+	}
+	
+</style>
+<!-- 노데이터 입고등록 -->
+<title>노데이터 입고등록</title>
+</head>
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="adminContent">
+    	<!-- partial --><!-- 컨텐츠츠츠aaaaaaaaaaa -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+				
+				<!-- ========== 노데이터 입고 등록 시작 ========== -->
+				<h2>노데이터 입고등록</h2>
+				<div class="nodata_register">
+					<form>
+						<table>
+							<tr>
+								<td>수취인명</td>
+								<td>&nbsp;<input type="text" id="nod_recipient"></td>
+							</tr>
+							<tr>
+								<td>배송회사</td>
+								<td>&nbsp;<input type="text" id="nod_tracking_company"></td>
+							</tr>
+							<tr>
+								<td>운송장 번호</td>
+								<td>&nbsp;<input type="text" id="nod_tracking_num"></td>
+							</tr>
+							<tr>
+								<td>사서함번호</td>
+								<td>&nbsp;<input type="text" id="nod_user_pobox_code"></td>
+							</tr>
+							<tr>
+								<td>개봉한 물품 사진</td>
+								<td>&nbsp;<input type="text" id="nod_pic" readonly>
+									&nbsp;<button type="button" id="add_btn">파일 첨부</button>
+								</td>
+							</tr>
+							<tr>
+								<td>입고일</td>
+								<td>&nbsp;<input type="text" id="nod_arrival_date"></td>
+							</tr>
+						</table>
+						<button type="submit" id="sub_btn">등록</button>
+					</form>
+				</div>
+				<!-- ========== 노데이터 입고 등록 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      </div>
+      <!-- main-panel ends --><!-- 컨텐츠 끝 -->
+    </body>
+</html>
