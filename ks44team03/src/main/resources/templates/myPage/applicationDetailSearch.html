@@ -21,6 +21,179 @@
 					<div class="sub_title">회원님의 배송대행 신청 내역을 확인 하실 수 있습니다.</div>
 				</div>
 				
+						<!-- 버튼 -->
+				<div class="main_bt_list_01">
+					<ul>
+						<li><a href="#" target="_blank">#1:1 문의하기</a></li>
+						<li><a href="#" target="_blank">#수정</a></li>
+						<li><a href="javascript:void(0);" onClick="doAction('delOrder')" class="del">#삭제</a></li>
+						<li><a href="mypageScreen">목록</a></li>
+					</ul>
+				</div>
+				<!-- //버튼 -->
+				
+				<!-- 신청정보 -->
+				<div class="main_list_box">
+					<div class="h3_text">신청정보</div>
+		
+						<div class="list_box">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_01">
+							  <tr>
+							    <td class="td1" width="116">서비스 종류</td>
+								<td class="td2" width="272">#</td>
+								<td class="td1" width="116">신청일</td>
+								<td class="td2" width="272">#</td>
+							  </tr>
+							  <tr>
+							    <td class="td1">신청번호</td>
+								<td class="td2">#</td>
+								<td class="td1">국가(지역)</td>
+								<td class="td2">#</td>
+							  </tr>
+							  <tr>
+							    <td class="td1">출고여부</td>
+								<td class="td2">#</td>
+								<td class="td1">운송장 번호</td>
+								<td class="td2">#</td>
+							  </tr>
+							  <tr>
+							    <td class="td1">구매처 URL</td>
+								<td class="td2">#</td>
+								<td class="td1">배송방법</td>
+								<td class="td2">#</td>
+							  </tr>
+							</table>
+						</div>
+					</div>
+				<!-- 신청정보 끝 -->
+				
+				<!-- 상품정보 -->
+					<div class="main_list_box">
+						<div class="h3_text">상품정보</div>
+			
+						<div class="list_box">
+							<div class="line_box">
+							
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_02">
+								  <tr>
+								    <th class="td1" rowspan="2">No.</th>
+									<th class="td2" rowspan="2">이미지</th>
+									<th class="td3">품목</th>
+									<th class="td4">주문번호</th>
+									<th class="td5" rowspan="2">영문상품명</th>
+									<th class="td6">단가</th>
+									<th class="td7">색상</th>
+									<th class="td8" rowspan="2">상태<br>입고일</th>
+								  </tr>
+								  <tr>
+									<th class="td3">브랜드</th>
+									<th class="td4">트래킹번호</th>
+									<th class="td6">수량</th>
+									<th class="td7">사이즈</th>
+								  </tr>
+								  <tr>
+								    <td class="td1" rowspan="2">1</td>
+									<td class="td2" rowspan="2"><img src="image/S_shipping_end_noimg.gif"></td>
+									<td class="td3">가구(의자/테이블/소파)</td>
+									<td class="td4">a</td>
+									<td class="td5" rowspan="2">a</td>
+									<td class="td6">$ 123</td>
+									<td class="td7"></td>
+									<td class="td8" rowspan="2">입고대기<br><font></font></td>
+								  </tr>
+								  <tr>
+									<td class="td3">a</td>
+									<td class="td9">
+																	<div class="modify_bt"><a href='javascript:void(0);' onClick="screenPop('tracking_num_multi_edit.html?invoice_no=AF2710','tr_edit','yes',1000,500)"><span style='color:#ffffff;'>수정</span></a></div>
+									</td>
+									<td class="td6">1</td>
+									<td class="td7"></td>
+								  </tr>
+			
+			
+			
+			
+								  <tr>
+								    <td class="td10 icon" colspan="3">
+										통관종류
+										<span><img src="image/S_shipping_end_icon_03.png"></span>
+									</td>
+									<td class="td10"><font>목록통관</font></td>
+									<td class="td10">상품금액합계</td>
+									<td class="td10" colspan="3"><font>$ 123</font></td>
+								  </tr>
+								</table>
+								
+							</div>
+							<div class="h6_text">최대 보관일 초과 시 초과한 날짜에 대해 일일 보관 수수료가 부가되니 주의 하시기 바랍니다.</div>
+						</div>
+					</div>
+					<!-- //상품정보 -->
+			
+					<!-- 물류센터 요청사항 -->		
+					<div class="main_list_box">
+						<div class="h3_text">물류센터 요청사항</div>
+			
+						<div class="list_box">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_01">
+							  <tr>
+							    <td class="td1" width="186">신발/박스 제거</td>
+								<td class="td2" width="637"><font>#N</font></td>
+							  </tr>
+							  <tr>
+							    <td class="td1">폴리백 포장</td>
+								<td class="td2"><font>#N</font></td>
+							  </tr>
+							  <tr>
+							    <td class="td1">인보이스/기프트 박스 제거</td>
+								<td class="td2"><font>#N</font></td>
+							  </tr>
+							  <tr>
+							    <td class="td1">사진 촬영 ($1.00)</td>
+								<td class="td2"><font>#N</font></td>
+							  </tr>
+							  <tr>
+								<td class="td1">특수포장</td>
+								<td class="td2"><font>#특수포장 미신청</font></td>
+							  </tr>
+							</table>
+						</div>
+					</div>	
+					<!-- 물류센터 요청사항 -->	
+					
+					<!-- 비용 및 결제 -->
+					<div class="main_list_box">
+						<div class="title_flex">
+							<div class="h3_text">비용 및 결제 내용</div>
+							<div class="more_text"></div>
+						</div>
+			
+						<div class="list_box">
+							<div class="line_box">
+							
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_03">
+								  <tr>
+								    <td class="td1 th" rowspan="2">상품 가격<br>총액</td>
+									<td class="td2 th">상품가</td>
+									<td class="td3 th">현지 부가비용</td>
+									<td class="td4 th">할인금액</td>
+									<td class="td5 th">총 비용</td>
+									<td class="td6 th">결제방법<br>(결제일시)</td>
+								  </tr>
+								  <tr>
+									<td class="td2">$ 123</td>
+									<td class="td3">$ 0</td>
+									<td class="td4">$ 0.00</td>
+									<td class="td5"><font>$ 123.00</font></td>
+									<td class="td6"><br></td>
+								  </tr>
+								</table>
+								
+							</div>
+						</div>
+					</div>
+					<!-- 비용 및 결제 -->
+					
 			</div>
 		</div>
 	</body>
