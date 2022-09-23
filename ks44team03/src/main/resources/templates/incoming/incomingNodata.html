@@ -6,6 +6,31 @@
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
 <meta charset="UTF-8">
+<style>
+	h2 {
+		margin-bottom: 25px;
+		font-weight: bold;
+	}
+	.nodata_register {
+		font-size: 15px;
+	}
+	#sub_btn {
+		margin-top: 20px;
+		margin-left: 85px;
+		width: 150px;
+	}
+	#add_btn, #sub_btn {
+		border: 1px solid #8d8d8d;
+		background-color: rgba(0,0,0,0);
+		color: #8d8d8d;
+		padding: 2px;
+	}
+	#sub_btn:hover, #add_btn:hover {
+		background-color: #8d8d8d;
+		color: white;
+	}
+	
+</style>
 <!-- 노데이터 입고등록 -->
 <title>노데이터 입고등록</title>
 </head>
@@ -16,39 +41,41 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-sm-12">
-
+				
 				<!-- ========== 노데이터 입고 등록 시작 ========== -->
+				<h2>노데이터 입고등록</h2>
 				<div class="nodata_register">
-					<table>
-						<tr>
-							<td>수취인명</td>
-							<td>&nbsp;<input type="text" id="nod_recipient"></td>
-						</tr>
-						<tr>
-							<td>배송회사</td>
-							<td>&nbsp;<input type="text" id="nod_tracking_company"></td>
-						</tr>
-						<tr>
-							<td>운송장 번호</td>
-							<td>&nbsp;<input type="text" id="nod_tracking_num"></td>
-						</tr>
-						<tr>
-							<td>사서함번호</td>
-							<td>&nbsp;<input type="text" id="nod_user_pobox_code"></td>
-						</tr>
-						<tr>
-							<td>개봉한 물품 사진</td>
-							<td>&nbsp;<input type="text" id="nod_pic" readonly>&nbsp;<button type="button">파일 첨부</button></td>
-						</tr>
-						<tr>
-							<td>입고일</td>
-							<td>&nbsp;<input type="text" id="nod_arrival_date"></td>
-						</tr>
-						<tr>
-							<td><input type="hidden"></td>
-							<td><button type="submit">등록</button></td>
-						</tr>
-					</table>
+					<form>
+						<table>
+							<tr>
+								<td>수취인명</td>
+								<td>&nbsp;<input type="text" id="nod_recipient"></td>
+							</tr>
+							<tr>
+								<td>배송회사</td>
+								<td>&nbsp;<input type="text" id="nod_tracking_company"></td>
+							</tr>
+							<tr>
+								<td>운송장 번호</td>
+								<td>&nbsp;<input type="text" id="nod_tracking_num"></td>
+							</tr>
+							<tr>
+								<td>사서함번호</td>
+								<td>&nbsp;<input type="text" id="nod_user_pobox_code"></td>
+							</tr>
+							<tr>
+								<td>개봉한 물품 사진</td>
+								<td>&nbsp;<input type="text" id="nod_pic" readonly>
+									&nbsp;<button type="button" id="add_btn">파일 첨부</button>
+								</td>
+							</tr>
+							<tr>
+								<td>입고일</td>
+								<td>&nbsp;<input type="text" id="nod_arrival_date"></td>
+							</tr>
+						</table>
+						<button type="submit" id="sub_btn">등록</button>
+					</form>
 				</div>
 				<!-- ========== 노데이터 입고 등록 끝 ========== -->
 
