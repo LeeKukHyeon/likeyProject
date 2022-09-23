@@ -17,10 +17,6 @@ public class MemberController {
 		return "login/findIdPw";
 	}
 	
-	@GetMapping("/userForm")
-	public String userForm() {
-		return "registration/userForm";
-	}
 	
 	@GetMapping ("userSignUp")
 	public String userSignUp(){
