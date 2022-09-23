@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CustomerNoticeController {
 
+	
+	@GetMapping("/noticeRegister")
+	public String regNotice(Model model) {
+		return "/CustomerService/noticeRegister";
+	}
+	
 	@GetMapping("/noticeSearch")
-	public String notice(Model model) {
+	public String viewNotice(Model model) {
 		return "/CustomerService/noticeSearch";
 	}
 }

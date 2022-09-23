@@ -21,8 +21,10 @@
 button {cursor:pointer;}
 
 /* faqSearch css */
-.faqSort {background: #D2E1FF; color: yellow; height: 20mm;font-size: 16px; padding-top: 23px;}
+.faqSort {background: #D2E1FF; color: black; height: 20mm;font-size: 16px; padding-top: 23px;}
 a:hover {color:pink;}
 .faqSortList li {height: 8mm; margin-left: 3mm;}
-.faqSortList {background-color: #dcdcdc; flex: auto;}
+.faqSortList li a {font: bold; align-content: center;}
+.faqSortList {background-color: #dcdcdc; flex: auto; height: 180px;}
 .faqSortM {margin: 0px 3px 0px 3px;}
+.faqSortList li a b:hover {color: red;}

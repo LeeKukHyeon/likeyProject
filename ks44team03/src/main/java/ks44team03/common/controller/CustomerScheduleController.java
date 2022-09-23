@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CustomerScheduleController {
 
+	@GetMapping("/deliveryScheduleRegister")
+	public String regDeliverySchedule(Model model) {
+		return "/CustomerService/deliveryScheduleRegister";
+	}
+	
 	@GetMapping("/schedule")
-	public String schedule(Model model) {
+	public String viewDeliverySchedule(Model model) {
 		return "/CustomerService/schedule";
 	}
 }

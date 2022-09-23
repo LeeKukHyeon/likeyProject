@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CustomerQuestionController {
 
 	@GetMapping("/personalQuestionRegister")
-	public String personalQuestionRegister(Model model) {
+	public String regCustomerQuestion(Model model) {
 		return "CustomerService/personalQuestionRegister";
 	}
 }
