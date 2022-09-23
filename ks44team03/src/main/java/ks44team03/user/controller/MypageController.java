@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MypageController {
 	
+	
+	@GetMapping("/applicationEdit")
+	public String applicationEdit() {
+		return "myPage/applicationEdit";
+	}
+	
 	@GetMapping("/applicationDetail")
 	public String applicationDetailList() {
 		return "myPage/applicationDetailSearch";

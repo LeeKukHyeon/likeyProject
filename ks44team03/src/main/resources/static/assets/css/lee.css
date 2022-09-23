@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.sub_contents_wrap {margin-top:30px;margin-left:70px;}
+
+.sub_contents_wrap .left_menu {width:179px;margin-right:70px;margin-left:50px;}
+.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+
+.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
+
+
+/* 대행신청서수정 css*/
+.detail_title {margin-bottom:26px;}
+.detail_title .text1 {display:inline-block;border-bottom:3px solid #f47827;padding-bottom:10px;font-size:24px;color:#3f3f3f;font-weight:bold;}
+.detail_box1_wrap .title {height:50px;background-color:#f3f3f3;border:1px solid #d8d8d8;font-size:16px;color:#3f3f3f;font-weight:bold;line-height:50px;text-align:center;}
+.detail_box1_wrap .title font {color:#f47827}
+.detail_box1_wrap .table_box td {height:58px;border-bottom:1px solid #d5d5d5;}
+.detail_box1_wrap .table_box td.td1 {width:70px;padding:0 42px 0 255px;font-size:14px;color:#3f3f3f;font-weight:bold;}
+.detail_box1_wrap .table_box td.td2 {font-size:14px;color:#3f3f3f;}
+.detail_box1_wrap .table_box td.td2 .input_ {width:558px;height:36px;line-height:36px;font-size:14px;color:#3f3f3f;background-color:#f8f8f8;border:1px solid #c2c2c2;padding-left:13px;}
