@@ -5,16 +5,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 
-	<head>
-
-
-	
-	</head>
-	
-
+	<style></style>
 
 	<body layout:fragment="content">
-		<div class="container max-wid" >
+		<div id = "body_container">
+		<div class="container" >
 		
 				<div class="sub_contents_wrap wrap ">
 					<div class="sub_navi_text"> 
@@ -29,27 +24,98 @@
 				</div>
 				
 				<div class="detail_box1_wrap">
-				<div class="title">물류센터 : <font>NJ</font></div>
-		
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_box">
-				  <tr>
-				    <td class="td1">신청번호</td>
-					<td class="td2">AF2710</td>
-				  </tr>
-				  <tr>
-				    <td class="td1">주문번호</td>
-					<td class="td2"><input type="text" name="mall_order_no" value="a"  maxlength='40' class="input_"></td>
-				  </tr>
-				  <tr>
-				    <td class="td1">구매 사이트</td>
-					<td class="td2"><input type="text" name="mall_cd" value="a"  maxlength='100' class="input_"></td>
-				  </tr>
-				  <tr>
-				    <td class="td1">대표 상품명</td>
-					<td class="td2"><input type="text" readonly value="a" class="input_"></td>
-				  </tr>
-				</table>
+					<div class="title">물류센터 : <font>#</font></div>
+			
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_box">
+					  <tr>
+					    <td class="td1" style="width:377px;">신청번호</td>
+						<td class="td2">#</td>
+					  </tr>
+					  <tr>
+					    <td class="td1">주문번호</td>
+						<td class="td2"><input type="text" name="mall_order_no" value="#"  maxlength='40' class="input_"></td>
+					  </tr>
+					  <tr>
+					    <td class="td1">구매 사이트</td>
+						<td class="td2"><input type="text" name="mall_cd" value="#"  maxlength='100' class="input_"></td>
+					  </tr>
+					  <tr>
+					    <td class="td1">대표 상품명</td>
+						<td class="td2"><input type="text" readonly value="#" class="input_"></td>
+					  </tr>
+					</table>
+				</div>
+				
+				<!-- detail_box3_wrap -->
+				<div class="detail_box3_wrap">
+						<!-- 상품 박스 -->
+						<div class="option_text">
+							<table cellspacing="0" border="0" id="tblVote" width="100%">
+									<tr onMouseover="document.all.tblVote.clickedRowIndex=this.rowIndex">
+										<td width="100%"><input type='hidden' name='item_id[]' value='0'>
+											<div class="detail_box2_wrap">
+												<div class="title">#1. 현재 신청 상태 : 입고대기 </div>
+											</div>
+											
+											<!-- 상품 정보 입력 -->
+											<div class="option_data">
+												<div class="img_wrap">
+													<div id="previewImg" class="image"><img src='/image/S_detail_img_02.gif'></div>
+													<div class="upload">
+														<div><input type="radio" name="image" value="up" class="radio_bt" checked></div>
+														<div class="bt_01"><a href="javascript:void(0);" style="position:relative;">이미지파일 업로드
+														<input type="file" id='package_img_file0'  onChange="return ajaxFileUpload('package_img_file0', 0, 0);" name="package_img_file[]" style="position:absolute; top:0; left:0; filter:alpha(opacity=0); opacity:0; -moz-opacity:0; width:100%; height:38px;  cursor:pointer;">
+														</a></div>
+														<div style="clear:both;"></div>
+
+														<div class="upload">
+															<div><input type="radio"  name="image" value="url" class="radio_bt"></div>
+															<div class="bt_02"><input type="text"  name="package_img_url[]" value=""  onBlur="imageLarge()" placeholder="이미지 URL 직접 입력"></div>
+														</div>
+														
+														<div style="clear:both;"></div>
+														
+														<div class="upload">
+															<div><input type="radio"  name="image" value="url" class="radio_bt"></div>
+															<div class="bt_02"><input type="text"  name="package_url[]" value=""  maxlength="950"  placeholder="제품 URL 직접 입력"></div>
+														</div>
+							
+														<div style="clear:both;"></div>
+													</div>								
+												</div>		
+												
+												<div class="text_wrap">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="item_table">
+														 <tr valign="top">
+															<td class="td1">
+																<div>브랜드</div>
+																<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src="image/S_shipping_form_icon_10.gif"></div>
+															</td>
+															<td class="td2"><input type="text" name="package_brand[]" value="#"  maxlength="190"></td>
+															<td class="td1 td3">상품가(USD)</td>
+															<td class="td2">
+															<input type="text" name="package_unitprice[]" value="#"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
+															<input type="hidden" name="package_price[]" value="123">
+															</td>
+														  </tr>
+														  
+														  
+													</table>
+												</div>
+																			
+											</div>
+											
+											
+							</table>
+						</div>
+						
+				
+				</div>
+				
+				
+				
 			</div>
 		</div>
+		<!--  -->
 	</body>
 </html>
