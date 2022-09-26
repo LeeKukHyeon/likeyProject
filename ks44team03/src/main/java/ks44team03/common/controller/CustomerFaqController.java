@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CustomerFaqController {
 
+	// 1:1문의 조회
 	@GetMapping("/faqSearch")
 	public String viewFaq(Model model) {
-		return "/CustomerService/faqSearch";
+		return "/customerService/faqSearch";
 	}
 }

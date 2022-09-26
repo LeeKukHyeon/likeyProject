@@ -92,7 +92,7 @@ public class CompanyInfoController {
 	}
 	@GetMapping("/departmentList")
 	public String departmentList(Model model) {
-		
+	
 		model.addAttribute("title", "부서 목록");
 		return "company/department/departmentList";
 	}
