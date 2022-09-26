@@ -10,11 +10,11 @@ public class CustomerNoticeController {
 	
 	@GetMapping("/noticeRegister")
 	public String regNotice(Model model) {
-		return "/CustomerService/noticeRegister";
+		return "/customerService/noticeRegister";
 	}
 	
 	@GetMapping("/noticeSearch")
 	public String viewNotice(Model model) {
-		return "/CustomerService/noticeSearch";
+		return "/customerService/noticeSearch";
 	}
 }

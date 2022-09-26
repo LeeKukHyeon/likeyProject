@@ -6,7 +6,6 @@
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
 	<link rel="stylesheet" href="assets/css/temporarily.css">
-
 </head>
 
 <body layout:fragment="adminContent">
@@ -24,7 +23,7 @@
 		  <tr>
 		    <td class="number"> 15</td>
 		    <td class="userId"> id006</td>
-			<td class="subject" style="width: 30%"><a href="#">환불 문의 드립니다.</a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister}">환불 문의 드립니다.</a></td>
 			<td class="date">2022-08-26</td>
 		  </tr>
       

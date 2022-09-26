@@ -9,11 +9,11 @@ public class CustomerScheduleController {
 
 	@GetMapping("/deliveryScheduleRegister")
 	public String regDeliverySchedule(Model model) {
-		return "/CustomerService/deliveryScheduleRegister";
+		return "/customerService/deliveryScheduleRegister";
 	}
 	
 	@GetMapping("/schedule")
 	public String viewDeliverySchedule(Model model) {
-		return "/CustomerService/schedule";
+		return "/customerService/schedule";
 	}
 }
