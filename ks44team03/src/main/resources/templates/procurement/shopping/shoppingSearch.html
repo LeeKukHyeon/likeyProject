@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
+
+<!-- 관리자 회사관련 선택화면 -->
+<body layout:fragment="adminContent">	
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+						<colgroup>
+							<col width="3%"/>
+							<col width="15%"/>
+							<col width="15%"/>
+							<col width="15%"/>
+							<col width="15%"/>
+							<col width="15%"/>
+							<col width="15%"/>
+						</colgroup>	
+						
+							<form action=/MVC2/MemberSelectController>
+								<select id="ch1">
+									<option value="custname">쇼핑몰 이름</option>
+									<option value="address">유료회원여부</option>
+								</select>
+								<input type="text" name="ch2">
+								<input type="submit" class="add_button" id= "search_button" value="검색하기">
+							</form>
+														
+							<tr>
+								<th><input type="checkbox" class="companyCheckbox"></th>
+								<th>쇼핑몰 사이트 이름</th>
+								<th>사이트 아이디</th>
+								<th>사이트 비밀번호</th>
+								<th>가입날짜</th>
+								<th>유료회원여부</th>
+								<th>유료회원만료날짜</th>
+								
+							</tr>
+							<tbody>
+								<tr>
+									<td class="companyCheckbox"><input type="checkbox" ></td>
+									<td >임시데이타~</td>
+									<td >임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+									<td>임시데이타~</td>
+									
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      
+</body>
+</html>
