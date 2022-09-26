@@ -29,6 +29,9 @@ a:hover {color:pink;}
 .faqSortM {margin: 0px 3px 0px 3px;}
 .faqSortList li a b:hover {color: red;}
 
+/* faqRegister */
+.faqLeft {width: 30mm; height: 20mm; text-align: center;}
+.faqRight {margin-left: 10mm}
 
 /* 관리자페이지 1:1문의 답변 조회 */
 .personal_question_list th {height:39px;border:1px solid #dddddd;border-right:0;text-align:center;font-size:14px;color:#3f3f3f;font-weight:bold;background-color:#f5f5f5;}
