@@ -11,7 +11,9 @@
   <link rel="shortcut icon" href="../../images/favicon.png" />
   
   <style>
-  	thead, tbody { width: 10%;}
+  	thead, tbody { 
+  		width: 10%;
+  	}
 	tbody {
 	    height: 450px;       /* Just for the demo          */
 	    overflow-y: auto;    /* Trigger vertical scroll    */
@@ -34,24 +36,29 @@
                   <div class="form-group">
                     <div class="input-group">
 	                    <div class="input-group-prepend">
-	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체기간</button>
-	                        <div class="dropdown-menu">
-	                          <a class="dropdown-item" href="#">전체기간</a>
-	                          <a class="dropdown-item" href="#">최근 1주</a>
-	                          <a class="dropdown-item" href="#">최근 1달</a>
+	                        <select class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체기간</button>
+	                          <option>전체기간</option>
+	                          <option>최근 1주</option>
+	                          <option>최근 1달</option>
 	                          <div role="separator" class="dropdown-divider"></div>
-	                          <a class="dropdown-item" href="#">직접 설정</a>
-	                        </div>
-	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디</button>
-	                        <div class="dropdown-menu">
-	                          <a class="dropdown-item" href="#">아이디</a>
-	                          <a class="dropdown-item" href="#">상태</a>
-	                          <a class="dropdown-item" href="#">IP</a>
-	                        </div>
+	                          <option>직접 설정</option>
+	                        </select>
+	                        <select class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디</button>
+	                          <option>아이디</option>
+	                          <option>상태</option>
+	                          <option>IP</option>
+	                        </select>
 	                      </div>
-                     	 <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" style="width:30px;">
+                     	 <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" style="width:50px;">
                       <div class="input-group-append">
                         <button class="btn btn-sm btn-primary" type="button">Search</button>
+                      </div>
+                      <div class="input-group-prepend" style>
+						<select class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체기간</button>
+					        <option value="10">10개씩보기</option>
+					        <option value="15">15개씩보기</option>
+					        <option value="20">20개씩보기</option>
+						</select>
                       </div>
                     </div>
                   </div>
@@ -238,6 +245,11 @@
                         </tr>
                       </tbody>
                     </table>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-primary">1</button>
+                          <button type="button" class="btn btn-primary">2</button>
+                          <button type="button" class="btn btn-primary">3</button>
+            </div>
                   </div>
                 </div>
               </div>
