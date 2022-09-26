@@ -19,10 +19,12 @@
 			margin: 15px;
 			background-color: white;
 			border: 1px solid #c6c6c6;
-				
-		}
+			font-size: 15px;
+			font-weight: bold;
+	}
 	.content-wrapper button:hover{
 			background-color: #535353;
+			color: white;
 			
 	}
 	a{
@@ -41,19 +43,13 @@
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
              	<div class="row">
              		<div class="col-sm-12">		
-						<button type="button">
-							<strong><a th:href="@{/companyList}">회사목록조회</a></strong>
-						</button>
+							<a th:href="@{/companyList}"><button>회사목록조회</button></a>	
 						
-						<button type="button">
-							<strong><a th:href="@{/workPlaceList}">사업장목록조회</a></strong>
-						</button>
-						<button type="button">
-							<strong><a th:href="@{/departmentList}">부서목록조회</a></strong>
-						</button>
-						<button type="button">
-							<strong><a th:href="@{/employeeList}">사원목록조회</a></strong>
-						</button>	
+							<a th:href="@{/workPlaceList}"><button>사업장목록조회</button></a>
+						
+							<a th:href="@{/departmentList}"><button>부서목록조회</button></a>
+					
+							<a th:href="@{/employeeList}"><button>사원목록조회</button></a>	
 					</div>
 								      
         </div>

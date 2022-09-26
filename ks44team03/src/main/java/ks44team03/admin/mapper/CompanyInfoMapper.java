@@ -1,5 +1,7 @@
 package ks44team03.admin.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.CompanyInfo;
@@ -12,5 +14,5 @@ public interface CompanyInfoMapper {
 	public int addCompany(CompanyInfo companyInfo);
 	
 	//회사 목록 조회
-	
+	public List<CompanyInfo> getCompanyList();
 }
