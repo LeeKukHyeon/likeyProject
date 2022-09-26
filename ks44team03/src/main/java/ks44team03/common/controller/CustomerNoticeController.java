@@ -9,9 +9,9 @@ public class CustomerNoticeController {
 
 	
 	//공지사항 게시글
-	@GetMapping("/notice1")
-	public String notice1(Model model) {
-		return "/customerService/notice1";
+	@GetMapping("/noticeSearchRead")
+	public String viewNotice(Model model) {
+		return "/customerService/noticeSearchRead";
 	}
 	
 	
@@ -24,7 +24,7 @@ public class CustomerNoticeController {
 	
 	// 공지사항 조회
 	@GetMapping("/noticeSearch")
-	public String viewNotice(Model model) {
+	public String viewNoticeList(Model model) {
 		return "/customerService/noticeSearch";
 	}
 }
