@@ -10,4 +10,9 @@ public class IncomingController {
 	public String regIncoming() {
 		return "incoming/incomingRegister";
 	}
+	
+	@GetMapping("/incomingSearch")
+	public String incomingCurrentState() {
+		return "incoming/incomingSearch";
+	}
 }
