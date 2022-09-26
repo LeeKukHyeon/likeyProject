@@ -10,6 +10,10 @@ public class OrderController {
 	public String applicationFormRegister() {
 		return "applicationForm/applicationFormRegister";
 	}
-
+	
+	@GetMapping("/friendsApplicationFormRegister")
+	public String fApplicationFormRegister() {
+		return "applicationForm/friendsApplicationFormRegister";
+	}
 	
 }
