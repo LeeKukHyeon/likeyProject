@@ -4526,3 +4526,16 @@ readers do not read off random characters that represent icons */
 .main_list_box .list_box .line_box .table_03 td font {color:#f47a27;}
 
 
+/* custom css */
+.owl-item {
+	height:800px;
+}
+
+.owl-item div{
+	height:100%;	
+}
+
+.owl-item div img{
+	height:100%;
+}
+
