@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CustomerNoticeController {
 
+	@GetMapping("/notice1")
+	public String notice1(Model model) {
+		return "/customerService/notice1";
+	}
 	
 	@GetMapping("/noticeRegister")
 	public String regNotice(Model model) {
