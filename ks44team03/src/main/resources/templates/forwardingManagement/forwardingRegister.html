@@ -26,12 +26,6 @@
 	input {
 		margin-bottom: 5px;
 	}
-	.group {
-		border-bottom: 20px solid #F4F5F7;
-	}
-	.volume_group {
-		padding-left: 3px;
-	}
 	.trans_group {
 		width: 182px;
 		margin-left: 3px;
@@ -60,37 +54,11 @@
 				<div class="forwarding_register">
 					<form>
 						<table>
-							<!-- 출고등록 고객 정보 -->
+							<!-- 출고등록 정보 -->
 							<tr>
 								<td><label for="name">수령인</label></td>
 								<td>&nbsp;<input type="text" id="name"></td>
 							</tr>
-							<tr>
-								<td><label for="nation">국가</label></td>
-								<td>&nbsp;<input type="text" id="nation"></td>
-							</tr>
-							<tr>
-								<td><label for="addr">주소</label></td>
-								<td>&nbsp;<input type="text" id="addr"></td>
-							</tr>
-							<tr>
-								<td><label for="post_num">우편번호</label></td>
-								<td>&nbsp;<input type="text" id="post_num"></td>
-							</tr>
-							<tr>
-								<td><label for="phone">전화번호</label></td>
-								<td>&nbsp;<input type="text" id="phone"></td>
-							</tr>
-							<tr>
-								<td><label for="option">옵션</label></td>
-								<td>&nbsp;<input type="text" id="option"></td>
-							</tr>
-							<tr class="group">
-								<td><label for="request">요청사항</label></td>
-								<td>&nbsp;<input type="text" id="request"></td>
-							</tr>
-							
-							<!-- 출고등록 배송 정보 -->
 							<tr>
 								<td><label for="transportation">운송수단</label></td>
 								<td>
@@ -109,20 +77,6 @@
 							<tr>
 								<td><label for="out_tracking_num">운송장 번호</label></td>
 								<td>&nbsp;<input type="text" id="out_tracking_num"></td>
-							</tr>
-							<tr>
-								<td><label for="volume_width">부피</label></td>
-								<td>&nbsp;
-									<div class="volume_group">
-										<input type="text" id="volume_width" placeholder="가로"> cm<br/>
-										<input type="text" id="volume_length" placeholder="세로"> cm<br/>
-										<input type="text" id="volume_height" placeholder="높이"> cm<br/>
-									</div>
-								</td>
-							</tr>
-							<tr class="group">
-								<td><label for="weight">중량</label></td>
-								<td>&nbsp;<input type="text" id="weight"> kg</td>
 							</tr>
 							
 							<!-- 출고등록 기타 정보 -->
