@@ -53,7 +53,7 @@
 				  <tr th:each="u : ${userInfo}">
 					    <td th:text="${u.uGradeCode}" class="rank">#</td>
 						
-						<td class="coupon"><a href="cpn_valid_list.html"><font>#</font>장</a></td>
+						<td class="coupon"><a href="cpn_valid_list.html"><font th:text="${couponCount}">#</font>장</a></td>
 						<!-- <td class="code">US123456</td> -->
 						<td class="hcash"><a href="mycash_list.html">#</a></td>
 						<td class="usage">

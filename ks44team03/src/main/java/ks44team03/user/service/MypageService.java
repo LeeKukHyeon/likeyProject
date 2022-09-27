@@ -22,6 +22,11 @@ public class MypageService {
 			this.mypageMapper = mypageMapper;
 		}
 		
+		public int couponCount(String u_id) {
+			int couponCount = mypageMapper.couponCount(u_id);
+			return couponCount;
+		}
+		
 		public List<Grade> nextGrade(String u_id){
 			List<Grade> nextGrade = mypageMapper.nextGrade(u_id);
 			
