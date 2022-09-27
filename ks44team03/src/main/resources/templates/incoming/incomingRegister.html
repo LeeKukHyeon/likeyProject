@@ -31,6 +31,12 @@
 		margin-left: 10px;
 		margin-bottom: 15px;
 	}
+	.weight_group {
+		border-bottom: 20px solid #F4F5F7;
+	}
+	.volume_group {
+		padding-left: 3px;
+	}
 </style>
 <!-- 입고등록 -->
 <title>입고등록</title>
@@ -58,6 +64,20 @@
 							<tr>
 								<td><label for="user_pobox_code">사서함 번호</label></td>
 								<td>&nbsp;<input type="text" id="user_pobox_code"></td>
+							</tr>
+							<tr>
+								<td><label for="volume_width">부피</label></td>
+								<td>&nbsp;
+									<div class="volume_group">
+										<input type="text" id="volume_width" placeholder="가로"> cm<br/>
+										<input type="text" id="volume_length" placeholder="세로"> cm<br/>
+										<input type="text" id="volume_height" placeholder="높이"> cm<br/>
+									</div>
+								</td>
+							</tr>
+							<tr class="weight_group">
+								<td><label for="weight">중량</label></td>
+								<td>&nbsp;<input type="text" id="weight"> kg</td>
 							</tr>
 							<tr>
 								<td><label for="likey_pass">라이키 패스</label></td>

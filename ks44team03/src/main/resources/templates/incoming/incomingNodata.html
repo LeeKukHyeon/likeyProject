@@ -5,80 +5,325 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-<meta charset="UTF-8">
-<style>
-	h2 {
-		margin-bottom: 25px;
-		padding-bottom: 10px;
-		font-weight: bold;
-		border-bottom: 1px solid #c6c6c6;
+ <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+  
+  <style>
+  	thead, tbody { width: 10%;}
+	tbody {
+	    height: 450px;       /* Just for the demo          */
+	    overflow-y: auto;    /* Trigger vertical scroll    */
+	    overflow-x: hidden;  /* Hide the horizontal scroll */
 	}
-	.nodata_register {
-		font-size: 15px;
+	.table td img {
+		width: 180px;
+		height: 180px;
+		border-radius: 10%;
 	}
-	#sub_btn{margin:0 auto; width:299px; height:65px; line-height:65px; background:#8d8d8d; color:#fff; font-size:18px; font-weight:bold; text-align:center; transition:0.5s all; overflow:hidden; float: left; margin-top: 15px; border: none;}
-	#sub_btn:hover{transform:scale(1.1);}
-	#sub_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
-	#sub_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
-	input {
-		margin-bottom: 5px;
+	.scale {
+		transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
 	}
-</style>
-<!-- 노데이터 입고등록 -->
-<title>노데이터 입고등록</title>
+	.scale:hover {
+		transform: scale(2);
+		-webkit-transform: scale(2);
+		-moz-transform: scale(2);
+		-ms-transform: scale(2);
+		-o-transform: scale(2);
+	}
+	.card .card-body .form-group .input-group input {
+		margin-right: 5px;
+	}
+	.input_group {
+		display: flex;
+	}
+	.card-body {
+		padding-right: 25px !important;
+	}
+	</style>  
 </head>
-	<!-- default_layout.html에 정의한 main page 부분 -->
+
+	<!-- adminDefault_layout.html에 정의한 공통적이지 않은 부분이 들어가는 부분-->
 	<body layout:fragment="adminContent">
-    	<!-- partial --><!-- 컨텐츠츠츠aaaaaaaaaaa -->
+	  <!-- code -->
+	  
+      <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-sm-12">
-				
-				<!-- ========== 노데이터 입고 등록 시작 ========== -->
-				<h2>노데이터 입고등록</h2>
-				<div class="nodata_register">
-					<form>
-						<table>
-							<tr>
-								<td><label for="nod_recipient">수취인명</label></td>
-								<td>&nbsp;<input type="text" id="nod_recipient"></td>
-							</tr>
-							<tr>
-								<td><label for="nod_tracking_company">배송회사</label></td>
-								<td>&nbsp;<input type="text" id="nod_tracking_company"></td>
-							</tr>
-							<tr>
-								<td><label for="nod_tracking_num">운송장 번호</label></td>
-								<td>&nbsp;<input type="text" id="nod_tracking_num"></td>
-							</tr>
-							<tr>
-								<td><label for="nod_user_pobox_code">사서함번호</label></td>
-								<td>&nbsp;<input type="text" id="nod_user_pobox_code"></td>
-							</tr>
-							<tr>
-								<td>개봉한 물품 사진</td>
-								<td>&nbsp;<input type="text" id="nod_pic" readonly>
-									&nbsp;<input type="file" value="파일 첨부">
-								</td>
-							</tr>
-							<tr>
-								<td><label for="nod_arrival_date">입고일</label></td>
-								<td>&nbsp;<input type="text" id="nod_arrival_date"></td>
-							</tr>
-						</table>
-						<button type="submit" id="sub_btn">등록</button>
-					</form>
-				</div>
-				<!-- ========== 노데이터 입고 등록 끝 ========== -->
+        		  <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body" style="padding-bottom:0px; padding-right:300px;">
+                  <h4 class="card-title">노데이터 입고등록</h4>
+                  <div class="form-group">
+                    <div class="input-group">
+<!-- 	                    <div class="input-group-prepend">
+	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체기간</button>
+	                        <div class="dropdown-menu">
+	                          <a class="dropdown-item" href="#">전체기간</a>
+	                          <a class="dropdown-item" href="#">최근 1주</a>
+	                          <a class="dropdown-item" href="#">최근 1달</a>
+	                          <div role="separator" class="dropdown-divider"></div>
+	                          <a class="dropdown-item" href="#">직접 설정</a>
+	                        </div>
+	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디</button>
+	                        <div class="dropdown-menu">
+	                          <a class="dropdown-item" href="#">아이디</a>
+	                          <a class="dropdown-item" href="#">상태</a>
+	                          <a class="dropdown-item" href="#">IP</a>
+	                        </div>
+	                      </div> -->
+					  <div class="input_group">
+                     	 <input type="text" class="form-control" placeholder="수취인명" id="nod_recipient">
+                     	 <input type="text" class="form-control" placeholder="배송회사" id="nod_tracking_company">
+                     	 <input type="text" class="form-control" placeholder="운송장 번호" id="nod_tracking_num">
+                     	 <input type="text" class="form-control" placeholder="사서함번호" id="nod_user_pobox_code">
+                     	 <input type="file" class="form-control" placeholder="개봉한 물품 사진" id="nod_pic">		 
+                     	 <input type="text" class="form-control" placeholder="입고일" id="nod_arrival_date">
+                      </div>
+                      <div class="input-group-append">
+                        <button class="btn btn-sm btn-primary" type="button">등록</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
 
-			</div>
-          </div>
-        </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                    	<!-- <colgroup>
+                    		<col width="5%">
+                    		<col width="15%">
+                    		<col width="15%">
+                    		<col width="15%">
+                    		<col width="25%">
+                    		<col width="25%">
+                    	</colgroup> -->
+                      <thead>
+                        <tr>
+                          <th>
+                            	노데이터 입고 코드
+                          </th>
+                          <th>
+                            	수취인명
+                          </th>
+                          <th>
+                            	배송회사
+                          </th>
+                          <th>
+                            	운송장 번호
+                          </th>
+                          <th>
+                            	사서함 번호
+                          </th>
+                          <th>
+                            	개봉한 물품 사진
+                          </th>
+                          <th>
+                            	신청서 작성 여부
+                          </th>
+                          <th>
+                            	입고일
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            nod_code1
+                          </td>
+                          <td>
+                            Herman Beck
+                          </td>
+                          <td>
+                            롯데택배
+                          </td>
+                          <td>
+                            985556500281
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">사서함 번호 미기입</label>
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-success">신청서 작성</label>
+                          </td>
+                          <td>
+                            2022-09-26
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code2
+                          </td>
+                          <td>
+                            Messsy Adam
+                          </td>
+                          <td>
+                            로젠택배
+                          </td>
+                          <td>
+                            505747782361
+                          </td>
+                          <td>
+                            lk0003a
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">신청서 미작성</label>
+                          </td>
+                          <td>
+                            2022-08-31
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code3
+                          </td>
+                          <td>
+                            John Richards
+                          </td>
+                          <td>
+                            우체국택배
+                          </td>
+                          <td>
+                            532427341213
+                          </td>
+                          <td>
+                            lk0213b
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">신청서 미작성</label>
+                          </td>
+                          <td>
+                            2022-08-17
+                          </td>                          
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code4
+                          </td>
+                          <td>
+                            Peter Meggik
+                          </td>
+                          <td>
+                            로젠택배
+                          </td>
+                          <td>
+                            483937263912
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">사서함 번호 미기입</label>
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-success">신청서 작성</label>
+                          </td>
+                          <td>
+                            2022-07-29
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code5
+                          </td>
+                          <td>
+                            Edward
+                          </td>
+                          <td>
+                            롯데택배
+                          </td>
+                          <td>
+                            887652837641
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">사서함 번호 미기입</label>
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">신청서 미작성</label>
+                          </td>
+                          <td>
+                            2022-07-05
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code6
+                          </td>
+                          <td>
+                            Jake Park
+                          </td>
+                          <td>
+                            대한통운
+                          </td>
+                          <td>
+                            110987799812
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">사서함 번호 미기입</label>
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-success">신청서 작성</label>
+                          </td>
+                          <td>
+                            2022-07-01
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            nod_code7
+                          </td>
+                          <td>
+                            Henry Tom
+                          </td>
+                          <td>
+                            대한통운
+                          </td>
+                          <td>
+                            865586588867
+                          </td>
+                          <td>
+                            lk0030k
+                          </td>
+                          <td class="scale">
+                            <img src="../../image/package_open_img.jpg">
+                          </td>
+                          <td>
+                            <label class="badge badge-danger">신청서 미작성</label>
+                          </td>
+                          <td>
+                            2022-06-16
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
         <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html
-        partial -->
-      </div>
-      <!-- main-panel ends --><!-- 컨텐츠 끝 -->
-    </body>
+        <!-- partial:../../partials/_footer.html -->
+	
+	
+	</body>
 </html>

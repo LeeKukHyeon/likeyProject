@@ -11,4 +11,9 @@ public class IncomingWarehouseManageController {
 		return "incoming/incomingNodata";
 	}
 	
+	@GetMapping("/incomingNodata2")
+	public String regNoDataIncoming2() {
+		return "incoming/incomingNodata2";
+	}
+	
 }

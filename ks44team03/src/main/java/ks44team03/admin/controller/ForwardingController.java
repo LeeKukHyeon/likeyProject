@@ -10,4 +10,9 @@ public class ForwardingController {
 	public String regForwarding() {
 		return "forwardingManagement/forwardingRegister";
 	}
+	
+	@GetMapping("/forwardingSearch")
+	public String viewForwarding() {
+		return "forwardingManagement/forwardingSearch";
+	}
 }

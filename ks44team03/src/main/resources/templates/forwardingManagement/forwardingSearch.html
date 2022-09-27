@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+<style>
+	h2 {
+		margin-bottom: 20px;
+		padding-bottom: 10px;
+		font-weight: bold;
+		border-bottom: 1px solid #c6c6c6;
+	}
+	.forwarding_search_list {
+		border: 1px solid #444444;
+    	border-collapse: collapse;
+	}
+	.forwarding_search_list th {
+		border: 1px solid #444444;
+		padding: 10px;
+		text-align: center;
+		font-size: 16px;
+		background: #DFE0E2;
+	}
+	.forwarding_search_list td {
+    	border: 1px solid #444444;
+		padding: 10px;
+		font-size: 14px;
+	}
+	#forwarding_search_page {
+		padding-top: 10px;
+	}
+	#date_btn {
+		border: solid 1px #444444;
+	}
+	.forwarding_search .search_btn {
+	    margin: 6px 0 0 31px;
+	    width: 181px;
+	    height: 86px;
+	    background-color: #3f3f3f;
+	    border-radius: 5px;
+	    text-align: center;
+	    float: right;
+	}
+	.forwarding_search .search_btn a {
+		font-size: 19px;
+		color: #ffffff;
+		font-weight: bold;
+		line-height: 88px;
+	}
+	.forwarding_search .search_btn {transition:0.5s all; overflow:hidden;}
+	.forwarding_search .search_btn:hover{transform:scale(1.1);}
+	.forwarding_search .search_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
+	.forwarding_search .search_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
+	.forwarding_search .search_option table {
+ 		margin-bottom: 6px; 
+	}
+	.forwarding_search .search_option .option1 td {
+		padding: 7px 0;
+		font-size: 14px;
+		color: #3f3f3f;
+ 		border-bottom: 1px solid #E7E7E7;
+	}
+	.forwarding_search .search_option .option1 .option1_td_group {
+		font-weight: bold;
+	}
+	#all_date {
+		border: none;
+		background: #8d8d8d;
+		padding: .4em .4em;
+		width: 90px;
+		font-weight: bold;
+		color: white;
+	}
+	a {
+		color: white;
+    	text-decoration: none;
+	}
+	select {
+  		padding: .4em .4em; /* 여백으로 높이 설정 */
+  		width: 150px;
+	}
+	[type=date] {
+		padding: .4em .4em;
+		width: 150px;
+	}
+	.forwarding_search .search_option .option2 td {
+		font-size: 14px;
+		color: #3f3f3f;
+		font-weight: bold;
+		padding: 1px;
+	}
+/* 	.forwarding_search .search_option .option2 td input {
+		padding: .4em .4em;
+	} */
+	.search_box input {
+		width: 500px;
+		text-align: center;
+		padding: .4em .4em;
+	}
+	.forwarding_search .search_option {
+		width: 90%
+	}
+	.forwarding_search {
+		display: flex;
+		border-top: 1px solid #E7E7E7;
+		border-bottom: 1px solid #E7E7E7;
+ 		margin-bottom: 20px;
+	}
+	.number {
+		width: 30px;
+		text-align: center;
+	}
+	.yn_group {
+		margin-left: 10px;
+	}
+</style>
+<!-- 출고 현황 조회 -->
+<title>출고 현황 조회</title>
+</head>
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="adminContent">
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+              
+<!-- ========== 출고현황조회 화면 시작 ========== -->
+<h2>출고현황조회</h2>
+			  <div class="forwarding_search">
+			    <div class="search_option">
+			    
+				  <table border="0" cellspacing="0" cellpadding="0" align="left" class="option1">
+				  <tbody><tr>
+				    <td width="70" class="option1_td_group">검색범위</td>
+				    <td width="170">
+					  <select>
+						<option disabled selected>운송수단</option>
+						<option value="1">국내 운송</option>
+					 	<option value="2">항공 운송</option>
+					 	<option value="3">해상 운송</option>
+					  </select>
+					</td>
+				    <td width="75" class="option1_td_group">검색기간</td>
+				    <td width="160"><input type="date" id="f.q_from_date"></td>
+				    <td width="25">&nbsp;~&nbsp;</td>
+				    <td width="160"><input type="date" id="f.q_to_date"></td>
+				    <td width="115"><button type="button" id="all_date">전체 기간</button></td>
+				    <td width="590" class="option1_td_group">
+				      요청 옵션 이행&nbsp;
+				        <input type="radio" id="req_option_impli_y"> Y
+				        <input type="radio" id="req_option_impli_n"> N
+				      <span class="yn_group">출고보류&nbsp;</span>
+				        <input type="radio" id="postpone_y"> Y
+				        <input type="radio" id="postpone_n"> N
+				      <span class="yn_group">묶음배송&nbsp;</span>
+				        <input type="radio" id="sum_post_y"> Y
+				        <input type="radio" id="sum_post_n"> N
+				      <span class="yn_group">관리자 출고승인&nbsp;</span>
+				        <input type="radio" id="approval_y"> Y
+				        <input type="radio" id="approval_n"> N
+				    </td>
+			  	  </tr></tbody></table>
+			  	  
+			  	  <table border="0" cellspacing="0" cellpadding="0" align="left" class="option2">
+				  <tbody><tr>
+				    <td width="75">검색어</td>
+				    <td width="725">
+				      <input type="radio" name="q_field" value="t1.goods_info_code" id="t1.goods_info_code" checked>
+				      <label for="t1.goods_info_code">&nbsp;상품정보코드</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      <input type="radio" name="q_field" value="t1.name" id="t1.name">
+				      <label for="t1.name">&nbsp;수령인</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      <input type="radio" name="q_field" value="t1.transportation" id="t1.transportation">
+				      <label for="t1.transportation">&nbsp;운송수단</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      <input type="radio" name="q_field" value="t1.out_company" id="t1.out_company">
+				      <label for="t1.out_company">&nbsp;배송회사</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      <input type="radio" name="q_field" value="t1.tracking_num" id="t1.tracking_num">
+				      <label for="t1.tracking_num">&nbsp;운송장 번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      </td>
+				    <td class="search_box" width="564">
+				      <input type="text" name="search_keyword" value="" placeholder="검색어">
+				    </td>
+				  </tr></tbody></table>
+			  
+			    </div>
+			    <div class="search_btn">
+			      <a href="#">검색</a>
+			    </div>
+			  </div>
+			  
+              <div align="center">
+		
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	
+<tbody><tr>
+  <td align="center">
+  
+  	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody><tr><td height="10"></td></tr>
+    </tbody></table>
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="forwarding_search_list">
+	  <tbody><tr>
+		<th class="number">No</th>
+		<th class="goods_info_code">상품정보코드</th>
+		<th class="name">수령인</th>
+		<th class="transportation">운송수단</th>
+		<th class="out_company">배송회사</th>
+		<th class="out_tracking_num">운송장 번호</th>
+		<th class="req_option_impli">요청 옵션<br>이행 여부</th>
+		<th class="postpone">출고보류<br>여부</th>
+		<th class="sum_post">묶음배송<br>여부</th>
+		<th class="approval">관리자 출고승인<br>여부</th>
+		<th class="out_date">출고일</th>
+	  </tr>
+	  
+	  <tr>
+		<td class="number">16</td>
+		<td class="goods_info_code">goods_info_code1</td>
+		<td class="name">일길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">15</td>
+		<td class="goods_info_code">goods_info_code2</td>
+		<td class="name">이길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">14</td>
+		<td class="goods_info_code">goods_info_code3</td>
+		<td class="name">삼길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">13</td>
+		<td class="goods_info_code">goods_info_code4</td>
+		<td class="name">사길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">12</td>
+		<td class="goods_info_code">goods_info_code5</td>
+		<td class="name">오길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">11</td>
+		<td class="goods_info_code">goods_info_code6</td>
+		<td class="name">육길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">10</td>
+		<td class="goods_info_code">goods_info_code7</td>
+		<td class="name">칠길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">9</td>
+		<td class="goods_info_code">goods_info_code9</td>
+		<td class="name">구길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">8</td>
+		<td class="goods_info_code">goods_info_code10</td>
+		<td class="name">십길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">7</td>
+		<td class="goods_info_code">goods_info_code11</td>
+		<td class="name">십일길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">6</td>
+		<td class="goods_info_code">goods_info_code12</td>
+		<td class="name">십이길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">5</td>
+		<td class="goods_info_code">goods_info_code13</td>
+		<td class="name">십삼길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">4</td>
+		<td class="goods_info_code">goods_info_code14</td>
+		<td class="name">십사길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">3</td>
+		<td class="goods_info_code">goods_info_code15</td>
+		<td class="name">십오길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">2</td>
+		<td class="goods_info_code">goods_info_code16</td>
+		<td class="name">십육길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  	  <tr>
+		<td class="number">1</td>
+		<td class="goods_info_code">goods_info_code17</td>
+		<td class="name">십칠길동</td>
+		<td class="transportation">항공 운송</th>
+		<td class="out_company">FedEx</th>
+		<td class="out_tracking_num">98765432123</th>
+		<td class="req_option_impli">y</th>
+		<td class="postpone">n</th>
+		<td class="sum_post">y</th>
+		<td class="approval">y</th>
+		<td class="out_date">2022-09-27</th>
+	  </tr>
+	  </tbody></table>
+	  
+	  <table border="0" cellspacing="0" cellpadding="0" width="95%">
+      <tbody><tr>
+        <td width="70%" id="forwarding_search_page" align="center">
+        -&nbsp;<b>1</b>&nbsp;-
+        </td>
+      </tr>
+    </tbody></table>
+	  
+  </td>
+</tr>
+</tbody></table>
+<!-- ========== 출고현황조회 화면 끝 ========== -->
+			  </div>
+			</div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      </div>
+      <!-- main-panel ends --><!-- 컨텐츠 끝 -->
+    </body>
+</html>
+</html>
