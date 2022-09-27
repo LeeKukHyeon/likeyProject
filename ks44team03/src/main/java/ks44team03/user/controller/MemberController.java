@@ -18,9 +18,9 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping ("userSignUp")
+	@GetMapping ("/userForm")
 	public String userSignUp(){
-		return "/registration/userForm";
+		return "registration/userForm";
 	}
 
 }
