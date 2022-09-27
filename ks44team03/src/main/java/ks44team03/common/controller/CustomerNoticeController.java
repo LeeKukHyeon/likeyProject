@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CustomerNoticeController {
-
+	
 	
 	//공지사항 게시글
 	@GetMapping("/noticeSearchRead")
