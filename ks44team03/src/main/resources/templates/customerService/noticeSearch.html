@@ -26,55 +26,15 @@
 				<th class="hit">조회</th>
 				<th class="date">등록일</th>
 			  </tr>
-			  <tr>
-				<td class="number"><span style="font-size:12px; font-weight:bold;">[공지]</span></td>
-				<td class="subject"> <a th:href="@{/noticeSearchRead}"><b>저희 정상 영업 합니다.</b></a> </td>
-				<td class="hit">1508</td>
-				<td class="date">2022-09-16</td>
-			  </tr>
-			  <tr>
-				<td class="number"><span style="font-size:12px; font-weight:bold;">[공지]</span></td>
-				<td class="subject"> <a href="#"><b>[공지] 9월 14일 한국 출고분 파샬 안내</b></a> </td>
-				<td class="hit">362</td>
-				<td class="date">2022-09-16</td>
-			  </tr>
-			  <tr>
-				<td class="number"><span style="font-size:12px; font-weight:bold;">[공지]</span></td>
-				<td class="subject"> <a href="#"><b>likey와 함께하는 부피 할인 이벤트!! (~9/16)</b></a> </td>
-				<td class="hit">226</td>
-				<td class="date">2022-08-11</td>
-			  </tr>
-
-			  <tr>
-				<td class="number">103</td>
-				<td class="subject"> <a href="#">미국 출발 항공 예상 스케줄 안내 (2022.8.29-2022.9.2)</a> </td>
-				<td class="hit">349</td>
-				<td class="date">2022-08-26</td>
-			  </tr>
-			  <tr>
-				<td class="number">102</td>
-				<td class="subject"> <a href="#">[공지] 9월 5일 미국 노동절 휴무 안내</a> </td>
-				<td class="hit">133</td>
-				<td class="date">2022-08-25</td>
-			  </tr>
-			  <tr>
-				<td class="number">101</td>
-				<td class="subject"> <a href="#">[공지] 2022년 추석연휴 업무 일정 관련 안내</a> </td>
-				<td class="hit">140</td>
-				<td class="date">2022-08-25</td>
-			  </tr>
-			  <tr>
-				<td class="number">100</td>
-				<td class="subject"> <a href="#">미국 출발 항공 예상 스케줄 안내 (2022.8.22-2022.8.26)</a> </td>
-				<td class="hit">294</td>
-				<td class="date">2022-08-19</td>
-			  </tr>
-			  <tr>
-				<td class="number">99</td>
-				<td class="subject"> <a href="">[공지] 8월 16일 출고분 오프로드 안내</a> </td>
-				<td class="hit">136</td>
-				<td class="date">2022-08-17</td>
-			  </tr>
+				<tr th:if="${not #lists.isEmpty(noticeList)}" th:each="l : ${noticeList}">
+					<td class="number" th:text="${l.noticeNumCode}"></td>
+					<td class="subject" th:text="${l.noticeTitle}"></td>
+					<td class="hit" th:text="${l.noticeView}"></td>
+					<td class="date" th:text="${l.noticeDate}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(noticeList)}">
+					<td colspan="8" style="text-align: center;">등록된 사업장이 없습니다.</td>
+				</tr>
 		    </tbody></table>
 		
 		    <table border="0" cellpadding="0" cellspacing="0" width="100%">

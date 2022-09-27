@@ -12,8 +12,10 @@ public interface CustomerNoticeMapper {
 	
 	//게시물 등록
 	public String regNotice(CsNotice csNotice);
-	/*
-	 * //게시물 목록 조회 public List<CsNotice> getCsNoticeList();
-	 */
+
+	
+	//게시물 목록 조회 
+	public List<CsNotice> getCsNoticeList();
+
 	
 }

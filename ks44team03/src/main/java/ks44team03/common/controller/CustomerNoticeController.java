@@ -33,15 +33,15 @@ public class CustomerNoticeController {
 	}
 	
 	
-	// 공지사항 조회
+	// 공지사항 목록 조회
 	@GetMapping("/noticeSearch")
 	public String viewNoticeList(Model model) {
+	
 		
-		/*
-		 * List<CsNotice> noticeList = customerNoticeService.getCsNoticeList();
-		 * 
-		 * model.addAttribute("noticeList", noticeList);
-		 */
+		List<CsNotice> noticeList = customerNoticeService.getCsNoticeList();
+		  
+		model.addAttribute("noticeList", noticeList);
+		 
 		return "/customerService/noticeSearch";
 	}
 }

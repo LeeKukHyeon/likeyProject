@@ -27,12 +27,13 @@ public class CustomerNoticeService {
 		
 	}
 	
-	/*
-	 * //게시물 목록 조회 public List<CsNotice> getCsNoticeList(){
-	 * 
-	 * List<CsNotice> noticeList = customerNoticeMapper.getCsNoticeList();
-	 * 
-	 * return noticeList; }
-	 */
+	
+	  // 게시물 목록 조회
+	  public List<CsNotice> getCsNoticeList(){
+	  
+	  List<CsNotice> noticeList = customerNoticeMapper.getCsNoticeList();
+	  
+	  return noticeList; }
+	 
 	
 }
