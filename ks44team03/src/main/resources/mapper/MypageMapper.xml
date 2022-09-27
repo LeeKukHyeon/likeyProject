@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ks44team03.user.mapper.MypageMapper">
+	<resultMap type="UserInfo" id="UserInfoResultMap">
+		<id column="u_id" property="uId"/>
+			<result column="user_grade_code" property="uGradeCode"/>
+			<result column="u_pw" property="uPw"/>
+			<result column="user_pobox_code" property="uPostCode"/>
+			<result column="u_name" property="uName"/>
+			<result column="u_level" property="uLevel"/>
+			<result column="u_addr" property="uAddr"/>
+			<result column="u_email" property="uEmail"/>
+			<result column="u_birth" property="uBirth"/>
+			<result column="u_phone" property="uPhone"/>
+			<result column="u_nick" property="uNick"/>
+			<result column="u_insert_date" property="uInsertDate"/>
+			<result column="u_dormant" property="uDormant"/>
+			<result column="pay_completed_count" property="payCompletedCount"/>
+			<result column="friends_account" property="friendsAccount"/>
+			<result column="bank_name" property="bankName"/>
+	</resultMap>
+	
+	<select id="getUserInfo" parameterType="String" resultMap="UserInfoResultMap">
+		/* 회사 목록 조회 */
+		SELECT
+		   user_grade_code
+		   ,u_pw
+		   ,user_pobox_code 
+		   ,u_name
+		   ,u_level 
+		   ,u_addr
+		   ,u_email
+		   ,u_birth 
+		   , u_phone 
+		   ,u_nick
+		   ,u_insert_date
+		   ,u_dormant 
+		   ,pay_completed_count 
+		   ,friends_account 
+		   ,bank_name 
+		   
+		  
+		  
+		FROM 
+			user_member where u_id = #{u_id};
+	</select>
+</mapper>
