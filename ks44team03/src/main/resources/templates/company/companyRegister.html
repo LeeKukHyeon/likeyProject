@@ -129,13 +129,13 @@
 	
 </style>
 </head>
-
+<title th:text="${title}">
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
 	
 	<div class="right_text"  style="margin-left: %; margin-right: 10%;">
-	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">회사 등록</h2>
-	<form name="form1" id="form1">
+	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;"></h2>
+	<form name="form1" id="addCompanyForm" th:action="@{/companyRegister}" method="post">
 		<table class="input_table" style="width:90%;">	
 		<colgroup>
 				<col width="15%"/><col width="35%"/>
@@ -143,45 +143,45 @@
 		</colgroup>	
 		<tbody>
 			<tr>	
-				<th class="td1">회사번호</th>
+				<th class="td1">회사코드</th>
 				<td class="td2">
-					<input type="text" name=companyNum placeholder="회사번호를 입력해주세요.">	
+					<input type="text" id=companyCode name=companyCode placeholder="회사코드">	
 				</td>
 			</tr>
 			<tr>
-				<th class="td1">회사이름</th>	
+				<th class="td1">회사번호</th>	
 				<td class="td2">				
-					<input type="text" name=companyName placeholder="회사이름">	
+					<input type="text" id=companyNum name=companyNum placeholder="회사번호">	
 				</td>	
 			</tr>		
 			<tr>	
-				<th class="td1">회사대리인번호</th>
+				<th class="td1">회사대리인이름</th>
 				<td class="td2">
-					<input type="text" name=companyDelegateNum placeholder="회사대리인번호">	
+					<input type="text" id=companyInfoName name=companyInfoName placeholder="회사대리인이름">	
+				</td>
+			</tr>
+			<tr>	
+				<th class="td1">대표주민등록번호</th>
+				<td class="td2">
+					<input type="text" id=companyDelegateNum name=companyDelegateNum placeholder="대표주민등록번호">	
 				</td>
 			</tr>
 			<tr>	
 				<th class="td1">회사주소</th>
 				<td class="td2">
-					<input type="text" name=companyAddr placeholder="회사주소">	
+					<input type="text" id=companyAddr name=companyAddr placeholder="회사주소">	
 				</td>
 			</tr>
 			<tr>	
 				<th class="td1">회사종목</th>
 				<td class="td2">
-					<input type="text" name=companyCate placeholder="회사종목">	
+					<input type="text" id=companyCate name=companyCate placeholder="회사종목">	
 				</td>
 			</tr>
 			<tr>	
-				<th class="td1">회사등록날짜</th>
+				<th class="td1">회사명</th>
 				<td class="td2">
-					<input type="text" name=companyBirth placeholder="회사등록날짜">	
-				</td>
-			</tr>
-			<tr>	
-				<th class="td1">회사정보</th>
-				<td class="td2">
-					<input type="text" name=companyInfoName placeholder="회사정보">	
+					<input type="text" id=companyName name=companyName placeholder="회사명">	
 				</td>
 			</tr>
 		</tbody>
@@ -195,6 +195,6 @@
 	</div>
 	
 
-	
+</title>	
 </body>
 </html>

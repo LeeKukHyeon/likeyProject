@@ -128,7 +128,7 @@
 </style>
 </head>
 <!-- 관리자 회사관련 선택화면 -->
-<body layout:fragment="adminContent">	
+<th:block layout:fragment="adminContent">	
 	  <!-- stat content-wrapper -->
         <div class="content-wrapper">             
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
@@ -140,23 +140,37 @@
 							<col width="15%"/><col width="10%"/>
 						</colgroup>	
 							<tr>
+							<!-- private String companyCode; //회사코드
+								private String companyNum; //사업자등록번호
+								private String companyInfoName; //대표자성명
+								private String companyDelegateNum; //대표자주민등록번호
+								private String companyAddr; //회사주소
+								private String companyCate; //회사종목
+								private String companyBirth; //회사설립날짜
+								private String companyName; //회사명 -->
+								
 								<th>회사코드</th>
 								<th>사업자등록번호</th>
-								<th>회사명</th>
+								<th>대표자성명</th>
+								<th>대표자주민등록번호</th>
 								<th>회사주소</th>
 								<th>회사종목</th>
 								<th>회사설립날짜</th>
-								<th>대표자성명</th>
+								<th>회사명</th>
 							</tr>
 							<tbody>
-								<tr>
-									<td><input type="checkbox" class="companyCheckbox">임시데이타~</td>
-									<td>임시데이타~</td>
-									<td>임시데이타~</td>
-									<td>임시데이타~</td>
-									<td>임시데이타~</td>
-									<td>임시데이타~</td>
-									<td>임시데이타~</td>
+								<tr th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
+									<td th:text="${l.companyCode}"></td>
+									<td th:text="${l.companyNum}"></td>
+									<td th:text="${l.companyInfoName}"></td>
+									<td th:text="${l.companyDelegateNum}"></td>
+									<td th:text="${l.companyAddr}"></td>
+									<td th:text="${l.companyCate}"></td>
+									<td th:text="${l.companyBirth}"></td>
+									<td th:text="${l.companyName}"></td>
+								</tr>
+								<tr th:unless="${not #lists.isEmpty(companyList)}">
+									<td colspan="8" style="text-align: center;">등록된 회사가 없습니다.</td>
 								</tr>
 							</tbody>						
 						</table>
@@ -167,5 +181,5 @@
         <!-- partial:partials/_footer.html
         partial -->
       
-</body>
+</th:block>
 </html>

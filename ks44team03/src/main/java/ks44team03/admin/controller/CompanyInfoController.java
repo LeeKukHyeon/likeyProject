@@ -1,14 +1,28 @@
 package ks44team03.admin.controller;
 
+import java.util.List;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import ks44team03.admin.service.CompanyInfoService;
+import ks44team03.dto.CompanyInfo;
+
 
 @Controller
 
 public class CompanyInfoController {
 	
+	private static final Logger log = LoggerFactory.getLogger(CompanyInfoController.class);
+	
+	private CompanyInfoService companyInfoService;
 	
 	@GetMapping("/adminPage")
 	public String adminPage(Model model) {
@@ -27,13 +41,25 @@ public class CompanyInfoController {
 		return "company/choiceCompany";
 	}
 	
+	@PostMapping("/companyRegister")
+	public String addCompany(CompanyInfo companyInfo) {
+		
+		log.info("입력한 값 ::: {}", companyInfo);
+		
+		companyInfoService.addCompany(companyInfo);
+		
+		return"redirect:/company/companyList";
+	}
+	
 	@GetMapping("/companyRegister") 
-	public String addCompany(Model model) {
-	  
+	public String addCompanyForm(Model model) {
+		
+		
 		model.addAttribute("title", "회사등록");
 	  
 		return "company/companyRegister"; 
 	}
+	
 	
 	@GetMapping("/workPlaceRegister")
 	public String workPlaceRegister(Model model) {
@@ -70,8 +96,12 @@ public class CompanyInfoController {
 	}
 	
 	@GetMapping("/companyList")
-	public String companyList(Model model) {
+	public String getCompanyList(Model model) {
 		
+		/* List<CompanyInfo> companyList = companyInfoService.getCompanyList(); */
+		/* log.info("회사 목록 ::::: {}", companyList); */
+		/* log.info("외않되"); */
+		/* model.addAttribute("companyList", companyList); */
 		model.addAttribute("title", "회사목록");
 		
 		return "company/companyList";
