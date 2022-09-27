@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.admin.service.CompanyInfoService;
+import ks44team03.dto.Grade;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
 
@@ -20,6 +21,7 @@ public class MypageController {
 	
 	private MypageService mypageService;
 		
+	
 	public MypageController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
@@ -61,9 +63,11 @@ public class MypageController {
 	public String mypage(Model model) {
 		String u_id = "id001"; 
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
-	
+		List<Grade> grade = mypageService.nextGrade(u_id);
 		
 		model.addAttribute("userInfo", userInfo);
+		
+		model.addAttribute("grade", grade);
 		return "myPage/member/mypageScreen";
 	}
 }

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Department;
+import ks44team03.dto.Employee;
+import ks44team03.dto.WorkPlace;
 
 
 @Controller
@@ -114,21 +117,32 @@ public class CompanyInfoController {
 	@GetMapping("/workPlaceList")
 	public String workPlaceList(Model model) {
 		
+		List<WorkPlace> workPlaceList = companyInfoService.getWorkPlaceList();
+		
+		model.addAttribute("workPlaceList", workPlaceList);
 		model.addAttribute("title", "사업장 목록");
-		return "company/workplace/workPlaceList";
+		
+		return "company/workPlace/workPlaceList";
 	}
 	
 	@GetMapping("/employeeList")
 	public String employeeList(Model model) {
 		
+		List<Employee> employeeList = companyInfoService.getEmployeeList();
+		
+		model.addAttribute("employeeList", employeeList);
 		model.addAttribute("title", "사원 목록");
 		return "company/employee/employeeList";
 	}
+	
 	@GetMapping("/departmentList")
 	public String departmentList(Model model) {
 	
+		List<Department> departmentList = companyInfoService.getDepartmentList();
+		
+		model.addAttribute("departmentList", departmentList);
 		model.addAttribute("title", "부서 목록");
 		return "company/department/departmentList";
 	}
-	// 회사관리 등록 관련 맵핑 - 끝
+	// 회사관리 목록조회 관련 맵핑 - 끝
 }

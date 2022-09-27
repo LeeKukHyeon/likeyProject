@@ -4,10 +4,26 @@ public class UserInfo {
 	
 	private String uId; //이용자 아이디
 	private String uGradeCode; //회원 등급 코드
+	private String nextGrade; // 다음 회원 등급
+	private int needBuy; // 더 사야하는 갯수
+	public String getNextGrade() {
+		return nextGrade;
+	}
+	public void setNextGrade(String nextGrade) {
+		this.nextGrade = nextGrade;
+	}
+	public int getNeedBuy() {
+		return needBuy;
+	}
+	public void setNeedBuy(int needBuy) {
+		this.needBuy = needBuy;
+	}
+
+
 	private String uPw; //비밀번호
 	private String uPostCode; //사서함번호(UK)
-	private String uName; // 
-	private String uLevel; //이름
+	private String uName; //  이름
+	private String uLevel; // 
 	private String uAddr; //주소
 	private String uEmail; //이메일
 	private String uBirth; // 생년월일
@@ -120,12 +136,15 @@ public class UserInfo {
 	
 	@Override
 	public String toString() {
-		return "UserInfo [uId=" + uId + ", uGradeCode=" + uGradeCode + ", uPw=" + uPw + ", uPostCode=" + uPostCode
-				+ ", uName=" + uName + ", uLevel=" + uLevel + ", uAddr=" + uAddr + ", uEmail=" + uEmail + ", uBirth="
-				+ uBirth + ", uPhone=" + uPhone + ", uNick=" + uNick + ", uInsertDate=" + uInsertDate + ", uDormant="
-				+ uDormant + ", payCompletedCount=" + payCompletedCount + ", friendsAccount=" + friendsAccount
-				+ ", bankName=" + bankName + "]";
+		return "UserInfo [uId=" + uId + ", uGradeCode=" + uGradeCode + ", nextGrade=" + nextGrade + ", needBuy="
+				+ needBuy + ", uPw=" + uPw + ", uPostCode=" + uPostCode + ", uName=" + uName + ", uLevel=" + uLevel
+				+ ", uAddr=" + uAddr + ", uEmail=" + uEmail + ", uBirth=" + uBirth + ", uPhone=" + uPhone + ", uNick="
+				+ uNick + ", uInsertDate=" + uInsertDate + ", uDormant=" + uDormant + ", payCompletedCount="
+				+ payCompletedCount + ", friendsAccount=" + friendsAccount + ", bankName=" + bankName + "]";
 	}
+	
+	
+	
 	
 	
 	

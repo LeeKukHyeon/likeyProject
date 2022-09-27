@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="ks44team03.admin.mapper.CompanyInfoMapper">
-
+	<!-- 회사 정보 -->
 	<resultMap type="CompanyInfo" id="companyResultMap">
 		<id column="ci_code" property="companyCode"/>
 		<result column="company_number" property="companyNum"/>
@@ -14,6 +14,37 @@
 		<result column="company_cate" property="companyCate"/>
 		<result column="company_birth" property="companyBirth"/>
 		<result column="company_name" property="companyName"/>
+	</resultMap>
+	
+	<!-- 사업장 정보 -->
+	<resultMap type="WorkPlace" id="workPlaceResultMap">
+		<id column="wp_code" property="workPlaceCode"/>
+		<result column="company_number" property="companyNumber"/>
+		<result column="wp_company_name" property="workPlaceName"/>
+		<result column="wp_name" property="workPlaceRepresentative"/>
+		<result column="wp_delegate_num" property="workPlaceDelegateNum"/>
+		<result column="wp_addr" property="workPlaceAddr"/>
+		<result column="wp_cate" property="workPlaceCate"/>
+		<result column="wp_birth" property="workPlaceBirth"/>
+	</resultMap>
+	
+	<!-- 부서 정보 -->
+	<resultMap type="Department" id="departmentResultMap">
+		<id column="de_code" property="departmentCode"/>
+		<result column="wp_code" property="departmentName" />
+		<result column="de_name" property="workplaceCode" />
+		<result column="de_date" property="departmentDate" />
+	</resultMap>
+	
+	<!-- 사원 정보 -->
+	<resultMap type="Employee" id="employeeResultMap">
+		<id column="e_code" property="employeeCode"/>
+		<result column="e_level_code" property="employeeLevel"/>
+		<result column="de_code" property="departmentCode"/>
+		<result column="e_name" property="employeeName"/>
+		<result column="e_pw" property="employeePw"/>
+		<result column="e_date" property="employeeDate"/>
+		<result column="resign_date" property="employeeResignDate"/>
 	</resultMap>
 	<!-- 회사등록 -->
 	<insert id="addCompany" parameterType="CompanyInfo">
@@ -47,4 +78,46 @@
 		FROM 
 			company_info AS c;
 	</select>
+	
+	<!-- 사업장 목록 조회 -->
+	<select id="getWorkPlaceList" resultMap="workPlaceResultMap">
+		/* 사업장 목록 조회 */
+		SELECT
+		   wp_code
+		  ,company_number
+		  ,wp_company_name
+		  ,wp_name
+		  ,wp_delegate_num
+		  ,wp_addr
+		  ,wp_cate
+		  ,wp_birth
+		FROM
+			work_place;
+	</select>
+	<!-- 부서 목록 조회 -->
+	<select id="getDepartmentList" resultMap="departmentResultMap">
+		/* 부서 목록 조회 */
+		SELECT
+		   de_code
+		  ,wp_code
+		  ,de_name
+		  ,de_date
+		FROM
+			department;
+	</select>
+	
+	<select id="getEmployeeList" resultMap="employeeResultMap">
+		SELECT
+		   e_code
+		  ,e_level_code
+		  ,de_code
+		  ,e_name
+		  ,e_pw
+		  ,e_date
+		  ,resign_date
+		FROM
+			employee_info;
+	</select>
+	
+	
 </mapper>
