@@ -22,7 +22,7 @@ button {cursor:pointer;}
 
 /* faqSearch css */
 .faqSort {background: #D2E1FF; color: black; height: 20mm;font-size: 16px; padding-top: 23px;}
-a:hover {color:pink;}
+.subject a:hover {color:pink;}
 .faqSortList li {height: 8mm; margin-left: 3mm;}
 .faqSortList li a {font: bold; align-content: center;}
 .faqSortList {background-color: #dcdcdc; flex: auto; height: 180px;}
