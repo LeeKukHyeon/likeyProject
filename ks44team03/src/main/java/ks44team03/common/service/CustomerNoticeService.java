@@ -1,5 +1,7 @@
 package ks44team03.common.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +20,19 @@ public class CustomerNoticeService {
 	}
 	
 	public void regNotice(CsNotice csNotice){
-	
+
 		String result = customerNoticeMapper.regNotice(csNotice);
-		
+	
 		System.out.println(result);
-	 
+		
 	}
+	
+	/*
+	 * //게시물 목록 조회 public List<CsNotice> getCsNoticeList(){
+	 * 
+	 * List<CsNotice> noticeList = customerNoticeMapper.getCsNoticeList();
+	 * 
+	 * return noticeList; }
+	 */
 	
 }
