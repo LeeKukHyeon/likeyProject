@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+	<div align="center">
+		<div style="width: 55%; margin-top: 10mm">
+			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
+			<hr width="100%" color="gray">
+			<div>
+			<h4>저희 정상 영업 합니다.</h4>
+			
+				<div style="text-align: left; color: black;" >
+					<p>ks44 team03 화이팅!</p>
+				</div>
+			</div>
+			<hr width="100%" color="gray">
+		<a th:href="@{noticeSearch}"><input type="button" value="목록" style="float: left;"></a>
+		<a href="#"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
+		<a href="#"><input type="button" value="수정하기" style="float: right; font-size: 5px"></a>
+		
+		</div>
+		
+	</div>
+
+</body>
+</html>

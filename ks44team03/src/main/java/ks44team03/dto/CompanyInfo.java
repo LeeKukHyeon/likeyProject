@@ -1,16 +1,17 @@
 package ks44team03.dto;
 
+import java.util.List;
+
 public class CompanyInfo {
 
 	private String companyCode; //회사코드
 	private String companyNum; //사업자등록번호
-	private String companyName; //회사명
+	private String companyInfoName; //대표자성명
 	private String companyDelegateNum; //대표자주민등록번호
 	private String companyAddr; //회사주소
 	private String companyCate; //회사종목
 	private String companyBirth; //회사설립날짜
-	private String companyInfoName; //대표자성명
-	
+	private String companyName; //회사명
 	
 	public String getCompanyCode() {
 		return companyCode;
@@ -24,11 +25,11 @@ public class CompanyInfo {
 	public void setCompanyNum(String companyNum) {
 		this.companyNum = companyNum;
 	}
-	public String getCompanyName() {
-		return companyName;
+	public String getCompanyInfoName() {
+		return companyInfoName;
 	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setCompanyInfoName(String companyInfoName) {
+		this.companyInfoName = companyInfoName;
 	}
 	public String getCompanyDelegateNum() {
 		return companyDelegateNum;
@@ -54,18 +55,22 @@ public class CompanyInfo {
 	public void setCompanyBirth(String companyBirth) {
 		this.companyBirth = companyBirth;
 	}
-	public String getCompanyInfoName() {
-		return companyInfoName;
+	public String getCompanyName() {
+		return companyName;
 	}
-	public void setCompanyInfoName(String companyInfoName) {
-		this.companyInfoName = companyInfoName;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 	@Override
 	public String toString() {
-		return "CompanyInfo [companyCode=" + companyCode + ", companyNum=" + companyNum + ", companyName=" + companyName
-				+ ", companyDelegateNum=" + companyDelegateNum + ", companyAddr=" + companyAddr + ", companyCate="
-				+ companyCate + ", companyBirth=" + companyBirth + ", companyInfoName=" + companyInfoName + "]";
+		return "CompanyInfo [companyCode=" + companyCode + ", companyNum=" + companyNum + ", companyInfoName="
+				+ companyInfoName + ", companyDelegateNum=" + companyDelegateNum + ", companyAddr=" + companyAddr
+				+ ", companyCate=" + companyCate + ", companyBirth=" + companyBirth + ", companyName=" + companyName
+				+ "]";
 	}
+	
+	
+	
 	
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="ks44team03.admin.mapper.CompanyInfoMapper">
+
+	<resultMap type="CompanyInfo" id="companyResultMap">
+		<id column="ci_code" property="companyCode"/>
+		<result column="company_number" property="companyNum"/>
+		<result column="ci_name" property="companyInfoName"/>
+		<result column="ci_delegate_num" property="companyDelegateNum"/>
+		<result column="company_addr" property="companyAddr"/>
+		<result column="company_cate" property="companyCate"/>
+		<result column="company_birth" property="companyBirth"/>
+		<result column="company_name" property="companyName"/>
+	</resultMap>
+	<!-- 회사등록 -->
+	<insert id="addCompany" parameterType="CompanyInfo">
+		/* 회사등록 */
+		INSERT INTO company_info
+		(	
+		 ci_code
+  		,company_number
+  		,ci_name
+  		,ci_delegate_num
+  		,company_addr
+  		,company_cate
+  		,company_birth
+  		,company_name
+		)
+		VALUES 
+		(#{companyCode}, #{companyNum}, #{companyInfoName}, #{companyDelegateNum}, #{companyAddr}, #{companyCate}, #{companyBirth}, #{companyName});
+	</insert>
+	<!-- 회사 목록 조회 -->
+	<select id="getCompanyList" resultMap="companyResultMap">
+		/* 회사 목록 조회 */
+		SELECT
+		   c.ci_code		
+		  ,c.company_number	 
+		  ,c.ci_name		 
+		  ,c.ci_delegate_num 
+		  ,c.company_addr	 
+		  ,c.company_cate	
+		  ,c.company_birth	
+		  ,c.company_name	
+		FROM 
+			company_info AS c;
+	</select>
+</mapper>

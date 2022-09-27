@@ -1,5 +1,8 @@
 package ks44team03.user.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ks44team03.admin.service.CompanyInfoService;
+import ks44team03.dto.UserInfo;
+import ks44team03.user.service.MypageService;
+
 @Controller
 public class MypageController {
 	
+	private MypageService mypageService;
+		
+	public MypageController(MypageService mypageService) {
+		this.mypageService = mypageService;
+	}
+
+
 	
 	@GetMapping("/applicationEdit")
 	public String applicationEdit() {
@@ -44,8 +58,12 @@ public class MypageController {
 
 	
 	@GetMapping("/mypageScreen")
-	public String mypage() {
+	public String mypage(Model model) {
+		String u_id = "id001"; 
+		List<UserInfo> userInfo = mypageService.getUserList(u_id);
+	
 		
+		model.addAttribute("userInfo", userInfo);
 		return "myPage/member/mypageScreen";
 	}
 }
