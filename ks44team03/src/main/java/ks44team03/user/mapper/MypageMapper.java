@@ -11,6 +11,7 @@ import ks44team03.dto.UserInfo;
 public interface MypageMapper {
 	public List<UserInfo> getUserInfo(String u_id);
 	public List<Grade> nextGrade(String u_id);
+	public int couponCount(String u_id);
 	
 }
 

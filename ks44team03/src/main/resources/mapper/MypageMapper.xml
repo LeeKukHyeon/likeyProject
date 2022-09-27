@@ -69,5 +69,9 @@
 					
 							where u.u_id = #{u_id})+1) );
  
+	</select >
+	
+	<select id="couponCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM coupon_status WHERE u_id = #{u_id} AND c_use = 'n'
 	</select>
 </mapper>

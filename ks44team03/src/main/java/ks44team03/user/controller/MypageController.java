@@ -64,10 +64,12 @@ public class MypageController {
 		String u_id = "id001"; 
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
 		List<Grade> grade = mypageService.nextGrade(u_id);
+		int couponCount = mypageService.couponCount(u_id);
 		
 		model.addAttribute("userInfo", userInfo);
 		
 		model.addAttribute("grade", grade);
+		model.addAttribute("couponCount", couponCount);
 		return "myPage/member/mypageScreen";
 	}
 }
