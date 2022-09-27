@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Department;
+import ks44team03.dto.Employee;
+import ks44team03.dto.WorkPlace;
 
 @Mapper
 public interface CompanyInfoMapper {
@@ -15,4 +18,13 @@ public interface CompanyInfoMapper {
 	
 	//회사 목록 조회
 	public List<CompanyInfo> getCompanyList();
+	
+	//사업장 목록 조회
+	public List<WorkPlace> getWorkPlaceList();
+	
+	//부서 목록 조회
+	public List<Department> getDepartmentList();
+	
+	//사원 목록 조회
+	public List<Employee> getEmployeeList();
 }
