@@ -21,9 +21,18 @@
 			<result column="friends_account" property="friendsAccount"/>
 			<result column="bank_name" property="bankName"/>
 	</resultMap>
+	<resultMap type="Grade" id="GradeResultMap">
+		<id column="grade_code" property="gradeCode"/>
+			<result column="grade_name" property="gradeName"/>
+			<result column="rate" property="rate"/>
+			<result column="transaction_number" property="transactionNumber"/>
+			<result column="grade_date" property="gradeDate"/>
+	</resultMap>
+	
+	
 	
 	<select id="getUserInfo" parameterType="String" resultMap="UserInfoResultMap">
-		/* 회사 목록 조회 */
+		/*  목록 조회 */
 		SELECT
 		   user_grade_code
 		   ,u_pw
@@ -40,10 +49,25 @@
 		   ,pay_completed_count 
 		   ,friends_account 
 		   ,bank_name 
-		   
-		  
-		  
 		FROM 
 			user_member where u_id = #{u_id};
+	</select>
+	
+	<select id="nextGrade" parameterType="String" resultType="Grade">
+			/* 다음 등급 알림 */
+			select grade_name as nextGrade, 
+			transaction_number -(select pay_completed_count 
+			from user_member 
+			where u_id = #{u_id}) as needBuy
+			from grade 
+			where 
+				grade_code = (select concat('grade_code', (select 
+							SUBSTRING_INDEX(grade_code,'_code',-1)
+							from grade as g
+							inner join user_member as u
+							on g.grade_code = u.user_grade_code
+					
+							where u.u_id = #{u_id})+1) );
+ 
 	</select>
 </mapper>
