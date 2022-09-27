@@ -49,8 +49,8 @@
 						<th class="hcash"><span>마이캐시</span></th>
 						<th class="usage"><span>이용실적</span></th>
 				  </tr>
-				  <tr>
-					    <td class="rank">#</td>
+				  <tr th:each="u : ${userInfo}">
+					    <td th:text="${u.uGradeCode}" class="rank">#</td>
 						
 						<td class="coupon"><a href="cpn_valid_list.html"><font>#</font>장</a></td>
 						<!-- <td class="code">US123456</td> -->
