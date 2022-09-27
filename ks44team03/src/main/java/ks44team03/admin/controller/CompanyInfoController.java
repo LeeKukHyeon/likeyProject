@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 import ks44team03.admin.service.CompanyInfoService;
@@ -23,6 +23,10 @@ public class CompanyInfoController {
 	private static final Logger log = LoggerFactory.getLogger(CompanyInfoController.class);
 	
 	private CompanyInfoService companyInfoService;
+	
+	public CompanyInfoController(CompanyInfoService companyInfoService) {
+		this.companyInfoService = companyInfoService;
+	}
 	
 	@GetMapping("/adminPage")
 	public String adminPage(Model model) {
@@ -45,10 +49,9 @@ public class CompanyInfoController {
 	public String addCompany(CompanyInfo companyInfo) {
 		
 		log.info("입력한 값 ::: {}", companyInfo);
-		
 		companyInfoService.addCompany(companyInfo);
 		
-		return"redirect:/company/companyList";
+		return"redirect:/companyList";
 	}
 	
 	@GetMapping("/companyRegister") 
@@ -98,10 +101,11 @@ public class CompanyInfoController {
 	@GetMapping("/companyList")
 	public String getCompanyList(Model model) {
 		
-		/* List<CompanyInfo> companyList = companyInfoService.getCompanyList(); */
-		/* log.info("회사 목록 ::::: {}", companyList); */
-		/* log.info("외않되"); */
-		/* model.addAttribute("companyList", companyList); */
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
+		
+		log.info("회사 목록 ::::: {}", companyList);
+
+		model.addAttribute("companyList", companyList);
 		model.addAttribute("title", "회사목록");
 		
 		return "company/companyList";
