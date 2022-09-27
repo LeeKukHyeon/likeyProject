@@ -5,7 +5,7 @@
  
 <mapper namespace="ks44team03.admin.mapper.CompanyInfoMapper">
 
-	<resultMap type="CompanyInfo" id="CompanyResultMap">
+	<resultMap type="CompanyInfo" id="companyResultMap">
 		<id column="ci_code" property="companyCode"/>
 		<result column="company_number" property="companyNum"/>
 		<result column="ci_name" property="companyInfoName"/>
@@ -33,9 +33,9 @@
 		(#{companyCode}, #{companyNum}, #{companyInfoName}, #{companyDelegateNum}, #{companyAddr}, #{companyCate}, CURDATE(), #{companyName});
 	</insert>
 	<!-- 회사 목록 조회 -->
-	<select id="getCompanyList" resultMap="CompanyResultMap">
+	<select id="getCompanyList" resultMap="companyResultMap">
 		/* 회사 목록 조회 */
-		SELECT 
+		SELECT
 		   c.ci_code		
 		  ,c.company_number	 
 		  ,c.ci_name		 

@@ -1,5 +1,7 @@
 package ks44team03.dto;
 
+import java.util.List;
+
 public class CompanyInfo {
 
 	private String companyCode; //회사코드

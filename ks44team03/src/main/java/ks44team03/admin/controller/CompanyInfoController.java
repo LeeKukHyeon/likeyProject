@@ -2,6 +2,7 @@ package ks44team03.admin.controller;
 
 import java.util.List;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -96,11 +97,12 @@ public class CompanyInfoController {
 	
 	@GetMapping("/companyList")
 	public String getCompanyList(Model model) {
+		
 		/* List<CompanyInfo> companyList = companyInfoService.getCompanyList(); */
 		/* log.info("회사 목록 ::::: {}", companyList); */
-		
+		/* log.info("외않되"); */
 		/* model.addAttribute("companyList", companyList); */
-		
+		model.addAttribute("title", "회사목록");
 		
 		return "company/companyList";
 	}
@@ -120,7 +122,7 @@ public class CompanyInfoController {
 	}
 	@GetMapping("/departmentList")
 	public String departmentList(Model model) {
-		
+	
 		model.addAttribute("title", "부서 목록");
 		return "company/department/departmentList";
 	}

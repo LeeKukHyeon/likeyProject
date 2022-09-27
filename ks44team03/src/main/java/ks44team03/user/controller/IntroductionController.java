@@ -17,5 +17,9 @@ public class IntroductionController {
 		return "introduction/aboutPa";
 	}
 
+	@GetMapping("/aboutFriendsPa")
+	public String aboutFPa() {
+		return "introduction/aboutFriendsPa";
+	}
 
 }

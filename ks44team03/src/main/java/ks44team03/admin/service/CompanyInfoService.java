@@ -34,10 +34,12 @@ public class CompanyInfoService {
 		System.out.println("회사 등록 결과 : " + result);
 	}
 	
-	public List<CompanyInfo> getCompanyList(){
-		
-		List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
-		
-		return companyList;
-	}
+	 public List<CompanyInfo> getCompanyList(){
+	  
+	 List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
+	 
+	 return companyList; 
+	 
+	 }
+	 
 }
