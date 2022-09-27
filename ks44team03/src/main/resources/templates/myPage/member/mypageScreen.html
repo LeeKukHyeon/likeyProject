@@ -21,7 +21,8 @@
 				<!-- 마이페이지 -->
 				<div class="mypage_main_title">
 					<div>마이페이지</div>
-					<div>다음 등급인 # 레벨로 상향되려면, <font>#</font>건 더 이용하시면 됩니다.</div>
+					<div>다음 등급인 <font th:if = "${g.nextGrade}" th:text="${g.nextGrade}" th:each="g : ${grade}"> </font> 레벨로 상향되려면, 
+					<font th:if = "${g.needBuy}" th:text="${g.needBuy}" th:each="g : ${grade}">#</font>건 더 이용하시면 됩니다.</div>
 				</div>
 		
 				<ul class="mypage_top_menu">
