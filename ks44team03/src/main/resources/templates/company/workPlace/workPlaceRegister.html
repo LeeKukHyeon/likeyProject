@@ -29,12 +29,19 @@
 							<input type="text" name=workplaceCode placeholder="사업장코드">	
 						</td>
 					</tr> -->
-					<!-- <tr>
-						<th class="td1">사업자등록번호</th>	
+					<tr>
+						<th class="td1">사업자 등록 번호</th>
 						<td class="td2">
-							<input type="text" name=companyNumber placeholder="사업자등록번호">	
+							<select name="companyInfo" disabled="disabled">
+								<th:block th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
+									<option th:value="${l.companyNum}" th:text="${l.companyNum}"></option>
+								</th:block>
+								<th:block th:unless="${not #lists.isEmpty(companyList)}">
+									<option value="">등록된 사업자등록번호가 없습니다.</option>
+								</th:block>
+							</select>
 						</td>
-					</tr> -->
+					</tr>
 					<tr>
 						<th class="td1">사업장명</th>
 						<td class="td2">

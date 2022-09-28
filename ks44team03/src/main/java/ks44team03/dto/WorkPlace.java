@@ -11,6 +11,15 @@ public class WorkPlace {
 	private String workPlaceCate; //회사종목
 	private String workPlaceBirth; //개업날짜
 	
+	private CompanyInfo companyInfoDto; //회사정보 DTO
+	
+	public CompanyInfo getCompanyInfoDto() {
+		return companyInfoDto;
+	}
+	public void setCompanyInfoDto(CompanyInfo companyInfoDto) {
+		this.companyInfoDto = companyInfoDto;
+	}
+	
 	public String getWorkPlaceCode() {
 		return workPlaceCode;
 	}
@@ -65,7 +74,9 @@ public class WorkPlace {
 		return "WorkPlace [workPlaceCode=" + workPlaceCode + ", WpCompanyNumber=" + WpCompanyNumber + ", workPlaceName="
 				+ workPlaceName + ", workPlaceRepresentative=" + workPlaceRepresentative + ", workPlaceDelegateNum="
 				+ workPlaceDelegateNum + ", workPlaceAddr=" + workPlaceAddr + ", workPlaceCate=" + workPlaceCate
-				+ ", workPlaceBirth=" + workPlaceBirth + "]";
+				+ ", workPlaceBirth=" + workPlaceBirth + ", companyInfoDto=" + companyInfoDto + "]";
 	}
+	
+	
 		
 }

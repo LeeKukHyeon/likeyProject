@@ -77,8 +77,10 @@ public class CompanyInfoController {
 	
 	@GetMapping("/workPlaceRegister")
 	public String addWorkPlaceForm(Model model) {
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
 		
 		model.addAttribute("title", "사업장등록");
+		model.addAttribute("companyInfoList", companyList);
 		
 		return "company/workplace/workPlaceRegister";
 	}
