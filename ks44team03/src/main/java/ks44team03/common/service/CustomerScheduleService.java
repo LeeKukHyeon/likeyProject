@@ -19,6 +19,15 @@ public class CustomerScheduleService {
 		this.customerScheduleMapper = customerScheduleMaper;
 	}
 	
+	//배송스케줄 게시물 조회
+	public ScheduleCenter getScheduleRead(int scheduleNumCode) {
+		
+		ScheduleCenter scheduleRead = customerScheduleMapper.getScheduleRead(scheduleNumCode);
+		
+		return scheduleRead;
+	}
+	
+	
 	// 배송스케줄 게시물 목록 조회
 	public List<ScheduleCenter> getScheduleCenterList(){
 	

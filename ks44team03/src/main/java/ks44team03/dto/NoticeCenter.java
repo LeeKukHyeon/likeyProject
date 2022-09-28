@@ -55,7 +55,7 @@ public class NoticeCenter {
 	
 	@Override
 	public String toString() {
-		return "CsNotice [noticeNumCode=" + noticeNumCode + ", employeeCode=" + employeeCode + ", noticeTitle="
+		return "NoticeCenter [noticeNumCode=" + noticeNumCode + ", employeeCode=" + employeeCode + ", noticeTitle="
 				+ noticeTitle + ", noticeContent=" + noticeContent + ", noticeImg=" + noticeImg + ", noticeDate="
 				+ noticeDate + ", noticeView=" + noticeView + "]";
 	}

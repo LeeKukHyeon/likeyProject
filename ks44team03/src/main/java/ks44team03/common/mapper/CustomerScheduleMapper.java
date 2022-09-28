@@ -9,6 +9,9 @@ import ks44team03.dto.ScheduleCenter;
 @Mapper
 public interface CustomerScheduleMapper {
 
+	//배송스케줄 게시물 조회
+	public ScheduleCenter getScheduleRead(int scheduleNumCode);
+	
 	//배송스케줄 게시물 목록 조회
 	public List<ScheduleCenter> getScheduleCenterList();
 	

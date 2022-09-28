@@ -78,7 +78,7 @@ public class CompanyInfoService {
 		log.info("departmentList 리스트~~~~~~~~~~~~" + departmentList);
 		
 		return departmentList;
-	}
+	}	
 	// 사원 목록 조회
 	public List<Employee> getEmployeeList(){
 		
