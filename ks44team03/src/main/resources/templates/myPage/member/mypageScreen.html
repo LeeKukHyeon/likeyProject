@@ -741,8 +741,7 @@
 			
 	</th:block>
 		
-    </body>
-    	 <script>
+		<script>
 	    function OrderQuery(qType)
 	    {
 	    	viewInfo(qType);
@@ -758,6 +757,7 @@
 	    function viewInfo(mode)
 	    {
 	    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
+	    	
 	    		$(".list_bt").hide();
 	    		$(".open_search").hide();
 	    		$(".shipping_applications_search").hide();
@@ -821,7 +821,7 @@
 	    {
 	    	$.ajax({
 	    			type: 'POST',
-	    			url: "/api/ship_step_info_api.html",
+	    			url: "/api/ship_step_info_api",
 	    			async:false,
 	    			data: {q_ship_step_type:qType,
 	    					action_type : 'ship_step_info'},
@@ -864,4 +864,6 @@
 	    		})
 	    }
     </script>
+    </body>
+    	 
 </html>

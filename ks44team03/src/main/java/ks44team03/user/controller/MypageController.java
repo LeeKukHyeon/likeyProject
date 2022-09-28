@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.Grade;
@@ -28,7 +28,7 @@ public class MypageController {
 		this.mypageService = mypageService;
 	}
 
-
+		
 	
 	@GetMapping("/applicationEdit")
 	public String applicationEdit() {
