@@ -35,8 +35,8 @@ public class CompanyInfoService {
 	public void companyInfoService() {
 		System.out.println("companyInfoService bean 생성");
 	}
-	
-	public void addCompany (CompanyInfo companyInfo) {
+	// 회사 등록
+	public void addCompany(CompanyInfo companyInfo) {
 		String newCompanyCode = commonMapper.getCommonPkCode("company_info", "ci_code");
 		companyInfo.setCompanyCode(newCompanyCode);
 		
@@ -52,6 +52,17 @@ public class CompanyInfoService {
 	 	log.info("companyList 리스트~~~~~~~~~~"+ companyList);
 	 	return companyList; 
 	 }
+	// 사업장 등록
+	public void addWorkPlace(WorkPlace workPlace) {
+		String newWorkPlaceCode = commonMapper.getCommonPkCode("work_place", "wp_code");
+		workPlace.setWorkPlaceCode(newWorkPlaceCode);
+		
+		log.info("WorkPlace 입니다-----------"+ workPlace);
+		int result = companyInfoMapper.addWorkPlace(workPlace);
+		
+		log.info("사업장 등록 결과 : " + result);
+	}
+	
 	// 사업장 목록 조회
 	public List<WorkPlace> getWorkPlaceList(){
 		
