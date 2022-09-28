@@ -19,6 +19,7 @@ public class CustomerNoticeService {
 		this.customerNoticeMapper = customerNoticeMapper;
 	}
 	
+	// 공지사항 등록
 	public void regNotice(CsNotice csNotice){
 
 		String result = customerNoticeMapper.regNotice(csNotice);
@@ -28,7 +29,7 @@ public class CustomerNoticeService {
 	}
 	
 	
-	  // 게시물 목록 조회
+	  // 공지사항 게시물 목록 조회
 	  public List<CsNotice> getCsNoticeList(){
 	  
 	  List<CsNotice> noticeList = customerNoticeMapper.getCsNoticeList();
