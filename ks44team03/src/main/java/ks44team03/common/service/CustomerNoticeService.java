@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ks44team03.common.mapper.CustomerNoticeMapper;
-import ks44team03.dto.CsNotice;
+import ks44team03.dto.NoticeCenter;
 
 @Service
 @Transactional
@@ -20,21 +20,29 @@ public class CustomerNoticeService {
 	}
 	
 	// 공지사항 등록
-	public void regNotice(CsNotice csNotice){
-
+	public void regNotice(NoticeCenter csNotice){
+	
 		String result = customerNoticeMapper.regNotice(csNotice);
 	
 		System.out.println(result);
 		
 	}
 	
+	// 공지사항 게시물 조회
+	public NoticeCenter getNoticeCenterRead(String noticeNumCode) {
+		
+		NoticeCenter noticeCenter = customerNoticeMapper.getNoticeCenterRead(noticeNumCode);
+		
+		return noticeCenter;
+		
+	}
 	
-	  // 공지사항 게시물 목록 조회
-	  public List<CsNotice> getCsNoticeList(){
+
+	// 공지사항 게시물 목록 조회
+	public List<NoticeCenter> getNoticeCenterList(){
 	  
-	  List<CsNotice> noticeList = customerNoticeMapper.getCsNoticeList();
+		List<NoticeCenter> noticeList = customerNoticeMapper.getNoticeCenterList();
 	  
-	  return noticeList; }
-	 
+		return noticeList; }
 	
 }

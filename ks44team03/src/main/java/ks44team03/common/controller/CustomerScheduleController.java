@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import ks44team03.common.service.CustomerScheduleService;
-import ks44team03.dto.CsSchedule;
+import ks44team03.dto.ScheduleCenter;
 
 @Controller
 public class CustomerScheduleController {
@@ -36,7 +36,7 @@ public class CustomerScheduleController {
 	@GetMapping("/deliveryScheduleSearch")
 	public String viewDeliveryScheduleList(Model model) {
 		
-		List<CsSchedule> ScheduleList = customerScheduleService.getCsScheduleList();		
+		List<ScheduleCenter> ScheduleList = customerScheduleService.getScheduleCenterList();		
 		
 		model.addAttribute("ScheduleList", ScheduleList);
 		

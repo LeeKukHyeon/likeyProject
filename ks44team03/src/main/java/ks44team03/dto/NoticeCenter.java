@@ -1,6 +1,6 @@
 package ks44team03.dto;
 
-public class CsNotice {
+public class NoticeCenter {
 	
 	private String noticeNumCode; //공지사항 번호
 	private String employeeCode; //사원코드
