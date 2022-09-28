@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Grade;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.mapper.MypageMapper;
 
@@ -19,6 +20,17 @@ public class MypageService {
 		
 		public MypageService(MypageMapper mypageMapper) {
 			this.mypageMapper = mypageMapper;
+		}
+		
+		public int couponCount(String u_id) {
+			int couponCount = mypageMapper.couponCount(u_id);
+			return couponCount;
+		}
+		
+		public List<Grade> nextGrade(String u_id){
+			List<Grade> nextGrade = mypageMapper.nextGrade(u_id);
+			
+			return nextGrade;
 		}
 		
 		 public List<UserInfo> getUserList(String u_id){

@@ -333,11 +333,11 @@
                                                 <div class="col-md-4 mb-3" style="font-size:13px;">
                                                     <div class="row">
                                                         <div class="col-md-3" style="text-align:center">브랜드</div>
-                                                        <div class="col-md-7"><input type="text" name="package_brand[]" value="" maxlength="190" placeholder='영문으로 기재해 주세요.'></div>
+                                                        <div class="col-md-7"><input type="text" name="package_brand[]" value="" maxlength="190"></div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3" style="text-align:center">상품명</div>
-                                                        <div class="col-md-7"><input type="text" name="package_brand[]" value="" maxlength="190" placeholder='영문으로 기재해 주세요.'></div>
+                                                        <div class="col-md-7"><input type="text" name="package_brand[]" value="" maxlength="190"></div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-3" style="text-align:center">품 목</div>
@@ -350,15 +350,24 @@
 
                                                     
                                                     <div class="row">
+                                                        <div class="col-md-3" style="text-align:center">택배사 선택</div>
+                                                        <div class="col-md-7">
+                                                            <select name='package_courier[]' onChange='pkgCateNotice(this.value)' style="width: 170px; height:25px; margin: 4px 4px 4px 4px;">
+                                                                	<option selected="" disabled="">------택배사선택 선택------</option> <option data-code="04" data-name="CJ대한통운">CJ대한통운</option><option data-code="01" data-name="우체국택배">우체국택배</option> <option data-code="05" data-name="한진택배">한진택배</option> <option data-code="08" data-name="롯데택배">롯데택배</option> <option data-code="06" data-name="로젠택배">로젠택배</option> <option data-code="54" data-name="홈픽">홈픽</option> <option data-code="24" data-name="CVSnet 편의점택배(GS25)">CVSnet 편의점택배(GS25)</option> <option data-code="46" data-name="CU 편의점택배">CU 편의점택배</option> <option data-code="23" data-name="경동택배">경동택배</option> <option data-code="22" data-name="대신택배">대신택배</option> <option data-code="11" data-name="일양로지스">일양로지스</option> <option data-code="32" data-name="합동택배">합동택배</option> <option data-code="18" data-name="건영택배">건영택배</option> <option data-code="17" data-name="천일택배">천일택배</option> <option data-code="20" data-name="한덱스">한덱스</option> <option data-code="16" data-name="한의사랑택배">한의사랑택배</option> <option data-code="12" data-name="EMS">EMS</option> <option data-code="25" data-name="TNT Express">TNT Express</option> <option data-code="14" data-name="UPS">UPS</option> <option data-code="21" data-name="Fedex">Fedex</option> <option data-code="26" data-name="USPS">USPS</option> <option data-code="34" data-name="i-Parcel">i-Parcel</option> <option data-code="33" data-name="DHL Global Mail">DHL Global Mail</option> <option data-code="37" data-name="LX판토스">LX판토스</option> <option data-code="28" data-name="GSMNtoN">GSMNtoN</option> <option data-code="38" data-name="ECMS Express">ECMS Express</option> <option data-code="30" data-name="KGL네트웍스">KGL네트웍스</option> <option data-code="40" data-name="굿투럭">굿투럭</option> <option data-code="45" data-name="우리택배(구호남택배)">우리택배(구호남택배)</option> <option data-code="41" data-name="GSI Express">GSI Express</option> <option data-code="44" data-name="SLX택배">SLX택배</option> <option data-code="47" data-name="우리한방택배">우리한방택배</option> <option data-code="52" data-name="세방">세방</option> <option data-code="57" data-name="Cway Express">Cway Express</option> <option data-code="60" data-name="YJS글로벌(영국)">YJS글로벌(영국)</option> <option data-code="51" data-name="성원글로벌카고">성원글로벌카고</option> <option data-code="62" data-name="홈이노베이션로지스">홈이노베이션로지스</option> <option data-code="63" data-name="은하쉬핑">은하쉬핑</option> <option data-code="66" data-name="Giant Network Group">Giant Network Group</option> <option data-code="64" data-name="FLF퍼레버택배">FLF퍼레버택배</option> <option data-code="53" data-name="농협택배">농협택배</option> <option data-code="65" data-name="YJS글로벌(월드)">YJS글로벌(월드)</option> <option data-code="67" data-name="디디로지스">디디로지스</option> <option data-code="69" data-name="대림통운">대림통운</option> <option data-code="70" data-name="LOTOS CORPORATION">LOTOS CORPORATION</option> <option data-code="43" data-name="애니트랙">애니트랙</option> <option data-code="72" data-name="성훈물류">성훈물류</option> <option data-code="71" data-name="IK물류">IK물류</option> <option data-code="81" data-name="제니엘시스템">제니엘시스템</option> <option data-code="84" data-name="스마트로지스">스마트로지스</option> <option data-code="87" data-name="이투마스(ETOMARS)">이투마스(ETOMARS)</option> <option data-code="85" data-name="풀앳홈">풀앳홈</option> <option data-code="82" data-name="프레시솔루션">프레시솔루션</option> <option data-code="88" data-name="큐런택배">큐런택배</option> <option data-code="89" data-name="두발히어로">두발히어로</option> <option data-code="91" data-name="하이브시티">하이브시티</option> <option data-code="94" data-name="오늘의픽업">오늘의픽업</option> <option data-code="93" data-name="팬스타국제특송(PIEX)">팬스타국제특송(PIEX)</option> <option data-code="92" data-name="지니고 당일배송">지니고 당일배송</option> <option data-code="96" data-name="로지스밸리">로지스밸리</option> <option data-code="99" data-name="롯데국제특송">롯데국제특송</option> <option data-code="100" data-name="나은물류">나은물류</option> <option data-code="101" data-name="한샘서비스원 택배">한샘서비스원 택배</option> <option data-code="102" data-name="배송하기좋은날 (SHIPNERGY)">배송하기좋은날 (SHIPNERGY)</option> <option data-code="103" data-name="NDEX KOREA">NDEX KOREA</option> <option data-code="104" data-name="도도플렉스(dodoflex)">도도플렉스(dodoflex)</option> <option data-code="105" data-name="브릿지로지스㈜">브릿지로지스㈜</option> <option data-code="106" data-name="허브넷로지스틱스">허브넷로지스틱스</option> <option data-code="108" data-name="MEXGLOBAL">MEXGLOBAL</option> <option data-code="49" data-name="A.C.E EXPRESS INC">A.C.E EXPRESS INC</option> <option data-code="113" data-name="썬더히어로">썬더히어로</option> <option data-code="112" data-name="1004홈">1004홈</option> <option data-code="114" data-name="㈜캐나다쉬핑">㈜캐나다쉬핑</option> <option data-code="110" data-name="부릉">부릉</option> <option data-code="117" data-name="YUNDA EXPRESS">YUNDA EXPRESS</option> <option data-code="120" data-name="발렉스 특수물류">발렉스 특수물류</option> <option data-code="109" data-name="파테크해운항공">파테크해운항공</option> <option data-code="119" data-name="핑퐁">핑퐁</option> <option data-code="121" data-name="바바바(bababa)">바바바(bababa)</option> <option data-code="122" data-name="BAIMA EXPRESS">BAIMA EXPRESS</option> <option data-code="123" data-name="엔티엘피스">엔티엘피스</option> <option data-code="124" data-name="LTL">LTL</option> <option data-code="125" data-name="GTS 로지스">GTS 로지스</option> <option data-code="126" data-name="㈜올타코리아">㈜올타코리아</option> <option data-code="128" data-name="판월드로지스틱㈜">판월드로지스틱㈜</option> <option data-code="95" data-name="큐익스프레스">큐익스프레스</option> <option data-code="130" data-name="UFO로지스">UFO로지스</option> <option data-code="131" data-name="딜리래빗">딜리래빗</option> <option data-code="132" data-name="지오피">지오피</option> <option data-code="134" data-name="에이치케이홀딩스">에이치케이홀딩스</option> <option data-code="135" data-name="HTNS">HTNS</option> <option data-code="13" data-name="DHL">DHL</option> <option data-code="138" data-name="라스트마일">라스트마일</option> <option data-code="141" data-name="인터로지스">인터로지스</option> <option data-code="142" data-name="탱고앤고">탱고앤고</option> <option data-code="140" data-name="직구문">직구문</option> <option data-code="143" data-name="투데이">투데이</option> <option data-code="144" data-name="큐브플로우(CUBEFLOW)">큐브플로우(CUBEFLOW)</option> <option data-code="145" data-name="현대글로비스">현대글로비스</option> <option data-code="146" data-name="국제로지스틱(KSE)">국제로지스틱(KSE)</option> <option data-code="147" data-name="에스더쉬핑">에스더쉬핑</option> <option data-code="148" data-name="ARGO">ARGO</option> <option data-code="149" data-name="골드스넵스">골드스넵스</option> <option data-code="151" data-name="GNG(자이언트)">GNG(자이언트)</option>
+                                                               	</select>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="col-md-3" style="text-align:center">운송장 번호</div>
-                                                        <div class="col-md-7"><input type="text" name="package_brand[]" value="" maxlength="190" placeholder='상품별 운송장 번호 입력'></div>
+                                                    
+                                                        <div class="col-md-7">
+                                                        	<input type="text" name="package_brand[]" value="" maxlength="190" placeholder='상품별 운송장 번호 입력'></div>
                                                         </div>
                                                         <div class="row justify-content-end">
                                                             <div class="col-md-4"> </div>
                                                             <div style="font-size:14px;color:#a6a6a6;font-weight:bold;margin-top:10px;" class="col-md-6"><input type="radio" name="radio" value="" class="radio_bt"> 나중에 입력</div>
-                                
-                                                        
-                                                    </div>
+                                						</div>
                                                 </div>
                                                 <div class="col-md-4 mb-3" style="font-size:13px;">
                                                     <div class="row">
@@ -426,7 +435,6 @@
 	                3단계 : 수령인 정보 입력
 	            </div>
 	            <table width="100%" cellspacing="0" cellpadding="0" align="center" class="address_table">
-	                
 	                <tr>
 	                  <td align="center" class="td1">수령인</td>
 	                  <td class="td2 name">
@@ -456,33 +464,35 @@
 	                  </td>
 	                </tr>
 	                <tr>
-	                  <td align="center" class="td1">연락처2</td>
-	                  <td class="td2">
-	                      <input type="text"name="recipient_phone2" value="" maxlength="30" onchange="this.value=this.value.replace(/[^-0-9]/g,'');" class="input_add" >
-	                  </td>
+	                  <td align="center">주소</td> <!-- onclick은 무조건 javascript와 연결. 굳이 javascript 안 적어줘도 됨 -->
+	                  <td>
+						<input type="text" id="sample6_postcode" placeholder="우편번호">
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						<input type="text" id="sample6_address" placeholder="주소" style="width:500px;"><br>
+						<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+						<input type="text" id="sample6_extraAddress" placeholder="참고항목">						
+					  </td>
 	                </tr>
 	                <tr>
-	                 <td align="center">주소</td> <!-- onclick은 무조건 javascript와 연결. 굳이 javascript 안 적어줘도 됨 -->
-	<td>
-		<input type="text" id="sample6_postcode" placeholder="우편번호">
-		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample6_address" placeholder="주소" style="width:500px;"><br>
-		<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-		<input type="text" id="sample6_extraAddress" placeholder="참고항목">						
-	</td>
-	                                </tr>
-	                                <tr>
-	                                  <td align="center" class="td1">배송시 요청사항</td>
-	                                  <td class="td2">
-	                                      <div><input type="text" name="ship_request" value="" class="input_add" style="width:500px;"></div>
-	                  </td>
+	                	<td align="center" class="td1">배송사 선택</td>
+	                	<td class="td2">
+	                     	<select name="IVC_TY_CD" id="IVC_TY_CD" title="택배" onchange="" style="width:150px; margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
+								<option value="">--선택--</option><option value="2">FEDEX</option><option value="1">EMS</option>
+							</select>
+                     	</td>
+                     </tr>
+                     <tr>
+	                     <td align="center" class="td1">배송시 요청사항</td>
+	                     <td class="td2">
+	                         <div><input type="text" name="ship_request" value="" class="input_add" style="width:500px;"></div>
+		                  </td>
 	                </tr>
 	            </table>
-                                    </div>
-                                </div>
-                                    <button> 신청 완료 </button>
-                            </form>
-                           </div>
+               </div>
+           </div>
+               <button> 신청 완료 </button>
+       </form>
+      </div>
 	</div>
-	</body>
+</body>
 </html>

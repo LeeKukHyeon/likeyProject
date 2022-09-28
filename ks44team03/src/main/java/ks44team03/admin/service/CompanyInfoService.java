@@ -13,6 +13,9 @@ import ks44team03.admin.controller.CompanyInfoController;
 import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Department;
+import ks44team03.dto.Employee;
+import ks44team03.dto.WorkPlace;
 
 @Service
 @Transactional
@@ -38,19 +41,39 @@ public class CompanyInfoService {
 		companyInfo.setCompanyCode(newCompanyCode);
 		
 		log.info("companyInfo 입니다---------"+ companyInfo);
-		
 		int result = companyInfoMapper.addCompany(companyInfo);
 		
 		log.info("회사 등록 결과 : " + result);
 	}
 	// 회사 목록 조회
-	 public List<CompanyInfo> getCompanyList(){
+	public List<CompanyInfo> getCompanyList(){
 	  
-	 List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
-	 
-	 log.info("companyList 리스트~~~~~~~~~~"+ companyList);
-	 return companyList; 
-	 
+		List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
+	 	log.info("companyList 리스트~~~~~~~~~~"+ companyList);
+	 	return companyList; 
 	 }
-	 
+	// 사업장 목록 조회
+	public List<WorkPlace> getWorkPlaceList(){
+		
+		List<WorkPlace> workPlaceList = companyInfoMapper.getWorkPlaceList();
+		log.info("workPlaceList 리스트~~~~~~~~~~"+ workPlaceList);
+		
+		return workPlaceList;
+	}
+	// 부서 목록 조회
+	public List<Department> getDepartmentList(){
+		
+		List<Department> departmentList = companyInfoMapper.getDepartmentList();
+		log.info("departmentList 리스트~~~~~~~~~~~~" + departmentList);
+		
+		return departmentList;
+	}
+	// 사원 목록 조회
+	public List<Employee> getEmployeeList(){
+		
+		List<Employee> employeeList = companyInfoMapper.getEmployeeList();
+		log.info("employeeList 리스트~~~~~~~~~~~~" + employeeList);
+		
+		return employeeList;
+	}
 }
