@@ -72,7 +72,7 @@ public class CompanyInfoController {
 		log.info("입력한 값 ::: {}", workPlace);
 		companyInfoService.addWorkPlace(workPlace);
 		
-		return "redirect:/workplace/workPlaceList";
+		return "redirect:/workPlaceList";
 	}
 	
 	@GetMapping("/workPlaceRegister")
@@ -80,7 +80,7 @@ public class CompanyInfoController {
 		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
 		
 		model.addAttribute("title", "사업장등록");
-		model.addAttribute("companyInfoList", companyList);
+		model.addAttribute("companyList", companyList);
 		
 		return "company/workplace/workPlaceRegister";
 	}
