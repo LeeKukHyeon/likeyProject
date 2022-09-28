@@ -19,6 +19,9 @@ public interface CompanyInfoMapper {
 	//회사 목록 조회
 	public List<CompanyInfo> getCompanyList();
 	
+	//사업장 등록
+	public int addWorkPlace(WorkPlace workPlace);
+	
 	//사업장 목록 조회
 	public List<WorkPlace> getWorkPlaceList();
 	

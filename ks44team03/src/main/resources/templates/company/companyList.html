@@ -25,7 +25,7 @@
 								private String companyBirth; //회사설립날짜
 								private String companyName; //회사명 -->
 								<th>선택</th>
-								<th>회사코드</th>
+								<!-- <th>회사코드</th> -->
 								<th>사업자등록번호</th>
 								<th>대표자성명</th>
 								<th>대표자주민등록번호</th>
@@ -37,7 +37,7 @@
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
 									<td id="companyCheck"><input type="checkbox"></td>
-									<td th:text="${l.companyCode}"></td>
+									<!-- <td th:text="${l.companyCode}"></td> -->
 									<td th:text="${l.companyNum}"></td>
 									<td th:text="${l.companyInfoName}"></td>
 									<td th:text="${l.companyDelegateNum}"></td>

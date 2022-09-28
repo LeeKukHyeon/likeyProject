@@ -3,7 +3,7 @@ package ks44team03.dto;
 public class WorkPlace {
 
 	private String workPlaceCode; //사업장코드
-	private String companyNumber; //사업자등록번호
+	private String WpCompanyNumber; //사업자등록번호
 	private String workPlaceName; //사업장 명 
 	private String workPlaceRepresentative; //대표자성명
 	private String workPlaceDelegateNum; //사업장대표자 주민등록번호
@@ -11,17 +11,26 @@ public class WorkPlace {
 	private String workPlaceCate; //회사종목
 	private String workPlaceBirth; //개업날짜
 	
+	private CompanyInfo companyInfoDto; //회사정보 DTO
+	
+	public CompanyInfo getCompanyInfoDto() {
+		return companyInfoDto;
+	}
+	public void setCompanyInfoDto(CompanyInfo companyInfoDto) {
+		this.companyInfoDto = companyInfoDto;
+	}
+	
 	public String getWorkPlaceCode() {
 		return workPlaceCode;
 	}
 	public void setWorkPlaceCode(String workPlaceCode) {
 		this.workPlaceCode = workPlaceCode;
 	}
-	public String getCompanyNumber() {
-		return companyNumber;
+	public String getWpCompanyNumber() {
+		return WpCompanyNumber;
 	}
-	public void setCompanyNumber(String companyNumber) {
-		this.companyNumber = companyNumber;
+	public void setWpCompanyNumber(String wpCompanyNumber) {
+		WpCompanyNumber = wpCompanyNumber;
 	}
 	public String getWorkPlaceName() {
 		return workPlaceName;
@@ -62,10 +71,12 @@ public class WorkPlace {
 	
 	@Override
 	public String toString() {
-		return "WorkPlace [workPlaceCode=" + workPlaceCode + ", companyNumber=" + companyNumber + ", workPlaceName="
+		return "WorkPlace [workPlaceCode=" + workPlaceCode + ", WpCompanyNumber=" + WpCompanyNumber + ", workPlaceName="
 				+ workPlaceName + ", workPlaceRepresentative=" + workPlaceRepresentative + ", workPlaceDelegateNum="
 				+ workPlaceDelegateNum + ", workPlaceAddr=" + workPlaceAddr + ", workPlaceCate=" + workPlaceCate
-				+ ", workPlaceBirth=" + workPlaceBirth + "]";
+				+ ", workPlaceBirth=" + workPlaceBirth + ", companyInfoDto=" + companyInfoDto + "]";
 	}
+	
+	
 		
 }

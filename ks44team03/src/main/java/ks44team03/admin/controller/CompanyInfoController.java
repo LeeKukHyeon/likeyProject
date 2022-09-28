@@ -66,11 +66,21 @@ public class CompanyInfoController {
 		return "company/companyRegister"; 
 	}
 	
+	@PostMapping("/workPlaceRegister")
+	public String addWorkPlace(WorkPlace workPlace) {
+		
+		log.info("입력한 값 ::: {}", workPlace);
+		companyInfoService.addWorkPlace(workPlace);
+		
+		return "redirect:/workplace/workPlaceList";
+	}
 	
 	@GetMapping("/workPlaceRegister")
-	public String workPlaceRegister(Model model) {
+	public String addWorkPlaceForm(Model model) {
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
 		
 		model.addAttribute("title", "사업장등록");
+		model.addAttribute("companyInfoList", companyList);
 		
 		return "company/workplace/workPlaceRegister";
 	}

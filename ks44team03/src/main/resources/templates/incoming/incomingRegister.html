@@ -16,7 +16,7 @@
 	.incoming_register {
 		font-size: 15px;
 	}
-	#sub_btn{margin:0 auto; width:266px; height:65px; line-height:65px; background:#8d8d8d; color:#fff; font-size:18px; font-weight:bold; text-align:center; transition:0.5s all; overflow:hidden; float: left; margin-top: 15px; border: none;}
+	#sub_btn{margin:0 auto; width:290px; height:65px; line-height:65px; background:#8d8d8d; color:#fff; font-size:18px; font-weight:bold; text-align:center; transition:0.5s all; overflow:hidden; float: left; margin-top: 15px; border: none;}
 	#sub_btn:hover{transform:scale(1.1);}
 	#sub_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
 	#sub_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
@@ -24,7 +24,7 @@
 		margin-bottom: 5px;
 	}
 	.radio_group {
-		padding-left: 115px;
+		padding-left: 140px;
 	}
 	#likey_pass_n {
 		margin-top: 10px;
@@ -36,6 +36,9 @@
 	}
 	.volume_group {
 		padding-left: 3px;
+	}
+	[type=text] {
+		width: 200px;
 	}
 </style>
 <!-- 입고등록 -->
@@ -80,8 +83,11 @@
 								<td>&nbsp;<input type="text" id="weight"> kg</td>
 							</tr>
 							<tr>
-								<td><label for="likey_pass">라이키 패스</label></td>
-								<td class="radio_group">&nbsp;<input type="radio" id="likey_pass_y"> Y <input type="radio" id="likey_pass_n"> N</td>
+								<td>라이키 패스</td>
+								<td class="radio_group">&nbsp;
+								  <input type="radio" name="likey_pass" id="likey_pass_y"> <label for="likey_pass_y">Y</label>
+								  <input type="radio" name="likey_pass" id="likey_pass_n"> <label for="likey_pass_n">N</label>
+								</td>
 							</tr>
 						</table>
 						<button type="submit" id="sub_btn">등록</button>

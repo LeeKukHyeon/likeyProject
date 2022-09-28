@@ -4,18 +4,20 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ks44team03.dto.CsNotice;
+import ks44team03.dto.NoticeCenter;
 
 @Mapper
 public interface CustomerNoticeMapper {
 	
 	
-	//게시물 등록
-	public String regNotice(CsNotice csNotice);
-
+	//공지사항 등록
+	public String regNotice(NoticeCenter csNotice);
 	
-	//게시물 목록 조회 
-	public List<CsNotice> getCsNoticeList();
+	//공지사항 게시물 조회
+	public NoticeCenter getNoticeCenterRead(String noticeNumCode);
+	
+	//공지사항 게시물 목록 조회 
+	public List<NoticeCenter> getNoticeCenterList();
 
 	
 }
