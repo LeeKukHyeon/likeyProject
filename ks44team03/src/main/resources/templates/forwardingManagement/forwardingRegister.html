@@ -27,7 +27,7 @@
 		margin-bottom: 5px;
 	}
 	.trans_group {
-		width: 182px;
+		width: 206px;
 		margin-left: 3px;
 		margin-bottom: 5px;
 	}
@@ -37,6 +37,9 @@
 	#req_option_impli_n, #postpone_n, #sum_post_n, #approval_n {
 		margin-top: 5px;
 		margin-left: 10px;
+	}
+	[type=text] {
+		width: 150px;
 	}
 </style>
 <!-- 출고등록 -->
@@ -86,20 +89,32 @@
 								</td>
 							</tr>
 							<tr>
-								<td><label for="req_option_impli">요청 옵션 이행 여부</label></td>
-								<td class="radio_group">&nbsp;<input type="radio" id="req_option_impli_y"> Y <input type="radio" id="req_option_impli_n"> N</td>
+								<td>요청 옵션 이행 여부</td>
+								<td class="radio_group">&nbsp;
+								  <input type="radio" name="req_option_impli" id="req_option_impli_y"> <label for="req_option_impli_y">Y</label>
+								  <input type="radio" name="req_option_impli" id="req_option_impli_n"> <label for="req_option_impli_n">N</label>
+								</td>
 							</tr>
 							<tr>
-								<td><label for="postpone">출고보류 여부</label></td>
-								<td class="radio_group">&nbsp;<input type="radio" id="postpone_y"> Y <input type="radio" id="postpone_n"> N</td>
+								<td>출고보류 여부</td>
+								<td class="radio_group">&nbsp;
+								  <input type="radio" name="postpone" id="postpone_y"> <label for="postpone_y">Y</label>
+								  <input type="radio" name="postpone" id="postpone_n"> <label for="postpone_n">N</label>
+								</td>
 							</tr>
 							<tr>
-								<td><label for="sum_post">묶음배송 여부</label></td>
-								<td class="radio_group">&nbsp;<input type="radio" id="sum_post_y"> Y <input type="radio" id="sum_post_n"> N</td>
+								<td>묶음배송 여부</td>
+								<td class="radio_group">&nbsp;
+								  <input type="radio" name="sum_post" id="sum_post_y"> <label for="sum_post_y">Y</label>
+								  <input type="radio" name="sum_post" id="sum_post_n"> <label for="sum_post_n">N</label>
+								</td>
 							</tr>
 							<tr>
-								<td><label for="approval">관리자 출고승인 여부</label></td>
-								<td class="radio_group">&nbsp;<input type="radio" id="approval_y"> Y <input type="radio" id="approval_n"> N</td>
+								<td>관리자 출고승인 여부</td>
+								<td class="radio_group">&nbsp;
+								  <input type="radio" name="approval" id="approval_y"> <label for="approval_y">Y</label>
+								  <input type="radio" name="approval" id="approval_n"> <label for="approval_n">N</label>
+								</td>
 							</tr>
 						</table>
 						<button type="submit" id="sub_btn">등록</button>
