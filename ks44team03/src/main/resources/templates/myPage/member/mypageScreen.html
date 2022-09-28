@@ -822,6 +822,7 @@
 	    	$.ajax({
 	    			type: 'POST',
 	    			url: "/api/ship_step_info_api",
+	    			dataType:"html",
 	    			async:false,
 	    			data: {q_ship_step_type:qType,
 	    					action_type : 'ship_step_info'},
