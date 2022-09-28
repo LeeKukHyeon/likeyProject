@@ -22,10 +22,12 @@ public class CustomerNoticeController {
 	
 	//공지사항 게시글
 	@GetMapping("/noticeSearchRead")
-	public String viewNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode, Model model) {
+	public String noticeSearchRead(@RequestParam(value = "noticeTitle", required = false) String noticeTitle, Model model) {
 		
 		// 게시물 내용
-		NoticeCenter noticeRead = customerNoticeService.getNoticeCenterRead(noticeNumCode);
+		NoticeCenter noticeRead = customerNoticeService.getNoticeCenterRead(noticeTitle);
+		
+		System.out.println(noticeRead +":: 겟미ㅜㄹ냉-ㅛㅇ확일202023022034234032032032032023032023");
 		
 		model.addAttribute("noticeRead", noticeRead);
 		

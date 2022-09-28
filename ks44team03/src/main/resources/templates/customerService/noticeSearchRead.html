@@ -4,17 +4,17 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-
+      
 <body layout:fragment="content">
 	<div align="center">
 		<div style="width: 55%; margin-top: 10mm" th:object="${noticeRead}">
 			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
 			<hr width="100%" color="gray">
 			<div>
-			<h4 th:value="${noticeRead.noticeTitle"></h4>
+			<h4 th:text="${noticeRead}"></h4>
 			
 				<div style="text-align: left; color: black;" >
-					<p th:value="*{noticeContent}"></p>
+					<p th:text="${noticeContent}"></p>
 				</div>
 			</div>
 			<hr width="100%" color="gray">

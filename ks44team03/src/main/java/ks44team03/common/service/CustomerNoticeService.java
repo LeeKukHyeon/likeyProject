@@ -29,9 +29,9 @@ public class CustomerNoticeService {
 	}
 	
 	// 공지사항 게시물 조회
-	public NoticeCenter getNoticeCenterRead(String noticeNumCode) {
+	public NoticeCenter getNoticeCenterRead(String noticeTitle) {
 		
-		NoticeCenter noticeCenter = customerNoticeMapper.getNoticeCenterRead(noticeNumCode);
+		NoticeCenter noticeCenter = customerNoticeMapper.getNoticeCenterRead(noticeTitle);
 		
 		return noticeCenter;
 		
