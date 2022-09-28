@@ -1,7 +1,7 @@
 package ks44team03.dto;
 
 import org.springframework.data.annotation.Id;
-@getter
+
 public class Login {
 	@Id
 	private String u_id; //이용자 아이디
