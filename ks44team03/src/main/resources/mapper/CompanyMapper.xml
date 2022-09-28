@@ -26,6 +26,16 @@
 		<result column="wp_addr" property="workPlaceAddr"/>
 		<result column="wp_cate" property="workPlaceCate"/>
 		<result column="wp_birth" property="workPlaceBirth"/>
+		<association property="" javaType="CompanyInfo">
+			<id column="ci_code" property="companyCode"/>
+			<result column="company_number" property="companyNum"/>
+			<result column="ci_name" property="companyInfoName"/>
+			<result column="ci_delegate_num" property="companyDelegateNum"/>
+			<result column="company_addr" property="companyAddr"/>
+			<result column="company_cate" property="companyCate"/>
+			<result column="company_birth" property="companyBirth"/>
+			<result column="company_name" property="companyName"/>	
+		</association>
 	</resultMap>
 	
 	<!-- 부서 정보 -->
@@ -96,7 +106,7 @@
 		 ,wp_birth
 		 )
 		VALUES 
-		(#{workPlaceCode}, #{WpCompanyNumber}, #{workPlaceName], #{workPlaceRepresentative}, #{workPlaceDelegateNum}, #{workPlaceAddr}, #{workPlaceCate}, #{workPlaceBirth})
+		(#{workPlaceCode}, #{companyNum}, #{workPlaceName], #{workPlaceRepresentative}, #{workPlaceDelegateNum}, #{workPlaceAddr}, #{workPlaceCate}, #{workPlaceBirth})
 	</insert> -->
 	
 	<!-- 사업장 목록 조회 -->
