@@ -11,17 +11,17 @@ public class MypageAjaxController {
 	@ResponseBody
 	public String ship_step_info_api() {
 		
-		String abc = '<div>'
-			<div class="title">- 배송대행신청 미작성 입고(노데이터)</div>
-			<div class="text_box">
-				<div class="text1">호야USA 물류센터로 상품이 도착하였으나, 배송신청서 미작성 입고로 분류된 상품입니다.</div>
+		String abc = "<div>";
+			abc += "<div class='title'>- 배송대행신청 미작성 입고(노데이터)</div>";
+			abc += "<div class='text_box'>";
+			abc += "<div class='text1'>호야USA 물류센터로 상품이 도착하였으나, 배송신청서 미작성 입고로 분류된 상품입니다.</div>";
 	
-				<div class="text2">배송신청서 미작성 입고가 발생하는 경우</div>
-				<ul class="text3">
-					<li>- 주문한 상품이 물류센터에 도착한 시점까지 배송대행 신청서를 작성하지 않은 경우</li>
-					<li>- 주문한 상품이 물류센터에 도착한 시점까지 배송대행 신청서는 작성하였지만, 트래킹 번호를 기재하지 않은 경우</li>
-					<li>- 실제 입고된 트래킹 번호와 배송대행 신청서에 기재한 트래킹 번호가 상이한 경우 </li>
-				</ul>	
+			abc += "<div class='text2'>배송신청서 미작성 입고가 발생하는 경우</div>";
+			abc += "<ul class='text3'>";
+			abc +=	"<li>- 주문한 상품이 물류센터에 도착한 시점까지 배송대행 신청서를 작성하지 않은 경우</li>";
+			abc +=		"<li>- 주문한 상품이 물류센터에 도착한 시점까지 배송대행 신청서는 작성하였지만, 트래킹 번호를 기재하지 않은 경우</li>";
+			abc +=		"<li>- 실제 입고된 트래킹 번호와 배송대행 신청서에 기재한 트래킹 번호가 상이한 경우 </li>";
+					abc +=	"</ul>	"	;
 				<div class="text2">배송대행신청 미작성 입고 처리방법 </div>
 				<ul class="text3">
 					<li><b>- 처리방법 1 :</b> “신청서 등록하기” 버튼을 클릭해서 배송신청서를 작성해 주세요.</li>
