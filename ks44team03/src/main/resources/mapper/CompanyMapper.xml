@@ -19,7 +19,7 @@
 	<!-- 사업장 정보 -->
 	<resultMap type="WorkPlace" id="workPlaceResultMap">
 		<id column="wp_code" property="workPlaceCode"/>
-		<result column="company_number" property="companyNumber"/>
+		<result column="wp_company_number" property="WpCompanyNumber"/>
 		<result column="wp_company_name" property="workPlaceName"/>
 		<result column="wp_name" property="workPlaceRepresentative"/>
 		<result column="wp_delegate_num" property="workPlaceDelegateNum"/>
@@ -46,45 +46,65 @@
 		<result column="e_date" property="employeeDate"/>
 		<result column="resign_date" property="employeeResignDate"/>
 	</resultMap>
+	
 	<!-- 회사등록 -->
 	<insert id="addCompany" parameterType="CompanyInfo">
 		/* 회사등록 */
 		INSERT INTO company_info
 		(	
-		 ci_code
-  		,company_number
-  		,ci_name
-  		,ci_delegate_num
-  		,company_addr
-  		,company_cate
-  		,company_birth
-  		,company_name
+		  ci_code
+  		 ,company_number
+  		 ,ci_name
+  		 ,ci_delegate_num
+  		 ,company_addr
+  		 ,company_cate
+  		 ,company_birth
+  		 ,company_name
 		)
 		VALUES 
 		(#{companyCode}, #{companyNum}, #{companyInfoName}, #{companyDelegateNum}, #{companyAddr}, #{companyCate}, #{companyBirth}, #{companyName});
 	</insert>
+	
 	<!-- 회사 목록 조회 -->
 	<select id="getCompanyList" resultMap="companyResultMap">
 		/* 회사 목록 조회 */
 		SELECT
-		   c.ci_code		
-		  ,c.company_number	 
-		  ,c.ci_name		 
-		  ,c.ci_delegate_num 
-		  ,c.company_addr	 
-		  ,c.company_cate	
-		  ,c.company_birth	
-		  ,c.company_name	
+		   ci_code		
+		  ,company_number	 
+		  ,ci_name		 
+		  ,REPLACE(ci_delegate_num,SUBSTRING_INDEX(ci_delegate_num,'-',-1),'*******') AS ci_delegate_num
+		  ,company_addr	 
+		  ,company_cate	
+		  ,company_birth	
+		  ,company_name	
 		FROM 
-			company_info AS c;
+			company_info
+		ORDER BY CAST(SUBSTRING_INDEX(ci_code,'_code',-1) AS UNSIGNED);
 	</select>
+	<!-- 사업장 등록 -->
+	<!-- <insert id="addWorkPlace" parameterType="WorkPlace">
+		/* 사업장 등록 */
+		INSERT INTO work_place
+		(
+		  wp_code
+		 ,wp_company_number
+		 ,wp_company_name
+		 ,wp_name
+		 ,wp_delegate_num
+		 ,wp_addr
+		 ,wp_cate
+		 ,wp_birth
+		 )
+		VALUES 
+		(#{workPlaceCode}, #{WpCompanyNumber}, #{workPlaceName], #{workPlaceRepresentative}, #{workPlaceDelegateNum}, #{workPlaceAddr}, #{workPlaceCate}, #{workPlaceBirth})
+	</insert> -->
 	
 	<!-- 사업장 목록 조회 -->
 	<select id="getWorkPlaceList" resultMap="workPlaceResultMap">
 		/* 사업장 목록 조회 */
 		SELECT
 		   wp_code
-		  ,company_number
+		  ,wp_company_number
 		  ,wp_company_name
 		  ,wp_name
 		  ,wp_delegate_num
@@ -92,8 +112,10 @@
 		  ,wp_cate
 		  ,wp_birth
 		FROM
-			work_place;
+			work_place
+		ORDER BY CAST(SUBSTRING_INDEX(wp_code,'_code',-1) AS UNSIGNED);
 	</select>
+	
 	<!-- 부서 목록 조회 -->
 	<select id="getDepartmentList" resultMap="departmentResultMap">
 		/* 부서 목록 조회 */
@@ -105,8 +127,9 @@
 		FROM
 			department;
 	</select>
-	
+	<!-- 사원 목록 조회 -->
 	<select id="getEmployeeList" resultMap="employeeResultMap">
+		/* 사원 목록 조회 */
 		SELECT
 		   e_code
 		  ,e_level_code
@@ -116,7 +139,8 @@
 		  ,e_date
 		  ,resign_date
 		FROM
-			employee_info;
+			employee_info
+		ORDER BY CAST(SUBSTRING_INDEX(e_code,'_code',-1) AS UNSIGNED);
 	</select>
 	
 	

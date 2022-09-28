@@ -37,7 +37,7 @@
 								<tr th:if="${not #lists.isEmpty(workPlaceList)}" th:each="l : ${workPlaceList}">
 									<td id="companyCheck"><input type="checkbox"></td>
 									<td th:text="${l.workPlaceCode}"></td>
-									<td th:text="${l.companyNumber}"></td>
+									<td th:text="${l.WpCompanyNumber}"></td>
 									<td th:text="${l.workPlaceName}"></td>
 									<td th:text="${l.workPlaceRepresentative}"></td>
 									<!-- <td th:text="${l.workPlaceDelegateNum}"></td>  -> 사업장대표자 주민등록번호 -->
