@@ -29,12 +29,68 @@
 			<result column="grade_date" property="gradeDate"/>
 	</resultMap>
 	
+	<resultMap type="OrderInfo" id="OrderInfoResultMap">
+		<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="order_num" property="orderNum;"/>
+			<result column="user_name;" property="userName;"/>
+			<result column="post_num;" property="postNum;"/>
+			<result column="total_price;" property="totalPrice;"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+	</resultMap>
+	
+	
+	
+	<select id="count" parameterType="String" resultType="MyPageCount">
+		SELECT COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) as lastMonthCount
+		from 
+			order_info		
+		 WHERE 
+		 	id=#{u_id};
+	
+	</select>
+	
+	<select id="forwardingCount" parameterType="String" resultType="int">
+		/*제품 포장완료 및 출고대기중*/
+		SELECT COUNT(*) FROM goods_info AS g INNER JOIN incoming AS i ON g.goods_info_code = i.goods_info_code WHERE g.id = #{u_id} AND i.approval = 'y';
+	</select>
+	
+	
+	<select id="arrivalCount" parameterType="String" resultType="int">
+		/*제품 입고중*/
+		select COUNT(if(arrival='y',1,null)) FROM goods_info WHERE id=#{u_id};
+	</select>
+	
+	
+	<select id="completedApplication" parameterType="String" resultType="int">
+		/*신청서 작성완료*/
+		SELECT COUNT(if(temp IS null,1,null)) FROM order_info WHERE id=#{u_id};
+	</select>
+	
+	
+	<select id="temp" parameterType="String" resultType="int">
+		/*임시저장 건수*/
+		SELECT COUNT(if(temp='임시저장',1,null)) FROM order_info WHERE id=#{u_id};
+	</select>
+	
+	<select id="thisMonthCount" parameterType="String" resultType="int">
+		/*이번달 이용건수 조회*/
+		SELECT COUNT(*) FROM order_info WHERE id=#{u_id} AND MONTH(goods_order_date) = MONTH(CURDATE());
+	</select>
+	
+	
+	<select id="lastMonthCount" parameterType="String" resultType="int">
+		/*지난달 이용건수 조회*/
+		SELECT COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) from order_info WHERE id=#{u_id};
+	</select>
+	
 	
 	
 	<select id="getUserInfo" parameterType="String" resultMap="UserInfoResultMap">
 		/*  목록 조회 */
 		SELECT
-		   user_grade_code
+		   g.grade_name as user_grade_code
 		   ,u_pw
 		   ,user_pobox_code 
 		   ,u_name
@@ -50,7 +106,7 @@
 		   ,friends_account 
 		   ,bank_name 
 		FROM 
-			user_member where u_id = #{u_id};
+			user_member as u inner join grade as g on u.user_grade_code = g.grade_code where u_id = #{u_id};
 	</select>
 	
 	<select id="nextGrade" parameterType="String" resultType="Grade">
