@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Grade;
+import ks44team03.dto.MyPageCount;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.mapper.MypageMapper;
 
@@ -21,6 +22,44 @@ public class MypageService {
 		public MypageService(MypageMapper mypageMapper) {
 			this.mypageMapper = mypageMapper;
 		}
+		
+		
+		public List<MyPageCount> count(String u_id){
+			List<MyPageCount> count = mypageMapper.count(u_id);
+			
+			return count;
+		}
+		
+		public int forwardingCount(String u_id) {
+			int forwardingCount = mypageMapper.forwardingCount(u_id);
+			return forwardingCount;
+		}
+		
+		public int arrivalCount(String u_id) {
+			int arrivalCount = mypageMapper.arrivalCount(u_id);
+			return arrivalCount;
+		}
+		
+		public int completedApplication(String u_id) {
+			int completedApplication = mypageMapper.completedApplication(u_id);
+			return completedApplication;
+		}
+		
+		public int temp(String u_id) {
+			int temp = mypageMapper.temp(u_id);
+			return temp;
+		}
+		public int thisMonthCount(String u_id) {
+			int thisMonthCount = mypageMapper.thisMonthCount(u_id);
+			return thisMonthCount;
+		}
+		
+		public int lastMonthCount(String u_id) {
+			int lastMonthCount = mypageMapper.lastMonthCount(u_id);
+			return lastMonthCount;
+		}
+		
+		
 		
 		public int couponCount(String u_id) {
 			int couponCount = mypageMapper.couponCount(u_id);
