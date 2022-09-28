@@ -10,11 +10,11 @@ import ks44team03.dto.CsNotice;
 public interface CustomerNoticeMapper {
 	
 	
-	//게시물 등록
+	//공지사항 등록
 	public String regNotice(CsNotice csNotice);
 
 	
-	//게시물 목록 조회 
+	//공지사항 게시물 목록 조회 
 	public List<CsNotice> getCsNoticeList();
 
 	

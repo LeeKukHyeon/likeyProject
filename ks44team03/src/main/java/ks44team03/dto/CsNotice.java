@@ -2,13 +2,13 @@ package ks44team03.dto;
 
 public class CsNotice {
 	
-	private String noticeNumCode;
-	private String employeeCode;
-	private String noticeTitle;
-	private String noticeContent;
-	private String noticeImg;
-	private String noticeDate;
-	private String noticeView;
+	private String noticeNumCode; //공지사항 번호
+	private String employeeCode; //사원코드
+	private String noticeTitle; //공지사항제목
+	private String noticeContent; //공지사항내용
+	private String noticeImg; //공지사항이미지
+	private String noticeDate; //공지사항등록일자
+	private String noticeView; //공지사항조회수
 	
 	public String getNoticeNumCode() {
 		return noticeNumCode;

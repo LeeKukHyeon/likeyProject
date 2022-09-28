@@ -14,7 +14,7 @@
 		<result column="notice_date" property="noticeDate"/>
 		<result column="notice_view" property="noticeView"/>
 	</resultMap>
-
+	
 	<!-- 공지사항 목록 조회 -->
 	<select id="getCsNoticeList" resultMap="csNoticeResultMap">
 	/*  공지사항 목록 조회      */
@@ -29,25 +29,5 @@
 	FROM
 		notice_center
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </mapper>
