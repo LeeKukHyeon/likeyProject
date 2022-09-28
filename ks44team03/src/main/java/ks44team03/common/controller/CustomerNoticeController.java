@@ -20,18 +20,18 @@ public class CustomerNoticeController {
 		
 	}
 	
-	//공지사항 게시글
-	@GetMapping("/noticeSearchRead")
-	public String noticeSearchRead(@RequestParam(value = "noticeTitle", required = false) String noticeTitle, Model model) {
+	//공지사항 게시글 조회
+	@GetMapping("/noticeRead")
+	public String viewNotice(@RequestParam(value = "noticeTitle") String noticeTitle, Model model) {
 		
 		// 게시물 내용
-		NoticeCenter noticeRead = customerNoticeService.getNoticeCenterRead(noticeTitle);
+		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeTitle);
 		
-		System.out.println(noticeRead +":: 겟미ㅜㄹ냉-ㅛㅇ확일202023022034234032032032032023032023");
+		System.out.println(noticeRead +":: 받아오는 공지사항 제목 확인");
 		
 		model.addAttribute("noticeRead", noticeRead);
 		
-		return "/customerService/noticeSearchRead";
+		return "/customerService/noticeRead";
 	}
 	
 	

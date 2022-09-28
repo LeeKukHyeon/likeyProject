@@ -17,7 +17,7 @@
 	</resultMap>
 	
 	<!-- 공지사항 게시물 조회 -->
-	<select id="getNoticeCenterRead" resultMap="csNoticeResultMap">
+	<select id="getNoticeRead" resultMap="csNoticeResultMap">
 	SELECT
 		notice_title
 		,notice_content

@@ -2,7 +2,7 @@ package ks44team03.dto;
 
 public class ScheduleCenter {
 	
-	private String scheduleNumCode; //배송스케줄 번호
+	private String scheduleNumCode; //배송스케줄 등록 순번
 	private String employeeCode; //사원코드
 	private String scheduleTitle; //배송스케줄제목
 	private String scheduleContent; //배송스케줄내용
@@ -54,7 +54,7 @@ public class ScheduleCenter {
 	}
 	@Override
 	public String toString() {
-		return "CsSchedule [scheduleNumCode=" + scheduleNumCode + ", employeeCode=" + employeeCode + ", scheduleTitle="
+		return "ScheduleCenter [scheduleNumCode=" + scheduleNumCode + ", employeeCode=" + employeeCode + ", scheduleTitle="
 				+ scheduleTitle + ", scheduleContent=" + scheduleContent + ", scheduleImg=" + scheduleImg
 				+ ", scheduleDate=" + scheduleDate + ", scheduleView=" + scheduleView + "]";
 	}

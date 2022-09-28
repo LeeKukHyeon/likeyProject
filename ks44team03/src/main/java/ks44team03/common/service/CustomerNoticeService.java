@@ -29,11 +29,11 @@ public class CustomerNoticeService {
 	}
 	
 	// 공지사항 게시물 조회
-	public NoticeCenter getNoticeCenterRead(String noticeTitle) {
+	public NoticeCenter getNoticeRead(String noticeTitle) {
 		
-		NoticeCenter noticeCenter = customerNoticeMapper.getNoticeCenterRead(noticeTitle);
+		NoticeCenter noticeRead = customerNoticeMapper.getNoticeRead(noticeTitle);
 		
-		return noticeCenter;
+		return noticeRead;
 		
 	}
 	

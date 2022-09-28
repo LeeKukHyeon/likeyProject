@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerScheduleService;
 import ks44team03.dto.ScheduleCenter;
@@ -22,7 +23,16 @@ public class CustomerScheduleController {
 	
 	//배송스케줄 게시글 조회
 	@GetMapping("/deliveryScheduleSearchRead")
-	public String viewDeliverySchedule(Model model) {
+	public String viewDeliverySchedule(@RequestParam(value = "scheduleNumCode") int scheduleNumCode ,Model model) {
+		
+		// 게시물 내용
+		ScheduleCenter scheduleRead = customerScheduleService.getScheduleRead(scheduleNumCode);
+
+		System.out.println(scheduleRead + "::: 스케줄 번호 받아오는지 확인");
+		
+		model.addAttribute("scheduleRead", scheduleRead);
+		
+		
 		return "/customerService/deliveryScheduleSearchRead";
 	}
 	
