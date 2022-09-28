@@ -1,7 +1,7 @@
 package ks44team03.user.controller;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.Grade;
+import ks44team03.dto.MyPageCount;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
 
@@ -64,8 +66,29 @@ public class MypageController {
 		String u_id = "id001"; 
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
 		List<Grade> grade = mypageService.nextGrade(u_id);
-		int couponCount = mypageService.couponCount(u_id);
+		List<MyPageCount> count = mypageService.count(u_id);
 		
+		
+		  
+	
+		
+		int forwardingCount = mypageService.forwardingCount(u_id);
+		int completedApplication = mypageService.completedApplication(u_id);
+		int couponCount = mypageService.couponCount(u_id);
+		int lastMonthCount = mypageService.lastMonthCount(u_id);
+		int thisMonthCount = mypageService.thisMonthCount(u_id);
+		int arrivalCount = mypageService.arrivalCount(u_id);
+		int temp = mypageService.temp(u_id);
+		int totalCount = lastMonthCount+thisMonthCount;
+		System.out.println(arrivalCount);
+		
+		model.addAttribute("forwardingCount", forwardingCount);
+		model.addAttribute("completedApplication", completedApplication);
+		model.addAttribute("temp", temp);
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("thisMonthCount", thisMonthCount);
+		model.addAttribute("lastMonthCount", lastMonthCount);
+		model.addAttribute("arrivalCount", arrivalCount);
 		model.addAttribute("userInfo", userInfo);
 		
 		model.addAttribute("grade", grade);

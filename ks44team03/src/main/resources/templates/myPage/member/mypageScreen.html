@@ -57,9 +57,9 @@
 						<!-- <td class="code">US123456</td> -->
 						<td class="hcash"><a href="mycash_list.html">#</a></td>
 						<td class="usage">
-							전월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
-							당월 이용건수 : <font>#</font>건&nbsp;&nbsp;&nbsp;
-							총 이용건수 : <font>#</font>건
+							전월 이용건수 : <font th:text="${lastMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
+							당월 이용건수 : <font th:text="${thisMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
+							총 이용건수 : <font th:text="${totalCount}">#</font>건
 						</td>
 				  </tr>
 				</table>	
@@ -112,21 +112,21 @@
 									<ul class="progress">
 										<li>
 											<div onClick="OrderQuery('Imsi');" style="cursor:pointer">임시 저장</div>
-											<div onClick="OrderQuery('Imsi');" style="cursor:pointer">#</div>
+											<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">#</div>
 										</li>
 										
 										<li>
 											<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
-											<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;">#</div>
+											<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;" th:text="${completedApplication}">#</div>
 										</li>
 										
 										<li>
 											<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
-											<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">#</div>
+											<div onClick="OrderQuery('ItemReady');" style="cursor:pointer" th:text="${arrivalCount}">#</div>
 										</li>
 										<li>
 											<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
-											<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;">#</div>
+											<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" th:text="${forwardingCount}">#</div>
 										</li>
 										
 										<li>
@@ -385,13 +385,6 @@
 				</div>
 				
 				<!-- //상품 픽업 여부 확인 -->
-		
-		
-		
-			
-		
-				
-				
 		
 				
 				<ul class="list_bt">
@@ -761,15 +754,6 @@
 	    		nodataQuery();
 	    	}
 	    }
-    
-	    function OrderQueryCss(num)
-	    {
-	    	for(var i=1 ; i<=22 ; i++){
-	    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
-	    	}
-	    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
-	    }
-	    
 	    
 	    function viewInfo(mode)
 	    {
@@ -822,6 +806,17 @@
 	
 	    }
     	
+    
+	    function OrderQueryCss(num)
+	    {
+	    	for(var i=1 ; i<=22 ; i++){
+	    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
+	    	}
+	    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
+	    }
+	    
+	    
+	   
 	    function shipStepInfo(qType)
 	    {
 	    	$.ajax({
