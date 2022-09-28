@@ -1,6 +1,6 @@
 package ks44team03.dto;
 
-public class CsSchedule {
+public class ScheduleCenter {
 	
 	private String scheduleNumCode; //배송스케줄 번호
 	private String employeeCode; //사원코드

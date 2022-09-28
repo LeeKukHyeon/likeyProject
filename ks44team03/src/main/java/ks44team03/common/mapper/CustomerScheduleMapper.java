@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ks44team03.dto.CsSchedule;
+import ks44team03.dto.ScheduleCenter;
 
 @Mapper
 public interface CustomerScheduleMapper {
 
 	//배송스케줄 게시물 목록 조회
-	public List<CsSchedule> getCsScheduleList();
+	public List<ScheduleCenter> getScheduleCenterList();
 	
 }

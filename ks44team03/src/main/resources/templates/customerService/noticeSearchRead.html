@@ -7,14 +7,14 @@
 
 <body layout:fragment="content">
 	<div align="center">
-		<div style="width: 55%; margin-top: 10mm">
+		<div style="width: 55%; margin-top: 10mm" th:object="${noticeRead}">
 			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
 			<hr width="100%" color="gray">
 			<div>
-			<h4>저희 정상 영업 합니다.</h4>
+			<h4 th:value="${noticeRead.noticeTitle"></h4>
 			
 				<div style="text-align: left; color: black;" >
-					<p>ks44 team03 화이팅!</p>
+					<p th:value="*{noticeContent}"></p>
 				</div>
 			</div>
 			<hr width="100%" color="gray">

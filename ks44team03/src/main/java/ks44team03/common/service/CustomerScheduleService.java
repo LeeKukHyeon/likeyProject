@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ks44team03.common.mapper.CustomerScheduleMapper;
-import ks44team03.dto.CsSchedule;
+import ks44team03.dto.ScheduleCenter;
 
 @Service
 @Transactional
@@ -20,9 +20,9 @@ public class CustomerScheduleService {
 	}
 	
 	// 배송스케줄 게시물 목록 조회
-	public List<CsSchedule> getCsScheduleList(){
+	public List<ScheduleCenter> getScheduleCenterList(){
 	
-	List<CsSchedule> ScheduleList = customerScheduleMapper.getCsScheduleList();
+	List<ScheduleCenter> ScheduleList = customerScheduleMapper.getScheduleCenterList();
 	
 	return 	ScheduleList;
 	}
