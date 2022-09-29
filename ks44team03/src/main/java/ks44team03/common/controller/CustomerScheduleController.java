@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerScheduleService;
@@ -19,6 +20,27 @@ public class CustomerScheduleController {
 		this.customerScheduleService = customerScheduleService;
 		
 	}
+	
+	//배송스케줄 등록
+	@PostMapping("/deliveryScheduleRegister")
+	public String regSchedule(ScheduleCenter scheduleCenter) {
+		
+		customerScheduleService.regSchedule(scheduleCenter);
+		
+		return "redirect:/deliveryScheduleSearch";
+	}
+	
+	
+	//배송스케줄 등록
+	@GetMapping("/deliveryScheduleRegister")
+	public String regScheduleForm(Model model) {
+		
+		return "/customerService/deliveryScheduleRegister";
+	}
+	
+	
+	
+	
 	
 	
 	//배송스케줄 게시글 조회
@@ -36,11 +58,6 @@ public class CustomerScheduleController {
 		return "/customerService/deliveryScheduleSearchRead";
 	}
 	
-	//배송스케줄 등록
-	@GetMapping("/deliveryScheduleRegister")
-	public String regDeliverySchedule(Model model) {
-		return "/customerService/deliveryScheduleRegister";
-	}
 	
 	// 배송스케줄 목록 조회
 	@GetMapping("/deliveryScheduleSearch")

@@ -50,7 +50,7 @@ public class CompanyInfoService {
 	  
 		List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
 	 	log.info("companyList 리스트~~~~~~~~~~"+ companyList);
-	 	return companyList; 
+	 	return companyList;
 	 }
 	// 사업장 등록
 	public void addWorkPlace(WorkPlace workPlace) {
