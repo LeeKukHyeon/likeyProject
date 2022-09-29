@@ -13,21 +13,25 @@
 			<tbody>
 				<tr>
 					<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b></td>
-					<td style="padding-left: 18px;" th:text="${QuesionRead.mtmCate}">
-					 <div style="text-decoration: underline;" th:text="${QuesionRead.userId}">회원 아이디 : </div>
+					<td style="padding-left: 18px;">
+						<div th:text="${QuestionRead.mtmCate}"></div>
+						<div style="margin-top: 3px;">
+	 						<div style="text-decoration: underline; float: left;" th:text="'회원아이디 : '+${QuestionRead.userId}"></div>
+	 						<div style="font-family: inherit; text-align: right; margin-right: 11mm" th:text="'등록일  : '+${QuestionRead.mtmDate}"></div>
+	 					</div>	
 					</td>
 				</tr>
 				<tr>
 					<td scope="row" style="padding: 18px 13px;"><b>제목 </b></td>
 					<td style="padding-left: 18px;">
-						<input type="text" style="width: 90%;" th:text="${QuesionRead.mtmTitle}">
+						<input type="text" style="width: 90%;" th:value="${QuestionRead.mtmTitle}">
 					</td>
 				</tr>
 				<tr>
-					<td style="padding: 18px 13px; vertical-align: top;" th:text="${QuesionRead.mtmContent}"><b>문의내용</b></td>
-					<td>
-						<textarea style="width: 90%; height: 10cm; margin: 18px;" th:text="${"></textarea>
-					</td>
+				<td style="padding: 18px 13px; vertical-align: top;"><b>문의내용</b></td>
+				<td>
+					<textarea style="width: 90%; height: 10cm; margin: 18px;" th:text="${QuestionRead.mtmContent}"></textarea>
+				</td>
 				</tr>
 				<tr>
 					<td style="padding: 18px 13px;"><b>파일첨부</b></td>

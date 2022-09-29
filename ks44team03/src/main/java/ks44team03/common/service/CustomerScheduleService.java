@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ks44team03.common.mapper.CommonMapper;
 import ks44team03.common.mapper.CustomerScheduleMapper;
 import ks44team03.dto.ScheduleCenter;
 
@@ -14,10 +15,25 @@ public class CustomerScheduleService {
 
 	//의존성 주입
 	private CustomerScheduleMapper customerScheduleMapper;
+	private CommonMapper commonMapper;
 	
-	public CustomerScheduleService (CustomerScheduleMapper customerScheduleMaper) {
+	public CustomerScheduleService (CustomerScheduleMapper customerScheduleMaper , CommonMapper commonMapper) {
 		this.customerScheduleMapper = customerScheduleMaper;
+		this.commonMapper = commonMapper;
 	}
+	
+	
+	//배송스케줄 게시물 등록
+	public void regSchedule(ScheduleCenter scheduleCenter) {
+		
+		String newScheduleCode = commonMapper.getCommonPkCode("delivery_schedule", "schedule_num_code");
+		scheduleCenter.setScheduleNumCode(newScheduleCode);
+		
+		int result = customerScheduleMapper.regSchedule(scheduleCenter);
+
+	}
+	
+	
 	
 	//배송스케줄 게시물 조회
 	public ScheduleCenter getScheduleRead(int scheduleNumCode) {

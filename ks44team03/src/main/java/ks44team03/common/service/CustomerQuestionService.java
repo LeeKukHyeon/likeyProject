@@ -21,9 +21,9 @@ public class CustomerQuestionService {
 	//1:1문의 게시글 조회
 	public QuestionCenter getQuestionRead(String mtmNumCode) {
 		
-		QuestionCenter QuesionRead =  customerQuestionMapper.getQuestionRead(mtmNumCode);
+		QuestionCenter QuestionRead =  customerQuestionMapper.getQuestionRead(mtmNumCode);
 		
-		return QuesionRead;
+		return QuestionRead;
 	}
 	
 	

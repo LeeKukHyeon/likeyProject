@@ -11,8 +11,9 @@
 			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
 			<hr width="100%" color="gray">
 			<div>
-			<h4 th:text="${noticeRead.noticeTitle}"></h4>
-			
+				<div>
+				<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${noticeRead.noticeDate}"></h6><div style="float: right;">등록일 :&nbsp</div><h4 th:text="${noticeRead.noticeTitle}"></h4>
+				</div>
 				<div style="text-align: left; color: black;" >
 					<p th:text="${noticeRead.noticeContent}"></p>
 				</div>

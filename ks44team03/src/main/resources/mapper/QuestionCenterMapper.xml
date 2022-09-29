@@ -16,10 +16,12 @@
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
 
-	<select id="getScheduleRead" resultMap="QuestionResultMap">
+	<select id="getQuestionRead" resultMap="QuestionResultMap">
+	/* 1:1문의 게시글 관리자 조회  */
 	SELECT
 		id
 		,mtm_cate
+		,mtm_date
 		,mtm_title
 		,mtm_content
 	FROM
@@ -39,17 +41,6 @@
 	FROM
 		mtm_center
 	</select>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

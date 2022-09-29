@@ -21,6 +21,7 @@
 	SELECT
 		notice_title
 		,notice_content
+		,notice_date
 	FROM
 		notice_center
 	WHERE
