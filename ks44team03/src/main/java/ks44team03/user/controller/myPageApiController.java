@@ -18,12 +18,33 @@ public class myPageApiController {
 	
 	@PostMapping("shipStepInfo")
 	public String abc(@RequestParam(name="q_ship_step_type", defaultValue = "") String test) {
+		System.out.println(test+"-----------------");
+		
 		if (test.equals("noDataCnt")){
 			return "myPage/myPageApi/nodataApi";
-		}
-		else if (test.equals("Imsi")) {
+		}else if (test.equals("Imsi")) {
 			return "myPage/myPageApi/tempApi";
+		}else if (test.equals("orderType1")) {
+			
+			return "myPage/myPageApi/orderType1";
+		}else if (test.equals("buyingItem")) {
+				
+				return "myPage/myPageApi/buyingItem";
+		}else if (test.equals("Arrived")) {
+			
+			return "myPage/myPageApi/arrived";
+		}else if (test.equals("PartialStock")) {
+			
+			return "myPage/myPageApi/partialStock";
+		}else if (test.equals("AllIn")) {
+			
+			return "myPage/myPageApi/allIn";
+		}else if (test.equals("Err")) {
+			
+			return "myPage/myPageApi/err";
 		}
+			
+		
 		
 		return null;
 	}

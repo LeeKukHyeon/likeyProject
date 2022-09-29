@@ -755,9 +755,31 @@
 	    		arrData['q_query_type']='noDataCnt';
 	    		OrderQueryCss(1);
 	    		nodataQuery();
+	    	}else if(qType=="noOutNoPayCnt") {
+	    		arrData['q_status']='30';
+	    		arrData['q_paid_flg']='N';
+	    		arrData['q_query_type']='noOutNoPayCnt';
+	    		OrderQueryCss(2);	    		
 	    	}else if(qType=="Imsi") {
 	    		arrData['q_status']='0';
 	    		OrderQueryCss(5);
+	    	}else if(qType=="orderType1") {
+	    		arrData['q_status']='10';
+	    		arrData['q_order_type']='1';
+	    		OrderQueryCss(9);
+	    	}else if(qType=="Arrived") {
+	    		arrData['q_status']='NoImsi';
+	    		arrData['q_item_status']='003';
+	    		OrderQueryCss(16);
+	    	}else if(qType=="PartialStock") {
+	    		arrData['q_query_type']='PartialStock';
+	    		OrderQueryCss(18);
+	    	}else if(qType=="AllIn") {
+	    		arrData['q_query_type']='AllIn';
+	    		OrderQueryCss(20);
+	    	}else if(qType=="Err") {
+	    		arrData['q_item_status']='010';
+	    		OrderQueryCss(21);
 	    	}
 	    	
 	    }
