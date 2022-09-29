@@ -15,22 +15,23 @@
 						<table class="input_table" style="width:100%;">
 							<tr>
 								<th>선택</th>
-								<th>부서코드</th>
-								<th>사업장코드</th>
+								<th>사업장명</th>
+								<!-- <th>부서코드</th> -->
 								<th>부서 명</th>
 								<th>부서 적용날짜</th>
 							</tr>
-					   <!-- private String departmentCode; //부서코드
-							private String departmentName; //부서 명
-							private String workplaceCode; //사업장코드
-							private String departmentDate; //부서 적용날짜 -->
-							
+						   <!-- private String departmentCode; //부서코드
+								private String deWorkPlaceCode; //사업장코드
+								private String deWorkPlaceName; // 사업장 명
+								private String departmentName; //부서 명
+								private String departmentDate; //부서 적용날짜 
+								private WorkPlace workPlaceDto; // 사업장 DTO -->
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
 									<td id="companyCheck"><input type="checkbox"></td>
-									<td th:text="${l.departmentCode}"></td>
+									<td th:text="${l.workPlaceDto.workPlaceName}"></td>
+									<!-- <td th:text="${l.departmentCode}"></td> -->
 									<td th:text="${l.departmentName}"></td>
-									<td th:text="${l.workplaceCode}"></td>
 									<td th:text="${l.departmentDate}"></td>
 								</tr>
 								<tr	th:unless="${not #lists.isEmpty(departmentList)}">
