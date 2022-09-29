@@ -2,10 +2,32 @@ package ks44team03.dto;
 
 public class MyPageCount {
 	
+	
+	private int twoMonthNodataCount;
+	private int lastMonthNodataCount;
+	private int thisMonthNodataCount;
 	private int lastMonthCount;
 	private int thisMonthCount;
 	private int temp;
 	private int completedApplication;
+	public int getTwoMonthNodataCount() {
+		return twoMonthNodataCount;
+	}
+	public void setTwoMonthNodataCount(int twoMonthNodataCount) {
+		this.twoMonthNodataCount = twoMonthNodataCount;
+	}
+	public int getLastMonthNodataCount() {
+		return lastMonthNodataCount;
+	}
+	public void setLastMonthNodataCount(int lastMonthNodataCount) {
+		this.lastMonthNodataCount = lastMonthNodataCount;
+	}
+	public int getThisMonthNodataCount() {
+		return thisMonthNodataCount;
+	}
+	public void setThisMonthNodataCount(int thisMonthNodataCount) {
+		this.thisMonthNodataCount = thisMonthNodataCount;
+	}
 	public int getLastMonthCount() {
 		return lastMonthCount;
 	}
@@ -30,12 +52,14 @@ public class MyPageCount {
 	public void setCompletedApplication(int completedApplication) {
 		this.completedApplication = completedApplication;
 	}
+	
 	@Override
 	public String toString() {
-		return "MyPageCount [lastMonthCount=" + lastMonthCount + ", thisMonthCount=" + thisMonthCount + ", temp=" + temp
-				+ ", completedApplication=" + completedApplication + "]";
+		return "MyPageCount [twoMonthNodataCount=" + twoMonthNodataCount + ", lastMonthNodataCount="
+				+ lastMonthNodataCount + ", thisMonthNodataCount=" + thisMonthNodataCount + ", lastMonthCount="
+				+ lastMonthCount + ", thisMonthCount=" + thisMonthCount + ", temp=" + temp + ", completedApplication="
+				+ completedApplication + "]";
 	}
-
 	
 	
 }

@@ -51,6 +51,26 @@
 	
 	</select>
 	
+	
+	<select id="monthNodataCount" parameterType="String" resultType="MyPageCount">
+		/*달별노데이터카운트*/
+		SELECT COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 2 MONTH  )),1,null)) as twoMonthNodataCount, 
+			COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) as lastMonthNodataCount,
+			COUNT(if(MONTH(nod_arrival_date) = month(CURDATE()),1,null)) as thisMonthNodataCount
+		from 
+			nodata_manage	AS n
+			INNER JOIN 
+			user_member AS u
+			ON n.nod_user_pobox_code = u.user_pobox_code	
+		 WHERE 
+		 	u.u_id=#{u_id}; 
+	</select>
+	
+	<select id="nodataCount" parameterType="String" resultType="int">
+		/*노데이터카운트*/
+		SELECT COUNT(*) FROM nodata_manage AS n INNER JOIN user_member AS u ON n.nod_user_pobox_code = u.user_pobox_code WHERE u.u_id=#{u_id} and nod_user_check='n'; 
+	</select>
+	
 	<select id="forwardingCount" parameterType="String" resultType="int">
 		/*제품 포장완료 및 출고대기중*/
 		SELECT COUNT(*) FROM goods_info AS g INNER JOIN incoming AS i ON g.goods_info_code = i.goods_info_code WHERE g.id = #{u_id} AND i.approval = 'y';

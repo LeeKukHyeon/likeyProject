@@ -16,6 +16,7 @@
 		<result column="company_name" property="companyName"/>
 	</resultMap>
 	
+	
 	<!-- 사업장 정보 -->
 	<resultMap type="WorkPlace" id="workPlaceResultMap">
 		<id column="wp_code" property="workPlaceCode"/>
@@ -76,6 +77,7 @@
 		<id column="e_level_code" property="eLevelCode"/>
 		<result column="e_level" property="eLevelName"/>
 	</resultMap>
+	
 	
 	<!-- 회사등록 -->
 	<insert id="addCompany" parameterType="CompanyInfo">

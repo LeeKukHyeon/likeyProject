@@ -67,21 +67,26 @@ public class MypageController {
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
 		List<Grade> grade = mypageService.nextGrade(u_id);
 		List<MyPageCount> count = mypageService.count(u_id);
+		List<MyPageCount> monthNodataCount = mypageService.monthNodataCount(u_id);
 		
-		
+
 		  
 	
 		
+		int nodataCount = mypageService.nodataCount(u_id);
 		int forwardingCount = mypageService.forwardingCount(u_id);
 		int completedApplication = mypageService.completedApplication(u_id);
 		int couponCount = mypageService.couponCount(u_id);
 		int lastMonthCount = mypageService.lastMonthCount(u_id);
 		int thisMonthCount = mypageService.thisMonthCount(u_id);
+		int test = lastMonthCount + thisMonthCount;
+		
 		int arrivalCount = mypageService.arrivalCount(u_id);
 		int temp = mypageService.temp(u_id);
 		int totalCount = lastMonthCount+thisMonthCount;
-		System.out.println(arrivalCount);
 		
+		model.addAttribute("monthNodataCount", monthNodataCount);
+		model.addAttribute("nodataCount", nodataCount);
 		model.addAttribute("forwardingCount", forwardingCount);
 		model.addAttribute("completedApplication", completedApplication);
 		model.addAttribute("temp", temp);
