@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 공지사항 목록 조회 -->
-	<select id="getNoticeCenterList" resultMap="csNoticeResultMap">
+	<select id="getNoticeList" resultMap="csNoticeResultMap">
 	/*  공지사항 목록 조회      */
 	SELECT
 		notice_num

@@ -47,7 +47,7 @@ public class CustomerNoticeController {
 	public String viewNoticeList(Model model) {
 	
 		
-		List<NoticeCenter> noticeList = customerNoticeService.getNoticeCenterList();
+		List<NoticeCenter> noticeList = customerNoticeService.getNoticeList();
 		  
 		model.addAttribute("noticeList", noticeList);
 		 

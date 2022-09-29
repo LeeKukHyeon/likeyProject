@@ -29,11 +29,11 @@ public class CustomerScheduleService {
 	
 	
 	// 배송스케줄 게시물 목록 조회
-	public List<ScheduleCenter> getScheduleCenterList(){
+	public List<ScheduleCenter> getScheduleList(){
 	
-	List<ScheduleCenter> ScheduleList = customerScheduleMapper.getScheduleCenterList();
+		List<ScheduleCenter> ScheduleList = customerScheduleMapper.getScheduleList();
 	
-	return 	ScheduleList;
+		return 	ScheduleList;
 	}
 	
 }
