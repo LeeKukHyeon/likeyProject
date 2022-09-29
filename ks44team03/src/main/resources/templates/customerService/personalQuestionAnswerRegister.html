@@ -13,28 +13,20 @@
 			<tbody>
 				<tr>
 					<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b></td>
-					<td style="padding-left: 18px;">
-						<select style="align-content: center;">
-							<option>대분류 선택</option>
-							<option>회원정보</option>
-							<option>거래방법</option>
-							<option>거래취소/신고/보류</option>
-							<option>결제 및 환불</option>
-							<option>서비스 이용</option>		
-						</select>
-					 <div style="text-decoration: underline;">회원 아이디 : id015</div>
+					<td style="padding-left: 18px;" th:text="${QuesionRead.mtmCate}">
+					 <div style="text-decoration: underline;" th:text="${QuesionRead.userId}">회원 아이디 : </div>
 					</td>
 				</tr>
 				<tr>
 					<td scope="row" style="padding: 18px 13px;"><b>제목 </b></td>
 					<td style="padding-left: 18px;">
-						<input type="text" style="width: 90%;">
+						<input type="text" style="width: 90%;" th:text="${QuesionRead.mtmTitle}">
 					</td>
 				</tr>
 				<tr>
-					<td style="padding: 18px 13px; vertical-align: top;"><b>문의내용</b></td>
+					<td style="padding: 18px 13px; vertical-align: top;" th:text="${QuesionRead.mtmContent}"><b>문의내용</b></td>
 					<td>
-						<textarea style="width: 90%; height: 10cm; margin: 18px;"></textarea>
+						<textarea style="width: 90%; height: 10cm; margin: 18px;" th:text="${"></textarea>
 					</td>
 				</tr>
 				<tr>

@@ -31,8 +31,8 @@ public class CustomerScheduleController {
 		System.out.println(scheduleRead + "::: 스케줄 번호 받아오는지 확인");
 		
 		model.addAttribute("scheduleRead", scheduleRead);
-		
-		
+	
+	
 		return "/customerService/deliveryScheduleSearchRead";
 	}
 	
@@ -45,11 +45,11 @@ public class CustomerScheduleController {
 	// 배송스케줄 목록 조회
 	@GetMapping("/deliveryScheduleSearch")
 	public String viewDeliveryScheduleList(Model model) {
-		
-		List<ScheduleCenter> ScheduleList = customerScheduleService.getScheduleCenterList();		
-		
+	
+		List<ScheduleCenter> ScheduleList = customerScheduleService.getScheduleList();		
+	
 		model.addAttribute("ScheduleList", ScheduleList);
-		
+	
 		return "/customerService/deliveryScheduleSearch";
 	}
 }

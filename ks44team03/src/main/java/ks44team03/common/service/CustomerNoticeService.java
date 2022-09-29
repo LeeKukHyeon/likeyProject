@@ -34,14 +34,14 @@ public class CustomerNoticeService {
 		NoticeCenter noticeRead = customerNoticeMapper.getNoticeRead(noticeTitle);
 		
 		return noticeRead;
-		
+	
 	}
 	
 
 	// 공지사항 게시물 목록 조회
-	public List<NoticeCenter> getNoticeCenterList(){
+	public List<NoticeCenter> getNoticeList(){
 	  
-		List<NoticeCenter> noticeList = customerNoticeMapper.getNoticeCenterList();
+		List<NoticeCenter> noticeList = customerNoticeMapper.getNoticeList();
 	  
 		return noticeList; }
 	

@@ -13,6 +13,6 @@ public interface CustomerScheduleMapper {
 	public ScheduleCenter getScheduleRead(int scheduleNumCode);
 	
 	//배송스케줄 게시물 목록 조회
-	public List<ScheduleCenter> getScheduleCenterList();
+	public List<ScheduleCenter> getScheduleList();
 	
 }
