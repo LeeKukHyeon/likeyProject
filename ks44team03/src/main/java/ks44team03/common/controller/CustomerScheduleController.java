@@ -2,6 +2,8 @@ package ks44team03.common.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,14 @@ public class CustomerScheduleController {
 		this.customerScheduleService = customerScheduleService;
 		
 	}
+	
+	@PostConstruct
+	public void customerScheduleService() {
+		
+		
+	}
+	
+	
 	
 	//배송스케줄 등록
 	@PostMapping("/deliveryScheduleRegister")
@@ -45,7 +55,7 @@ public class CustomerScheduleController {
 	
 	//배송스케줄 게시글 조회
 	@GetMapping("/deliveryScheduleSearchRead")
-	public String viewDeliverySchedule(@RequestParam(value = "scheduleNumCode") int scheduleNumCode ,Model model) {
+	public String viewDeliverySchedule(@RequestParam(value = "scheduleNumCode") String scheduleNumCode ,Model model) {
 		
 		// 게시물 내용
 		ScheduleCenter scheduleRead = customerScheduleService.getScheduleRead(scheduleNumCode);
