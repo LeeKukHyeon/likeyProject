@@ -28,11 +28,11 @@ public class CustomerQuestionController {
 	@GetMapping("/personalQuestionAnswerRegister")
 	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
-		QuestionCenter QuesionRead = customerQuestionService.getQuestionRead(mtmNumCode);
+		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
 		
-		System.out.println(QuesionRead + "QuestionCenter DTO 확인");
+		System.out.println(QuestionRead + "QuestionCenter DTO 확인");
 		
-		model.addAttribute("QuesionRead", QuesionRead);
+		model.addAttribute("QuestionRead", QuestionRead);
 		
 		return "/customerService/personalQuestionAnswerRegister";
 	}
