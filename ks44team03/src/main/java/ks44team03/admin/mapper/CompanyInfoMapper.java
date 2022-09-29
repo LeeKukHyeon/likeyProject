@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Department;
 import ks44team03.dto.Employee;
+import ks44team03.dto.ManagementLevel;
 import ks44team03.dto.WorkPlace;
 
 @Mapper
@@ -36,4 +37,7 @@ public interface CompanyInfoMapper {
 	
 	//사원 목록 조회
 	public List<Employee> getEmployeeList();
+	
+	//사원 권한목록 조회
+	public List<ManagementLevel> getManagementLevelList();
 }

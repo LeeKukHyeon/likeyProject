@@ -16,6 +16,7 @@ import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Department;
 import ks44team03.dto.Employee;
+import ks44team03.dto.ManagementLevel;
 import ks44team03.dto.WorkPlace;
 
 
@@ -104,6 +105,7 @@ public class CompanyInfoController {
 		return "company/department/departmentRegister";
 	}
 	// 사원등록
+	@PostMapping("/employeeRegister")
 	public String addEmployee(Employee employee) {
 		
 		log.info("사원등록 입력한 값 :::: {}" + employee);
@@ -114,8 +116,12 @@ public class CompanyInfoController {
 	// 사원등록
 	@GetMapping("/employeeRegister")
 	public String addEmployeeForm(Model model) {
+		List<ManagementLevel> managementLevelList = companyInfoService.getManagementLevelList();
+		List<Department> departmentList = companyInfoService.getDepartmentList();
 		
 		model.addAttribute("title", "사원등록");
+		model.addAttribute("managementLevelList", managementLevelList);
+		model.addAttribute("departmentList", departmentList);
 		
 		return "company/employee/employeeRegister";
 	}

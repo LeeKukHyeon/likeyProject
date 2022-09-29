@@ -22,6 +22,7 @@
 								<th>입사일</th>
 								<th>퇴사일</th>
 							</tr>
+							
 					   <!-- private String employeeCode; //사원코드
 							private String employeeLevel; //권한코드
 							private String departmentCode; //부서코드
@@ -29,11 +30,12 @@
 							private String employeePw; //비밀번호
 							private String employeeDate; //입사일	
 							private String employeeResignDate; //퇴사일 -->
+							
 							<tbody style="text-align: center;">
 								<tr th:if="${not #lists.isEmpty(employeeList)}" th:each="l : ${employeeList}">
 									<td id="companyCheck"><input type="checkbox"></td>
 									<td th:text="${l.employeeCode}"></td>
-									<td th:text="${l.employeeLevelCode}"></td>
+									<td th:text="${l.managementLevelDto.eLevelName}"></td>
 									<td th:text="${l.departmentCode}"></td>
 									<td th:text="${l.employeeName}"></td>
 									<!-- <td th:text="${l.employeePw}"></td> 사원 비밀번호 -->
