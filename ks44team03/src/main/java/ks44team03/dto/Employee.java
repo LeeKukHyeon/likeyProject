@@ -3,13 +3,13 @@ package ks44team03.dto;
 public class Employee {
 
 	private String employeeCode; //사원코드
-	private String employeeLevel; //권한코드
+	private String employeeLevel; //권한
 	private String departmentCode; //부서코드
 	private String employeeName; //사원이름
 	private String employeePw; //비밀번호
 	private String employeeDate; //입사일	
 	private String employeeResignDate; //퇴사일
-	
+	private String employeeLevelCode; //권한 코드
 	
 	public String getEmployeeCode() {
 		return employeeCode;
@@ -53,12 +53,19 @@ public class Employee {
 	public void setEmployeeResignDate(String employeeResignDate) {
 		this.employeeResignDate = employeeResignDate;
 	}
+	public String getEmployeeLevelCode() {
+		return employeeLevelCode;
+	}
+	public void setEmployeeLevelCode(String employeeLevelCode) {
+		this.employeeLevelCode = employeeLevelCode;
+	}
 	
 	@Override
 	public String toString() {
 		return "Employee [employeeCode=" + employeeCode + ", employeeLevel=" + employeeLevel + ", departmentCode="
 				+ departmentCode + ", employeeName=" + employeeName + ", employeePw=" + employeePw + ", employeeDate="
-				+ employeeDate + ", employeeResignDate=" + employeeResignDate + "]";
+				+ employeeDate + ", employeeResignDate=" + employeeResignDate + ", employeeLevelCode="
+				+ employeeLevelCode + "]";
 	}
 
 }

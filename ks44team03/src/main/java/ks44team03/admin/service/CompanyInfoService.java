@@ -57,12 +57,11 @@ public class CompanyInfoService {
 		String newWorkPlaceCode = commonMapper.getCommonPkCode("work_place", "wp_code");
 		workPlace.setWorkPlaceCode(newWorkPlaceCode);
 		
-		log.info("WorkPlace 입니다-----------"+ workPlace);
+		log.info("workPlace 입니다-----------"+ workPlace);
 		int result = companyInfoMapper.addWorkPlace(workPlace);
 		
 		log.info("사업장 등록 결과 : " + result);
 	}
-	
 	// 사업장 목록 조회
 	public List<WorkPlace> getWorkPlaceList(){
 		
@@ -71,6 +70,17 @@ public class CompanyInfoService {
 		
 		return workPlaceList;
 	}
+	
+	// 부서 등록
+	public void addDepartment(Department department) {
+		String newDepartmentCode = commonMapper.getCommonPkCode("department", "de_code");
+		department.setDepartmentCode(newDepartmentCode);
+		
+		log.info("department 입니다 ----------------" + department);
+		int result = companyInfoMapper.addDepartment(department);
+		
+		log.info("부서 등록 결과 : " + result);
+	}
 	// 부서 목록 조회
 	public List<Department> getDepartmentList(){
 		
@@ -78,7 +88,17 @@ public class CompanyInfoService {
 		log.info("departmentList 리스트~~~~~~~~~~~~" + departmentList);
 		
 		return departmentList;
-	}	
+	}
+	// 사원 등록
+	public void addEmployee(Employee employee) {
+		String newEmployeeCode = commonMapper.getCommonPkCode("employee_info", "e_code");
+		employee.setEmployeeCode(newEmployeeCode);
+		
+		log.info("employee 입니다 ------------------" + employee);
+		int result = companyInfoMapper.addEmployee(employee);
+		
+		log.info("사원 등록 결과 : " + result);
+	}
 	// 사원 목록 조회
 	public List<Employee> getEmployeeList(){
 		
