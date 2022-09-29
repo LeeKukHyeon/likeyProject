@@ -18,16 +18,14 @@ public class MemberController {
 		return "login/findIdPw";
 	}
 	
-	/*
-	 * // 회원가입 페이지 이동
-	 * 
-	 * @GetMapping ("/userForm") public String SignUp(){ return
-	 * "registration/userForm"; } // 회원가입 진행
-	 * 
-	 * @PostMapping ("/signup_action") public String SignUp(@Validated){
-	 * 
-	 * }
-	 */
+	// 회원가입 페이지 이동
+	@GetMapping("/userForm")
+	public String SignUp() { 
+		return "registration/userForm";
+	} 
+	  
+
+	 
 }
 
 
