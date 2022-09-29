@@ -10,7 +10,8 @@
         <!-- code -->
 	
 	<th:block layout:fragment="customContents">
-		<div class="container">
+		<div id = "body_container">
+				<div class="container">
 		
 			
 			<!-- 마이페이지 상단부분 -->
@@ -206,7 +207,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_5" onClick="OrderQuery('Imsi');" style="cursor:pointer">임시저장</div>
-						<div onClick="OrderQuery('Imsi');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
@@ -739,6 +740,9 @@
 				
 		</div>
 			
+		</div>
+	
+			
 	</th:block>
 		
 		<script>
@@ -751,7 +755,11 @@
 	    		arrData['q_query_type']='noDataCnt';
 	    		OrderQueryCss(1);
 	    		nodataQuery();
+	    	}else if(qType=="Imsi") {
+	    		arrData['q_status']='0';
+	    		OrderQueryCss(5);
 	    	}
+	    	
 	    }
 	    
 	    function viewInfo(mode)
@@ -821,7 +829,7 @@
 	    {
 	    	$.ajax({
 	    			type: 'POST',
-	    			url: "/api/ship_step_info_api",
+	    			url: "/shipStepInfo",
 	    			dataType:"html",
 	    			async:false,
 	    			data: {q_ship_step_type:qType,
@@ -842,14 +850,15 @@
 	    {
 	    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
 	    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
-	    	
+	    	console.log(q_nodata_field);
 	    	$.ajax({
 	    			type: 'POST',
-	    			url: "https://www.hoyausa.co.kr/api/nodata_api.html",
+	    			url: "/api/nodataListApi",
 	    			async:false,
 	    			data: {q_nodata_field:q_nodata_field,
 	    					q_nodata_search:q_nodata_search,
 	    					action_type : 'noDataList'},
+	    			dataType:"html",
 	    			success: function(data) 
 	    			{
 	    				var content = $('#nodata_list').html(data);

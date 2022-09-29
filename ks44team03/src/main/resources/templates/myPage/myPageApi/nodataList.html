@@ -1,0 +1,91 @@
+<div class="nodate_list">
+				
+
+				
+
+				<div class="title">나의 노데이터 목록</div>
+				
+				
+				<ul class="list_bt">
+					<div class="icon_text" title="해당 노데이터 건에 대한 내품 확인요청 시 신청해주세요. (수수료$1)"><img src="image/S_shipping_form_icon_10.gif"></div>
+					<li><a href="javascript:void(0);" onclick="doAction('chkStockIn')">내품 확인요청</a></li>
+					
+					<div class="icon_text" title="즉시입고요청은 1~2일(영업일 기준) 소요됩니다. 신청서 작성 후 신청해주세요. (수수료 $1)"><img src="image/S_shipping_form_icon_10.gif"></div>
+					<li><a href="javascript:void(0);" onclick="doAction('nowStockIn')">즉시 입고요청</a></li>
+					
+					<div class="icon_text" title="노데이터 입고요청 건은 신청 후 2~3일(영업일 기준) 소요됩니다. 신청서 작성 후 신청해주세요."><img src="image/S_shipping_form_icon_10.gif"></div>
+					<li><a href="javascript:void(0);" onclick="doAction('reqStockIn')">입고요청</a></li>
+				</ul> 
+				<div style="clear:both;padding-top:5px;"></div>
+				
+				<form name="frmMain" id="frmMain" method="get" action="">
+				<input type="hidden" name="action_type">
+				<input type="hidden" name="req_stock_type">
+				<input type="hidden" name="call_type">
+				
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="data_table">
+				  <tbody><tr>
+					<th class="td0">
+						<input type="checkbox" name="allCheck" onchange="AllCheck();">
+					</th>
+					<th class="td1">노데이터 번호</th>
+					<th class="td2">발송처</th>
+					<th class="td3">센터 도착일<br>(보관일)</th>
+					<th class="td4">영문성함<br>(구매자)</th>
+					<th class="td5">사서함 번호</th>
+					<th class="td6">트레킹 번호</th>
+				  </tr>
+
+
+
+
+
+
+		
+
+
+		<tr><td colspan="7">노데이터 목록이 존재하지 않습니다.</td>				</tr></tbody></table>
+				</form>
+				
+				<div style="height:10px;"></div>
+
+
+				<!-- 검색 -->
+				<form name="query" method="get" action="/api/nodata_api.html" onsubmit="return false;">
+				<input type="hidden" name="action_type" value="query">
+				<div class="nodata_search">
+					<table border="0" cellspacing="0" cellpadding="0" align="center">
+					  <tbody><tr>
+						<td>
+							<select name="q_nodata_field" class="custom-select">
+								<option value="tracking_num">트래킹넘버</option>
+								<option value="shop_site">발송처</option>
+							</select>
+						</td>
+						<td><input type="text" name="q_nodata_search" value=""></td>
+						<td><a href="javascript:void(0);" onclick="nodataQuery();">검 &nbsp;색</a></td>
+					  </tr>
+					</tbody></table>
+				</div>
+				</form>
+				<!-- //검색 -->
+				
+				<div style="height:10px;"></div>
+				<div style="padding:10px 150px 15px;font-size:13px;font-weight:normal;text-align:left;">
+					입고 작업은 당일 입고된 건들을 우선으로 이루어기 때문에 신청서 미작성 입고(노데이터)건의 입고일은 당일 물량에 따라 변경/지연될 수 있습니다.
+				</div>
+				
+				<div style="padding:10px 150px 15px;font-size:13px;color:#f47a27;font-weight:bold;text-align:left;">
+				*.일치하는 노데이터 목록이 존재하지 않을 경우 1:1 문의게시판에 문의해주세요.
+				</div>
+				<div style="padding:10px 150px 15px;font-size:13px;font-weight:bold;text-align:left;">
+				*.노데이터 입고요청 : 신청서 작성이 완료된 경우 (트래킹넘버 기재완료 시) [노데이터 입고요청] 선택하여 입고요청<br>
+				*.신청서 등록하기 : 신청서 미작성 상태일 경우 [신청서 등록하기] 선택하면 해당 신청서에 트래킹넘버 자동으로 적용 가능
+				</div>
+				<div style="padding:10px 150px 15px;font-size:13px;color:#f47a27;font-weight:bold;text-align:left;">
+				※ 요청 후 입고 완료까지 1~2일 소요 예상됩니다. (영업일 기준) 
+				</div>
+				
+				<div style="height:10px;"></div>
+				
+			</div>
