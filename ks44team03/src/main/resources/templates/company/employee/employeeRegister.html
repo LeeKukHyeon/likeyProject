@@ -31,13 +31,27 @@
 					<tr>
 						<th class="td1">사원권한</th>	
 						<td class="td2">
-							<input type="text" name=employeeLevel placeholder="사원권한">	
+							<select name="employeeLevelCode">
+								<th:block th:if="${not #lists.isEmpty(managementLevelList)}" th:each="l : ${managementLevelList}">
+									<option th:value="${l.eLevelCode}" th:text="${l.eLevelName}"></option>
+								</th:block>
+								<th:block th:unless="${not #lists.isEmpty(managementLevelList)}">
+									<option>등록된 부서코드가 없습니다.</option>
+								</th:block>
+							</select>
 						</td>
 					</tr>
 					<tr>
 						<th class="td1">부서코드</th>	
 						<td class="td2">
-							<input type="text" name=departmentCode placeholder="부서코드">	
+							<select name="departmentCode">
+								<th:block th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
+									<option th:value="${l.departmentCode}" th:text="${l.departmentCode}"></option>
+								</th:block>
+								<th:block th:unless="${not #lists.isEmpty(departmentList)}">
+									<option>등록된 부서코드가 없습니다.</option>
+								</th:block>
+							</select>	
 						</td>
 					</tr>
 					<tr>

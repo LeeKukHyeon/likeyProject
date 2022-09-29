@@ -15,6 +15,7 @@ import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Department;
 import ks44team03.dto.Employee;
+import ks44team03.dto.ManagementLevel;
 import ks44team03.dto.WorkPlace;
 
 @Service
@@ -106,5 +107,13 @@ public class CompanyInfoService {
 		log.info("employeeList 리스트~~~~~~~~~~~~" + employeeList);
 		
 		return employeeList;
+	}
+	// 사원 권한목록 조회
+	public List<ManagementLevel> getManagementLevelList(){
+		
+		List<ManagementLevel> managementLevelList = companyInfoMapper.getManagementLevelList();
+		log.info("managementLevelList 리스트~~~~~~~~~~~~" + managementLevelList);
+		
+		return managementLevelList;
 	}
 }
