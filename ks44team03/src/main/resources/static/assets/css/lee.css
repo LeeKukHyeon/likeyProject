@@ -109,7 +109,7 @@
 
 /* 배송대행신청 미작성 입고 건수 */
 .nodata_wrap {width:100%;background-color:#ffffff;}
-				
+		
 .nodata_wrap .nodate_list .bt1 {position:absolute; width:190px;height:40px;z-index:1;right:200px;top:-5px;text-align:center;background-color:#ff9520;}
 
 .nodata_wrap .nodate_list .list_bt {margin-top:56px;}
@@ -125,7 +125,6 @@
 .nodata_wrap .nodate_list .title {float:left;background:url(image/S_sub_icon_01.gif) 0 80% no-repeat;padding-left:17px;font-size:14px;color:#3f3f3f;font-weight:bold;padding-top:15px;}
 
 .nodata_wrap .nodate_list .close {position:absolute;right:0;top:-5px;}
-
 
 
 .nodata_wrap .nodate_list .data_table {border-collapse:collapse;margin-top:7px;}
@@ -262,7 +261,7 @@
 .detail_title {border-bottom:1px solid #d8d8d8;margin-bottom:26px;}
 .detail_title .text1 {display:inline-block;border-bottom:3px solid #f47827;padding-bottom:10px;font-size:24px;color:#3f3f3f;font-weight:bold;}
 
-#body_container {width: 1500px;} 
+#body_container {width: 1300px; margin-left : 10%;} 
 #body_container .container {max-width: 1200px; padding:0;}
 #body_container .container .sub_contents_wrap {margin-left : 0 ; }
 
@@ -404,8 +403,7 @@
 .detail_box3_wrap .all_price .right_text > div:nth-child(3) {padding-top:33px;font-size:36px;color:#f47827;font-weight:bold;font-family:Tahoma;}
 .detail_box3_wrap .all_price .right_text > div:nth-child(4) {padding-top:10px;font-size:18px;color:#f47827;font-weight:bold;}
 .detail_box3_wrap .all_price .right_text > div:nth-child(5) {padding-top:35px;font-size:14px;color:#8a8a8a;}
-</style>
-<style>
+
 .detail_box3_wrap .sale_coupon table {border-collapse:collapse;}
 .detail_box3_wrap .sale_coupon table td {border:1px solid #c2c2c2;}
 .detail_box3_wrap .sale_coupon table td.td1 {width:150px;background-color:#f5f5f5;text-align:center;font-size:14px;color:#6a6a6a;font-weight:bold;}
