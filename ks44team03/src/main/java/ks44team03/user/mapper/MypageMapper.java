@@ -18,6 +18,8 @@ public interface MypageMapper {
 	
 	
 	
+	public List<MyPageCount> monthNodataCount(String u_id);
+	public int nodataCount(String u_id);
 	public int forwardingCount(String u_id);
 	public int arrivalCount(String u_id);
 	public int completedApplication(String u_id);	
