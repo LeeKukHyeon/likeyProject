@@ -11,10 +11,9 @@ public class Incoming {
 	private String buyWay;			//서비스 종류
 	private char likeyPass;			//라이키패스 여부
 	private String arrivalDate;		//입고일
-	private int volumeWidth;		//입고물품 가로길이(cm)
-	private int volumeLength;		//입고물품 세로길이(cm)
-	private int volumeHeight;		//입고물품 높이길이(cm)
-	private int width;				//입고물품 중량(kg)
+	private int volume;				//입고물품 부피
+	private double weight;			//입고물품 중량(kg)
+	private String photoSave;		//사진촬영 저장
 	public String getIncomingCode() {
 		return incomingCode;
 	}
@@ -69,36 +68,31 @@ public class Incoming {
 	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
-	public int getVolumeWidth() {
-		return volumeWidth;
+	public int getVolume() {
+		return volume;
 	}
-	public void setVolumeWidth(int volumeWidth) {
-		this.volumeWidth = volumeWidth;
+	public void setVolume(int volume) {
+		this.volume = volume;
 	}
-	public int getVolumeLength() {
-		return volumeLength;
+	public double getWeight() {
+		return weight;
 	}
-	public void setVolumeLength(int volumeLength) {
-		this.volumeLength = volumeLength;
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
-	public int getVolumeHeight() {
-		return volumeHeight;
+	public String getPhotoSave() {
+		return photoSave;
 	}
-	public void setVolumeHeight(int volumeHeight) {
-		this.volumeHeight = volumeHeight;
+	public void setPhotoSave(String photoSave) {
+		this.photoSave = photoSave;
 	}
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
+	
 	@Override
 	public String toString() {
 		return "Incoming [incomingCode=" + incomingCode + ", goodsInfoCode=" + goodsInfoCode + ", eCode=" + eCode
 				+ ", name=" + name + ", trackingNum=" + trackingNum + ", userPoboxCode=" + userPoboxCode + ", buyWay="
-				+ buyWay + ", likeyPass=" + likeyPass + ", arrivalDate=" + arrivalDate + ", volumeWidth=" + volumeWidth
-				+ ", volumeLength=" + volumeLength + ", volumeHeight=" + volumeHeight + ", width=" + width + "]";
+				+ buyWay + ", likeyPass=" + likeyPass + ", arrivalDate=" + arrivalDate + ", volume=" + volume
+				+ ", weight=" + weight + ", photoSave=" + photoSave + "]";
 	}
 	
 }
