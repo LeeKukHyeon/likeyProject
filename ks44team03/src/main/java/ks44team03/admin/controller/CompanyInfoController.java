@@ -1,7 +1,8 @@
 package ks44team03.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
@@ -149,6 +149,43 @@ public class CompanyInfoController {
 		
 		return "company/companyList";
 	}
+	// 회사 목록검색 조회
+	@PostMapping("/companyList")
+	public String getCompanyList(@RequestParam(name="searchKey", defaultValue = "companyNum") String searchKey
+								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
+								,Model model){
+		/*<option value="companyInfoName">대표자성명</option>
+		<option value="companyName">회사명</option>
+		<option value="companyAddr">회사주소</option>
+		<option value="companyCate">회사종목</option>
+		<option value="companyBirth">설립날짜</option>*/
+		if("companyNum".equals(searchKey)) {
+			searchKey = "company_number";
+		}else if("companyInfoName".equals(searchKey)) {
+			searchKey = "ci_name";
+		}else if("companyName".equals(searchKey)) {
+			searchKey = "company_name";
+		}else if("companyAddr".equals(searchKey)) {
+			searchKey = "company_addr";
+		}else if("companyCate".equals(searchKey)) {
+			searchKey = "company_cate";
+		}else {
+			searchKey = "company_birth";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		
+		List<CompanyInfo> companyList = companyInfoService.getSearchCompanyList(paramMap);
+		
+		model.addAttribute("title", "회사목록조회");
+		model.addAttribute("companyList", companyList);
+		
+		return "company/companyList";
+	}
+	
+	
 	// 사업장 목록조회
 	@GetMapping("/workPlaceList")
 	public String workPlaceList(Model model) {
@@ -160,6 +197,39 @@ public class CompanyInfoController {
 		
 		return "company/workPlace/workPlaceList";
 	}
+	
+	// 사업장 목록검색 조회
+	@PostMapping("/workPlaceList")
+	public String getWorkPlaceList(@RequestParam(name="searchKey", defaultValue = "companyNumber") String searchKey
+								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
+								,Model model){
+
+		if("WpCompanyNumber".equals(searchKey)) {
+			searchKey = "wp_company_number";
+		}else if("workPlaceName".equals(searchKey)) {
+			searchKey = "wp_company_name";
+		}else if("workPlaceRepresentative".equals(searchKey)) {
+			searchKey = "wp_name";
+		}else if("workPlaceAddr".equals(searchKey)) {
+			searchKey = "wp_addr";
+		}else if("workPlaceCate".equals(searchKey)) {
+			searchKey = "wp_cate";
+		}else {
+			searchKey = "wp_birth";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		
+		List<WorkPlace> workPlaceList = companyInfoService.getSearchWorkPlaceList(paramMap);
+		
+		model.addAttribute("title", "사업장목록조회");
+		model.addAttribute("workPlaceList", workPlaceList);
+		
+		return "company/workPlace/workPlaceList";
+	}
+	
 	// 부서 목록조회
 	@GetMapping("/departmentList")
 	public String departmentList(Model model) {
@@ -172,6 +242,33 @@ public class CompanyInfoController {
 		model.addAttribute("title", "부서 목록");
 		return "company/department/departmentList";
 	}
+	// 부서 목록검색 조회
+		@PostMapping("/departmentList")
+		public String getDepartmentList(@RequestParam(name="searchKey", defaultValue = "departmentCode") String searchKey
+									,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
+									,Model model){
+
+			if("departmentCode".equals(searchKey)) {
+				searchKey = "de_code";
+			}else if("workPlaceDto.workPlaceName".equals(searchKey)) {
+				searchKey = "wp_company_name";
+			}else if("departmentName".equals(searchKey)) {
+				searchKey = "de_name";
+			}else {
+				searchKey = "de_date";
+			}
+			
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("searchKey", searchKey);
+			paramMap.put("searchValue", searchValue);
+			
+			List<Department> departmentList = companyInfoService.getSearchDepartmentList(paramMap);
+			
+			model.addAttribute("title", "부서목록조회");
+			model.addAttribute("departmentList", departmentList);
+			
+			return "company/department/departmentList";
+		}
 	
 	// 사원 목록조회
 	@GetMapping("/employeeList")
@@ -183,5 +280,37 @@ public class CompanyInfoController {
 		model.addAttribute("title", "사원 목록");
 		return "company/employee/employeeList";
 	}
+	// 부서 목록검색 조회
+	@PostMapping("/employeeList")
+	public String getEmployeeList(@RequestParam(name="searchKey", defaultValue = "employeeCode") String searchKey
+								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
+								,Model model){
+
+		if("employeeCode".equals(searchKey)) {
+			searchKey = "e_code";
+		}else if("managementLevelDto.eLevelName".equals(searchKey)) {
+			searchKey = "e_level";
+		}else if("departmentCode".equals(searchKey)) {
+			searchKey = "de_code";
+		}else if("employeeName".equals(searchKey)) {
+			searchKey = "e_name";
+		}else if("employeeDate".equals(searchKey)) {
+			searchKey = "e_date";
+		}else {
+			searchKey = "resign_date";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		
+		List<Employee> employeeList = companyInfoService.getSearchEmployeeList(paramMap);
+		
+		model.addAttribute("title", "사원목록조회");
+		model.addAttribute("employeeList", employeeList);
+		
+		return "company/employee/employeeList";
+	}
+	
 	// 회사관리 목록조회 관련 맵핑 ----------- 끝 -------------------------------------------------------------------------------------
 }

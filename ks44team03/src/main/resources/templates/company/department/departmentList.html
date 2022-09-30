@@ -10,15 +10,16 @@
 	  <!-- stat content-wrapper -->
         <div class="content-wrapper">             
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div th:include="company/department/searchDepartmentList :: searchFragment"></div>
              	<div class="row">
              		<div class="col-sm-12">		
 						<table class="input_table" style="width:100%;">
 							<tr>
 								<th>선택</th>
+								<th>부서코드</th>
 								<th>사업장명</th>
-								<!-- <th>부서코드</th> -->
-								<th>부서 명</th>
-								<th>부서 적용날짜</th>
+								<th>부서명</th>
+								<th>부서적용날짜</th>
 							</tr>
 						   <!-- private String departmentCode; //부서코드
 								private String deWorkPlaceCode; //사업장코드
@@ -29,13 +30,13 @@
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
 									<td id="companyCheck"><input type="checkbox"></td>
+									<td th:text="${l.departmentCode}"></td>
 									<td th:text="${l.workPlaceDto.workPlaceName}"></td>
-									<!-- <td th:text="${l.departmentCode}"></td> -->
 									<td th:text="${l.departmentName}"></td>
 									<td th:text="${l.departmentDate}"></td>
 								</tr>
 								<tr	th:unless="${not #lists.isEmpty(departmentList)}">
-									<td colspan="4" style="text-align: center;">등록된 부서가 없습니다.</td>
+									<td colspan="5" style="text-align: center;">등록된 부서가 없습니다.</td>
 								</tr>
 							</tbody>						
 						</table>
