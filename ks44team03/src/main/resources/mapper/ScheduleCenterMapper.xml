@@ -12,7 +12,7 @@
 		<result column="schedule_content" property="scheduleContent"/>
 		<result column="schedule_img" property="scheduleImg"/>
 		<result column="schedule_date" property="scheduleDate"/>
-		<result column="schedule_view" property="scheduleView"/>
+<!-- 		<result column="schedule_view" property="scheduleView"/> -->
 	</resultMap>
 	
 	
