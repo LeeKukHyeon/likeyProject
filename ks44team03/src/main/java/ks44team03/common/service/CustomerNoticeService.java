@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ks44team03.common.mapper.CommonMapper;
 import ks44team03.common.mapper.CustomerNoticeMapper;
 import ks44team03.dto.NoticeCenter;
 
@@ -12,19 +13,23 @@ import ks44team03.dto.NoticeCenter;
 @Transactional
 public class CustomerNoticeService {
 	
+	
 	//의존성 주입
 	private CustomerNoticeMapper customerNoticeMapper;
+	private CommonMapper commonMapper;
 	
-	public CustomerNoticeService(CustomerNoticeMapper customerNoticeMapper) {
+	public CustomerNoticeService(CustomerNoticeMapper customerNoticeMapper, CommonMapper commonMapper) {
 		this.customerNoticeMapper = customerNoticeMapper;
+		this.commonMapper = commonMapper;
 	}
 	
 	// 공지사항 등록
-	public void regNotice(NoticeCenter csNotice){
+	public void regNotice(NoticeCenter noticeCenter){
 	
-		String result = customerNoticeMapper.regNotice(csNotice);
-	
-		System.out.println(result);
+		String newNoticeCode = commonMapper.getCommonPkNumCode("notice_center", "notice_num");
+		noticeCenter.setNoticeNumCode(newNoticeCode);
+		
+		int result = customerNoticeMapper.regNotice(noticeCenter);
 		
 	}
 	

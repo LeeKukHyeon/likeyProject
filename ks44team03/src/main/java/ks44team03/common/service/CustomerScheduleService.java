@@ -29,10 +29,16 @@ public class CustomerScheduleService {
 	}
 	
 	
+	
+	//배송스케줄 게시물 수정
+	public void modifySchedule(ScheduleCenter scheduleCenter) {
+		customerScheduleMapper.modifySchedule(scheduleCenter);
+	}
+	
 	//배송스케줄 게시물 등록
 	public void regSchedule(ScheduleCenter scheduleCenter) {
 		
-		String newScheduleCode = commonMapper.getCommonPkCode("delivery_schedule", "schedule_num_code");
+		String newScheduleCode = commonMapper.getCommonPkNumCode("delivery_schedule", "schedule_num");
 		scheduleCenter.setScheduleNumCode(newScheduleCode);
 		log.info(scheduleCenter + "::::::: 배송스케줄 추가 scheduleCenter");
 		

@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CommonMapper {
 	
 	public String getCommonPkCode(String tableName, String columnName);
+	
+	public String getCommonPkNumCode(String tableName, String columnName);
 }
