@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
+import ks44team03.dto.Nodata;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.UserInfo;
 
@@ -18,6 +19,7 @@ public interface MypageMapper {
 	
 	
 	
+	public List<Nodata> nodataList(String u_id);
 	public List<MyPageCount> monthNodataCount(String u_id);
 	public int nodataCount(String u_id);
 	public int forwardingCount(String u_id);

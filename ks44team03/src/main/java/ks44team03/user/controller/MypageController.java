@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
+import ks44team03.dto.Nodata;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
 
@@ -69,8 +70,7 @@ public class MypageController {
 		List<MyPageCount> count = mypageService.count(u_id);
 		List<MyPageCount> monthNodataCount = mypageService.monthNodataCount(u_id);
 		
-
-		  
+	
 	
 		
 		int nodataCount = mypageService.nodataCount(u_id);

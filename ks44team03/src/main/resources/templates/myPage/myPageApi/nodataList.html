@@ -1,17 +1,12 @@
 <div class="nodate_list">
-				
-
-				
-
+					
 				<div class="title">나의 노데이터 목록</div>
 				
 				
 				<ul class="list_bt">
-					<div class="icon_text" title="해당 노데이터 건에 대한 내품 확인요청 시 신청해주세요. (수수료$1)"><img src="image/S_shipping_form_icon_10.gif"></div>
+					<div class="icon_text" title="해당 노데이터 건에 대한 내품 확인요청 시 신청해주세요."><img src="image/S_shipping_form_icon_10.gif"></div>
 					<li><a href="javascript:void(0);" onclick="doAction('chkStockIn')">내품 확인요청</a></li>
-					
-					<div class="icon_text" title="즉시입고요청은 1~2일(영업일 기준) 소요됩니다. 신청서 작성 후 신청해주세요. (수수료 $1)"><img src="image/S_shipping_form_icon_10.gif"></div>
-					<li><a href="javascript:void(0);" onclick="doAction('nowStockIn')">즉시 입고요청</a></li>
+									
 					
 					<div class="icon_text" title="노데이터 입고요청 건은 신청 후 2~3일(영업일 기준) 소요됩니다. 신청서 작성 후 신청해주세요."><img src="image/S_shipping_form_icon_10.gif"></div>
 					<li><a href="javascript:void(0);" onclick="doAction('reqStockIn')">입고요청</a></li>
@@ -19,32 +14,52 @@
 				<div style="clear:both;padding-top:5px;"></div>
 				
 				<form name="frmMain" id="frmMain" method="get" action="">
-				<input type="hidden" name="action_type">
-				<input type="hidden" name="req_stock_type">
-				<input type="hidden" name="call_type">
-				
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="data_table">
-				  <tbody><tr>
-					<th class="td0">
-						<input type="checkbox" name="allCheck" onchange="AllCheck();">
-					</th>
-					<th class="td1">노데이터 번호</th>
-					<th class="td2">발송처</th>
-					<th class="td3">센터 도착일<br>(보관일)</th>
-					<th class="td4">영문성함<br>(구매자)</th>
-					<th class="td5">사서함 번호</th>
-					<th class="td6">트레킹 번호</th>
-				  </tr>
-
-
-
-
-
-
-		
-
-
-		<tr><td colspan="7">노데이터 목록이 존재하지 않습니다.</td>				</tr></tbody></table>
+					<input type="hidden" name="action_type">
+					<input type="hidden" name="req_stock_type">
+					<input type="hidden" name="call_type">
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="data_table">
+						  <tbody><tr>
+							<th class="td0">
+								<input type="checkbox" name="allCheck" onchange="AllCheck();">
+							</th>
+							<th class="td1">노데이터 번호</th>
+							<th class="td2">발송처</th>
+							<th class="td3">센터 도착일<br>(보관일)</th>
+							<th class="td4">성함<br>(구매자)</th>
+							<th class="td5">사서함 번호</th>
+							<th class="td6">트레킹 번호</th>
+						  </tr>
+						  	<tr th:if="${#lists.isEmpty(nodataList)}">
+                           		<td colspan="7">노데이터 목록이 존재하지 않습니다.</td>
+                        	</tr>								
+							
+							<tr th:unless= "${#strings.isEmpty(n.nodCode)}" th:each="n : ${nodataList}"> 						
+								<td >			
+									<input type="checkbox" name="arr_row_id[]">						
+								</td>	
+								<td th:text="${n.nodCode}">	
+									노데이터 번호								
+								</td>		
+								<td th:text="${n.nodTrackingCompany}">	
+									발송처				
+								</td>
+								<td th:text="${n.nodArrivalDate}">	
+									입고일			
+								</td>
+								<td th:text="${n.nodRecipient}">	
+									수취인			
+								</td>
+								<td th:text="${n.nodUserPoboxCode}">	
+									사서함번호			
+								</td>
+								<td th:text="${n.nodTrackingNum}">	
+									운송장번호		
+								</td>						
+							</tr>
+							
+						</tbody>
+					</table>
 				</form>
 				
 				<div style="height:10px;"></div>
