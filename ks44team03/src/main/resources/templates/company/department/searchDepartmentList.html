@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- 목록조회 바 -->
+	<div th:fragment="searchFragment" >
+	        <form th:action="@{/departmentList}" method="post" class="searchBar">
+	        	<select name="searchKey">
+	        		<option value="departmentCode">부서코드</option>
+	        		<option value="workPlaceDto.workPlaceName">사업장명</option>
+	        		<option value="departmentName">부서명</option>
+	        		<option value="departmentDate">부서적용날짜</option>
+	        	</select>
+        		<input type="text" name="searchValue" placeholder="검색어 를 입력해주세요.">
+        		<button type="submit" class="searchBtn">조회</button>
+	        </form>		
+        </div>
+</html>

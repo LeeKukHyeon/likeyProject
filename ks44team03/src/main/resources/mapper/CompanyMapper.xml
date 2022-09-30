@@ -113,6 +113,25 @@
 			company_info
 		ORDER BY CAST(SUBSTRING_INDEX(ci_code,'_code',-1) AS UNSIGNED);
 	</select>
+	<!-- 회사 목록 검색조회 -->
+	<select id="getSearchCompanyList" parameterType="map" resultMap="companyResultMap" fetchSize="100">
+		/* 회사 목록 검색조회 */
+		SELECT
+		   company_number
+		  ,ci_name
+		  ,company_name
+		  ,company_addr
+		  ,company_cate
+		  ,company_birth
+		FROM
+			company_info
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+		</trim>
+		ORDER BY company_number;
+	</select>
 	<!-- 사업장 등록 -->
 	<insert id="addWorkPlace" parameterType="WorkPlace">
 		/* 사업장 등록 */
@@ -146,6 +165,25 @@
 			work_place
 		ORDER BY CAST(SUBSTRING_INDEX(wp_code,'_code',-1) AS UNSIGNED);
 	</select>
+	<!-- 사업장 목록 검색조회 -->
+	<select id="getSearchWorkPlaceList" parameterType="map" resultMap="workPlaceResultMap" fetchSize="100" >
+		/* 사업장 목록 검색조회 */
+		SELECT
+		   wp_company_number
+		  ,wp_company_name
+		  ,wp_name
+		  ,wp_addr
+		  ,wp_cate
+		  ,wp_birth
+		FROM
+			work_place
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+		</trim>
+		ORDER BY wp_company_number;
+	</select>
 	<!-- 부서 등록 -->
 	<insert id="addDepartment" parameterType="Department">
 		/* 부서 등록 */
@@ -175,6 +213,28 @@
 			ON
 			d.wp_code = w.wp_code
 		ORDER BY w.wp_company_name ASC;
+	</select>
+	<!-- 부서 목록 검색조회 -->
+	<select id="getSearchDepartmentList" parameterType="map" resultMap="departmentResultMap" fetchSize="100">
+		/* 부서 목록 검색조회 */
+		SELECT
+			 w.wp_code
+			,w.wp_company_name
+		    ,d.de_code
+			,d.de_name
+			,d.de_date
+		FROM
+			department AS d
+			INNER JOIN
+			work_place AS w
+			ON
+			d.wp_code = w.wp_code
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="searchValue != null and searchValue != ''">
+					${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+				</if>
+			</trim>
+		ORDER BY d.de_code;
 	</select>
 	<!-- 사원 등록 -->
 	<insert id="addEmployee" parameterType="Employee">
@@ -211,6 +271,31 @@
 			ON 
 			e.e_level_code = m.e_level_code
 		ORDER BY CAST(SUBSTRING_INDEX(e_code,'_code',-1) AS UNSIGNED);
+	</select>
+	<!-- 사원 목록 검색조회 -->
+	<select id="getSearchEmployeeList" parameterType="map" resultMap="employeeResultMap" fetchSize="100">
+		/* 사원 목록 검색조회 */
+		SELECT
+		   e.e_code
+		  ,e.e_level_code
+		  ,e.de_code
+		  ,e.e_name
+		  ,e.e_pw
+		  ,e.e_date
+		  ,e.resign_date
+		  ,m.e_level
+		FROM
+			employee_info AS e
+			INNER JOIN
+			management_level AS m
+			ON
+			e.e_level_code = m.e_level_code
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="searchValue != null and searchValue != ''">
+					${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+				</if>
+			</trim>
+		ORDER BY e.e_code;
 	</select>
 	<!-- 권한 목록 조회 -->
 	<select id="getManagementLevelList" resultMap="managementLevelResultMap">
