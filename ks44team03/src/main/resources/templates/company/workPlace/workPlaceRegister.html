@@ -32,7 +32,7 @@
 					<tr>
 						<th class="td1">사업자 등록 번호</th>
 						<td class="td2">
-							<select name="companyInfo" disabled="disabled">
+							<select name="wpCompanyNumber">
 								<th:block th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
 									<option th:value="${l.companyNum}" th:text="${l.companyNum}"></option>
 								</th:block>

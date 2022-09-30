@@ -12,7 +12,7 @@
 			CASE
 			WHEN COUNT(*) = 0 THEN CONCAT(#{tableName},'_code1')
 			ELSE 
-				CONCAT(#{tableName}, '_code', CAST(COUNT(SUBSTRING_INDEX(${columnName},'_code',-1)) AS UNSIGNED) + 1 )
+				CONCAT(#{tableName}, '_code', max(cast(SUBSTRING_INDEX(${columnName},'_code',-1)AS UNSIGNED)+1) )
 			END 
 		FROM 
 			${tableName};

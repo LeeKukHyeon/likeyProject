@@ -24,10 +24,20 @@ public class MypageService {
 		}
 		
 		
+		public List<MyPageCount> monthNodataCount(String u_id){
+			List<MyPageCount> nodataCount = mypageMapper.monthNodataCount(u_id);			
+			return nodataCount;
+		}
+		
 		public List<MyPageCount> count(String u_id){
 			List<MyPageCount> count = mypageMapper.count(u_id);
 			
 			return count;
+		}
+		
+		public int nodataCount(String u_id) {
+			int nodataCount = mypageMapper.nodataCount(u_id);
+			return nodataCount;
 		}
 		
 		public int forwardingCount(String u_id) {

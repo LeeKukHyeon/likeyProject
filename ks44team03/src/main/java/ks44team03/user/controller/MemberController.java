@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 @Controller
 public class MemberController {
 
@@ -17,10 +18,24 @@ public class MemberController {
 		return "login/findIdPw";
 	}
 	
-	
-	@GetMapping ("/userForm")
-	public String userSignUp(){
+	// 회원가입 페이지 이동
+	@GetMapping("/userForm")
+	public String SignUp() { 
 		return "registration/userForm";
-	}
+	} 
+	  
 
+	 
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -23,7 +23,7 @@
 		  </tr>
 		  <tr th:if="${not #lists.isEmpty(ScheduleList)}" th:each="l : ${ScheduleList}">
 		    <td class="number" th:text="${l.scheduleNumCode}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/deliveryScheduleSearchRead}" th:text="${l.scheduleTitle}"  ></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/deliveryScheduleSearchRead(scheduleNumCode=${l.scheduleNumCode})}" th:text="${l.scheduleTitle}"  ></a></td>
 			<td class="date" th:text="${l.scheduleDate}"></td>
 			<td class="hit" th:text="${l.scheduleView}"></td>
 		  </tr>

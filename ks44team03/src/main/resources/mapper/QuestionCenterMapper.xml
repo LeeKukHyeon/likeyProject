@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.common.mapper.CustomerQuestionMapper">
+	<resultMap type="QuestionCenter" id="QuestionResultMap">
+		<id column="mtm_num_code" property="mtmNumCode"/>
+		<result column="id" property="userId"/>
+		<result column="e_code" property="employeeCode"/>
+		<result column="mtm_cate" property="mtmCate"/>
+		<result column="mtm_title" property="mtmTitle"/>
+		<result column="mtm_content" property="mtmContent"/>
+		<result column="mtm_img" property="mtmImg"/>
+		<result column="mtm_date" property="mtmDate"/>
+		<result column="mtm_situation" property="mtmSituation"/>
+	</resultMap>
+
+	<select id="getQuestionRead" resultMap="QuestionResultMap">
+	/* 1:1문의 게시글 관리자 조회  */
+	SELECT
+		id
+		,mtm_cate
+		,mtm_date
+		,mtm_title
+		,mtm_content
+	FROM
+		mtm_center
+	WHERE
+		mtm_num_code = ${mtmNumCode}
+	</select>
+
+
+	<select id="getQuestionList" resultMap="QuestionResultMap">
+	/* 1:1 문의 관리자 조회 */
+	SELECT
+		mtm_num_code
+		,id
+		,mtm_title
+		,mtm_date
+	FROM
+		mtm_center
+	</select>
+
+
+
+</mapper>

@@ -15,6 +15,7 @@ import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Department;
 import ks44team03.dto.Employee;
+import ks44team03.dto.ManagementLevel;
 import ks44team03.dto.WorkPlace;
 
 @Service
@@ -50,19 +51,18 @@ public class CompanyInfoService {
 	  
 		List<CompanyInfo> companyList = companyInfoMapper.getCompanyList();
 	 	log.info("companyList 리스트~~~~~~~~~~"+ companyList);
-	 	return companyList; 
+	 	return companyList;
 	 }
 	// 사업장 등록
 	public void addWorkPlace(WorkPlace workPlace) {
 		String newWorkPlaceCode = commonMapper.getCommonPkCode("work_place", "wp_code");
 		workPlace.setWorkPlaceCode(newWorkPlaceCode);
 		
-		log.info("WorkPlace 입니다-----------"+ workPlace);
+		log.info("workPlace 입니다-----------"+ workPlace);
 		int result = companyInfoMapper.addWorkPlace(workPlace);
 		
 		log.info("사업장 등록 결과 : " + result);
 	}
-	
 	// 사업장 목록 조회
 	public List<WorkPlace> getWorkPlaceList(){
 		
@@ -70,6 +70,17 @@ public class CompanyInfoService {
 		log.info("workPlaceList 리스트~~~~~~~~~~"+ workPlaceList);
 		
 		return workPlaceList;
+	}
+	
+	// 부서 등록
+	public void addDepartment(Department department) {
+		String newDepartmentCode = commonMapper.getCommonPkCode("department", "de_code");
+		department.setDepartmentCode(newDepartmentCode);
+		
+		log.info("department 입니다 ----------------" + department);
+		int result = companyInfoMapper.addDepartment(department);
+		
+		log.info("부서 등록 결과 : " + result);
 	}
 	// 부서 목록 조회
 	public List<Department> getDepartmentList(){
@@ -79,6 +90,16 @@ public class CompanyInfoService {
 		
 		return departmentList;
 	}
+	// 사원 등록
+	public void addEmployee(Employee employee) {
+		String newEmployeeCode = commonMapper.getCommonPkCode("employee_info", "e_code");
+		employee.setEmployeeCode(newEmployeeCode);
+		
+		log.info("employee 입니다 ------------------" + employee);
+		int result = companyInfoMapper.addEmployee(employee);
+		
+		log.info("사원 등록 결과 : " + result);
+	}
 	// 사원 목록 조회
 	public List<Employee> getEmployeeList(){
 		
@@ -86,5 +107,13 @@ public class CompanyInfoService {
 		log.info("employeeList 리스트~~~~~~~~~~~~" + employeeList);
 		
 		return employeeList;
+	}
+	// 사원 권한목록 조회
+	public List<ManagementLevel> getManagementLevelList(){
+		
+		List<ManagementLevel> managementLevelList = companyInfoMapper.getManagementLevelList();
+		log.info("managementLevelList 리스트~~~~~~~~~~~~" + managementLevelList);
+		
+		return managementLevelList;
 	}
 }

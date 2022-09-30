@@ -16,17 +16,18 @@
 		<result column="company_name" property="companyName"/>
 	</resultMap>
 	
+	
 	<!-- 사업장 정보 -->
 	<resultMap type="WorkPlace" id="workPlaceResultMap">
 		<id column="wp_code" property="workPlaceCode"/>
-		<result column="wp_company_number" property="WpCompanyNumber"/>
+		<result column="wp_company_number" property="wpCompanyNumber"/>
 		<result column="wp_company_name" property="workPlaceName"/>
 		<result column="wp_name" property="workPlaceRepresentative"/>
 		<result column="wp_delegate_num" property="workPlaceDelegateNum"/>
 		<result column="wp_addr" property="workPlaceAddr"/>
 		<result column="wp_cate" property="workPlaceCate"/>
 		<result column="wp_birth" property="workPlaceBirth"/>
-		<association property="" javaType="CompanyInfo">
+		<!-- <association property="companyInfoDto" javaType="CompanyInfo">
 			<id column="ci_code" property="companyCode"/>
 			<result column="company_number" property="companyNum"/>
 			<result column="ci_name" property="companyInfoName"/>
@@ -35,27 +36,48 @@
 			<result column="company_cate" property="companyCate"/>
 			<result column="company_birth" property="companyBirth"/>
 			<result column="company_name" property="companyName"/>	
-		</association>
+		</association> -->
 	</resultMap>
 	
 	<!-- 부서 정보 -->
 	<resultMap type="Department" id="departmentResultMap">
 		<id column="de_code" property="departmentCode"/>
-		<result column="wp_code" property="departmentName" />
-		<result column="de_name" property="workplaceCode" />
+		<result column="wp_code" property="deWorkPlaceCode" />
+		<result column="de_name" property="departmentName" />
 		<result column="de_date" property="departmentDate" />
+		<association property="workPlaceDto" javaType="WorkPlace">
+			<id column="wp_code" property="workPlaceCode"/>
+			<result column="wp_company_number" property="wpCompanyNumber"/>
+			<result column="wp_company_name" property="workPlaceName"/>
+			<result column="wp_name" property="workPlaceRepresentative"/>
+			<result column="wp_delegate_num" property="workPlaceDelegateNum"/>
+			<result column="wp_addr" property="workPlaceAddr"/>
+			<result column="wp_cate" property="workPlaceCate"/>
+			<result column="wp_birth" property="workPlaceBirth"/>
+		</association>
 	</resultMap>
 	
 	<!-- 사원 정보 -->
 	<resultMap type="Employee" id="employeeResultMap">
 		<id column="e_code" property="employeeCode"/>
-		<result column="e_level_code" property="employeeLevel"/>
+		<result column="e_level_code" property="employeeLevelCode"/>
 		<result column="de_code" property="departmentCode"/>
 		<result column="e_name" property="employeeName"/>
 		<result column="e_pw" property="employeePw"/>
 		<result column="e_date" property="employeeDate"/>
 		<result column="resign_date" property="employeeResignDate"/>
+		<association property="managementLevelDto" javaType="ManagementLevel">
+			<id column="e_level_code" property="eLevelCode"/>
+			<result column="e_level" property="eLevelName"/>
+		</association>
 	</resultMap>
+	
+	<!-- 사원권한 정보 -->
+	<resultMap type="ManagementLevel" id="managementLevelResultMap">
+		<id column="e_level_code" property="eLevelCode"/>
+		<result column="e_level" property="eLevelName"/>
+	</resultMap>
+	
 	
 	<!-- 회사등록 -->
 	<insert id="addCompany" parameterType="CompanyInfo">
@@ -92,7 +114,7 @@
 		ORDER BY CAST(SUBSTRING_INDEX(ci_code,'_code',-1) AS UNSIGNED);
 	</select>
 	<!-- 사업장 등록 -->
-	<!-- <insert id="addWorkPlace" parameterType="WorkPlace">
+	<insert id="addWorkPlace" parameterType="WorkPlace">
 		/* 사업장 등록 */
 		INSERT INTO work_place
 		(
@@ -106,9 +128,8 @@
 		 ,wp_birth
 		 )
 		VALUES 
-		(#{workPlaceCode}, #{companyNum}, #{workPlaceName], #{workPlaceRepresentative}, #{workPlaceDelegateNum}, #{workPlaceAddr}, #{workPlaceCate}, #{workPlaceBirth})
-	</insert> -->
-	
+		(#{workPlaceCode}, #{wpCompanyNumber}, #{workPlaceName}, #{workPlaceRepresentative}, #{workPlaceDelegateNum}, #{workPlaceAddr}, #{workPlaceCate}, #{workPlaceBirth});
+	</insert>	
 	<!-- 사업장 목록 조회 -->
 	<select id="getWorkPlaceList" resultMap="workPlaceResultMap">
 		/* 사업장 목록 조회 */
@@ -125,33 +146,79 @@
 			work_place
 		ORDER BY CAST(SUBSTRING_INDEX(wp_code,'_code',-1) AS UNSIGNED);
 	</select>
+	<!-- 부서 등록 -->
+	<insert id="addDepartment" parameterType="Department">
+		/* 부서 등록 */
+		INSERT INTO department
+			(
+			 de_code
+			,wp_code
+			,de_name
+			,de_date
+			)
+		VALUES 
+			(#{departmentCode}, #{deWorkPlaceCode}, #{departmentName}, CURDATE());
+	</insert>
 	
 	<!-- 부서 목록 조회 -->
 	<select id="getDepartmentList" resultMap="departmentResultMap">
 		/* 부서 목록 조회 */
 		SELECT
-		   de_code
-		  ,wp_code
-		  ,de_name
-		  ,de_date
+		   w.wp_company_name
+		  ,d.de_code
+		  ,d.de_name
+		  ,d.de_date
 		FROM
-			department;
+			department AS d
+			INNER JOIN 
+			work_place AS w
+			ON
+			d.wp_code = w.wp_code
+		ORDER BY w.wp_company_name ASC;
 	</select>
+	<!-- 사원 등록 -->
+	<insert id="addEmployee" parameterType="Employee">
+		/* 사원 등록 */
+		INSERT INTO employee_info
+			(
+			 e_code
+			,e_level_code
+			,de_code
+			,e_name
+			,e_pw
+			,e_date
+			)
+		VALUES (#{employeeCode}, #{employeeLevelCode}, #{departmentCode}, #{employeeName}, #{employeePw}, CURDATE());
+		
+	</insert>
+	
 	<!-- 사원 목록 조회 -->
 	<select id="getEmployeeList" resultMap="employeeResultMap">
 		/* 사원 목록 조회 */
 		SELECT
-		   e_code
-		  ,e_level_code
-		  ,de_code
-		  ,e_name
-		  ,e_pw
-		  ,e_date
-		  ,resign_date
+		   e.e_code
+		  ,e.e_level_code
+		  ,e.de_code
+		  ,e.e_name
+		  ,e.e_pw
+		  ,e.e_date
+		  ,e.resign_date
+		  ,m.e_level
 		FROM
-			employee_info
+			employee_info AS e
+			INNER JOIN 
+			management_level AS m
+			ON 
+			e.e_level_code = m.e_level_code
 		ORDER BY CAST(SUBSTRING_INDEX(e_code,'_code',-1) AS UNSIGNED);
 	</select>
-	
+	<!-- 권한 목록 조회 -->
+	<select id="getManagementLevelList" resultMap="managementLevelResultMap">
+		SELECT
+		   e_level_code
+		  ,e_level
+		FROM
+			management_level;
+	</select>
 	
 </mapper>

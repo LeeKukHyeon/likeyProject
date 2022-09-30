@@ -11,10 +11,11 @@
 			<h2 style="font-weight: bold; text-align: left;" >배송스케줄</h2>
 			<hr width="100%" color="gray">
 			<div>
-			<h4>likey 2022년 9월 배송스케쥴 안내</h4>
-			
+				<div>
+				<h6 style="float: right;" th:text="'등록일  : '+${scheduleRead.scheduleDate}"></h6><h4 th:text="${scheduleRead.scheduleTitle}"></h4>
+				</div>
 				<div style="text-align: left; color: black;" >
-					<p>스케줄 테스트 페이지</p>
+				<p th:text="${scheduleRead.scheduleContent}"></p>
 				</div>
 			</div>
 			<hr width="100%" color="gray">

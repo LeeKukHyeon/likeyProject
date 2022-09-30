@@ -4,17 +4,18 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-
+      
 <body layout:fragment="content">
 	<div align="center">
-		<div style="width: 55%; margin-top: 10mm" th:object="${noticeRead}">
+		<div style="width: 55%; margin-top: 10mm">
 			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
 			<hr width="100%" color="gray">
 			<div>
-			<h4 th:value="${noticeRead.noticeTitle"></h4>
-			
+				<div>
+				<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${noticeRead.noticeDate}"></h6><div style="float: right;">등록일 :&nbsp</div><h4 th:text="${noticeRead.noticeTitle}"></h4>
+				</div>
 				<div style="text-align: left; color: black;" >
-					<p th:value="*{noticeContent}"></p>
+					<p th:text="${noticeRead.noticeContent}"></p>
 				</div>
 			</div>
 			<hr width="100%" color="gray">

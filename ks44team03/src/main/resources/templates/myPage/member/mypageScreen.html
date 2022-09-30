@@ -10,7 +10,8 @@
         <!-- code -->
 	
 	<th:block layout:fragment="customContents">
-		<div class="container">
+		<div id = "body_container">
+				<div class="container">
 		
 			
 			<!-- 마이페이지 상단부분 -->
@@ -188,32 +189,32 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_1" onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">배송대행신청 미작성 입고(노데이터)</div>
-						<div onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">0</div>
+						<div onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;" th:text="${nodataCount}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_2" onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">무게측정 및 출고대기 / 결제대기</div>
 						<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">0</div>
 					</td>
 					<td>
-						<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 한국으로 배송 중</div>
+						<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 배송 중</div>
 						<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">0</div>
 					</td>
 					<td>
-						<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국내 배송 중</div>
+						<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국외 배송 중</div>
 						<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">0</div>
 					</td>
 				  </tr>
 				  <tr>
 				    <td>
 						<div id="orderCnt_5" onClick="OrderQuery('Imsi');" style="cursor:pointer">임시저장</div>
-						<div onClick="OrderQuery('Imsi');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
 						<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer">0</div>
 					</td>
 					<td>
-						<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국내도착 (통관중)</div>
+						<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국외도착 (통관중)</div>
 						<div onClick="OrderQuery('customsing');" style="cursor:pointer">0</div>
 					</td>
 					<td>
@@ -235,8 +236,8 @@
 						<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">0</div>
 					</td>
 					<td>
-						<div id="orderCnt_12" onClick="OrderQuery('addPay');" style="cursor:pointer">추가 결제 대기</div>
-						<div onClick="OrderQuery('addPay');" style="cursor:pointer">0</div>
+						<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
+						<div onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">0</div>
 					</td>
 				  </tr>
 				  <tr>
@@ -245,29 +246,20 @@
 						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer">0</div>
 					</td>
 					<td>
-						<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 / 결제대기</div>
+						<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 </div>
 						<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">0</div>
 					</td>
 					<td>&nbsp;</td>
-					<td>
-						<div id="orderCnt_15" onClick="OrderQuery('rtnCnt');" style="cursor:pointer">반송 현황</div>
-						<div onClick="OrderQuery('rtnCnt');" style="cursor:pointer">0</div>
-					</td>
+					<td>&nbsp;</td>
 				  </tr>
 				  <tr>
 				    <td>
 						<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
 						<div onClick="OrderQuery('Arrived');" style="cursor:pointer">0</div>
 					</td>
-					<td>
-						<div id="orderCnt_14" onClick="OrderQuery('outPaid');" style="cursor:pointer">항공사 인계예정 / 결제완료</div>
-						<div onClick="OrderQuery('outPaid');" style="cursor:pointer">0</div>
-					</td>
 					<td>&nbsp;</td>
-					<td>
-						<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
-						<div onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">0</div>
-					</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				  </tr>
 				  <tr>
 				    <td>
@@ -276,10 +268,7 @@
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
-					<td>
-						<div id="orderCnt_19" onClick="OrderQuery('DePickup');" style="cursor:pointer">DE 픽업요청 중</div>
-						<div onClick="OrderQuery('DePickup');" style="cursor:pointer">0</div>
-					</td>
+					<td>&nbsp;</td>
 				  </tr>
 				  <tr>
 				    <td>
@@ -324,13 +313,13 @@
 				
 				<!-- 배송대행신청 미작성 입고 건수 -->
 				<div class="shipping_nowrite_table" id="nodata_cnt">
-					<ul>
-						<li>#2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
-						<li>#2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
-						<li>#2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
+					<ul th:each="item : ${monthNodataCount}">
+						<li>2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.twoMonthNodataCount}">0건</b></li>
+						<li>2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.lastMonthNodataCount}">0건</b></li>
+						<li>2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.thisMonthNodataCount}">0건</b></li>
 					</ul>
 					<div style="clear:both;height:15px;"></div>
-					<div class="text">미작성 입고 건수는 <font color="#ff9520"><b>입고일자</b></font> 기준입니다.</div>
+					<div class="text">미작성 입고 건수는 <b><font style="color:#ff9520;">입고일자</font></b> 기준입니다.</div>
 				</div>
 				
 				<!-- //배송대행신청 미작성 입고 건수 -->
@@ -739,25 +728,104 @@
 				
 		</div>
 			
+		</div>
+	
+			
 	</th:block>
 		
-    </body>
-    	 <script>
+		<script>
 	    function OrderQuery(qType)
 	    {
+	    	
 	    	viewInfo(qType);
 	    	shipStepInfo(qType);
 	    	var arrData=[];
-	    	if(qType=="noDataCnt") {
+	    	arrData['page']='1'; 
+	    	arrData['num_per_page']='10';
+	    	
+	    	if(qType=="Form") {
+	    		var frm = document.f;
+	    		arrData['q_paid_flg']='';
+	    		arrData['q_status']='';
+	    		arrData['q_item_status']='';
+	    		arrData['q_order_type']=frm.q_order_type.value;
+	    		arrData['q_loc_cd']=frm.q_loc_cd.value;
+	    		arrData['q_from_date']=frm.q_from_date.value;
+	    		arrData['q_to_date']=frm.q_to_date.value;
+	    		arrData['q_field']=frm.q_field.value;
+	    		arrData['q_keyword']=frm.q_keyword.value;
+	    	}
+	    	
+	    	else if(qType=="noDataCnt") {
 	    		arrData['q_query_type']='noDataCnt';
 	    		OrderQueryCss(1);
 	    		nodataQuery();
-	    	}
+	    	}else if(qType=="noOutNoPayCnt") {
+	    		arrData['q_status']='30';
+	    		arrData['q_paid_flg']='N';
+	    		arrData['q_query_type']='noOutNoPayCnt';
+	    		OrderQueryCss(2);	    		
+	    	}else if(qType=="gsiOut") {
+	    		arrData['q_status']='40';
+	    		arrData['q_agent_status']='2';
+	    		OrderQueryCss(3);
+	    	}else if(qType=="localShipping") {
+	    		arrData['q_status']='55';
+	    		OrderQueryCss(4);
+	    	}else if(qType=="Imsi") {
+	    		arrData['q_status']='0';
+	    		OrderQueryCss(5);
+	    	}else if(qType=="noOutPaid") {
+	    		arrData['q_status']='30';
+	    		arrData['q_paid_flg']='Y';
+	    		arrData['q_query_type']='noOutPaid';
+	    		OrderQueryCss(6);
+	    	}else if(qType=="customsing") {
+	    		arrData['q_status']='45';
+	    		OrderQueryCss(7);
+	    	}else if(qType=="ShipClosed") {
+	    		arrData['q_status']='60';
+	    		OrderQueryCss(8);
+	    	}else if(qType=="orderType1") {
+	    		arrData['q_status']='10';
+	    		arrData['q_order_type']='1';
+	    		OrderQueryCss(9);
+	    	}else if(qType=="weightShipHold") {
+	    		arrData['q_status']='30';
+	    		arrData['q_ship_hold_flag']='보류';
+	    		OrderQueryCss(10);
+	    	}else if(qType=="CustomsClosed") {
+	    		arrData['q_status']='50';
+	    		OrderQueryCss(11);
+	    	}else if(qType=="Arrived") {
+	    		arrData['q_status']='NoImsi';
+	    		arrData['q_item_status']='003';
+	    		OrderQueryCss(16);
+	    	}else if(qType=="keepFeeCnt") {
+	    		arrData['q_query_type']='keepFeeCnt';
+	    		OrderQueryCss(17);
+	    	}else if(qType=="PartialStock") {
+	    		arrData['q_query_type']='PartialStock';
+	    		OrderQueryCss(18);
+	    	}else if(qType=="AllIn") {
+	    		arrData['q_query_type']='AllIn';
+	    		OrderQueryCss(20);
+	    	}else if(qType=="Err") {
+	    		arrData['q_item_status']='010';
+	    		OrderQueryCss(21);
+	    	}else if(qType=="outNoPay") {
+	    		arrData['q_status']='40';
+	    		arrData['q_paid_flg']='N';
+	    		OrderQueryCss(22);
+	    	} 
+	    	if(qType!="noDataCnt")
+	    	shipOrderList(arrData);
 	    }
 	    
 	    function viewInfo(mode)
 	    {
 	    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
+	    	
 	    		$(".list_bt").hide();
 	    		$(".open_search").hide();
 	    		$(".shipping_applications_search").hide();
@@ -819,9 +887,11 @@
 	   
 	    function shipStepInfo(qType)
 	    {
+	    	
 	    	$.ajax({
 	    			type: 'POST',
-	    			url: "/api/ship_step_info_api.html",
+	    			url: "/shipStepInfo",
+	    			dataType:"html",
 	    			async:false,
 	    			data: {q_ship_step_type:qType,
 	    					action_type : 'ship_step_info'},
@@ -841,14 +911,15 @@
 	    {
 	    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
 	    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
-	    	
+	    	console.log(q_nodata_field);
 	    	$.ajax({
 	    			type: 'POST',
-	    			url: "https://www.hoyausa.co.kr/api/nodata_api.html",
+	    			url: "/api/nodataListApi",
 	    			async:false,
 	    			data: {q_nodata_field:q_nodata_field,
 	    					q_nodata_search:q_nodata_search,
 	    					action_type : 'noDataList'},
+	    			dataType:"html",
 	    			success: function(data) 
 	    			{
 	    				var content = $('#nodata_list').html(data);
@@ -864,4 +935,6 @@
 	    		})
 	    }
     </script>
+    </body>
+    	 
 </html>
