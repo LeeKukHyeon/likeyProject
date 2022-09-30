@@ -11,7 +11,7 @@ public interface CustomerNoticeMapper {
 	
 	
 	//공지사항 등록
-	public String regNotice(NoticeCenter csNotice);
+	public int regNotice(NoticeCenter NoticeCenter);
 	
 	//공지사항 게시물 조회
 	public NoticeCenter getNoticeRead(String noticeTitle);

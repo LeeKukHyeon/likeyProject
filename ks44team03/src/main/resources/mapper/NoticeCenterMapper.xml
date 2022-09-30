@@ -16,8 +16,26 @@
 		<result column="notice_view" property="noticeView"/>
 	</resultMap>
 	
-	<!-- 공지사항 게시물 조회 -->
+	<!-- 공지사항 등록 -->
+	<insert id="regNotice" parameterType="NoticeCenter">
+	/* 공지사항 등록 */
+	INSERT INTO notice_center
+		(notice_num
+		,e_code
+		,notice_title
+		,notice_content
+		,notice_img
+		,notice_date
+		,notice_view)
+	VALUES 
+		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), #{noticeView})
+	</insert>
+	
+	
+	
+	<!-- 공지사항 제목 클릭시 나오는 내용 -->
 	<select id="getNoticeRead" resultMap="csNoticeResultMap">
+	/* 공지사항 게시물 조회 */
 	SELECT
 		notice_title
 		,notice_content
