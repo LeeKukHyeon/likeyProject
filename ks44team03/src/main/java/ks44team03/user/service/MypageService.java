@@ -8,6 +8,7 @@ import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
+import ks44team03.dto.Nodata;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.mapper.MypageMapper;
 
@@ -23,6 +24,11 @@ public class MypageService {
 			this.mypageMapper = mypageMapper;
 		}
 		
+		
+		public List<Nodata> nodataList(String u_id){
+			List<Nodata> nodataList = mypageMapper.nodataList(u_id);			
+			return nodataList;
+		}
 		
 		public List<MyPageCount> monthNodataCount(String u_id){
 			List<MyPageCount> nodataCount = mypageMapper.monthNodataCount(u_id);			

@@ -934,6 +934,22 @@
 	    			}
 	    		})
 	    }
+	    
+	    function doAction(actType){
+	    
+	    	var frm = document.frmMain;
+	    	
+	    	var frmId = "frmMain";
+	    	if(actType=="reqStockIn" || actType=="nowStockIn" || actType=="chkStockIn")
+	    		var arr_checked_obj = $("form#"+ frmId +" input:checkbox[name='arr_row_id[]']:checked");
+	    	console.log(arr_checked_obj)
+	    	if (arr_checked_obj.length==0) {
+	      		window.alert('신청서를 선택해 주세요!');
+	      		return;
+	      	}
+	    }
+	    
+	    
     </script>
     </body>
     	 

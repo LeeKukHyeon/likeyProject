@@ -1,18 +1,31 @@
 package ks44team03.user.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ks44team03.dto.Nodata;
+import ks44team03.user.service.MypageService;
+
 @Controller
 public class myPageApiController {
 	
+	private MypageService mypageService;
+		
 	
+	public myPageApiController(MypageService mypageService) {
+		this.mypageService = mypageService;
+	}
+
 	@PostMapping("api/nodataListApi")
 	public String bcd(Model model) {
-		model.addAttribute("title", "title");
+		String u_id = "id001";
+		List<Nodata> nodataList = mypageService.nodataList(u_id);
+		model.addAttribute("nodataList", nodataList);
 		return "myPage/myPageApi/nodataList";
 	}
 

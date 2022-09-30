@@ -40,6 +40,20 @@
 			<result column="friends_de_check" property="friendsDeCheck"/>
 	</resultMap>
 	
+	<resultMap type="Nodata" id="NodataResultMap">
+		<id column="nod_code" property="nodCode"/>
+			<result column="nod_user_pobox_code" property="nodUserPoboxCode"/>
+			<result column="nod_tracking_num" property="nodTrackingNum"/>
+			<result column="nod_e_code" property="nodECode"/>
+			<result column="nod_id" property="nodId"/>
+			<result column="nod_recipient" property="nodRecipient"/>
+			<result column="nod_pic" property="nodPic"/>
+			<result column="nod_arrival_date" property="nodArrivalDate"/>
+			<result column="nod_tracking_company" property="nodTrackingCompany"/>
+			<result column="nod_ discard_date" property="nodDiscardDate"/>
+	</resultMap>
+	
+	
 	
 	
 	<select id="count" parameterType="String" resultType="MyPageCount">
@@ -49,6 +63,20 @@
 		 WHERE 
 		 	id=#{u_id};
 	
+	</select>
+	
+	
+	<select id="nodataList" parameterType="String" resultMap="NodataResultMap">
+		/*노데이터 리스트*/
+		SELECT * 
+		from 
+			user_member AS u 
+		INNER JOIN 
+			nodata_manage AS n 
+		ON 
+			u.user_pobox_code = n.nod_user_pobox_code 
+		WHERE 
+			u.u_id = #{u_id} AND nod_user_check = 'n'; 
 	</select>
 	
 	
