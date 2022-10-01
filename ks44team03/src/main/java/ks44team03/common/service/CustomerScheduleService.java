@@ -52,9 +52,9 @@ public class CustomerScheduleService {
 	//배송스케줄 게시물 조회
 	public ScheduleCenter getScheduleRead(String scheduleNumCode) {
 		
-		ScheduleCenter scheduleRead = customerScheduleMapper.getScheduleRead(scheduleNumCode);
+		ScheduleCenter scheduleCenter = customerScheduleMapper.getScheduleRead(scheduleNumCode);
 		
-		return scheduleRead;
+		return scheduleCenter;
 	}
 	
 	
