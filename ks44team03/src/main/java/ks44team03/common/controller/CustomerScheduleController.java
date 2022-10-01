@@ -31,6 +31,17 @@ public class CustomerScheduleController {
 	
 	
 	//배송스케줄 게시물 수정
+	@PostMapping("/deliveryScheduleModify")
+	public String modifySchedule(ScheduleCenter scheduleCenter) {
+		
+		customerScheduleService.modifySchedule(scheduleCenter);
+		System.out.println(scheduleCenter + "수정하는 게시물 값 받아오는가?");
+		
+		return "redirect:/deliveryScheduleSearch";
+	}
+	
+	
+	//배송스케줄 게시물 수정
 	@GetMapping("/deliveryScheduleModify")
 	public String modifySchedule(@RequestParam(value = "scheduleNumCode", required = false) String scheduleNumCode ,Model model) {
 		
