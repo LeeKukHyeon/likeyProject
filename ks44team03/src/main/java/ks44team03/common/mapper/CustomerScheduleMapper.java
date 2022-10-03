@@ -9,6 +9,9 @@ import ks44team03.dto.ScheduleCenter;
 @Mapper
 public interface CustomerScheduleMapper {
 
+	//배송스케줄 게시물 삭제
+	public int deleteSchedule(String scheduleNumCode);
+	
 	//배송스케줄 게시물 수정
 	public int modifySchedule(ScheduleCenter scheduleCenter);
 	

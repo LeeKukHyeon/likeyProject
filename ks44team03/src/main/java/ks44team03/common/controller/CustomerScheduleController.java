@@ -30,6 +30,24 @@ public class CustomerScheduleController {
 	}
 	
 	
+	//배송스케줄 게시물 삭제
+	@PostMapping
+	public String deleteSchedule() {
+		
+		return "redirect:/deliveryScheduleSearch";
+	}
+	
+	
+	//배송스케줄 게시물 삭제
+	//@GetMapping("/delete/{scheduleNumCode}")
+	@GetMapping("/deliveryScheduleDelete")
+	public String deleteSchedule(@RequestParam(value = "scheduleNumCode")String scheduleNumCode) {
+		
+		customerScheduleService.deleteSchedule(scheduleNumCode);
+		
+		return "/customerService/schedule/deleteSchedule";
+	}
+	
 	//배송스케줄 게시물 수정
 	@PostMapping("/deliveryScheduleModify")
 	public String modifySchedule(ScheduleCenter scheduleCenter) {
@@ -39,7 +57,6 @@ public class CustomerScheduleController {
 		
 		return "redirect:/deliveryScheduleSearch";
 	}
-	
 	
 	//배송스케줄 게시물 수정
 	@GetMapping("/deliveryScheduleModify")
@@ -60,10 +77,8 @@ public class CustomerScheduleController {
 		
 		customerScheduleService.regSchedule(scheduleCenter);
 		
-		
 		return "redirect:/deliveryScheduleSearch";
 	}
-	
 	
 	//배송스케줄 등록
 	@GetMapping("/deliveryScheduleRegister")
