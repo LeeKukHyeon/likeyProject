@@ -15,6 +15,16 @@
 <!-- 		<result column="schedule_view" property="scheduleView"/> -->
 	</resultMap>
 	
+	<!-- 배송스케줄 삭제 -->
+	<delete id="deleteSchedule" parameterType="ScheduleCenter">
+	DELETE 
+	FROM
+		delivery_schedule 
+	WHERE
+		schedule_num=#{scheduleNumCode}
+	</delete>
+	
+	
 	<!-- 배송스케줄 수정 -->
 	<update id="modifySchedule" parameterType="ScheduleCenter">
 	/* 배송스케줄 수정 */
@@ -25,7 +35,6 @@
 		schedule_title= #{scheduleTitle},
 		schedule_content= #{scheduleContent},
 		schedule_img= #{scheduleImg},
-		schedule_date= CURDATE(),
 		schedule_view= #{scheduleView}
 	WHERE 
 		schedule_num= #{scheduleNumCode};

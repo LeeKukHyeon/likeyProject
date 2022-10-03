@@ -19,8 +19,8 @@
 				</div>
 			</div>
 			<hr width="100%" color="gray">
-		<a th:href="@{deliveryScheduleSearch}"><input type="button" value="목록" style="float: left;"></a>
-		<a href="#"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
+		<a th:href="@{/deliveryScheduleSearch}"><input type="button" value="목록" style="float: left;"></a>
+		<a th:href="@{/deliveryScheduleDelete(scheduleNumCode=${scheduleRead.scheduleNumCode})}"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
 		<a th:href="@{/deliveryScheduleModify(scheduleNumCode=${scheduleRead.scheduleNumCode})}"><input type="button" value="수정하기" style="float: right; font-size: 5px"></a>
 		
 		</div>
