@@ -225,7 +225,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_9" onClick="OrderQuery('orderType1');" style="cursor:pointer">배송대행신청 완료</div>
-						<div onClick="OrderQuery('orderType1');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('orderType1');" style="cursor:pointer" th:text="${packageForwardingApplication}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_10" onClick="OrderQuery('weightShipHold');" style="cursor:pointer">무게측정 및 출고보류</div>
@@ -243,7 +243,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_13" onClick="OrderQuery('buyingItem');" style="cursor:pointer">구매대행 신청완료</div>
-						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer" th:text="${purchaseApplication}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 </div>
@@ -255,7 +255,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
-						<div onClick="OrderQuery('Arrived');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('Arrived');" style="cursor:pointer" th:text="${warehouseArrivalCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -264,7 +264,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_18" onClick="OrderQuery('PartialStock');" style="cursor:pointer">일부입고</div>
-						<div onClick="OrderQuery('PartialStock');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('PartialStock');" style="cursor:pointer" th:text="${partialIncomingCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -273,7 +273,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_20" onClick="OrderQuery('AllIn');" style="cursor:pointer">도착(입고) 완료</div>
-						<div onClick="OrderQuery('AllIn');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('AllIn');" style="cursor:pointer" th:text="${allArrivedCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>

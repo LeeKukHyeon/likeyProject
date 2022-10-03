@@ -41,6 +41,36 @@ public class MypageService {
 			return count;
 		}
 		
+		/*도착완료 카운트*/
+		public int allArrivedCount(String u_id) {
+			int allArrivedCount = mypageMapper.allArrivedCount(u_id);
+			return allArrivedCount;
+		}
+		
+		/*일부입고 카운트*/
+		public int partialIncomingCount(String u_id) {
+			int partialIncomingCount = mypageMapper.partialIncomingCount(u_id);
+			return partialIncomingCount;
+		}
+		
+		/*창고도착 카운트*/
+		public int warehouseArrivalCount(String u_id) {
+			int warehouseArrivalCount = mypageMapper.warehouseArrivalCount(u_id);
+			return warehouseArrivalCount;
+		}
+		
+		/*구매대행 신청완료 카운트*/
+		public int purchaseApplication(String u_id) {
+			int purchaseApplication = mypageMapper.purchaseApplication(u_id);
+			return purchaseApplication;
+		}
+		
+		/*배송대행 신청완료 카운트*/
+		public int packageForwardingApplication(String u_id) {
+			int packageForwardingApplication = mypageMapper.packageForwardingApplication(u_id);
+			return packageForwardingApplication;
+		}
+		
 		public int nodataCount(String u_id) {
 			int nodataCount = mypageMapper.nodataCount(u_id);
 			return nodataCount;

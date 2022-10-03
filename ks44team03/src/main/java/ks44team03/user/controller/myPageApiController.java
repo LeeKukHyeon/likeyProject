@@ -20,6 +20,12 @@ public class myPageApiController {
 	public myPageApiController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	@GetMapping("mypage_action")
+	public String cdf(@RequestParam(value = "action_type", required = false) String test) {
+		System.out.println(test+"------------------------------------------");
+		return "myPage/member/mypageScreen";
+	}
 
 	@PostMapping("api/nodataListApi")
 	public String bcd(Model model) {
