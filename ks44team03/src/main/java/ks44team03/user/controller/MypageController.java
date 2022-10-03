@@ -72,7 +72,21 @@ public class MypageController {
 		
 	
 	
+		/*도착완료 갯수*/
+		int allArrivedCount = mypageService.allArrivedCount(u_id);
 		
+		/*일부입고 갯수*/
+		int partialIncomingCount = mypageService.partialIncomingCount(u_id);
+		
+		/*구매대행 신청완료 갯수*/
+		int warehouseArrivalCount = mypageService.warehouseArrivalCount(u_id);
+		
+		/*구매대행 신청완료 갯수*/
+		int purchaseApplication = mypageService.purchaseApplication(u_id);
+		
+		/*배송대행 신청완료 갯수*/
+		int packageForwardingApplication = mypageService.packageForwardingApplication(u_id);
+		/*노카운트 갯수*/
 		int nodataCount = mypageService.nodataCount(u_id);
 		int forwardingCount = mypageService.forwardingCount(u_id);
 		int completedApplication = mypageService.completedApplication(u_id);
@@ -85,6 +99,12 @@ public class MypageController {
 		int temp = mypageService.temp(u_id);
 		int totalCount = lastMonthCount+thisMonthCount;
 		
+		
+		model.addAttribute("allArrivedCount", allArrivedCount);
+		model.addAttribute("partialIncomingCount", partialIncomingCount);
+		model.addAttribute("warehouseArrivalCount", warehouseArrivalCount);
+		model.addAttribute("purchaseApplication", purchaseApplication);
+		model.addAttribute("packageForwardingApplication", packageForwardingApplication);
 		model.addAttribute("monthNodataCount", monthNodataCount);
 		model.addAttribute("nodataCount", nodataCount);
 		model.addAttribute("forwardingCount", forwardingCount);
