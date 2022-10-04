@@ -16,6 +16,7 @@ import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
 import ks44team03.dto.Nodata;
+import ks44team03.dto.ShipOrderApi;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
 
@@ -72,6 +73,15 @@ public class MypageController {
 		
 	
 	
+		/*무게측정 출고보류 갯수*/
+		int weightCheckPostponeCount = mypageService.weightCheckPostponeCount(u_id);
+		
+		/*무게측정 결제완료 갯수*/
+		int weightCheckPaymentCount = mypageService.weightCheckPaymentCount(u_id);
+		
+		/*무게측정 결제대기 갯수*/
+		int weightCheckNopaymentCount = mypageService.weightCheckNopaymentCount(u_id);
+		
 		/*도착완료 갯수*/
 		int allArrivedCount = mypageService.allArrivedCount(u_id);
 		
@@ -100,6 +110,9 @@ public class MypageController {
 		int totalCount = lastMonthCount+thisMonthCount;
 		
 		
+		model.addAttribute("weightCheckPostponeCount", weightCheckPostponeCount);
+		model.addAttribute("weightCheckPaymentCount", weightCheckPaymentCount);
+		model.addAttribute("weightCheckNopaymentCount", weightCheckNopaymentCount);
 		model.addAttribute("allArrivedCount", allArrivedCount);
 		model.addAttribute("partialIncomingCount", partialIncomingCount);
 		model.addAttribute("warehouseArrivalCount", warehouseArrivalCount);

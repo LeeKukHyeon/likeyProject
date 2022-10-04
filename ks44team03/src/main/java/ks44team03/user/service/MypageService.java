@@ -1,6 +1,7 @@
 package ks44team03.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
 import ks44team03.dto.Nodata;
 import ks44team03.dto.UserInfo;
+import ks44team03.dto.ShipOrderApi;
 import ks44team03.user.mapper.MypageMapper;
 
 
@@ -39,6 +41,32 @@ public class MypageService {
 			List<MyPageCount> count = mypageMapper.count(u_id);
 			
 			return count;
+		}
+		
+		/*목록조회*/
+		public List<ShipOrderApi> shipOrderApi(Map<String, Object> paramMap){
+			List<ShipOrderApi> shipOrderApi = mypageMapper.shipOrderApi(paramMap);
+			
+			return shipOrderApi;
+		}
+		
+		/*무게측정 및 출고보류 갯수*/
+		public int weightCheckPostponeCount(String u_id) {
+			
+			int weightCheckPostponeCount = mypageMapper.weightCheckPostponeCount(u_id);
+			return weightCheckPostponeCount;
+		}
+		
+		/*무게측정,결제완료 카운트*/
+		public int weightCheckPaymentCount(String u_id) {
+			int weightCheckPaymentCount = mypageMapper.weightCheckPaymentCount(u_id);
+			return weightCheckPaymentCount;
+		}
+		
+		/*무게측정,결제대기 카운트*/
+		public int weightCheckNopaymentCount(String u_id) {
+			int weightCheckNopaymentCount = mypageMapper.weightCheckNopaymentCount(u_id);
+			return weightCheckNopaymentCount;
 		}
 		
 		/*도착완료 카운트*/

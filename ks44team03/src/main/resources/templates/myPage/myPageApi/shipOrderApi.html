@@ -1,0 +1,61 @@
+<form name="frmMain" id="frmMain" method="get" action="">
+			<input type="hidden" name="action_type">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="applications_table">
+			  <tbody>
+				<th class="td0">
+					<input type="checkbox" name="allCheck" onchange="AllCheck();">
+				</th>
+				<th class="td1">
+					센터
+				</th>
+				<th class="td2">보관일<br><font>(신청일)</font><br>신청번호<br>운송장번호</th>
+				<th class="td3">주문사이트<br><font>(오더넘버)</font></th>
+				<th class="td4">대표 상품명<br><font>(옵션/수량)</font></th>
+				<th class="td5">총 가격</th>
+				<th class="td6">수령인</th>
+				<th class="td8">대표 트레킹 번호</th>
+				<th class="td7">상세상태<br><font>(총수량)</font></th>
+				<th class="td9">보류 여부</th>
+				<th class="td10">확인요청</th>
+			  
+			  
+				<tr valign="middle" bgcolor="#FFFFFF">
+					<td colspan="11" height="50" align="center" th:utext="${'<b>데이터가 존재하지 않습니다</b>'}"> 
+						<b>데이터가 존재하지 않습니다</b><br>123
+					</td>
+				</tr>			  
+			  
+
+			  
+			  
+			  
+			</tbody></table>
+			</form>
+			
+			
+		<div class="pagination a1">
+			<span class="direction prev"><a href="javascript:NaviForm(1)">« 처음&nbsp;</a></span>
+          <span class="direction next"><a href="javascript:NaviForm(1)">&nbsp;끝 »</a></span>		
+		</div>
+		<form name="next_action" method="get" action="/api/ship_order_api.html">
+		<input type="hidden" name="row_id">
+		<input type="hidden" name="page" value="1">
+		<input type="hidden" name="action_type" value="shipOrderList">
+		<input type="hidden" name="num_per_page" value="10">
+		<input type="hidden" name="menu_popup_flag" value="">
+		<input type="hidden" name="invoice_no" value="">
+		
+		<input type="hidden" name="q_paid_flg" value="">
+		<input type="hidden" name="q_status" value="0">
+		<input type="hidden" name="q_item_status" value="">
+		<input type="hidden" name="q_order_type" value="">
+		<input type="hidden" name="q_loc_cd" value="">
+		<input type="hidden" name="q_from_date" value="">
+		<input type="hidden" name="q_to_date" value="">
+		<input type="hidden" name="q_field" value="">
+		<input type="hidden" name="q_keyword" value="">
+		<input type="hidden" name="q_query_type" value="">
+		<input type="hidden" name="q_tab" value="">
+		<input type="hidden" name="q_ship_hold_flag" value="">
+		
+		</form>

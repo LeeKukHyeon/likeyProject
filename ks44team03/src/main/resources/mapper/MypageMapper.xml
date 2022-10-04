@@ -64,36 +64,131 @@
 		 	id=#{u_id};
 	
 	</select>
+		
+		
+	<select id="shipOrderApi" parameterType="map" resultType="shipOrderApi">
+		/*목록 출력*/
+		 
+		SELECT 
+			 o.logistics_center as logisticsCenter
+			,o.goods_order_date as goodsOrderDate
+			,g.tracking_num as trackingNum
+			,g.grouping_delivery as groupingDelivery
+			,g.goods__url as goodsUrl
+			,g.g_name as gName
+			,o.total_price as totalPrice
+			,CONCAT(d.stat_info, ' (',COUNT(d.stat_info), ')') AS statInfo
+			,o.user_name as userName
+			,g.buy_order_code as buyOrderCode
+			,g.id
+		FROM 
+			goods_info AS g 
+			INNER JOIN delivery_current_state AS d 
+			ON g.goods_info_code = d.goods_info_code
+			AND g.tracking_num IS NOT NULL 
+			INNER JOIN order_info AS o
+			ON g.buy_order_code = o.buy_order_code
+		where g.id = #{u_id} and d.stat_info = #{stat_info} 
+		GROUP BY g.grouping_delivery, d.stat_info;
+	</select>
+		
+		
+	<select id="weightCheckPostponeCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고보류 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g 
+		ON 
+			o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i 
+		ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE 
+			os.order_state='출고 보류' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.postpone = 'n' AND g.id = #{u_id}
+	</select>
 	
+	<select id="weightCheckPaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제완료 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o INNER JOIN order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+		where 
+			os.order_state='입금 완료' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.approval = 'y' 
+			AND i.postpone = 'n' 
+			AND g.id = #{u_id};
+	</select>
 	
-
+	<select id="weightCheckNopaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제대기 갯수*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+	 	where 
+	 		os.order_state='입금 전' 
+	 			AND i.weight IS NOT NULL 
+	 			AND i.volume IS NOT NULL 
+	 			AND i.approval = 'y' 
+	 			AND i.postpone = 'n' 
+	 			AND g.id = #{u_id};
+	</select>
+	
 	
 	<select id="allArrivedCount" parameterType="String" resultType="int">
-		/*도착완료 카운트*/
-	SELECT 
-		COUNT(*) 
-	FROM
-		 goods_info AS g 
-	INNER JOIN 
-		grouping_delivery_check AS d 
-	ON 
-		g.grouping_delivery = d.grouping_delivery
-	 WHERE 
-	 	d.incoming_check = 'y' AND g.id = #{u_id};
+			/*도착완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM
+			 goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		 WHERE 
+		 	d.incoming_check = 'y' AND g.id = #{u_id};
 	</select>
 	
 	<select id="partialIncomingCount" parameterType="String" resultType="int">
 		/*일부입고 카운트*/
-	SELECT
-		 COUNT(if(arrival='y',1,null)) 
-	FROM 
-		goods_info AS g 
-	INNER JOIN 
-		grouping_delivery_check AS d 
-	ON 
-		g.grouping_delivery = d.grouping_delivery
-	WHERE 
-		d.incoming_check = 'n' AND g.id = #{u_id};
+		SELECT
+			 COUNT(if(arrival='y',1,null)) 
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		WHERE 
+			d.incoming_check = 'n' AND g.id = #{u_id};
 	</select>
 	
 	<select id="warehouseArrivalCount" parameterType="String" resultType="int">
