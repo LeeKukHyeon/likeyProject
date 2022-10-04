@@ -12,10 +12,11 @@ public interface CustomerQuestionMapper {
 	//1:1문의 게시글 등록
 	public int regQuestion(QuestionCenter questionCenter);
 	
-	//1:1문의 게시글 조회
+	
+	//1:1문의 게시글 조회, 나의 문의 게시글 보기
 	public QuestionCenter getQuestionRead(String mtmNumCode);
 	
-	//1:1 문의 목록 관리자 조회
+	//1:1 문의 목록 관리자 조회,나의문의내역
 	public List<QuestionCenter> getQuestionList();
 	
 }

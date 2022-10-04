@@ -20,6 +20,7 @@ public class CustomerQuestionService {
 		this.commonMapper = commonMapper;
 	}
 	
+	
 	// 1:1문의 등록
 	public void regQuestion(QuestionCenter questionCenter) {
 
@@ -29,8 +30,9 @@ public class CustomerQuestionService {
 		int result = customerQuestionMapper.regQuestion(questionCenter);
 	}
 	
+
 	
-	//1:1문의 게시글 조회
+	//1:1문의 게시글 조회,나의 문의 게시글 보기
 	public QuestionCenter getQuestionRead(String mtmNumCode) {
 		
 		QuestionCenter QuestionRead =  customerQuestionMapper.getQuestionRead(mtmNumCode);
@@ -39,7 +41,7 @@ public class CustomerQuestionService {
 	}
 	
 		
-	//1:1 문의 목록 관리자 조회
+	//1:1 문의 목록 관리자 조회,나의문의내역
 	public List<QuestionCenter> getQuestionList(){
 		
 		List<QuestionCenter> QuestionList = customerQuestionMapper.getQuestionList();
