@@ -12,7 +12,7 @@
 		<table border="1" style="width: 65%">
 			<tbody>
 				<tr>
-					<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b></td>
+					<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b><input th:value="${QuestionRead.mtmNumCode}" style="display: none;"></td>
 					<td style="padding-left: 18px;">
 						<div th:text="${QuestionRead.mtmCate}"></div>
 						<div style="margin-top: 3px;">
@@ -44,6 +44,7 @@
 				</tr>
 				<tr>
 					<td style="padding: 18px 13px;"><b>답변 내용</b>
+					<input th:value="${mtmSituation}" style="display: none;">
 					</td>
 					<td>
 						<textarea style="width: 90%; height: 10cm; margin: 18px;"></textarea>

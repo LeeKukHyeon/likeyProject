@@ -2,6 +2,8 @@ package ks44team03.common.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerQuestionService;
 import ks44team03.dto.QuestionCenter;
-import ks44team03.dto.ScheduleCenter;
 
 @Controller
 public class CustomerQuestionController {
@@ -21,6 +22,50 @@ public class CustomerQuestionController {
 	public CustomerQuestionController(CustomerQuestionService customerQuestionService) {
 		this.customerQuestionService = customerQuestionService;
 		
+		
+	}
+	
+	@PostConstruct
+	public void customerQuestionService() {
+		
+	}
+	
+	
+	//1:1문의 수정
+	@PostMapping("/myQuestionModify")	
+	public String myQuestionModify(QuestionCenter questionCenter) {
+		
+		customerQuestionService.myQuestionModify(questionCenter);
+		System.out.println(questionCenter + ":::::::::::::::::: 1:1문의 수정 값 받아오는거");
+		
+		
+		return "redirect:/myQuestionList";
+		
+	}
+	
+	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
+	@PostMapping("/personalQuestionAnswerRegister")
+	public String changeSituation(QuestionCenter questionCenter) {
+		
+		customerQuestionService.changeSituation(questionCenter);
+		
+		return "/customerService/question/personalQuestionAnswerRegister";
+		
+		
+	}
+	
+	
+	
+	//1:1문의 수정
+	@GetMapping("/myQuestionModify")
+	public String myQuestionModify(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
+		
+		//1:1문의 내용
+		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
+
+		model.addAttribute("QuestionRead", QuestionRead);
+		
+		return "/customerService/question/myQuestionModify";
 	}
 	
 	
@@ -37,8 +82,6 @@ public class CustomerQuestionController {
 		return "redirect:/personalQuestionSearchAdmin";
 	}
 	
-	
-
 
 	// 1:1문의 등록
 	@GetMapping("/personalQuestionRegister")
@@ -67,6 +110,7 @@ public class CustomerQuestionController {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
 		
+		
 		System.out.println(QuestionRead + "QuestionCenter DTO 확인");
 		
 		model.addAttribute("QuestionRead", QuestionRead);
@@ -91,6 +135,7 @@ public class CustomerQuestionController {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();
 		
+		System.out.println(QuestionList + "QuestionList DTO 확인");
 		model.addAttribute("QuestionList", QuestionList);
 		
 		return "/customerService/question/personalQuestionSearchAdmin";

@@ -8,6 +8,22 @@
 	<link rel="stylesheet" href="assets/css/temporarily.css">
 </head>
 
+<script type="text/javascript">
+$( document ).ready( function() {
+
+	$('#mtmSituation').click(function(){
+	
+	})
+	
+}
+
+
+
+
+
+</script>
+
+
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
 		<!-- 게시판 -->
@@ -16,7 +32,6 @@
 			<option>처리중</option>
 			<option>처리완료</option>
 		</select>
-		
 		<table border="0" cellspacing="0" cellpadding="0" class="personal_question_list" style="width: 100%; margin-top: 5mm">
 		  <tbody><tr>
 		    <th class="number">번호</th>
@@ -27,8 +42,8 @@
 		  </tr>
 		  <tr th:if="${not #lists.isEmpty(QuestionList)}" th:each="l : ${QuestionList}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
-		    <td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
+	    	<td class="userId" th:text="${l.userId}"></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date" th:text="${l.mtmSituation}"></td>
 		  </tr>
@@ -36,7 +51,6 @@
   			<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td><td></td>
 		  </tr>
 		</tbody></table>
-		
 		<div>
 			<select style="margin-left: 38%; margin-top: 5mm">
 				<option>제목</option>

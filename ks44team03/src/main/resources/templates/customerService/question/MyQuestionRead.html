@@ -43,6 +43,11 @@
 				</tr>
 			</tbody>
 		</table>
+		<div style="width: 50%; margin-top: 3mm">
+		<a th:href="@{/myQuestionList}"><input type="button" value="목록" style="float: left;"></a>
+		<a href="#"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm;"></a>
+		<a th:href="@{/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" value="수정하기" style="float: right;"></a>
+		</div>
 	</div>
 </body>
 </html>

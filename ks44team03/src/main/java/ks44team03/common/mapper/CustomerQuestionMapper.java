@@ -9,9 +9,14 @@ import ks44team03.dto.QuestionCenter;
 @Mapper
 public interface CustomerQuestionMapper {
 	
+	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
+	public int changeSituation(QuestionCenter questionCenter);
+	
+	//1:1문의 수정
+	public int myQuestionModify(QuestionCenter questionCenter);
+	
 	//1:1문의 게시글 등록
 	public int regQuestion(QuestionCenter questionCenter);
-	
 	
 	//1:1문의 게시글 조회, 나의 문의 게시글 보기
 	public QuestionCenter getQuestionRead(String mtmNumCode);
