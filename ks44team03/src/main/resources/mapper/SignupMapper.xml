@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ks44team03.user.mapper.SignupMapper">
+	<resultMap type="UserInfo" id="UserInfoResultMap">
+
+
+
+<select id="allArrivedCount" parameterType="String" resultType="int">
+		/*도착완료 카운트*/
+	SELECT 
+		COUNT(*) 
+	FROM
+		 goods_info AS g 
+	INNER JOIN 
+		grouping_delivery_check AS d 
+	ON 
+		g.grouping_delivery = d.grouping_delivery
+	 WHERE 
+	 	d.incoming_check = 'y' AND g.id = #{u_id};
+	</select>
+</mapper>
