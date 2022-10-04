@@ -23,6 +23,8 @@
 								<th>사업장주소</th>
 								<th>회사종목</th>
 								<th>개업날짜</th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 							<!-- 
 							private String workPlaceCode; //사업장코드
@@ -45,6 +47,12 @@
 									<td th:text="${l.workPlaceAddr}"></td>
 									<td th:text="${l.workPlaceCate}"></td>
 									<td th:text="${l.workPlaceBirth}"></td>
+									<td>
+										<a th:href="@{/modifyWorkPlace(workPlaceCode=${l.workPlaceCode})}">수정</a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
 								</tr>
 								<tr th:unless="${not #lists.isEmpty(workPlaceList)}">
 									<td colspan="8" style="text-align: center;">등록된 사업장이 없습니다.</td>

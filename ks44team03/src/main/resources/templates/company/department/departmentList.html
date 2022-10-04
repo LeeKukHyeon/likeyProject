@@ -16,10 +16,12 @@
 						<table class="input_table" style="width:100%;">
 							<tr>
 								<th>선택</th>
-								<th>부서코드</th>
+								<!-- <th>부서코드</th> -->
 								<th>사업장명</th>
 								<th>부서명</th>
 								<th>부서적용날짜</th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 						   <!-- private String departmentCode; //부서코드
 								private String deWorkPlaceCode; //사업장코드
@@ -30,10 +32,16 @@
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
 									<td id="companyCheck"><input type="checkbox"></td>
-									<td th:text="${l.departmentCode}"></td>
+									<!-- <td th:text="${l.departmentCode}"></td> -->
 									<td th:text="${l.workPlaceDto.workPlaceName}"></td>
 									<td th:text="${l.departmentName}"></td>
 									<td th:text="${l.departmentDate}"></td>
+									<td>
+										<a th:href="@{/modifyDepartment(departmentCode=${l.departmentCode})}">수정</a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
 								</tr>
 								<tr	th:unless="${not #lists.isEmpty(departmentList)}">
 									<td colspan="5" style="text-align: center;">등록된 부서가 없습니다.</td>
