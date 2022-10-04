@@ -18,6 +18,9 @@ public interface CompanyInfoMapper {
 	//회사 등록
 	public int addCompany(CompanyInfo companyInfo);
 	
+	//회사등록 사업자등록번호 중복체크
+	public boolean companyNumCheck(String companyNum);
+	
 	//회사 목록 검색
 	public List<CompanyInfo> getSearchCompanyList(Map<String, Object> searchMap);
 	
@@ -26,6 +29,12 @@ public interface CompanyInfoMapper {
 	
 	//사업장 등록
 	public int addWorkPlace(WorkPlace workPlace);
+	
+	//사업장 수정
+	public int modifyWorkPlace(WorkPlace workPlace);
+	
+	//특정 사업장 정보 조회
+	public WorkPlace getWorkPlaceInfoByCode(String workPlaceCode);
 	
 	//사업장 목록 검색
 	public List<WorkPlace> getSearchWorkPlaceList(Map<String, Object> searchMap);
@@ -36,6 +45,12 @@ public interface CompanyInfoMapper {
 	//부서 등록
 	public int addDepartment(Department department);
 	
+	//특정 부서 정보 조회
+	public Department getDepartmentInfoByCode(String departmentCode);
+	
+	//부서 수정
+	public int modifyDepartment(Department department);
+	
 	//부서 목록 검색
 	public List<Department> getSearchDepartmentList(Map<String, Object> searchMap);
 	
@@ -44,6 +59,12 @@ public interface CompanyInfoMapper {
 	
 	//사원 등록
 	public int addEmployee(Employee employee);
+	
+	//특정 사원 정보 조회
+	public Employee getEmployeeInfoByCode(String employeeCode);
+
+	//사원 수정
+	public int modifyEmployee(Employee employee);
 	
 	//사원 목록 검색
 	public List<Employee> getSearchEmployeeList(Map<String, Object> searchMap);

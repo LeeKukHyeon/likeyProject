@@ -7,6 +7,20 @@
 
 <!-- 사원 목록 화면 -->
 <th:block layout:fragment="adminContent">	
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+/* jquery 연습 */
+	$(function(){
+		$('.input_table').on('click',function(){
+			if($('#companyCheck input').is(":checked") == false){				
+				alert('체크x');
+			}else if($('#companyCheck input').is(":checked") == true){
+				alert('체크');
+			}
+		})
+	});
+</script>
 	  <!-- stat content-wrapper -->
         <div class="content-wrapper">             
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
@@ -22,6 +36,8 @@
 								<th>사원이름</th>
 								<th>입사일</th>
 								<th>퇴사일</th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 							
 					   <!-- private String employeeCode; //사원코드
@@ -42,6 +58,12 @@
 									<!-- <td th:text="${l.employeePw}"></td> 사원 비밀번호 -->
 									<td th:text="${l.employeeDate}"></td>
 									<td th:text="${l.employeeResignDate}"></td>
+									<td>
+										<a th:href="@{/modifyEmployee(employeeCode=${l.employeeCode})}"><button type="button">수정</button></a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
 								</tr>
 								<tr	th:unless="${not #lists.isEmpty(employeeList)}">
 									<td colspan="7" style="text-align: center;">등록된 부서가 없습니다.</td>

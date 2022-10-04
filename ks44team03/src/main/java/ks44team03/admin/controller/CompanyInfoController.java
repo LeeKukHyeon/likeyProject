@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
@@ -41,6 +42,15 @@ public class CompanyInfoController {
 	}
 	
 	// 회사관리 등록 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
+	// 회사등록 유효성 검사
+	@GetMapping("/companyNumCheck")
+	@ResponseBody
+	public boolean companyNumCheck(@RequestParam(name="companyNum")String companyNum) {
+		
+		boolean result = companyInfoService.companyNumCheck(companyNum);
+		
+		return result;
+	}
 	@GetMapping("/choiceCompany")
 	public String choiceCompany(Model model) {
 		
@@ -127,7 +137,82 @@ public class CompanyInfoController {
 	}
 	// 회사관리 등록 관련 맵핑 ----------- 끝 -------------------------------------------------------------------------------------
 	
+	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//사업장 수정
+	@PostMapping("/modifyWorkPlace")
+	public String modifyWorkPlace(WorkPlace workPlace) {
+		
+		companyInfoService.modifyWorkPlace(workPlace);
+		
+		return "redirect:/workPlaceList";
+	}
+	//사업장 수정
+	@GetMapping("/modifyWorkPlace")
+	public String modifyWorkPlace(@RequestParam(value="workPlaceCode", required = false) String workPlaceCode
+												,Model model) {
+		
+		WorkPlace workPlaceCodeInfo = companyInfoService.getWorkPlaceInfoByCode(workPlaceCode);
+		
+		List<WorkPlace> workPlaceList = companyInfoService.getWorkPlaceList();
+		
+		model.addAttribute("title", "사업장 정보 수정");
+		model.addAttribute("workPlaceCodeInfo", workPlaceCodeInfo);
+		model.addAttribute("workPlaceList", workPlaceList);
+		
+		return "company/workPlace/modifyWorkPlace";
+	}
 	
+	//부서 수정
+		@PostMapping("/modifyDepartment")
+		public String modifyDepartment(Department department) {
+			
+			companyInfoService.modifyDepartment(department);
+			
+			return "redirect:/departmentList";
+		}
+		//부서 수정
+		@GetMapping("/modifyDepartment")
+		public String modifyDepartment(@RequestParam(value="departmentCode", required = false) String departmentCode
+													,Model model) {
+			
+			Department departmentCodeInfo = companyInfoService.getDepartmentInfoByCode(departmentCode);
+			
+			List<Department> departmentList = companyInfoService.getDepartmentList();
+			
+			model.addAttribute("title", "부서 정보 수정");
+			model.addAttribute("departmentCodeInfo", departmentCodeInfo);
+			model.addAttribute("departmentList", departmentList);
+			
+			return "company/department/modifyDepartment";
+		}
+		//사원 수정
+		@PostMapping("/modifyEmployee")
+		public String modifyEmployee(Employee employee) {
+			
+			companyInfoService.modifyEmployee(employee);
+			
+			return "redirect:/employeeList";
+		}
+		//사원 수정
+		@GetMapping("/modifyEmployee")
+		public String modifyEmployee(@RequestParam(value="employeeCode", required = false) String employeeCode
+													,Model model) {
+			
+			Employee employeeCodeInfo = companyInfoService.getEmployeeInfoByCode(employeeCode);
+			List<Department> departmentList = companyInfoService.getDepartmentList();
+			List<Employee> employeeList = companyInfoService.getEmployeeList();
+			List<ManagementLevel> managementLevelList = companyInfoService.getManagementLevelList();
+			
+			model.addAttribute("title", "부서 정보 수정");
+			model.addAttribute("employeeCodeInfo", employeeCodeInfo);
+			model.addAttribute("managementLevelList", managementLevelList);
+			model.addAttribute("employeeList", employeeList);
+			model.addAttribute("departmentList", departmentList);
+			
+			return "company/employee/modifyEmployee";
+		}
+	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+
 	// 회사관리 목록조회 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
 	@GetMapping("/companyManagement")
 	public String companyManagement(Model model) {
@@ -280,7 +365,7 @@ public class CompanyInfoController {
 		model.addAttribute("title", "사원 목록");
 		return "company/employee/employeeList";
 	}
-	// 부서 목록검색 조회
+	// 사원 목록검색 조회
 	@PostMapping("/employeeList")
 	public String getEmployeeList(@RequestParam(name="searchKey", defaultValue = "employeeCode") String searchKey
 								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
