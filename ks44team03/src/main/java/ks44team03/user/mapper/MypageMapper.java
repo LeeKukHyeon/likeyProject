@@ -1,6 +1,7 @@
 package ks44team03.user.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,6 +10,7 @@ import ks44team03.dto.MyPageCount;
 import ks44team03.dto.Nodata;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.UserInfo;
+import ks44team03.dto.ShipOrderApi;
 
 @Mapper
 public interface MypageMapper {
@@ -16,6 +18,18 @@ public interface MypageMapper {
 	public List<Grade> nextGrade(String u_id);
 	public int couponCount(String u_id);
 	/*아직 사용안함*/public List<OrderInfo> orderInfo(String u_id);
+	
+	/*목록조회*/
+	public List<ShipOrderApi> shipOrderApi(Map<String, Object> searchMap);
+		
+	/* 무게측정 및 출고보류 갯수*/
+	public int weightCheckPostponeCount(String u_id);
+	
+	/* 무게측정 및 출고대기/결제대기 갯수*/
+	public int weightCheckPaymentCount(String u_id);
+	
+	/* 무게측정 및 출고대기/결제대기 갯수*/
+	public int weightCheckNopaymentCount(String u_id);
 	
 	/* 도착완료 갯수*/
 	public int allArrivedCount(String u_id);
