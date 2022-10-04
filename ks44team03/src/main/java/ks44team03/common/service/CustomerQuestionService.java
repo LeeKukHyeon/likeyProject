@@ -20,6 +20,19 @@ public class CustomerQuestionService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
+	public void changeSituation(QuestionCenter questionCenter) {
+		
+		customerQuestionMapper.changeSituation(questionCenter);
+		
+	}
+	
+	//1:1문의 수정
+	public void myQuestionModify(QuestionCenter questionCenter) {
+		
+		customerQuestionMapper.myQuestionModify(questionCenter);
+	}
+	
 	
 	// 1:1문의 등록
 	public void regQuestion(QuestionCenter questionCenter) {
@@ -29,8 +42,6 @@ public class CustomerQuestionService {
 		
 		int result = customerQuestionMapper.regQuestion(questionCenter);
 	}
-	
-
 	
 	//1:1문의 게시글 조회,나의 문의 게시글 보기
 	public QuestionCenter getQuestionRead(String mtmNumCode) {

@@ -15,6 +15,20 @@
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
 
+	<!-- 1:1문의 수정 -->
+	<update id="myQuestionModify" parameterType="QuestionCenter">
+	UPDATE question_center
+	SET
+		mtm_num_code = #{mtmNumCode},
+		mtm_cate=#{mtmCate},
+		mtm_title=#{mtmTitle},
+		mtm_content=#{mtmContent},
+		mtm_img=#{mtmImg}
+	WHERE 
+		mtm_num_code= #{mtmNumCode}
+	</update>
+
+
 	<!-- 1:1문의 등록 -->
 	<insert id="regQuestion" parameterType="QuestionCenter">
 	/* 1:1문의 등록 */
@@ -39,7 +53,7 @@
 	SET
 		mtm_situation='처리중'
 	WHERE 
-		mtm_num_code = '20'
+		mtm_num_code = '#{mtmNumCode}'
 	</update>
 
 
@@ -47,11 +61,13 @@
 	<select id="getQuestionRead" resultMap="QuestionResultMap">
 	/* 1:1문의 게시글 관리자 조회  */
 	SELECT
-		id
+		mtm_num_code
+		,id
 		,mtm_cate
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_situation
 	FROM
 		question_center
 	WHERE
