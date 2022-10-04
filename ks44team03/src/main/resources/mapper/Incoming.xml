@@ -4,14 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="ks44team03.user.mapper.IncomingMapper">
-	<!-- 입고 -->
+	<!-- 입출고 -->
 	<resultMap type="Incoming" id="incomingResultMap">
+		<!-- 입고 -->
 		<id column="idcoming_code" property="incomingCode" />
 		<result column="goods_info_code" property="goodsInfoCode" />
 		<result column="e_code" property="eCode" />
 		<result column="photo_save" property="photoSave" />
 		<result column="volume" property="volume" />
 		<result column="weight" property="weight" />
+		<!--
+		출고
+		<result column="req_option_impli" property="" />
+		<result column="postpone" property="" />
+		<result column="sum_post" property="" />
+		<result column="send_out" property="" />
+		<result column="approval" property="" />
+		<result column="out_tracking_num" property="" />
+		<result column="out_company" property="" />
+		-->
 	</resultMap>
 
 	<!-- 출고
@@ -31,8 +42,13 @@
 		(
 		  incoming_code
 		 ,goods_info_code
-		 ,
+		 ,e_code
+		 ,photo_save
+		 ,volume
+		 ,weight
 		)
+		VALUES
+		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave},)
 	</insert>
 		
 </mapper>
