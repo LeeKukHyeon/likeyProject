@@ -29,7 +29,7 @@
 			  </tr>
 				<tr th:if="${not #lists.isEmpty(noticeList)}" th:each="l : ${noticeList}">
 					<td class="number" th:text="${l.noticeNumCode}" ></td>
-					<td class="subject"><a th:href="@{/noticeRead(noticeTitle=${l.noticeTitle})}" th:text="${l.noticeTitle}"></a></td>
+					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
 					<td class="hit" th:text="${l.noticeView}"></td>
 					<td class="date" th:text="${l.noticeDate}"></td>
 				</tr>

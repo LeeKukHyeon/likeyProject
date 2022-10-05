@@ -10,10 +10,26 @@
 		<result column="mtm_cate" property="mtmCate"/>
 		<result column="mtm_title" property="mtmTitle"/>
 		<result column="mtm_content" property="mtmContent"/>
+		<result column="mtm_answer" property="mtmAnswer"/>
 		<result column="mtm_img" property="mtmImg"/>
 		<result column="mtm_date" property="mtmDate"/>
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
+
+	<!-- 1:1문의 답변 -->
+	<update id="regAnswer" parameterType="QuestionCenter">
+	UPDATE question_center
+	SET
+		mtm_num_code = #{mtmNumCode},
+		mtm_cate = #{mtmCate},
+		mtm_title = #{mtmTitle},
+		mtm_content = #{mtmContent},
+		mtm_img = #{mtmImg},
+		mtm_answer = #{mtmAnswer}
+	WHERE
+		mtm_num_code = #{mtmNumCode}
+	</update>
+
 
 	<!-- 1:1문의 수정 -->
 	<update id="myQuestionModify" parameterType="QuestionCenter">
@@ -67,6 +83,7 @@
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_answer
 		,mtm_situation
 	FROM
 		question_center

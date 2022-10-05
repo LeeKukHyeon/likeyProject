@@ -16,6 +16,19 @@
 		<result column="notice_view" property="noticeView"/>
 	</resultMap>
 	
+	<!-- 공지사항 수정 -->
+	<update id="modifyNotice" parameterType="NoticeCenter">
+	UPDATE notice_center
+	SET
+		notice_num= #{noticeNumCode},
+		notice_title=#{noticeTitle},
+		notice_content=#{noticeContent},
+		notice_img=#{noticeImg}
+	WHERE
+		notice_num= #{noticeNumCode}
+	
+	</update>
+	
 	<!-- 공지사항 등록 -->
 	<insert id="regNotice" parameterType="NoticeCenter">
 	/* 공지사항 등록 */
@@ -35,13 +48,14 @@
 	<select id="getNoticeRead" resultMap="csNoticeResultMap">
 	/* 공지사항 게시물 조회 */
 	SELECT
-		notice_title
+		notice_num
+		,notice_title
 		,notice_content
 		,notice_date
 	FROM
 		notice_center
 	WHERE
-		notice_title = #{noticeTitle};
+		notice_num = #{noticeNumCode};
 	</select>
 	
 	<!-- 공지사항 목록 조회 -->

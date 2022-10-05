@@ -31,6 +31,31 @@ public class CustomerQuestionController {
 	}
 	
 	
+	//1:1문의 답변
+	@PostMapping("/personalQuestionAnswerRegister")
+	public String regAnswer(QuestionCenter questionCenter) {
+		
+		customerQuestionService.regAnswer(questionCenter);
+		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
+		
+		return "redirect:/personalQuestionSearchAdmin";
+		
+	}
+	
+	
+	/*
+	 * //관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
+	 * 
+	 * @PostMapping("/personalQuestionAnswerRegister") public String
+	 * changeSituation(QuestionCenter questionCenter) {
+	 * 
+	 * customerQuestionService.changeSituation(questionCenter);
+	 * 
+	 * return "/customerService/question/personalQuestionAnswerRegister";
+	 * 
+	 * }
+	 */
+	
 	//1:1문의 수정
 	@PostMapping("/myQuestionModify")	
 	public String myQuestionModify(QuestionCenter questionCenter) {
@@ -42,19 +67,6 @@ public class CustomerQuestionController {
 		return "redirect:/myQuestionList";
 		
 	}
-	
-	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
-	@PostMapping("/personalQuestionAnswerRegister")
-	public String changeSituation(QuestionCenter questionCenter) {
-		
-		customerQuestionService.changeSituation(questionCenter);
-		
-		return "/customerService/question/personalQuestionAnswerRegister";
-		
-		
-	}
-	
-	
 	
 	//1:1문의 수정
 	@GetMapping("/myQuestionModify")

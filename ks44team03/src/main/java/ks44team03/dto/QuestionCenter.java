@@ -8,10 +8,17 @@ public class QuestionCenter {
 	private String mtmCate; //1:1문의 분류
 	private String mtmTitle; //1:1문의 제목
 	private String mtmContent; //1:1문의  내용
+	private String mtmAnswer; // 1:1문의 답변
 	private String mtmImg; //1:1문의 이미지
 	private String mtmDate; //1:1문의 등록일
 	private String mtmSituation; //1:1문의 처리상태
 	
+	public String getMtmAnswer() {
+		return mtmAnswer;
+	}
+	public void setMtmAnswer(String mtmAnswer) {
+		this.mtmAnswer = mtmAnswer;
+	}
 	public String getMtmNumCode() {
 		return mtmNumCode;
 	}
@@ -69,8 +76,8 @@ public class QuestionCenter {
 	@Override
 	public String toString() {
 		return "QuestionCenter [mtmNumCode=" + mtmNumCode + ", userId=" + userId + ", employeeCode=" + employeeCode
-				+ ", mtmCate=" + mtmCate + ", mtmTitle=" + mtmTitle + ", mtmContent=" + mtmContent + ", mtmImg="
-				+ mtmImg + ", mtmDate=" + mtmDate + ", mtmSituation=" + mtmSituation + "]";
+				+ ", mtmCate=" + mtmCate + ", mtmTitle=" + mtmTitle + ", mtmContent=" + mtmContent + ", mtmAnswer="
+				+ mtmAnswer + ", mtmImg=" + mtmImg + ", mtmDate=" + mtmDate + ", mtmSituation=" + mtmSituation + "]";
 	}
 	
 }
