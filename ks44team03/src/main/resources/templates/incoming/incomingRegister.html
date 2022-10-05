@@ -26,19 +26,11 @@
 	.radio_group {
 		padding-left: 140px;
 	}
-	#likey_pass_n {
-		margin-top: 10px;
-		margin-left: 10px;
-		margin-bottom: 15px;
-	}
 	.weight_group {
 		border-bottom: 20px solid #F4F5F7;
 	}
 	.volume {
 		padding-left: 3px;
-	}
-	[type=text] {
-		width: 200px;
 	}
 </style>
 <!-- 입고등록 -->
@@ -46,7 +38,7 @@
 </head>
 
 <!-- ========== 입고등록 화면 ========== -->
-<body layout:fragment="adminContent">
+<th:block layout:fragment="adminContent">
 	<div class="content-wrapper">
 		<div class="row">
 			<div class="col-sm-12">
@@ -56,13 +48,10 @@
 				<div class="incoming_register">
 					<form>
 						<table>
-							<tr>
-								<td><label for="incoming_name">수령인</label></td>
-								<td>&nbsp;<input type="text" id="name"></td>
-							</tr>
+						  <tbody>
 							<tr>
 								<td><label for="tracking_num">운송장 번호</label></td>
-								<td>&nbsp;<input type="text" id="tracking_num"></td>
+								<td>&nbsp;<input type="text" id="tracking_num" value=""/></td>
 							</tr>
 							<tr>
 								<td><label for="user_pobox_code">사서함 번호</label></td>
@@ -70,7 +59,7 @@
 							</tr>
 							<tr>
 								<td><label for="volume_1">부피</label></td>
-								<td>&nbsp;
+								<td colspan="1">&nbsp;
 									<div class="volume">
 										<input type="text" id="volume_1" placeholder="가로"> cm<br/>
 										<input type="text" id="volume_2" placeholder="세로"> cm<br/>
@@ -83,12 +72,10 @@
 								<td>&nbsp;<input type="text" id="weight"> kg</td>
 							</tr>
 							<tr>
-								<td>라이키 패스</td>
-								<td class="radio_group">&nbsp;
-								  <input type="radio" name="likey_pass" id="likey_pass_y"> <label for="likey_pass_y">Y</label>
-								  <input type="radio" name="likey_pass" id="likey_pass_n"> <label for="likey_pass_n">N</label>
-								</td>
+								<td>물품 사진</td>
+								<td><input type="file" id="photo_save"></td>
 							</tr>
+						  </tbody>
 						</table>
 						<button type="submit" id="sub_btn">등록</button>
 					</form>
@@ -100,5 +87,5 @@
         </div>
 
 
-</body>
+</th:block>
 </html>
