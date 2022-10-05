@@ -20,6 +20,9 @@
 #notice_page_move a:hover {color: pink;}
 button {cursor:pointer;}
 
+/* 공지사항,배송스케줄 조회 페이지로 이동하는 버튼 색상 */
+#return:hover {color: pink;}
+
 /* faqSearch css */
 .faqSort {background: #D2E1FF; color: black; height: 20mm;font-size: 16px; padding-top: 23px;}
 .subject a:hover {color:pink;}

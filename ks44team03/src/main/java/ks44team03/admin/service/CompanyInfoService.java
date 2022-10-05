@@ -1,6 +1,7 @@
 package ks44team03.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -36,6 +37,14 @@ public class CompanyInfoService {
 	public void companyInfoService() {
 		System.out.println("companyInfoService bean 생성");
 	}
+	// 회사등록 사업자등록번호 중복검사
+	public boolean companyNumCheck(String companyNum) {
+		boolean result = companyInfoMapper.companyNumCheck(companyNum);
+		
+		log.info("companyNum 중복체크 : " + result);
+		return result;
+	}
+	
 	// 회사 등록
 	public void addCompany(CompanyInfo companyInfo) {
 		String newCompanyCode = commonMapper.getCommonPkCode("company_info", "ci_code");
@@ -45,6 +54,11 @@ public class CompanyInfoService {
 		int result = companyInfoMapper.addCompany(companyInfo);
 		
 		log.info("회사 등록 결과 : " + result);
+	}
+	// 회사 목록 검색
+	public List<CompanyInfo> getSearchCompanyList(Map<String, Object> paramMap){
+		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);
+		return companyList;
 	}
 	// 회사 목록 조회
 	public List<CompanyInfo> getCompanyList(){
@@ -63,6 +77,24 @@ public class CompanyInfoService {
 		
 		log.info("사업장 등록 결과 : " + result);
 	}
+	
+	// 사업장 수정
+	public void modifyWorkPlace(WorkPlace workPlace) {
+		companyInfoMapper.modifyWorkPlace(workPlace);
+	}
+	// 특정사업장 목록 조회
+	public WorkPlace getWorkPlaceInfoByCode(String workPlaceCode) {
+		
+		WorkPlace workPlace = companyInfoMapper.getWorkPlaceInfoByCode(workPlaceCode);
+		
+		return workPlace;
+	}
+	
+	// 사업장 목록 검색
+		public List<WorkPlace> getSearchWorkPlaceList(Map<String, Object> paramMap){
+			List<WorkPlace> workPlaceList = companyInfoMapper.getSearchWorkPlaceList(paramMap);
+			return workPlaceList;
+		}
 	// 사업장 목록 조회
 	public List<WorkPlace> getWorkPlaceList(){
 		
@@ -72,6 +104,7 @@ public class CompanyInfoService {
 		return workPlaceList;
 	}
 	
+// -------------------------------- 부서관련 Service 처음 -------------------------------------------------------	
 	// 부서 등록
 	public void addDepartment(Department department) {
 		String newDepartmentCode = commonMapper.getCommonPkCode("department", "de_code");
@@ -82,6 +115,24 @@ public class CompanyInfoService {
 		
 		log.info("부서 등록 결과 : " + result);
 	}
+	
+	// 부서 수정
+	public void modifyDepartment(Department department) {
+		companyInfoMapper.modifyDepartment(department);
+	}
+	// 특정부서 목록 조회
+	public Department getDepartmentInfoByCode(String departmentCode) {
+		
+		Department department = companyInfoMapper.getDepartmentInfoByCode(departmentCode);
+		
+		return department;
+	}
+	
+	// 부서 목록 검색
+	public List<Department> getSearchDepartmentList(Map<String, Object> paramMap){
+		List<Department> departmentList = companyInfoMapper.getSearchDepartmentList(paramMap);
+		return departmentList;
+	}
 	// 부서 목록 조회
 	public List<Department> getDepartmentList(){
 		
@@ -89,7 +140,10 @@ public class CompanyInfoService {
 		log.info("departmentList 리스트~~~~~~~~~~~~" + departmentList);
 		
 		return departmentList;
-	}
+	}	
+// -------------------------------- 부서관련 Service 끝 -------------------------------------------------------	
+	
+// -------------------------------- 사원관련 Service 처음 -------------------------------------------------------
 	// 사원 등록
 	public void addEmployee(Employee employee) {
 		String newEmployeeCode = commonMapper.getCommonPkCode("employee_info", "e_code");
@@ -99,6 +153,26 @@ public class CompanyInfoService {
 		int result = companyInfoMapper.addEmployee(employee);
 		
 		log.info("사원 등록 결과 : " + result);
+	}
+	// 사원 수정
+	public void modifyEmployee(Employee employee) {
+		companyInfoMapper.modifyEmployee(employee);
+		
+		log.info("사원 정보 수정~~!@!~@!~"+ employee);
+	}
+	// 특정사원 목록 조회
+	public Employee getEmployeeInfoByCode(String employeeCode) {
+		
+		Employee employee = companyInfoMapper.getEmployeeInfoByCode(employeeCode);
+		
+		log.info("특정 사원목록 :::::" + employee);
+		
+		return employee;
+	}
+	// 사원 목록 검색
+	public List<Employee> getSearchEmployeeList(Map<String, Object> paramMap){
+		List<Employee> employeeList = companyInfoMapper.getSearchEmployeeList(paramMap);
+		return employeeList;
 	}
 	// 사원 목록 조회
 	public List<Employee> getEmployeeList(){
@@ -116,4 +190,5 @@ public class CompanyInfoService {
 		
 		return managementLevelList;
 	}
+// -------------------------------- 사원관련 Service 끝 -------------------------------------------------------
 }

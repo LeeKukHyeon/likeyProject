@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
+import ks44team03.dto.Nodata;
+import ks44team03.dto.ShipOrderApi;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
 
@@ -69,10 +71,32 @@ public class MypageController {
 		List<MyPageCount> count = mypageService.count(u_id);
 		List<MyPageCount> monthNodataCount = mypageService.monthNodataCount(u_id);
 		
-
-		  
 	
+	
+		/*무게측정 출고보류 갯수*/
+		int weightCheckPostponeCount = mypageService.weightCheckPostponeCount(u_id);
 		
+		/*무게측정 결제완료 갯수*/
+		int weightCheckPaymentCount = mypageService.weightCheckPaymentCount(u_id);
+		
+		/*무게측정 결제대기 갯수*/
+		int weightCheckNopaymentCount = mypageService.weightCheckNopaymentCount(u_id);
+		
+		/*도착완료 갯수*/
+		int allArrivedCount = mypageService.allArrivedCount(u_id);
+		
+		/*일부입고 갯수*/
+		int partialIncomingCount = mypageService.partialIncomingCount(u_id);
+		
+		/*구매대행 신청완료 갯수*/
+		int warehouseArrivalCount = mypageService.warehouseArrivalCount(u_id);
+		
+		/*구매대행 신청완료 갯수*/
+		int purchaseApplication = mypageService.purchaseApplication(u_id);
+		
+		/*배송대행 신청완료 갯수*/
+		int packageForwardingApplication = mypageService.packageForwardingApplication(u_id);
+		/*노카운트 갯수*/
 		int nodataCount = mypageService.nodataCount(u_id);
 		int forwardingCount = mypageService.forwardingCount(u_id);
 		int completedApplication = mypageService.completedApplication(u_id);
@@ -85,6 +109,15 @@ public class MypageController {
 		int temp = mypageService.temp(u_id);
 		int totalCount = lastMonthCount+thisMonthCount;
 		
+		
+		model.addAttribute("weightCheckPostponeCount", weightCheckPostponeCount);
+		model.addAttribute("weightCheckPaymentCount", weightCheckPaymentCount);
+		model.addAttribute("weightCheckNopaymentCount", weightCheckNopaymentCount);
+		model.addAttribute("allArrivedCount", allArrivedCount);
+		model.addAttribute("partialIncomingCount", partialIncomingCount);
+		model.addAttribute("warehouseArrivalCount", warehouseArrivalCount);
+		model.addAttribute("purchaseApplication", purchaseApplication);
+		model.addAttribute("packageForwardingApplication", packageForwardingApplication);
 		model.addAttribute("monthNodataCount", monthNodataCount);
 		model.addAttribute("nodataCount", nodataCount);
 		model.addAttribute("forwardingCount", forwardingCount);

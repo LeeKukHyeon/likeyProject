@@ -193,15 +193,15 @@
 					</td>
 					<td>
 						<div id="orderCnt_2" onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">무게측정 및 출고대기 / 결제대기</div>
-						<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">0</div>
+						<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;" th:text="${weightCheckNopaymentCount}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 배송 중</div>
-						<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">0</div>
+						<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">#0</div>
 					</td>
 					<td>
 						<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국외 배송 중</div>
-						<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">0</div>
+						<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">#0</div>
 					</td>
 				  </tr>
 				  <tr>
@@ -211,29 +211,29 @@
 					</td>
 					<td>
 						<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
-						<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer" th:text="${weightCheckPaymentCount}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국외도착 (통관중)</div>
-						<div onClick="OrderQuery('customsing');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('customsing');" style="cursor:pointer">#0</div>
 					</td>
 					<td>
 						<div id="orderCnt_8" onClick="OrderQuery('ShipClosed');" style="cursor:pointer">국내 배송 완료</div>
-						<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#0</div>
 					</td>
 				  </tr>
 				  <tr>
 				    <td>
 						<div id="orderCnt_9" onClick="OrderQuery('orderType1');" style="cursor:pointer">배송대행신청 완료</div>
-						<div onClick="OrderQuery('orderType1');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('orderType1');" style="cursor:pointer" th:text="${packageForwardingApplication}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_10" onClick="OrderQuery('weightShipHold');" style="cursor:pointer">무게측정 및 출고보류</div>
-						<div onClick="OrderQuery('weightShipHold');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('weightShipHold');" style="cursor:pointer" th:text="${weightCheckPostponeCount}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_11" onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
-						<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#0</div>
 					</td>
 					<td>
 						<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
@@ -243,11 +243,11 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_13" onClick="OrderQuery('buyingItem');" style="cursor:pointer">구매대행 신청완료</div>
-						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer" th:text="${purchaseApplication}">0</div>
 					</td>
 					<td>
 						<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 </div>
-						<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">#0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -255,7 +255,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
-						<div onClick="OrderQuery('Arrived');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('Arrived');" style="cursor:pointer" th:text="${warehouseArrivalCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -264,7 +264,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_18" onClick="OrderQuery('PartialStock');" style="cursor:pointer">일부입고</div>
-						<div onClick="OrderQuery('PartialStock');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('PartialStock');" style="cursor:pointer" th:text="${partialIncomingCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -273,7 +273,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_20" onClick="OrderQuery('AllIn');" style="cursor:pointer">도착(입고) 완료</div>
-						<div onClick="OrderQuery('AllIn');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('AllIn');" style="cursor:pointer" th:text="${allArrivedCount}">0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -282,7 +282,7 @@
 				  <tr>
 				    <td>
 						<div id="orderCnt_21" onClick="OrderQuery('Err');" style="cursor:pointer">오류입고(확인요망)</div>
-						<div onClick="OrderQuery('Err');" style="cursor:pointer">0</div>
+						<div onClick="OrderQuery('Err');" style="cursor:pointer">#0</div>
 					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -314,9 +314,9 @@
 				<!-- 배송대행신청 미작성 입고 건수 -->
 				<div class="shipping_nowrite_table" id="nodata_cnt">
 					<ul th:each="item : ${monthNodataCount}">
-						<li>2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.twoMonthNodataCount}">0건</b></li>
-						<li>2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.lastMonthNodataCount}">0건</b></li>
-						<li>2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.thisMonthNodataCount}">0건</b></li>
+						<li>#2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.twoMonthNodataCount}">0건</b></li>
+						<li>#2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.lastMonthNodataCount}">0건</b></li>
+						<li>#2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.thisMonthNodataCount}">0건</b></li>
 					</ul>
 					<div style="clear:both;height:15px;"></div>
 					<div class="text">미작성 입고 건수는 <b><font style="color:#ff9520;">입고일자</font></b> 기준입니다.</div>
@@ -333,47 +333,9 @@
 			
 				<div id="addPayList">
 				</div>
+									
 		
-			
 				
-				
-				<!-- 배송대행신청 미작성 입고 건수 -->
-				<div class="shipping_nowrite_table" id="de_pickup_cnt">
-					<ul>
-						<li>#2022년 09월 DE 도착 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
-						<li>#2022년 09월 픽업중 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
-						<li>#2022년 09월 NJ 도착 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>0건</b></li>
-					</ul>
-		
-					<div style="clear:both;"></div>
-				</div>
-				<!-- //배송대행신청 미작성 입고 건수 -->
-				
-		
-				<!-- 상품 픽업 여부 확인 -->
-				<div class="shipping_pickup_check">
-					<div class="title">- 상품 픽업 여부 확인 &nbsp;<font>(최근 1개월 이내 이력만 확인됩니다)</font></div>
-		
-					<table border="0" cellspacing="0" cellpadding="0" class="search_bt">
-					  <tr>
-						<td class="select">
-							<select name="pickup_loc_cd">
-								<option value="DE">#미국(D.E)</option>
-							</select>
-						</td>
-						<td class="input"><input type="text" name="pickup_tracking_num" placeholder='상품 트레킹 번호 입력'></td>
-						<td class="input_bt"><a href="javascript:void(0);" onClick="pickupQuery();">검색</a></td>
-					  </tr>
-					</table>
-		
-					<div id="pickupList">
-					</div>
-					
-					<div class="reference_text"><font color="#ff9520">*</font>  
-					일치하는 노데이터 목록이 존재하지 않을 경우 1:1 문의게시판에 문의해주세요.</div>
-				</div>
-				
-				<!-- //상품 픽업 여부 확인 -->
 		
 				
 				<ul class="list_bt">
@@ -818,8 +780,19 @@
 	    		arrData['q_paid_flg']='N';
 	    		OrderQueryCss(22);
 	    	} 
-	    	if(qType!="noDataCnt")
-	    	shipOrderList(arrData);
+	    	if(qType!="noDataCnt"){
+	    		
+	    		shipOrderList(arrData);
+	    	}
+	    		
+	    	
+	    	$(".shipping_details_list").show();
+	    	
+	    	if(isFirst=="N")
+	    	{
+	    		var listPoint = document.querySelector(".shipping_details_list").offsetTop;
+	    		window.scrollTo({top:listPoint+200, behavior:'smooth'});
+	    	}
 	    }
 	    
 	    function viewInfo(mode)
@@ -934,6 +907,63 @@
 	    			}
 	    		})
 	    }
+	    
+	    function doAction(actType){
+	    
+	    	var frm = document.frmMain;
+	    	
+	    	var frmId = "frmMain";
+	    	if(actType=="reqStockIn" || actType=="nowStockIn" || actType=="chkStockIn")
+	    		var arr_checked_obj = $("form#"+ frmId +" input:checkbox[name='arr_row_id[]']:checked");
+	    	console.log(arr_checked_obj)
+	    	if (arr_checked_obj.length==0) {
+	      		window.alert('신청서를 선택해 주세요!');
+	      		return;
+	      	}
+	    }
+	    
+	    function shipOrderList(arrData)
+	    {
+
+	    	$.ajax({
+	    			type: 'POST',
+	    			url: "/api/shipOrderApi",
+	    			async:false,
+	    			data: {q_item_status:arrData["q_item_status"],
+	    					q_paid_flg:arrData["q_paid_flg"],
+	    					q_status:arrData["q_status"],
+	    					q_order_type:arrData["q_order_type"],
+	    					q_loc_cd:arrData["q_loc_cd"],
+	    					q_from_date:arrData["q_from_date"],
+	    					q_to_date:arrData["q_to_date"],
+	    					q_field:arrData["q_field"],
+	    					q_keyword:arrData["q_keyword"],
+	    					q_query_type:arrData["q_query_type"],
+	    					q_agent_status:arrData["q_agent_status"],
+	    					q_ship_hold_flag:arrData["q_ship_hold_flag"],
+	    					page:arrData["page"],
+	    					num_per_page:arrData["num_per_page"],
+	    					action_type : 'shipOrderList'},
+	    			dataType:"html",
+	    			success: function(data) 
+	    			{
+	    				var content = $('#shipOrderList').html(data);
+	    				content.trigger( "create" );
+	    				
+	    				var content = $('#nodata_list').html('');
+	    				content.trigger( "create" );
+	    				
+	    				$(".shipping_details_list").show();
+	    			},
+	    			error: function(jqXHR, textStatus, errorThrown) 
+	    			{
+	    				alert("호출에 실패했습니다." + errorThrown );
+	    			}
+	    		})
+	    		
+
+	    }
+	    
     </script>
     </body>
     	 

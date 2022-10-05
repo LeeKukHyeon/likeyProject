@@ -29,10 +29,29 @@ public class CustomerScheduleService {
 	}
 	
 	
+	//배송스케줄 게시물 삭제
+	public int deleteSchedule(String scheduleNumCode) {
+		customerScheduleMapper.deleteSchedule(scheduleNumCode);
+			
+		int resultRemove = 0;
+		
+		resultRemove += customerScheduleMapper.deleteSchedule(scheduleNumCode);
+
+		return resultRemove;
+		
+	}
+	
+	
+	//배송스케줄 게시물 수정
+	public void modifySchedule(ScheduleCenter scheduleCenter) {
+		
+		customerScheduleMapper.modifySchedule(scheduleCenter);
+	}
+	
 	//배송스케줄 게시물 등록
 	public void regSchedule(ScheduleCenter scheduleCenter) {
 		
-		String newScheduleCode = commonMapper.getCommonPkCode("delivery_schedule", "schedule_num_code");
+		String newScheduleCode = commonMapper.getCommonPkNumCode("delivery_schedule", "schedule_num");
 		scheduleCenter.setScheduleNumCode(newScheduleCode);
 		log.info(scheduleCenter + "::::::: 배송스케줄 추가 scheduleCenter");
 		
@@ -46,9 +65,9 @@ public class CustomerScheduleService {
 	//배송스케줄 게시물 조회
 	public ScheduleCenter getScheduleRead(String scheduleNumCode) {
 		
-		ScheduleCenter scheduleRead = customerScheduleMapper.getScheduleRead(scheduleNumCode);
+		ScheduleCenter scheduleCenter = customerScheduleMapper.getScheduleRead(scheduleNumCode);
 		
-		return scheduleRead;
+		return scheduleCenter;
 	}
 	
 	

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+	<div align="center">
+		<form id="modifyScheduleForm" th:action="@{/deliveryScheduleModify}" method="post">
+			<div style="width: 55%; margin-top: 10mm">
+				<h2 style="font-weight: bold; text-align: left;" >배송스케줄</h2>
+				<hr width="100%" color="gray">
+				<div>
+				 	<input id="scheduleNumCode" name="scheduleNumCode" th:value="${scheduleRead.scheduleNumCode}" style="display: none;">
+					<div>
+					<div style="float: right; font-size: 4mm; text-align: right;" th:text="'등록일  : '+${scheduleRead.scheduleDate}"></div><input type="text" style="font-size: 8mm; text-align: center;" id="scheduleTitle" name="scheduleTitle" th:value="${scheduleRead.scheduleTitle}">
+					</div>
+					<div style="text-align: left; color: black;" >
+						<textarea style="width: 90%; height: 10cm; margin: 18px;" id="scheduleContent" name="scheduleContent" th:text="${scheduleRead.scheduleContent}"></textarea>
+					</div>
+				</div>
+				<hr width="100%" color="gray">
+			<a th:href="@{/deliveryScheduleSearch}"><input type="button" value="목록" style="float: left;"></a>
+			<a href="#"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
+			<button type="submit" style="float: right; font-size: 5px">수정하기</button>
+			
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -18,4 +18,19 @@
 			${tableName};
 	</select>
 	
+	<!-- (공통) 코드 자동 숫자만 증가 -->
+	<select id="getCommonPkNumCode" resultType="String" parameterType="String">
+	/* (공통) 코드 자동 숫자만 증가 */
+	SELECT
+		CASE
+		WHEN COUNT(*) = 0 THEN CONCAT(#{tableName},'_code1')
+		ELSE 
+		max(cast(SUBSTRING_INDEX(${columnName},'_code',-1)AS UNSIGNED)+1)
+		END 
+	FROM 
+		${tableName};
+	</select>
+	
 </mapper>
+
+

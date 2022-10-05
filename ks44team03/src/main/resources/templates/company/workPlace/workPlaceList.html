@@ -8,24 +8,27 @@
 <!-- 관리자 회사관련 선택화면 -->
 <th:block layout:fragment="adminContent">	
 	  <!-- stat content-wrapper -->
-        <div class="content-wrapper">             
+        <div class="content-wrapper">      
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+        <div th:include="company/workPlace/searchWorkPlaceList :: searchFragment"></div>
              	<div class="row">
              		<div class="col-sm-12">		
 						<table class="input_table" style="width:100%;">	
 							<tr>
 								<th>선택</th>
-								<th>사업장코드</th>
+								<!-- <th>사업장코드</th> -->
 								<th>사업자등록번호</th>
 								<th>사업장 명</th>
 								<th>대표자성명</th>
 								<th>사업장주소</th>
 								<th>회사종목</th>
 								<th>개업날짜</th>
+								<th>수정</th>
+								<th>삭제</th>
 							</tr>
 							<!-- 
 							private String workPlaceCode; //사업장코드
-							private String companyNumber; //사업자등록번호
+							private String wpCompanyNumber; //사업자등록번호
 							private String workPlaceName; //사업장 명 
 							private String workPlaceRepresentative; //대표자성명
 							private String workPlaceDelegateNum; //사업장대표자 주민등록번호
@@ -36,14 +39,20 @@
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(workPlaceList)}" th:each="l : ${workPlaceList}">
 									<td id="companyCheck"><input type="checkbox"></td>
-									<td th:text="${l.workPlaceCode}"></td>
-									<td th:text="${l.WpCompanyNumber}"></td>
+									<!-- <td th:text="${l.workPlaceCode}"></td> -> 사업장코드 -->
+									<td th:text="${l.wpCompanyNumber}"></td>
 									<td th:text="${l.workPlaceName}"></td>
 									<td th:text="${l.workPlaceRepresentative}"></td>
 									<!-- <td th:text="${l.workPlaceDelegateNum}"></td>  -> 사업장대표자 주민등록번호 -->
 									<td th:text="${l.workPlaceAddr}"></td>
 									<td th:text="${l.workPlaceCate}"></td>
 									<td th:text="${l.workPlaceBirth}"></td>
+									<td>
+										<a th:href="@{/modifyWorkPlace(workPlaceCode=${l.workPlaceCode})}">수정</a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
 								</tr>
 								<tr th:unless="${not #lists.isEmpty(workPlaceList)}">
 									<td colspan="8" style="text-align: center;">등록된 사업장이 없습니다.</td>

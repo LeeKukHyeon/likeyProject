@@ -30,6 +30,46 @@ public class CustomerScheduleController {
 	}
 	
 	
+	//배송스케줄 게시물 삭제
+	@PostMapping
+	public String deleteSchedule() {
+		
+		return "redirect:/deliveryScheduleSearch";
+	}
+	
+	
+	//배송스케줄 게시물 삭제
+	//@GetMapping("/delete/{scheduleNumCode}")
+	@GetMapping("/deliveryScheduleDelete")
+	public String deleteSchedule(@RequestParam(value = "scheduleNumCode")String scheduleNumCode) {
+		
+		customerScheduleService.deleteSchedule(scheduleNumCode);
+		
+		return "/customerService/schedule/deleteSchedule";
+	}
+	
+	//배송스케줄 게시물 수정
+	@PostMapping("/deliveryScheduleModify")
+	public String modifySchedule(ScheduleCenter scheduleCenter) {
+		
+		customerScheduleService.modifySchedule(scheduleCenter);
+		System.out.println(scheduleCenter + "수정하는 게시물 값 받아오는가?");
+		
+		return "redirect:/deliveryScheduleSearch";
+	}
+	
+	//배송스케줄 게시물 수정
+	@GetMapping("/deliveryScheduleModify")
+	public String modifySchedule(@RequestParam(value = "scheduleNumCode", required = false) String scheduleNumCode ,Model model) {
+		
+		// 게시물 내용
+		ScheduleCenter scheduleRead = customerScheduleService.getScheduleRead(scheduleNumCode);
+		
+		model.addAttribute("scheduleRead", scheduleRead);
+		
+		return "/customerService/schedule/deliveryScheduleModify";
+	}
+	
 	
 	//배송스케줄 등록
 	@PostMapping("/deliveryScheduleRegister")
@@ -40,18 +80,12 @@ public class CustomerScheduleController {
 		return "redirect:/deliveryScheduleSearch";
 	}
 	
-	
 	//배송스케줄 등록
 	@GetMapping("/deliveryScheduleRegister")
 	public String regScheduleForm(Model model) {
 		
-		return "/customerService/deliveryScheduleRegister";
+		return "/customerService/schedule/deliveryScheduleRegister";
 	}
-	
-	
-	
-	
-	
 	
 	//배송스케줄 게시글 조회
 	@GetMapping("/deliveryScheduleSearchRead")
@@ -59,15 +93,14 @@ public class CustomerScheduleController {
 		
 		// 게시물 내용
 		ScheduleCenter scheduleRead = customerScheduleService.getScheduleRead(scheduleNumCode);
-
+		
 		System.out.println(scheduleRead + "::: 스케줄 번호 받아오는지 확인");
 		
 		model.addAttribute("scheduleRead", scheduleRead);
 	
 	
-		return "/customerService/deliveryScheduleSearchRead";
+		return "/customerService/schedule/deliveryScheduleSearchRead";
 	}
-	
 	
 	// 배송스케줄 목록 조회
 	@GetMapping("/deliveryScheduleSearch")
@@ -77,6 +110,6 @@ public class CustomerScheduleController {
 	
 		model.addAttribute("ScheduleList", ScheduleList);
 	
-		return "/customerService/deliveryScheduleSearch";
+		return "/customerService/schedule/deliveryScheduleSearch";
 	}
 }

@@ -11,6 +11,7 @@
 		
 		<div style="width: 55%">
 			<h2 align="left">공지사항</h2>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeSearch}">공지사항</a></p>
 			<hr style="height: 1px; background: gray;">
 		</div>
 		
@@ -27,13 +28,13 @@
 				<th class="date">등록일</th>
 			  </tr>
 				<tr th:if="${not #lists.isEmpty(noticeList)}" th:each="l : ${noticeList}">
-					<td class="number" th:text="${l.noticeNumCode}"></td>
+					<td class="number" th:text="${l.noticeNumCode}" ></td>
 					<td class="subject"><a th:href="@{/noticeRead(noticeTitle=${l.noticeTitle})}" th:text="${l.noticeTitle}"></a></td>
 					<td class="hit" th:text="${l.noticeView}"></td>
 					<td class="date" th:text="${l.noticeDate}"></td>
 				</tr>
 				<tr th:unless="${not #lists.isEmpty(noticeList)}">
-					<td colspan="8">등록된 게시물이 없습니다.</td>
+					<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td><td></td>
 				</tr>
 		    </tbody></table>
 		

@@ -40,6 +40,20 @@
 			<result column="friends_de_check" property="friendsDeCheck"/>
 	</resultMap>
 	
+	<resultMap type="Nodata" id="NodataResultMap">
+		<id column="nod_code" property="nodCode"/>
+			<result column="nod_user_pobox_code" property="nodUserPoboxCode"/>
+			<result column="nod_tracking_num" property="nodTrackingNum"/>
+			<result column="nod_e_code" property="nodECode"/>
+			<result column="nod_id" property="nodId"/>
+			<result column="nod_recipient" property="nodRecipient"/>
+			<result column="nod_pic" property="nodPic"/>
+			<result column="nod_arrival_date" property="nodArrivalDate"/>
+			<result column="nod_tracking_company" property="nodTrackingCompany"/>
+			<result column="nod_ discard_date" property="nodDiscardDate"/>
+	</resultMap>
+	
+	
 	
 	
 	<select id="count" parameterType="String" resultType="MyPageCount">
@@ -50,11 +64,195 @@
 		 	id=#{u_id};
 	
 	</select>
+		
+		
+	<select id="shipOrderApi" parameterType="map" resultType="shipOrderApi">
+		/*목록 출력*/
+		 
+		SELECT 
+			 o.logistics_center as logisticsCenter
+			,o.goods_order_date as goodsOrderDate
+			,g.tracking_num as trackingNum
+			,g.grouping_delivery as groupingDelivery
+			,g.goods__url as goodsUrl
+			,g.g_name as gName
+			,o.total_price as totalPrice
+			,CONCAT(d.stat_info, ' (',COUNT(d.stat_info), ')') AS statInfo
+			,o.user_name as userName
+			,g.buy_order_code as buyOrderCode
+			,g.id
+		FROM 
+			goods_info AS g 
+			INNER JOIN delivery_current_state AS d 
+			ON g.goods_info_code = d.goods_info_code
+			AND g.tracking_num IS NOT NULL 
+			INNER JOIN order_info AS o
+			ON g.buy_order_code = o.buy_order_code
+		where g.id = #{u_id} and d.stat_info = #{stat_info} 
+		GROUP BY g.grouping_delivery, d.stat_info;
+	</select>
+		
+		
+	<select id="weightCheckPostponeCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고보류 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g 
+		ON 
+			o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i 
+		ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE 
+			os.order_state='출고 보류' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.postpone = 'n' AND g.id = #{u_id}
+	</select>
+	
+	<select id="weightCheckPaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제완료 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o INNER JOIN order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+		where 
+			os.order_state='입금 완료' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.approval = 'y' 
+			AND i.postpone = 'n' 
+			AND g.id = #{u_id};
+	</select>
+	
+	<select id="weightCheckNopaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제대기 갯수*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+	 	where 
+	 		os.order_state='입금 전' 
+	 			AND i.weight IS NOT NULL 
+	 			AND i.volume IS NOT NULL 
+	 			AND i.approval = 'y' 
+	 			AND i.postpone = 'n' 
+	 			AND g.id = #{u_id};
+	</select>
+	
+	
+	<select id="allArrivedCount" parameterType="String" resultType="int">
+			/*도착완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM
+			 goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		 WHERE 
+		 	d.incoming_check = 'y' AND g.id = #{u_id};
+	</select>
+	
+	<select id="partialIncomingCount" parameterType="String" resultType="int">
+		/*일부입고 카운트*/
+		SELECT
+			 COUNT(if(arrival='y',1,null)) 
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		WHERE 
+			d.incoming_check = 'n' AND g.id = #{u_id};
+	</select>
+	
+	<select id="warehouseArrivalCount" parameterType="String" resultType="int">
+		/*창고도착 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 완료" AND g.id = #{u_id};
+	</select>
+	
+	<select id="purchaseApplication" parameterType="String" resultType="int">
+		/*구매대행 신청완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			order_info AS o 
+		ON 
+			g.buy_order_code = o.buy_order_code
+		 WHERE 
+		 	o.buy_way ="구매대행" AND o.id = #{u_id} AND g.arrival="n";
+	</select>
+	
+	
+	
+	<select id="packageForwardingApplication" parameterType="String" resultType="int">
+		/*배송대행 신청완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			order_info AS o 
+		ON 
+			g.buy_order_code = o.buy_order_code
+		 WHERE 
+		 	o.buy_way ="배송대행" AND o.id = #{u_id} AND g.arrival="n";
+	</select>
+	
+	<select id="nodataList" parameterType="String" resultMap="NodataResultMap">
+		/*노데이터 리스트*/
+		SELECT * 
+		from 
+			user_member AS u 
+		INNER JOIN 
+			nodata_manage AS n 
+		ON 
+			u.user_pobox_code = n.nod_user_pobox_code 
+		WHERE 
+			u.u_id = #{u_id} AND nod_user_check = 'n'; 
+	</select>
 	
 	
 	<select id="monthNodataCount" parameterType="String" resultType="MyPageCount">
 		/*달별노데이터카운트*/
-		SELECT COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 2 MONTH  )),1,null)) as twoMonthNodataCount, 
+		SELECT 
+			COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 2 MONTH  )),1,null)) as twoMonthNodataCount, 
 			COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) as lastMonthNodataCount,
 			COUNT(if(MONTH(nod_arrival_date) = month(CURDATE()),1,null)) as thisMonthNodataCount
 		from 
@@ -68,41 +266,84 @@
 	
 	<select id="nodataCount" parameterType="String" resultType="int">
 		/*노데이터카운트*/
-		SELECT COUNT(*) FROM nodata_manage AS n INNER JOIN user_member AS u ON n.nod_user_pobox_code = u.user_pobox_code WHERE u.u_id=#{u_id} and nod_user_check='n'; 
+		SELECT 
+			COUNT(*) 
+		FROM 
+			nodata_manage AS n 
+		INNER JOIN 
+			user_member AS u 
+		ON
+		 	n.nod_user_pobox_code = u.user_pobox_code 
+		WHERE 
+			u.u_id=#{u_id} and nod_user_check='n'; 
 	</select>
 	
 	<select id="forwardingCount" parameterType="String" resultType="int">
 		/*제품 포장완료 및 출고대기중*/
-		SELECT COUNT(*) FROM goods_info AS g INNER JOIN incoming AS i ON g.goods_info_code = i.goods_info_code WHERE g.id = #{u_id} AND i.approval = 'y';
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			incoming AS i 
+		ON 
+			g.goods_info_code = i.goods_info_code 
+		WHERE 
+			g.id = #{u_id} AND i.approval = 'y';
 	</select>
 	
 	
 	<select id="arrivalCount" parameterType="String" resultType="int">
 		/*제품 입고중*/
-		select COUNT(if(arrival='y',1,null)) FROM goods_info WHERE id=#{u_id};
+		select 
+			COUNT(if(arrival='y',1,null)) 
+		FROM 
+			goods_info 
+		WHERE 
+			id=#{u_id};
 	</select>
 	
 	
 	<select id="completedApplication" parameterType="String" resultType="int">
 		/*신청서 작성완료*/
-		SELECT COUNT(if(temp IS null,1,null)) FROM order_info WHERE id=#{u_id};
+		SELECT 
+			COUNT(if(temp IS null,1,null)) 
+		FROM 
+			order_info 
+		WHERE 
+			id=#{u_id};
 	</select>
 	
 	
 	<select id="temp" parameterType="String" resultType="int">
 		/*임시저장 건수*/
-		SELECT COUNT(if(temp='임시저장',1,null)) FROM order_info WHERE id=#{u_id};
+		SELECT 
+			COUNT(if(temp='임시저장',1,null)) 
+		FROM 
+			order_info 
+		WHERE
+			 id=#{u_id};
 	</select>
 	
 	<select id="thisMonthCount" parameterType="String" resultType="int">
 		/*이번달 이용건수 조회*/
-		SELECT COUNT(*) FROM order_info WHERE id=#{u_id} AND MONTH(goods_order_date) = MONTH(CURDATE());
+		SELECT 
+			COUNT(*) 
+		FROM 
+			order_info 
+		WHERE 
+			id=#{u_id} AND MONTH(goods_order_date) = MONTH(CURDATE());
 	</select>
 	
 	
 	<select id="lastMonthCount" parameterType="String" resultType="int">
 		/*지난달 이용건수 조회*/
-		SELECT COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) from order_info WHERE id=#{u_id};
+		SELECT 
+			COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) 
+		from 
+			order_info
+		 WHERE 
+		 	id=#{u_id};
 	</select>
 	
 	
@@ -131,11 +372,15 @@
 	
 	<select id="nextGrade" parameterType="String" resultType="Grade">
 			/* 다음 등급 알림 */
-			select grade_name as nextGrade, 
-			transaction_number -(select pay_completed_count 
-			from user_member 
-			where u_id = #{u_id}) as needBuy
-			from grade 
+			select 
+				grade_name as nextGrade, 
+				transaction_number -(select pay_completed_count 
+			from 
+				user_member 
+			where 
+				u_id = #{u_id}) as needBuy
+			from 
+				grade 
 			where 
 				grade_code = (select concat('grade_code', (select 
 							SUBSTRING_INDEX(grade_code,'_code',-1)
@@ -148,6 +393,11 @@
 	</select >
 	
 	<select id="couponCount" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM coupon_status WHERE u_id = #{u_id} AND c_use = 'n'
+		SELECT 
+			COUNT(*) 
+		FROM 
+			coupon_status 
+		WHERE 
+			u_id = #{u_id} AND c_use = 'n'
 	</select>
 </mapper>

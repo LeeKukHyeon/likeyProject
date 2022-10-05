@@ -16,6 +16,92 @@
 </head>
 <title th:text="${title}"></title>
 <th:block layout:fragment="adminContent">
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function(){
+			function validationCheck(data){
+				var isValid = true;
+				//유효성검사
+				if(typeof data == 'object'){
+					
+					$.each(data, function(){
+						var inputValue = $(this).val();
+						if(typeof inputValue == 'undefined' || inputValue == null || inputValue == ''){
+							isValid = false;
+							alert('사업자등록번호를 입력해주세요.');
+							return false;
+						}
+					});
+				}
+				if(typeof data == 'string'){
+					if(typeof data == 'undefined' || data == null || data == ''){
+						isValid = false;
+						return false;
+					}
+				}
+				return isValid;
+			}
+			
+			$('#companyNum').on('keydown change input keyup blur', function(){
+				$('#companyNumCheckBtn').attr('data-ischecked','false');
+			});
+			
+			$(document).on('click', '#add_button', function(){
+				// 사업자등록번호 중복여부 체크하기위해
+				var isChecked = $('#companyNumCheckBtn').attr('data-ischecked');
+				
+				isChecked = (isChecked == 'true');
+				
+				if(!isChecked){
+					alert('사업자등록번호 중복체크 후 등록이 가능합니다.');
+					return false;
+				}
+				console.log(isChecked, '사업자등록번호 중복여부');
+				// 관리자 입력요소
+				var inputObj = $('#addCompanyForm input');
+				
+				isValid = validationCheck(inputObj);
+				
+				// 유효성 검사 후
+				if(isValid) $('#addCompanyForm').submit();
+			});
+			
+			$('#companyNumCheckBtn').click(function(){
+				
+				var companyNum = $('#companyNum').val();
+				
+				var result = validationCheck(companyNum);
+				
+				if(!result){
+					alert('사업자등록번호를 입력해주세요.')
+					return;
+				}
+				
+				var request = $.ajax({
+					url : '/companyNumCheck',
+					method : "GET",
+					data : { 'companyNum' : companyNum},
+					dataType : 'json'
+				});
+				
+				request.done(function( data ){
+					if(data){
+						alert('이미 등록된 사업자등록번호 입니다.');
+						$('#companyNum').focus();
+					}else{
+						$('#companyNumCheckBtn').attr('data-ischecked', 'true');
+						alert('등록가능한 사업자등록번호 입니다.');
+						$('#addCompanyForm input').prop('disabled', false);
+						$('#addCompanyForm select').prop('disabled', false);
+						$('#addCompanyForm button').prop('disabled', false);
+					}
+				});
+				request.fail(function( jqXHR, textStatus ){
+					alert( "Request failed:" + textStatus);
+				});
+			});
+		});
+	</script>
 	<div class="content-wrapper">
 		<div class="right_text" style="margin-left: 10%; margin-right: 10%;">
 			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;"></h2>
@@ -35,47 +121,50 @@
 						<th class="td1">회사사업자등록번호</th>	
 						<td class="td2">				
 							<input type="text" id=companyNum name=companyNum placeholder="회사사업자등록번호">	
-						</td>	
+						</td>
+						<td>
+							<button type="button" id="companyNumCheckBtn" data-ischecked="false">중복체크</button>
+						</td>
 					</tr>		
 					<tr>	
 						<th class="td1">회사대리인이름</th>
 						<td class="td2">
-							<input type="text" id=companyInfoName name=companyInfoName placeholder="회사대리인이름">	
+							<input type="text" id=companyInfoName name=companyInfoName placeholder="회사대리인이름" disabled="disabled">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">대표주민등록번호</th>
 						<td class="td2">
-							<input type="text" id=companyDelegateNum name=companyDelegateNum placeholder="대표주민등록번호">	
+							<input type="text" id=companyDelegateNum name=companyDelegateNum placeholder="대표주민등록번호" disabled="disabled">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사주소</th>
 						<td class="td2">
-							<input type="text" id=companyAddr name=companyAddr placeholder="회사주소">	
+							<input type="text" id=companyAddr name=companyAddr placeholder="회사주소" disabled="disabled">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사종목</th>
 						<td class="td2">
-							<input type="text" id=companyCate name=companyCate placeholder="회사종목">	
+							<input type="text" id=companyCate name=companyCate placeholder="회사종목" disabled="disabled">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사설립날짜</th>
 						<td class="td2">
-							<input type="date" id=companyBirth name=companyBirth placeholder="회사설립날짜">	
+							<input type="date" id=companyBirth name=companyBirth placeholder="회사설립날짜" disabled="disabled">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사명</th>
 						<td class="td2">
-							<input type="text" id=companyName name=companyName placeholder="회사명">	
+							<input type="text" id=companyName name=companyName placeholder="회사명" disabled="disabled">	
 						</td>
 					</tr>
 				</table>
 				<div class="button2">
-					<button type="submit"  class="add_button">등록</button>
+					<button type="button" id="add_button" class="add_button">등록</button>
 					<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
 				</div>
 			</form>

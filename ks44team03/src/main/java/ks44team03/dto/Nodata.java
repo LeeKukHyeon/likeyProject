@@ -2,7 +2,7 @@ package ks44team03.dto;
 
 public class Nodata {
 	private String nodCode;				//노데이터 입고 코드
-	private String nodUserPoboxCode;	//사서함 번호
+	private String nodUserPoboxCode;	//사서함 번호	
 	private String nodECode;			//처리한 직원
 	private String nodId;				//아이디
 	private String nodTrackingNum;		//운송장 번호
