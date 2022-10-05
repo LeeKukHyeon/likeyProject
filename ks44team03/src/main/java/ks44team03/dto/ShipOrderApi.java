@@ -8,6 +8,7 @@ public class ShipOrderApi {
 	private String goodsUrl;
 	private String gName;
 	private int totalPrice;
+	private String orderState;
 	private String statInfo;
 	private String userName;
 	private String buyOrderCode;
@@ -53,6 +54,12 @@ public class ShipOrderApi {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	public String getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
+	}
 	public String getStatInfo() {
 		return statInfo;
 	}
@@ -74,11 +81,12 @@ public class ShipOrderApi {
 	
 	@Override
 	public String toString() {
-		return "shipOrderApi [logisticsCenter=" + logisticsCenter + ", goodsOrderDate=" + goodsOrderDate
+		return "ShipOrderApi [logisticsCenter=" + logisticsCenter + ", goodsOrderDate=" + goodsOrderDate
 				+ ", trackingNum=" + trackingNum + ", groupingDelivery=" + groupingDelivery + ", goodsUrl=" + goodsUrl
-				+ ", gName=" + gName + ", totalPrice=" + totalPrice + ", statInfo=" + statInfo + ", userName="
-				+ userName + ", buyOrderCode=" + buyOrderCode + "]";
+				+ ", gName=" + gName + ", totalPrice=" + totalPrice + ", orderState=" + orderState + ", statInfo="
+				+ statInfo + ", userName=" + userName + ", buyOrderCode=" + buyOrderCode + "]";
 	}
+	
 	
 	
 }
