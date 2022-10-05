@@ -122,6 +122,7 @@ button {
 .olmessagef {color: red; font-style: Italic;}
 .olmessaget {color: blue; font-style: Italic;}
 </style>
+
 <!-- 아이디 비밀번호 입력되었는지 확인하는 함수  -->
  <script type="text/javascript">
 	 function checkValue() {
@@ -177,6 +178,7 @@ $(document).ready(function(){
 <!-- 아이디 중복확인 버튼 클릭시 중복체크  -->
 <script type="text/javascript">
 $("#overlappedID").click(function(){
+	console.log(ddd);
 	$("#signup").attr("type", "button");
 	const id = $("#userId").val();
 	$.ajax({
@@ -214,8 +216,8 @@ $("#overlappedID").click(function(){
 		<p class="step_txt">
 		회원가입시 신규 가입 <strong>10% 할인쿠폰</strong>을 증정합니다.<br/>
 		</p>
-
-		<form name="signup" id="form1" method="post" action="signup" encType="utf-8">
+		
+		<form method="post" action="signup">
 			<input type="hidden" name="action_type" value="MemJoin">
 			<input type="hidden" name="auth_num" value="">
 			
@@ -230,8 +232,8 @@ $("#overlappedID").click(function(){
 					<td class="td2" width="50%">
 						<div class="form-group first">
 							<label for="uid" id="id">아이디를 입력해주세요 (5~15자 입력)</label> </br>
-							<input type="text"  name="uid" id="uid" maxlength="30" style="width:150px;" class="input_add" required /> 
-							<button type="button" id="overlappedID" onclick="test()">중복확인</button><br>
+							<input type="text"  name="uId" id="uId" maxlength="30" style="width:150px;" class="input_add" required /> 
+							<button type="button" id="overlappedID">중복확인</button><br>
 							<span id="olmessage"></span>
 						</div>
 					</td> 
@@ -239,21 +241,21 @@ $("#overlappedID").click(function(){
 				<tr>
 					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="password" name="userPw" id="userPw" maxlength="20" class="input_add" value="" />
+						<input type="password" name="uPw" id="uPw" maxlength="20" class="input_add" value="" />
 						<div id="user_pwd-errmsg"></div>
 					</td>
 				</tr>
 				<tr>
 					<th class="td1">비번확인 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="password" name="userRepw" id="userRepw" maxlength="20" class="input_add" value="" />
+						<input type="password" name="uRepw" id="uRepw" maxlength="20" class="input_add" value="" />
 						<div id="user_repwd-errmsg"></div>
 					</td>
 				</tr>  
 				<tr>
 					<th class="td1">이름 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="text" name="userName" id="userName" maxlength="30" class="input_add" value="" />
+						<input type="text" name="uName" id="uName" maxlength="30" class="input_add" value="" />
 						<div id="name-errmsg"></div>
 					</td>
 				</tr>  
@@ -271,7 +273,7 @@ $("#overlappedID").click(function(){
 				<tr>
 					<th class="td1">닉네임 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="text" name="userNick" id="userNick" maxlength="20" style="width:150px;" class="input_add" value="" />
+						<input type="text" name="uNick" id="uNick" maxlength="20" style="width:150px;" class="input_add" value="" />
 						<div id="nickname-errmsg"></div>
 					</td>
 				</tr>
@@ -281,7 +283,7 @@ $("#overlappedID").click(function(){
 					<th class="td1">휴대폰 <span class="required-addon">*</span></th>
 					<td class="td2">
 						<div>
-							<select name="countryCode" id=""  class="select_add" style="width:95px;">
+							<select name="countryCode" id="countryCode"  class="select_add" style="width:95px;">
 								<optgroup label="Other countries">
 								<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
 								<option data-countryCode="US" value="1">USA (+1)</option>
@@ -501,7 +503,7 @@ $("#overlappedID").click(function(){
 								<option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
 								</optgroup>
 								</select>
-							<input type="text" name="hp2" id="hp2" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							<input type="text" name="hp" id="hp" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
 							</div>
 					
 					</td>
@@ -509,7 +511,7 @@ $("#overlappedID").click(function(){
 				<tr>
 					<th class="td1">이메일 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="text" id="email1" name="email1" maxlength="30"  style="width:300px;" class="input_add" value=""/>
+						<input type="text" id="uEmail" name="uEmail" maxlength="30"  style="width:300px;" class="input_add" value=""/>
 					</td>
 				</tr>    
 				<tr>
@@ -534,9 +536,7 @@ $("#overlappedID").click(function(){
 					</div>
 				</div>
 			</div>
-				
-	
-			<table border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+			<table>
 			  <tr>
 			    <td style="padding-right:9px;">
 					<button type="submit"  class="next_button">회원가입</button>

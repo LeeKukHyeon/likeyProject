@@ -2,9 +2,17 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ks44team03.user.mapper.SignupMapper">
-	<resultMap type="UserInfo" id="UserInfoResultMap">
-
-	</resultMap>
+<mapper namespace="ks44team03.user.mapper.MemberMapper">
+	
+	<insert id="signup" parameterType="MemberDTO">
+		
+		INSERT INTO user_member
+			(u_id, u_pw, u_name, u_email, u_birth, u_phone, u_nick,
+			user_pobox_code, user_grade_code, u_insert_date, u_dormant, pay_completed_count, u_level)
+		VALUES
+			(#{uId}, #{uPw},#{uName},#{uEmail},concat(#{yy},'-', #{mm},'-',#{dd}), CONCAT(#{countryCode},#{hp}),#{uNick},
+			CONCAT(#{uNick},CURDATE()), 'grade_code1', CURDATE(), 'n', 0, '이용자');
+	
+	</insert>
 	
 </mapper>

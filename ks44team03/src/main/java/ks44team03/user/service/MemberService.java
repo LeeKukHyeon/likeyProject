@@ -1,14 +1,24 @@
 package ks44team03.user.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ks44team03.user.mapper.MemberMapper;
 import ks44team03.dao.MemberDAO;
 import ks44team03.dto.MemberDTO;
 
 @Service
-public class MemberService { 
+public class MemberService {
+	
+	private MemberMapper memberMapper;
+	
+	public MemberService(MemberMapper memberMapper) {
+		this.memberMapper = memberMapper;
+	}
+	public int userSignup(MemberDTO member) {
+		int result = memberMapper.signup(member);
+		return result;
+	}
 	/*
 	 * @Autowired private MemberDAO mdao;
 	 * 
@@ -16,5 +26,7 @@ public class MemberService {
 	 * 
 	 * return mdao.checkIdUser(uId); }
 	 * 
-	 */  }
+	 */  
+	
+}
  
