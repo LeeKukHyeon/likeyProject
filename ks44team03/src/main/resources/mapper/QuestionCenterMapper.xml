@@ -68,7 +68,7 @@
 	<update id="changeSituation" parameterType="QuestionCenter">
 		UPDATE question_center
 		SET
-			mtm_situation='처리중'
+			mtm_situation='답변중'
 		WHERE 
 			mtm_num_code = #{mtmNumCode}
 	</update>
