@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-<!-- <head>
+<head>
 <style>
 	
 	th{
@@ -17,13 +17,13 @@
 		font-weight:bold;
 	}
 </style>
-</head> -->
-<th:block layout:fragment="content">
-	
-	
+</head>
+<meta charset="UTF-8">
+
+<body layout:fragment="content">
 	<div align="center">
-		<h1 th:text="${title}"></h1>
-		<
+		<table width="50%" border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_list">
+		</table>
 	</div>
-</th:block>
+</body>
 </html>
