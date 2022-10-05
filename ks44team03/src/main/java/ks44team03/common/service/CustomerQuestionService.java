@@ -20,10 +20,17 @@ public class CustomerQuestionService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//관리자 답변 등록
+	public void regAnswer(QuestionCenter questionCenter) {
+	
+	customerQuestionMapper.regAnswer(questionCenter);
+
+	}
+		
 	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	public void changeSituation(QuestionCenter questionCenter) {
 		
-		customerQuestionMapper.changeSituation(questionCenter);
+	customerQuestionMapper.changeSituation(questionCenter);
 		
 	}
 	
@@ -60,6 +67,4 @@ public class CustomerQuestionService {
 		return QuestionList;
 		
 	}
-	
-
 }

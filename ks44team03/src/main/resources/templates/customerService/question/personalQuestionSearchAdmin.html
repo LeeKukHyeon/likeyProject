@@ -8,19 +8,6 @@
 	<link rel="stylesheet" href="assets/css/temporarily.css">
 </head>
 
-<script type="text/javascript">
-$( document ).ready( function() {
-
-	$('#mtmSituation').click(function(){
-	
-	})
-	
-}
-
-
-
-
-
 </script>
 
 
@@ -45,7 +32,7 @@ $( document ).ready( function() {
 	    	<td class="userId" th:text="${l.userId}"></td>
 			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
-			<td class="date" th:text="${l.mtmSituation}"></td>
+			<td class="date" th:if="${#strings.equals(l.mtmSituation,'처리중')}" th:text="${l.mtmSituation}"></td>
 		  </tr>
 		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
   			<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td><td></td>

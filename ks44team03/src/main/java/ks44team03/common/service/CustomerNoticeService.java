@@ -22,6 +22,13 @@ public class CustomerNoticeService {
 		this.customerNoticeMapper = customerNoticeMapper;
 		this.commonMapper = commonMapper;
 	}
+		
+	//공지사항 수정
+	public void modifyNotice(NoticeCenter noticeCenter) {
+		
+		customerNoticeMapper.modifyNotice(noticeCenter);
+	}
+	
 	
 	// 공지사항 등록
 	public void regNotice(NoticeCenter noticeCenter){
@@ -34,9 +41,9 @@ public class CustomerNoticeService {
 	}
 	
 	// 공지사항 게시물 조회
-	public NoticeCenter getNoticeRead(String noticeTitle) {
+	public NoticeCenter getNoticeRead(String noticeNumCode) {
 		
-		NoticeCenter noticeRead = customerNoticeMapper.getNoticeRead(noticeTitle);
+		NoticeCenter noticeRead = customerNoticeMapper.getNoticeRead(noticeNumCode);
 		
 		return noticeRead;
 	

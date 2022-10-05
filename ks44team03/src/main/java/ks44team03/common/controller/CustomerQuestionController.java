@@ -29,7 +29,7 @@ public class CustomerQuestionController {
 	public void customerQuestionService() {
 		
 	}
-	
+
 	
 	//1:1문의 수정
 	@PostMapping("/myQuestionModify")	
@@ -42,19 +42,6 @@ public class CustomerQuestionController {
 		return "redirect:/myQuestionList";
 		
 	}
-	
-	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
-	@PostMapping("/personalQuestionAnswerRegister")
-	public String changeSituation(QuestionCenter questionCenter) {
-		
-		customerQuestionService.changeSituation(questionCenter);
-		
-		return "/customerService/question/personalQuestionAnswerRegister";
-		
-		
-	}
-	
-	
 	
 	//1:1문의 수정
 	@GetMapping("/myQuestionModify")
@@ -103,17 +90,32 @@ public class CustomerQuestionController {
 		
 		return "/customerService/question/MyQuestionRead";
 	}
+
 	
-	//1:1문의 게시글 관리자 조회
+	//1:1문의 답변 & 1:1문의 관리자 수정
+	@PostMapping("/personalQuestionAnswerRegister")
+	public String regAnswer(QuestionCenter questionCenter) {
+		
+		customerQuestionService.regAnswer(questionCenter);
+		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
+		
+		return "redirect:/personalQuestionSearchAdmin";
+		
+	}
+	
+	//1:1문의 게시글 관리자 조회 , 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	@GetMapping("/personalQuestionAnswerRegister")
-	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
+	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode,  QuestionCenter questionCenter ,  Model model ) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
+		customerQuestionService.changeSituation(questionCenter);
 		
 		
 		System.out.println(QuestionRead + "QuestionCenter DTO 확인");
 		
+		
 		model.addAttribute("QuestionRead", QuestionRead);
+		
 		
 		return "/customerService/question/personalQuestionAnswerRegister";
 	}
@@ -134,9 +136,11 @@ public class CustomerQuestionController {
 	public String viewQuestionListAdmin(Model model) {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();
-		
+
+	
 		System.out.println(QuestionList + "QuestionList DTO 확인");
 		model.addAttribute("QuestionList", QuestionList);
+
 		
 		return "/customerService/question/personalQuestionSearchAdmin";
 	}

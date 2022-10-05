@@ -9,6 +9,9 @@ import ks44team03.dto.QuestionCenter;
 @Mapper
 public interface CustomerQuestionMapper {
 	
+	//1:1문의 답변 등록
+	public int regAnswer(QuestionCenter questionCenter);
+	
 	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	public int changeSituation(QuestionCenter questionCenter);
 	
