@@ -26,11 +26,11 @@ public class CustomerQuestionService {
 	customerQuestionMapper.regAnswer(questionCenter);
 
 	}
-	
+		
 	//관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	public void changeSituation(QuestionCenter questionCenter) {
 		
-		customerQuestionMapper.changeSituation(questionCenter);
+	customerQuestionMapper.changeSituation(questionCenter);
 		
 	}
 	
