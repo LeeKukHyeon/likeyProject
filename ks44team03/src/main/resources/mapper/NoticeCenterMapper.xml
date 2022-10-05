@@ -31,8 +31,6 @@
 		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), #{noticeView})
 	</insert>
 	
-	
-	
 	<!-- 공지사항 제목 클릭시 나오는 내용 -->
 	<select id="getNoticeRead" resultMap="csNoticeResultMap">
 	/* 공지사항 게시물 조회 */
@@ -59,6 +57,8 @@
 		,notice_view
 	FROM
 		notice_center
+	order by 
+		notice_num DESC
 	</select>
 
 </mapper>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -16,6 +15,20 @@
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
 
+	<!-- 1:1문의 수정 -->
+	<update id="myQuestionModify" parameterType="QuestionCenter">
+	UPDATE question_center
+	SET
+		mtm_num_code = #{mtmNumCode},
+		mtm_cate=#{mtmCate},
+		mtm_title=#{mtmTitle},
+		mtm_content=#{mtmContent},
+		mtm_img=#{mtmImg}
+	WHERE 
+		mtm_num_code= #{mtmNumCode}
+	</update>
+
+
 	<!-- 1:1문의 등록 -->
 	<insert id="regQuestion" parameterType="QuestionCenter">
 	/* 1:1문의 등록 */
@@ -30,24 +43,31 @@
 		,mtm_date
 		,mtm_situation)
 	VALUES
-		 (#{mtmNumCode}, #{userId},#{employeeCode} , #{mtmCate}, #{mtmTitle} , #{mtmContent} , #{mtmImg} , CURDATE(), #{mtmSituation})
+		 (#{mtmNumCode}, #{userId}, #{employeeCode} , #{mtmCate}, #{mtmTitle} , #{mtmContent} , #{mtmImg} , CURDATE(), #{mtmSituation})
 	
 	</insert>
 
-
-
-
+	<!-- 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 -->
+	<update id="changeSituation" parameterType="QuestionCenter">
+	UPDATE question_center
+	SET
+		mtm_situation='처리중'
+	WHERE 
+		mtm_num_code = '#{mtmNumCode}'
+	</update>
 
 
 	<!-- 관리자 페이지에서 문의 클릭시 나오는 내용 -->
 	<select id="getQuestionRead" resultMap="QuestionResultMap">
 	/* 1:1문의 게시글 관리자 조회  */
 	SELECT
-		id
+		mtm_num_code
+		,id
 		,mtm_cate
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_situation
 	FROM
 		question_center
 	WHERE
@@ -60,10 +80,14 @@
 	SELECT
 		mtm_num_code
 		,id
+		,mtm_cate
 		,mtm_title
 		,mtm_date
+		,mtm_situation
 	FROM
 		question_center
+	ORDER BY
+		mtm_num_code DESC;
 	</select>
 
 

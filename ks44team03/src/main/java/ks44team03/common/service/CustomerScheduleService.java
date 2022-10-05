@@ -44,6 +44,7 @@ public class CustomerScheduleService {
 	
 	//배송스케줄 게시물 수정
 	public void modifySchedule(ScheduleCenter scheduleCenter) {
+		
 		customerScheduleMapper.modifySchedule(scheduleCenter);
 	}
 	

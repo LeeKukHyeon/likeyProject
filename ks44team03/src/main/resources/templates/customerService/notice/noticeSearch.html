@@ -11,6 +11,7 @@
 		
 		<div style="width: 55%">
 			<h2 align="left">공지사항</h2>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeSearch}">공지사항</a></p>
 			<hr style="height: 1px; background: gray;">
 		</div>
 		
@@ -33,7 +34,7 @@
 					<td class="date" th:text="${l.noticeDate}"></td>
 				</tr>
 				<tr th:unless="${not #lists.isEmpty(noticeList)}">
-					<td colspan="8">등록된 게시물이 없습니다.</td>
+					<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td><td></td>
 				</tr>
 		    </tbody></table>
 		
