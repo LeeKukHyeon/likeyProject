@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <!DOCTYPE html>
 <html lang="ko"
 	  xmlns="http://www.w3.org/1999/xhtml"
@@ -200,50 +202,53 @@ $("#overlappedID").click(function(){
 	});
 </script>
 -->
-<script type="text/javascript">
-	var $uid = $("#uid");
-	// 아이디 정규식
-	$uid.on("keyup", function() { // 키보드에서 손을 땠을 때 실행
-		var regExp = /^[a-z]+[a-z0-9]{5,15}$/g;
-		if (!regExp.test($uid.val())) { // id 가 공백인 경우 체크
-			idchk = false;
-			$id.html("<span id='check'>사용할 수 없는 아이디입니다.</span>");
-			$("#check").css({
-				"color" : "#FA3E3E",
-				"font-weight" : "bold",
-				"font-size" : "10px"
-			})
-		} else { // 공백아니면 중복체크
-			$.ajax({
-				type : "POST", // http 방식 
-				url : "member/checkid", // ajax 통신 url
-				data : { // ajax 내용 => 파라미터 : 값 이라고 생각해도 무방
-					"id" : $uid.val()
-				},
-				success : function(data) {
-					if (data == 1) { // 1이면 중복
-						idchk = false;
-						$id.html("<span id='check'>이미 존재하는 아이디입니다</span>")
-						$("#check").css({
-							"color" : "#FA3E3E",
-							"font-weight" : "bold",
-							"font-size" : "10px"
-						})
-						console.log("중복아이디");
-					} else { // 아니면 중복아님
-						idchk = true;
-						$id.html("<span id='check'>사용가능한 아이디입니다</span>")
-						$("#check").css({
-							"color" : "#0D6EFD",
-							"font-weight" : "bold",
-							"font-size" : "10px"
-						})
-						console.log("중복아닌 아이디");
+<script>
+	var idchk = false; // 아이디 검사
+	
+	$(function() {
+		var $uid = $("#uid");
+		// 아이디 정규식
+		$uid.on("keyup", function() { // 키보드에서 손을 땠을 때 실행
+			var regExp = /^[a-z]+[a-z0-9]{5,15}$/g;
+			if (!regExp.test($uid.val())) { // id 가 공백인 경우 체크
+				idchk = false;
+				$id.html("<span id='check'>사용할 수 없는 아이디입니다.</span>");
+				$("#check").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "10px"
+				})
+			} else { // 공백아니면 중복체크
+				$.ajax({
+					type : "POST", // http 방식 
+					url : "login/checkid", // ajax 통신 url
+					data : { // ajax 내용 => 파라미터 : 값 이라고 생각해도 무방
+						"id" : $uid.val()
+					},
+					success : function(data) {
+						if (data == 1) { // 1이면 중복
+							idchk = false;
+							$id.html("<span id='check'>이미 존재하는 아이디입니다</span>")
+							$("#check").css({
+								"color" : "#FA3E3E",
+								"font-weight" : "bold",
+								"font-size" : "10px"
+							})
+							//console.log("중복아이디");
+						} else { // 아니면 중복아님
+							idchk = true;
+							$id.html("<span id='check'>사용가능한 아이디입니다</span>")
+							$("#check").css({
+								"color" : "#0D6EFD",
+								"font-weight" : "bold",
+								"font-size" : "10px"
+							})
+							//console.log("중복아닌 아이디");
+						}
 					}
-				}
-			})
-		}
-	});
+				})
+			}
+		});
 </script>
 </head>
 	<!-- 나중에 Container-fluid로 잡아주기  -->
@@ -259,6 +264,7 @@ $("#overlappedID").click(function(){
 
 		<p class="step_txt">
 		회원가입시 신규 가입 <strong>10% 할인쿠폰</strong>을 증정합니다.<br/>
+		친구 추천을 하면, <strong>7% 할인쿠폰 2장</strong>을 드립니다.
 		</p>
 
 		<form name="signup" id="form1" method="post" action="signup" encType="utf-8">
@@ -271,39 +277,24 @@ $("#overlappedID").click(function(){
 					<col width="35%"/>
 				</colgroup>
 			<tbody>
+	
 				<tr>
-					<th class="td1">아이디 <span class="required-addon">*</span></th>
-					<td class="td2" width="50%">
+					<th class="td1">아이디 <span class="required-addon">*</span><col width="15%"></th>
+					<td class="td2" colspan="3">
 						<div class="form-group first">
 							<label for="uid" id="id">아이디를 입력해주세요 (5~15자 입력)</label> </br>
-							<input type="text"  name="uid" id="uid" maxlength="30" style="width:150px;" class="input_add" required /> 
+							<input type="text"  name="uid" id="uid" maxlength="30" style="width:150px;" class="form-control" required /> 
 							<button type="button" id="overlappedID">중복확인</button><br>
 							<span id="olmessage"></span>
 						</div>
 					</td> 
-				</tr>
+				</tr>   
 				<tr>
-					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
+					<th class="td1">닉네임 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="password" name="userPw" id="userPw" maxlength="20" class="input_add" value="" />
-						<div id="user_pwd-errmsg"></div>
+						<input type="text" name="userNick" id="userNick" maxlength="20" style="width:150px;" class="input_add" value="" />
+						<div id="nickname-errmsg"></div>
 					</td>
-				</tr>
-				<tr>
-					<th class="td1">비번확인 <span class="required-addon">*</span></th>
-					<td class="td2">
-						<input type="password" name="userRepw" id="userRepw" maxlength="20" class="input_add" value="" />
-						<div id="user_repwd-errmsg"></div>
-					</td>
-				</tr>  
-				<tr>
-					<th class="td1">이름 <span class="required-addon">*</span></th>
-					<td class="td2">
-						<input type="text" name="userName" id="userName" maxlength="30" class="input_add" value="" />
-						<div id="name-errmsg"></div>
-					</td>
-				</tr>  
-				<tr>
 					<th class="td1">생년월일 <span class="required-addon">*</span></th>
 					<td class="td2">
 						<select name="yy" id="year" class="select_add"></select>년
@@ -313,21 +304,31 @@ $("#overlappedID").click(function(){
 						<div id="birth_m-errmsg"></div>
 						<div id="birth_d-errmsg"></div>
 					</td>
-				</tr>
+				</tr>   
 				<tr>
-					<th class="td1">닉네임 <span class="required-addon">*</span></th>
-					<td class="td2">
-						<input type="text" name="userNick" id="userNick" maxlength="20" style="width:150px;" class="input_add" value="" />
-						<div id="nickname-errmsg"></div>
+					<th class="td1">이름 <span class="required-addon">*</span></th>
+					<td class="td2" colspan="3">
+						<input type="text" name="userName" id="userName" maxlength="30" class="input_add" value="" />
+						<div id="name-errmsg"></div>
 					</td>
-				</tr>
- 
-  
+				</tr>   
+				<tr>
+					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
+					<td class="td2">
+						<input type="password" name="userPw" id="userPw" maxlength="20" class="input_add" value="" />
+						<div id="user_pwd-errmsg"></div>
+					</td>
+					<th class="td1">비번확인 <span class="required-addon">*</span></th>
+					<td class="td2">
+						<input type="password" name="userRepw" id="userRepw" maxlength="20" class="input_add" value="" />
+						<div id="user_repwd-errmsg"></div>
+					</td>
+				</tr>   
 				<tr> 
 					<th class="td1">휴대폰 <span class="required-addon">*</span></th>
-					<td class="td2">
+					<td class="td2" colspan="3">
 						<div>
-							<select name="countryCode" id=""  class="select_add" style="width:95px;">
+							<select name="countryCode" id=""  class="select_add" style="width:200px;">
 								<optgroup label="Other countries">
 								<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
 								<option data-countryCode="US" value="1">USA (+1)</option>
@@ -554,7 +555,7 @@ $("#overlappedID").click(function(){
 				</tr>   
 				<tr>
 					<th class="td1">이메일 <span class="required-addon">*</span></th>
-					<td class="td2">
+					<td class="td2" colspan="3">
 						<input type="text" id="email1" name="email1" maxlength="30"  style="width:300px;" class="input_add" value=""/>
 					</td>
 				</tr>    

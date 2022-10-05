@@ -1,61 +1,119 @@
 <!doctype html>
+
 <html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="ko">
+
 <!--headerFragment 선언-->
+
 <div id="header" th:fragment="headerFragment">
 
+​
+
     <!-- Preloader Start -->
+
     <div id="preloader-active">
+
         <div class="preloader d-flex align-items-center justify-content-center">
+
             <div class="preloader-inner position-relative">
+
                 <div class="preloader-circle"></div>
+
                 <div class="preloader-img pere-text">
+
                     <img src="assets/img/logo/logo.png" alt="">
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
     <!-- Preloader Start -->
+
     <header>
+
         <!-- Header Start -->
+
         <div class="header-area">
+
             <div class="main-header header-sticky">
+
                 <div class="container-fluid">
+
                     <div class="menu-wrapper">
+
                         <!-- Logo -->
+
                         <div class="logo">
+
                             <a href="/"><img src="assets/img/logo/logo.png" alt="" width="200px"></a>
+
                         </div>
+
                         <!-- Main-menu -->
+
                         <div class="main-menu d-none d-lg-block">
+
                             <nav>                                                
+
                                 <ul id="navigation">  
-                                    <li><a href="/index">#회사소개</a></li>
+
+                                    <li><a th:href="@{/index}">#회사소개</a></li>
+
                                     <li><a href="applicationFormRegister">!구매대행</a>
+
                                         <ul class="submenu">
-                                            <li><a href="/aboutPa">구매대행이란?</a></li>
-                                            <li><a href="/applicationFormRegister">신청서작성</a></li>
+
+                                            <li><a th:href="@{/aboutPa}">구매대행이란?</a></li>
+
+                                            <li><a th:href="@{/applicationFormRegister}">신청서작성</a></li>
+
                                         </ul>
+
                                     </li>
+
                                     <li><a href="/applicationFormRegister">!배송대행</a>
+
                                         <ul class="submenu">
-                                            <li><a href="/aboutDa">배송대행이란?</a></li>
-                                            <li><a href="/applicationFormRegister">신청서작성</a></li>
+
+                                            <li><a th:href="@{/aboutDa}">배송대행이란?</a></li>
+
+                                            <li><a th:href="@{/applicationFormRegister}">신청서작성</a></li>
+
                                         </ul>
+
                                     </li>
-                                    <li class="hot"><a href="#">!프렌즈구매대행</a>
+
+                                    <li class="hot"><a href="#">#프렌즈구매대행</a>
+
                                         <ul class="submenu">
-                                            <li><a href="/aboutFriendsPa">프렌즈구매대행이란?</a></li>
-                                            <li><a href="/friendsApplicationFormRegister">신청서작성</a></li>
+
+                                            <li><a th:href="@{/aboutFriendsPa}">프렌즈구매대행이란?</a></li>
+
+                                            <li><a th:href="@{/friendsApplicationFormRegister}">신청서작성</a></li>
+
                                         </ul>
+
                                     </li>
+
                                     
-                                    <li><a href="#">!커뮤니티</a>
+
+                                    <li><a href="#">#커뮤니티</a>
+
                                         <ul class="submenu">
+
                                             <li><a th:href="@{/reviewList}">!이용후기</a></li>
+
                                             <li><a th:href="@{/postborde}">!정보공유</a></li>
+
                                             <li><a th:href="@{/orderList}">#프렌즈 주문서게시판</a></li>
+
                                         </ul>
+
                                     </li>
+
                                     <li><a href="#">!고객센터</a>
 		                                <ul class="submenu">
 		                                    <li><a th:href="@{/noticeSearch}">공지사항</a></li>
@@ -66,37 +124,63 @@
 		                                </ul>
 		                            </li>
                                     <li><a href="mypageScreen">!마이페이지(이국현)</a>
-                                    
                                     </li>
                                     <li><a th:href="@{/adminPage}">!관리자페이지(김덕현)</a>
-                                    	
                                     </li>
                                 </ul>
+
                             </nav>
+
                         </div>
+
                         <!-- Header Right -->
+
                         <div class="header-right">
+
                             <ul>
+
                                 <li>
+
                                     <div class="nav-search search-switch">
+
                                         <span class="flaticon-search"></span>
+
                                     </div>
+
                                 </li>
-                                <li> <a href="/loginForm"><span class="flaticon-user"></span></a></li>
+
+                                <li> <a th:href="@{/loginForm}"><span class="flaticon-user"></span></a></li>
+
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+
                             </ul>
+
                         </div>
+
                     </div>
+
                     <!-- Mobile Menu -->
+
                     <div class="col-12">
+
                         <div class="mobile_menu d-block d-lg-none"></div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
         <!-- Header End -->
+
     </header>
 
+​
+
+​
 
 </div>
+
 </html>
