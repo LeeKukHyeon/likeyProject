@@ -52,13 +52,13 @@ public class MemberController {
 	 
 
 
-	/*
-	 * // 회원가입 시 아이디 중복 검사
-	 * 
-	 * @PostMapping("/checkid")
-	 * 
-	 * @ResponseBody public int checkid(@RequestParam("id") String id) {
-	 * 
-	 * if (id.equals(ms.checkID(id))) { return 1; } return 0; }
-	 */
+	
+	  // 회원가입 시 아이디 중복 검사
+	  
+	  @PostMapping("/checkid")
+	  
+	  @ResponseBody public int checkid(@RequestParam("id") String id) {
+	  
+	  if (id.equals(ms.checkID(id))) { return 1; } return 0; }
+	 
 }
