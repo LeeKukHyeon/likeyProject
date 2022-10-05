@@ -10,11 +10,14 @@ import ks44team03.dto.NoticeCenter;
 public interface CustomerNoticeMapper {
 	
 	
+	//공지사항 수정
+	public int modifyNotice(NoticeCenter noticeCenter);
+	
 	//공지사항 등록
-	public int regNotice(NoticeCenter NoticeCenter);
+	public int regNotice(NoticeCenter noticeCenter);
 	
 	//공지사항 게시물 조회
-	public NoticeCenter getNoticeRead(String noticeTitle);
+	public NoticeCenter getNoticeRead(String noticeNumCode);
 	
 	//공지사항 게시물 목록 조회 
 	public List<NoticeCenter> getNoticeList();

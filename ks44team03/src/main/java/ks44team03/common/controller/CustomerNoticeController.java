@@ -21,6 +21,31 @@ public class CustomerNoticeController {
 		
 	}
 	
+	//공지사항 수정
+	@PostMapping("/noticeModify")
+	public String modifyNotice(NoticeCenter noticeCenter) {
+		
+		customerNoticeService.modifyNotice(noticeCenter);
+		System.out.println(noticeCenter + "수정하는 게시물 값 받아오는가?");
+
+		
+		return "redirect:/noticeSearch";
+	}
+	
+	
+	//공지사항 수정
+	@GetMapping("/noticeModify")
+	public String modifyNotice(@RequestParam(value = "noticeNumCode", required = false) String noticeNumCode, Model model) {
+		
+		//게시물 내용
+		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeNumCode);
+		
+		System.out.println(noticeRead +":: 받아오는 공지사항 제목 확인");
+		
+		model.addAttribute("noticeRead", noticeRead);
+		
+		return "/customerService/notice/noticeModify";
+	}
 	
 	//공지사항 등록
 	@PostMapping("/noticeRegister")
@@ -39,16 +64,12 @@ public class CustomerNoticeController {
 		return "/customerService/notice/noticeRegister";
 	}
 	
-	
-	
-	
-	
 	//공지사항 게시글 조회
 	@GetMapping("/noticeRead")
-	public String viewNotice(@RequestParam(value = "noticeTitle") String noticeTitle, Model model) {
+	public String viewNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode, Model model) {
 		
 		// 게시물 내용
-		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeTitle);
+		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeNumCode);
 		
 		System.out.println(noticeRead +":: 받아오는 공지사항 제목 확인");
 		
