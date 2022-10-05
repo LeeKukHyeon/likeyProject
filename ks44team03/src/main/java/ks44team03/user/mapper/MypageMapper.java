@@ -19,6 +19,11 @@ public interface MypageMapper {
 	public int couponCount(String u_id);
 	/*아직 사용안함*/public List<OrderInfo> orderInfo(String u_id);
 	
+	
+	/*목록조회 임시저장*/
+	public List<ShipOrderApi> shipOrderTemp(Map<String, Object> searchMap);
+	
+	
 	/*목록조회*/
 	public List<ShipOrderApi> shipOrderApi(Map<String, Object> searchMap);
 		
