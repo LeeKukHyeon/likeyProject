@@ -26,6 +26,7 @@ public class IncomingController {
 	@PostMapping("/incomingRegister")
 	public String regIncoming(Incoming incoming) {
 		
+		System.out.println(incoming);
 		log.info("입력한 값 ::: {}", incoming);
 		incomingService.regIncoming(incoming);
 		

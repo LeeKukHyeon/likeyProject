@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="ks44team03.user.mapper.IncomingMapper">
+<mapper namespace="ks44team03.admin.mapper.IncomingMapper">
 	<!-- 입출고 -->
 	<resultMap type="Incoming" id="incomingResultMap">
 		<!-- 입고 -->
@@ -48,7 +48,62 @@
 		 ,weight
 		)
 		VALUES
-		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave},)
+		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${volume}, ${weight})
 	</insert>
+	
+	<!-- 입고 가능여부 체크 -->
+
+<select id="incomingCurrentState" resultMap="incomingStateResultMap">
+/* 입고 현황 조회 */
+SELECT
+	 i.incoming_code
+	,g.goods_info_code
+	,e.e_code
+	,g.tracking_num
+	,u.user_pobox_code
+	,i.volume
+	,i.weight
+	,g.likey_pass
+	,i.photo_save
+	,g.arrival_date
+FROM
+	incoming as i
+INNER JOIN
+	goods_info as g
+ON
+	i.goods_info_code = g.goods_info_code
+INNER JOIN
+	employee_info as e
+ON
+	i.e_code = e.e_code
+INNER JOIN
+	user_member as u
+ON
+	g.id = u.u_id
+WHERE
+	g.tracking_num = #{trackingNum} and u.user_pobox_code = #{userPoboxCode}
+
+	
+
+	
+</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 </mapper>
