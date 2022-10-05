@@ -25,7 +25,8 @@
 		mtm_title = #{mtmTitle},
 		mtm_content = #{mtmContent},
 		mtm_img = #{mtmImg},
-		mtm_answer = #{mtmAnswer}
+		mtm_answer = #{mtmAnswer},
+		mtm_situation = #{mtmSituation}
 	WHERE
 		mtm_num_code = #{mtmNumCode}
 	</update>
@@ -65,11 +66,11 @@
 
 	<!-- 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 -->
 	<update id="changeSituation" parameterType="QuestionCenter">
-	UPDATE question_center
-	SET
-		mtm_situation='처리중'
-	WHERE 
-		mtm_num_code = '#{mtmNumCode}'
+		UPDATE question_center
+		SET
+			mtm_situation='처리중'
+		WHERE 
+			mtm_num_code = #{mtmNumCode}
 	</update>
 
 
