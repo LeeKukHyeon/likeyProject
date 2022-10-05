@@ -46,34 +46,34 @@
 				<!-- ========== 입고등록 화면 시작 ========== -->
 				<h2>입고등록</h2>
 				<div class="incoming_register">
-					<form>
+					<form method="post" action="#">
 						<table>
 						  <tbody>
 							<tr>
 								<td><label for="tracking_num">운송장 번호</label></td>
-								<td>&nbsp;<input type="text" id="tracking_num" value=""/></td>
+								<td>&nbsp;<input type="text" name="trackingNum" id="tracking_num" value=""/></td>
 							</tr>
 							<tr>
 								<td><label for="user_pobox_code">사서함 번호</label></td>
-								<td>&nbsp;<input type="text" id="user_pobox_code"></td>
+								<td>&nbsp;<input type="text" name="userPoboxCode" id="user_pobox_code"></td>
 							</tr>
 							<tr>
 								<td><label for="volume_1">부피</label></td>
 								<td colspan="1">&nbsp;
 									<div class="volume">
-										<input type="text" id="volume_1" placeholder="가로"> cm<br/>
-										<input type="text" id="volume_2" placeholder="세로"> cm<br/>
-										<input type="text" id="volume_3" placeholder="높이"> cm<br/>
+										<input type="text" id="volume_1" name="volume" placeholder="가로"> cm<br/>
+<!-- 										<input type="text" id="volume_2" placeholder="세로"> cm<br/>
+										<input type="text" id="volume_3" placeholder="높이"> cm<br/> -->
 									</div>
 								</td>
 							</tr>
 							<tr class="weight_group">
 								<td><label for="weight">중량</label></td>
-								<td>&nbsp;<input type="text" id="weight"> kg</td>
+								<td>&nbsp;<input type="text" name="weight" id="weight"> kg</td>
 							</tr>
 							<tr>
 								<td>물품 사진</td>
-								<td><input type="file" id="photo_save"></td>
+								<td><input type="file" name="photoSave" id="photo_save"></td>
 							</tr>
 						  </tbody>
 						</table>
