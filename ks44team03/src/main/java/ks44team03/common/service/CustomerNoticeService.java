@@ -22,7 +22,17 @@ public class CustomerNoticeService {
 		this.customerNoticeMapper = customerNoticeMapper;
 		this.commonMapper = commonMapper;
 	}
+	
+	
+	
+	//공지사항 삭제
+	public void deleteNotice(String noticeNumCode) {
 		
+		customerNoticeMapper.deleteNotice(noticeNumCode);
+		
+	}
+	
+	
 	//공지사항 수정
 	public void modifyNotice(NoticeCenter noticeCenter) {
 		

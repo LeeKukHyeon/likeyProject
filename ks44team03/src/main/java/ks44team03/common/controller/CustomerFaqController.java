@@ -11,13 +11,13 @@ public class CustomerFaqController {
 	//자주하는질문 등록
 	@GetMapping("/faqRegister")
 	public String faq1(Model model) {
-		return "/customerService/faqRegister";
+		return "/customerService/faq/faqRegister";
 		
 	}
 	
 	// 자주하는질문 조회
 	@GetMapping("/faqSearch")
 	public String viewFaq(Model model) {
-		return "/customerService/faqSearch";
+		return "/customerService/faq/faqSearch";
 	}
 }

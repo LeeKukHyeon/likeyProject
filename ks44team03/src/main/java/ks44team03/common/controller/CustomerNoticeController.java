@@ -21,6 +21,15 @@ public class CustomerNoticeController {
 		
 	}
 	
+	//공지사항 삭제
+	@GetMapping("/noticeDelete")
+	public String deleteNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode) {
+		
+		customerNoticeService.deleteNotice(noticeNumCode);
+		
+		return "redirect:/noticeSearch";
+	}
+	
 	//공지사항 수정
 	@PostMapping("/noticeModify")
 	public String modifyNotice(NoticeCenter noticeCenter) {
