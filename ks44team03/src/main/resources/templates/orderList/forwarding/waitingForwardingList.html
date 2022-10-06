@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body layout:fragment="adminContent">
+	 <div class="content-wrapper">
+   <!-- private String goodsInfoCode; 	  상품정보 코드
+		private String id;				  아이디
+		private String buyOrderCode;	  구매대행주문코드
+		private String groupingDelivery; 묶음배송그룹코드
+		private String gSite;			  구매사이트
+		private String goodsImgUrl;		  상품 이미지 url
+		private String goodsImgUpload;   상품 이미지 직접 업로드
+		private String gName;			  상품명
+		private String deliveryCompany;  쇼핑몰에서 보낸 택배의 택배사
+		private String trackingNum;		  운송장 번호
+		private String gSize;			  사이즈
+		private String gColor;			  색상
+		private String goodsOption;		  옵션
+		private int goodsPrice;			  상품 가격
+		private int gAmount;			  수량
+		private int totalPrice;			  각 상품 금액
+		private String likeyPass;		  라이키패스
+		private String barCode;			  바코드
+		private String arrival;			  상품도착여부
+		private String arrivalDate;		  입고일
+		private String hsCode;			  품목(HSCODE)
+		private String gBrand;			  브랜드
+		private String goodsUrl;		  제품URL
+		private String storeName;		  매장명
+		private String storeLocation;	  매장위치
+		
+		private OrderInfo orderInfoDto; // OrderInfo List DTO
+		private DeliveryCurrentState deliveryCurrentStateDto; // DeliveryCurrentState List DTO
+		
+		timeTracking  배송상태정보등록날짜-->
+		<h2 th:text="${title}"></h2>
+	 	<table class="input_table" style="width:100%;">
+	 		<tr>
+	 			<th>입고관리코드</th>
+	 			<th>구매대행주문코드</th>
+	 			<th>상품정보코드</th>
+	 			<th>아이디</th>
+	 			<th>상품명</th>
+	 			<th>무게</th>
+	 			<th>부피</th>
+	 			<th>출고 날짜</th>
+	 			<th>총 가격</th>
+	 			<th>주문상태</th>
+	 		</tr>
+	 		<tbody>
+	 			<tr th:if="${not #lists.isEmpty(waitingForwardingList)}" th:each="l : ${waitingForwardingList}">
+	 				<td th:text="${l.incomingInfoDto.incomingCode}"></td>
+	 				<td th:text="${l.orderInfoDto.buyOrderCode}"></td>
+	 				<td th:text="${l.incomingInfoDto.goodsInfoCode}"></td>
+	 				<td th:text="${l.orderInfoDto.id}"></td>
+	 				<td th:text="${l.gName}"></td>
+	 				<td th:text="${l.incomingInfoDto.incomingWeight}"></td>
+	 				<td th:text="${l.incomingInfoDto.incomingVolume}"></td>
+	 				<td th:text="${l.incomingInfoDto.sendOut}"></td>
+	 				<td th:text="${l.totalPrice}"></td>
+	 				<td th:text="${l.orderStateDto.orderState}"></td>
+	 			</tr>
+	 			<tr th:unless="${not #lists.isEmpty(waitingForwardingList)}">
+	 				<td colspan="10" style="text-align: center;">등록된 주문서가 없습니다.</td>
+	 			</tr>
+	 		</tbody>
+	 	</table>
+	 </div>
+</body>
+</html>

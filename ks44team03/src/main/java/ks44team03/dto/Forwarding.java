@@ -2,7 +2,7 @@ package ks44team03.dto;
 
 public class Forwarding {
 
-	private int number;				//글번호
+	private String forwardingCode;	//출고관리코드
 	private String goodsInfoCode;	//상품정보코드
 	private String name;			//수령인
 	private String transportation;	//운송수단
@@ -12,12 +12,12 @@ public class Forwarding {
 	private char postpone;			//출고보류 여부
 	private char sumPost;			//묶음배송 여부
 	private char approval;			//관리자 출고승인 여부
-	private String outDate;			//출고일
-	public int getNumber() {
-		return number;
+	private String sendOut;			//출고일
+	public String getForwardingCode() {
+		return forwardingCode;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setForwardingCode(String forwardingCode) {
+		this.forwardingCode = forwardingCode;
 	}
 	public String getGoodsInfoCode() {
 		return goodsInfoCode;
@@ -73,18 +73,18 @@ public class Forwarding {
 	public void setApproval(char approval) {
 		this.approval = approval;
 	}
-	public String getOutDate() {
-		return outDate;
+	public String getSendOut() {
+		return sendOut;
 	}
-	public void setOutDate(String outDate) {
-		this.outDate = outDate;
+	public void setSendOut(String sendOut) {
+		this.sendOut = sendOut;
 	}
 	@Override
 	public String toString() {
-		return "Forwarding [number=" + number + ", goodsInfoCode=" + goodsInfoCode + ", name=" + name
+		return "Forwarding [forwardingCode=" + forwardingCode + ", goodsInfoCode=" + goodsInfoCode + ", name=" + name
 				+ ", transportation=" + transportation + ", outCompany=" + outCompany + ", outTrackingNum="
 				+ outTrackingNum + ", reqOptionImpli=" + reqOptionImpli + ", postpone=" + postpone + ", sumPost="
-				+ sumPost + ", approval=" + approval + ", outDate=" + outDate + "]";
+				+ sumPost + ", approval=" + approval + ", sendOut=" + sendOut + "]";
 	}
 	
 }

@@ -69,20 +69,57 @@
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
           <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>         
+          <artifactId>lombok</artifactId>
           <scope>provided</scope>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
       <dependency>  
-         <groupId>com.google.code.gson</groupId>  <artifactId>gson</artifactId>  <version>2.8.7</version>
+         <groupId>com.google.code.gson</groupId> 
+         <artifactId>gson</artifactId>
       </dependency>
-      <dependency> <!-- JPA 사용을 위한 Dependency -->
-	    <groupId>org.springframework.data</groupId>
-	    <artifactId>spring-data-jpa</artifactId>
-	  </dependency>
-	  <dependency> <!-- JPA 사용을 위한 Dependency -->
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-entitymanager</artifactId>
-	  </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+      <dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	    <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.5.1 </version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+            <version>0.40</version>
+        </dependency>
+        <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>jstl</artifactId>
+        </dependency>
+        <!-- spring security -->
+        <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-web</artifactId>
+      </dependency>
+         
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-config</artifactId>
+      </dependency>
+      <!-- //spring security -->
+      <dependency>
+	  	<groupId>org.hibernate</groupId>
+	 	<artifactId>hibernate-core</artifactId>
+      </dependency>
+	        
    </dependencies>
 
 

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.admin.mapper.IncomingMapper">
+	<resultMap type="OrderInfo" id="orderListResultMap">
+		<id column="buy_order_code" property="buyOrderCode"/>
+		<result column="id" property="id"/>
+		<result column="logistics_center" property="logisticsCenter"/>
+		<result column="user_pobox_code" property="userPoboxCode"/>
+		<result column="transportation" property="transportation"/>
+		<result column="nation" property="nation"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="user_name" property="userName"/>
+		<result column="phone" property="phone"/>
+		<result column="post_num" property="postNum"/>
+		<result column="addr" property="addr"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="goods_order_date" property="goodsOrderDate"/>		
+		<result column="Desired_courier" property="DesiredCourier"/>
+		<result column="buy_way" property="buyWay"/>
+		<result column="request" property="request"/>
+		<result column="friends_de_check" property="friendsDeCheck"/>
+		<result column="commission" property="commission"/>
+	</resultMap>
+	
+	<resultMap type="GoodsInfo" id="orderGoodsListResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>		
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="g_site" property="gSite"/>
+		<result column="g_name" property="gName"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_amount" property="gAmount"/>		
+		
+	</resultMap>
+	
+	<!-- 입출고 -->
+	<resultMap type="Incoming" id="incomingResultMap">
+		<!-- 입고 -->
+		<id column="idcoming_code" property="incomingCode" />
+		<result column="goods_info_code" property="goodsInfoCode" />
+		<result column="e_code" property="eCode" />
+		<result column="photo_save" property="photoSave" />
+		<result column="volume" property="volume" />
+		<result column="weight" property="weight" />
+		<!--
+		출고
+		<result column="req_option_impli" property="" />
+		<result column="postpone" property="" />
+		<result column="sum_post" property="" />
+		<result column="send_out" property="" />
+		<result column="approval" property="" />
+		<result column="out_tracking_num" property="" />
+		<result column="out_company" property="" />
+		-->
+	</resultMap>
+
+	<!-- 출고
+	req_option_impli
+	postpone
+	sum_post
+	send_out
+	approval
+	out_tracking_num
+	out_company
+	 -->
+	
+	 <select id="errorIncoming" resultMap="orderGoodsListResultMap">
+	 	/*오류 입고 리스트*/
+		SELECT
+		  	* 
+		 FROM 
+		  	goods_info AS g
+		INNER JOIN
+			delivery_current_state AS d
+		on
+			g.goods_info_code = d.goods_info_code
+		WHERE d.stat_info = "오류입고"
+	 
+	 </select>
+	 
+	 <select id="arrivedAll" resultMap="orderListResultMap">
+	 	/*전체 입고 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			order_info AS o			
+		ON g.buy_order_code = o.buy_order_code
+		
+		
+		WHERE g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+		
+		GROUP BY o.buy_order_code
+	 
+	 </select>
+	 
+	 <select id="partialArrival" resultMap="orderListResultMap">
+	 	/*일부 입고 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			order_info AS o			
+		ON g.buy_order_code = o.buy_order_code
+		
+		
+		WHERE g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+		
+		GROUP BY o.buy_order_code
+	 
+	 </select>
+	 
+	 <select id="arriveWarehouse" resultMap="orderGoodsListResultMap">
+	 	/*창고 도착 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 대기" AND g.arrival = 'y'
+	 
+	 </select>
+	 
+	 <!-- 입고 전 상품 리스트 -->
+	 <select id="incomingGoodsList" parameterType="String" resultMap="orderGoodsListResultMap">
+	 	select 
+	 		* 
+	 	from 
+	 		goods_info as g
+	 	inner join
+	 		order_info as o
+	 	on
+	 		g.buy_order_code = o.buy_order_code
+	 	where
+	 		g.buy_order_code = #{buyOrderCode} 
+	 		and o.temp is null;
+	 </select>
+	 
+	 <!-- 입고 전 리스트 -->
+	 <select id="incomingOrderList" parameterType="map" resultMap="orderListResultMap">
+	 	select 
+	 		* 
+	 	from 
+	 		order_info
+	 	where 
+	 		temp is null
+	 			 	
+			<if test="searchKey != null">AND ${searchKey} = #{searchValue} </if>
+			
+		;
+	 		
+	 </select>
+	 
+	<!-- 입고 등록 
+	<insert id="regIncoming" parameterType="Incoming" >
+		/* 입고 등록 */
+		INSERT INTO incoming
+		(
+		  incoming_code
+		 ,goods_info_code
+		 ,e_code
+		 ,photo_save
+		 ,volume
+		 ,weight
+		)
+		VALUES
+		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${volume}, ${weight})
+	</insert> -->
+	
+	<!-- 입고 가능여부 체크 -->
+
+<!-- <select id="incomingCurrentState" resultMap="incomingStateResultMap">
+/* 입고 현황 조회 */
+SELECT
+	 i.incoming_code
+	,g.goods_info_code
+	,e.e_code
+	,g.tracking_num
+	,u.user_pobox_code
+	,i.volume
+	,i.weight
+	,g.likey_pass
+	,i.photo_save
+	,g.arrival_date
+FROM
+	incoming as i
+INNER JOIN
+	goods_info as g
+ON
+	i.goods_info_code = g.goods_info_code
+INNER JOIN
+	employee_info as e
+ON
+	i.e_code = e.e_code
+INNER JOIN
+	user_member as u
+ON
+	g.id = u.u_id
+WHERE
+	g.tracking_num = #{trackingNum} and u.user_pobox_code = #{userPoboxCode} -->
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+</mapper>

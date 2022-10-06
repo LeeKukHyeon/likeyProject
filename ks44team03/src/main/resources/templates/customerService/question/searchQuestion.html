@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="searchQuestion" >
+	        <form th:action="@{/personalQuestionSearchAdmin}" method="post">
+	        	<select name="searchKey" style="margin-left: 38%; margin-top: 5mm;">
+	        		<option value="mtmTitle">제목</option>
+	        		<option value="userId">회원아이디</option>
+	        		<option value="mtmContent">내용</option>
+	        		<option value="">제목+내용</option>
+	        	</select>
+        		<input type="text" name="searchValue" style="width: 30mm;" th:value="${sv}">
+        		<button type="submit">검색</button>
+	        </form>		
+        </div>
+</html>

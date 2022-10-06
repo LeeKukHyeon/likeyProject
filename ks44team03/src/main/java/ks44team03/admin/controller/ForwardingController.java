@@ -8,6 +8,7 @@ public class ForwardingController {
 	
 	@GetMapping("/forwardingRegister")
 	public String regForwarding() {
+		
 		return "forwardingManagement/forwardingRegister";
 	}
 	

@@ -1,6 +1,7 @@
 package ks44team03.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,9 @@ import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
+import ks44team03.dto.Nodata;
 import ks44team03.dto.UserInfo;
+import ks44team03.dto.ShipOrderApi;
 import ks44team03.user.mapper.MypageMapper;
 
 
@@ -24,10 +27,86 @@ public class MypageService {
 		}
 		
 		
+		public List<Nodata> nodataList(String u_id){
+			List<Nodata> nodataList = mypageMapper.nodataList(u_id);			
+			return nodataList;
+		}
+		
+		public List<MyPageCount> monthNodataCount(String u_id){
+			List<MyPageCount> nodataCount = mypageMapper.monthNodataCount(u_id);			
+			return nodataCount;
+		}
+		
 		public List<MyPageCount> count(String u_id){
 			List<MyPageCount> count = mypageMapper.count(u_id);
 			
 			return count;
+		}
+		
+		/*목록조회*/
+		public List<ShipOrderApi> shipOrderApi(Map<String, Object> paramMap){
+			List<ShipOrderApi> shipOrderApi = null;
+			if (paramMap.get("stat_info").equals("임시저장")) {
+				shipOrderApi = mypageMapper.shipOrderTemp(paramMap);
+			}
+			else {
+				shipOrderApi = mypageMapper.shipOrderApi(paramMap);
+			}
+			return shipOrderApi;
+		}
+		
+		/*무게측정 및 출고보류 갯수*/
+		public int weightCheckPostponeCount(String u_id) {
+			
+			int weightCheckPostponeCount = mypageMapper.weightCheckPostponeCount(u_id);
+			return weightCheckPostponeCount;
+		}
+		
+		/*무게측정,결제완료 카운트*/
+		public int weightCheckPaymentCount(String u_id) {
+			int weightCheckPaymentCount = mypageMapper.weightCheckPaymentCount(u_id);
+			return weightCheckPaymentCount;
+		}
+		
+		/*무게측정,결제대기 카운트*/
+		public int weightCheckNopaymentCount(String u_id) {
+			int weightCheckNopaymentCount = mypageMapper.weightCheckNopaymentCount(u_id);
+			return weightCheckNopaymentCount;
+		}
+		
+		/*도착완료 카운트*/
+		public int allArrivedCount(String u_id) {
+			int allArrivedCount = mypageMapper.allArrivedCount(u_id);
+			return allArrivedCount;
+		}
+		
+		/*일부입고 카운트*/
+		public int partialIncomingCount(String u_id) {
+			int partialIncomingCount = mypageMapper.partialIncomingCount(u_id);
+			return partialIncomingCount;
+		}
+		
+		/*창고도착 카운트*/
+		public int warehouseArrivalCount(String u_id) {
+			int warehouseArrivalCount = mypageMapper.warehouseArrivalCount(u_id);
+			return warehouseArrivalCount;
+		}
+		
+		/*구매대행 신청완료 카운트*/
+		public int purchaseApplication(String u_id) {
+			int purchaseApplication = mypageMapper.purchaseApplication(u_id);
+			return purchaseApplication;
+		}
+		
+		/*배송대행 신청완료 카운트*/
+		public int packageForwardingApplication(String u_id) {
+			int packageForwardingApplication = mypageMapper.packageForwardingApplication(u_id);
+			return packageForwardingApplication;
+		}
+		
+		public int nodataCount(String u_id) {
+			int nodataCount = mypageMapper.nodataCount(u_id);
+			return nodataCount;
 		}
 		
 		public int forwardingCount(String u_id) {
