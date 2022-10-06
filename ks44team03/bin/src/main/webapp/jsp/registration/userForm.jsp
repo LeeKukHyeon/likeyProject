@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
  <!DOCTYPE html>
 <html lang="ko"
 	  xmlns="http://www.w3.org/1999/xhtml"
@@ -177,22 +179,22 @@ $(document).ready(function(){
 
 <!-- 아이디 중복확인 버튼 클릭시 중복체크  -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	var idchk = false; // 아이디 검사
-	
-	$(function() {
-	
-		var $uId = $("#uId");
+ <script>
+ 	var idchk = false; // 아이디 검사
+ 	
+ 	$(function() {
+		
+ 		var $uId = $("#uId");
 		var $id = $("#id");
 		
 		console.log("ㅠㅠ");
 		console.dir("uid : "+$uId);
-		
 		// 아이디 정규식
+		
 		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
-			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
+			var regExp = /^[a-z]+[a-z0-9]{5,15}$/g;
 			console.log('zzzzzzzzzzzzzzzzzzzzz');
-	
+
 			if (!regExp.test($uId.val())) { // id 가 공백인 경우 체크
 				idchk = false;
 				$id.html("<span id='check'>아이디를 입력해주세요.</span>");
@@ -206,8 +208,9 @@ $(document).ready(function(){
 					type : "POST",
 					url : "/signup/checkid",
 					data : {
-							"id" : $uId.val()
-							},
+						"type" : "user",
+						"id" : $uId.val()
+					},
 					success : function(data) {
 						if (data == 1) { // 1이면 중복
 							idchk = false;
@@ -216,175 +219,29 @@ $(document).ready(function(){
 								"color" : "#FA3E3E",
 								"font-weight" : "bold",
 								"font-size" : "15px"
-	
+
 							})
 							//console.log("중복아이디");
 						} else { // 아니면 중복아님
 							idchk = true;
 							$id.html("<span id='check'>사용가능한 아이디입니다</span>")
-	
+
 							$("#check").css({
 								"color" : "#0D6EFD",
 								"font-weight" : "bold",
 								"font-size" : "15px"
+
 							})
 							//console.log("중복아닌 아이디");
-							}
 						}
+					}
 					});
-			}//
-		});
-	});
-
-</script>
-<script>
-	var pwdchk = false; // 패스워드
-	var pwdconfrimchk = false; // 패스워드 확인
-	
-	$(function() {
-		var $uPw = $("#uPw");
-		var $uRepw = $("#uRepw");
-		
-		console.log("패스워드 스크립트");
-		
-		// 비밀번호 정규식
-		$uPw.on("keyup", function() {
-			var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-			
-			if (!regExp.test($uPw.val())) {
-				$("#pwdnew").html("<span id='chkpwd'>패스워드 형식이 맞지 않습니다</span>")
-				$("#chkpwd").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				pwdchk = false;
-			} else {
-				//console.log("형식 확인");
-				$("#pwdnew").html("<span id='chkpwd'>패스워드 형식을 확인했습니다</span>")
-				$("#chkpwd").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				pwdchk = true;
-			}
-			
-		})
-		
-		// 패스워드 2중 검사
-		$uRepw.on("keyup", function() {
-			if ($uPw.val() != $uRepw.val()) {
-				pwdconfrimchk = false;
-				//console.log("불일치");
-				$("#pwdText").html("<span id='checkpwd'>비밀번호가 일치하지 않습니다</span>")
-				$("#checkpwd").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				} else {
-				pwdconfrimchk = true;
-				//console.log("동일한 비밀번호");
-				$("#pwdText").html("<span id='checkpwd'>비밀번호 일치 확인</span>")
-				$("#checkpwd").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				}
-		})
-	});
-</script>
-<script>
-	var emchk = false; // 이메일
-	
-	$(function() {
-		var $uEmail = $("#uEmail");
-		
-		// 이메일 정규식 검사
-		$uEmail.on("keyup",function() {
-			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			//console.log("email : "+$memail.val());
-			if (!regExp.test($uEmail.val())) {
-				//console.log("형식 미확인");
-				emchk  = false;
-
-				$("#mailTxt").html("<span id='chkmail'>이메일 형식이 맞지 않습니다</span>")
-				$("#chkmail").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-			} else {
-				emchk  = true;
-				//console.log("형식 확인");
-				$("#mailTxt").html("<span id='chkmail'>이메일을 형식을 확인했습니다</span>")
-				$("#chkmail").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				}
-			})
-	});
-</script>
-<script>
-	var nickchk = false; //닉네임 검사
-	
-	$(function() {
-		
-		var $uNick = $("#uNick");
-		var $nickTxt = $("#nickTxt");
-		
-		console.log("닉네임검사하자");
-
-		// 닉네임 정규식
-		$uNick.on("keyup", function() {
-			var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
-			console.log("닉네임검사중검사중검사중ㅋㅋㅋ");
-			if (!regExp.test($uNick.val())) { // 닉네임이 공백인 경우 체크
-				nickchk = false;
-				$nickTxt.html("<span id='checkNick'>닉네임을 입력하세요.</span>")
-				$("#checkNick").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-			} else{ // 공백아니면 중복체크
-				$.ajax({
-					type : "POST",
-					url : "/signup/checknick",
-					data : {
-							"nick" : $uNick.val()
-							},
-					success : function(data) {
-						if (data == 1) { // 1이면 중복
-							nickchk = false;
-							$nickTxt.html("<span id='checkNick'>사용중인 닉네임 입니다.</span>")
-							$("#checkNick").css({
-								"color" : "#FA3E3E",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-								})
-							//console.log("중복아이디");
-						} else { // 아니면 중복아님
-							nickchk = true;
-							$nickTxt.html("<span id='checkNick'>멋진 닉네임이네요!</span>")
-							$("#checkNick").css({
-								"color" : "#0D6EFD",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-								})
-							//console.log("중복아닌 아이디");
-							}
-						}
-					});
-				}
+				}//
 			});
-		});
-</script>
-
+ 	});
+ 
+ </script>
+ 
 </head>
 	<!-- 나중에 Container-fluid로 잡아주기  -->
 	<!-- default_layout.html에 정의한 main page 부분 -->
@@ -413,11 +270,10 @@ $(document).ready(function(){
 			<tbody>
 				<tr>
 					<th class="td1">아이디 <span class="required-addon">*</span></th>
-					<td class="td2" width="50%" style="padding-bottom: 0;">
+					<td class="td2" width="50%">
 						<div class="form-group first">
-							<div><label for="id" id="id">아이디를 입력해주세요.</label></div>
-							<div><input type="text"  name="uId" id="uId" maxlength="16" style="width:150px;" class="input_add" required /></div>
-							<div style="font-size: 14px; padding-top: 3px;">소문자, 숫자 사용(5~15자 입력)</div>
+							<label for="id" id="id">아이디를 입력해주세요 (5~15자 입력)</label> </br>
+							<input type="text"  name="uId" id="uId" maxlength="30" style="width:150px;" class="input_add" required /> 
 							<span id="olmessage"></span>
 						</div>
 					</td> 
@@ -425,21 +281,15 @@ $(document).ready(function(){
 				<tr>
 					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<div><label for="uPw" id="pwdnew">비밀번호를 입력해주세요</label></div>
-						<input type="password" name="uPw" id="uPw" maxlength="30" class="input_add" />
-						<div style="font-size: 14px; padding-top: 3px;">대소문자, 숫자, 특수문자 최소 1개 이상 포함한 8자 이상</br>(사용가능 특수문자 : #?!@$ %^&*-)</div>
+						<input type="password" name="uPw" id="uPw" maxlength="20" class="input_add" value="" />
 						<div id="user_pwd-errmsg"></div>
 					</td>
 				</tr>
 				<tr>
 					<th class="td1">비번확인 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<div class="form-group second">
-							<div><label for="uRepw" id="pwdText">위와 동일한 비밀번호를 입력해주세요.</label></div>
-							<div><input type="password" name="uRepw" id="uRepw" maxlength="20" class="input_add" /><div>
-							<div id="user_repwd-errmsg"></div>
-						</div>
-						
+						<input type="password" name="uRepw" id="uRepw" maxlength="20" class="input_add" value="" />
+						<div id="user_repwd-errmsg"></div>
 					</td>
 				</tr>  
 				<tr>
@@ -463,12 +313,12 @@ $(document).ready(function(){
 				<tr>
 					<th class="td1">닉네임 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<div><label for="uNick" id="nickTxt">닉네임을 입력해주세요.</label></div>
-						<div><input type="text" name="uNick" id="uNick" maxlength="16" style="width:150px;" class="input_add" value="" /></div>
-						<div style="font-size: 14px; padding-top: 3px;">한글, 영문 소문자, 숫자 사용가능(2~15자 입력)</div>
+						<input type="text" name="uNick" id="uNick" maxlength="20" style="width:150px;" class="input_add" value="" />
 						<div id="nickname-errmsg"></div>
 					</td>
 				</tr>
+ 
+  
 				<tr> 
 					<th class="td1">휴대폰 <span class="required-addon">*</span></th>
 					<td class="td2">
@@ -701,7 +551,6 @@ $(document).ready(function(){
 				<tr>
 					<th class="td1">이메일 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<div><label for="uEmail" id="mailTxt">이메일을 입력해주세요</label></div>
 						<input type="text" id="uEmail" name="uEmail" maxlength="30"  style="width:300px;" class="input_add" value=""/>
 					</td>
 				</tr>    
