@@ -53,7 +53,7 @@
 	
 	<!-- 입고 가능여부 체크 -->
 
-<select id="incomingCurrentState" resultMap="incomingStateResultMap">
+<!-- <select id="incomingCurrentState" resultMap="incomingStateResultMap">
 /* 입고 현황 조회 */
 SELECT
 	 i.incoming_code
@@ -87,7 +87,7 @@ WHERE
 
 	
 </select>
-
+	 -->
 	
 	
 	
