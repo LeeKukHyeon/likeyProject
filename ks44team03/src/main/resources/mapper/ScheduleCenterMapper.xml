@@ -12,8 +12,18 @@
 		<result column="schedule_content" property="scheduleContent"/>
 		<result column="schedule_img" property="scheduleImg"/>
 		<result column="schedule_date" property="scheduleDate"/>
-<!-- 		<result column="schedule_view" property="scheduleView"/> -->
+		<result column="schedule_view" property="scheduleView"/>
 	</resultMap>
+	
+	<!-- 배송스케줄 조회수 카운트  -->
+	<update id="countView">
+	/* 배송스케줄 조회수 카운트 */
+	UPDATE schedule_center
+	SET
+		schedule_view = schedule_view + 1
+	where
+		schedule_num = #{scheduleNumCode};
+	</update>
 	
 	<!-- 배송스케줄 삭제 -->
 	<delete id="deleteSchedule" parameterType="ScheduleCenter">
@@ -34,8 +44,7 @@
 		e_code= #{employeeCode},
 		schedule_title= #{scheduleTitle},
 		schedule_content= #{scheduleContent},
-		schedule_img= #{scheduleImg},
-		schedule_view= #{scheduleView}
+		schedule_img= #{scheduleImg}
 	WHERE 
 		schedule_num= #{scheduleNumCode};
 	</update>
@@ -51,10 +60,7 @@
 		,schedule_date
 		,schedule_view)
 	VALUES
-	 (#{scheduleNumCode}, #{scheduleTitle}, #{scheduleContent}, #{scheduleImg}, NOW() , #{scheduleView})
-	
-	
-	
+	 (#{scheduleNumCode}, #{scheduleTitle}, #{scheduleContent}, #{scheduleImg}, NOW() , 0)
 	</insert>
 	
 	<!-- 배송스케줄 게시글 조회 -->

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.admin.mapper.IncomingMapper">
+	<!-- 입출고 -->
+	<resultMap type="Incoming" id="incomingResultMap">
+		<!-- 입고 -->
+		<id column="idcoming_code" property="incomingCode" />
+		<result column="goods_info_code" property="goodsInfoCode" />
+		<result column="e_code" property="eCode" />
+		<result column="photo_save" property="photoSave" />
+		<result column="volume" property="volume" />
+		<result column="weight" property="weight" />
+		<!--
+		출고
+		<result column="req_option_impli" property="" />
+		<result column="postpone" property="" />
+		<result column="sum_post" property="" />
+		<result column="send_out" property="" />
+		<result column="approval" property="" />
+		<result column="out_tracking_num" property="" />
+		<result column="out_company" property="" />
+		-->
+	</resultMap>
+
+	<!-- 출고
+	req_option_impli
+	postpone
+	sum_post
+	send_out
+	approval
+	out_tracking_num
+	out_company
+	 -->
+	 
+	<!-- 입고 등록 -->
+	<insert id="regIncoming" parameterType="Incoming">
+		/* 입고 등록 */
+		INSERT INTO incoming
+		(
+		  incoming_code
+		 ,goods_info_code
+		 ,e_code
+		 ,photo_save
+		 ,volume
+		 ,weight
+		)
+		VALUES
+		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${volume}, ${weight})
+	</insert>
+	
+	<!-- 입고 가능여부 체크 -->
+
+<select id="incomingCurrentState" resultMap="incomingStateResultMap">
+/* 입고 현황 조회 */
+SELECT
+	 i.incoming_code
+	,g.goods_info_code
+	,e.e_code
+	,g.tracking_num
+	,u.user_pobox_code
+	,i.volume
+	,i.weight
+	,g.likey_pass
+	,i.photo_save
+	,g.arrival_date
+FROM
+	incoming as i
+INNER JOIN
+	goods_info as g
+ON
+	i.goods_info_code = g.goods_info_code
+INNER JOIN
+	employee_info as e
+ON
+	i.e_code = e.e_code
+INNER JOIN
+	user_member as u
+ON
+	g.id = u.u_id
+WHERE
+	g.tracking_num = #{trackingNum} and u.user_pobox_code = #{userPoboxCode}
+
+	
+
+	
+</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+</mapper>

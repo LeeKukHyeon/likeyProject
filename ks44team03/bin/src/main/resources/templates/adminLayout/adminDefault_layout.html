@@ -2,9 +2,15 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-      
 
-	<th:block th:replace="adminFragments/adminConfig::adminConfigFragment"></th:block>
+	<head>
+		<meta charset="UTF-8">
+		<title>라이키 관리자 페이지 </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!--adminConfig.html-->
+			<th:block th:replace="adminFragments/adminConfig::adminConfigFragment"></th:block>
+	</head>
 
 		<!-- start header  -->
 	<header th:replace="adminFragments/adminHeader::adminHeaderFragment"></header>

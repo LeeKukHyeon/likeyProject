@@ -1,38 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-<meta charset="UTF-8">
-<title></title>
+<style>
+.button2{
+	margin-left: 390px;
+}
+	
+</style>
 </head>
-<body>
-	<h1 th:text="${title}">부서 등록</h1>
-	<from id="departmentRegFrom">
-		<table>
-			<tr>	
-				<td>
-					<input type="text" name=departmentCode placeholder="부서코드">	
-				</td>
-			</tr>
-			<tr>	
-				<td>
-					<input type="text" name=departmentName placeholder="부서명">	
-				</td>
-			</tr>
-			<tr>	
-				<td>
-					<input type="text" name=workplaceCode placeholder="사업장코드">	
-				</td>
-			</tr>
-			<tr>	
-				<td>
-					<input type="text" name=departmentDate placeholder="부서적용날짜">	
-				</td>
-			</tr>
-		</table>
-	</from>
-		
-		
-	
-	
-</body>
+<th:block layout:fragment="adminContent">
+	<div class="content-wrapper">
+		<div class="right_text" style="margin-left: 10%; margin-right: 10%;">
+			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">부서 등록</h2>
+			<form name="form1" id="departmentRegFrom" th:action="@{/departmentRegister}" method="post">
+				<table class="input_table" style="width:90%;">
+					<colgroup>
+						<col width="15%"/><col width="35%"/>
+						<col width="15%"/><col width="35%"/>
+					</colgroup>
+					<!-- <tr>
+						<th class="td1">부서코드</th>	
+						<td class="td2">
+							<input type="text" name=departmentCode placeholder="부서코드">	
+						</td>
+					</tr> -->
+				    <tr>
+						<th class="td1">사업장이름</th>	
+						<td class="td2">
+							<select name="deWorkPlaceCode">
+								<th:block th:if="${not #lists.isEmpty(workPlaceList)}" th:each="l : ${workPlaceList}">
+									<option th:value="${l.workPlaceCode}" th:text="${l.workPlaceName}"></option>
+								</thLblock>
+								<th:block th:unless="${not #lists.isEmpty(workPlaceList)}">
+									<option value="">등록된 사업장이름이 없습니다.</option>
+								</th:block>
+							</select>	
+						</td>
+					</tr>
+					<tr>
+						<th class="td1">부서명</th>
+						<td class="td2">
+							<select name="departmentName">
+								<option>경영지원</option>
+								<option>물류</option>
+								<option>CS</option>
+							</select>
+						</td>	
+						<!-- <td class="td2">
+							<input type="text" name=departmentName placeholder="부서명">	
+						</td> -->
+					</tr>
+				</table>
+				<div class="button2">
+					<button type="submit"  class="add_button">등록</button>
+					<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</th:block>
 </html>
