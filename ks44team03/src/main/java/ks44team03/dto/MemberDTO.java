@@ -1,12 +1,5 @@
 package ks44team03.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
 public class MemberDTO {
 
       private String uId;    //이용자 아이디
@@ -14,13 +7,11 @@ public class MemberDTO {
       private String uName;   //이용자 이름
       private String uNick;     //이용자 닉네임
       private String uEmail;    //이용자 이메일
-      private String yy;    //이용자 생일
-      private String mm;    //이용자 생일
-      private String dd;    //이용자 생일
-      private String countryCode;    //이용자 전화번호
-      private String hp;    //이용자 전화번호
-      
-      
+      private int yy;    //이용자 생일
+      private int mm;    //이용자 생일
+      private int dd;    //이용자 생일
+      private int countryCode;    //이용자 전화번호
+      private int hp;    //이용자 전화번호
 	public String getuId() {
 		return uId;
 	}
@@ -51,6 +42,40 @@ public class MemberDTO {
 	public void setuEmail(String uEmail) {
 		this.uEmail = uEmail;
 	}
+	public int getYy() {
+		return yy;
+	}
+	public void setYy(int yy) {
+		this.yy = yy;
+	}
+	public int getMm() {
+		return mm;
+	}
+	public void setMm(int mm) {
+		this.mm = mm;
+	}
+	public int getDd() {
+		return dd;
+	}
+	public void setDd(int dd) {
+		this.dd = dd;
+	}
+	public int getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(int countryCode) {
+		this.countryCode = countryCode;
+	}
+	public int getHp() {
+		return hp;
+	}
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return "MemberDTO [uId=" + uId + ", uPw=" + uPw + ", uName=" + uName + ", uNick=" + uNick + ", uEmail=" + uEmail
+				+ ", yy=" + yy + ", mm=" + mm + ", dd=" + dd + ", countryCode=" + countryCode + ", hp=" + hp + "]";
+	}
 }
