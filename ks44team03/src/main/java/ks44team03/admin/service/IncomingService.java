@@ -1,6 +1,7 @@
 package ks44team03.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,8 +78,8 @@ public class IncomingService {
 	}
 	
 	//입고 전 주문목록
-	public List<OrderInfo> incomingOrderList(){
-		List<OrderInfo> incomingOrderList = incomingMapper.incomingOrderList();
+	public List<OrderInfo> incomingOrderList(Map<String, Object> paramMap){
+		List<OrderInfo> incomingOrderList = incomingMapper.incomingOrderList(paramMap);
 		return incomingOrderList;
 	}
 	
