@@ -28896,6 +28896,7 @@ div.tagsinput span.tag a {
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
+  overflow: scroll;
 }
 
 @media (max-width: 767px) {

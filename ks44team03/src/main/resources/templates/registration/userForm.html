@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko"
 	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -119,7 +119,271 @@ button {
     margin: 4px 2px;
     cursor: pointer;
 }
+.olmessagef {color: red; font-style: Italic;}
+.olmessaget {color: blue; font-style: Italic;}
 </style>
+
+<!-- 아이디 비밀번호 입력되었는지 확인하는 함수  -->
+ <script type="text/javascript">
+	 function checkValue() {
+	     if(!document.userInfo.id.value){
+	         alert("아이디를 입력하세요.");
+	         return false;
+	     }
+	     
+	     if(!document.userInfo.password.value){
+	         alert("비밀번호를 입력하세요.");
+	         return false;
+	     }
+	     
+	     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+	     if(document.userInfo.password.value != document.userInfo.passwordcheck.value ){
+	         alert("비밀번호를 동일하게 입력하세요.");
+	         return false;
+	     }
+	 }
+    </script>
+
+<!-- 생년월일 js -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function(){            
+    var now = new Date();
+    var year = now.getFullYear();
+    var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+    var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
+    //년도 selectbox만들기               
+    for(var i = 1900 ; i <= year ; i++) {
+        $('#year').append('<option value="' + i + '">' + i + '</option>');    
+    }
+
+    // 월별 selectbox 만들기            
+    for(var i=1; i <= 12; i++) {
+        var mm = i > 9 ? i : "0"+i ;            
+        $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
+    }
+    
+    // 일별 selectbox 만들기
+    for(var i=1; i <= 31; i++) {
+        var dd = i > 9 ? i : "0"+i ;            
+        $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
+    }
+    $("#year  > option[value="+year+"]").attr("selected", "true");        
+    $("#month  > option[value="+mon+"]").attr("selected", "true");    
+    $("#day  > option[value="+day+"]").attr("selected", "true");       
+  
+})
+</script>
+
+<!-- 아이디 중복확인 버튼 클릭시 중복체크  -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	var idchk = false; // 아이디 검사
+	
+	$(function() {
+	
+		var $uId = $("#uId");
+		var $id = $("#id");
+		
+		console.log("ㅠㅠ");
+		console.dir("uid : "+$uId);
+		
+		// 아이디 정규식
+		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
+			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
+			console.log('zzzzzzzzzzzzzzzzzzzzz');
+	
+			if (!regExp.test($uId.val())) { // id 가 공백인 경우 체크
+				idchk = false;
+				$id.html("<span id='check'>아이디를 입력해주세요.</span>");
+				$("#check").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+				})
+			} else { // 공백아니면 중복체크
+				$.ajax({
+					type : "POST",
+					url : "/signup/checkid",
+					data : {
+							"id" : $uId.val()
+							},
+					success : function(data) {
+						if (data == 1) { // 1이면 중복
+							idchk = false;
+							$id.html("<span id='check'>이미 존재하는 아이디입니다</span>")
+							$("#check").css({
+								"color" : "#FA3E3E",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+	
+							})
+							//console.log("중복아이디");
+						} else { // 아니면 중복아님
+							idchk = true;
+							$id.html("<span id='check'>사용가능한 아이디입니다</span>")
+	
+							$("#check").css({
+								"color" : "#0D6EFD",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+							})
+							//console.log("중복아닌 아이디");
+							}
+						}
+					});
+			}//
+		});
+	});
+
+</script>
+<script>
+	var pwdchk = false; // 패스워드
+	var pwdconfrimchk = false; // 패스워드 확인
+	
+	$(function() {
+		var $uPw = $("#uPw");
+		var $uRepw = $("#uRepw");
+		
+		console.log("패스워드 스크립트");
+		
+		// 비밀번호 정규식
+		$uPw.on("keyup", function() {
+			var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+			
+			if (!regExp.test($uPw.val())) {
+				$("#pwdnew").html("<span id='chkpwd'>패스워드 형식이 맞지 않습니다</span>")
+				$("#chkpwd").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				pwdchk = false;
+			} else {
+				//console.log("형식 확인");
+				$("#pwdnew").html("<span id='chkpwd'>올바른 패스워드 형식이네요!</span>")
+				$("#chkpwd").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				pwdchk = true;
+			}
+			
+		})
+		
+		// 패스워드 2중 검사
+		$uRepw.on("keyup", function() {
+			if ($uPw.val() != $uRepw.val()) {
+				pwdconfrimchk = false;
+				//console.log("불일치");
+				$("#pwdText").html("<span id='checkpwd'>비밀번호가 일치하지 않습니다</span>")
+				$("#checkpwd").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				} else {
+				pwdconfrimchk = true;
+				//console.log("동일한 비밀번호");
+				$("#pwdText").html("<span id='checkpwd'>비밀번호 일치 확인</span>")
+				$("#checkpwd").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				}
+		})
+	});
+</script>
+<script>
+	var emchk = false; // 이메일
+	
+	$(function() {
+		var $uEmail = $("#uEmail");
+		
+		// 이메일 정규식 검사
+		$uEmail.on("keyup",function() {
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			//console.log("email : "+$memail.val());
+			if (!regExp.test($uEmail.val())) {
+				//console.log("형식 미확인");
+				emchk  = false;
+
+				$("#mailTxt").html("<span id='chkmail'>이메일 형식이 맞지 않습니다</span>")
+				$("#chkmail").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+			} else {
+				emchk  = true;
+				//console.log("형식 확인");
+				$("#mailTxt").html("<span id='chkmail'>이메일을 형식을 확인했습니다</span>")
+				$("#chkmail").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				}
+			})
+	});
+</script>
+<script>
+	var nickchk = false; //닉네임 검사
+	
+	$(function() {
+		
+		var $uNick = $("#uNick");
+		var $nickTxt = $("#nickTxt");
+		
+		console.log("닉네임검사하자");
+
+		// 닉네임 정규식
+		$uNick.on("keyup", function() {
+			var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
+			console.log("닉네임검사중검사중검사중ㅋㅋㅋ");
+			if (!regExp.test($uNick.val())) { // 닉네임이 공백인 경우 체크
+				nickchk = false;
+				$nickTxt.html("<span id='checkNick'>닉네임을 입력하세요.</span>")
+				$("#checkNick").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+			} else{ // 공백아니면 중복체크
+				$.ajax({
+					type : "POST",
+					url : "/signup/checknick",
+					data : {
+							"nick" : $uNick.val()
+							},
+					success : function(data) {
+						if (data == 1) { // 1이면 중복
+							nickchk = false;
+							$nickTxt.html("<span id='checkNick'>사용중인 닉네임 입니다.</span>")
+							$("#checkNick").css({
+								"color" : "#FA3E3E",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+								})
+							//console.log("중복아이디");
+						} else { // 아니면 중복아님
+							nickchk = true;
+							$nickTxt.html("<span id='checkNick'>멋진 닉네임이네요!</span>")
+							$("#checkNick").css({
+								"color" : "#0D6EFD",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+								})
+							//console.log("중복아닌 아이디");
+							}
+						}
+					});
+				}
+			});
+		});
+</script>
 
 </head>
 	<!-- 나중에 Container-fluid로 잡아주기  -->
@@ -135,157 +399,313 @@ button {
 
 		<p class="step_txt">
 		회원가입시 신규 가입 <strong>10% 할인쿠폰</strong>을 증정합니다.<br/>
-		친구 추천을 하면, <strong>7% 할인쿠폰 2장</strong>을 드립니다.
 		</p>
-
-		<form name="form1" id="form1" method="post" action="member_process.html">
+		
+		<form method="post" action="signup">
 			<input type="hidden" name="action_type" value="MemJoin">
 			<input type="hidden" name="auth_num" value="">
 			
 			<table class="input_table" style="width:100%;" >
 				<colgroup>
 					<col width="15%"/><col width="35%"/>
-					<col width="15%"/><col width="35%"/>
+					<col width="35%"/>
 				</colgroup>
 			<tbody>
-	
 				<tr>
 					<th class="td1">아이디 <span class="required-addon">*</span></th>
-					<td class="td2" colspan="3">
-						<input type="text"  name="userId" id="userId" maxlength="20" style="width:150px;" class="input_add" /> 
-						 4~20자의 영문 소문자와 숫자만 입력하세요.
-						<div id="user_id-errmsg"></div>
+					<td class="td2" width="50%" style="padding-bottom: 0;">
+						<div class="form-group first">
+							<div><label for="id" id="id">아이디를 입력해주세요.</label></div>
+							<div><input type="text"  name="uId" id="uId" maxlength="16" style="width:150px;" class="input_add" required /></div>
+							<div style="font-size: 14px; padding-top: 3px;">소문자, 숫자 사용(5~15자 입력)</div>
+							<span id="olmessage"></span>
+						</div>
 					</td> 
-				</tr>   
+				</tr>
 				<tr>
-					<th class="td1">닉네임 <span class="required-addon">*</span></th>
+					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="text" name="userNick" id="userNick" maxlength="20" style="width:150px;" class="input_add" value="" />
-						<div id="nickname-errmsg"></div>
+						<div><label for="uPw" id="pwdnew">비밀번호를 입력해주세요</label></div>
+						<input type="password" name="uPw" id="uPw" maxlength="30" class="input_add" />
+						<div style="font-size: 14px; padding-top: 3px;">대소문자, 숫자, 특수문자 최소 1개 이상 포함한 8자 이상</br>(사용가능 특수문자 : #?!@$ %^&*-)</div>
+						<div id="user_pwd-errmsg"></div>
 					</td>
+				</tr>
+				<tr>
+					<th class="td1">비번확인 <span class="required-addon">*</span></th>
+					<td class="td2">
+						<div class="form-group second">
+							<div><label for="uRepw" id="pwdText">위와 동일한 비밀번호를 입력해주세요.</label></div>
+							<div><input type="password" name="uRepw" id="uRepw" maxlength="20" class="input_add" /><div>
+							<div id="user_repwd-errmsg"></div>
+						</div>
+						
+					</td>
+				</tr>  
+				<tr>
+					<th class="td1">이름 <span class="required-addon">*</span></th>
+					<td class="td2">
+						<input type="text" name="uName" id="uName" maxlength="30" class="input_add" value="" />
+						<div id="name-errmsg"></div>
+					</td>
+				</tr>  
+				<tr>
 					<th class="td1">생년월일 <span class="required-addon">*</span></th>
-					<td class="td2 select_add">
-	
-						<select name="birth_y" id="birth_y" class="select_add">
-							<option value="">년도</option>
-							<option value='2007'>2007</option><option value='2006'>2006</option><option value='2005'>2005</option><option value='2004'>2004</option><option value='2003'>2003</option><option value='2002'>2002</option><option value='2001'>2001</option><option value='2000'>2000</option><option value='1999'>1999</option><option value='1998'>1998</option><option value='1997'>1997</option><option value='1996'>1996</option><option value='1995'>1995</option><option value='1994'>1994</option><option value='1993'>1993</option><option value='1992'>1992</option><option value='1991'>1991</option><option value='1990'>1990</option><option value='1989'>1989</option><option value='1988'>1988</option><option value='1987'>1987</option><option value='1986'>1986</option><option value='1985'>1985</option><option value='1984'>1984</option><option value='1983'>1983</option><option value='1982'>1982</option><option value='1981'>1981</option><option value='1980'>1980</option><option value='1979'>1979</option><option value='1978'>1978</option><option value='1977'>1977</option><option value='1976'>1976</option><option value='1975'>1975</option><option value='1974'>1974</option><option value='1973'>1973</option><option value='1972'>1972</option><option value='1971'>1971</option><option value='1970'>1970</option><option value='1969'>1969</option><option value='1968'>1968</option><option value='1967'>1967</option><option value='1966'>1966</option><option value='1965'>1965</option><option value='1964'>1964</option><option value='1963'>1963</option><option value='1962'>1962</option><option value='1961'>1961</option><option value='1960'>1960</option><option value='1959'>1959</option><option value='1958'>1958</option><option value='1957'>1957</option><option value='1956'>1956</option><option value='1955'>1955</option><option value='1954'>1954</option><option value='1953'>1953</option><option value='1952'>1952</option><option value='1951'>1951</option><option value='1950'>1950</option><option value='1949'>1949</option><option value='1948'>1948</option><option value='1947'>1947</option><option value='1946'>1946</option><option value='1945'>1945</option><option value='1944'>1944</option><option value='1943'>1943</option><option value='1942'>1942</option><option value='1941'>1941</option><option value='1940'>1940</option><option value='1939'>1939</option><option value='1938'>1938</option><option value='1937'>1937</option><option value='1936'>1936</option><option value='1935'>1935</option><option value='1934'>1934</option><option value='1933'>1933</option><option value='1932'>1932</option><option value='1931'>1931</option><option value='1930'>1930</option><option value='1929'>1929</option><option value='1928'>1928</option><option value='1927'>1927</option><option value='1926'>1926</option><option value='1925'>1925</option><option value='1924'>1924</option><option value='1923'>1923</option><option value='1922'>1922</option><option value='1921'>1921</option><option value='1920'>1920</option><option value='1919'>1919</option><option value='1918'>1918</option>			
-						</select>
-	
-						-
-	
-						<select name="birth_m" id="birth_m" class="select_add">
-							<option value="">월</option>
-							<option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option>					</select>
-	
-						-
-	
-						<select name="birth_d" id="birth_d" class="select_add">
-							<option value="">일</option>
-							<option value='01'>01</option><option value='02'>02</option><option value='03'>03</option><option value='04'>04</option><option value='05'>05</option><option value='06'>06</option><option value='07'>07</option><option value='08'>08</option><option value='09'>09</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option><option value='26'>26</option><option value='27'>27</option><option value='28'>28</option><option value='29'>29</option><option value='30'>30</option><option value='31'>31</option>					</select>
+					<td class="td2">
+						<select name="yy" id="year" class="select_add"></select>년
+						<select name="mm" id="month" class="select_add"></select>월
+						<select name="dd" id="day" class="select_add"></select>일
 						<div id="birth_y-errmsg"></div>
 						<div id="birth_m-errmsg"></div>
 						<div id="birth_d-errmsg"></div>
 					</td>
-				</tr>   
+				</tr>
 				<tr>
-					<th class="td1">이름 <span class="required-addon">*</span></th>
+					<th class="td1">닉네임 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<input type="text" name="userName" id="userName" maxlength="30" class="input_add" value="" />
-						<div id="name-errmsg">
-					</td>
-					<th class="td1">  <span class="required-addon"> </span></th>
-					<td class="td2">
-						<!-- <input type="text" name="name_eng" id="name_eng" maxlength="30" class="input_add" value="" /> -->
-						<div id="name_eng-errmsg">
-					</td>
-				</tr>   
-				<tr>
-					<th class="td1">비밀번호 <span class="required-addon">*</span></th>
-					<td class="td2">
-						<input type="password" name="userPw" id="userPw" maxlength="20" class="input_add" value="" />
-						<div id="user_pwd-errmsg">
-					</td>
-					<th class="td1">비번확인 <span class="required-addon">*</span></th>
-					<td class="td2">
-						<input type="password" name="userRepw" id="userRepw" maxlength="20" class="input_add" value="" />
-						<div id="user_repwd-errmsg">
-					</td>
-				</tr>   
-				<tr> 
-					<th class="td1">휴대폰 <span class="required-addon">*</span></th>
-					<td class="td2 hp">
-		
-						<div>
-							<div>
-							<select name='hp1' id='hp1' class="select_add">
-							<option value='010' >010</option>
-							<option value='011' >011</option>
-							<option value='016' >016</option>
-							<option value='017' >017</option>
-							<option value='018' >018</option>
-							<option value='019' >019</option>
-							</select> - 
-							<input type="text" name="hp2" id="hp2" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
-							<input type="text" name="hp3" id="hp3" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" />
-							</div>
-							<div class="save_bt"><a href="javascript:fnMobSmsAuthSend();">인증</a></div>
-							<div id="hp1-errmsg"></div><div id="hp3-errmsg"></div>
-						</div>
-					</td>
-					<th class="td1 ">전화번호</th>
-					<td class="td2">
-						<input type="text" name="tel1" id="tel1" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
-						<input type="text" name="tel2" id="tel2" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> - 
-						<input type="text" name="tel3" id="tel3" maxlength="4" style="width:40px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+						<div><label for="uNick" id="nickTxt">닉네임을 입력해주세요.</label></div>
+						<div><input type="text" name="uNick" id="uNick" maxlength="16" style="width:150px;" class="input_add" value="" /></div>
+						<div style="font-size: 14px; padding-top: 3px;">한글, 영문 소문자, 숫자 사용가능(2~15자 입력)</div>
+						<div id="nickname-errmsg"></div>
 					</td>
 				</tr>
 				<tr> 
-					<th class="td1">이메일 수신</th>
+					<th class="td1">휴대폰 <span class="required-addon">*</span></th>
 					<td class="td2">
-						<label><input type="radio" name="email_flag" id="email_flag_y" class="input_chk2" value="Y" checked /> 예</label> &nbsp;
-						<label><input type="radio" name="email_flag" id="email_flag_n" class="input_chk2" value="N"  /> 아니오</label>
-					</td>
-					<th class="td1">SMS 수신</th>
-					<td class="td2">
-						<label><input type="radio" name="sms_flag" id="sms_flag_y" class="input_chk2" value="Y" checked /> 예</label> &nbsp;
-						<label><input type="radio" name="sms_flag" id="sms_flag_n" class="input_chk2" value="N"  /> 아니오</label>
+						<div>
+							<select name="countryCode" id="countryCode"  class="select_add" style="width:95px;">
+								<optgroup label="Other countries">
+								<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+								<option data-countryCode="US" value="1">USA (+1)</option>
+								<option data-countryCode="DZ" value="213">Algeria (+213)</option>
+								<option data-countryCode="AD" value="376">Andorra (+376)</option>
+								<option data-countryCode="AO" value="244">Angola (+244)</option>
+								<option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+								<option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+								<option data-countryCode="AR" value="54">Argentina (+54)</option>
+								<option data-countryCode="AM" value="374">Armenia (+374)</option>
+								<option data-countryCode="AW" value="297">Aruba (+297)</option>
+								<option data-countryCode="AU" value="61">Australia (+61)</option>
+								<option data-countryCode="AT" value="43">Austria (+43)</option>
+								<option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
+								<option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
+								<option data-countryCode="BH" value="973">Bahrain (+973)</option>
+								<option data-countryCode="BD" value="880">Bangladesh (+880)</option>
+								<option data-countryCode="BB" value="1246">Barbados (+1246)</option>
+								<option data-countryCode="BY" value="375">Belarus (+375)</option>
+								<option data-countryCode="BE" value="32">Belgium (+32)</option>
+								<option data-countryCode="BZ" value="501">Belize (+501)</option>
+								<option data-countryCode="BJ" value="229">Benin (+229)</option>
+								<option data-countryCode="BM" value="1441">Bermuda (+1441)</option>
+								<option data-countryCode="BT" value="975">Bhutan (+975)</option>
+								<option data-countryCode="BO" value="591">Bolivia (+591)</option>
+								<option data-countryCode="BA" value="387">Bosnia Herzegovina (+387)</option>
+								<option data-countryCode="BW" value="267">Botswana (+267)</option>
+								<option data-countryCode="BR" value="55">Brazil (+55)</option>
+								<option data-countryCode="BN" value="673">Brunei (+673)</option>
+								<option data-countryCode="BG" value="359">Bulgaria (+359)</option>
+								<option data-countryCode="BF" value="226">Burkina Faso (+226)</option>
+								<option data-countryCode="BI" value="257">Burundi (+257)</option>
+								<option data-countryCode="KH" value="855">Cambodia (+855)</option>
+								<option data-countryCode="CM" value="237">Cameroon (+237)</option>
+								<option data-countryCode="CA" value="1">Canada (+1)</option>
+								<option data-countryCode="CV" value="238">Cape Verde Islands (+238)</option>
+								<option data-countryCode="KY" value="1345">Cayman Islands (+1345)</option>
+								<option data-countryCode="CF" value="236">Central African Republic (+236)</option>
+								<option data-countryCode="CL" value="56">Chile (+56)</option>
+								<option data-countryCode="CN" value="86">China (+86)</option>
+								<option data-countryCode="CO" value="57">Colombia (+57)</option>
+								<option data-countryCode="KM" value="269">Comoros (+269)</option>
+								<option data-countryCode="CG" value="242">Congo (+242)</option>
+								<option data-countryCode="CK" value="682">Cook Islands (+682)</option>
+								<option data-countryCode="CR" value="506">Costa Rica (+506)</option>
+								<option data-countryCode="HR" value="385">Croatia (+385)</option>
+								<option data-countryCode="CU" value="53">Cuba (+53)</option>
+								<option data-countryCode="CY" value="90392">Cyprus North (+90392)</option>
+								<option data-countryCode="CY" value="357">Cyprus South (+357)</option>
+								<option data-countryCode="CZ" value="42">Czech Republic (+42)</option>
+								<option data-countryCode="DK" value="45">Denmark (+45)</option>
+								<option data-countryCode="DJ" value="253">Djibouti (+253)</option>
+								<option data-countryCode="DM" value="1809">Dominica (+1809)</option>
+								<option data-countryCode="DO" value="1809">Dominican Republic (+1809)</option>
+								<option data-countryCode="EC" value="593">Ecuador (+593)</option>
+								<option data-countryCode="EG" value="20">Egypt (+20)</option>
+								<option data-countryCode="SV" value="503">El Salvador (+503)</option>
+								<option data-countryCode="GQ" value="240">Equatorial Guinea (+240)</option>
+								<option data-countryCode="ER" value="291">Eritrea (+291)</option>
+								<option data-countryCode="EE" value="372">Estonia (+372)</option>
+								<option data-countryCode="ET" value="251">Ethiopia (+251)</option>
+								<option data-countryCode="FK" value="500">Falkland Islands (+500)</option>
+								<option data-countryCode="FO" value="298">Faroe Islands (+298)</option>
+								<option data-countryCode="FJ" value="679">Fiji (+679)</option>
+								<option data-countryCode="FI" value="358">Finland (+358)</option>
+								<option data-countryCode="FR" value="33">France (+33)</option>
+								<option data-countryCode="GF" value="594">French Guiana (+594)</option>
+								<option data-countryCode="PF" value="689">French Polynesia (+689)</option>
+								<option data-countryCode="GA" value="241">Gabon (+241)</option>
+								<option data-countryCode="GM" value="220">Gambia (+220)</option>
+								<option data-countryCode="GE" value="7880">Georgia (+7880)</option>
+								<option data-countryCode="DE" value="49">Germany (+49)</option>
+								<option data-countryCode="GH" value="233">Ghana (+233)</option>
+								<option data-countryCode="GI" value="350">Gibraltar (+350)</option>
+								<option data-countryCode="GR" value="30">Greece (+30)</option>
+								<option data-countryCode="GL" value="299">Greenland (+299)</option>
+								<option data-countryCode="GD" value="1473">Grenada (+1473)</option>
+								<option data-countryCode="GP" value="590">Guadeloupe (+590)</option>
+								<option data-countryCode="GU" value="671">Guam (+671)</option>
+								<option data-countryCode="GT" value="502">Guatemala (+502)</option>
+								<option data-countryCode="GN" value="224">Guinea (+224)</option>
+								<option data-countryCode="GW" value="245">Guinea - Bissau (+245)</option>
+								<option data-countryCode="GY" value="592">Guyana (+592)</option>
+								<option data-countryCode="HT" value="509">Haiti (+509)</option>
+								<option data-countryCode="HN" value="504">Honduras (+504)</option>
+								<option data-countryCode="HK" value="852">Hong Kong (+852)</option>
+								<option data-countryCode="HU" value="36">Hungary (+36)</option>
+								<option data-countryCode="IS" value="354">Iceland (+354)</option>
+								<option data-countryCode="IN" value="91">India (+91)</option>
+								<option data-countryCode="ID" value="62">Indonesia (+62)</option>
+								<option data-countryCode="IR" value="98">Iran (+98)</option>
+								<option data-countryCode="IQ" value="964">Iraq (+964)</option>
+								<option data-countryCode="IE" value="353">Ireland (+353)</option>
+								<option data-countryCode="IL" value="972">Israel (+972)</option>
+								<option data-countryCode="IT" value="39">Italy (+39)</option>
+								<option data-countryCode="JM" value="1876">Jamaica (+1876)</option>
+								<option data-countryCode="JP" value="81">Japan (+81)</option>
+								<option data-countryCode="JO" value="962">Jordan (+962)</option>
+								<option data-countryCode="KZ" value="7">Kazakhstan (+7)</option>
+								<option data-countryCode="KE" value="254">Kenya (+254)</option>
+								<option data-countryCode="KI" value="686">Kiribati (+686)</option>
+								<option data-countryCode="KP" value="850">Korea North (+850)</option>
+								<option data-countryCode="KR" value="82">Korea South (+82)</option>
+								<option data-countryCode="KW" value="965">Kuwait (+965)</option>
+								<option data-countryCode="KG" value="996">Kyrgyzstan (+996)</option>
+								<option data-countryCode="LA" value="856">Laos (+856)</option>
+								<option data-countryCode="LV" value="371">Latvia (+371)</option>
+								<option data-countryCode="LB" value="961">Lebanon (+961)</option>
+								<option data-countryCode="LS" value="266">Lesotho (+266)</option>
+								<option data-countryCode="LR" value="231">Liberia (+231)</option>
+								<option data-countryCode="LY" value="218">Libya (+218)</option>
+								<option data-countryCode="LI" value="417">Liechtenstein (+417)</option>
+								<option data-countryCode="LT" value="370">Lithuania (+370)</option>
+								<option data-countryCode="LU" value="352">Luxembourg (+352)</option>
+								<option data-countryCode="MO" value="853">Macao (+853)</option>
+								<option data-countryCode="MK" value="389">Macedonia (+389)</option>
+								<option data-countryCode="MG" value="261">Madagascar (+261)</option>
+								<option data-countryCode="MW" value="265">Malawi (+265)</option>
+								<option data-countryCode="MY" value="60">Malaysia (+60)</option>
+								<option data-countryCode="MV" value="960">Maldives (+960)</option>
+								<option data-countryCode="ML" value="223">Mali (+223)</option>
+								<option data-countryCode="MT" value="356">Malta (+356)</option>
+								<option data-countryCode="MH" value="692">Marshall Islands (+692)</option>
+								<option data-countryCode="MQ" value="596">Martinique (+596)</option>
+								<option data-countryCode="MR" value="222">Mauritania (+222)</option>
+								<option data-countryCode="YT" value="269">Mayotte (+269)</option>
+								<option data-countryCode="MX" value="52">Mexico (+52)</option>
+								<option data-countryCode="FM" value="691">Micronesia (+691)</option>
+								<option data-countryCode="MD" value="373">Moldova (+373)</option>
+								<option data-countryCode="MC" value="377">Monaco (+377)</option>
+								<option data-countryCode="MN" value="976">Mongolia (+976)</option>
+								<option data-countryCode="MS" value="1664">Montserrat (+1664)</option>
+								<option data-countryCode="MA" value="212">Morocco (+212)</option>
+								<option data-countryCode="MZ" value="258">Mozambique (+258)</option>
+								<option data-countryCode="MN" value="95">Myanmar (+95)</option>
+								<option data-countryCode="NA" value="264">Namibia (+264)</option>
+								<option data-countryCode="NR" value="674">Nauru (+674)</option>
+								<option data-countryCode="NP" value="977">Nepal (+977)</option>
+								<option data-countryCode="NL" value="31">Netherlands (+31)</option>
+								<option data-countryCode="NC" value="687">New Caledonia (+687)</option>
+								<option data-countryCode="NZ" value="64">New Zealand (+64)</option>
+								<option data-countryCode="NI" value="505">Nicaragua (+505)</option>
+								<option data-countryCode="NE" value="227">Niger (+227)</option>
+								<option data-countryCode="NG" value="234">Nigeria (+234)</option>
+								<option data-countryCode="NU" value="683">Niue (+683)</option>
+								<option data-countryCode="NF" value="672">Norfolk Islands (+672)</option>
+								<option data-countryCode="NP" value="670">Northern Marianas (+670)</option>
+								<option data-countryCode="NO" value="47">Norway (+47)</option>
+								<option data-countryCode="OM" value="968">Oman (+968)</option>
+								<option data-countryCode="PW" value="680">Palau (+680)</option>
+								<option data-countryCode="PA" value="507">Panama (+507)</option>
+								<option data-countryCode="PG" value="675">Papua New Guinea (+675)</option>
+								<option data-countryCode="PY" value="595">Paraguay (+595)</option>
+								<option data-countryCode="PE" value="51">Peru (+51)</option>
+								<option data-countryCode="PH" value="63">Philippines (+63)</option>
+								<option data-countryCode="PL" value="48">Poland (+48)</option>
+								<option data-countryCode="PT" value="351">Portugal (+351)</option>
+								<option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
+								<option data-countryCode="QA" value="974">Qatar (+974)</option>
+								<option data-countryCode="RE" value="262">Reunion (+262)</option>
+								<option data-countryCode="RO" value="40">Romania (+40)</option>
+								<option data-countryCode="RU" value="7">Russia (+7)</option>
+								<option data-countryCode="RW" value="250">Rwanda (+250)</option>
+								<option data-countryCode="SM" value="378">San Marino (+378)</option>
+								<option data-countryCode="ST" value="239">Sao Tome &amp; Principe (+239)</option>
+								<option data-countryCode="SA" value="966">Saudi Arabia (+966)</option>
+								<option data-countryCode="SN" value="221">Senegal (+221)</option>
+								<option data-countryCode="CS" value="381">Serbia (+381)</option>
+								<option data-countryCode="SC" value="248">Seychelles (+248)</option>
+								<option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
+								<option data-countryCode="SG" value="65">Singapore (+65)</option>
+								<option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
+								<option data-countryCode="SI" value="386">Slovenia (+386)</option>
+								<option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
+								<option data-countryCode="SO" value="252">Somalia (+252)</option>
+								<option data-countryCode="ZA" value="27">South Africa (+27)</option>
+								<option data-countryCode="ES" value="34">Spain (+34)</option>
+								<option data-countryCode="LK" value="94">Sri Lanka (+94)</option>
+								<option data-countryCode="SH" value="290">St. Helena (+290)</option>
+								<option data-countryCode="KN" value="1869">St. Kitts (+1869)</option>
+								<option data-countryCode="SC" value="1758">St. Lucia (+1758)</option>
+								<option data-countryCode="SD" value="249">Sudan (+249)</option>
+								<option data-countryCode="SR" value="597">Suriname (+597)</option>
+								<option data-countryCode="SZ" value="268">Swaziland (+268)</option>
+								<option data-countryCode="SE" value="46">Sweden (+46)</option>
+								<option data-countryCode="CH" value="41">Switzerland (+41)</option>
+								<option data-countryCode="SI" value="963">Syria (+963)</option>
+								<option data-countryCode="TW" value="886">Taiwan (+886)</option>
+								<option data-countryCode="TJ" value="7">Tajikstan (+7)</option>
+								<option data-countryCode="TH" value="66">Thailand (+66)</option>
+								<option data-countryCode="TG" value="228">Togo (+228)</option>
+								<option data-countryCode="TO" value="676">Tonga (+676)</option>
+								<option data-countryCode="TT" value="1868">Trinidad &amp; Tobago (+1868)</option>
+								<option data-countryCode="TN" value="216">Tunisia (+216)</option>
+								<option data-countryCode="TR" value="90">Turkey (+90)</option>
+								<option data-countryCode="TM" value="7">Turkmenistan (+7)</option>
+								<option data-countryCode="TM" value="993">Turkmenistan (+993)</option>
+								<option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</option>
+								<option data-countryCode="TV" value="688">Tuvalu (+688)</option>
+								<option data-countryCode="UG" value="256">Uganda (+256)</option>
+								<!-- <option data-countryCode="GB" value="44">UK (+44)</option> -->
+								<option data-countryCode="UA" value="380">Ukraine (+380)</option>
+								<option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>
+								<option data-countryCode="UY" value="598">Uruguay (+598)</option>
+								<!-- <option data-countryCode="US" value="1">USA (+1)</option> -->
+								<option data-countryCode="UZ" value="7">Uzbekistan (+7)</option>
+								<option data-countryCode="VU" value="678">Vanuatu (+678)</option>
+								<option data-countryCode="VA" value="379">Vatican City (+379)</option>
+								<option data-countryCode="VE" value="58">Venezuela (+58)</option>
+								<option data-countryCode="VN" value="84">Vietnam (+84)</option>
+								<option data-countryCode="VG" value="84">Virgin Islands - British (+1284)</option>
+								<option data-countryCode="VI" value="84">Virgin Islands - US (+1340)</option>
+								<option data-countryCode="WF" value="681">Wallis &amp; Futuna (+681)</option>
+								<option data-countryCode="YE" value="969">Yemen (North)(+969)</option>
+								<option data-countryCode="YE" value="967">Yemen (South)(+967)</option>
+								<option data-countryCode="ZM" value="260">Zambia (+260)</option>
+								<option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
+								</optgroup>
+								</select>
+							<input type="text" name="hp" id="hp" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							</div>
+					
 					</td>
 				</tr>   
 				<tr>
 					<th class="td1">이메일 <span class="required-addon">*</span></th>
-					<td class="td2" colspan="3"><input type="text" id="email1" name="email1" maxlength="30" class="input_add" value=""/>&nbsp @ &nbsp; 
-						<input type="text" id="email2" name="email2" maxlength="30" class="input_add" value="" />&nbsp;
-						<select name="selEmail" id="selEmail" class="select_add"> 
-						<option value=''>직접입력</option>
-						<option value='naver.com'  >naver.com</option>
-						<option value='hanmail.net'  >hanmail.net</option>
-						<option value='hotmail.com'  >hotmail.com</option>
-						<option value='daum.net'  >daum.net</option>
-						<option value='nate.com'  >nate.com</option>
-						<option value='gmail.com'  >gmail.com</option>
-						</select>&nbsp;&nbsp;
-						
-						<div id="email1-errmsg"></div><div id="email2-errmsg"></div><div id="selEmail-errmsg"></div><div id="email-errmsg"></div>
+					<td class="td2">
+						<div><label for="uEmail" id="mailTxt">이메일을 입력해주세요</label></div>
+						<input type="text" id="uEmail" name="uEmail" maxlength="30"  style="width:300px;" class="input_add" value=""/>
 					</td>
 				</tr>    
 				<tr>
-				<tr>
-					<th class="td1">추천인(ID)</th>
-					<td class="td2">
-						<input type="text" name="recomm_id" id="recomm_id" maxlength="30" class="input_add" value="" />
-						<div id="recomm_id-errmsg">
-					</td>
-					<th class="td1">가입경로</th>
-					<td class="td2">
-						<select name="" id="join_cd" class="select_add">
-							<option value="">=== 가입경로 선택 ===</option>
-							<option value="카페내 검색으로" >카페내 검색으로</option>
-							<option value="추천을 받음" >추천을 받음</option>
-							<option value="타까페를 통해서" >타까페를 통해서</option>
-							<option value="네이버블로그" >네이버블로그</option>
-						</select>
-					</td> 
-				</tr>
 				</tbody>
 			</table>
 	
@@ -307,15 +727,12 @@ button {
 					</div>
 				</div>
 			</div>
-				
-	
-	
-			<table border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+			<table>
 			  <tr>
 			    <td style="padding-right:9px;">
 					<button type="submit"  class="next_button">회원가입</button>
 				</td>
-				<td><button type="button" onClick="location.href='/';" class="cancel_button">취소</button></td>
+				<td><button type="button" th:onClick="|location.href='@{./loginForm}'|" class="cancel_button">취소</button></td>
 			  </tr>
 			</table>	
 		</form>

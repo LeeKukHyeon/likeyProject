@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+	<div align="center">
+	
+		<div style="width: 50%">
+			<h2 align="left">나의 문의 내역</h2>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{myQuestion}">나의 문의 내역</a></p>
+			<hr style="height: 1px; background: gray;">
+		</div>
+	
+		<!-- 게시판 -->
+		<table width="50%" border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_list" style="margin: auto;">
+		  <tbody>
+		  <tr>
+		    <th class="number" style="width: 13%;">번호</th>
+			<th class="subject" >제목</th>
+			<th class="date" style="width: 21% ">등록일</th>
+			<th class="situation">처리상태</th>
+		  </tr>
+  		  <tr th:if="${not #lists.isEmpty(QuestionList)}" th:each="l : ${QuestionList}">
+		    <td class="number" th:text="${l.mtmNumCode}"></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/MyQuestionRead(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
+			<td class="date" th:text="${l.mtmDate}"></td>
+			<td class="situation" th:text="${l.mtmSituation}"></td>
+		  </tr>
+		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
+			<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td>
+		  </tr>
+		</tbody></table>
+		<!-- 게시판 끝 -->
+			
+	</div>
+</body>
+
+</html>

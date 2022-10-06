@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="noticeSearch">
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			      <tbody><tr>
+			        <td></td>
+			        <td align="center">
+			          <form th:action="@{/noticeList}" method="post">
+				          <select name="searchKey">
+				          	<option value="noticeTitle">제목</option>
+				          	<option value="noticeContent">내용</option>
+				          	<option value="noticeView" >제목 or 내용</option>
+				          </select>
+			    	      <input type="text" name="searchValue" size="25" class="input" style="height: 24px" th:value="${sv}">
+			          <button type="submit" style="color: black; border-radius: 3px; border: solid 1px gray;" >검색</button>
+			        </form></td>
+			      </tr>
+				 </tbody>
+	</table>
+</div>
+
+
+</html>

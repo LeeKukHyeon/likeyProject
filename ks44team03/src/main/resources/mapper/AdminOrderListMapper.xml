@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ks44team03.admin.mapper.OrderMapper">
+	<resultMap type="OrderInfo" id="orderListResultMap">
+		<id column="buy_order_code" property="buyOrderCode"/>
+		<result column="id" property="id"/>
+		<result column="transportation" property="transportation"/>
+		<result column="nation" property="nation"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="user_name" property="userName"/>
+		<result column="phone" property="phone"/>
+		<result column="post_num" property="postNum"/>
+		<result column="addr" property="addr"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="goods_order_date" property="goodsOrderDate"/>
+		<result column="temp" property="temp"/>
+		<result column="Desired_courier" property="DesiredCourier"/>
+		<result column="buy_way" property="buyWay"/>
+		<result column="request" property="request"/>
+		<result column="friends_de_check" property="friendsDeCheck"/>
+		<result column="commission" property="commission"/>
+	</resultMap>
+	
+	<!-- GoodsInfo DTO -->
+	<resultMap type="GoodsInfo" id="goodsInfoResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
+		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
+		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+		<result column="g_brand" property="gBrand"/>
+		<result column="goods__url" property="goodsUrl"/>
+		<result column="store_name" property="storeName"/>
+		<result column="store_location" property="storeLocation"/>
+		<association property="orderInfoDto" javaType="OrderInfo">
+			<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="id" property="id"/>
+			<result column="transportation" property="transportation"/>
+			<result column="nation" property="nation"/>
+			<result column="order_num" property="orderNum"/>
+			<result column="user_name" property="userName"/>
+			<result column="phone" property="phone"/>
+			<result column="post_num" property="postNum"/>
+			<result column="addr" property="addr"/>
+			<result column="total_price" property="totalPrice"/>
+			<result column="goods_order_date" property="goodsOrderDate"/>
+			<result column="temp" property="temp"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="request" property="request"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+			<result column="commission" property="commission"/>
+		</association>
+		<association property="deliveryCurrentStateDto" javaType="DeliveryCurrentState">
+			<id column="delivery_status" property="deliveryStatus"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="stat_info" property="statInfo"/>
+		</association>
+		<association property="incomingInfoDto" javaType="IncomingInfo">
+			<id column="incoming_code" property="incomingCode"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="e_code" property="eCode"/>
+			<result column="req_option_impli" property="reqOptionImpli"/>
+			<result column="photo_save" property="photoSave"/>
+			<result column="weight" property="incomingWeight"/>
+			<result column="volume" property="incomingVolume"/>
+			<result column="postpone" property="incomingPostpone"/>
+			<result column="sum_post" property="sumPost"/>
+			<result column="send_out" property="sendOut"/>
+			<result column="approval" property="incomingApproval"/>
+			<result column="out_tracking_num" property="outTrackingNum"/>
+			<result column="out_company" property="outCompany"/>
+		</association>
+		<association property="orderStateDto" javaType="OrderState">
+			<id column="order_status" property="orderStatus"/>
+			<result column="buy_order_code" property="buyOrderCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="order_state" property="orderState"/>
+		</association>
+	</resultMap>
+<!-- adminpage 주문서 -->	
+	<!-- 이용자 주문서 목록 -->
+	<select id="getOrderList" resultMap="orderListResultMap">
+		/* 이용자 주문서 목록 */
+		SELECT
+		   buy_order_code
+		  ,id
+		  ,transportation
+		  ,nation
+		  ,order_num
+		  ,user_name
+		  ,phone
+		  ,post_num
+		  ,addr
+		  ,total_price
+		  ,goods_order_date
+		  ,temp
+		  ,Desired_courier
+		  ,buy_way
+		  ,request
+		  ,friends_de_check
+		  ,commission
+		FROM
+			order_info
+		WHERE
+			temp IS NULL;
+	</select>
+	<!-- (임시저장)이용자 주문서 목록 -->
+	<select id="getTempOrderList" resultMap="orderListResultMap">
+		SELECT
+		   buy_order_code
+		  ,id
+		  ,transportation
+		  ,nation
+		  ,order_num
+		  ,user_name
+		  ,phone
+		  ,post_num
+		  ,addr
+		  ,total_price
+		  ,goods_order_date
+		  ,temp
+		  ,Desired_courier
+		  ,buy_way
+		  ,request
+		  ,friends_de_check
+		  ,commission
+		FROM
+			order_info
+		WHERE
+			temp IS NOT NULL;
+	</select>
+	<!-- 배송대행 주문서 신청완료 목록조회 -->
+	<select id="getDeliveryOrderList" resultMap="goodsInfoResultMap">
+		/* 배송대행 주문서 신청완료 목록조회 */
+		SELECT 
+		   *
+		FROM 
+		   goods_info AS g 
+		   INNER JOIN 
+		   order_info AS o 
+		   ON 
+		   g.buy_order_code = o.buy_order_code
+		   INNER JOIN
+		   delivery_current_state AS d
+		   ON g.goods_info_code = d.goods_info_code
+		WHERE 
+		   o.temp IS NULL AND o.buy_way ="배송대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		GROUP BY o.buy_order_code
+		ORDER BY o.goods_order_date;
+	</select>
+	<!-- 구매대행 주문서 신청완료 목록조회 -->
+	<select id="getBuyProgressOrderList" resultMap="goodsInfoResultMap">
+		/* 구매대행 주문서 신청완료 목록조회 */
+		SELECT 
+		   *
+		FROM 
+		   goods_info AS g 
+		   INNER JOIN 
+		   order_info AS o 
+		   ON 
+		   g.buy_order_code = o.buy_order_code
+		   INNER JOIN
+		   delivery_current_state AS d
+		   ON g.goods_info_code = d.goods_info_code
+		WHERE 
+		   o.temp IS NULL AND o.buy_way ="구매대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		GROUP BY o.buy_order_code
+		ORDER BY o.goods_order_date;
+	</select>
+	
+	<!-- 출고대기/결제대기 목록조회 -->
+	<select id="getWaitingForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고대기/결제대기 목록조회 */
+		SELECT
+		   i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+			order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE /* i.send_out -> NULL 일 경우 출고대기, 날짜 데이터 있으면 출고완료 */
+			os.order_state = '입금 전' AND i.send_out IS NULL 
+		ORDER BY o.buy_order_code;
+	</select>
+	<!-- 출고대기/결제완료 목록조회 -->
+	<select id="getCompletedForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고대기/결제완료 목록조회 */
+		SELECT
+		   i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+			order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE /* i.send_out -> NULL 일 경우 출고대기, 날짜 데이터 있으면 출고완료 */
+			os.order_state = '입금 완료' AND i.send_out IS NOT NULL 
+		ORDER BY o.buy_order_code;
+	</select>
+	<select id="getHoldForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고보류 목록조회 */
+		SELECT
+	       i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,i.postpone
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+			order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE /* i.send_out -> NULL 일 경우 출고대기, 날짜 데이터 있으면 출고완료 */
+			i.postpone = 'n' AND i.send_out IS NULL 
+		ORDER BY o.buy_order_code;
+	</select>
+</mapper>
