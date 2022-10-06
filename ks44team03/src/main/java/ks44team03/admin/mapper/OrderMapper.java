@@ -26,4 +26,15 @@ public interface OrderMapper {
 	//adminPage 배송대행 주문서 목록조회
 	public List<OrderInfo> getDeliveryOrderList();
 	
+	//adminPage 구매대행 주문서 목록조회
+	public List<OrderInfo> getBuyProgressOrderList();
+	
+	//adminPage 출고대기/결제대기 주문서 목록조회
+	public List<GoodsInfo> getWaitingForwardingList();
+	
+	//adminPage 출고대기/결제완료 주문서 목록조회
+	public List<GoodsInfo> getCompletedForwardingList();
+	
+	//adminPage 출고보류 목록조회
+	public List<GoodsInfo> getHoldForwardingList();
 }
