@@ -151,8 +151,12 @@
 	 	from 
 	 		order_info
 	 	where 
-	 		temp is null;
-	 		;
+	 		temp is null
+	 			 	
+			<if test="searchKey != null">AND ${searchKey} = #{searchValue} </if>
+			
+		;
+	 		
 	 </select>
 	 
 	<!-- 입고 등록 
