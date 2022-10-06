@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
+<!-- 사원 목록 화면 -->
+<th:block layout:fragment="adminContent">	
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+/* jquery 연습 */
+	/* $(function(){
+		$('.input_table').on('click',function(){
+			if($('#companyCheck input').is(":checked") == false){				
+				alert('체크x');
+			}else if($('#companyCheck input').is(":checked") == true){
+				alert('체크');
+			}
+		})
+	}); */
+</script>
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div th:include="company/employee/searchEmployeeList :: searchFragment"></div>
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+							<tr>
+								<th>선택</th>
+								<th>사원코드</th>
+								<th>권한</th>
+								<th>부서코드</th>
+								<th>사원이름</th>
+								<th>입사일</th>
+								<th>퇴사일</th>
+								<th>수정</th>
+								<th>삭제</th>
+							</tr>
+							
+					   <!-- private String employeeCode; //사원코드
+							private String employeeLevel; //권한코드
+							private String departmentCode; //부서코드
+							private String employeeName; //사원이름
+							private String employeePw; //비밀번호
+							private String employeeDate; //입사일	
+							private String employeeResignDate; //퇴사일 -->
+							
+							<tbody style="text-align: center;">
+								<tr th:if="${not #lists.isEmpty(employeeList)}" th:each="l : ${employeeList}">
+									<td id="companyCheck"><input type="checkbox"></td>
+									<td th:text="${l.employeeCode}"></td>
+									<td th:text="${l.managementLevelDto.eLevelName}"></td>
+									<td th:text="${l.departmentCode}"></td>
+									<td th:text="${l.employeeName}"></td>
+									<!-- <td th:text="${l.employeePw}"></td> 사원 비밀번호 -->
+									<td th:text="${l.employeeDate}"></td>
+									<td th:text="${l.employeeResignDate}"></td>
+									<td>
+										<a th:href="@{/modifyEmployee(employeeCode=${l.employeeCode})}"><button type="button" id="modifyButton">수정</button></a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
+								</tr>
+								<tr	th:unless="${not #lists.isEmpty(employeeList)}">
+									<td colspan="7" style="text-align: center;">등록된 부서가 없습니다.</td>
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+</th:block> 
+</html>
