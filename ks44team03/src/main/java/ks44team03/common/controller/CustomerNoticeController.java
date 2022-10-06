@@ -49,7 +49,6 @@ public class CustomerNoticeController {
 		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("sv", sv);
-		model.addAttribute("sk", sk);
 		
 		return "/customerService/notice/noticeList";
 	}

@@ -17,8 +17,34 @@
 	</resultMap>
 
 
+	<!-- 1:1문의 검색 -->
+	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
+	/* 공지사항 검색 */
+	SELECT
+		mtm_num_code
+		,e_code
+		,mtm_cate
+		,mtm_title
+		,mtm_content
+		,mtm_answer
+		,mtm_img
+		,mtm_date
+		,mtm_situation
+	FROM
+		question_center
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		mtm_num_code
+	</select>
+
+
 	<!-- 1:1문의 삭제 -->
 	<delete id="deleteQuestion" parameterType="QuestionCenter">
+	/* 1:1문의 삭제 */
 	DELETE
 	FROM
 		question_center
