@@ -19,7 +19,7 @@
 	<delete id="deleteSchedule" parameterType="ScheduleCenter">
 	DELETE
 	FROM
-		delivery_schedule 
+		schedule_center 
 	WHERE
 		schedule_num=#{scheduleNumCode}
 	</delete>
@@ -28,7 +28,7 @@
 	<!-- 배송스케줄 수정 -->
 	<update id="modifySchedule" parameterType="ScheduleCenter">
 	/* 배송스케줄 수정 */
-	UPDATE delivery_schedule
+	UPDATE schedule_center
 	SET
 		schedule_num = #{scheduleNumCode},
 		e_code= #{employeeCode},
@@ -43,7 +43,7 @@
 	
 	<!-- 배송스케줄 등록 -->
 	<insert id="regSchedule" parameterType="ScheduleCenter">
-	INSERT INTO delivery_schedule
+	INSERT INTO schedule_center
 		(schedule_num
 		,schedule_title
 		,schedule_content
@@ -65,7 +65,7 @@
 		,schedule_content
 		,schedule_date
 	FROM
-		delivery_schedule
+		schedule_center
 	WHERE
 		schedule_num = #{scheduleNumCode};
 	</select>
@@ -83,7 +83,7 @@
 		,schedule_date
 		,schedule_view
 	FROM
-		delivery_schedule
+		schedule_center
 	order by schedule_num DESC;
 		
 	</select>
