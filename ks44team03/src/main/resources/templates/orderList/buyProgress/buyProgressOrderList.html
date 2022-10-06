@@ -61,7 +61,7 @@
 	 			<th>구매방식</th>
 	 		</tr>
 	 		<tbody>
-	 			<tr th:if="${not #lists.isEmpty(deliveryOrderList)}" th:each="l : ${deliveryOrderList}">
+	 			<tr th:if="${not #lists.isEmpty(buyProgressOrderList)}" th:each="l : ${buyProgressOrderList}">
 	 				<td th:text="${l.goodsInfoCode}"></td>
 	 				<td th:text="${l.id}"></td>
 	 				<td th:text="${l.buyOrderCode}"></td>
@@ -80,7 +80,7 @@
 	 				<td th:text="${l.deliveryCurrentStateDto.statInfo}"></td>
 	 				<td th:text="${l.orderInfoDto.buyWay}"></td>
 	 			</tr>
-	 			<tr th:unless="${not #lists.isEmpty(deliveryOrderList)}">
+	 			<tr th:unless="${not #lists.isEmpty(buyProgressOrderList)}">
 	 				<td colspan="10" style="text-align: center;">등록된 주문서가 없습니다.</td>
 	 			</tr>
 	 		</tbody>

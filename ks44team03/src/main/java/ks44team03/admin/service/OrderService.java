@@ -49,4 +49,28 @@ public class OrderService {
 		List<OrderInfo> deliveryOrderList = orderMapper.getDeliveryOrderList();
 		return deliveryOrderList;
 	}
+	//adminPage 구매대행 주문서 목록조회
+	public List<OrderInfo> getBuyProgressOrderList(){
+		
+		List<OrderInfo> buyProgressOrderList = orderMapper.getBuyProgressOrderList();
+		return buyProgressOrderList;
+	}
+	//adminPage 출고대기/결제대기 주문서 목록조회
+	public List<GoodsInfo> getWaitingForwardingList(){
+		
+		List<GoodsInfo> waitingForwardingList = orderMapper.getWaitingForwardingList();
+		return waitingForwardingList;
+	}
+	//adminPage 출고대기/결제완료 주문서 목록조회
+	public List<GoodsInfo> getCompletedForwardingList(){
+		
+		List<GoodsInfo> completedForwardingList = orderMapper.getCompletedForwardingList();
+		return completedForwardingList;
+	}
+	//adminPage 출고보류 주문서 목록조회
+	public List<GoodsInfo> getHoldForwardingList(){
+		
+		List<GoodsInfo> holdForwardingList = orderMapper.getHoldForwardingList();
+		return holdForwardingList;
+	}
 }

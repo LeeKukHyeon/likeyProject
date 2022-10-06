@@ -16,8 +16,18 @@
 		<result column="notice_view" property="noticeView"/>
 	</resultMap>
 	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice" parameterType="NoticeCenter">
+	DELETE
+	FROM
+		notice_center
+	WHERE
+		notice_num = #{noticeNumCode}
+	</delete>
+	
 	<!-- 공지사항 수정 -->
 	<update id="modifyNotice" parameterType="NoticeCenter">
+	/* 공지사항 수정 */
 	UPDATE notice_center
 	SET
 		notice_num= #{noticeNumCode},

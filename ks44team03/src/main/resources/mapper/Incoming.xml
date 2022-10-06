@@ -173,7 +173,7 @@
 	
 	<!-- 입고 가능여부 체크 -->
 
-<select id="incomingCurrentState" resultMap="incomingStateResultMap">
+<!-- <select id="incomingCurrentState" resultMap="incomingStateResultMap">
 /* 입고 현황 조회 */
 SELECT
 	 i.incoming_code
@@ -201,13 +201,10 @@ INNER JOIN
 ON
 	g.id = u.u_id
 WHERE
-	g.tracking_num = #{trackingNum} and u.user_pobox_code = #{userPoboxCode}
+	g.tracking_num = #{trackingNum} and u.user_pobox_code = #{userPoboxCode} -->
 
 	
 
-	
-</select> 
-	
 	
 	
 	

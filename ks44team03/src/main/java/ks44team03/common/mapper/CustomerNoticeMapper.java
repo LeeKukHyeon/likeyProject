@@ -9,6 +9,8 @@ import ks44team03.dto.NoticeCenter;
 @Mapper
 public interface CustomerNoticeMapper {
 	
+	//공지사항 삭제
+	public int deleteNotice(String noticeNumCode);
 	
 	//공지사항 수정
 	public int modifyNotice(NoticeCenter noticeCenter);

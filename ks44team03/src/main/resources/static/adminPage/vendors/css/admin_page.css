@@ -1,11 +1,13 @@
 @charset "UTF-8";
 /*관리자 페이지 css*/
+
 .input_table th {
 	    background-color: #f8f8f8;
 	    font-size: 15px;
 	    color: #535353;
 	    font-weight: bold;
 	    text-align: center;
+	    
 		}
 .input_table th, .input_table td {
     border: 1px solid #c6c6c6;
