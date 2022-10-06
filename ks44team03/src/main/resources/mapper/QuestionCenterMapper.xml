@@ -16,8 +16,21 @@
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
 
+
+	<!-- 1:1문의 삭제 -->
+	<delete id="deleteQuestion" parameterType="QuestionCenter">
+	DELETE
+	FROM
+		question_center
+	WHERE
+		mtm_num_code = #{mtmNumCode}
+	</delete>
+
+
+
 	<!-- 1:1문의 답변 -->
 	<update id="regAnswer" parameterType="QuestionCenter">
+	/* 1:1문의 답변 */
 	UPDATE question_center
 	SET
 		mtm_num_code = #{mtmNumCode},
@@ -34,6 +47,7 @@
 
 	<!-- 1:1문의 수정 -->
 	<update id="myQuestionModify" parameterType="QuestionCenter">
+	/* 1:1문의 수정 */
 	UPDATE question_center
 	SET
 		mtm_num_code = #{mtmNumCode},
@@ -66,11 +80,12 @@
 
 	<!-- 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 -->
 	<update id="changeSituation" parameterType="QuestionCenter">
-		UPDATE question_center
-		SET
-			mtm_situation='답변중'
-		WHERE 
-			mtm_num_code = #{mtmNumCode}
+	/* 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 */
+	UPDATE question_center
+	SET
+		mtm_situation='답변중'
+	WHERE 
+		mtm_num_code = #{mtmNumCode}
 	</update>
 
 

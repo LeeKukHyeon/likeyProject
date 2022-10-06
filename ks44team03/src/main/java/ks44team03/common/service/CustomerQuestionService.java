@@ -1,6 +1,7 @@
 package ks44team03.common.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,24 @@ public class CustomerQuestionService {
 	public CustomerQuestionService(CustomerQuestionMapper customerQuestionMapper , CommonMapper commonMapper) {
 		this.customerQuestionMapper = customerQuestionMapper;
 		this.commonMapper = commonMapper;
+	}
+	
+	//1:1문의 검색
+	public List<QuestionCenter> searchQuestion(Map<String, Object> paramMap){
+		
+		List<QuestionCenter> searchQuestion = customerQuestionMapper.searchQuestion(paramMap);
+		
+		return searchQuestion;
+	}
+
+	
+	
+	
+	//1:1문의 삭제
+	public void deleteQuestion(String mtmNumCode) {
+		
+		customerQuestionMapper.deleteQuestion(mtmNumCode);
+		
 	}
 	
 	//관리자 답변 등록
