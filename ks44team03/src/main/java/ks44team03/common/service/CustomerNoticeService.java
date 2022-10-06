@@ -1,6 +1,7 @@
 package ks44team03.common.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,14 @@ public class CustomerNoticeService {
 		this.commonMapper = commonMapper;
 	}
 	
+	
+	//공지사항 검색
+	public List<NoticeCenter> noticeSearch(Map<String, Object> paramMap){
+		
+		List<NoticeCenter> noticeSearch = customerNoticeMapper.noticeSearch(paramMap);
+		
+		return noticeSearch;
+	}
 	
 	
 	//공지사항 삭제

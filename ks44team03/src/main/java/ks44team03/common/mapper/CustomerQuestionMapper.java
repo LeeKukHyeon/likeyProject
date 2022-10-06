@@ -1,6 +1,7 @@
 package ks44team03.common.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -8,6 +9,12 @@ import ks44team03.dto.QuestionCenter;
 
 @Mapper
 public interface CustomerQuestionMapper {
+	
+	//1:1문의 검색
+	public List<QuestionCenter> searchQuestion(Map<String, Object> searchMap);
+	
+	//1:1문의 삭제
+	public int deleteQuestion(String mtmNumCode);
 	
 	//1:1문의 답변 등록
 	public int regAnswer(QuestionCenter questionCenter);

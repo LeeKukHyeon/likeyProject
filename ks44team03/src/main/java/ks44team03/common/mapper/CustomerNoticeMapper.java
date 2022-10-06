@@ -1,6 +1,7 @@
 package ks44team03.common.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -8,6 +9,9 @@ import ks44team03.dto.NoticeCenter;
 
 @Mapper
 public interface CustomerNoticeMapper {
+	
+	//공지사항 검색
+	public List<NoticeCenter> noticeSearch(Map<String, Object> searchMap);
 	
 	//공지사항 삭제
 	public int deleteNotice(String noticeNumCode);
