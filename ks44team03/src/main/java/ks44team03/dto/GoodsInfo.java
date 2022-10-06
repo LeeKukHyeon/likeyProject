@@ -30,6 +30,8 @@ public class GoodsInfo {
 	
 	private OrderInfo orderInfoDto; // OrderInfo List DTO
 	private DeliveryCurrentState deliveryCurrentStateDto; // DeliveryCurrentState List DTO
+	private IncomingInfo incomingInfoDto; // Incoming List DTO
+	private OrderState orderStateDto; // OrderState List DTO
 	
 	
 	public String getGoodsInfoCode() {
@@ -194,6 +196,18 @@ public class GoodsInfo {
 	public void setDeliveryCurrentStateDto(DeliveryCurrentState deliveryCurrentStateDto) {
 		this.deliveryCurrentStateDto = deliveryCurrentStateDto;
 	}
+	public IncomingInfo getIncomingInfoDto() {
+		return incomingInfoDto;
+	}
+	public void setIncomingInfoDto(IncomingInfo incomingInfoDto) {
+		this.incomingInfoDto = incomingInfoDto;
+	}
+	public OrderState getOrderStateDto() {
+		return orderStateDto;
+	}
+	public void setOrderStateDto(OrderState orderStateDto) {
+		this.orderStateDto = orderStateDto;
+	}
 	
 	@Override
 	public String toString() {
@@ -205,9 +219,10 @@ public class GoodsInfo {
 				+ ", likeyPass=" + likeyPass + ", barCode=" + barCode + ", arrival=" + arrival + ", arrivalDate="
 				+ arrivalDate + ", hsCode=" + hsCode + ", gBrand=" + gBrand + ", goodsUrl=" + goodsUrl + ", storeName="
 				+ storeName + ", storeLocation=" + storeLocation + ", orderInfoDto=" + orderInfoDto
-				+ ", deliveryCurrentStateDto=" + deliveryCurrentStateDto + "]";
+				+ ", deliveryCurrentStateDto=" + deliveryCurrentStateDto + ", incomingInfoDto=" + incomingInfoDto
+				+ ", orderStateDto=" + orderStateDto + "]";
 	}
-		
+
 	
 }
 

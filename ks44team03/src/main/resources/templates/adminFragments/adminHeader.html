@@ -470,10 +470,11 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" th:href="@{/adminOrderList}">주문서 목록</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/adminTempOrderList}">(임시저장)주문서 목록</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">배송대행주문서</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">구매대행주문서</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">구매대행주문서</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">구매대행주문서</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/deliveryOrderList}">배송대행주문서</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/buyProgressOrderList}">구매대행주문서</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/waitingForwardingList}">출고대기/결제대기 주문서</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/completedForwardingList}">출고대기/결제완료 주문서</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/holdForwardingList}">출고보류 주문서</a></li>
               </ul>
             </div>
           </li>
