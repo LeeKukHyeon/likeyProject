@@ -4,6 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="ks44team03.admin.mapper.IncomingMapper">
+	<resultMap type="OrderInfo" id="orderListResultMap">
+		<id column="buy_order_code" property="buyOrderCode"/>
+		<result column="id" property="id"/>
+		<result column="logistics_center" property="logisticsCenter"/>
+		<result column="user_pobox_code" property="userPoboxCode"/>
+		<result column="transportation" property="transportation"/>
+		<result column="nation" property="nation"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="user_name" property="userName"/>
+		<result column="phone" property="phone"/>
+		<result column="post_num" property="postNum"/>
+		<result column="addr" property="addr"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="goods_order_date" property="goodsOrderDate"/>		
+		<result column="Desired_courier" property="DesiredCourier"/>
+		<result column="buy_way" property="buyWay"/>
+		<result column="request" property="request"/>
+		<result column="friends_de_check" property="friendsDeCheck"/>
+		<result column="commission" property="commission"/>
+	</resultMap>
+	
+	<resultMap type="GoodsInfo" id="orderGoodsListResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>		
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="g_site" property="gSite"/>
+		<result column="g_name" property="gName"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_amount" property="gAmount"/>		
+		
+	</resultMap>
+	
 	<!-- 입출고 -->
 	<resultMap type="Incoming" id="incomingResultMap">
 		<!-- 입고 -->
@@ -34,9 +65,98 @@
 	out_tracking_num
 	out_company
 	 -->
+	
+	 <select id="errorIncoming" resultMap="orderGoodsListResultMap">
+	 	/*오류 입고 리스트*/
+		SELECT
+		  	* 
+		 FROM 
+		  	goods_info AS g
+		INNER JOIN
+			delivery_current_state AS d
+		on
+			g.goods_info_code = d.goods_info_code
+		WHERE d.stat_info = "오류입고"
 	 
-	<!-- 입고 등록 -->
-	<insert id="regIncoming" parameterType="Incoming">
+	 </select>
+	 
+	 <select id="arrivedAll" resultMap="orderListResultMap">
+	 	/*전체 입고 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			order_info AS o			
+		ON g.buy_order_code = o.buy_order_code
+		
+		
+		WHERE g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+		
+		GROUP BY o.buy_order_code
+	 
+	 </select>
+	 
+	 <select id="partialArrival" resultMap="orderListResultMap">
+	 	/*일부 입고 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			order_info AS o			
+		ON g.buy_order_code = o.buy_order_code
+		
+		
+		WHERE g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+		
+		GROUP BY o.buy_order_code
+	 
+	 </select>
+	 
+	 <select id="arriveWarehouse" resultMap="orderGoodsListResultMap">
+	 	/*창고 도착 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 대기" AND g.arrival = 'y'
+	 
+	 </select>
+	 
+	 <!-- 입고 전 상품 리스트 -->
+	 <select id="incomingGoodsList" parameterType="String" resultMap="orderGoodsListResultMap">
+	 	select 
+	 		* 
+	 	from 
+	 		goods_info as g
+	 	inner join
+	 		order_info as o
+	 	on
+	 		g.buy_order_code = o.buy_order_code
+	 	where
+	 		g.buy_order_code = #{buyOrderCode} 
+	 		and o.temp is null;
+	 </select>
+	 
+	 <!-- 입고 전 리스트 -->
+	 <select id="incomingOrderList" parameterType="map" resultMap="orderListResultMap">
+	 	select 
+	 		* 
+	 	from 
+	 		order_info
+	 	where 
+	 		temp is null;
+	 		;
+	 </select>
+	 
+	<!-- 입고 등록 
+	<insert id="regIncoming" parameterType="Incoming" >
 		/* 입고 등록 */
 		INSERT INTO incoming
 		(
@@ -49,11 +169,11 @@
 		)
 		VALUES
 		(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${volume}, ${weight})
-	</insert>
+	</insert> -->
 	
 	<!-- 입고 가능여부 체크 -->
 
-<!-- <select id="incomingCurrentState" resultMap="incomingStateResultMap">
+<select id="incomingCurrentState" resultMap="incomingStateResultMap">
 /* 입고 현황 조회 */
 SELECT
 	 i.incoming_code
@@ -86,7 +206,7 @@ WHERE
 	
 
 	
-</select> -->
+</select> 
 	
 	
 	

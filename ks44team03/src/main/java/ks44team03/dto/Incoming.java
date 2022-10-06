@@ -13,6 +13,7 @@ public class Incoming {
 	private String photoSave;		//입고물품 사진
 	private String arrivalDate;		//입고일
 	
+	
 	public String getIncomingCode() {
 		return incomingCode;
 	}

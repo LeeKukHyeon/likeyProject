@@ -2,6 +2,8 @@ package ks44team03.dto;
 
 public class OrderInfo {
 	private String buyOrderCode;
+	private String logisticsCenter;
+	private String userPoboxCode;
 	private String id;
 	private String transportation;
 	private String nation;
@@ -20,11 +22,23 @@ public class OrderInfo {
 	private int commission;
 	
 	
+	public String getUserPoboxCode() {
+		return userPoboxCode;
+	}
+	public void setUserPoboxCode(String userPoboxCode) {
+		this.userPoboxCode = userPoboxCode;
+	}
 	public String getBuyOrderCode() {
 		return buyOrderCode;
 	}
 	public void setBuyOrderCode(String buyOrderCode) {
 		this.buyOrderCode = buyOrderCode;
+	}
+	public String getLogisticsCenter() {
+		return logisticsCenter;
+	}
+	public void setLogisticsCenter(String logisticsCenter) {
+		this.logisticsCenter = logisticsCenter;
 	}
 	public String getId() {
 		return id;
@@ -124,13 +138,15 @@ public class OrderInfo {
 	}
 	@Override
 	public String toString() {
-		return "OrderInfo [buyOrderCode=" + buyOrderCode + ", id=" + id + ", transportation=" + transportation
-				+ ", nation=" + nation + ", orderNum=" + orderNum + ", userName=" + userName + ", phone=" + phone
-				+ ", postNum=" + postNum + ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate="
-				+ goodsOrderDate + ", temp=" + temp + ", DesiredCourier=" + DesiredCourier + ", buyWay=" + buyWay
-				+ ", request=" + request + ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission + "]";
+		return "OrderInfo [buyOrderCode=" + buyOrderCode + ", logisticsCenter=" + logisticsCenter + ", userPoboxCode="
+				+ userPoboxCode + ", id=" + id + ", transportation=" + transportation + ", nation=" + nation
+				+ ", orderNum=" + orderNum + ", userName=" + userName + ", phone=" + phone + ", postNum=" + postNum
+				+ ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate=" + goodsOrderDate + ", temp="
+				+ temp + ", DesiredCourier=" + DesiredCourier + ", buyWay=" + buyWay + ", request=" + request
+				+ ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission + "]";
 	}
-
+	
+	
 	
 	
 	

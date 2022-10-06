@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
+import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Incoming;
+import ks44team03.dto.OrderInfo;
 
 @Service
 @Transactional
@@ -26,16 +28,58 @@ public class IncomingService {
 		this.commonMapper = commonMapper;
 	}
 	
+	
+	//오류 입고
+	public List<GoodsInfo> errorIncoming(){
+		List<GoodsInfo> errorIncoming = incomingMapper.errorIncoming();
+		
+		return errorIncoming;
+	}
+	
+	//전체 입고
+	public List<OrderInfo> arrivedAll(){
+		List<OrderInfo> arrivedAll = incomingMapper.arrivedAll();
+		
+		return arrivedAll;
+	}
+	
+	//일부 입고
+	public List<OrderInfo> partialArrival(){
+		List<OrderInfo> partialArrival = incomingMapper.partialArrival();
+		
+		return partialArrival;
+	}
+	
+	//창고 도착
+	public List<GoodsInfo> arriveWarehouse(){
+		List<GoodsInfo> arriveWarehouse = incomingMapper.arriveWarehouse();
+		
+		return arriveWarehouse;
+	}
+	
 	//입고 등록
 	public void regIncoming(Incoming incoming) {
-
+		
 		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
 		incoming.setIncomingCode(newIncomingCode);
+		
 		
 		log.info("입고 등록 ------- incoming" + incoming);
 		int result = incomingMapper.regIncoming(incoming);
 		
 		log.info("입고 등록 결과 : " + result);
+	}
+	
+	//입고 전 상품목록
+	public List<GoodsInfo> incomingGoodsList(String buyOrderCode){
+		List<GoodsInfo> incomingGoodsList = incomingMapper.incomingGoodsList(buyOrderCode);
+		return incomingGoodsList;
+	}
+	
+	//입고 전 주문목록
+	public List<OrderInfo> incomingOrderList(){
+		List<OrderInfo> incomingOrderList = incomingMapper.incomingOrderList();
+		return incomingOrderList;
 	}
 	
 	//입고 현황 조회
