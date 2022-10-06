@@ -1,6 +1,8 @@
 package ks44team03.common.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,47 @@ public class CustomerNoticeController {
 		
 	}
 	
+	//테스트 페이지
+	@GetMapping("/testPage")
+	public String TestPage(Model model) {
+		
+		return "/customerService/testPage";
+	}
+	
+	//공지사항 검색
+	@PostMapping("/noticeList")
+	public String noticeSearch(@RequestParam(value = "searchKey"  , defaultValue = "noticeTitle") String sk,
+								@RequestParam(value = "searchValue", required = false , defaultValue = "") String sv , Model model){
+		
+		if("noticeTitle".equals(sk)) {
+			sk = "notice_title";
+		}else if ("noticeContent".equals(sk)) {
+			sk= "notice_content";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sk", sk);
+		paramMap.put("sv", sv);
+		
+		List<NoticeCenter> noticeList = customerNoticeService.noticeSearch(paramMap);
+		
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("sv", sv);
+		model.addAttribute("sk", sk);
+		
+		return "/customerService/notice/noticeList";
+	}
+	
+	
+	//공지사항 삭제
+	@GetMapping("/noticeDelete")
+	public String deleteNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode) {
+		
+		customerNoticeService.deleteNotice(noticeNumCode);
+		
+		return "redirect:/noticeList";
+	}
+	
 	//공지사항 수정
 	@PostMapping("/noticeModify")
 	public String modifyNotice(NoticeCenter noticeCenter) {
@@ -29,7 +72,7 @@ public class CustomerNoticeController {
 		System.out.println(noticeCenter + "수정하는 게시물 값 받아오는가?");
 
 		
-		return "redirect:/noticeSearch";
+		return "redirect:/noticeList";
 	}
 	
 	
@@ -53,7 +96,7 @@ public class CustomerNoticeController {
 		
 		customerNoticeService.regNotice(noticeCenter);
 		
-		return "redirect:/noticeSearch";
+		return "redirect:/noticeList";
 	}
 	
 	
@@ -77,18 +120,15 @@ public class CustomerNoticeController {
 		
 		return "/customerService/notice/noticeRead";
 	}
-	
-	
+
 	
 	// 공지사항 게시물 목록 조회
-	@GetMapping("/noticeSearch")
+	@GetMapping("/noticeList")
 	public String viewNoticeList(Model model) {
 	
-		
 		List<NoticeCenter> noticeList = customerNoticeService.getNoticeList();
-		  
 		model.addAttribute("noticeList", noticeList);
 		 
-		return "/customerService/notice/noticeSearch";
+		return "/customerService/notice/noticeList";
 	}
 }

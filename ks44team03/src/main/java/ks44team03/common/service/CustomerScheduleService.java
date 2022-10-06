@@ -30,14 +30,9 @@ public class CustomerScheduleService {
 	
 	
 	//배송스케줄 게시물 삭제
-	public int deleteSchedule(String scheduleNumCode) {
-		customerScheduleMapper.deleteSchedule(scheduleNumCode);
+	public void deleteSchedule(String scheduleNumCode) {
 			
-		int resultRemove = 0;
-		
-		resultRemove += customerScheduleMapper.deleteSchedule(scheduleNumCode);
-
-		return resultRemove;
+	customerScheduleMapper.deleteSchedule(scheduleNumCode);
 		
 	}
 	

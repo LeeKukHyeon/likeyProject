@@ -29,7 +29,22 @@ public class CustomerQuestionController {
 	public void customerQuestionService() {
 		
 	}
-
+	//1:1문의 검색
+	@PostMapping("/personalQuestionSearchAdmin")
+	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
+								@RequestParam(value = "searchValue" , defaultValue = "") String sv , Model model) {
+		return "/customerService/question/personalQuestionSearchAdmin";
+	}
+	
+	//1:1문의 삭제
+	@GetMapping("/deleteQuestion")
+	public String deleteQuestion(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
+		
+		customerQuestionService.deleteQuestion(mtmNumCode);
+		
+		return "redirect:/";
+		
+	}
 	
 	//1:1문의 수정
 	@PostMapping("/myQuestionModify")	

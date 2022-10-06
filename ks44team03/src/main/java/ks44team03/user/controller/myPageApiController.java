@@ -25,20 +25,22 @@ public class myPageApiController {
 	}
 	
 	@PostMapping("api/shipOrderApi")
-	public String cdf(@RequestParam(value = "q_status", required = false) int test) {
+	public String cdf(@RequestParam(value = "q_status", required = false) int test, Model model) {
+		System.out.println(test);
 		String u_id = "id001";	
 		String stat_info = "";
+		List<ShipOrderApi> shipOrderApi = null;
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		if (test == 0) {
 			
-			stat_info = "입고 완료";
-						
+			stat_info = "임시저장";
+			paramMap.put("u_id", u_id);
+			paramMap.put("stat_info", stat_info);
+			shipOrderApi = mypageService.shipOrderApi(paramMap);			
 		}
+					
+		model.addAttribute("shipOrderApi", shipOrderApi);
 		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("u_id", u_id);
-		paramMap.put("stat_info", stat_info);
-		
-		List<ShipOrderApi> shipOrderApi = mypageService.shipOrderApi(paramMap);
 		System.out.println(shipOrderApi);
 		return "myPage/myPageApi/shipOrderApi";
 	}
@@ -53,47 +55,47 @@ public class myPageApiController {
 
 	
 	@PostMapping("shipStepInfo")
-	public String shipStepInfo(@RequestParam(name="q_ship_step_type", defaultValue = "") String test) {
+	public String shipStepInfo(@RequestParam(name="q_ship_step_type", defaultValue = "") String shipStepInfo) {
 		
-		System.out.println(test);
 		
-		if (test.equals("noDataCnt")){			
+		
+		if (shipStepInfo.equals("noDataCnt")){			
 			return "myPage/myPageApi/nodataApi";
-		}else if (test.equals("Imsi")) {
+		}else if (shipStepInfo.equals("Imsi")) {
 			return "myPage/myPageApi/tempApi";
-		}else if (test.equals("orderType1")) {			
+		}else if (shipStepInfo.equals("orderType1")) {			
 			return "myPage/myPageApi/orderType1";
-		}else if (test.equals("buyingItem")) {				
+		}else if (shipStepInfo.equals("buyingItem")) {				
 				return "myPage/myPageApi/buyingItem";
-		}else if (test.equals("Arrived")) {			
+		}else if (shipStepInfo.equals("Arrived")) {			
 			return "myPage/myPageApi/arrived";
-		}else if (test.equals("PartialStock")) {			
+		}else if (shipStepInfo.equals("PartialStock")) {			
 			return "myPage/myPageApi/partialStock";
-		}else if (test.equals("AllIn")) {			
+		}else if (shipStepInfo.equals("AllIn")) {			
 			return "myPage/myPageApi/allIn";
-		}else if (test.equals("Err")) {			
+		}else if (shipStepInfo.equals("Err")) {			
 			return "myPage/myPageApi/err";
-		}else if (test.equals("Err")) {			
+		}else if (shipStepInfo.equals("Err")) {			
 			return "myPage/myPageApi/err";
-		}else if (test.equals("noOutNoPayCnt")) {			
+		}else if (shipStepInfo.equals("noOutNoPayCnt")) {			
 			return "myPage/myPageApi/noOutNoPayCnt";
-		}else if (test.equals("noOutPaid")) {			
+		}else if (shipStepInfo.equals("noOutPaid")) {			
 		return "myPage/myPageApi/noOutPaid";
-		}else if (test.equals("weightShipHold")) {			
+		}else if (shipStepInfo.equals("weightShipHold")) {			
 		return "myPage/myPageApi/weightShipHold";
-		}else if (test.equals("outNoPay")) {			
+		}else if (shipStepInfo.equals("outNoPay")) {			
 		return "myPage/myPageApi/outNoPay";
-		}else if (test.equals("gsiOut")) {			
+		}else if (shipStepInfo.equals("gsiOut")) {			
 		return "myPage/myPageApi/gsiOut";
-		}else if (test.equals("customsing")) {			
+		}else if (shipStepInfo.equals("customsing")) {			
 		return "myPage/myPageApi/customsing";
-		}else if (test.equals("CustomsClosed")) {			
+		}else if (shipStepInfo.equals("CustomsClosed")) {			
 		return "myPage/myPageApi/customsClosed";
-		}else if (test.equals("localShipping")) {			
+		}else if (shipStepInfo.equals("localShipping")) {			
 		return "myPage/myPageApi/localShipping";
-		}else if (test.equals("ShipClosed")) {			
+		}else if (shipStepInfo.equals("ShipClosed")) {			
 		return "myPage/myPageApi/shipClosed";
-		}else if (test.equals("keepFeeCnt")) {			
+		}else if (shipStepInfo.equals("keepFeeCnt")) {			
 		return "myPage/myPageApi/keepFeeCnt";
 		}
 			

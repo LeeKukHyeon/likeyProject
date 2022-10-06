@@ -65,6 +65,38 @@
 	
 	</select>
 		
+	<select id="shipOrderTemp" parameterType="map" resultType="shipOrderApi">
+		/*임시저장 목록 */
+		 SELECT 
+		 	o.logistics_center as logisticsCenter
+		 	,o.goods_order_date as goodsOrderDate 
+			,g.tracking_num as trackingNum
+			,g.grouping_delivery as groupingDelivery
+			,g.goods__url as goodsUrl
+			,g.g_name as gName
+			,o.total_price as totalPrice
+			,o.user_name as userName
+			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
+			,CONCAT(o.temp, ' (',COUNT(o.temp), ')') AS statInfo
+			,g.buy_order_code as buyOrderCode
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			order_info AS o
+		ON 
+			g.buy_order_code = o.buy_order_code 
+		INNER JOIN order_state AS os 
+			ON o.buy_order_code = os.buy_order_code
+		WHERE 
+			o.temp = #{stat_info}  
+			AND o.id = #{u_id}
+		GROUP BY g.grouping_delivery;
+		
+	</select>	
+	
+	
+		
+		
 		
 	<select id="shipOrderApi" parameterType="map" resultType="shipOrderApi">
 		/*목록 출력*/
@@ -79,17 +111,26 @@
 			,o.total_price as totalPrice
 			,CONCAT(d.stat_info, ' (',COUNT(d.stat_info), ')') AS statInfo
 			,o.user_name as userName
+			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
 			,g.buy_order_code as buyOrderCode
 			,g.id
 		FROM 
 			goods_info AS g 
-			INNER JOIN delivery_current_state AS d 
-			ON g.goods_info_code = d.goods_info_code
+		INNER JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code
 			AND g.tracking_num IS NOT NULL 
-			INNER JOIN order_info AS o
-			ON g.buy_order_code = o.buy_order_code
-		where g.id = #{u_id} and d.stat_info = #{stat_info} 
-		GROUP BY g.grouping_delivery, d.stat_info;
+		INNER JOIN 
+			order_info AS o
+		ON 
+			g.buy_order_code = o.buy_order_code
+		INNER JOIN order_state AS os 
+			ON o.buy_order_code = os.buy_order_code
+		where 
+			g.id = #{u_id} and d.stat_info = #{stat_info} 
+		GROUP BY 
+			g.grouping_delivery, d.stat_info;
 	</select>
 		
 		
