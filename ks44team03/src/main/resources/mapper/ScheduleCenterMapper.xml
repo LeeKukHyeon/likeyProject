@@ -17,7 +17,7 @@
 	
 	<!-- 배송스케줄 삭제 -->
 	<delete id="deleteSchedule" parameterType="ScheduleCenter">
-	DELETE 
+	DELETE
 	FROM
 		delivery_schedule 
 	WHERE
