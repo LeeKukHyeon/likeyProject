@@ -17,9 +17,9 @@
 						배송대행 신청
 					</div>
 					<ul class="faqSortList">
-						<li><a href="#"><b>- 신청서작성</b></a></li>
-						<li><a href="#"><b>- 묶음배송</b></a></li>
-						<li><a href="#"><b>- 트랙킹번호</b></a></li>
+						<li><a id="faq1" href="#"><b>- 신청서작성</b></a></li>
+						<li><a id="faq2" href="#"><b>- 묶음배송</b></a></li>
+						<li><a id="faq3" href="#"><b>- 트랙킹번호</b></a></li>
 						<li><a href="#"><b>- 쿠폰사용방법</b></a></li>
 						<li><a href="#"><b>- 부가서비스</b></a></li>
 					</ul>
@@ -147,8 +147,39 @@
 					<li><a href="#"><b>- </b></a></li>
 				</ul>
 			</div>
-			<div style="clear: both; text-align: right; margin-right: 17mm;"><a th:href="@{/faqRegister}"><button type="button" style="border-radius: 3px; border: solid 1px gray; font-size: 10px">글쓰기</button></a></div>
+		<div style="float: left;">
+			<div id="ffaq1" style="display: none; ">
+				<h1>오타마</h1>
+			</div>
+			<div id="ffaq2" style="display: none; ">
+				<h1>역전할매</h1>
+			</div>
+			<div id="container">
+				얼른 퇴근하고 술마시러 간다!
+			</div>
+		</div>
+			<div style="clear: both; text-align: right; margin-right: 17mm;">
+				<a th:href="@{/faqRegister}">
+					<button type="button" style="border-radius: 3px; border: solid 1px gray; font-size: 10px">글쓰기</button>
+				</a>
+			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.faqSortList #faq1').click(function(){
+			$('#ffaq1').show();
+		})
+		$('.faqSortList #faq2').click(function(){
+			var allHide = $(this)
+			$('#ffaq2').show(); 조건식을 짜서 이벤트가 발생된 id 를 제외한것을 모두 hide 시킨다.
+			$(allHide).hide();
+		})
+	})
+	
+	
+	</script>
+	
 </body>
 </html>
