@@ -7,7 +7,7 @@
       
 <head>
 <style>
-	.goodsInfo{
+	.reviewInfo{
 		margin-left: 10%;
 		margin-right: 10%;
 		margin-bottom: 10%;
@@ -16,24 +16,24 @@
 		border-radius: 20px;
 		padding: 30px;
 	}
-	.goodsInfo img{
+	.reviewInfo img{
 		border: 2px solid #dddddd;
 		border-radius: 20px; 
 		width: 40%;
 		background-color: red;
 		vertical-align: top;
-		margin-left: 40px;
+		
 	}
-	.goodsImg strong{
+	.reviewImg strong{
 		font-size: 30px; 
 	}
-	.goodsImgText{
+	.reviewImgText{
 		width: 100%;
 		/* background-color: #dddddd; */
 		margin-top: 10px;
 	}
 	.receiptBtn{
-		margin-left: 85%;	
+		margin-left: 100%;	
 		padding: 10px 20px;
 		border: 2px solid #dddddd;
 		border-radius: 10px;
@@ -67,22 +67,22 @@
 </head>
 
 <body layout:fragment="content">
-	<div class="goodsInfo">
-		<span class="goodsImg">
+	<div align="center">
+		<div class="reviewInfo">
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/reviewList}">이용후기</a></p>
+			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
+			<h4 th:text="${reviewInfo.communityTitle}"></h4>
+			<hr width="100%" color="#dddddd">
 			<img src="/image/sinbal.png">
 			<!-- 14글자 제한 -->
-			<label class="goodsImgText">
-				<hr>
-				<strong th:text="${title}">(14글자)</strong>
-				<p th:text="${title}">상품 상세정보 내용</p>
-				<hr>				
-			</label>
 			<div>
-				<a href="/orderList"><button type="button" class="goListBtn">목록</button></a>
-				<a href="#"><button type="button" class="receiptBtn">접수</button></a>
-			</div>	
-		</span>
+				<div style="text-align: left; color: black;" >
+					<p th:text="${reviewInfo.communityContent}"></p>
+				</div>
+			</div>
+				<a th:href="@{/reviewList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
+		</div>	
 	</div>
-	
 </body>
 </html>
