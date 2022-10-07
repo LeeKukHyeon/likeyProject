@@ -27,11 +27,13 @@
 	
 	<resultMap type="GoodsInfo" id="orderGoodsListResultMap">
 		<id column="goods_info_code" property="goodsInfoCode"/>		
+		<result column="buy_order_code" property="buyOrderCode"/>
 		<result column="delivery_company" property="deliveryCompany"/>
 		<result column="g_site" property="gSite"/>
 		<result column="g_name" property="gName"/>
 		<result column="tracking_num" property="trackingNum"/>
 		<result column="g_amount" property="gAmount"/>		
+		<result column="likey_pass" property="likeyPass"/>		
 		
 	</resultMap>
 	
@@ -127,6 +129,35 @@
 		WHERE 
 			d.stat_info ="입고 대기" AND g.arrival = 'y'
 	 
+	 </select>
+	 
+	 <select id="regIncoming2" resultMap="orderGoodsListResultMap">
+	 	/*입고 등록 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 대기" AND g.arrival = 'y'
+	 </select>
+	 <!--  -->
+	 <select id="getIncomingGoodsInfo" resultMap="orderGoodsListResultMap">
+	 	/*입고 등록 리스트*/
+		SELECT 
+			*
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 대기" AND g.arrival = 'y' AND g.goods_info_code = #{goodsInfoCode};
+		
 	 </select>
 	 
 	 <!-- 입고 전 상품 리스트 -->

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+코드 복사
+<style>
+#incoming_modal {
+  display: none;
+  position:relative;
+  width:100%;
+  height:100%;
+  z-index:1;
+}
+
+#modal button {
+  display:inline-block;
+  width:100px;
+  margin-left:calc(100% - 100px - 10px);
+}
+
+#incoming_modal .incoming_modal_content {
+  width:300px;
+  margin:100px auto;
+  padding:20px 10px;
+  background:#fff;
+  border:2px solid #666;
+}
+
+#incoming_modal .incoming_modal_layer {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.3);
+  z-index:-1;
+}  
+</style>
+<meta charset="UTF-8">
+
+<!-- 입고등록 -->
+<title>입고등록</title>
+</head>
+
+<!-- ========== 입고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고등록 화면 시작 ========== -->
+				<h2>입고등록</h2>
+				<div class="incoming_register">
+					<form method="get" action="#">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="companyNum">상품정보 코드</option>
+							        		<option value="companyInfoName">택배회사</option>
+							        		<option value="companyName">구매 사이트</option>
+							        		<option value="companyAddr">상품명</option>
+							        		<option value="companyCate">운송장번호</option>
+							        	</select>
+							        	
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>택배회사</th>
+									<th>구매 사이트</th>
+									<th>상품명</th>
+									<th>운송장번호</th>
+									<th>수량</th>						
+									<th>입고 등록</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+								<tr th:if="${not #lists.isEmpty(regIncoming2)}" th:each = "i :${regIncoming2}">
+									<td><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.deliveryCompany}"></td>
+									<td th:text="${i.gSite}"></td>
+									<td th:text="${i.gName}"></td>
+									<td th:text="${i.trackingNum}"></td>
+									<td th:text="${i.gAmount}"></td>
+									<td align="center"><button type="button"  id = "incoming_modal_open" class="add_button"><a th:href="@{/incomingRegister2(goodsInfoCode=${i.goodsInfoCode})}">등록</a></button></td>
+								</tr>
+							  </tbody>
+						</table>
+						<button type="submit" id="sub_btn" >등록</button>
+					</form>
+				</div>
+				
+				<div id="incoming_modal">
+					<div class="incoming_modal_content">
+						
+						<th:block th:each = "i :${incomingGoodsInfo}">
+						<table class="input_table"><tbody>
+						
+							<tr>
+								<th>주문정보 코드</th>
+								<td th:text="${i.buyOrderCode}"><input type="hidden" name="goodsInfoCode" id="goodsInfoCode"></td>
+							</tr>
+							<tr>
+								<th>상품정보 코드</th>
+								<td th:text="${i.goodsInfoCode}"></td>
+							</tr>
+							<tr>
+								<th>라이키패스 가입여부</th>
+								<td th:text="${i.likeyPass}"></td>
+							</tr>
+							<tr>
+								<th>상품사진 등록</th>
+								<td>#</td>
+							</tr>
+							<tr>
+								<th>부피</th>
+								<td>#</td>
+							</tr>
+							<tr>
+								<th>중량</th>
+								<td>#</td>
+							</tr>
+						</tbody></table>
+						
+						<div class="incoming_modal_button" align="center">
+							<button type="button" id="incoming_modal_reg" class="add_button">등록</button>
+							<button type="button" onClick="location.href='/incomingRegister2';" id="incoming_modal_close" class="cancel_button">취소</button>
+						</div>
+						
+					</div>
+					</th:block>
+					<div class="incoming_modal_layer"></div>
+					
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+<script type="text/javascript">
+	document.getElementById("incoming_modal_open").onclick = function() {
+		
+	    document.getElementById("incoming_modal").style.display="block";
+	}
+	
+	document.getElementById("incoming_modal_close").onclick = function() {
+		
+		
+	    document.getElementById("incoming_modal").style.display="none";
+	    
+	    }  
+	
+</script>
+</body>
+
+</html>

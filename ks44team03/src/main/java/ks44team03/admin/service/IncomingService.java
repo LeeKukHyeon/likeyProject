@@ -71,6 +71,23 @@ public class IncomingService {
 		log.info("입고 등록 결과 : " + result);
 	}
 	
+	//입고 등록 222222
+	public List<GoodsInfo> regIncoming2(){
+		List<GoodsInfo> regIncoming2 = incomingMapper.regIncoming2();
+		
+		log.info("regIncoming2 ::::::" + regIncoming2);
+		return regIncoming2;
+	}
+	
+	//특정 상품코드 출력
+	public GoodsInfo getIncomingGoodsInfo(String goodsInfoCode) {
+		
+		GoodsInfo incomingGoodsInfo = incomingMapper.getIncomingGoodsInfo(goodsInfoCode);
+		
+		return incomingGoodsInfo;
+		
+	}
+	
 	//입고 전 상품목록
 	public List<GoodsInfo> incomingGoodsList(String buyOrderCode){
 		List<GoodsInfo> incomingGoodsList = incomingMapper.incomingGoodsList(buyOrderCode);

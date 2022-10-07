@@ -37,10 +37,25 @@ public class IncomingController {
 	return "redirect:/incomingSearch";
 	}
 	
+	//입고 등록 22222222222222
+	@GetMapping("/incomingRegister2") 
+	public String regIncoming2(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
+	  List<GoodsInfo> regIncoming2 = incomingService.regIncoming2();
+	  
+	  GoodsInfo incomingGoodsInfo = incomingService.getIncomingGoodsInfo(goodsInfoCode);
+	  log.info("incomingGoodsInfo ::::::"+ incomingGoodsInfo);
+	  log.info("goodsInfoCode ::::" +goodsInfoCode);
+	  
+	  model.addAttribute("incomingGoodsInfo", incomingGoodsInfo);
+	  model.addAttribute("title", "창고 도착"); 
+	  model.addAttribute("regIncoming2",regIncoming2); 
+	  return "incoming/incomingRegister2";
+	 }
+	
 	@GetMapping("incomingGoodsList")
 	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode") String buyOrderCode) {
 	List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(buyOrderCode);
-	System.out.println(incomingGoodsList);
+	System.out.println("incomingGoodsList::::::"+ incomingGoodsList);
 	model.addAttribute("incomingGoodsList", incomingGoodsList);
 	return "incoming/incomingGoodsList";
 	}

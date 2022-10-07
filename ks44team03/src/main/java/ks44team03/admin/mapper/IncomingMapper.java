@@ -15,6 +15,12 @@ public interface IncomingMapper {
 	//입고 등록
 	public int regIncoming(Incoming incoming);
 	
+	//입고 등록 222222
+	public List<GoodsInfo> regIncoming2();
+	
+	//특정 상품코드 출력
+	public GoodsInfo getIncomingGoodsInfo(String goodsInfoCode);
+	
 	//오류입고 목록
 	public List<GoodsInfo> errorIncoming();
 	
