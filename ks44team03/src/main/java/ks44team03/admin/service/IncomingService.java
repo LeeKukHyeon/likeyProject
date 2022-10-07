@@ -30,6 +30,34 @@ public class IncomingService {
 	}
 	
 	
+	//배송완료 상품목록 조회
+	public List<GoodsInfo> storageCharge(Map<String, Object> paramMap){
+		List<GoodsInfo> storageCharge = incomingMapper.storageCharge(paramMap);
+		
+		return storageCharge;
+	}
+	
+	//배송완료 상품목록 조회
+	public List<GoodsInfo> deliveryComplete(Map<String, Object> paramMap){
+		List<GoodsInfo> deliveryComplete = incomingMapper.deliveryComplete(paramMap);
+		
+		return deliveryComplete;
+	}
+	
+	//배송중인 상품목록 조회
+	public List<GoodsInfo> inTransit(Map<String, Object> paramMap){
+		List<GoodsInfo> inTransit = incomingMapper.inTransit(paramMap);
+		
+		return inTransit;
+	}
+	
+	//상품도착등록
+	public int regGoodsIncoming(String check){
+		int regGoodsIncoming = incomingMapper.regGoodsIncoming(check);
+		
+		return regGoodsIncoming;
+	}
+	
 	//오류 입고
 	public List<GoodsInfo> errorIncoming(){
 		List<GoodsInfo> errorIncoming = incomingMapper.errorIncoming();

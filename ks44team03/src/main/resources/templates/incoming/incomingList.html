@@ -23,22 +23,23 @@
 				<div class="incoming_register">
 					<form th:action="@{/incomingList}" method="get" class="searchBar">	
 						<div th:fragment="searchFragment" >
-								        
+								      
 					        	<select name="searchKey" id="searchKey">
-					        		<option value="companyNum">주문정보 코드</option>
-					        		<option value="companyInfoName">사서함 번호</option>
-					        		<option value="companyName">이용자 아이디</option>
-					        		<option value="companyAddr">물류센터</option>
-					        		<option value="companyCate">운송수단</option>
-					        		<option value="companyBirth">국가</option>
-					        		<option value="companyBirth">주문 번호</option>
-					        		<option value="companyBirth">이름</option>
-					        		<option value="companyBirth">구매방식</option>
+					        		<option value="buy_order_code">주문정보 코드</option>
+					        		<option value="user_pobox_code">사서함 번호</option>
+					        		<option value="id">이용자 아이디</option>
+					        		<option value="logistics_center">물류센터</option>
+					        		<option value="transportation">운송수단</option>
+					        		<option value="nation">국가</option>
+					        		<option value="order_num">주문 번호</option>
+					        		<option value="user_name">이름</option>
+					        		<option value="buy_way">구매방식</option>
 					        	</select>
 				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
 				        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
 					       	</form>	
-        </div>
+       			 </div>
+        			<form th:action="@{/incomingList}" method="get" class="searchBar">
 						<table class = "input_table" style="width:100%">
 						
 							<thead>
@@ -63,7 +64,7 @@
 							  <tbody>
 							 	
 								<tr th:each = "i :${incomingOrderList}">
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="check" th:value="${i.buyOrderCode}"></td>
 									<td ><a th:href="@{/incomingGoodsList(buyOrderCode=${i.buyOrderCode})}" th:text="${i.buyOrderCode}"></a></td>
 									<td th:text="${i.userPoboxCode}"></td>
 									<td th:text="${i.id}">d</td>
@@ -85,7 +86,7 @@
 
 			</div>
           </div>
-        </div>
+      
         
 
 	
