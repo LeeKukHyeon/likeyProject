@@ -26,9 +26,8 @@ public class CustomerScheduleController {
 	@PostConstruct
 	public void customerScheduleService() {
 		
-		
 	}
-	
+		
 	//배송스케줄 게시물 삭제
 	@GetMapping("/deliveryScheduleDelete")
 	public String deleteSchedule(@RequestParam(value = "scheduleNumCode")String scheduleNumCode) {
