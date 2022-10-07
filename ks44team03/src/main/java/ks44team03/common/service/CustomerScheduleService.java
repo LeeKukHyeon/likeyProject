@@ -28,6 +28,12 @@ public class CustomerScheduleService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//배송스케줄 조회수 카운트
+	public void countView(String scheduleNumCode) {
+		
+	customerScheduleMapper.countView(scheduleNumCode);
+		
+	}
 	
 	//배송스케줄 게시물 삭제
 	public void deleteSchedule(String scheduleNumCode) {
@@ -35,7 +41,6 @@ public class CustomerScheduleService {
 	customerScheduleMapper.deleteSchedule(scheduleNumCode);
 		
 	}
-	
 	
 	//배송스케줄 게시물 수정
 	public void modifySchedule(ScheduleCenter scheduleCenter) {
@@ -46,7 +51,7 @@ public class CustomerScheduleService {
 	//배송스케줄 게시물 등록
 	public void regSchedule(ScheduleCenter scheduleCenter) {
 		
-		String newScheduleCode = commonMapper.getCommonPkNumCode("delivery_schedule", "schedule_num");
+		String newScheduleCode = commonMapper.getCommonPkNumCode("schedule_center", "schedule_num");
 		scheduleCenter.setScheduleNumCode(newScheduleCode);
 		log.info(scheduleCenter + "::::::: 배송스케줄 추가 scheduleCenter");
 		

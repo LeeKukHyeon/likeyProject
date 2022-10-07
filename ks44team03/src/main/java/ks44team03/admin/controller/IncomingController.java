@@ -89,10 +89,16 @@ public class IncomingController {
 	
 	// 도착확인
 	@GetMapping("/incomingList")
-	public String incomingList(Model model) {
-	
-		List<OrderInfo> incomingOrderList = incomingService.incomingOrderList();
-	
+	public String incomingList(Model model,
+			@RequestParam(name = "searchKey",required=false ) String searchKey,
+			@RequestParam(name = "searchValue",required=false ) String searchValue
+			) {
+		
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		List<OrderInfo> incomingOrderList = incomingService.incomingOrderList(paramMap);
 		model.addAttribute("title", "도착확인");
 		model.addAttribute("incomingOrderList", incomingOrderList);
 	

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
+<!-- 부서목록 조회화면 -->
+<th:block layout:fragment="adminContent">	
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">             
+             	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
+             	<div th:include="company/department/searchDepartmentList :: searchFragment"></div>
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+							<tr>
+								<th>선택</th>
+								<!-- <th>부서코드</th> -->
+								<th>사업장명</th>
+								<th>부서명</th>
+								<th>부서적용날짜</th>
+								<th>수정</th>
+								<th>삭제</th>
+							</tr>
+						   <!-- private String departmentCode; //부서코드
+								private String deWorkPlaceCode; //사업장코드
+								private String deWorkPlaceName; // 사업장 명
+								private String departmentName; //부서 명
+								private String departmentDate; //부서 적용날짜 
+								private WorkPlace workPlaceDto; // 사업장 DTO -->
+							<tbody>
+								<tr th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
+									<td id="companyCheck"><input type="checkbox"></td>
+									<!-- <td th:text="${l.departmentCode}"></td> -->
+									<td th:text="${l.workPlaceDto.workPlaceName}"></td>
+									<td th:text="${l.departmentName}"></td>
+									<td th:text="${l.departmentDate}"></td>
+									<td>
+										<a th:href="@{/modifyDepartment(departmentCode=${l.departmentCode})}">수정</a>
+									</td>
+									<td>
+										<a href="#">삭제</a>
+									</td>
+								</tr>
+								<tr	th:unless="${not #lists.isEmpty(departmentList)}">
+									<td colspan="5" style="text-align: center;">등록된 부서가 없습니다.</td>
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->    
+</th:block> 
+</html>

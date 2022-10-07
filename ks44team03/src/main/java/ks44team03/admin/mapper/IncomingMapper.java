@@ -1,6 +1,7 @@
 package ks44team03.admin.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -30,7 +31,7 @@ public interface IncomingMapper {
 	public List<GoodsInfo> arriveWarehouse();
 	
 	//입고전 주문 목록
-	public List<OrderInfo> incomingOrderList();
+	public List<OrderInfo> incomingOrderList(Map<String, Object> paramMap);
 	
 	//입고 현황 조회
 	public List<Incoming> incomingCurrentState();

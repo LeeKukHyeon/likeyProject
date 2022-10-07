@@ -16,6 +16,40 @@
 		<result column="notice_view" property="noticeView"/>
 	</resultMap>
 	
+	<!-- 공지사항 조회수 카운트  -->
+	<update id="countView">
+	/* 공지사항 조회수 카운트 */
+	UPDATE notice_center
+	SET
+		notice_view = notice_view + 1
+	where
+		notice_num = #{noticeNumCode};
+	</update>
+	
+	
+	
+	<!-- 공지사항 검색 -->
+	<select id="noticeSearch" parameterType="map" resultMap="csNoticeResultMap" fetchSize="100">
+	/* 공지사항 검색 */
+	SELECT
+		notice_num
+		,e_code
+		,notice_title
+		,notice_content
+		,notice_img
+		,notice_date
+		,notice_view
+	FROM
+		notice_center
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		notice_num
+	</select>
+	
 	<!-- 공지사항 삭제 -->
 	<delete id="deleteNotice" parameterType="NoticeCenter">
 	DELETE
@@ -36,7 +70,6 @@
 		notice_img=#{noticeImg}
 	WHERE
 		notice_num= #{noticeNumCode}
-	
 	</update>
 	
 	<!-- 공지사항 등록 -->
@@ -51,7 +84,7 @@
 		,notice_date
 		,notice_view)
 	VALUES 
-		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), #{noticeView})
+		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), 0)
 	</insert>
 	
 	<!-- 공지사항 제목 클릭시 나오는 내용 -->

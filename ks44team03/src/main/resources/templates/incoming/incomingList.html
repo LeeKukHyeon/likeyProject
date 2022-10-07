@@ -21,9 +21,9 @@
 				<!-- ========== 입고등록 화면 시작 ========== -->
 				<h2>상품도착등록</h2>
 				<div class="incoming_register">
-					<form method="post" action="#">
+					<form th:action="@{/incomingList}" method="get" class="searchBar">	
 						<div th:fragment="searchFragment" >
-					        
+								        
 					        	<select name="searchKey" id="searchKey">
 					        		<option value="companyNum">주문정보 코드</option>
 					        		<option value="companyInfoName">사서함 번호</option>
@@ -36,8 +36,8 @@
 					        		<option value="companyBirth">구매방식</option>
 					        	</select>
 				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
-				        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
-					       	
+				        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
+					       	</form>	
         </div>
 						<table class = "input_table" style="width:100%">
 						

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<!-- <meta charset="UTF-8"> -->
+
+
+	<body layout:fragment="adminContent">
+		
+		<div class="content-wrapper" style="width:500px;">
+		
+			<div class="right_text"  >
+			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">회사 등록</h2>
+				<form name="form1" id="form1">
+					<table class="input_table" >	
+				
+						<tbody>
+							<tr>	
+								<th class="td1">사이트 이름</th>
+								<td class="td2">
+									<input type="text" name=# placeholder="사이트 이름을 입력해주세요.">	
+								</td>
+							</tr>
+							<tr>
+								<th class="td1">가입한 사이트 아이디</th>	
+								<td class="td2">				
+									<input type="text" name=# placeholder="사이트 아이디">	
+								</td>	
+							</tr>		
+							<tr>	
+								<th class="td1">사이트 가입 비밀번호</th>
+								<td class="td2">
+									<input type="text" name=# placeholder="비밀번호">	
+								</td>
+							</tr>
+							<tr>	
+								<th class="td1">유료 회원 여부</th>
+								<td class="td2">
+									<input type="radio" name=# value="y">	 예
+									<input type="radio" name=# value="n">	아니오
+								</td>
+							</tr>
+							<tr>	
+								<th class="td1">유료회원만료날짜</th>
+								<td class="td2">
+									<input type="date" name=companyCate >	
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<div class="button2">
+					<button type="submit"  class="add_button">등록</button>
+					<button type="button" onClick="location.href='/shoppingRegister';" class="cancel_button">취소</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	
+		
+	</body>
+</html>
