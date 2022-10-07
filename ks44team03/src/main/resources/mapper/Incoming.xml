@@ -31,9 +31,9 @@
 		<result column="g_site" property="gSite"/>
 		<result column="g_name" property="gName"/>
 		<result column="tracking_num" property="trackingNum"/>
-		<result column="g_amount" property="gAmount"/>		
-		
+		<result column="g_amount" property="gAmount"/>			
 	</resultMap>
+	
 	
 	<!-- 입출고 -->
 	<resultMap type="Incoming" id="incomingResultMap">
@@ -56,15 +56,99 @@
 		-->
 	</resultMap>
 
-	<!-- 출고
-	req_option_impli
-	postpone
-	sum_post
-	send_out
-	approval
-	out_tracking_num
-	out_company
-	 -->
+	
+	
+	
+	<!-- 보관료 발생 리스트 -->
+	 <select id="storageCharge" parameterType="map" resultType="GoodsInfo">
+	 	SELECT 
+			g.goods_info_code as goodsInfoCode, /*상품정보 코드*/
+			g.id as id, /*아이디*/
+			g.g_name as gName, /*이름*/
+			g.arrival_date as arrivalDate, /*도착날짜*/
+			s.imp_date as goodsPrice, /*보관금액*/
+			g.buy_order_code as buyOrderCode/*주문서 번호*/
+	
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			storage_fee AS s
+		ON 
+			g.goods_info_code = s.goods_info_code	 
+	
+		WHERE s.total_imp_of_charge > 0	 	
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if>
+	 		
+	 		; 
+	 </select>		
+	 	 	
+	<!-- 배송중인 상품목록 리스트 -->
+	 <select id="deliveryComplete" parameterType="map" resultType="GoodsInfo">
+	 	SELECT 
+			g.goods_info_code as goodsInfoCode /*상품정보 코드*/
+			, g.g_name	as gName/*상품명*/
+			, i.out_tracking_num as trackingNum/*출고운송장번호*/
+			, i.send_out as arrivalDate/*출고 날짜*/
+			, i.out_company as deliveryCompany/*출고 배송회사*/
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			delivery_current_state AS d
+		ON 
+			g.goods_info_code = d.goods_info_code
+		INNER JOIN 
+			incoming AS i
+		ON 
+			g.goods_info_code = i.goods_info_code
+	 	where 
+	 		d.stat_info = "배송완료"	 	
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if>
+	 		
+	 		; 			 	
+	 		
+	 </select>
+	
+	<!-- 배송중인 상품목록 리스트 -->
+	 <select id="inTransit" parameterType="map" resultType="GoodsInfo">
+	 	SELECT 
+			g.goods_info_code as goodsInfoCode /*상품정보 코드*/
+			, g.g_name	as gName/*상품명*/
+			, i.out_tracking_num as trackingNum/*출고운송장번호*/
+			, i.send_out as arrivalDate/*출고 날짜*/
+			, i.out_company as deliveryCompany/*출고 배송회사*/
+		FROM 
+			goods_info AS g
+		INNER JOIN 
+			delivery_current_state AS d
+		ON 
+			g.goods_info_code = d.goods_info_code
+		INNER JOIN 
+			incoming AS i
+		ON 
+			g.goods_info_code = i.goods_info_code
+	 	where 
+	 		d.stat_info = "배송중"	 	
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if>
+	 		
+	 		; 			 	
+	 		
+	 </select>
+	
+	
+	<update id="regGoodsIncoming" parameterType="String"> 
+		UPDATE 
+			goods_info 
+		SET 
+			arrival = "y" , arrival_date = curdate() 
+		WHERE 
+			buy_order_code = #{check};
+	</update>
 	
 	 <select id="errorIncoming" resultMap="orderGoodsListResultMap">
 	 	/*오류 입고 리스트*/
@@ -129,6 +213,17 @@
 	 
 	 </select>
 	 
+	 <select id="getListPaging" resultMap="orderGoodsListResultMap">
+	 	select 
+	 		* 
+	 	from 
+	 		goods_info as g
+	 	inner join
+	 		order_info as o
+	 	on
+	 		g.buy_order_code = o.buy_order_code
+	 </select>
+	 
 	 <!-- 입고 전 상품 리스트 -->
 	 <select id="incomingGoodsList" parameterType="String" resultMap="orderGoodsListResultMap">
 	 	select 
@@ -149,13 +244,22 @@
 	 	select 
 	 		* 
 	 	from 
-	 		order_info
+	 		order_info as o
+	 	inner join 
+	 		goods_info as g
+	 	on
+	 		o.buy_order_code = g.buy_order_code
 	 	where 
-	 		temp is null
-	 			 	
-			<if test="searchKey != null">AND ${searchKey} = #{searchValue} </if>
+	 		o.temp is null and 
+	 		g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') 
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if>
+	 		group by g.buy_order_code
+	 		; 			 	
 			
-		;
+			
+		
 	 		
 	 </select>
 	 

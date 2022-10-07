@@ -1,5 +1,6 @@
 package ks44team03.admin.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,60 @@ public class IncomingController {
 	}
 	
 	
+	//배송완료 상품 목록 조회
+	
+	@GetMapping("storageCharge")
+	public String storageCharge(Model model, 
+			@RequestParam(name = "searchKey",required=false ) String searchKey,
+			@RequestParam(name = "searchValue",required=false ) String searchValue) {
+		System.out.println(searchKey);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		List<GoodsInfo> storageCharge = incomingService.storageCharge(paramMap); 
+		
+		model.addAttribute("title", "배송완료 상품목록 조회"); 
+		model.addAttribute("storageCharge",storageCharge); 
+		return "incoming/storageCharge"; 
+		
+	}
+	//배송완료 상품 목록 조회
+	
+	@GetMapping("deliveryComplete")
+	public String deliveryComplete(Model model, 
+			@RequestParam(name = "searchKey",required=false ) String searchKey,
+			@RequestParam(name = "searchValue",required=false ) String searchValue) {
+		System.out.println(searchKey);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		List<GoodsInfo> deliveryComplete = incomingService.deliveryComplete(paramMap); 
+		
+		model.addAttribute("title", "배송완료 상품목록 조회"); 
+		model.addAttribute("deliveryComplete",deliveryComplete); 
+		return "incoming/deliveryComplete"; 
+		
+	}
+	
+	//배송중인 상품 목록 조회
+	
+		@GetMapping("inTransit")
+		public String inTransit(Model model, 
+				@RequestParam(name = "searchKey",required=false ) String searchKey,
+				@RequestParam(name = "searchValue",required=false ) String searchValue) {
+				
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("searchKey", searchKey);
+				paramMap.put("searchValue", searchValue);
+				List<GoodsInfo> inTransit = incomingService.inTransit(paramMap); 
+							
+				model.addAttribute("title", "배송중인 상품목록 조회"); 
+				model.addAttribute("inTransit",inTransit); 
+				return "incoming/inTransit"; 
+			
+		}
+			
+	
 	//오류 입고
 	
 	@GetMapping("errorIncoming")
@@ -91,9 +146,15 @@ public class IncomingController {
 	@GetMapping("/incomingList")
 	public String incomingList(Model model,
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
-			@RequestParam(name = "searchValue",required=false ) String searchValue
+			@RequestParam(name = "searchValue",required=false ) String searchValue,
+			@RequestParam(name = "check", required=false) String[] checks
 			) {
 		
+		if (checks != null) {
+			for(String check :  checks) {
+				incomingService.regGoodsIncoming(check);
+			}
+		}
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchKey", searchKey);
