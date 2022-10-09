@@ -170,10 +170,12 @@
 	$(document).ready(function(){
 		$('.faqSortList #faq1').click(function(){
 			$('#ffaq1').show();
+			var asdf = $('#ffaq1').val();
+				alert(asdf) // 값이 안나옴.. ㅇ
 		})
 		$('.faqSortList #faq2').click(function(){
-			var allHide = $(this)
-			$('#ffaq2').show(); 조건식을 짜서 이벤트가 발생된 id 를 제외한것을 모두 hide 시킨다.
+			var allHide = $('#ffaq2')
+			$('#ffaq2').show();//  조건식을 짜서 이벤트가 발생된 id 를 제외한것을 모두 hide 시킨다.
 			$(allHide).hide();
 		})
 	})
