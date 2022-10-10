@@ -213,21 +213,10 @@
 	 
 	 </select>
 	 
-	 <select id="getListPaging" resultMap="orderGoodsListResultMap">
+	 <select id="getListPaging" parameterType="String" resultType="int">
+	 	/*입고전 상품 리스트 게시물 전체 개수*/
 	 	select 
-	 		* 
-	 	from 
-	 		goods_info as g
-	 	inner join
-	 		order_info as o
-	 	on
-	 		g.buy_order_code = o.buy_order_code
-	 </select>
-	 
-	 <!-- 입고 전 상품 리스트 -->
-	 <select id="incomingGoodsList" parameterType="String" resultMap="orderGoodsListResultMap">
-	 	select 
-	 		* 
+	 		count(*) 
 	 	from 
 	 		goods_info as g
 	 	inner join
@@ -237,6 +226,26 @@
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
 	 		and o.temp is null;
+	 </select>
+	 
+	 <!-- 입고 전 상품 리스트 -->
+	 <select id="incomingGoodsList" parameterType="map" resultMap="orderGoodsListResultMap">
+	 	
+	 		select 
+	 		*
+	 	from 
+	 		goods_info as g
+	 	inner join
+	 		order_info as o
+	 	on
+	 		g.buy_order_code = o.buy_order_code
+	 	where
+	 		g.buy_order_code = #{buyOrderCode} 
+	 		and o.temp is null
+	 		limit ${cri.skip}, ${cri.amount}
+	 
+	 	
+	 	
 	 </select>
 	 
 	 <!-- 입고 전 리스트 -->
