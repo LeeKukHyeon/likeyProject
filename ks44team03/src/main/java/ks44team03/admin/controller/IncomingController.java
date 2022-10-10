@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.admin.service.IncomingService;
+import ks44team03.dto.Criteria;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
@@ -38,16 +39,23 @@ public class IncomingController {
 	return "redirect:/incomingSearch";
 	}
 	
+	
+	//입고전 상품목록
 	@GetMapping("incomingGoodsList")
-	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode") String buyOrderCode) {
-	List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(buyOrderCode);
-	System.out.println(incomingGoodsList);
-	model.addAttribute("incomingGoodsList", incomingGoodsList);
-	return "incoming/incomingGoodsList";
+	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode") String buyOrderCode,Criteria cri) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("buyOrderCode", buyOrderCode);
+		paramMap.put("cri", cri);
+		
+		int getTotal = incomingService.getListPaging(buyOrderCode);
+		List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(paramMap);
+		System.out.println(incomingGoodsList);
+		model.addAttribute("incomingGoodsList", incomingGoodsList);
+		return "incoming/incomingGoodsList";
 	}
 	
 	
-	//배송완료 상품 목록 조회
+	//보관료 발생 목록 조회
 	
 	@GetMapping("storageCharge")
 	public String storageCharge(Model model, 
@@ -59,7 +67,7 @@ public class IncomingController {
 		paramMap.put("searchValue", searchValue);
 		List<GoodsInfo> storageCharge = incomingService.storageCharge(paramMap); 
 		
-		model.addAttribute("title", "배송완료 상품목록 조회"); 
+		model.addAttribute("title", "보관료 발생 조회"); 
 		model.addAttribute("storageCharge",storageCharge); 
 		return "incoming/storageCharge"; 
 		

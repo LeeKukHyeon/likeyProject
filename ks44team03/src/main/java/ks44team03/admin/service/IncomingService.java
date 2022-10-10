@@ -99,9 +99,15 @@ public class IncomingService {
 		log.info("입고 등록 결과 : " + result);
 	}
 	
+	//입고 전 상품목록 숫자
+	public int getListPaging(String buyOrderCode){
+		int getListPaging = incomingMapper.getListPaging(buyOrderCode);
+		return getListPaging;
+	}
+	
 	//입고 전 상품목록
-	public List<GoodsInfo> incomingGoodsList(String buyOrderCode){
-		List<GoodsInfo> incomingGoodsList = incomingMapper.incomingGoodsList(buyOrderCode);
+	public List<GoodsInfo> incomingGoodsList(Map<String, Object> paramMap){
+		List<GoodsInfo> incomingGoodsList = incomingMapper.incomingGoodsList(paramMap);
 		return incomingGoodsList;
 	}
 	

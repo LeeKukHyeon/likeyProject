@@ -38,10 +38,13 @@ public interface IncomingMapper {
 	public List<OrderInfo> partialArrival();
 	
 	/*입고전 상품 목록(페이지 적용)*/
-	public List<GoodsInfo> getListPaging(Criteria cri);
+	
+	
+	
+	public int getListPaging(String buyOrderCode);	
 	
 	//입고전 상품 목록
-	public List<GoodsInfo> incomingGoodsList(String buyOrderCode);
+	public List<GoodsInfo> incomingGoodsList(Map<String, Object> paramMap);
 	
 	//창고 도착 목록
 	public List<GoodsInfo> arriveWarehouse();
