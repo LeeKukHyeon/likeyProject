@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.dto.Community;
+import ks44team03.user.mapper.CommunityMapper;
 import ks44team03.user.service.CommunityService;
 
 @Controller
@@ -19,6 +20,7 @@ public class CommunityController {
 	public CommunityController(CommunityService communityService) {
 		this.communityService = communityService;
 	}
+// ------------------- 이용후기 게시판 관련 맵핑 state ---------------------------------------------
 	// 이용후기 게시판 목록
 	@GetMapping("/reviewList")
 	public String getReviewList(Model model) {
@@ -35,6 +37,7 @@ public class CommunityController {
 	@GetMapping("/reviewInfo")
 	public String getReviewInfo(@RequestParam(name="communityNum")String communityNum,
 								Model model) {
+		
 		
 		Community reviewInfo = communityService.getReviewInfo(communityNum);
 		
@@ -58,4 +61,44 @@ public class CommunityController {
 		model.addAttribute("title", "이용후기 등록");
 		return "community/reviewRegister";
 	}
+// ------------------- 정보공유 게시판 관련 맵핑 end ---------------------------------------------
+	
+// ------------------- 정보공유 게시판 관련 맵핑 state ---------------------------------------------
+	// 정보공유 게시판 목록
+	@GetMapping("/postbordeList")
+	public String getPostbordeList(Model model) {
+		
+		List<Community> postbordeList = communityService.getPostbordeList();
+		
+		model.addAttribute("postbordeList", postbordeList);
+		model.addAttribute("title", "정보공유");
+		return "community/postbordeList";
+	}
+	// 정보공유 상세정보
+	@GetMapping("/postbordeInfo")
+	public String getPostbordeInfo(@RequestParam(name="communityNum")String communityNum,
+								Model model) {
+		
+		Community postbordeInfo = communityService.getPostbordeInfo(communityNum);
+		
+		model.addAttribute("postbordeInfo", postbordeInfo);
+		model.addAttribute("title", "이용후기");
+		return "community/postbordeInfo";
+	}
+	// 정보공유 등록
+	@PostMapping("/postbordeRegister")
+	public String addPostborde(Community community) {
+		
+		communityService.addPostborde(community);
+		
+		return "redirect:/postbordeList";
+	}
+	// 정보공유 등록
+	@GetMapping("/postbordeRegister")
+	public String addPostbordeForm(Model model) {
+		
+		model.addAttribute("title", "정보공유 등록");
+		return "community/postbordeRegister";
+	}
+// ------------------- 정보공유 게시판 관련 맵핑 end ---------------------------------------------
 }

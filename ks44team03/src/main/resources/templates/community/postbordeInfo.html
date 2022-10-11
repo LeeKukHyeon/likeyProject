@@ -69,18 +69,18 @@
 <body layout:fragment="content">
 	<div align="center">
 		<div class="communityInfo">
-			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/reviewList}">이용후기</a></p>
-			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
-			<h4 th:text="${reviewInfo.communityTitle}"></h4>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/postbordeList}">정보공유</a></p>
+			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${postbordeInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
+			<h4 th:text="${postbordeInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
 			<img src="/image/sinbal.png">
 			<!-- 14글자 제한 -->
 			<div>
 				<div style="text-align: left; color: black;" >
-					<p th:text="${reviewInfo.communityContent}"></p>
+					<p th:text="${postbordeInfo.communityContent}"></p>
 				</div>
 			</div>
-				<a th:href="@{/reviewList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<a th:href="@{/postbordeList}"><button type="button" class="goListBtn">목록으로</button></a>
 				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
 		</div>	
 	</div>
