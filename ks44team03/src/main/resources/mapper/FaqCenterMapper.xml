@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.common.mapper.CustomerFaqMapper">
+	
+	<resultMap type="FaqCenter" id="FaqCenterResultMap">
+		<id column="faq_num_code" property="faqNumCode"/>
+		<result column="e_code" property="employeeCode"/>
+		<result column="faq_maincate" property="faqMainCate"/>
+		<result column="faq_subcate" property="faqSubCate"/>
+		<result column="faq_title" property="faqTitle"/>
+		<result column="faq_content" property="faqContent"/>
+		<result column="faq_img" property="faqImg"/>
+		<result column="faq_date" property="faqDate"/>
+	</resultMap>
+
+
+	<select id="faqList" resultMap="FaqCenterResultMap">
+	/* 자주하는 질문 게시물 조회 */
+	SELECT 
+		faq_num_code
+		,e_code
+		,faq_maincate
+		,faq_subcate
+		,faq_title
+		,faq_content
+		,faq_img
+		,faq_date
+	FROM 
+		faq_center
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
