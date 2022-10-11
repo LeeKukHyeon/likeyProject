@@ -124,6 +124,7 @@
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_img
 		,mtm_answer
 		,mtm_situation
 	FROM
