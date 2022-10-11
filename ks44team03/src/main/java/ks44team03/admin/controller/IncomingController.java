@@ -18,6 +18,8 @@ import ks44team03.dto.Criteria;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
+import ks44team03.dto.PageMakerDTO;
+
 
 @Controller
 public class IncomingController {
@@ -26,8 +28,10 @@ public class IncomingController {
 	
 	private IncomingService incomingService;
 	
+	
 	public IncomingController(IncomingService incomingService) {
 		this.incomingService = incomingService;
+		
 	}
 	
 	@PostMapping("/incomingRegister")
@@ -42,14 +46,21 @@ public class IncomingController {
 	
 	//입고전 상품목록
 	@GetMapping("incomingGoodsList")
-	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode") String buyOrderCode,Criteria cri) {
+	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,Criteria cri) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		System.out.println(buyOrderCode);
 		paramMap.put("buyOrderCode", buyOrderCode);
 		paramMap.put("cri", cri);
 		
 		int getTotal = incomingService.getListPaging(buyOrderCode);
+		
 		List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(paramMap);
-		System.out.println(incomingGoodsList);
+		System.out.println(getTotal);
+		
+		PageMakerDTO pageMake = new PageMakerDTO(cri, getTotal);
+		model.addAttribute("buyOrderCode",buyOrderCode);
+		model.addAttribute("pageMake",pageMake);
+		System.out.println(pageMake);
 		model.addAttribute("incomingGoodsList", incomingGoodsList);
 		return "incoming/incomingGoodsList";
 	}

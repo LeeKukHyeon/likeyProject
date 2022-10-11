@@ -77,7 +77,7 @@
 			,o.total_price as totalPrice
 			,o.user_name as userName
 			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
-			,CONCAT(o.temp, ' (',COUNT(o.temp), ')') AS statInfo
+			,CONCAT(o.step3, ' (',COUNT(o.step3), ')') AS statInfo
 			,g.buy_order_code as buyOrderCode
 		FROM 
 			goods_info AS g 
@@ -88,7 +88,7 @@
 		INNER JOIN order_state AS os 
 			ON o.buy_order_code = os.buy_order_code
 		WHERE 
-			o.temp = #{stat_info}  
+			o.step3 = #{stat_info}  
 			AND o.id = #{u_id}
 		GROUP BY g.grouping_delivery;
 		
@@ -348,7 +348,7 @@
 	<select id="completedApplication" parameterType="String" resultType="int">
 		/*신청서 작성완료*/
 		SELECT 
-			COUNT(if(temp IS null,1,null)) 
+			COUNT(if(step3 IS null,1,null)) 
 		FROM 
 			order_info 
 		WHERE 
@@ -359,7 +359,7 @@
 	<select id="temp" parameterType="String" resultType="int">
 		/*임시저장 건수*/
 		SELECT 
-			COUNT(if(temp='임시저장',1,null)) 
+			COUNT(if(step3='임시저장',1,null)) 
 		FROM 
 			order_info 
 		WHERE

@@ -52,7 +52,7 @@
 							 	
 								<tr th:each = "i :${incomingGoodsList}">
 									<td><input type="checkbox"></td>									
-									<td th:text="${i.goodsInfoCode}"></td>
+									<td><a href="javascript:void(0);" th:text="${i.goodsInfoCode}"></a></td>
 									<td th:text="${i.deliveryCompany}">d</td>
 									<td th:text="${i.gSite}">d</td>
 									<td th:text="${i.gName}">d</td>
@@ -65,13 +65,79 @@
 						</table>
 						<button type="submit" id="sub_btn" >등록</button>
 					</form>
+					
+					<div class="pageInfo_wrap">
+						<div class="pageInfo_area">
+							<ul id="pageInfo" class = "pageInfo">
+								<!-- 각 번호 페이지 버튼 -->
+								
+								<li th:if="${pageMake.prev}" class="pageInfo_btn previous"><a href="${pageMake.startPage-1}">Previous</a></li>
+								
+								<li th:if=${pageMake.endPage} !=0 class= "pageInfo_btn" th:each="idx,iterStat : ${#numbers.sequence(pageMake.startPage,pageMake.endPage)}">
+     								 <a class="number" th:href = "${idx}" th:text="${idx}"></a>
+								</li>
+								
+								<li th:if="${pageMake.next}" class="pageInfo_btn next"><a href="${pageMake.endPage+1}">Next</a></li>
+								
+
+							</ul>
+						</div>
+					</div>
+					<form id="moveForm" method="get">
+						<input type="hidden" name="pageNum" value="${pageMake.cri.pageNum}">
+						<input type="hidden" name="buyOrderCode" th:value="${buyOrderCode}">
+						<!-- <input type="hidden" name="amount" value="${pageMake.cri.amount}"> -->
+					</form>
 				</div>
 				<!-- ========== 입고등록 화면 끝 ========== -->
 
 			</div>
           </div>
         </div>
+        	
+	<div class="modal">
+		<div class="incoming_modal_content">
+			<table class="input_table">
+				  	<tr>
+                        <td>주문정보 코드</td>                  
+                       
+                    </tr>
+				  	<tr>
+                        <td>아이디</td>                 
+                       
+                    </tr>
+                  
+			</table>
+		</div>
+	</div>	
 
+
+
+	<script>
+		let moveForm = $("#moveForm");
+		$(".pageInfo a").on("click", function(e){
+			e.preventDefault();
+			
+	        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        moveForm.attr("action", "/incomingGoodsList");
+	        moveForm.submit();
+		});
+		
+		
+		$('.input_table a').click(function(){
+			$('.modal').fadeIn(1000);
+			$('.modal_bg').fadeIn(1000);
+		});
+
+		$('.modal_box button').click(function(){
+			$('.incoming_modal').fadeOut();
+			$('.modal_bg').fadeOut();
+		});
+	
+		
+		
+
+	</script>
 </body>
 
 </html>

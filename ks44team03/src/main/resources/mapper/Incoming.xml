@@ -225,7 +225,7 @@
 	 		g.buy_order_code = o.buy_order_code
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
-	 		and o.temp is null;
+	 		and o.step3 = 'y';
 	 </select>
 	 
 	 <!-- 입고 전 상품 리스트 -->
@@ -241,7 +241,7 @@
 	 		g.buy_order_code = o.buy_order_code
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
-	 		and o.temp is null
+	 		and o.step3 = 'y'
 	 		limit ${cri.skip}, ${cri.amount}
 	 
 	 	
@@ -259,7 +259,7 @@
 	 	on
 	 		o.buy_order_code = g.buy_order_code
 	 	where 
-	 		o.temp is null and 
+	 		o.step3 = 'y' and 
 	 		g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') 
 	 		<if test = "searchValue != '' and searchKey != null "> 
 	 			and ${searchKey} = #{searchValue}
