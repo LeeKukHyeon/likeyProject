@@ -4,7 +4,32 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-
+<head>
+<script>
+	$(function(){
+		function loginSubmit(){
+			var memberCheck = $("#member").is(':checked');
+			
+			var $user = $("#user");
+			
+			var $username = $("#username");
+			var $password = $("#password");
+			
+			if(memberCheck){
+				var username = $user.val()+" user"
+				$username.val(username);
+				//console.log("username : "+$username.val())
+				return true;
+			}else if(companyCheck){
+				var username = $user.val()+" com"
+				$username.val(username);
+				return true;
+			}else{
+				return false;
+			}
+	}
+</script>
+</head>
 	<!-- default_layout.html에 정의한 main page 부분 -->
 	<body layout:fragment="content">
 	
@@ -45,12 +70,10 @@
                                     	로그인 후 이용바랍니다</h3>
                                 <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="name" name="name" value=""
-                                            placeholder="아이디">
+                                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="아이디">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="password" class="form-control" id="password" name="password" value=""
-                                            placeholder="비밀번호">
+                                        <input type="password" class="form-control" id="password" name="password" value="" placeholder="비밀번호">
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <div class="creat_account d-flex align-items-center">
