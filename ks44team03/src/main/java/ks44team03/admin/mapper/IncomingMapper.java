@@ -11,10 +11,9 @@ import ks44team03.dto.OrderInfo;
 
 @Mapper
 public interface IncomingMapper {
-	
-	//입고 등록
-	public int regIncoming(Incoming incoming);
-	
+	/*
+	 * //입고 등록 public int regIncoming(Incoming incoming);
+	 */
 	//입고 등록 222222
 	public List<GoodsInfo> regIncoming2();
 	
@@ -40,5 +39,8 @@ public interface IncomingMapper {
 	public List<OrderInfo> incomingOrderList(Map<String, Object> paramMap);
 	
 	//입고 현황 조회
-	public List<Incoming> incomingCurrentState();
+	/* public List<Incoming> incomingCurrentState(); */
+	
+	//입고등록 모달 - 특정 상품코드 조회
+	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode);
 }

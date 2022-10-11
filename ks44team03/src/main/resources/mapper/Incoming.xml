@@ -37,16 +37,16 @@
 		
 	</resultMap>
 	
-	<!-- 입출고 -->
+	<!-- 입출고
 	<resultMap type="Incoming" id="incomingResultMap">
-		<!-- 입고 -->
+		입고
 		<id column="idcoming_code" property="incomingCode" />
 		<result column="goods_info_code" property="goodsInfoCode" />
 		<result column="e_code" property="eCode" />
 		<result column="photo_save" property="photoSave" />
 		<result column="volume" property="volume" />
 		<result column="weight" property="weight" />
-		<!--
+		
 		출고
 		<result column="req_option_impli" property="" />
 		<result column="postpone" property="" />
@@ -55,8 +55,8 @@
 		<result column="approval" property="" />
 		<result column="out_tracking_num" property="" />
 		<result column="out_company" property="" />
-		-->
-	</resultMap>
+		
+	</resultMap> -->
 
 	<!-- 출고
 	req_option_impli
@@ -144,6 +144,7 @@
 		WHERE 
 			d.stat_info ="입고 대기" AND g.arrival = 'y'
 	 </select>
+	 
 	 <!--  -->
 	 <select id="getIncomingGoodsInfo" resultMap="orderGoodsListResultMap">
 	 	/*입고 등록 리스트*/
@@ -190,6 +191,23 @@
 	 		
 	 </select>
 	 
+	 <!-- 입고등록 모달 - 특정 상품코드 조회 --> 
+	 
+	 <select id="incomingGoodsInfoByCode" parameterType="String" resultType="map">
+	 	SELECT 
+			 g.buy_order_code 	AS buyOrderCode
+			,g.goods_info_code  AS goodsInfoCode
+			,g.likey_pass		AS likeyPass
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{goodsInfoCode};
+	 </select>
+	
 	<!-- 입고 등록 
 	<insert id="regIncoming" parameterType="Incoming" >
 		/* 입고 등록 */
