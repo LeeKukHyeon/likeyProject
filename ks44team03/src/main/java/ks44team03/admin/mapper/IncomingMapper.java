@@ -13,6 +13,9 @@ import ks44team03.dto.OrderInfo;
 @Mapper
 public interface IncomingMapper {
 	
+	//ajax 호출
+	public List<GoodsInfo> goodsDetail(String code);
+	
 	//보관료 발생 상품 조회
 	public List<GoodsInfo> storageCharge(Map<String, Object> paramMap);
 	

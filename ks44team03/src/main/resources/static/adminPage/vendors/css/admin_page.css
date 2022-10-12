@@ -156,7 +156,7 @@ h2{
   
 }
 
-.modal .incoming_modal_layer {
+.modal {
   position:fixed;
   top:0;
   left:0;

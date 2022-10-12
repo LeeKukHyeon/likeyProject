@@ -98,17 +98,79 @@
 	<div class="modal">
 		<div class="incoming_modal_content">
 			<table class="input_table">
-				  	<tr>
-                        <td>주문정보 코드</td>                  
-                       
-                    </tr>
-				  	<tr>
-                        <td>아이디</td>                 
-                       
-                    </tr>
+				  	<tbody>
+                  
+                     <tr>
+                        <th>주문정보 코드</th>
+                        <td id="goodsInfoCode"></td>
+                     </tr>
+                     <tr>
+                        <th>아이디</th>
+                        <td id="id"></td>
+                     </tr>
+                     <tr>
+                        <th>주문코드</th>
+                        <td id="buyOrderCode"></td>
+                     </tr>
+                     <tr>
+                        <th>구매사이트</th>
+                        <td id="gSite"></td>
+                     </tr>
+                     <tr>
+                        <th>상품이미지URL</th>
+                        <td id="goodsImgUrl"></td>
+                     </tr>
+                     <tr>
+                        <th>상품명</th>
+                        <td id="gName"></td>
+                     </tr>
+                     <tr>
+                        <th>택배회사</th>
+                        <td id="deliveryCompany"></td>
+                     </tr>
+                     <tr>
+                        <th>운송장번호</th>
+                        <td id="trackingNum"></td>
+                     </tr>
+                     <tr>
+                        <th>사이즈</th>
+                        <td id="gSize"></td>
+                     </tr>
+                     <tr>
+                        <th>색깔</th>
+                        <td id="gColor"></td>
+                     </tr>
+                     <tr>
+                        <th>상품옵션</th>
+                        <td id="goodsOption"></td>
+                     </tr>
+                     <tr>
+                        <th>상품가격</th>
+                        <td id="goodsPrice"></td>
+                     </tr>
+                     <tr>
+                        <th>상품개수</th>
+                        <td id="gAmount"></td>
+                     </tr>
+                     <tr>
+                        <th>총가격</th>
+                        <td id="totalPrice"></td>
+                     </tr>
+                     <tr>
+                        <th>라이키패스</th>
+                        <td id="likeyPass"></td>
+                     </tr>
+                     <tr>
+                        <th>품목</th>
+                        <td id="hsCode"></td>
+                     </tr>
+                     
+                  </tbody>
                   
 			</table>
+			<button class="modal_box button">취소</button>
 		</div>
+		
 	</div>	
 
 
@@ -125,13 +187,44 @@
 		
 		
 		$('.input_table a').click(function(){
+			var code = $(this).text();
+			
+			$.ajax({
+				url : "goodsDetail",
+				type : 'POST',
+				data : {code:code},
+				success: function(data){
+					console.log(data[0].goodsInfoCode);
+					$('#goodsInfoCode').text(data[0].goodsInfoCode );
+					$('#id').text(data[0].id );
+					$('#buyOrderCode').text(data[0].buyOrderCode );
+					$('#gSite').text(data[0].gSite );
+					$('#goodsImgUrl').text(data[0].goodsImgUrl );
+					$('#gName').text(data[0].gName );
+					$('#deliveryCompany').text(data[0].deliveryCompany );
+					$('#trackingNum').text(data[0].trackingNum );
+					$('#gSize').text(data[0].gSize );
+					$('#gColor').text(data[0].gColor );
+					$('#goodsOption').text(data[0].goodsOption );
+					$('#goodsPrice').text(data[0].goodsPrice );
+					$('#gAmount').text(data[0].gAmount );
+					$('#totalPrice').text(data[0].totalPrice );
+					$('#likeyPass').text(data[0].likeyPass );
+					$('#hsCode').text(data[0].hsCode );
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+    			{
+    				alert("호출에 실패했습니다." + errorThrown );
+    			}
+			});
 			$('.modal').fadeIn(1000);
-			$('.modal_bg').fadeIn(1000);
+			
 		});
 
-		$('.modal_box button').click(function(){
-			$('.incoming_modal').fadeOut();
-			$('.modal_bg').fadeOut();
+		$('.modal_box').click(function(){
+			
+			$('.modal').fadeOut(1000);
+			
 		});
 	
 		
