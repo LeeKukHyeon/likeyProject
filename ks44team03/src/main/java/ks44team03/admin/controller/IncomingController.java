@@ -47,16 +47,18 @@ public class IncomingController {
 		
 			return goodsDetail;
 	}
-	
-	@PostMapping("/incomingRegister")
-	public String regIncoming(Incoming incoming) {
-	
-		log.info("입력한 값 ::: {}", incoming);
-	incomingService.regIncoming(incoming);
-	
-	return "redirect:/incomingSearch";
-	}
-	
+
+	//입고 등록
+	@GetMapping("/incomingRegister") 
+	public String regIncoming(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
+	  List<GoodsInfo> regIncoming = incomingService.regIncoming();
+	  
+	  log.info("goodsInfoCode ::::" + goodsInfoCode);
+	  
+	  model.addAttribute("title", "입고 등록"); 
+	  model.addAttribute("regIncoming",regIncoming); 
+	  return "incoming/incomingRegister";
+	 }
 	
 	//입고전 상품목록
 	@GetMapping("incomingGoodsList")
@@ -136,7 +138,7 @@ public class IncomingController {
 	
 	//오류 입고
 	
-	@GetMapping("errorIncoming")
+	@GetMapping("/errorIncoming")
 	public String errorIncoming(Model model) {
 		List<GoodsInfo> errorIncoming = incomingService.errorIncoming(); 
 		
@@ -146,7 +148,7 @@ public class IncomingController {
 	
 	//전체 입고
 	
-	@GetMapping("arrivedAll")
+	@GetMapping("/arrivedAll")
 	public String arrivedAll(Model model) {
 		List<OrderInfo> arrivedAll = incomingService.arrivedAll(); 
 		
@@ -156,7 +158,7 @@ public class IncomingController {
 	
 	  //일부입고
 	  
-	@GetMapping("partialArrival") 
+	@GetMapping("/partialArrival") 
 	public String partialArrival(Model model) {
 		List<OrderInfo> partialArrival = incomingService.partialArrival(); 
 	 
@@ -166,7 +168,7 @@ public class IncomingController {
 	  
 	  // 창고도착
 	  
-	@GetMapping("arriveWarehouse") 
+	@GetMapping("/arriveWarehouse") 
 	public String arriveWarehouse(Model model) {
 	  List<GoodsInfo> arriveWarehouse = incomingService.arriveWarehouse();
 	  
@@ -199,25 +201,11 @@ public class IncomingController {
 		return "incoming/incomingList";
 	}
 	
-	@GetMapping("/incomingRegister")
-	public String regIncoming(Model model) {
-	
-		model.addAttribute("title", "입고 등록");
-	
-		return "incoming/incomingRegister";
-	}
-	
-	// 입고 현황 조회
-	@GetMapping("/incomingSearch")
-	public String incomingCurrentState(Model model) {
-	
-		List<Incoming> incomingSearch = incomingService.incomingCurrentState();
-	
-		log.info("입고 목록 ::::: {}", incomingSearch);
-		
-		model.addAttribute("incomingSearch", incomingSearch);
-		model.addAttribute("title", "입고 현황 조회");
-		
-		return "incoming/incomingSearch";
+	//입고등록 모달 - 특정 상품코드 조회
+	@GetMapping("/incomingGoodsInfoByCode")
+	@ResponseBody
+	public Map<String,Object> incomingGoodsInfoByCode(@RequestParam(value="goodsInfoCode") String goodsInfoCode){
+		Map<String, Object> goodsInfo = incomingService.incomingGoodsInfoByCode(goodsInfoCode);
+		return goodsInfo;
 	}
 }

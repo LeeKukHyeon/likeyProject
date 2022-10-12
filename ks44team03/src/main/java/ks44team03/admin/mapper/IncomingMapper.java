@@ -12,6 +12,8 @@ import ks44team03.dto.OrderInfo;
 
 @Mapper
 public interface IncomingMapper {
+	//입고 등록
+	public List<GoodsInfo> regIncoming();
 	
 	//ajax 호출
 	public List<GoodsInfo> goodsDetail(String code);
@@ -28,9 +30,6 @@ public interface IncomingMapper {
 	//상품 도착 등록
 	public int regGoodsIncoming(String check);
 	
-	//입고 등록
-	public int regIncoming(Incoming incoming);
-	
 	//오류입고 목록
 	public List<GoodsInfo> errorIncoming();
 	
@@ -41,9 +40,6 @@ public interface IncomingMapper {
 	public List<OrderInfo> partialArrival();
 	
 	/*입고전 상품 목록(페이지 적용)*/
-	
-	
-	
 	public int getListPaging(String buyOrderCode);	
 	
 	//입고전 상품 목록
@@ -55,6 +51,6 @@ public interface IncomingMapper {
 	//입고전 주문 목록
 	public List<OrderInfo> incomingOrderList(Map<String, Object> paramMap);
 	
-	//입고 현황 조회
-	public List<Incoming> incomingCurrentState();
+	//입고등록 모달 - 특정 상품코드 조회
+	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode);
 }
