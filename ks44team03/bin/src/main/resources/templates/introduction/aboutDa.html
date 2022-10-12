@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<head>
+<style>
+.sub_contents_wrap {margin-top:30px;}
+.sub_contents_wrap > div {float:left;}
+
+.sub_contents_wrap .left_menu {width:179px;margin-right:70px;}
+.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
+
+.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
+.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
+.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
+.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
+.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
+
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
+.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
+
+.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
+
+
+		.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:30px;}
+		.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;padding-left:20px;font-size:13px;color:#6e6e6e;}
+
+
+		.sub1_title {font-size:22px;color:#3f3f3f;font-weight:bold;padding-right:28px;}
+		.sub1_text {font-size:16px;color:#252525;line-height:34px;padding-top:25px;}
+		.sub1_text font {color:#f47827;font-weight:bold;}
+		
+
+		.more_bt {margin-top:15px;}
+		.more_bt li {float:left;padding-right:11px;}
+		
+		.sub1_tab_bt {margin-top:15px;}
+		.sub1_tab_bt td {cursor:pointer;}
+
+		.sub1_tab_box {background-color:#f5f5f5;padding:25px;margin-top:15px;}
+		.sub1_tab_box .sub1_title {margin-bottom:0px;}
+		
+		.more_box {border:1px solid #cccccc;margin-bottom:0px;padding:20px;}
+		.more_box .title {font-size:20px;color:#f58340;font-weight:bold;background:url(image/S_sub_2_5_2_icon_01.gif) 0 50% no-repeat;padding-left:20px;margin-bottom:15px;}
+		.more_box table {margin-bottom:20px;}
+		.more_box table td {font-size:15px;color:#515151;line-height:25px;}
+		.more_box table td:first-child {background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding:0 14px 0 11px;}
+
+		.more_box ul li {font-size:16px;color:#515151;line-height:30px;}
+
+		.step_box {background-color:#f8f8f8;padding:18px 35px;margin-bottom:15px;}
+		.step_box .title {font-size:22px;color:#3f3f3f;font-weight:bold;margin-bottom:20px;background:url(image/sub_1_2_step2_icon_01.gif) 0 50% no-repeat;padding-left:17px;}
+		.step_box .title font {color:#ff793a}
+		.step_box .text {font-size:16px;color:#515151;line-height:25px;}
+		.step_box .img {margin-top:15px;}
+
+				.sub1_2_1_tab_bt {border-collapse:collapse;}
+				.sub1_2_1_tab_bt td {width:16.5%;border:1px solid #cccccc;text-align:center;padding:35px 0;filter:alpha(opacity=50);opacity:.5;}
+				.sub1_2_1_tab_bt td .country_font {font-size:15px;color:#4a4a4a;padding-top:13px;}
+
+				.sub1_2_1_table {border-collapse:collapse;margin-top:8px;}
+				.sub1_2_1_table th, .sub1_2_1_table td {border:1px solid #cccccc;text-align:center;}
+
+				.sub1_2_1_table th {background-color:#f3f3f3;padding:12px 0;font-size:17px;color:#447b9a;font-weight:bold;}
+				.sub1_2_1_table th.td1 {width:184px;}
+				.sub1_2_1_table th.td2 {width:97px;}
+				.sub1_2_1_table th.td3 {width:220px;}
+				.sub1_2_1_table th.td4 {width:146px;}
+
+				.sub1_2_1_table td {padding:12px 0;font-size:15px;color:#565656;line-height:22px;background-color:#ffffff;}
+				.sub1_2_1_table td.td1 {font-size:17px;color:#4a4a4a;font-weight:bold;}
+
+</style>
+
+</head>
+
+
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="content">
+		<!------------------------------ 중간 내용 여기서부터 ------------------------------>
+
+<div class="sub_contents_wrap wrap">
+
+	<!-- 왼쪽 메뉴 -->
+	<div class="left_menu">
+		<div>이용안내</div>
+		<ul>
+			<li>
+				<div><a href="sub_1_1.html">LIKEY 소개</a></div>
+
+				<ul>
+					<li>
+						<a href="sub_1_1.html">배송 대행이란?</a>
+						
+						<ul>
+							<li><a href="sub_1_1_1.html">- 배송대행 신청 가이드</a></li>
+							<li><a href="sub_1_1_2.html">- 묶음배송 신청 방법</a></li>
+							<li><a href="">- 트래킹 번호 분할 방법</a></li>
+							<li><a href="sub_1_1_4.html">- 상품 분할 신청 방법</a></li>
+							<li><a href="sub_1_1_5.html">- 개인 통관 부호란?</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="sub_1_2.html">구매 대행이란?</a>
+
+						<ul>
+							<li><a href="sub_1_2_1.html">- 구매대행 신청 가이드</a></li>
+						</ul>
+					</li>
+					<li><a href="sub_1_3.html">선출고 서비스</a></li>
+					<li><a href="sub_1_4.html">물류센터 소개</a></li>
+					<!-- <li><a href="sub_1_5.html">365일 부피무게면제</a></li> -->
+				</ul>
+			</li>
+			<li>
+				<div><a href="sub_2.html">LIKEY 서비스</a></div>
+
+				<ul>
+					<li><a href="sub_2_1.html">해외 직구 가이드</a></li>
+					<li>
+						<a href="sub_2_2_1.html">등급할인/쿠폰혜택/포인트</a>
+
+						<ul>
+							<li><a href="sub_2_2_1.html">- 등급할인</a></li>
+							<li><a href="sub_2_2_2.html">- 쿠폰혜택</a></li>
+							<li><a href="sub_2_2_3.html">-포인트</a></li>
+						</ul>
+					</li>
+					<li><a href="sub_2_3.html">무검수 LIKEY PASS</a></li>
+					<li><a href="sub_2_4.html">안심보상 안내</a></li>
+					<li>
+						<a href="sub_2_5_1.html">검수 포장 가이드</a>
+
+						<ul>
+							<li><a href="sub_2_5_1.html">- 검수가이드</a></li>
+							<li><a href="sub_2_5_2.html">- 포장가이드</a></li>
+						</ul>
+					</li>
+					<li><a href="sub_2_6.html">반송절차</a></li>
+					<li><a href="sub_2_7.html">검수/기타 수수료</a></li>
+					<li><a href="sub_2_8.html">관/부가세</a></li>
+					<li><a href="sub_2_9.html">일반/목록통관 안내</a></li>
+					<li><a href="sub_2_10.html">통관/적재 불가 상품</a></li>
+				</ul>
+			</li>
+			<li>
+				<div><a href="sub_3_1.html">LIKEY 배송요금</a></div>
+
+				<ul>
+					<li><a href="sub_3_1.html">배송요금 안내</a></li>
+					<li><a href="#none" onclick="javascript:window.open('sub_3_2.html', 'calculator', 'width=610, height=750, left=40, top=40');">배송비 계산기</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>	<!-- //왼쪽 메뉴 -->
+
+
+	<!-- 오른쪽 내용 -->
+	<div class="right_text">
+
+		<div class="sub_navi_text"> 
+			<div>HOME &nbsp;>&nbsp; LIKEY 소개 &nbsp;>&nbsp; <b>배송 대행이란?</b></div>
+		</div>
+		
+		<div style="font-size:22px;color:#3f3f3f;font-weight:bold;line-height:44px;margin-top:30px;">
+		안녕하세요. 빠르고 안전한 배송대행 LIKEY 입니다.<br>
+		<i style="color:#42ace3">선 출고 후 결제 시스템, 95% 이상 당일출고</i> 를 통하여 하루 더 빠른 배송으로 찾아뵙겠습니다.
+		</div>
+
+		<div style="display:inline-block;width:900px;height:2px;background-color:#b1b1b1;margin:20px 0;"></div>
+
+
+		<table border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td class="sub1_title">- 배송대행이란?</td>
+			<td width="1"><a href="sub_1_1_1.html" target="_blank"><img src="image/S_sub1_bt_01.gif"></a></td>
+		  </tr>
+		</table>
+
+		<div class="sub1_text">
+		해외사이트에서 구매하신 상품을 LIKEY 물류센터 주소로 보내주시면<br>
+		국제배송 및 통관을 통하여 국내 배송지까지 안전하게 배송대행 해드리는 서비스입니다.
+		</div>
+
+		<ul class="more_bt">
+			<li><a href="" target="_blank"><img src="image/S_sub1_bt_04.gif"></a></li>
+			<li><a href="" target="_blank"><img src="image/S_sub1_bt_05.gif"></a></li>
+			<li><a href="" target="_blank"><img src="image/S_sub1_bt_06.gif"></a></li>
+			<li><a href="" target="_blank"><img src="image/S_sub1_bt_07.gif"></a></li>
+		</ul>
+
+		
+		<div style="clear:both;"></div>
+
+
+
+		<script>
+		var autonum3=1;
+
+		//교체
+		function subtab1(layerid){
+			
+			//이미지교체
+			for(i=1 ; i<=7 ; i++){
+				$(".sub1_tab_"+i).hide();
+			}
+
+			$(".sub1_tab_"+layerid).show();
+
+			//버튼교체
+
+			for(var i=1 ; i<=7 ; i++){
+				$(".sub1_tab_"+i+"_bt").attr("src","/image/S_sub1_process1_0"+i+".gif");
+			}
+			$(".sub1_tab_"+layerid+"_bt").attr("src","/image/S_sub1_process1_0"+layerid+"_ov.gif");
+			
+		}
+		</script>
+
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_tab_bt">
+		  <tr>
+		    <td><img src="image/S_sub1_process1_01_ov.gif" class="sub1_tab_1_bt" onclick="subtab1('1')"></td>
+			<td><img src="image/S_sub1_process1_02.gif" class="sub1_tab_2_bt" onclick="subtab1('2')"></td>
+			<td><img src="image/S_sub1_process1_03.gif" class="sub1_tab_3_bt" onclick="subtab1('3')"></td>
+			<td><img src="image/S_sub1_process1_04.gif" class="sub1_tab_4_bt" onclick="subtab1('4')"></td>
+			<td><img src="image/S_sub1_process1_05.gif" class="sub1_tab_5_bt" onclick="subtab1('5')"></td>
+			<td><img src="image/S_sub1_process1_06.gif" class="sub1_tab_6_bt" onclick="subtab1('6')"></td>
+			<td><img src="image/S_sub1_process1_07.gif" class="sub1_tab_7_bt" onclick="subtab1('7')"></td>
+		  </tr>
+		</table>
+
+
+		<!-- 1 -->
+		<div class="sub1_tab_1">
+			<div class=" sub1_tab_box">
+				<div class="sub1_title">01. 해외주소 만들기</div>
+				<div class="sub1_text">
+				LIKEY에 회원가입 후 로그인 시 LIKEY 메인 상단과 마이페이지 > 나의 배송대행지에서 나의 배송대행지 해외주소를<br>
+				확인할 수 있습니다.
+				</div>
+			</div>
+
+
+			<div style="height:15px;"></div>
+
+			
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				LIKEY 사이트 우측 상단의 회원가입을 선택하여 LIKEY에 회원 가입합니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step1_img_01.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				LIKEY에 로그인 후 사이트 상단의 해외 배송지 주소 보기에서 지역별 주소를 확인하실 수 있습니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step1_img_02.jpg"></div>
+			</div>
+
+
+			<div style="height:15px;"></div>
+
+
+			<div class="more_box">
+				<div class="title">상품가 결제 후 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					
+				    <td>
+					미국의 경우 주마다 소비세(Sales Tax)가 달리 발생되며, 배송비의 측정 방법도 다르므로 따져보고 선택하세요.
+					</td>
+					<td><a href="sub_1_4.html" target="_blank"><img src="image/S_sub1_3_step1_bt_01.gif"></a></td>
+					<br>
+				  </tr>
+				</table>
+				
+				
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					배송신청서에 기재되는 상품금액, 수량 등 모든 정보는 세관신고서에 그대로 반영되므로 허위로 작성 불가하며, 수입이 금지된 상품이나 <br>
+					선적이 불가능한 상품의 구매로인해 발생되는 불이익은 LIKEY에서 책임지지 않습니다. 또한, 통관상 문제 및 배송과정 중 발생된 <br>
+					사고에 대한 보상은 배송신청서상 정보를 기준으로 적용합니다.
+					</td>
+				  </tr>
+				</table>
+			</div>
+
+			
+		</div>
+		<!-- //1 -->
+		
+
+
+		<!-- 2 -->
+		<div class="sub1_tab_2" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">02. 해외 쇼핑몰 상품 구매</div>
+				<div class="sub1_text">
+				원하는 상품이 있는 해외 쇼핑몰에 회원 가입하여 상품을 구매 시, 받는 주소(Shipping Address)란에 LIKEY의 물류센터 
+				주소를 입력하여 주문합니다. 상품 주문 시에 배송가능 여부, 수입금지품목 및 관부가세에 주의 하세요.
+				</div>
+			</div>
+
+
+			<div style="height:18px;"></div>
+
+			
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				LIKEY 사이트 우측 상단의 나의 배송대행지 중 지역을 선택하여 오픈 되는 물류센터 주소 팝업의 복사 기능을 사용하여 상품을<br>
+				구매하려는 해외 쇼핑몰의 배송지 주소(Shipping Address)에 LIKEY 물류센터 주소를 입력합니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step2_img_01.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				 Billing Address 는 신용카드의 청구지 주소를 입력하는 것으로 쇼핑몰에 따라 청구지 주소를 영문으로 입력 하세요.
+				</div>
+			</div>
+
+
+
+			<div style="height:25px;"></div>
+
+
+			<div class="more_box">
+				<div class="title">해외 쇼핑몰 Tip</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td width="462">직구 정보 > 해외 인기 쇼핑몰에서 인기 있는 해외 쇼핑몰을 알려드립니다.</td>
+					<td><a href="https://cafe.naver.com/hoyausa?iframe_url=/ArticleList.nhn%3Fsearch.clubid=23520608%26search.menuid=79%26search.boardtype=L" target="_blank"><img src="image/sub_1_2_step1_bt_01.jpg"></a></td>
+				  </tr>
+				  <tr>
+				    <td colspan="2" style="background:none;">쇼핑몰 Amazon , Toms, Gap, Diapers, 6pm, ideeli, Boscovs, oldnavy, Zulily, Nordstrom, A/X, AE, rakuten 등)</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>해외 유명 브랜드의 핫딜 정보를 보려면?</td>
+					<td><a href="https://cafe.naver.com/hoyausa?iframe_url=/ArticleList.nhn%3Fsearch.clubid=23520608%26search.menuid=35%26search.boardtype=L" target="_blank"><img src="image/sub_1_2_step1_bt_02.jpg"></a></td>
+				  </tr>
+				</table>
+			</div>
+
+
+			<div class="more_box">
+				<div class="title">해외 쇼핑몰 상품 선택 시 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td width="483">해외 쇼핑몰 결제 전, 수입금지품목을 확인하세요. (관세청 문의: 1577-8577) </td>
+					<td><a href="sub_2_10.html" target="_blank"><img src="image/sub_1_2_step1_bt_03.jpg"></a></td>
+				  </tr>
+				  <tr>
+				    <td colspan="2" style="background:none;">쇼핑몰 Amazon , Toms, Gap, Diapers, 6pm, ideeli, Boscovs, oldnavy, Zulily, Nordstrom, A/X, AE, rakuten 등)</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					목록통관 상품의 경우 $150 (미국 $200) 이상일 경우, 일반 통관 상품의 경우 한화 15만원 이상 인 경우 관/부가세가 발생합니다.<br>
+					</td>
+				  </tr>
+				</table>
+
+				<div style="padding:5px 0 0 11px"><a href="sub_2_8.html" target="_blank"><img src="image/sub_1_2_step1_bt_04.jpg"></a></div>
+			</div>
+		</div>
+		<!-- //2 -->
+		
+
+
+		<!-- 3 -->
+		<div class="sub1_tab_3" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">03. 배송대행 신청</div>
+				<div class="sub1_text">
+				해외 쇼핑몰에서 상품을 구매한 후 LIKEY에서 배송대행 신청서를 작성합니다. <br>
+				선 출고 시스템으로 신청서 상 등록된 상품 모두 입고와 동시에 무게측정이 진행되며, <br>
+				무게측정 된 이후에는 수정이 불가능하오니 수정사항과 묶음 배송 신청은 상품이 물류센터에 도착하기 전에 미리 신청해주세요.
+				</div>
+			</div>
+
+
+			<div style="height:18px;"></div>
+
+			
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				LIKEY 상단 배송대행 신청 버튼을 클릭하여 배송대행신청서를 작성합니다.<br>
+				쇼핑몰에서 한번에 결제한 상품은 모두 하나의 배송대행 신청서에 신청하셔야 합니다.
+				</div>
+
+				<div style="position:relative;">
+					<div style="position:absolute; width:150px; z-index:1; right: 0px; top: -30px;">
+						<a href="shipping.html" target="_blank"><img src="image/sub_1_2_step2_bt_01.gif"></a>
+					</div>
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_01_.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				배송대행 신청 시 주의사항을 잘 읽은 후 팝업을 닫으시고 주의사항 동의에 체크합니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_02_.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>03</font></div>
+				<div class="text">
+				물류센터 선택 후 주의 사항을 확인하며, 배송방법을 선택합니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_03.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>04</font></div>
+				<div class="text">
+				상품정보를 등록합니다.<br>
+				제품별 URL, 이미지, 색상, 사이즈를 입력해주셔야 현지 물류센터에서 정확한 검수가 가능합니다.<br>
+				트래킹 번호란 미국 내 운송장 번호이며, 구매 후 1~3일 후에 주문하신 해외 쇼핑몰에서 확인하여 LIKEY 배송 신청서 ‘수정’을 통해 트래킹 <br> 
+				번호를 추가 입력합니다. 배송에 문제가 있을 경우 트래킹 번호가 꼭 필요하며, 트래킹 번호 미입력 시 입고가 지연될 수 있습니다.<br>
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_04.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>05</font></div>
+				<div class="text">
+				원하는 배송옵션(상품 부가 서비스 선택)을 선택한 후 수령인 주소를 입력합니다.<br>
+				개인통관고유부호는 관세청에서 발급하는 번호이며, 수령인명의 개인통관 고유부호를 넣어야 정상적인 통관이 가능합니다.<br>
+				수령인 주소는 무게 측정된 이후에는 수정이 불가능하오니 꼭 미리 작성해주세요.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_05.jpg"></div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>06</font></div>
+				<div class="text">
+				신청서를 등록하면 신청이 완료됩니다. <br>
+				신청서 수정은 상품이 입고되기 전까지만, 묶음배송 신청은 무게측정 전까지만 가능하니 주의 하시기 바랍니다.
+				</div>
+			</div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>07</font></div>
+				<div class="text">
+				신청서 작성 시 트래킹 번호가 나오지 않은 경우 구매 1~3일 후에 주문하신 해외 쇼핑몰에서 트래킹 번호를 확인합니다.<br>
+				LIKEY 배송 신청서 ‘수정’을 통해 트래킹 번호를 추가 입력합니다. 배송에 문제가 있을 경우 트래킹 번호가 꼭 필요하며, <br>
+				트래킹 번호 미입력 시 입고가 지연될 수 있습니다.
+				</div>
+
+				<div class="img"><img src="image/S_sub1_3_step3_img_06.jpg"></div>
+			</div>
+
+
+			<div style="height:25px;"></div>
+
+
+			<div class="more_box">
+				<div class="title">미국 내 배송 현황 확인방법</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					트래킹 번호를 입력하시면 미국 내 현지 운송 현황을 확인하실 수 있습니다.
+					</td>
+				  </tr>
+				</table>
+
+				<div style="padding-top:17px;"><img src="image/S_sub1_3_step3_img_07.jpg"></div>
+			</div>
+
+
+			<div class="more_box">
+				<div class="title">미신청 입고 시 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					상품이 도착되었을 때 신청서 미작성 상태이거나 트레킹번호 미입력으로 주문정보를 확인할 수 없을 경우<br>
+					"배송대행 신청 미작성 입고" 으로 분류되며 마이페이지>배송신청내역 페이지에서 확인하실 수 있습니다.<br>
+					배송대행 신청 미작성 입고 시 한국으로의 배송이 지연될 수 있으므로 신청서를 빨리 작성해주셔야 이후 절차 진행이 가능합니다.
+					
+					</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					미신청 입고 시 배송이 지연될 수 있으므로 신청서를 빨리 작성해 주셔야 이후 절차가 진행 가능합니다.
+					</td>
+				  </tr>
+				</table>
+			</div>
+
+		</div>
+		<!-- //3 -->
+
+
+
+		<!-- 4 -->
+		<div class="sub1_tab_4" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">04. 상품입고 및 검수</div>
+				<div class="sub1_text">
+				LIKEY 물류센터에 상품이 도착하면 기본적인 검수 확인 및 입고가 진행됩니다.<br>
+				물품 확인 과정에서 이상이 있는 경우 회원님께 오류입고 내용을 안내해드립니다.<br>
+				신청서에 있는 상품 중 입고된 상품은 수정이 불가능합니다.
+				</div>
+			</div>
+
+			<div style="height:18px;"></div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				현지 물류 센터에 상품이 도착하면 일괄 물품 수령 사인을 합니다. (미국 USPS의 경우 업체 특성상 예외될 수 있습니다)
+				</div>
+			</div>
+
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				도착 된 물품과 신청서를 매칭하여 입고 확인이 진행됩니다.
+				</div>
+			</div>
+
+			<div class="step_box">
+				<div class="title">STEP <font>03</font></div>
+				<div class="text">
+				상품의 수량, 색상, 사이즈 등을 배송신청서와 비교하여 검수를 진행합니다.
+				</div>
+
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="img">
+				  <tr>
+				    <td><a href=""><img src="image/sub_1_2_step4_img_01.jpg"></a></td>
+					<td><a href=""><img src="image/sub_1_2_step4_img_02.jpg"></a></td>
+					<td><a href=""><img src="image/sub_1_2_step4_img_03.jpg"></a></td>
+				  </tr>
+				</table>
+			</div>
+
+
+
+			<div style="height:25px;"></div>
+
+
+
+			<div class="more_box">
+				<div class="title">상품 오류 입고 시 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					검수 결과 상품이 오류 입고 되었을 경우 해당 신청서는 오류입고 상태로 변경 되며, 회원님께 오류 입고되었음을 문자 및 알림으로<br>
+					안내해드립니다.
+					
+					</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					오류 내용을 확인한 회원님은 해당 상품의 수령 또는 반품 여부 결정하셔서 수령 또는 반품 버튼을 클릭해주셔야만 이후 절차가 <br>
+					진행됩니다.
+					</td>
+				  </tr>
+				</table>
+			</div>
+
+
+
+			<div class="more_box">
+				<div class="title">검수 불가 항목</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					신청서 상에 제품 사진이 등록되어 있지 않은 경우
+					</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					입고 시 확인이 불가능한 제품 하자의 경우 (올풀림, 재봉불량, 전자제품의 작동유무, 세트상품의 구성품 누락, 메탈소재의 스크래치 등)
+					</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					포장된 상품 내부의 사이즈, 불량, 포장 박스의 오염 및 손상이 경우
+					</td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+		<!-- //4 -->
+
+
+
+		<!-- 5 -->
+		<div class="sub1_tab_5" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">05. 선출고 후결제</div>
+				<div class="sub1_text">
+			
+				저희 LIKEY는 선출고 시스템으로 상품 입고와 동시에 포장 및 무게측정이 이루어지며, 무게측정 후 95% 이상 당일 출고됩니다. <br>
+				무게측정 시 배송비가 책정되면 문자 및 알림으로 배송비 결제를 알려드립니다. <a href="sub_1_3.html" target="_blank"><img src="image/S_sub1_3_step1_bt_01_1"></a><br>
+                ※선출고 후 24시간 이내에 미결제 시 국내 배송 지연 및 반환수수료가 청구되오니 이부분 유의 부탁드립니다.<br>
+
+				</div>
+			</div>
+
+			<div style="height:18px;"></div>
+			
+
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				상품 출고 시 물류센터 지역에 따라 항공기 스케쥴 및 국내 배송사가 달라 집니다.<br>
+				국제 운송의 경우 결제 마감 시간, 주말, 썸머 타임, 항공기 스케쥴 변화 등 다양한 변수에 따라 배송 시간에 차이가 있으니<br>
+				이점 참고하시기 바랍니다.
+				</div>
+
+			
+
+
+
+				<div style="height:15px;"></div>
+
+				
+				<script>
+				var autonum=1;
+
+				//교체
+				function sub1_2_1tab(layerid){
+					
+					//이미지교체
+					for(i=1 ; i<=6 ; i++){
+						$(".sub1_2_1_tab_"+i).hide();
+					}
+
+					$(".sub1_2_1_tab_"+layerid).show();
+
+					//버튼교체
+
+					for(var i=1 ; i<=6 ; i++){
+						$(".sub1_2_1_tab_"+i+"_bt").css({"filter":"alpha(opacity=50)","opacity":".5","background-color":"#f3f3f3"});
+					}
+					$(".sub1_2_1_tab_"+layerid+"_bt").css({"filter":"alpha(opacity=100)","opacity":"1","background-color":"#ffffff"});
+					
+				}
+				</script>
+
+
+				<!-- 나라 탭 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_bt">
+				  <tr>
+					<td class="sub1_2_1_tab_1_bt" onclick="sub1_2_1tab('1')" style="filter:alpha(opacity=100);opacity:1;background-color:#ffffff;">
+						<div><img src="image/S_schedule_flag_01.gif"></div>
+						<div class="country_font">미국(USA)</div>
+					</td>
+					<td  class="sub1_2_1_tab_2_bt" onclick="sub1_2_1tab('2')">
+						<div><img src="image/S_schedule_flag_02.gif"></div>
+						<div class="country_font">중국 (CN)</div>
+					</td>
+					<td  class="sub1_2_1_tab_3_bt" onclick="sub1_2_1tab('3')">
+						<div><img src="image/S_schedule_flag_04.gif"></div>
+						<div class="country_font">일본 (JP)</div>
+					</td>
+					<td  class="sub1_2_1_tab_4_bt" onclick="sub1_2_1tab('4')">
+						<div><img src="image/S_schedule_flag_06.gif"></div>
+						<div class="country_font">영국 (UK)</div>
+					</td>
+					<td  class="sub1_2_1_tab_5_bt" onclick="sub1_2_1tab('5')">
+						<div><img src="image/S_schedule_flag_03.gif"></div>
+						<div class="country_font">독일 (GER)</div>
+					</td>
+					<td  class="sub1_2_1_tab_6_bt" onclick="sub1_2_1tab('6')">
+						<div><img src="image/S_schedule_flag_05.gif"></div>
+						<div class="country_font">한국 (KR)</div>
+					</td>
+				  </tr>
+				</table>
+				<!-- //나라 탭 -->
+
+
+				<!-- 미국 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_1 sub1_2_1_table">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1">미국 델라웨어<br>(DE)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						부피무게와 중량의 차가<br>
+						30lbs 이상인 경우 부피무게,<br>
+						30lbs 미만 시 중량
+					</td>
+					<td class="td4">
+						출고 후<br>
+						24시간 이내
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				  <tr>
+				    <td class="td1">미국 오레곤<br>(OR)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						중량과 부피무게 중<br>
+						큰 무게 적용
+					</td>
+					<td class="td4">
+						출고 후<br>
+						24시간 이내
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				  <tr>
+				    <td class="td1">미국 뉴저지<br>(NJ)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						부피무게와 중량의 차가<br>
+						30lbs 이상인 경우 부피무게,<br>
+						30lbs 미만 시 중량
+					</td>
+					<td class="td4">
+						출고 후<br>
+						24시간 이내
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				</table>
+				<!-- //미국 -->
+
+
+				<!-- 중국 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_2 sub1_2_1_table" style="display:none;">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1" rowspan="2">중국 상하이<br>(SH)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						중량과 부피무게 중<br>
+						큰 무게 적용
+					</td>
+					<td class="td4">
+						월~금<br>
+						오후 3시
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				  <tr>
+					<td class="td2">해상</td>
+					<td class="td3">
+						중량
+					</td>
+					<td class="td4">
+						월~금<br>
+						오후 3시
+					</td>
+					<td>배송비 결제 후 약 3~6일</td>
+				  </tr>
+				</table>
+				<!-- //중국 -->
+
+
+				<!-- 일본 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_3 sub1_2_1_table" style="display:none;">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1" rowspan="2">일본 도쿄<br>(TK)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						30kg 미만일 경우 중량무게 적용<br>
+						30kg 초과시 부피와 중량 중<br>
+						큰 무게 적용
+					</td>
+					<td class="td4">
+						월~금<br>
+						오후 12시
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				  <tr>
+					<td class="td2">해상</td>
+					<td class="td3">
+						중량
+					</td>
+					<td class="td4">
+						수<br>
+						오후 12시
+					</td>
+					<td>배송비 결제 후 약 7~10일</td>
+				  </tr>
+				</table>
+				<!-- //일본 -->
+
+
+				<!-- 영국 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_4 sub1_2_1_table" style="display:none;">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1" rowspan="2">영국<br>(UK)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						중량과 부피무게 중<br>
+						큰 무게 적용
+					</td>
+					<td class="td4">
+						월, 수, 금<br>
+						오후5시
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				</table>
+				<!-- //영국 -->
+
+
+				<!-- 독일 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_5 sub1_2_1_table" style="display:none;">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1" rowspan="2">독일<br>(DH)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						책정된 중량 무게와 <br>
+						실제 책정된 부피무게의 <br> 
+						50% 할인 무게와 비교 후 <br> 
+						부피무게가 더 작은 경우 중량,<br> 
+						부피무게가 더 큰 경우 부피무게 
+					</td>
+					<td class="td4">
+						월 ~ 금<br>
+						오후4시
+					</td>
+					<td>배송비 결제 후 약 3~5일</td>
+				  </tr>
+				</table>
+				<!-- //독일 -->
+
+
+				<!-- 한국 -->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_6 sub1_2_1_table" style="display:none;">
+				  <tr>
+				    <th class="td1">지역</th>
+					<th class="td2">배송방법</th>
+					<th class="td3">배송비 측정 기준 무게</th>
+					<th class="td4">결제마감<br>(한국시간기준)</th>
+					<th>총 예상기간</th>
+				  </tr>
+				  <tr>
+				    <td class="td1" rowspan="2">한국 서울<br>(SE)</td>
+					<td class="td2">항공</td>
+					<td class="td3">
+						중량과 부피무게 중<br>
+						큰 무게 적용
+					</td>
+					<td class="td4">
+						월 ~ 금<br>
+						오전 9시
+					</td>
+					<td>수령지역에 따라 상이함</td>
+				  </tr>
+				</table>
+				<!-- //한국 -->
+
+
+				<div class="text" style="padding-top:15px;">- 미국 부피무게 계산법 = (가로x세로x높이(inch)) / 166 , CBM 단위(CA해상만 사용) = 가로 x 세로 x 높이(m)</div>
+				<div class="text">- 배송 기간은 주말, 썸머 타임, 항공기 스케쥴 변동, 관부가세 결제, 통관의 이슈 사항 등의 영향으로 변동이 발생 할 수 있습니다.</div>
+			</div>
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				
+				관부가세 발생 시 LIKEY 관할 관세사에서 개별로 안내드리며, 결제가 완료되어야 국내 배송이 진행됩니다.
+				</div>
+
+				<div class="img"><img src="image/sub_1_2_step6_img_01.jpg"></div>
+			</div>
+		</div>
+
+		
+
+		
+		<!-- //5 -->
+
+
+
+		<!-- 6 -->
+		<div class="sub1_tab_6" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">06. 통관</div>
+				<div class="sub1_text">
+				국제 배송 후 통관을 거쳐 국내 배송이 진행됩니다. 물류센터 지역에 따라 출고 후 항공기 스케쥴에 차이가 있으며,<br> 
+				물품 및 상품 가격에 따라 통관 과정에서 관/부가세가 부가되어 결제가 청구될 수 있습니다.<br>
+				관부가세가 책정된 경우 관할 관세사에서 개별로 안내드리며 결제 후 국내 배송이 진행됩니다.
+				</div>
+			</div>
+			
+
+			<div style="height:18px;"></div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				통관 과정에서 이상이 없으면 국내 배송사로 상품이 전달되며 수령 주소로 배송해드립니다. 
+				</div>
+
+				<div style="padding-top:15px;"></div>
+			</div>
+
+			<div class="step_box">
+				<div class="title">STEP <font>02</font></div>
+				<div class="text">
+				
+				관부가세 발생 시 LIKEY 관할 관세사에서 개별로 안내드리며, 결제가 완료되어야 국내 배송이 진행됩니다.
+				</div>
+
+				<div style="padding-top:15px;"><a href="sub_2_8.html" target="_blank"><img src="image/sub_1_2_step6_bt_01.gif"></a></div>
+
+			</div>
+
+
+			<div class="more_box">
+				<div class="title">통관관련 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					모든 수입물품은 관세법의 규정에 따라 세관의 통관 절차를 거쳐야 하며, 배송대행 신청서의 내용으로 LIKEY에서<br>
+					통관서류 작성을 대행하나 허위로 기재하신 내용에 대해서는 LIKEY에서 책임을 질 수 없습니다.
+					</td>
+				  </tr>
+				</table>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					한 사람이 같은 날 두 건 이상 통관 시 과세기준과 관계없이 세금이 부여 되는 합산과세가 발생되며, 이 경우 보상이 불가능하니 <br>
+					“출고보류” 신청하시어 합관세 발생되지 않도록 유의 부탁드립니다.
+					</td>
+				  </tr>
+				</table>
+
+				<div style="padding-top:5px;"><a href=""><img src="image/sub_1_2_step6_bt_02.gif"></a></div>
+			</div>
+		</div>
+		<!-- //6 -->
+
+
+
+		<!-- 7 -->
+		<div class="sub1_tab_7" style="display:none;">
+			<div class="sub1_tab_box">
+				<div class="sub1_title">07. 상품 수령 배송완료</div>
+				<div class="sub1_text">
+				상품 수령 후 국내 배송이 완료됩니다.
+				</div>
+			</div>
+
+			
+			<div style="height:18px;"></div>
+
+
+			<div class="step_box">
+				<div class="title">STEP <font>01</font></div>
+				<div class="text">
+				배송중인 단계에서는 수령확인 버튼이 노출되며, 상품을 수령시 수령확인 버튼을 클릭해주셔야만 배송이 완료됩니다.<br>
+				회원 혜택 및 다양한 이벤트의 거래 건수는 배송완료 기준이므로 상품 수령 시 꼭 수령확인 버튼을 클릭 해 주시기 바랍니다.
+				</div>
+
+				<div class="img"><img src="image/sub_1_2_step7_img_01.jpg"></div>
+			</div>
+
+
+			<div style="height:25px;"></div>
+
+
+			<div class="more_box">
+				<div class="title">배송시 주의사항</div>
+
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+					아래의 조건에 하나라도 해당하는 경우 국내 추가 착불 택배비가 발생되오니 유의 하시기 바랍니다. 
+					</td>
+				  </tr>
+				</table>
+
+				<ul>
+					<li>- 상품의 무게가 30kg 이상</li>
+					<li>- 한변이 1m를 초과하는 경우</li>
+					<li>- 세변의 합이 160cm 이상일 경우</li>
+					<li>- TV 혹은 모니터 상품의 경우 (대형화물택배로 이관)</li>
+					<li>- 국내 배송사의 정책에 따라 이외에 추가 요금이 발생될 수 있습니다.</li>
+				</ul>
+			</div>
+		</div>
+		<!-- //7 -->
+		
+
+	
+	</div>
+	<!-- //오른쪽 내용 -->
+
+</div>
+<div style="clear:both;"></div>
+<!------------------------------ //중간 내용 여기서부터 ------------------------------>
+	
+	
+	</body>
+</html>

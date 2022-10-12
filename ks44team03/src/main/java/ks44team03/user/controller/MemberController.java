@@ -36,7 +36,7 @@ public class MemberController {
 		return "registration/userForm";
 	}
 	
-	// 회원가입 버튼 클릭시 이동
+	// 회원가입 버튼 클릭시 회원가입 완료 및 로그인페이지로 이동
 	  @PostMapping("/signup")
 	  public String signup(MemberDTO member) {
 		  System.out.println(member + "member");
@@ -45,7 +45,7 @@ public class MemberController {
 		  return "/login/loginForm";
 		  }
 	  
-
+	
 	  // 회원가입 시 아이디 중복 검사
 	  @PostMapping("/signup/checkid")
 	  @ResponseBody

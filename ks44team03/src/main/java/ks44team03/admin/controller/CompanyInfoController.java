@@ -244,19 +244,14 @@ public class CompanyInfoController {
 		<option value="companyAddr">회사주소</option>
 		<option value="companyCate">회사종목</option>
 		<option value="companyBirth">설립날짜</option>*/
-		if("companyNum".equals(searchKey)) {
-			searchKey = "company_number";
-		}else if("companyInfoName".equals(searchKey)) {
-			searchKey = "ci_name";
-		}else if("companyName".equals(searchKey)) {
-			searchKey = "company_name";
-		}else if("companyAddr".equals(searchKey)) {
-			searchKey = "company_addr";
-		}else if("companyCate".equals(searchKey)) {
-			searchKey = "company_cate";
-		}else {
-			searchKey = "company_birth";
-		}
+		/*
+		 * if("companyNum".equals(searchKey)) { searchKey = "company_number"; }else
+		 * if("companyInfoName".equals(searchKey)) { searchKey = "ci_name"; }else
+		 * if("companyName".equals(searchKey)) { searchKey = "company_name"; }else
+		 * if("companyAddr".equals(searchKey)) { searchKey = "company_addr"; }else
+		 * if("companyCate".equals(searchKey)) { searchKey = "company_cate"; }else {
+		 * searchKey = "company_birth"; }
+		 */
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchKey", searchKey);

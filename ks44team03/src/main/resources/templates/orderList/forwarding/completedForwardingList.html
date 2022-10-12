@@ -40,6 +40,7 @@
 		
 		timeTracking  배송상태정보등록날짜-->
 		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/forwarding/searchCompletedForwardingList :: searchFragment"></div>
 	 	<table class="input_table" style="width:100%;">
 	 		<tr>
 	 			<th>입고관리코드</th>

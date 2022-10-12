@@ -27,8 +27,14 @@
 				<th class="hit">조회</th>
 				<th class="date">등록일</th>
 			  </tr>
-				<tr th:if="${not #lists.isEmpty(noticeList)}" th:each="l : ${noticeList}">
-					<td class="number" th:text="${l.noticeNumCode}" ></td>
+				<tr th:if="${not #lists.isEmpty(noticeList)} and ${#strings.equals(l.noticeImportant,'[공지]' )}" th:each="l : ${noticeList}">
+					<td class="number" th:if="${l.noticeImportant}" th:text="${l.noticeImportant}"></td>
+					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+					<td class="hit" th:text="${l.noticeView}"></td>
+					<td class="date" th:text="${l.noticeDate}"></td>
+				</tr>
+				<tr th:if="${not #lists.isEmpty(noticeList)}  and ${#strings.isEmpty(l.noticeImportant)}" th:each="l : ${noticeList}">
+					<td class="number" th:text="${l.noticeNumCode}"></td>
 					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
 					<td class="hit" th:text="${l.noticeView}"></td>
 					<td class="date" th:text="${l.noticeDate}"></td>

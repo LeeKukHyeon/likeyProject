@@ -16,7 +16,9 @@
 		<result column="addr" property="addr"/>
 		<result column="total_price" property="totalPrice"/>
 		<result column="goods_order_date" property="goodsOrderDate"/>
-		<result column="temp" property="temp"/>
+		<result column="step1" property="step1"/>
+		<result column="step2" property="step2"/>
+		<result column="step3" property="step3"/>
 		<result column="Desired_courier" property="DesiredCourier"/>
 		<result column="buy_way" property="buyWay"/>
 		<result column="request" property="request"/>
@@ -63,7 +65,9 @@
 			<result column="addr" property="addr"/>
 			<result column="total_price" property="totalPrice"/>
 			<result column="goods_order_date" property="goodsOrderDate"/>
-			<result column="temp" property="temp"/>
+			<result column="step1" property="step1"/>
+			<result column="step2" property="step2"/>
+			<result column="step3" property="step3"/>
 			<result column="Desired_courier" property="DesiredCourier"/>
 			<result column="buy_way" property="buyWay"/>
 			<result column="request" property="request"/>
@@ -114,7 +118,7 @@
 		  ,addr
 		  ,total_price
 		  ,goods_order_date
-		  ,temp
+		  ,step3
 		  ,Desired_courier
 		  ,buy_way
 		  ,request
@@ -123,7 +127,7 @@
 		FROM
 			order_info
 		WHERE
-			temp IS NULL;
+			step3 = 'y';
 	</select>
 	<!-- (임시저장)이용자 주문서 목록 -->
 	<select id="getTempOrderList" resultMap="orderListResultMap">
@@ -139,7 +143,7 @@
 		  ,addr
 		  ,total_price
 		  ,goods_order_date
-		  ,temp
+		  ,step3
 		  ,Desired_courier
 		  ,buy_way
 		  ,request
@@ -148,7 +152,55 @@
 		FROM
 			order_info
 		WHERE
-			temp IS NOT NULL;
+			step3 = 'n';
+	</select>
+	<!-- 주문서목록 검색조회 -->
+	<select id="getSearchOrderList" resultMap="orderListResultMap">
+		/* 주문서목록 검색조회 */
+		SELECT
+		   buy_order_code
+		  ,id
+		  ,user_name
+		  ,transportation
+		  ,nation
+		  ,order_num
+		  ,phone
+		  ,total_price
+		  ,addr
+		  ,goods_order_date
+		FROM
+			order_info
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+				AND step3 = 'y'
+		</trim>
+		ORDER BY buy_order_code;
+	</select>
+	<!-- (임시저장)주문서목록 검색조회 -->
+	<select id="getSearchTempOrderList" resultMap="orderListResultMap">
+		/* (임시저장)주문서목록 검색조회 */
+		SELECT
+		   buy_order_code
+		  ,id
+		  ,user_name
+		  ,transportation
+		  ,nation
+		  ,order_num
+		  ,phone
+		  ,total_price
+		  ,addr
+		  ,goods_order_date
+		FROM
+			order_info
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+				AND step3 = 'n'
+		</trim>
+		ORDER BY buy_order_code;
 	</select>
 	<!-- 배송대행 주문서 신청완료 목록조회 -->
 	<select id="getDeliveryOrderList" resultMap="goodsInfoResultMap">
@@ -165,7 +217,30 @@
 		   delivery_current_state AS d
 		   ON g.goods_info_code = d.goods_info_code
 		WHERE 
-		   o.temp IS NULL AND o.buy_way ="배송대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		   o.step3 = 'y' AND o.buy_way ="배송대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		GROUP BY o.buy_order_code
+		ORDER BY o.goods_order_date;
+	</select>
+	<!-- 배송대행 주문서 신청완료목록 검색조회 -->
+	<select id="getSearchDeliveryOrderList" resultMap="goodsInfoResultMap">
+		/* 배송대행 주문서목록 검색조회 */
+		SELECT
+		   *
+		FROM
+		   goods_info AS g 
+		   INNER JOIN 
+		   order_info AS o 
+		   ON 
+		   g.buy_order_code = o.buy_order_code
+		   INNER JOIN
+		   delivery_current_state AS d
+		   ON g.goods_info_code = d.goods_info_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+				AND o.step3 = 'y' AND o.buy_way ="배송대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		</trim>
 		GROUP BY o.buy_order_code
 		ORDER BY o.goods_order_date;
 	</select>
@@ -184,7 +259,30 @@
 		   delivery_current_state AS d
 		   ON g.goods_info_code = d.goods_info_code
 		WHERE 
-		   o.temp IS NULL AND o.buy_way ="구매대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		   o.step3 = 'y' AND o.buy_way ="구매대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		GROUP BY o.buy_order_code
+		ORDER BY o.goods_order_date;
+	</select>
+	<!-- 구매대행 주문서 신청완료목록 검색조회 -->
+	<select id="getSearchBuyProgressOrderList" resultMap="goodsInfoResultMap">
+		/* 구매대행 주문서목록 검색조회 */
+		SELECT
+		   *
+		FROM
+		   goods_info AS g 
+		   INNER JOIN 
+		   order_info AS o 
+		   ON 
+		   g.buy_order_code = o.buy_order_code
+		   INNER JOIN
+		   delivery_current_state AS d
+		   ON g.goods_info_code = d.goods_info_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+				AND o.step3 = 'y' AND o.buy_way ="구매대행" AND d.stat_info='입고 대기' AND g.arrival = 'n'
+		</trim>
 		GROUP BY o.buy_order_code
 		ORDER BY o.goods_order_date;
 	</select>
@@ -221,6 +319,42 @@
 			os.order_state = '입금 전' AND i.send_out IS NULL 
 		ORDER BY o.buy_order_code;
 	</select>
+	<!-- 출고대기/결제대기 주문서 신청완료목록 검색조회 -->
+	<select id="getSearchWaitingForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고대기/결제대기 주문서목록 검색조회 */
+		SELECT
+		   i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+		   order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+			${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND os.order_state = '입금 전' AND i.send_out IS NULL
+		</trim>
+		ORDER BY o.buy_order_code;
+	</select>
 	<!-- 출고대기/결제완료 목록조회 -->
 	<select id="getCompletedForwardingList" resultMap="goodsInfoResultMap">
 		/* 출고대기/결제완료 목록조회 */
@@ -250,9 +384,46 @@
 			ON 
 			g.goods_info_code = i.goods_info_code
 		WHERE /* i.send_out -> NULL 일 경우 출고대기, 날짜 데이터 있으면 출고완료 */
-			os.order_state = '입금 완료' AND i.send_out IS NOT NULL 
+			os.order_state = '입금 완료' AND i.send_out IS NULL 
 		ORDER BY o.buy_order_code;
 	</select>
+	<!-- 출고대기/결제완료 주문서 신청완료목록 검색조회 -->
+	<select id="getSearchCompletedForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고대기/결제완료 주문서목록 검색조회 */
+		SELECT
+		   i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+		   order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+			${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND os.order_state = '입금 완료' AND i.send_out IS NULL
+		</trim>
+		ORDER BY o.buy_order_code;
+	</select>
+	<!-- 출고보류 목록조회 -->
 	<select id="getHoldForwardingList" resultMap="goodsInfoResultMap">
 		/* 출고보류 목록조회 */
 		SELECT
@@ -282,7 +453,44 @@
 			ON 
 			g.goods_info_code = i.goods_info_code
 		WHERE /* i.send_out -> NULL 일 경우 출고대기, 날짜 데이터 있으면 출고완료 */
-			i.postpone = 'n' AND i.send_out IS NULL 
+			i.postpone = 'y' AND i.send_out IS NULL 
+		ORDER BY o.buy_order_code;
+	</select>
+	<!-- 출고보류 주문서 신청완료목록 검색조회 -->
+	<select id="getSearchHoldForwardingList" resultMap="goodsInfoResultMap">
+		/* 출고보류 주문서목록 검색조회 */
+		SELECT
+		   i.incoming_code
+		  ,o.buy_order_code
+		  ,i.goods_info_code
+		  ,o.id
+		  ,g.g_name
+		  ,i.weight
+		  ,i.volume
+		  ,i.send_out
+		  ,i.postpone
+		  ,g.total_price
+		  ,os.order_state
+		FROM
+		   order_info AS o
+			INNER JOIN 
+			order_state AS os
+			ON 
+			o.buy_order_code = os.buy_order_code
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+			INNER JOIN 
+			incoming AS i
+			ON 
+			g.goods_info_code = i.goods_info_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+			${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND i.postpone = 'y' AND i.send_out IS NULL
+		</trim>
 		ORDER BY o.buy_order_code;
 	</select>
 </mapper>

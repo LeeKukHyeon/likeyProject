@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+
+<!-- 회사 목록 조회 화면 -->
+<th:block layout:fragment="adminContent">
+
+	  <!-- stat content-wrapper -->
+        <div class="content-wrapper">
+             	<h2 th:text="${title}"></h2>  <!-- 컨텐츠? -->	        	
+        <div th:include="company/searchCompanyList :: searchFragment"></div>      
+             	<div class="row">
+             		<div class="col-sm-12">		
+						<table class="input_table" style="width:100%;">
+							<tr>
+						   <!-- private String companyCode; //회사코드
+								private String companyNum; //사업자등록번호
+								private String companyInfoName; //대표자성명
+								private String companyDelegateNum; //대표자주민등록번호
+								private String companyAddr; //회사주소
+								private String companyCate; //회사종목
+								private String companyBirth; //회사설립날짜
+								private String companyName; //회사명 -->
+								<th>선택</th>
+								<!-- <th>회사코드</th> -->
+								<th>사업자등록번호</th>
+								<th>대표자성명</th>
+								<th>대표자주민등록번호</th>
+								<th>회사주소</th>
+								<th>회사종목</th>
+								<th>회사설립날짜</th>
+								<th>회사명</th>
+							</tr>
+							<tbody>
+								<tr th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
+									<td id="companyCheck"><input type="checkbox"></td>
+									<!-- <td th:text="${l.companyCode}"></td> -->
+									<td th:text="${l.companyNum}"></td>
+									<td th:text="${l.companyInfoName}"></td>
+									<td th:text="${l.companyDelegateNum}"></td>
+									<td th:text="${l.companyAddr}"></td>
+									<td th:text="${l.companyCate}"></td>
+									<td th:text="${l.companyBirth}"></td>
+									<td th:text="${l.companyName}"></td>
+								</tr>
+								<tr th:unless="${not #lists.isEmpty(companyList)}">
+									<td colspan="8" style="text-align: center;">등록된 회사가 없습니다.</td>
+								</tr>
+							</tbody>						
+						</table>
+					</div>
+				</div>				      
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      
+</th:block>
+</html>

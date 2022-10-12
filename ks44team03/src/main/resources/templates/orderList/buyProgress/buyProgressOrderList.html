@@ -40,6 +40,7 @@
 		
 		timeTracking  배송상태정보등록날짜-->
 		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/buyProgress/searchBuyProgressOrderList :: searchFragment"></div>
 	 	<table class="input_table" style="width:100%;">
 	 		<tr>
 	 			<th>상품정보코드</th>
@@ -81,7 +82,7 @@
 	 				<td th:text="${l.orderInfoDto.buyWay}"></td>
 	 			</tr>
 	 			<tr th:unless="${not #lists.isEmpty(buyProgressOrderList)}">
-	 				<td colspan="10" style="text-align: center;">등록된 주문서가 없습니다.</td>
+	 				<td colspan="16" style="text-align: center;">등록된 주문서가 없습니다.</td>
 	 			</tr>
 	 		</tbody>
 	 	</table>

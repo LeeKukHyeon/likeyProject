@@ -23,14 +23,19 @@ button {cursor:pointer;}
 /* 공지사항,배송스케줄 조회 페이지로 이동하는 버튼 색상 */
 #return:hover {color: pink;}
 
-/* faqSearch css */
+/* 자주하는 질문 css */
 .faqSort {background: #D2E1FF; color: black; height: 20mm;font-size: 16px; padding-top: 23px;}
 .subject a:hover {color:pink;}
 .faqSortList li {height: 8mm; margin-left: 3mm;}
-.faqSortList li a {font: bold; align-content: center;}
 .faqSortList {background-color: #dcdcdc; flex: auto; height: 180px;}
 .faqSortM {margin: 0px 3px 0px 3px;}
-.faqSortList li a b:hover {color: red;}
+.faqSortList li a {font-weight: bold; color: black;}
+.faqSortList li a:hover {color: red;}
+.faqSortList li div:hover {color: red; cursor: pointer;}
+.faqSortList li div {font-weight: bold;}
+.faqList{width: 235mm; padding-left: 3px; margin-top: 10mm}
+.faqList div{background: #f3f3f3;}
+.faqList div h4ㅇ{color: green;}
 
 /* faqRegister */
 .faqLeft {width: 30mm; height: 20mm; text-align: center;}
@@ -48,3 +53,5 @@ button {cursor:pointer;}
 .personal_question_list td.subject {text-align:left;padding-left:30px; width: 50%}
 .personal_question_list td.date {width:50px;font-size:14px;}
 .personal_question_list td a {color: black;}
+
+

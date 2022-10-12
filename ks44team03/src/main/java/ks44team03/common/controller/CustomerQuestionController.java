@@ -115,7 +115,7 @@ public class CustomerQuestionController {
 	}
 	
 	//나의 문의 게시글 보기
-	@GetMapping("/MyQuestionRead")
+	@GetMapping("/myQuestionRead")
 	public String viewMyQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
@@ -124,7 +124,7 @@ public class CustomerQuestionController {
 		
 		model.addAttribute("QuestionRead", QuestionRead);
 		
-		return "/customerService/question/MyQuestionRead";
+		return "/customerService/question/myQuestionRead";
 	}
 
 	

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- 목록조회 바 -->
+	<div th:fragment="searchFragment" >
+	        <form th:action="@{/buyProgressOrderList}" method="post" class="searchBar">
+	        	<select name="searchKey">
+	        		<option value="g.goods_info_code">상품정보코드</option>
+	        		<option value="g.id">아이디</option>
+	        		<option value="g.buy_order_code">구매대행주문코드</option>
+	        		<option value="g.grouping_delivery">묶음배송그룹코드</option>
+	        		<option value="g.g_site">구매사이트</option>
+	        		<option value="g.g_name">상품명</option>
+	        		<option value="g.tracking_num">운송장번호</option>
+	        		<option value="g.goods_price">상품가격</option>
+	        		<option value="g.g_amount">수량</option>
+	        		<option value="g.total_price">총 금액</option>
+	        		<option value="g.likey_pass">라이키패스</option>
+	        		<option value="g.arrival">상품도착여부</option>
+	        		<option value="g.arrival_date">입고일</option>
+	        		<option value="d.time_tracking">정보등록날짜</option>
+	        		<option value="d.stat_info">상태정보</option>
+	        	</select>
+        		<input type="text" name="searchValue" placeholder="검색어 를 입력해주세요.">
+        		<button type="submit" class="searchBtn">조회</button>
+	        </form>		
+        </div>
+</html>

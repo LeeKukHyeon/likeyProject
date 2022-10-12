@@ -7,8 +7,8 @@ public class GoodsInfo {
 	private String buyOrderCode;
 	private String groupingDelivery;
 	private String gSite;
-	private String goodsImgUrl;
-	private String goodsImgUpload;
+	private String goodsImgUrl;       //
+	private String goodsImgUpload;    //
 	private String gName;
 	private String deliveryCompany; 
 	private String trackingNum;
@@ -24,7 +24,7 @@ public class GoodsInfo {
 	private String arrivalDate;
 	private String hsCode;
 	private String gBrand;
-	private String goodsUrl;
+	private String goodsUrl;         //
 	private String storeName;
 	private String storeLocation;
 	

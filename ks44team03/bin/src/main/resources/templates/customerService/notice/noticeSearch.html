@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+		
+	<div align="center">
+		
+		<div style="width: 55%">
+			<h2 align="left">공지사항</h2>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeSearch}">공지사항</a></p>
+			<hr style="height: 1px; background: gray;">
+		</div>
+		
+		<table width="55%">
+
+		<tbody><tr>
+		  <td align="center">
+		
+			<table width="100%"class="schedule_board_list">
+			  <tbody><tr>
+				<th class="number">번호</th>
+				<th class="subject">제목</th>
+				<th class="hit">조회</th>
+				<th class="date">등록일</th>
+			  </tr>
+				<tr th:if="${not #lists.isEmpty(noticeList)}" th:each="l : ${noticeList}">
+					<td class="number" th:text="${l.noticeNumCode}" ></td>
+					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+					<td class="hit" th:text="${l.noticeView}"></td>
+					<td class="date" th:text="${l.noticeDate}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(noticeList)}">
+					<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td><td></td>
+				</tr>
+		    </tbody></table>
+		
+		    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		      <tbody><tr><td height="10"></td></tr>
+		    </tbody></table>
+		
+		
+		    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+		      <tbody><tr>
+		        <td width="70%" id="notice_page_move">
+		        &nbsp; <b>1</b>&nbsp;    <a href="/bbs.php?board_id=notice&amp;page=2&amp;mode=list&amp;query_field=&amp;query_key=">2</a>&nbsp;    <a href="/bbs.php?board_id=notice&amp;page=3&amp;mode=list&amp;query_field=&amp;query_key=">3</a>&nbsp;
+		        </td>
+		        <td align="right" width="30%">
+		           <a th:href="@{/noticeRegister}"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px" >글쓰기</button></a>
+		        </td>
+		      </tr>
+		    </tbody></table>
+		
+		    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+		      <tbody><tr>
+		        <td></td>
+		        <td align="center">
+		          <form name="search" method="post" action="/bbs.php">
+		          <input type="hidden" name="mode" value="list">
+		          <input type="hidden" name="board_id" value="notice">
+		          <input type="hidden" name="sub_type_parm" value="">
+		          <select>
+		          	<option>제목</option>
+		          	<option>내용</option>
+		          	<option>제목 or 내용</option>
+		          </select>
+		          <input type="text" name="query_key" size="25" value="" class="input" style="height: 24px">
+		          <button type="button" style="color: black; border-radius: 3px; border: solid 1px gray;" >검색</button>
+		        </form></td>
+		      </tr>
+		    </tbody></table>
+		
+		
+		  </td>
+		</tr>
+		</tbody></table>
+	</div>
+</body>
+</html>

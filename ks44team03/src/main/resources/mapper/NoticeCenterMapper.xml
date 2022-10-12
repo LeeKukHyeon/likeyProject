@@ -14,7 +14,18 @@
 		<result column="notice_img" property="noticeImg"/>
 		<result column="notice_date" property="noticeDate"/>
 		<result column="notice_view" property="noticeView"/>
+		<result column="notice_important" property="noticeImportant"/>
 	</resultMap>
+	
+	<!-- 공지사항 조회수 카운트  -->
+	<update id="countView">
+	/* 공지사항 조회수 카운트 */
+	UPDATE notice_center
+	SET
+		notice_view = notice_view + 1
+	where
+		notice_num = #{noticeNumCode};
+	</update>
 	
 	<!-- 공지사항 검색 -->
 	<select id="noticeSearch" parameterType="map" resultMap="csNoticeResultMap" fetchSize="100">
@@ -70,9 +81,10 @@
 		,notice_content
 		,notice_img
 		,notice_date
-		,notice_view)
+		,notice_view
+		,notice_important)
 	VALUES 
-		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), #{noticeView})
+		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), 0 , #{noticeImportant})
 	</insert>
 	
 	<!-- 공지사항 제목 클릭시 나오는 내용 -->
@@ -100,6 +112,7 @@
 		,notice_img
 		,notice_date
 		,notice_view
+		,notice_important
 	FROM
 		notice_center
 	order by 

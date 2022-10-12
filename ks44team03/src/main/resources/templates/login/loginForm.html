@@ -7,30 +7,28 @@
 <head>
 <script>
 	$(function(){
-	
-	function loginSubmit(){
-		var memberCheck = $("#member").is(':checked');
-		var companyCheck = $("#company").is(':checked');
-		
-		var $user = $("#user");
-		
-		var $username = $("#username");
-		var $password = $("#password");
-		
-		if(memberCheck){
-			var username = $user.val()+" user"
-			$username.val(username);
-			//console.log("username : "+$username.val())
-			return true;
-		}else if(companyCheck){
-			var username = $user.val()+" com"
-			$username.val(username);
-			return true;
-		}else{
-			return false;
-		}
+		function loginSubmit(){
+			var memberCheck = $("#member").is(':checked');
+			
+			var $user = $("#user");
+			
+			var $username = $("#username");
+			var $password = $("#password");
+			
+			if(memberCheck){
+				var username = $user.val()+" user"
+				$username.val(username);
+				//console.log("username : "+$username.val())
+				return true;
+			}else if(companyCheck){
+				var username = $user.val()+" com"
+				$username.val(username);
+				return true;
+			}else{
+				return false;
+			}
 	}
-	</script>
+</script>
 </head>
 	<!-- default_layout.html에 정의한 main page 부분 -->
 	<body layout:fragment="content">

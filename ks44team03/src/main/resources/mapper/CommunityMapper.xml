@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ks44team03.user.mapper.CommunityMapper">
+	
+	<!-- 커뮤니티 -->
+	<resultMap type="Community" id="communityResultMap">
+		<id column="cm_num" property="communityNum"/>
+		<result column="id" property="communityId"/>
+		<result column="cm_title" property="communityTitle"/>
+		<result column="cm_content" property="communityContent"/>
+		<result column="cm_img" property="communityImg"/>
+		<result column="cm_date" property="communityDate"/>
+		<result column="cm_comment" property="communityComment"/>
+		<result column="cm_comment_date" property="communityDate"/>
+		<result column="cm_view" property="communityView"/>	
+		<result column="community_cate" property="communityView"/>	
+	</resultMap>
+<!-- ########################### 이용후기 관련 mapper State ################################# -->	
+	<!-- 이용후기 등록 -->
+	<insert id="addReview" parameterType="Community">
+		/* 이용후기 등록 */
+		INSERT INTO community
+		(
+		 cm_num
+		,id
+		,cm_title
+		,cm_content
+		,cm_img
+		,cm_date
+		,cm_view
+		,community_cate
+		)
+		VALUES
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '이용후기');
+	</insert>
+	
+	<!-- 이용후기 목록 조회 -->
+	<select id="getReviewList" resultMap="communityResultMap">
+		/* 이용후기 목록 조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		WHERE 
+			community_cate = '이용후기'
+		ORDER BY cm_num DESC;
+	</select>
+	<!-- 이용후기 목록 검색조회 -->
+	<select id="getSearchReviewList" resultMap="communityResultMap">
+		/* 이용후기 목록 검색조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND community_cate = '이용후기'
+		</trim>
+		ORDER BY cm_num DESC;
+	</select>
+	<!-- 이용후기 상세정보 -->
+	<select id="getReviewInfo" resultMap="communityResultMap">
+		/* 이용후기 상세정보 */	
+		SELECT
+			 cm_num
+			,id
+			,cm_title
+			,cm_content
+			,cm_date
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</select>
+	<select id="reviewListIdCheck" parameterType="String" resultType="Boolean">
+		/* 이용후기 아이디 체크 */
+		SELECT
+			COUNT(c.id)
+		FROM
+			community AS c
+		WHERE 
+			c.id = #{communityId};
+	</select>
+<!-- ########################### 이용후기 관련 mapper End ################################# -->		
+
+<!-- ########################### 정보공유 관련 mapper State ################################# -->
+	<!-- 정보공유 목록 조회 -->
+	<select id="getPostbordeList" resultMap="communityResultMap"> 
+		/* 정보공유 목록 조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		WHERE 
+			community_cate = '정보공유'
+		ORDER BY cm_num DESC;
+	</select>
+	<!-- 정보공유 목록 검색조회 -->
+	<select id="getSearchPostbordeList" resultMap="communityResultMap">
+		/* 이용후기 목록 검색조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND community_cate = '정보공유'
+		</trim>
+		ORDER BY cm_num DESC;
+	</select>
+	<!-- 정보공유 등록 -->
+	<insert id="addPostborde" parameterType="Community">
+		/* 정보공유 등록 */
+		INSERT INTO community
+		(
+		 cm_num
+		,id
+		,cm_title
+		,cm_content
+		,cm_img
+		,cm_date
+		,cm_view
+		,community_cate
+		)
+		VALUES
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '정보공유');
+	</insert>
+
+	<!-- 정보공유 상세정보 -->
+	<select id="getPostbordeInfo" resultMap="communityResultMap">
+		/* 정보공유 상세정보 */	
+		SELECT
+			 cm_num
+			,cm_title
+			,cm_content
+			,cm_date
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</select>
+<!-- ########################### 정보공유 관련 mapper End ################################# -->			
+	<!-- 글조회시 조회수 증가 -->
+	<update id="getCountHit">
+		/* 글조회시 조회수 증가 */
+		UPDATE 
+			community 
+		SET 
+			cm_view = cm_view+1
+		WHERE
+			cm_num = #{communityNum};
+	</update>
+</mapper>

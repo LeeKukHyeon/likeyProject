@@ -16,10 +16,9 @@
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
 
-
 	<!-- 1:1문의 검색 -->
 	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
-	/* 공지사항 검색 */
+	/* 1:1문의 검색 */
 	SELECT
 		mtm_num_code
 		,e_code
@@ -81,7 +80,7 @@
 		mtm_title=#{mtmTitle},
 		mtm_content=#{mtmContent},
 		mtm_img=#{mtmImg}
-	WHERE 
+	WHERE
 		mtm_num_code= #{mtmNumCode}
 	</update>
 
@@ -109,7 +108,7 @@
 	/* 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 */
 	UPDATE question_center
 	SET
-		mtm_situation='답변중'
+		mtm_situation=if(mtm_situation='답변 완료','답변 완료','답변중')
 	WHERE 
 		mtm_num_code = #{mtmNumCode}
 	</update>
@@ -125,6 +124,7 @@
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_img
 		,mtm_answer
 		,mtm_situation
 	FROM
@@ -148,7 +148,5 @@
 	ORDER BY
 		mtm_num_code DESC;
 	</select>
-
-
 
 </mapper>

@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/*관리자 페이지 css*/
+.input_table th {
+	    background-color: #f8f8f8;
+	    font-size: 15px;
+	    color: #535353;
+	    font-weight: bold;
+	    text-align: center;
+		}
+.input_table th, .input_table td {
+    border: 1px solid #c6c6c6;
+	}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+input{
+	padding-right: 200px;
+}
+
+h2{
+	border-bottom: 1px solid #c6c6c6;
+	padding-bottom: 10px;
+}
+/* 관리자 페이지 회사 관련목록검색css */
+.searchBar{
+	font-size: 13px;
+}
+.searchBar input{
+	padding: 3px;
+	margin-bottom: 8px;
+	border : 1px double;
+	border-radius: 5px;		 
+}
+.searchBar select{
+	padding: 0px;
+	margin-bottom: 8px;
+	border : 1px double;
+	border-radius: 5px;	
+}
+.searchBtn{
+	background-color: #797979;
+	border: none;
+	color: white;
+	padding: 5px 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-weight:bold;
+	border-radius: 5px;
+}
+.searchBtn:hover {
+	background-color: #535353;
+}
+
+.add_button {
+	  background-color: #797979;
+	  border: none;
+	  color: white;
+	  padding: 10px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 13px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+	  border-radius: 10px;
+		}
+.add_button:hover{
+  background-color: #535353;
+}
+.cancel_button {
+    background-color: #797979;
+    border: 1px solid;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight:bold;
+    border-radius: 10px;
+	}
+.cancel_button:hover{
+	background-color: #535353;
+}
+.right_text {margin-left: 30%; margin-right: 30%;}
+
+.input_table {width:100%;}
+.td2 {padding-left: 5px;}
+
+#companyCheck{padding: 0px; text-align: center;}
+
+#modifyButton{
+	background-color: #797979;
+	border: none;
+	color: white;
+	padding: 5px 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-weight:bold;
+	border-radius: 5px;
+}
+#modifyButton:hover{
+	background-color: #535353;
+}
+
+/* 쇼핑몰 가입 사이트 검색*/
+.search_button {background-color: ; color: white; padding-right: 6px;}
+
+select {height : 28px; }
+#ch1 {margin-right:10px;margin-bottom: 10px;}
+#search_button {
+
+    padding-top: 5px;
+    height: 29px;
+ }
+.companyCheckbox {text-align: center;}
+.td2 input[type=text] {width: 100%; height : 50px;}

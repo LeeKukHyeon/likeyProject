@@ -8,7 +8,7 @@ public class ScheduleCenter {
 	private String scheduleContent; //배송스케줄내용
 	private String scheduleImg; //배송스케줄이미지
 	private String scheduleDate; //배송스케줄등록일자
-	private String scheduleView; //배송스케줄조회수
+	private int scheduleView; //배송스케줄조회수
 	
 	public String getScheduleNumCode() {
 		return scheduleNumCode;
@@ -46,10 +46,10 @@ public class ScheduleCenter {
 	public void setScheduleDate(String scheduleDate) {
 		this.scheduleDate = scheduleDate;
 	}
-	public String getScheduleView() {
+	public int getScheduleView() {
 		return scheduleView;
 	}
-	public void setScheduleView(String scheduleView) {
+	public void setScheduleView(int scheduleView) {
 		this.scheduleView = scheduleView;
 	}
 	@Override

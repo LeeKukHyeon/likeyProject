@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ks44team03.user.mapper.OrderMapper">
+	<!-- GoodsInfo DTO -->
+	<resultMap type="GoodsInfo" id="goodsInfoResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
+		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
+		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+		<result column="g_brand" property="gBrand"/>
+		<result column="goods__url" property="goodsUrl"/>
+		<result column="store_name" property="storeName"/>
+		<result column="store_location" property="storeLocation"/>
+		<association property="orderInfoDto" javaType="OrderInfo">
+			<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="id" property="id"/>
+			<result column="transportation" property="transportation"/>
+			<result column="nation" property="nation"/>
+			<result column="order_num" property="orderNum"/>
+			<result column="user_name" property="userName"/>
+			<result column="phone" property="phone"/>
+			<result column="post_num" property="postNum"/>
+			<result column="addr" property="addr"/>
+			<result column="total_price" property="totalPrice"/>
+			<result column="goods_order_date" property="goodsOrderDate"/>
+			<result column="temp" property="temp"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="request" property="request"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+			<result column="commission" property="commission"/>
+		</association>
+		<association property="deliveryCurrentStateDto" javaType="DeliveryCurrentState">
+			<id column="delivery_status" property="deliveryStatus"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="stat_info" property="statInfo"/>
+		</association>
+		<association property="incomingInfoDto" javaType="IncomingInfo">
+			<id column="incoming_code" property="incomingCode"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="e_code" property="eCode"/>
+			<result column="req_option_impli" property="reqOptionImpli"/>
+			<result column="photo_save" property="photoSave"/>
+			<result column="weight" property="incomingWeight"/>
+			<result column="volume" property="incomingVolume"/>
+			<result column="postpone" property="incomingPostpone"/>
+			<result column="sum_post" property="sumPost"/>
+			<result column="send_out" property="sendOut"/>
+			<result column="approval" property="incomingApproval"/>
+			<result column="out_tracking_num" property="outTrackingNum"/>
+			<result column="out_company" property="outCompany"/>
+		</association>
+		<association property="orderStateDto" javaType="OrderState">
+			<id column="order_status" property="orderStatus"/>
+			<result column="buy_order_code" property="buyOrderCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="order_state" property="orderState"/>
+		</association>
+	</resultMap>
+	
+	
+	<insert id="addOrderInfo" parameterType="ApplicationInfo">
+		/* 주문서 작성시 db에 정보 추가 */
+		
+		
+		
+	</insert>
+
+</mapper>

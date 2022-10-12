@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  class="no-js"
+	  xmlns:th="http://www.thymeleaf.org">
+<style>
+.sub_contents_wrap {margin-top:30px;margin-left:10px;}
+
+
+#sidebar {margin-left:5%;}
+.sub_title_main {margin-bottom : 10px;font-size: 24px;color: #f76c87;font-weight: bold;padding: 0px 20px 20px 4px;}
+</style>
+<!--sidebarFragment 선언-->
+	<div id="sidebar" th:fragment="sidebarFragment">
+		
+		
+			<div class="sub_contents_wrap wrap col-lg-4">
+				<div class="left_menu">
+					<div>회원관리</div>
+						<ul>
+							<li>
+								<div><a href="/userForm">회원가입</a></div>
+							</li>
+							<li>
+								<div><a href="/loginForm">로그인</a></div>
+							</li>
+							<li>
+								<div><a href="/findIdPw" >아이디/비밀번호 찾기</a></div>
+							</li>
+							<li>
+								<div><a href="#" >이용약관</a></div>
+							</li>
+							<li>
+								<div><a href="#" >개인정보취급방침</a></div>
+							</li>
+						</ul>
+					</div>	<!-- //왼쪽 메뉴 -->
+				
+			</div>
+	</div>
+</html>
