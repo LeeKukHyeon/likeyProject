@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+	<link rel="stylesheet" href="assets/css/temporarily.css">
+</head>
+<body layout:fragment="adminContent">
+	<div class="content-wrapper">
+		<h3>쿠폰 리스트</h3>
+		<hr style="width: 70%">
+		<table border="1"	style="width: 50%; text-align: center"  >
+			<thead>
+				<tr>
+					<th>쿠폰 코드</th>
+					<th>쿠폰 이름</th>
+					<th>쿠폰 할인금액</th>
+					<th>쿠폰 날짜</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr >
+					<td>coupone_code1</td>
+					<td>회원가입</td>
+					<td>1000</td>
+					<td>2022-10-12</td>
+				</tr>
+			
+			</tbody>
+		
+		</table>
+		
+
+
+	</div>
+</body>
+</html>
