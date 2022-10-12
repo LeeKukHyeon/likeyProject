@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ks44team03.admin.service.IncomingService;
 import ks44team03.dto.Criteria;
 import ks44team03.dto.GoodsInfo;
-import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.PageMakerDTO;
 
@@ -208,4 +207,5 @@ public class IncomingController {
 		Map<String, Object> goodsInfo = incomingService.incomingGoodsInfoByCode(goodsInfoCode);
 		return goodsInfo;
 	}
+	
 }

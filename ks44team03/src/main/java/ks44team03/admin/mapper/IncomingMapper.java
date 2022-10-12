@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.Criteria;
 import ks44team03.dto.GoodsInfo;
-import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
 
 @Mapper

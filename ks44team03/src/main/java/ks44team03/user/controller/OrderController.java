@@ -31,7 +31,7 @@ public class OrderController {
 		
 		System.out.println(order + "aplicationinfo"); 
 		
-		int result = OrderService.addOrderInfo(order); 
+		/* int result = OrderService.addOrderInfo(order); */
 		return "myPage/member/mypageScreen"; 
 	}
 
