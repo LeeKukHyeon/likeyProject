@@ -6,22 +6,30 @@ public class OrderInfo {
 	private String userPoboxCode;
 	private String id;
 	private String transportation;
+	
 	private String nation;
 	private String orderNum;
 	private String userName;
 	private String phone;
 	private String postNum;
+	
 	private String addr;
 	private String totalPrice;
 	private String goodsOrderDate;	
 	private String step1;	
-	private String step2;	
+	private String step2;
+	
 	private String step3;	
 	private String DesiredCourier;
 	private String buyWay;
 	private String request;
-	private String friendsDeCheck  ;
+	private String friendsDeCheck ;
+	
 	private int commission;
+	
+	private String personalCustomsClearanceCode;
+	private String personalUse;
+	private String trading;
 	
 	public String getBuyOrderCode() {
 		return buyOrderCode;
@@ -150,6 +158,26 @@ public class OrderInfo {
 		this.commission = commission;
 	}
 	
+	
+	public String getPersonalCustomsClearanceCode() {
+		return personalCustomsClearanceCode;
+	}
+	public void setPersonalCustomsClearanceCode(String personalCustomsClearanceCode) {
+		this.personalCustomsClearanceCode = personalCustomsClearanceCode;
+	}
+	public String getPersonalUse() {
+		return personalUse;
+	}
+	public void setPersonalUse(String personalUse) {
+		this.personalUse = personalUse;
+	}
+	public String getTrading() {
+		return trading;
+	}
+	public void setTrading(String trading) {
+		this.trading = trading;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderInfo [buyOrderCode=" + buyOrderCode + ", logisticsCenter=" + logisticsCenter + ", userPoboxCode="
@@ -158,7 +186,11 @@ public class OrderInfo {
 				+ ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate=" + goodsOrderDate + ", step1="
 				+ step1 + ", step2=" + step2 + ", step3=" + step3 + ", DesiredCourier=" + DesiredCourier + ", buyWay="
 				+ buyWay + ", request=" + request + ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission
-				+ "]";
+				+ ", personalCustomsClearanceCode=" + personalCustomsClearanceCode + ", personalUse=" + personalUse
+				+ ", trading=" + trading + "]";
 	}
+
+	
+	
 	
 }

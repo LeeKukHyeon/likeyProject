@@ -5,6 +5,7 @@
 <mapper namespace="ks44team03.user.mapper.OrderMapper">
 	<!-- GoodsInfo DTO -->
 	<resultMap type="GoodsInfo" id="goodsInfoResultMap">
+	
 		<id column="goods_info_code" property="goodsInfoCode"/>
 		<result column="id" property="id"/>
 		<result column="buy_order_code" property="buyOrderCode"/>
@@ -30,7 +31,8 @@
 		<result column="goods__url" property="goodsUrl"/>
 		<result column="store_name" property="storeName"/>
 		<result column="store_location" property="storeLocation"/>
-		<association property="orderInfoDto" javaType="OrderInfo">
+		
+		<association property="orderInf oDto" javaType="OrderInfo">
 			<id column="buy_order_code" property="buyOrderCode"/>
 			<result column="id" property="id"/>
 			<result column="transportation" property="transportation"/>
@@ -48,34 +50,11 @@
 			<result column="request" property="request"/>
 			<result column="friends_de_check" property="friendsDeCheck"/>
 			<result column="commission" property="commission"/>
+			<result column="Personal_Customs_Clearance_Code" property="PersonalCustomsClearanceCode"/>
+			<result column="personal_use" property="personalUse"/>
+			<result column="trading" property="trading"/>
 		</association>
-		<association property="deliveryCurrentStateDto" javaType="DeliveryCurrentState">
-			<id column="delivery_status" property="deliveryStatus"/>
-			<result column="goods_info_code" property="goodsInfoCode"/>
-			<result column="time_tracking" property="timeTracking"/>
-			<result column="stat_info" property="statInfo"/>
-		</association>
-		<association property="incomingInfoDto" javaType="IncomingInfo">
-			<id column="incoming_code" property="incomingCode"/>
-			<result column="goods_info_code" property="goodsInfoCode"/>
-			<result column="e_code" property="eCode"/>
-			<result column="req_option_impli" property="reqOptionImpli"/>
-			<result column="photo_save" property="photoSave"/>
-			<result column="weight" property="incomingWeight"/>
-			<result column="volume" property="incomingVolume"/>
-			<result column="postpone" property="incomingPostpone"/>
-			<result column="sum_post" property="sumPost"/>
-			<result column="send_out" property="sendOut"/>
-			<result column="approval" property="incomingApproval"/>
-			<result column="out_tracking_num" property="outTrackingNum"/>
-			<result column="out_company" property="outCompany"/>
-		</association>
-		<association property="orderStateDto" javaType="OrderState">
-			<id column="order_status" property="orderStatus"/>
-			<result column="buy_order_code" property="buyOrderCode"/>
-			<result column="time_tracking" property="timeTracking"/>
-			<result column="order_state" property="orderState"/>
-		</association>
+		
 	</resultMap>
 	
 	
