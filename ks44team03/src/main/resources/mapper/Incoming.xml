@@ -26,12 +26,28 @@
 	</resultMap>
 	
 	<resultMap type="GoodsInfo" id="orderGoodsListResultMap">
-		<id column="goods_info_code" property="goodsInfoCode"/>		
-		<result column="delivery_company" property="deliveryCompany"/>
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
 		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
 		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
 		<result column="tracking_num" property="trackingNum"/>
-		<result column="g_amount" property="gAmount"/>			
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+				
 	</resultMap>
 	
 	
@@ -57,7 +73,15 @@
 	</resultMap>
 
 	
-	
+	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
+		/*ajax 호출*/
+		select 
+			* 
+		from 
+			goods_info 
+		where
+			goods_info_code = #{code}
+	</select>
 	
 	<!-- 보관료 발생 리스트 -->
 	 <select id="storageCharge" parameterType="map" resultType="GoodsInfo">

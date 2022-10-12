@@ -29,6 +29,11 @@ public class IncomingService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//ajax호출
+	public List<GoodsInfo> goodsDetail(String code){
+		List<GoodsInfo> goodsDetail = incomingMapper.goodsDetail(code);
+		return goodsDetail;
+	}
 	
 	//배송완료 상품목록 조회
 	public List<GoodsInfo> storageCharge(Map<String, Object> paramMap){

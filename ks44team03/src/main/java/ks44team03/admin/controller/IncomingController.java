@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.IncomingService;
 import ks44team03.dto.Criteria;
@@ -32,6 +34,18 @@ public class IncomingController {
 	public IncomingController(IncomingService incomingService) {
 		this.incomingService = incomingService;
 		
+	}
+	
+	//ajax 호출
+	
+	@PostMapping("/goodsDetail")
+	@ResponseBody
+	public List<GoodsInfo> goodsDetail(@RequestParam(value = "code") String code) {
+			
+			List<GoodsInfo> goodsDetail = incomingService.goodsDetail(code);
+			
+		
+			return goodsDetail;
 	}
 	
 	@PostMapping("/incomingRegister")
