@@ -72,6 +72,15 @@
 		-->
 	</resultMap>
 
+
+	<update id="incomingGoodsDetailRegister" parameterType="String"> 
+		UPDATE 
+			goods_info 
+		SET 
+			arrival = "y" , arrival_date = curdate() 
+		WHERE 
+			goods_info_code = #{goodsInfoCode};
+	</update>
 	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/
@@ -265,7 +274,7 @@
 	 		g.buy_order_code = o.buy_order_code
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
-	 		and o.step3 = 'y'
+	 		and o.step3 = 'y' and arrival = 'n' 
 	 		limit ${cri.skip}, ${cri.amount}
 	 
 	 	

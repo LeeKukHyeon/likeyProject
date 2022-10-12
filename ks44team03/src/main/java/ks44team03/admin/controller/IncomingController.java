@@ -36,6 +36,18 @@ public class IncomingController {
 		
 	}
 	
+	//도착등록 ajax
+	@PostMapping("incomingGoodsDetailRegister")
+	@ResponseBody
+	public int incomingGoodsDetailRegister(@RequestParam(value = "goodsInfoCode")String goodsInfoCode) {
+		
+		int incomingGoodsDetailRegister = incomingService.incomingGoodsDetailRegister(goodsInfoCode);
+	
+		return incomingGoodsDetailRegister;
+	}
+	
+	
+	
 	//ajax 호출
 	
 	@PostMapping("/goodsDetail")
@@ -62,19 +74,19 @@ public class IncomingController {
 	@GetMapping("incomingGoodsList")
 	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,Criteria cri) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		System.out.println(buyOrderCode);
+		
 		paramMap.put("buyOrderCode", buyOrderCode);
 		paramMap.put("cri", cri);
 		
 		int getTotal = incomingService.getListPaging(buyOrderCode);
 		
 		List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(paramMap);
-		System.out.println(getTotal);
+		
 		
 		PageMakerDTO pageMake = new PageMakerDTO(cri, getTotal);
 		model.addAttribute("buyOrderCode",buyOrderCode);
 		model.addAttribute("pageMake",pageMake);
-		System.out.println(pageMake);
+		
 		model.addAttribute("incomingGoodsList", incomingGoodsList);
 		return "incoming/incomingGoodsList";
 	}

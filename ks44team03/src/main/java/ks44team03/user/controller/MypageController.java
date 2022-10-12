@@ -34,6 +34,7 @@ public class MypageController {
 	
 	@GetMapping("/applicationEdit")
 	public String applicationEdit() {
+		
 		return "myPage/applicationEdit";
 	}
 	

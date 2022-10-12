@@ -29,6 +29,13 @@ public class IncomingService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//ajax로 상품도착등록 업데이트
+	public int incomingGoodsDetailRegister(String goodsInfoCode) {
+		int incomingGoodsDetailRegister = incomingMapper.incomingGoodsDetailRegister(goodsInfoCode);
+		
+		return incomingGoodsDetailRegister;
+	}
+	
 	//ajax호출
 	public List<GoodsInfo> goodsDetail(String code){
 		List<GoodsInfo> goodsDetail = incomingMapper.goodsDetail(code);
