@@ -594,19 +594,16 @@ $(function(){
 								<div class="check_bt"><label><input type="checkbox" name="photo_flag" value="Y"   > 사진 촬영<span id="photo_fee">(₩1,000)</span></label></div>
 							</td>
 							<td>
-								<div class="check_select">
-									<select name="pack_type">
-										<option value="" selected >특수포장 미신청</option>
-										<option value="A"  >특수포장A(미검수/개별포장)</option>
-										<option value="B"  >특수포장B(미검수/미개별포장)</option>
-										<option value="C"  >특수포장C(오픈검수/개별포장)</option>
-									</select>
-								</div>
+								<div class="check_bt"><label><input type="checkbox" name="inspection_flag" value="Y"   > 정밀검수<span id="inspection_fee">(₩5,000)</span></label></div>
 							</td>
+							<td>
+								<div class="check_bt"><label><input type="checkbox" name="aircap_flag" value="Y"   > 에어캡 포장<span id="aircap_fee">(₩1,000)</span></label></div>
+							</td>
+							
 						  </tr>
 						</table>
 						
-						<div style="font-size:15px; color:#f47827; margin-top:10px; text-align:center;"> 호야패스(HOYA.PASS) 서비스는 상품 부가 서비스가 제공되지 않습니다.</div>
+						<div style="font-size:15px; color:#f47827; margin-top:10px; text-align:center;"> 라이키패스(LIKEY.PASS) 서비스는 상품 부가 서비스가 제공되지 않습니다.</div>
 					
 					
 				</div>
@@ -624,11 +621,7 @@ $(function(){
 						<td class="td2 td_price" colspan="3">
 							<input name="sumPrice" value="" class="type-text" readonly onChange="totalPrice();" style="font-size:25px;color:#3f3f3f;font-weight:bold;font-family:Tahoma;width:130px;background-color:#EEEEEE" type="text">
 						</td>
-					  </tr>
-					  <tr>
-						<td class="td1">현지 세금</td>
-						<td class="td2" colspan="3"><input type="text" name="buy_tax" value="" onChange="totalPrice();" onBlur="this.value=this.value.replace(/[^.0-9]/g,'');"></td>
-					  </tr>
+					  </tr>					  
 					  <tr>
 						<td class="td1">현지 운송료</td>
 						<td class="td2" colspan="3"><input type="text" name="buy_ship_fee" value="" onChange="totalPrice();" onblur="this.value=this.value.replace(/[^.0-9]/g,'');"></td>
@@ -643,10 +636,6 @@ $(function(){
 								<option value='price'  >$</option>
 							</select>
 						</td>
-					  </tr>
-					  <tr>
-						<td class="td1">기타 비용 (현지 발생)</td>
-						<td class="td2" colspan="3"><input type="text" name="buy_etc_fee" value="" onChange="totalPrice();" onBlur="this.value=this.value.replace(/[^.0-9]/g,'');"></td>
 					  </tr>
 					</table>	
 				</div>
@@ -739,7 +728,7 @@ $(function(){
                      <tr>
 	                     <td align="center" class="td1">배송시 요청사항</td>
 	                     <td class="td2">
-	                         <div><input type="text" name="ship_request" value="" class="input_add" style="width:500px;"></div>
+	                         <div><input type="text" name="" value="" class="input_add" style="width:500px;"></div>
 		                  </td>
 	                </tr>
 	            </table>
@@ -1011,10 +1000,7 @@ function sumPrice(){
 function totalPrice()
 {
 	var sumPrice = $('input[name="sumPrice"]').val();
-	if(isNaN(sumPrice) || sumPrice=="") sumPrice=0;
-	
-	var buy_tax = $('input[name="buy_tax"]').val();
-	if(isNaN(buy_tax) || buy_tax=="") buy_tax=0;
+	if(isNaN(sumPrice) || sumPrice=="") sumPrice=0;	
 	
 	var buy_ship_fee = $('input[name="buy_ship_fee"]').val();
 	if(isNaN(buy_ship_fee) || buy_ship_fee=="") buy_ship_fee=0;
@@ -1035,12 +1021,9 @@ function totalPrice()
 	
 	
 	buy_disc_amt = $('input[name="buy_disc_amt"]').val();
-	if(isNaN(buy_disc_amt) || buy_disc_amt=="") buy_disc_amt=0;
-	
-	var buy_etc_fee = $('input[name="buy_etc_fee"]').val();
-	if(isNaN(buy_etc_fee) || buy_etc_fee=="") buy_etc_fee=0;
+	if(isNaN(buy_disc_amt) || buy_disc_amt=="") buy_disc_amt=0;	
 
-	var total_price = parseFloat(sumPrice) + parseFloat(buy_tax) + parseFloat(buy_ship_fee) - parseFloat(buy_disc_amt) + parseFloat(buy_etc_fee);
+	var total_price = parseFloat(sumPrice) + parseFloat(buy_ship_fee) - parseFloat(buy_disc_amt);
 	$('input[name="total_price"]').val(total_price);
 	
 	$('#total_price_lbl').text(" ₩ " + total_price);

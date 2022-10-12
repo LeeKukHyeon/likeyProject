@@ -79,7 +79,7 @@
 	</resultMap>
 	
 	
-	<insert id="addorderinfo" parameterType="OrderInfo">
+	<insert id="addOrderInfo" parameterType="ApplicationInfo">
 		/* 주문서 작성시 db에 정보 추가 */
 		
 		
