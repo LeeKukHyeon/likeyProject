@@ -1,6 +1,7 @@
 package ks44team03.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +44,27 @@ public class CommunityService {
 		return reviewList;
 	}
 	
+	// 이용후기 게시판 목록검색
+	public List<Community> getSearchReviewList(Map<String, Object> paramMap){
+		
+		List<Community> reviewList = communityMapper.getSearchReviewList(paramMap);
+		
+		return reviewList; 
+	}
+	
 	//이용후기 상세정보
 	public Community getReviewInfo(String communityNum) {
 		
 		communityMapper.getCountHit(communityNum);
 		Community reviewInfo = communityMapper.getReviewInfo(communityNum);
 		return reviewInfo;
+	}
+	// 이용후기 아이디체크
+	public boolean reviewListIdCheck(String communityId) {
+		boolean result = communityMapper.reviewListIdCheck(communityId);
+		
+		log.info("communityId 아이디체크 :::" + result);
+		return result;
 	}
 // ---------------------------------- 이용후기 관련 Service End --------------------------------------	
 	
@@ -70,6 +86,13 @@ public class CommunityService {
 		List<Community> postbordeList = communityMapper.getPostbordeList();
 		log.info("postbordeList 입니다 --------------" + postbordeList);
 		return postbordeList;
+	}
+	// 정보공유 게시판 목록검색
+	public List<Community> getSearchPostbordeList(Map<String, Object> paramMap){
+		
+		List<Community> postbordeList = communityMapper.getSearchPostbordeList(paramMap);
+		
+		return postbordeList; 
 	}
 	//정보공유 상세정보
 	public Community getPostbordeInfo(String communityNum) {

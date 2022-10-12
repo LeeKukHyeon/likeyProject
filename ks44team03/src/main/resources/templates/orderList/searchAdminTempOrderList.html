@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<!-- 목록조회 바 -->
 	<div th:fragment="searchFragment" >
-	        <form th:action="@{/adminOrderList}" method="post" class="searchBar">
+	        <form th:action="@{/adminTempOrderList}" method="post" class="searchBar">
 	        	<select name="searchKey">
 	        		<option value="buy_order_code">주문서코드</option>
 	        		<option value="id">아이디</option>
