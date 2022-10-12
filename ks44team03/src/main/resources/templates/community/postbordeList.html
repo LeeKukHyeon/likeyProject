@@ -6,8 +6,12 @@
       layout:decorate="~{layout/default_layout}">
 <head>
 <style>
-.addReviewBtn{
+.addReviewA{
 	margin-left: 45%;
+}
+.addReviewA a{
+}
+.addReviewBtn{
 	margin-top: 5px;	
 	padding: 10px 20px;
 	border: 2px solid #dddddd;
@@ -23,6 +27,40 @@
 	border: 2px solid #535353;
 	color: white;
 }
+.searchBar{
+	margin-top: 20px;
+	font-size: 13px;
+}
+.searchBar input{
+	padding: 3px;
+	margin-bottom: 8px;
+	border : 1px double;
+	border-radius: 5px;		 
+}
+.searchBar select{
+	padding: 4px;
+	margin-bottom: 8px;
+	border : 1px double;
+	border-radius: 5px;	
+}
+.searchBtn{
+	background-color: #797979;
+	border: none;
+	color: white;
+	padding: 3px 3px;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: white;
+	color: #565656;
+}
+.searchBtn:hover {
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+} 
 </style>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- <script>
@@ -65,9 +103,10 @@
 						<td colspan="5" style="text-align: center;">등록된 글이 없습니다.</td>
 					</tr>
 			</table>
-			<div>
+			<div th:include="community/searchPostbordeList :: searchFragment"></div>
+			<label class="addReviewA">
 				<a th:href="@{/postbordeRegister}"><button class="addReviewBtn">글등록</button></a>
-			</div>
+			</label>
 		</div>
 	</div>
 </th:block>

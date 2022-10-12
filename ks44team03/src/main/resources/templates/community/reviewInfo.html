@@ -7,79 +7,119 @@
       
 <head>
 <style>
-	.communityInfo{
-		margin-left: 10%;
-		margin-right: 10%;
-		margin-bottom: 10%;
-		margin-top: 40px;
-		border: 1px solid #dddddd;
-		border-radius: 20px;
-		padding: 30px;
-	}
-	.communityInfo img{
-		border: 2px solid #dddddd;
-		border-radius: 20px; 
-		width: 40%;
-		background-color: red;
-		vertical-align: top;
-		
-	}
-	.reviewImg strong{
-		font-size: 30px; 
-	}
-	.reviewImgText{
-		width: 100%;
-		/* background-color: #dddddd; */
-		margin-top: 10px;
-	}
-	.receiptBtn{
-		margin-left: 100%;	
-		padding: 10px 20px;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		background-color: white;
-		color: #565656;
-	}
-	.receiptBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
-	.goListBtn{
-		padding: 10px 20px;
-		background-color: white;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		color: #565656;
-	}
-	.goListBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
+.communityInfo{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 10%;
+	margin-top: 40px;
+	border: 1px solid #dddddd;
+	border-radius: 20px;
+	padding: 30px;
+}
+.communityInfo img{
+	border: 2px solid #dddddd;
+	border-radius: 20px; 
+	width: 40%;
+	background-color: red;
+	vertical-align: top;
+	
+}
+.reviewImg strong{
+	font-size: 30px; 
+}
+.reviewImgText{
+	width: 100%;
+	/* background-color: #dddddd; */
+	margin-top: 10px;
+}
+.receiptBtn{
+	margin-left: 100%;	
+	padding: 10px 20px;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: white;
+	color: #565656;
+}
+.receiptBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.goListBtn{
+	padding: 10px 20px;
+	background-color: white;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #565656;
+}
+.goListBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.modifyCmnBtn{
+	display: none;
+	
+}
 </style>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+	/*<![CDATA[*//*]]>*/
+	$(function(){
+		$(document).ready(function(){
+			
+			alert(/*[[${reviewInfo.communityDate}]]*/);
+			
+			var communityId = /*[[${reviewInfo.communityId}]]*/; 
+			var request = $.ajax({
+				url : '/reviewListIdCheck',
+				method : "GET",
+				data : {'communityId' : communityId},
+				dataType : 'json'
+			});
+			request.done(function(data){
+				if(data){
+					alert('아이디 일치');
+					$('.modifyCmnBtn').css('display','inline');
+				}else{
+					alert('아이디 불일치!!!!');
+				}
+			});
+			request.fail(function( jqXHR, textStatus){
+				alert("Request failed:" + textStatus);
+				
+			});
+		// 이용후기 수정유효성검사 (미완성)!!
+		});
+	});
+</script>
 </head>
 
 <body layout:fragment="content">
 	<div align="center">
 		<div class="communityInfo">
+		<input type="text" id="communityId">
+		<button type="button" class="idCheckBtn"></button>
 			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/reviewList}">이용후기</a></p>
 			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
 			<h4 th:text="${reviewInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
 			<img src="/image/sinbal.png">
+			<hr width="100%" color="#dddddd">
 			<!-- 14글자 제한 -->
 			<div>
 				<div style="text-align: left; color: black;" >
 					<p th:text="${reviewInfo.communityContent}"></p>
 				</div>
 			</div>
+				<a href="#"><button type="button" class="modifyCmnBtn">수정</button></a>
 				<a th:href="@{/reviewList}"><button type="button" class="goListBtn">목록으로</button></a>
 				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
 		</div>	
