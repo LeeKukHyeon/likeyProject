@@ -26,9 +26,8 @@ public class CustomerScheduleController {
 	@PostConstruct
 	public void customerScheduleService() {
 		
-		
 	}
-	
+		
 	//배송스케줄 게시물 삭제
 	@GetMapping("/deliveryScheduleDelete")
 	public String deleteSchedule(@RequestParam(value = "scheduleNumCode")String scheduleNumCode) {
@@ -77,9 +76,12 @@ public class CustomerScheduleController {
 		return "/customerService/schedule/deliveryScheduleRegister";
 	}
 	
-	//배송스케줄 게시글 조회
+	//배송스케줄 게시글 조회 , 조회수 카운트(countView)
 	@GetMapping("/deliveryScheduleSearchRead")
 	public String viewDeliverySchedule(@RequestParam(value = "scheduleNumCode") String scheduleNumCode ,Model model) {
+		
+		
+		customerScheduleService.countView(scheduleNumCode);
 		
 		// 게시물 내용
 		ScheduleCenter scheduleRead = customerScheduleService.getScheduleRead(scheduleNumCode);

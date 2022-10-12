@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+      
+<head>
+<style>
+	.communityInfo{
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-bottom: 10%;
+		margin-top: 40px;
+		border: 1px solid #dddddd;
+		border-radius: 20px;
+		padding: 30px;
+	}
+	.communityInfo img{
+		border: 2px solid #dddddd;
+		border-radius: 20px; 
+		width: 40%;
+		background-color: red;
+		vertical-align: top;
+		
+	}
+	.reviewImg strong{
+		font-size: 30px; 
+	}
+	.reviewImgText{
+		width: 100%;
+		/* background-color: #dddddd; */
+		margin-top: 10px;
+	}
+	.receiptBtn{
+		margin-left: 100%;	
+		padding: 10px 20px;
+		border: 2px solid #dddddd;
+		border-radius: 10px;
+		font-style: inherit;
+		font-size: 15px;
+		font-weight: bold;
+		background-color: white;
+		color: #565656;
+	}
+	.receiptBtn:hover{
+		background-color: #535353;
+		border: 2px solid #535353;
+		color: white;
+	}
+	.goListBtn{
+		padding: 10px 20px;
+		background-color: white;
+		border: 2px solid #dddddd;
+		border-radius: 10px;
+		font-style: inherit;
+		font-size: 15px;
+		font-weight: bold;
+		color: #565656;
+	}
+	.goListBtn:hover{
+		background-color: #535353;
+		border: 2px solid #535353;
+		color: white;
+	}
+</style>
+</head>
+
+<body layout:fragment="content">
+	<div align="center">
+		<div class="communityInfo">
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/postbordeList}">정보공유</a></p>
+			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${postbordeInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
+			<h4 th:text="${postbordeInfo.communityTitle}"></h4>
+			<hr width="100%" color="#dddddd">
+			<img src="/image/sinbal.png">
+			<!-- 14글자 제한 -->
+			<div>
+				<div style="text-align: left; color: black;" >
+					<p th:text="${postbordeInfo.communityContent}"></p>
+				</div>
+			</div>
+				<a th:href="@{/postbordeList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
+		</div>	
+	</div>
+</body>
+</html>

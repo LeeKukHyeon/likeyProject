@@ -4,26 +4,68 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-<!-- <head>
+<head>
 <style>
-	
-	th{
-		border-bottom-radius: 10px;
-		background-color: #f5f5f5;
-	}
-	
-	a{
-		font-size:12px; 
-		font-weight:bold;
-	}
+.addReviewBtn{
+	margin-left: 45%;
+	margin-top: 5px;	
+	padding: 10px 20px;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: white;
+	color: #565656;
+}
+.addReviewBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
 </style>
-</head> -->
-<th:block layout:fragment="content">
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script>
+	$(function(){
+		$('#subjectEvn').click(function(){
+			 var request = $.ajax({
+				url : '',
+				method : "GET",
+				data : {'' : },
+				dataType : 'json'
+			}); 
+		});
+	});
 	
-	
+</script> -->
+</head>
+<th:block layout:fragment="content">	
 	<div align="center">
-		<h1 th:text="${title}"></h1>
-		<
+		<h5 th:text="${title}"></h5>
+		<div>
+			<p style="border-bottom: 1px solid #dddddd; width: 80%">이용후기 게시판입니다.</p>
+			<table width="50%"class="schedule_board_list">
+				<tr>
+					<th class="number">번호</th>
+					<th class="subject">제목</th>
+					<th>아이디</th>
+					<th class="hit">조회수</th>
+					<th class="date">등록일</th>
+				</tr>
+				<tbody>
+					<tr th:if="${not #lists.isEmpty(reviewList)}" th:each="l : ${reviewList}">
+						<td class="number" th:text="${l.communityNum}"></td>
+						<td class="subject"><a id="subjectEvn" th:href="@{/reviewInfo(communityNum=${l.communityNum})}" th:text="${l.communityTitle}"></a></td>
+						<td th:text="${l.communityId}"></td>
+						<td class="hit" th:text="${l.communityView}"></td>
+						<td class="date" th:text="${l.communityDate}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<a th:href="@{/reviewRegister}"><button class="addReviewBtn">글등록</button></a>
+			</div>
+		</div>
 	</div>
 </th:block>
 </html>

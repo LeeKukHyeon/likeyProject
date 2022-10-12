@@ -8,45 +8,20 @@
 	<link rel="stylesheet" href="assets/css/temporarily.css">
 </head>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#selectBox').change(function(){
-	var result = $('#selectBox').val();
-	if(result == 'option0') {
-		$('#nomal').show()
-		$('#request').hide()
-		$('#ing').hide()
-		$('#end').hide()
-	}else if(result == 'option1'){
-		$('#nomal').hide()
-		$('#request').show()
-		$('#ing').hide()
-		$('#end').hide()
-	}else if(result == 'option2'){
-		$('#nomal').hide()
-		$('#request').hide()
-		$('#ing').show()
-		$('#end').hide()
-	}else if(result == 'option3'){
-		$('#nomal').hide()
-		$('#request').hide()
-		$('#ing').hide()
-		$('#end').hide()
-	}})
-})
-
-</script>
 
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
 		<!-- 게시판 -->
+	<div id="selectBoxP">		
 		<select id="selectBox" name="selectBox">
-			<option value="" selected>:::선택:::</option>
-			<option value="option0">전체</option>
-			<option value="option1">접수</option>
-			<option value="option2">답변중</option>
-			<option value="option3">답변 완료</option>
+			<option value="" selected>전체</option>
+			<option value="option1">번호순</option>
+			<option value="option2">접수</option>
+			<option value="option3">답변중</option>
+			<option value="option4">답변 완료</option>
 		</select>
+	</div>	
+
 		<table class="personal_question_list" style="width: 100%; margin-top: 5mm">
 		  <tbody><tr>
 		    <th class="number" style="width: 10%">번호</th>
@@ -55,40 +30,39 @@ $(document).ready(function(){
 			<th class="date" style="width: 20%">등록일</th>
 			<th class="situation" style="width: 23%">처리상태</th>
 		  </tr>
-<!-- 		  <tr class="request" th:each="l : ${QuestionList}">
-  		    <td class="number" th:text="${l.mtmNumCode}"></td>
-	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
-			<td class="date" th:text="${l.mtmDate}"></td>
-			<td class="date"  th:text="${l.mtmSituation}"></td>
-	   	  </tr> -->
-		  <tr class="request" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'접수')}">
+ 		<tr class="nomal" th:each="l : ${QuestionList}" style="display: none;">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
 			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 	   	  </tr>
-		  <tr class="ing" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변중')}">
+		<tr class="request" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'접수')}">
+  		    <td class="number" th:text="${l.mtmNumCode}"></td>
+	    	<td class="userId" th:text="${l.userId}"></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="date" th:text="${l.mtmDate}"></td>
+			<td class="date"  th:text="${l.mtmSituation}"></td>
+	   	  </tr>
+		   <tr class="ing" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변중')}">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
 			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>	
-		  </tr>		  
+		  </tr>
 		  <tr class="end" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변 완료')}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
 			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
-		  </tr><!-- th:if="${#strings.equals(l.mtmSituation,'처리중')}" -->
+		  </tr>
 		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
   			<td style="border-left: none;" colspan="5">등록된 게시물이 없습니다.</td>
 		  </tr>
 		</tbody></table>
-		<div th:include="customerService/question/searchQuestion :: searchQuestion">
-		</div>
+		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
 		
 		<!-- //게시판 -->
 		<div style="height: 15px; margin-right: 69mm;"></div>
@@ -106,5 +80,37 @@ $(document).ready(function(){
 				</tbody></table>
 		</tbody></table>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#selectBox').change(function(){
+		var result = $('#selectBox option:selected').val();
+		if(result == 'option1') {
+			$('.nomal').show()
+			$('.request').hide()
+			$('.ing').hide()
+			$('.end').hide()
+		}else if(result == 'option2'){
+			$('.nomal').hide()
+			$('.request').show()
+			$('.ing').hide()
+			$('.end').hide()
+		}else if(result == 'option3'){
+			$('.nomal').hide()
+			$('.request').hide()
+			$('.ing').show()
+			$('.end').hide()
+		}else if(result == 'option4'){
+			$('.nomal').hide()
+			$('.request').hide()
+			$('.ing').hide()
+			$('.end').show()
+		}else {
+			$('.nomal').hide()
+			$('.request').show()
+			$('.ing').show()
+			$('.end').show()
+		}})
+	})
+	</script>
 </body>
 </html>

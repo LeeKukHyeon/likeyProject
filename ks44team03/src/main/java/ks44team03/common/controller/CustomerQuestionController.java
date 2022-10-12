@@ -1,6 +1,8 @@
 package ks44team03.common.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerQuestionService;
+import ks44team03.dto.NoticeCenter;
 import ks44team03.dto.QuestionCenter;
 
 @Controller
@@ -33,6 +36,24 @@ public class CustomerQuestionController {
 	@PostMapping("/personalQuestionSearchAdmin")
 	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
 								@RequestParam(value = "searchValue" , defaultValue = "") String sv , Model model) {
+		
+		if("mtmTitle".equals(sk)) {
+			sk = "mtm_title";
+		}else if ("userId".equals(sk)) {
+			sk= "id";
+		}else if ("mtmContent".equals(sk)) {
+			sk= "mtm_content";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sk", sk);
+		paramMap.put("sv", sv);
+		
+		List<QuestionCenter> QuestionList = customerQuestionService.searchQuestion(paramMap);
+		
+		model.addAttribute("QuestionList", QuestionList);
+		model.addAttribute("sv", sv);
+		
 		return "/customerService/question/personalQuestionSearchAdmin";
 	}
 	
@@ -94,7 +115,7 @@ public class CustomerQuestionController {
 	}
 	
 	//나의 문의 게시글 보기
-	@GetMapping("/MyQuestionRead")
+	@GetMapping("/myQuestionRead")
 	public String viewMyQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
@@ -103,7 +124,7 @@ public class CustomerQuestionController {
 		
 		model.addAttribute("QuestionRead", QuestionRead);
 		
-		return "/customerService/question/MyQuestionRead";
+		return "/customerService/question/myQuestionRead";
 	}
 
 	

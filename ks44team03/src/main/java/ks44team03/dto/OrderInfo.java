@@ -14,20 +14,15 @@ public class OrderInfo {
 	private String addr;
 	private String totalPrice;
 	private String goodsOrderDate;	
-	private String temp;	
+	private String step1;	
+	private String step2;	
+	private String step3;	
 	private String DesiredCourier;
 	private String buyWay;
 	private String request;
 	private String friendsDeCheck  ;
 	private int commission;
 	
-	
-	public String getUserPoboxCode() {
-		return userPoboxCode;
-	}
-	public void setUserPoboxCode(String userPoboxCode) {
-		this.userPoboxCode = userPoboxCode;
-	}
 	public String getBuyOrderCode() {
 		return buyOrderCode;
 	}
@@ -39,6 +34,12 @@ public class OrderInfo {
 	}
 	public void setLogisticsCenter(String logisticsCenter) {
 		this.logisticsCenter = logisticsCenter;
+	}
+	public String getUserPoboxCode() {
+		return userPoboxCode;
+	}
+	public void setUserPoboxCode(String userPoboxCode) {
+		this.userPoboxCode = userPoboxCode;
 	}
 	public String getId() {
 		return id;
@@ -100,11 +101,23 @@ public class OrderInfo {
 	public void setGoodsOrderDate(String goodsOrderDate) {
 		this.goodsOrderDate = goodsOrderDate;
 	}
-	public String getTemp() {
-		return temp;
+	public String getStep1() {
+		return step1;
 	}
-	public void setTemp(String temp) {
-		this.temp = temp;
+	public void setStep1(String step1) {
+		this.step1 = step1;
+	}
+	public String getStep2() {
+		return step2;
+	}
+	public void setStep2(String step2) {
+		this.step2 = step2;
+	}
+	public String getStep3() {
+		return step3;
+	}
+	public void setStep3(String step3) {
+		this.step3 = step3;
 	}
 	public String getDesiredCourier() {
 		return DesiredCourier;
@@ -136,18 +149,16 @@ public class OrderInfo {
 	public void setCommission(int commission) {
 		this.commission = commission;
 	}
+	
 	@Override
 	public String toString() {
 		return "OrderInfo [buyOrderCode=" + buyOrderCode + ", logisticsCenter=" + logisticsCenter + ", userPoboxCode="
 				+ userPoboxCode + ", id=" + id + ", transportation=" + transportation + ", nation=" + nation
 				+ ", orderNum=" + orderNum + ", userName=" + userName + ", phone=" + phone + ", postNum=" + postNum
-				+ ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate=" + goodsOrderDate + ", temp="
-				+ temp + ", DesiredCourier=" + DesiredCourier + ", buyWay=" + buyWay + ", request=" + request
-				+ ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission + "]";
+				+ ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate=" + goodsOrderDate + ", step1="
+				+ step1 + ", step2=" + step2 + ", step3=" + step3 + ", DesiredCourier=" + DesiredCourier + ", buyWay="
+				+ buyWay + ", request=" + request + ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission
+				+ "]";
 	}
-	
-	
-	
-	
 	
 }

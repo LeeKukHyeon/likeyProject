@@ -49,7 +49,6 @@ public class CustomerNoticeController {
 		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("sv", sv);
-		model.addAttribute("sk", sk);
 		
 		return "/customerService/notice/noticeList";
 	}
@@ -107,9 +106,12 @@ public class CustomerNoticeController {
 		return "/customerService/notice/noticeRegister";
 	}
 	
-	//공지사항 게시글 조회
+	//공지사항 게시글 조회 , 조회수 카운트(countView)
 	@GetMapping("/noticeRead")
 	public String viewNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode, Model model) {
+		
+		customerNoticeService.countView(noticeNumCode);
+		
 		
 		// 게시물 내용
 		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeNumCode);
