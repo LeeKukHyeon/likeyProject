@@ -50,7 +50,7 @@ public class IncomingController {
 
 	//입고 등록
 	@GetMapping("/incomingRegister") 
-	public String regIncoming2(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
+	public String regIncoming(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
 	  List<GoodsInfo> regIncoming = incomingService.regIncoming();
 	  
 	  log.info("goodsInfoCode ::::" + goodsInfoCode);
@@ -199,14 +199,6 @@ public class IncomingController {
 		model.addAttribute("incomingOrderList", incomingOrderList);
 	
 		return "incoming/incomingList";
-	}
-	
-	@GetMapping("/incomingRegister")
-	public String regIncoming(Model model) {
-	
-		model.addAttribute("title", "입고 등록");
-	
-		return "incoming/incomingRegister";
 	}
 	
 	//입고등록 모달 - 특정 상품코드 조회
