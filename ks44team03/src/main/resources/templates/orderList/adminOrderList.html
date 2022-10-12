@@ -27,6 +27,7 @@
 		private String friendsDeCheck;	프렌즈 구매대행 대행자가 수락했는지 여부
 		private int commission;     	프렌즈 구매대행 이용자가 정한 수수료 -->
 		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/searchAdminOrderList :: searchFragment"></div>
 	 	<table class="input_table" style="width:100%;">
 	 		<tr>
 	 			<th>주문서코드</th>

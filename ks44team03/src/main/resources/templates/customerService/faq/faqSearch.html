@@ -13,33 +13,170 @@
 		</div>
 		
 		<div id="faqSearchBox" style="width: 50%;" align="left">
-				<div class="faqSortM" style="width: 15%;   float: left;" th:if="${not #lists.isEmpty(faqList)}" th:each="l : ${faqList}">
-					<div class="faqSort" align="center" style="margin-top: s10mm;" th:text="${l.faqMainCate}">
-					</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >배송대행 신청</div>
 					<ul class="faqSortList">
-						<li><div th:id="${l.faqNumCode}" th:text="${l.faqTitle}"></div></li>
+						<li><div id="faq1">- 신청서작성</div></li>
+						<li><div id="faq2">- 묶음배송</div></li>
+						<li><div id="faq3">- 나눔배송</div></li>
+						<li><div id="faq4">- 트랙킹번호</div></li>
+						<li><div id="faq5">- 쿠폰사용방법</div></li>
+						<li><div id="faq6">- 부가서비스</div></li>
 					</ul>
 				</div>
-		<div class="faqList" style="float: left;">
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >구매대행 신청</div>
+					<ul class="faqSortList">
+						<li><div>- 구매대행이란?</div></li>
+						<li><div>- 구매대행 기간</div></li>
+						<li><div>- 구매불가 사이트</div></li>
+						<li><div>- 구매대행 수수료</div></li>
+						<li><div>- 구매대행 취소</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >입고</div>
+					<ul class="faqSortList">
+						<li><div>- 노데이터</div></li>
+						<li><div>- 분할배송</div></li>
+						<li><div>- 부피무게</div></li> 
+						<li><div>- 현지 내 배송추적</div></li>
+						<li><div>- 일반우편물</div></li>
+						<li><div>- 입고/검수</div></li>
+						<li><div>- 사서함누락</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >출고</div>
+					<ul class="faqSortList">
+						<li><div>- 출고</div></li>
+						<li><div>- 출고보류</div></li>
+						<li><div>- 출고가 안돼요</div></li>
+						<li><div>- 오프로드</div></li>
+						<li><div>- 전자기기 제한</div></li>
+						<li><div>- 타국가배송</div></li>
+						<li><div>- 수취인변경</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >통관/관부가세</div>
+					<ul class="faqSortList">
+						<li><div>- 목록/일반통관</div></li>
+						<li><div>- 통관조회</div></li>
+						<li><div>- 통관수수료</div></li>
+						<li><div>- 관부가세</div></li>
+						<li><div>- 통관 주의사항</div></li>
+						<li><div>- 사업자통관</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >배송비/결제</div>
+					<ul class="faqSortList">
+						<li><div>- 배송비</div></li>
+						<li><div>- 배송비 결제</div></li>
+						<li><div>- 선결제</div></li>
+						<li><div>- 리워드 포인트</div></li>
+						<li><div>- 마이캐시</div></li>
+						<li><div>- 쿠폰사용방법</div></li>
+						<li><div>- 수수료안내</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >반송</div>
+					<ul class="faqSortList">
+						<li><div>- 반송신청</div></li>
+						<li><div>- 수취거부</div></li>
+						<li><div>- 주문취소</div></li>
+						<li><div>- 주문변경</div></li>
+						<li><div>- 카드환불</div></li>
+						<li><div>- 주말배송</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >회원</div>
+					<ul class="faqSortList">
+						<li><div>- 회원가입</div></li>
+						<li><div>- 회원혜택</div></li>
+						<li><div>- 정보변경</div></li>
+						<li><div>- 회원탈퇴</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >보상</div>
+					<ul class="faqSortList">
+						<li><div>- 오배송</div></li>
+						<li><div>- 안심보상</div></li>
+						<li><div>- 중량보상</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >기타</div>
+					<ul class="faqSortList">
+						<li><div>- 창고보관료</div></li>
+						<li><div>- 비회원주문</div></li>
+						<li><div>- 이벤트</div></li>
+						<li><div>- 고객센터 운영시간</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >제휴 / 제안</div>
+					<ul class="faqSortList">
+						<li><div>제휴 / 제안</div></li>
+					</ul>
+				</div>
+				<div class="faqSortM" style="width: 15%;   float: left;">
+					<div class="faqSort" align="center" style="margin-top: s10mm;" >여분</div>
+					<ul class="faqSortList">
+						<li><div>- </div></li>
+						<li><div>- </div></li>
+						<li><div>- </div></li>
+						<li><div>- </div></li>
+						<li><div>- </div></li>
+					</ul>
+				</div>
+		<div class="faqList" style="float: left; border: 1">
 			<div id="ffaq1" style="display: none;">
-				<h4>들턱</h4>
-				<pre>ㅁㄴㅇㅁㄴㅇ</pre>
+				<h4>- 배송대행 신청서는 왜 작성 하나요?</h4>
+				<p>배송대행 신청서 없이 상품만 도착한 경우 해당 상품의 주문자 정보,
+				 상품의 기본정보, 한국발송을 위한 정보 등 배송에 관련된 정보를 전혀 알 수
+				 가 없어 배송 진행이 불가능합니다. 물품 센터 도착 시, 등록된 배송대행 신청서가 없
+				 는 경우, ‘신청서 미작성 입고(노데이터)’로 분류되어 입고 진행이 지연될 수 있기 때문에 배송대행 신청서는 반드시 주문 후 즉시 작성하시는 것을 권장합니다.</p>
 			</div>
 			<div id="ffaq2" style="display: none;">
-				<h4>역전</h4>
-				<pre>반갑습니다</pre>
+				<h4>- 배송비 책정이 완료된 후 묶음배송 신청 및 수정이 가능한가요?</h4>
+				<p>배송비 책정이 완료 된 경우, 묶음배송 신청 및 수정이 불가능합니다.
+				묶음 배송은 모든 제품이 입고되기 전에 반드시 신청해주시기 바랍니다.</p>
+				<h4>- 묶음배송은 어떻게 신청 하나요?</h4>
+				<p>- 묶음/분할 신청은 상품 도착 전에만 마이페이지에서 신청 가능하며, 무게 측정 및 배송비 책정이 완료된 후에는 불가능 합니다.</p>
+				<p>- 한번 묶음배송 신청을 하면 다시 취소가 불가능합니다.</p>
+				<p>- 묶음 배송으로 전환할 때 상품 금액 또는 종류에 따라 관부가세가 부과될 수 있습니다.</p>
+				<p>- TV나 매트리스는 단독 상품으로만 배송신청이 가능합니다.</p>
 			</div>
 			<div id="ffaq3" style="display: none;">
-				<h4>치쿠린</h4>
-				<pre>안녕히계세요</pre>
+				<h4>- 제품 구매 이후 분할 배송이 가능한가요?</h4>
+				<p>1. 세금 회피를 위한 분할 신청은 불가능합니다.</p>
+				<p>세금이 부과되지 않게 하는 것을 도와주는 행위를 세관에서는 ‘밀수’로 간주하기 때문에 금지하고 있는 불법행위로 쇼핑몰에서 여러 물품을 함께 구매하고 나서 분할을 진행하시는 경우 불법행위로 간주할 수 있습니다.</p>
+				<p>호야USA에서는 국내법 및 국제법에 저촉되는 어떠한 행위 및 시도에 대해서 편의를 봐드리거나 방조하지 않으며, 해당 행위에 대해 적극적으로 방지 및 예방을 위해 노력하고 있습니다.</p>
+				<p>고객님께서 배송신청서에 등록하신 물품가격을 기준으로 CIF 가격을 산정하여 세관에 통관신고를 하며, 고객님께서는 반드시 해당 등록가격에 대한 증빙자료(영수증, 인보이스, 카드내역조회 등)를 보관하고 계시다가 세관 등에서의 요구 시 제출하실 의무를 가지고 있습니다.</p>
+				<p>만약 고객님께서 법에 저촉되는 행위를 요구하거나 시도하실 경우, 호야USA는 어떠한 책임도 지지 않으며 경우에 따라 고객님의 화물을 운송 거부할 수 있습니다.</p>
 			</div>
 			<div id="ffaq4" style="display: none;">
-				<h4>자고싶다</h4>
-				<pre>고맙습니다</pre>
+				<h4>- 트래킹 번호/넘버(Tracking number)는 어떻게 알 수 있나요?</h4>
+				<p>트래킹 넘버(Tracking Number)는 한국의 택배 운송장번호와 같은 배송정보입니다.</p>
+				<p>구매처에서 상품을 발송하면서 제공받으실 수 있으며, 주로 이메일 통보 또는 구매처 사이트 내의 주문확인 메뉴로 제공됩니다.</p>
 			</div>
 			<div id="ffaq5" style="display: none;">
-				<h4>뭔가 아닌데..</h4>
-				<pre>수고했어요</pre>
+				<h4>- 쿠폰은 어디서 사용하나요??</h4>
+				<p>결제 하실 때 쿠폰을 선택, 적용하여 할인을 받을 수 있습니다.</p>
+			</div>
+			<div id="ffaq6" style="display: none;">
+				<h4>- 폴리백 포장 이란?</h4>
+				<p>폴리백 포장은 고객님의 요청에 한하여 무료로 제공되는 서비스이며, 박스에 도착한 제품을 폴리백(봉투)에 포장하여 부피 및 실무게를 줄일 수 있는 포장법 입니다.</p>
+				<p>제품의 안전한 배송을 위하여 저희 호야USA는 의류 제품에 한하여 폴리백 포장 서비스를 제공하고 있으나,</p>
+				<p>옷걸이 포함 / 단추 및 스팽글 등의 악세서리가 부착된 의류 제품은 폴리백 포장이 어려울 수 있습니다.</p>
+				<p>또한, 부피가 큰 동계 의류(패딩, 코트 등) 또는 수량이 많은 경우 폴리백 포장이 아닌 택배 박스 포장으로 진행됩니다.</p>
+				<p>폴리백 포장은 부피 및 실무게가 감소하는 장점이 있지만 택배 박스 포장에 비해 제품 파손/훼손율이 높은 점 참고 부탁드립니다.</p>
+				<p>저희 호야USA는 제품의 안전한 배송을 최우선으로 생각하기 때문에 입고 담당자의 판단하에 폴리백 포장 요청이 반영되지 않을 수 있습니다.</p>
 			</div>
 		</div>
 			<div style="clear: both; text-align: right; margin-right: 17mm;">
@@ -52,25 +189,29 @@
 		
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('#1').click(function(){
+		$('#faq1').click(function(){
 			$('.faqList div').hide();
 			$('#ffaq1').show();
 		})
-		$('#2').click(function(){
+		$('#faq2').click(function(){
 			$('.faqList div').hide();
 			$('#ffaq2').show();
 		})
-		$('#3').click(function(){
+		$('#faq3').click(function(){
 			$('.faqList div').hide();
 			$('#ffaq3').show();
 		})
-		$('#4').click(function(){
+		$('#faq4').click(function(){
 			$('.faqList div').hide();
 			$('#ffaq4').show();
 		})
-		$('#5').click(function(){
+		$('#faq5').click(function(){
 			$('.faqList div').hide();
 			$('#ffaq5').show();
+		})
+		$('#faq6').click(function(){
+			$('.faqList div').hide();
+			$('#ffaq6').show();
 		})
 		
 	})

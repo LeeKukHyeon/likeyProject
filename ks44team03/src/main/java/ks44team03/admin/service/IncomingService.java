@@ -12,7 +12,6 @@ import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.GoodsInfo;
-import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
 
 @Service
@@ -99,16 +98,10 @@ public class IncomingService {
 	}
 	
 	//입고 등록
-	public void regIncoming(Incoming incoming) {
+	public List<GoodsInfo> regIncoming(){
+		List<GoodsInfo> regIncoming = incomingMapper.regIncoming();
 		
-		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
-		incoming.setIncomingCode(newIncomingCode);
-		
-		
-		log.info("입고 등록 ------- incoming" + incoming);
-		int result = incomingMapper.regIncoming(incoming);
-		
-		log.info("입고 등록 결과 : " + result);
+		return regIncoming;
 	}
 	
 	//입고 전 상품목록 숫자
@@ -129,14 +122,8 @@ public class IncomingService {
 		return incomingOrderList;
 	}
 	
-	//입고 현황 조회
-	public List<Incoming> incomingCurrentState() {
-
-		List<Incoming> incomingCurrentState = incomingMapper.incomingCurrentState();
-		log.info("입고 현황 조회 리스트 ------- incomingList" + incomingCurrentState);
-
-		return incomingCurrentState;
+	//입고등록 모달 - 특정 상품코드 조회
+	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode){
+		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
 	}
-	
-	
 }
