@@ -748,7 +748,6 @@ $(function(){
       </div>
       
 <script>
-jQuery( document ).ready( function(){
 function step2_check()
 {
 	if($('input[name="notice_agree"]:checked').length < 1 )
@@ -882,6 +881,12 @@ function deleteItem()
     }
 	getOrderAmt();
 }
+
+function fncOnMouseOver(selectedIndex)
+{
+	document.all.tblVote.clickedRowIndex = selectedIndex;
+}
+
 
 // 상품추가 버튼 클릭시
 var idNum=0;
@@ -1060,7 +1065,6 @@ function ajaxFileUpload(obj, idx, rowIdx){
 return false;
 }
  */
-}
 </script>   
       
       
