@@ -50,6 +50,38 @@
 	</resultMap>
 	
 	
+
+	<!-- 입출고 -->
+	<resultMap type="Incoming" id="incomingResultMap">
+		<!-- 입고 -->
+		<id column="idcoming_code" property="incomingCode" />
+		<result column="goods_info_code" property="goodsInfoCode" />
+		<result column="e_code" property="eCode" />
+		<result column="photo_save" property="photoSave" />
+		<result column="volume" property="volume" />
+		<result column="weight" property="weight" />
+		<!--
+		출고
+		<result column="req_option_impli" property="" />
+		<result column="postpone" property="" />
+		<result column="sum_post" property="" />
+		<result column="send_out" property="" />
+		<result column="approval" property="" />
+		<result column="out_tracking_num" property="" />
+		<result column="out_company" property="" />
+		-->
+	</resultMap>
+
+
+	<update id="incomingGoodsDetailRegister" parameterType="String"> 
+		UPDATE 
+			goods_info 
+		SET 
+			arrival = "y" , arrival_date = curdate() 
+		WHERE 
+			goods_info_code = #{goodsInfoCode};
+	</update>
+
 	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/
@@ -257,7 +289,7 @@
 	 		g.buy_order_code = o.buy_order_code
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
-	 		and o.step3 = 'y'
+	 		and o.step3 = 'y' and arrival = 'n' 
 	 		limit ${cri.skip}, ${cri.amount}
 	 
 	 	

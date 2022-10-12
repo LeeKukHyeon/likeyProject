@@ -168,6 +168,7 @@
                   </tbody>
                   
 			</table>
+			<button class="modal_button">등록</button>
 			<button class="modal_box button">취소</button>
 		</div>
 		
@@ -194,7 +195,7 @@
 				type : 'POST',
 				data : {code:code},
 				success: function(data){
-					console.log(data[0].goodsInfoCode);
+					
 					$('#goodsInfoCode').text(data[0].goodsInfoCode );
 					$('#id').text(data[0].id );
 					$('#buyOrderCode').text(data[0].buyOrderCode );
@@ -226,7 +227,28 @@
 			$('.modal').fadeOut(1000);
 			
 		});
-	
+		
+		$('.modal_button').click(function(){
+			
+			var goodsInfoCode = $('#goodsInfoCode').text()
+			$.ajax({
+				url : "incomingGoodsDetailRegister",
+				type : 'POST',
+				data : {goodsInfoCode:goodsInfoCode},
+				success: function(data){
+					var url = document.location.href;
+					var arr = url.split(/[/,=]/);
+					var path = arr[3] + "=" + $('#buyOrderCode').text();
+					
+					location.href = path;
+				
+				}
+				
+			})
+			
+
+			
+		});
 		
 		
 

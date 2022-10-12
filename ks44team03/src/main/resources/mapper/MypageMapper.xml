@@ -89,8 +89,8 @@
 			ON o.buy_order_code = os.buy_order_code
 		WHERE 
 			o.step3 = #{stat_info}  
-			AND o.id = #{u_id}
-		GROUP BY g.grouping_delivery;
+			AND o.id = #{u_id};
+		
 		
 	</select>	
 	

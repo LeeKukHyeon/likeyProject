@@ -46,7 +46,7 @@ public class MypageService {
 		/*목록조회*/
 		public List<ShipOrderApi> shipOrderApi(Map<String, Object> paramMap){
 			List<ShipOrderApi> shipOrderApi = null;
-			if (paramMap.get("stat_info").equals("임시저장")) {
+			if (paramMap.get("stat_info").equals("n")) {
 				shipOrderApi = mypageMapper.shipOrderTemp(paramMap);
 			}
 			else {

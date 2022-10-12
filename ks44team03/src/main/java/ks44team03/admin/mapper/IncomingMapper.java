@@ -11,9 +11,16 @@ import ks44team03.dto.OrderInfo;
 
 @Mapper
 public interface IncomingMapper {
+
+	
+	//ajax로 상품도착등록
+	public int incomingGoodsDetailRegister(String goodsInfoCode);
+	
+
 	//입고 등록
 	public List<GoodsInfo> regIncoming();
 	
+
 	//ajax 호출
 	public List<GoodsInfo> goodsDetail(String code);
 	
