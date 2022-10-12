@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 입고등록 -->
+<title>입고등록</title>
+</head>
+
+<!-- ========== 입고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고등록 화면 시작 ========== -->
+				<h2>보관료발생상품목록</h2>
+				<div class="incoming_register">
+					<form method="get" action="storageCharge">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="id">id</option>
+							        		<option value="g_name">이름</option>
+							        		<option value="arrival_date">상품도착날짜</option>
+							        		<option value="total_imp_of_charge">보관료발생금액</option>
+							        		<option value="buy_order_code">주문번호</option>
+							        	</select>
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+		       		</form>
+		       			<form>
+						<table class = "input_table" style="width:100%">
+						
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>id</th>
+									<th>이름</th>
+									<th>상품도착날짜</th>
+									<th>보관료발생금액</th>
+									<th>주문번호</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+							 	
+								<tr th:each = "i :${storageCharge}">
+									<td><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.id}">d</td>
+									<td th:text="${i.gName}">d</td>
+									<td th:text="${i.arrivalDate}">d</td>
+									<td th:text="${i.totalImpOfCharge}">d</td>
+									<td th:text="${i.buyOrderCode}">d</td>
+									
+								
+								</tr>
+							  </tbody>
+						</table>
+						<button type="submit" id="sub_btn" >등록</button>
+					</form>
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+
+</body>
+
+</html>

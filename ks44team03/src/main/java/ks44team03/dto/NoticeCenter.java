@@ -9,7 +9,14 @@ public class NoticeCenter {
 	private String noticeImg; //공지사항이미지
 	private String noticeDate; //공지사항등록일자
 	private String noticeView; //공지사항조회수
+	private String noticeImportant; //공지사항 [공지]여부 y/n
 	
+	public String getNoticeImportant() {
+		return noticeImportant;
+	}
+	public void setNoticeImportant(String noticeImportant) {
+		this.noticeImportant = noticeImportant;
+	}
 	public String getNoticeNumCode() {
 		return noticeNumCode;
 	}
@@ -57,7 +64,7 @@ public class NoticeCenter {
 	public String toString() {
 		return "NoticeCenter [noticeNumCode=" + noticeNumCode + ", employeeCode=" + employeeCode + ", noticeTitle="
 				+ noticeTitle + ", noticeContent=" + noticeContent + ", noticeImg=" + noticeImg + ", noticeDate="
-				+ noticeDate + ", noticeView=" + noticeView + "]";
+				+ noticeDate + ", noticeView=" + noticeView + ", noticeImportant=" + noticeImportant + "]";
 	}
 
 }

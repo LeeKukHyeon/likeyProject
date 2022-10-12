@@ -1,5 +1,6 @@
 package ks44team03.admin.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.IncomingService;
+import ks44team03.dto.Criteria;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
+import ks44team03.dto.PageMakerDTO;
+
 
 @Controller
 public class IncomingController {
@@ -25,44 +30,111 @@ public class IncomingController {
 	
 	private IncomingService incomingService;
 	
+	
 	public IncomingController(IncomingService incomingService) {
 		this.incomingService = incomingService;
+		
+	}
+	
+	//ajax 호출
+	
+	@PostMapping("/goodsDetail")
+	@ResponseBody
+	public List<GoodsInfo> goodsDetail(@RequestParam(value = "code") String code) {
+			
+			List<GoodsInfo> goodsDetail = incomingService.goodsDetail(code);
+			
+		
+			return goodsDetail;
 	}
 
-	/*
-	 * @PostMapping("/incomingRegister") public String regIncoming(Incoming
-	 * incoming) {
-	 * 
-	 * log.info("입력한 값 ::: {}", incoming); incomingService.regIncoming(incoming);
-	 * 
-	 * return "redirect:/incomingSearch"; }
-	 */
-	//입고 등록 22222222222222
-	@GetMapping("/incomingRegister2") 
+	//입고 등록
+	@GetMapping("/incomingRegister") 
 	public String regIncoming2(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
-	  List<GoodsInfo> regIncoming2 = incomingService.regIncoming2();
+	  List<GoodsInfo> regIncoming = incomingService.regIncoming();
 	  
-	  GoodsInfo incomingGoodsInfo = incomingService.getIncomingGoodsInfo(goodsInfoCode);
-	  log.info("incomingGoodsInfo ::::::"+ incomingGoodsInfo);
 	  log.info("goodsInfoCode ::::" + goodsInfoCode);
 	  
-	  model.addAttribute("incomingGoodsInfo", incomingGoodsInfo);
 	  model.addAttribute("title", "입고 등록"); 
-	  model.addAttribute("regIncoming2",regIncoming2); 
-	  model.addAttribute("incomingGoodsInfo",incomingGoodsInfo); 
-	  return "incoming/incomingRegister2";
+	  model.addAttribute("regIncoming",regIncoming); 
+	  return "incoming/incomingRegister";
 	 }
 	
-	
-	//입고 전 상품목록
-	@GetMapping("/incomingGoodsList")
-	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode") String buyOrderCode) {
-	List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(buyOrderCode);
-	System.out.println("incomingGoodsList::::::"+ incomingGoodsList);
-	model.addAttribute("incomingGoodsList", incomingGoodsList);
-	return "incoming/incomingGoodsList";
+	//입고전 상품목록
+	@GetMapping("incomingGoodsList")
+	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,Criteria cri) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		System.out.println(buyOrderCode);
+		paramMap.put("buyOrderCode", buyOrderCode);
+		paramMap.put("cri", cri);
+		
+		int getTotal = incomingService.getListPaging(buyOrderCode);
+		
+		List<GoodsInfo> incomingGoodsList = incomingService.incomingGoodsList(paramMap);
+		System.out.println(getTotal);
+		
+		PageMakerDTO pageMake = new PageMakerDTO(cri, getTotal);
+		model.addAttribute("buyOrderCode",buyOrderCode);
+		model.addAttribute("pageMake",pageMake);
+		System.out.println(pageMake);
+		model.addAttribute("incomingGoodsList", incomingGoodsList);
+		return "incoming/incomingGoodsList";
 	}
 	
+	
+	//보관료 발생 목록 조회
+	
+	@GetMapping("storageCharge")
+	public String storageCharge(Model model, 
+			@RequestParam(name = "searchKey",required=false ) String searchKey,
+			@RequestParam(name = "searchValue",required=false ) String searchValue) {
+		System.out.println(searchKey);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		List<GoodsInfo> storageCharge = incomingService.storageCharge(paramMap); 
+		
+		model.addAttribute("title", "보관료 발생 조회"); 
+		model.addAttribute("storageCharge",storageCharge); 
+		return "incoming/storageCharge"; 
+		
+	}
+	//배송완료 상품 목록 조회
+	
+	@GetMapping("deliveryComplete")
+	public String deliveryComplete(Model model, 
+			@RequestParam(name = "searchKey",required=false ) String searchKey,
+			@RequestParam(name = "searchValue",required=false ) String searchValue) {
+		System.out.println(searchKey);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		List<GoodsInfo> deliveryComplete = incomingService.deliveryComplete(paramMap); 
+		
+		model.addAttribute("title", "배송완료 상품목록 조회"); 
+		model.addAttribute("deliveryComplete",deliveryComplete); 
+		return "incoming/deliveryComplete"; 
+		
+	}
+	
+	//배송중인 상품 목록 조회
+	
+		@GetMapping("inTransit")
+		public String inTransit(Model model, 
+				@RequestParam(name = "searchKey",required=false ) String searchKey,
+				@RequestParam(name = "searchValue",required=false ) String searchValue) {
+				
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("searchKey", searchKey);
+				paramMap.put("searchValue", searchValue);
+				List<GoodsInfo> inTransit = incomingService.inTransit(paramMap); 
+							
+				model.addAttribute("title", "배송중인 상품목록 조회"); 
+				model.addAttribute("inTransit",inTransit); 
+				return "incoming/inTransit"; 
+			
+		}
+			
 	
 	//오류 입고
 	
@@ -109,9 +181,15 @@ public class IncomingController {
 	@GetMapping("/incomingList")
 	public String incomingList(Model model,
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
-			@RequestParam(name = "searchValue",required=false ) String searchValue
+			@RequestParam(name = "searchValue",required=false ) String searchValue,
+			@RequestParam(name = "check", required=false) String[] checks
 			) {
 		
+		if (checks != null) {
+			for(String check :  checks) {
+				incomingService.regGoodsIncoming(check);
+			}
+		}
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchKey", searchKey);

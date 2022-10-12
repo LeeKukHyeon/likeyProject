@@ -16,7 +16,7 @@
 		<result column="addr" property="addr"/>
 		<result column="total_price" property="totalPrice"/>
 		<result column="goods_order_date" property="goodsOrderDate"/>
-		<result column="temp" property="temp"/>
+		<result column="step3" property="step3"/>
 		<result column="Desired_courier" property="DesiredCourier"/>
 		<result column="buy_way" property="buyWay"/>
 		<result column="request" property="request"/>
@@ -39,7 +39,7 @@
 		  ,addr
 		  ,total_price
 		  ,goods_order_date
-		  ,temp
+		  ,step3
 		  ,Desired_courier
 		  ,buy_way
 		  ,request
@@ -48,7 +48,7 @@
 		FROM
 			order_info
 		WHERE
-			temp IS NULL;
+			step3 = 'y';
 	</select>
 	<!-- (임시저장)이용자 주문서 목록 -->
 	<select id="getTempOrderList" resultMap="orderListResultMap">
@@ -64,7 +64,7 @@
 		  ,addr
 		  ,total_price
 		  ,goods_order_date
-		  ,temp
+		  ,step3
 		  ,Desired_courier
 		  ,buy_way
 		  ,request
@@ -73,7 +73,7 @@
 		FROM
 			order_info
 		WHERE
-			temp IS NOT NULL;
+			step3 ='y';
 	</select>
 	
 </mapper>

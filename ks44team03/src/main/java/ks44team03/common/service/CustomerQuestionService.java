@@ -28,8 +28,6 @@ public class CustomerQuestionService {
 		
 		return searchQuestion;
 	}
-
-	
 	
 	
 	//1:1문의 삭제

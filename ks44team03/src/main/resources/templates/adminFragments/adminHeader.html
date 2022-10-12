@@ -406,12 +406,13 @@
             <div class="collapse" id="incoming">
               <ul class="nav flex-column sub-menu">
               	<li class="nav-item"> <a class="nav-link" th:href="@{/incomingList}">상품도착등록(이국현)</a></li>
-                <li class="nav-item"> <a class="nav-link" th:href="@{/incomingRegister2}">입고등록</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/incomingRegister}">입고등록</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/arriveWarehouse}">창고도착(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/partialArrival}">일부입고(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/arrivedAll}">도착(입고)완료(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/errorIncoming}">오류입고(이국현)</a></li>
-                <li class="nav-item"> <a class="nav-link" th:href="@{/incomingSearch}">입고현황조회</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/storageCharge}">보관료발생상품목록(이국현)</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" th:href="@{/incomingSearch}">입고현황조회</a></li> -->
               </ul>
             </div>
           </li>
@@ -424,6 +425,8 @@
             <div class="collapse" id="forwarding">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" th:href="@{/forwardingRegister}">출고등록</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/inTransit}">배송중인 상품목록조회(이국현)</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/deliveryComplete}">배송완료 상품목록조회(이국현)</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/forwardingSearch}">출고현황조회</a></li>
               </ul>
             </div>
