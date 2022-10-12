@@ -49,6 +49,8 @@
 		<result column="hscode" property="hsCode"/>
 	</resultMap>
 	
+	
+	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/
 		select 

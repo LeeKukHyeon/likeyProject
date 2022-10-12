@@ -12,7 +12,6 @@ import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.GoodsInfo;
-import ks44team03.dto.Incoming;
 import ks44team03.dto.OrderInfo;
 
 @Service
