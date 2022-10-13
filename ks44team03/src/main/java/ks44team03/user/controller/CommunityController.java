@@ -87,8 +87,29 @@ public class CommunityController {
 		
 		return result;
 	}
+	// 이용후기 수정
+	@PostMapping("/modifyReview")
+	public String modifyReview(Community community) {
+		
+		communityService.modifyReview(community);
+		
+		return "redirect:/reviewInfo";
+	}
 // ------------------- 정보공유 게시판 관련 맵핑 end ---------------------------------------------
-	
+	// 특정 이용후기 커뮤니티 글 조회
+	@GetMapping("/modifyReview")
+	public String modifyReview(@RequestParam(name="communityNum", required = false) String communityNum,
+								Model model) {
+		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
+		
+		List<Community> reviewList = communityService.getReviewList();
+		
+		model.addAttribute("title", "이용후기 수정");
+		model.addAttribute("communityNumInfo", communityNumInfo);
+		model.addAttribute("reviewList", reviewList);
+		
+		return "community/modifyReview";
+	}
 // ------------------- 정보공유 게시판 관련 맵핑 state ---------------------------------------------
 	// 정보공유 게시판 목록
 	@GetMapping("/postbordeList")
