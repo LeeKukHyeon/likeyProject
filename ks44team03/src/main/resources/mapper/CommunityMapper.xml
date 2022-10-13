@@ -16,7 +16,7 @@
 		<result column="cm_comment" property="communityComment"/>
 		<result column="cm_comment_date" property="communityDate"/>
 		<result column="cm_view" property="communityView"/>	
-		<result column="community_cate" property="communityView"/>	
+		<result column="community_cate" property="communityCate"/>	
 	</resultMap>
 <!-- ########################### 이용후기 관련 mapper State ################################# -->	
 	<!-- 이용후기 등록 -->

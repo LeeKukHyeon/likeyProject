@@ -31,7 +31,7 @@ a{
 	padding: 30px;
 } */
 
-.reviewForm{
+#modifyReviewForm{
 	margin-left: 330px;
 	margin-right: 330px;
 	margin-bottom: 10%;
@@ -87,16 +87,17 @@ a{
 	<div align="center">
 		<div class="reviewReg">
 			<h2 th:text="${title}"></h2>
-			<form class="reviewForm" th:action="@{/modifyReview}" method="post">
+			<form id="modifyReviewForm" th:action="@{/modifyReview}" method="post">
 				<table class="modifyReviewForm" th:object="${communityNumInfo}">
 					<tr>
 						<td>
+							<input type="text"name="communityNum" th:value="${communityNumInfo.communityNum}" style="display: none;">
 							<input type="text" class="reviewTitle" name="communityTitle" th:value="${communityNumInfo.communityTitle}" placeholder="제목을 입력해주세요.">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<textarea class="reviewTextarea"cols="100" rows="20" name="communityContent" th:value="${communityNumInfo.communityContent}" placeholder="내용을 입력해주세요."></textarea>
+							<textarea class="reviewTextarea"cols="100" rows="20" name="communityContent" th:text="${communityNumInfo.communityContent}" placeholder="내용을 입력해주세요.">${communityNumInfo.communityContent}</textarea>
 						</td>
 					</tr>
 					<tbody>
@@ -113,7 +114,10 @@ a{
 					</tbody>
 					<tfoot>
 						<tr>
-							<td><button type="submit" class="addReviewBtn">등록</button></td>
+							<td>
+							<button type="submit"  class="addReviewBtn">수정</button>
+							<!-- <a th:href="@{/reviewInfo(communityNum=${communityNumInfo.communityNum})}"></a> -->
+							</td>
 						</tr>
 					</tfoot>
 				</table>

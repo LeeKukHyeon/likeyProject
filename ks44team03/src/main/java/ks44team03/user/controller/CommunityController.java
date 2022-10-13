@@ -55,9 +55,12 @@ public class CommunityController {
 	public String getReviewInfo(@RequestParam(name="communityNum")String communityNum,
 								Model model) {
 		
-		
+		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
 		Community reviewInfo = communityService.getReviewInfo(communityNum);
 		
+		
+		System.out.println("communityNumInfo 겟맵핑 상세정보::::::::::::::::::" + communityNumInfo);
+		model.addAttribute("communityNumInfo", communityNumInfo);
 		model.addAttribute("reviewInfo", reviewInfo);
 		model.addAttribute("title", "이용후기");
 		return "community/reviewInfo";
@@ -89,24 +92,32 @@ public class CommunityController {
 	}
 	// 이용후기 수정
 	@PostMapping("/modifyReview")
-	public String modifyReview(Community community) {
+	public String modifyReview(Community community,
+							   @RequestParam(name="communityNum", required = false)String communityNum,
+							   Model model) {
 		
 		communityService.modifyReview(community);
 		
-		return "redirect:/reviewInfo";
+		Community reviewInfo = communityService.getReviewInfo(communityNum);
+		
+		
+		
+		
+		model.addAttribute("reviewInfo", reviewInfo);
+		model.addAttribute("title", "이용후기");
+		System.out.println("communityNum ->>>>>"+ communityNum);
+		return "community/reviewInfo";
 	}
 // ------------------- 정보공유 게시판 관련 맵핑 end ---------------------------------------------
 	// 특정 이용후기 커뮤니티 글 조회
 	@GetMapping("/modifyReview")
-	public String modifyReview(@RequestParam(name="communityNum", required = false) String communityNum,
-								Model model) {
+	public String modifyReview(@RequestParam(value="communityNum", required = false) String communityNum
+							  ,Model model) {
 		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
 		
-		List<Community> reviewList = communityService.getReviewList();
 		
 		model.addAttribute("title", "이용후기 수정");
 		model.addAttribute("communityNumInfo", communityNumInfo);
-		model.addAttribute("reviewList", reviewList);
 		
 		return "community/modifyReview";
 	}
