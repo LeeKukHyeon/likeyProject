@@ -11,29 +11,86 @@
 	<div class="content-wrapper">
 		<h3>쿠폰 리스트</h3>
 		<hr style="width: 70%">
-		<table border="1"	style="width: 50%; text-align: center"  >
-			<thead>
-				<tr>
-					<th>쿠폰 코드</th>
-					<th>쿠폰 이름</th>
-					<th>쿠폰 할인금액</th>
-					<th>쿠폰 날짜</th>
-				</tr>
-			</thead>
+		<table class="couponList" border="1" style="width: 50%;">
 			<tbody>
-				<tr >
-					<td>coupone_code1</td>
-					<td>회원가입</td>
-					<td>1000</td>
-					<td>2022-10-12</td>
+				<tr>
+					<th >쿠폰 코드</th>
+					<th >쿠폰 이름</th>
+					<th >쿠폰 할인금액</th>
+					<th >쿠폰 등록 날짜</th>
 				</tr>
-			
+				<tr th:if="${not #lists.isEmpty(couponList)}" th:each="l : ${couponList}">
+					<td th:text="${l.couponCode}"></td>
+					<td th:text="${l.couponName}"></td>
+					<td th:text="${l.couponPrice}"></td>
+					<td th:text="${l.couponDate}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(couponList)}">
+					<td style="border-left: 0px;" colspan="4">등록된 쿠폰이 없습니다.</td>
+				</tr>
 			</tbody>
-		
 		</table>
+			<div style="margin-top: 3mm">
+			<button class="incoming_modal_open">쿠폰 등록</button>
+				<form id="couponAddForm" th:action="@{couponAdmin}" method="post">	
+					<div class="modal" style="display: none;">
+		               <div class="incoming_modal_content">
+		                  <h3 style="text-align: center;">쿠폰 추가</h3>
 		
-
-
+		                  	<table class="input_table">
+		                  		<tbody>
+		                  		<tr>
+		                  			<th>쿠폰 이름</th>
+		                  			<td><input type="text" placeholder="쿠폰 이름을 입력 해주세요" id="couponName" name="couponName"></td>
+		                  		</tr>
+		                  		<tr>
+		                  			<th>쿠폰 할인금액</th>
+		                  			<td><input type="number" placeholder="할인 금액을 입력 해주세요" id="couponPrice" name="couponPrice"></td>
+		                  		</tr>
+		                  	</tbody></table>
+		                 <div class="incoming_modal_button" align="center">
+		                     <button type="submit" id="incoming_modal_reg" class="add_button">등록</button>
+		                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+		                 </div>
+		               </div>
+		               <div class="incoming_modal_layer"></div>
+		            </div>
+				</form>
+			</div>
 	</div>
+	<script type="text/javascript">
+   $(function(){
+      $(document).on('click', '.incoming_modal_open', function(){
+         $('.modal').css('display', 'block');
+      /*    $('ul').css('display','none');
+         $('nav').css('position','fixed'); */
+
+         
+      });
+      $(document).on('click', '#incoming_modal_close', function(){
+         $('.modal').css('display', 'none');
+      });
+   });
+</script>
+	<script type="text/javascript">
+	$(function(){
+		$('#incoming_modal_reg').click(function(){
+			var checkName = $('#couponName').val()
+			var checkPrice = $('#couponPrice').val()
+			if(checkName == '' || checkName == 'undefined' || checkName == null){
+				alert('쿠폰 이름을 입력 해주세요')
+				return false;
+			}
+			if(checkPrice == '' || checkPrice == 'undefined' || checkPrice == null){
+				alert('할인금액을 입력 해주세요')
+				return false;
+			}
+		})	
+		
+	})
+	
+	
+	</script>
+
 </body>
 </html>

@@ -55,3 +55,43 @@ button {cursor:pointer;}
 .personal_question_list td a {color: black;}
 
 
+/* 관리자 페이지 쿠폰 */
+.couponList body {
+  color: #666;
+  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+.couponList table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+.couponList  th,td {
+  padding: 6px 15px;
+}
+.couponList th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+.couponList tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+.couponList tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+.couponList td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+.couponList td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+.couponList tr:nth-child(even) td {
+  background: #eaeaed;
+}
+.couponList tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+.couponList tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
