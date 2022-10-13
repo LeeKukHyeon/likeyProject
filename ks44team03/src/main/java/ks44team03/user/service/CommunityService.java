@@ -75,6 +75,7 @@ public class CommunityService {
 		
 		Community community = communityMapper.getCommunityInfoByNum(communityNum);
 		
+		log.info("community ::::::::: 특정 커뮤니티 글 조회 ::::::::::" + community);
 		return community;
 	}
 	
