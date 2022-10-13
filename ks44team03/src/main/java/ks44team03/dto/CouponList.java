@@ -2,10 +2,11 @@ package ks44team03.dto;
 
 public class CouponList {
 
-	private String couponCode;
-	private String couponName;
-	private String couponPrice;
-	private String couponDate;
+	private String couponCode; //쿠폰코드
+	private String couponName; //쿠폰 이름
+	private String couponPrice; //쿠폰 할인 가격
+	private String couponDate; //쿠폰 등록 날짜
+	
 	public String getCouponCode() {
 		return couponCode;
 	}

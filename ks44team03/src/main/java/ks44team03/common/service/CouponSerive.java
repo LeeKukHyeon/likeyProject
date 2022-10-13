@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.common.mapper.CouponMapper;
+import ks44team03.dto.Coupon;
 import ks44team03.dto.CouponList;
 
 @Service
@@ -20,6 +21,13 @@ public class CouponSerive {
 		this.couponMapper = couponMapper;
 		this.commonMapper = commonMapper;
 	}
+	//회원이 보유한 쿠폰 리스트 확인
+	public List<Coupon> couponUserList(){
+		
+		List<Coupon> couponuserList = couponMapper.couponUserList();
+		
+		return couponuserList;
+	}
 	
 	//관리자 페이지 쿠폰 등록
 	public void couponAdd(CouponList couponList) {
@@ -30,7 +38,7 @@ public class CouponSerive {
 		int result = couponMapper.couponAdd(couponList);
 	}
 	
-	//관리자 페이지 쿠폰 리스트
+	//관리자 페이지 등록한 쿠폰 리스트
 	public List<CouponList> couponList(){
 		
 		List<CouponList> couponList = couponMapper.couponList();
