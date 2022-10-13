@@ -61,6 +61,12 @@ public class IncomingService {
 		
 		return inTransit;
 	}
+	//상품도착 체크박스 등록
+	public int incomingCheck(Map<String, Object> paramMap){
+		int incomingCheck = incomingMapper.incomingCheck(paramMap);
+		
+		return incomingCheck;
+	}
 	
 	//상품도착등록
 	public int regGoodsIncoming(String check){

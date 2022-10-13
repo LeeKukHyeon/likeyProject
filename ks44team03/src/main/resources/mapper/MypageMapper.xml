@@ -76,8 +76,8 @@
 			,g.g_name as gName
 			,o.total_price as totalPrice
 			,o.user_name as userName
-			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
-			,CONCAT(o.step3, ' (',COUNT(o.step3), ')') AS statInfo
+			,CASE o.forwarding_hold WHEN 'n' THEN '출고보류' ELSE null END AS orderState
+			,CASE o.step3 WHEN 'n' THEN '임시저장' ELSE null END AS statInfo 
 			,g.buy_order_code as buyOrderCode
 		FROM 
 			goods_info AS g 

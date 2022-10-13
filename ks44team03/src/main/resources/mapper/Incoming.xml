@@ -71,6 +71,16 @@
 		<result column="out_company" property="" />
 		-->
 	</resultMap>
+	
+	<update id="incomingCheck" parameterType="map"> 
+		<foreach collection="checks" item="item" > 
+		    UPDATE 	goods_info 
+		    SET		arrival= 'y' , arrival_date = curdate() 
+		  
+		    WHERE 	goods_info_code=#{item};
+		 </foreach> 
+	</update>
+
 
 
 	<update id="incomingGoodsDetailRegister" parameterType="String"> 
@@ -90,7 +100,7 @@
 		from 
 			goods_info 
 		where
-			goods_info_code = #{code}
+			goods_info_code = #{code};
 	</select>
 	
 	<!-- 보관료 발생 리스트 -->
@@ -290,8 +300,11 @@
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
 	 		and o.step3 = 'y' and arrival = 'n' 
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if> 
 	 		limit ${cri.skip}, ${cri.amount}
-	 
+	 ;
 	 	
 	 	
 	 </select>

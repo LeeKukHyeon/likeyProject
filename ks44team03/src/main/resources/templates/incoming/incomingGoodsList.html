@@ -21,7 +21,7 @@
 				<!-- ========== 입고등록 화면 시작 ========== -->
 				<h2>상품도착등록</h2>
 				<div class="incoming_register">
-					<form method="post" action="#">
+					<form method="post" th:action="@{/incomingGoodsList}">
 							<div th:fragment="searchFragment" >
 							        
 							        	<select name="searchKey" id="searchKey">
@@ -32,9 +32,11 @@
 							        		<option value="companyCate">운송장번호</option>
 							        	</select>
 						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
-						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+						        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
 							       	
 		       				 </div>
+		       		</form>
+		       		<form th:action="@{/incomingCheck}" method="post">
 						<table class = "input_table" style="width:100%">
 						
 							<thead>
@@ -48,10 +50,10 @@
 									<th>수량</th>						
 								</tr>								
 							</thead>
-							  <tbody>
+							  <tbody >
 							 	
 								<tr th:each = "i :${incomingGoodsList}">
-									<td><input type="checkbox"></td>									
+									<td><input type="checkbox" name="check" th:value="${i.goodsInfoCode}"></td>									
 									<td><a href="javascript:void(0);" th:text="${i.goodsInfoCode}"></a></td>
 									<td th:text="${i.deliveryCompany}">d</td>
 									<td th:text="${i.gSite}">d</td>
