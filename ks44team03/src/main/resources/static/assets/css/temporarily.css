@@ -65,13 +65,11 @@ button {cursor:pointer;}
   border-spacing: 0;
   width: 100%;
 }
-.couponList  th,td {
-  padding: 6px 15px;
-}
 .couponList th {
   background: #42444e;
   color: #fff;
   text-align: left;
+  padding: 6px 15px;
 }
 .couponList tr:first-child th:first-child {
   border-top-left-radius: 6px;
@@ -82,6 +80,7 @@ button {cursor:pointer;}
 .couponList td {
   border-right: 1px solid #c6c9cc;
   border-bottom: 1px solid #c6c9cc;
+  padding: 6px 15px;
 }
 .couponList td:first-child {
   border-left: 1px solid #c6c9cc;

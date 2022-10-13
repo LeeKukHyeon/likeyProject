@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.CompanyInfoService;
+import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
 import ks44team03.dto.Nodata;
@@ -31,12 +32,15 @@ public class MypageController {
 
 	/*
 	 * 임시저장 상품수정
-	 * 
-	 * @GetMapping("/applicationEdit") public String
-	 * applicationEdit(@RequestParam(name="buyOrderCode")String buyOrderCode) {
-	 * mypageService.applicationEdit(buyOrderCode); return "myPage/applicationEdit";
-	 * }
 	 */
+	 @GetMapping("/applicationEdit") 
+	 public String applicationEdit(@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
+		 List<GoodsInfo> applicationEdit = mypageService.applicationEdit(buyOrderCode); 
+		 System.out.println(applicationEdit);
+		 model.addAttribute("applicationEdit", applicationEdit);
+		 return "myPage/applicationEdit";
+	 }
+	 
 
 	@GetMapping("/applicationDetail")
 	public String applicationDetailList() {

@@ -32,7 +32,7 @@
 		<result column="store_name" property="storeName"/>
 		<result column="store_location" property="storeLocation"/>
 		
-		<association property="orderInf oDto" javaType="OrderInfo">
+		<association property="orderInfoDto" javaType="OrderInfo">
 			<id column="buy_order_code" property="buyOrderCode"/>
 			<result column="id" property="id"/>
 			<result column="transportation" property="transportation"/>
