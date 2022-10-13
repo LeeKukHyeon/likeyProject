@@ -66,6 +66,18 @@ public class CommunityService {
 		log.info("communityId 아이디체크 :::" + result);
 		return result;
 	}
+	// 이용후기 수정
+	public void modifyReview(Community community) {
+		communityMapper.modifyReview(community);
+	}
+	// 특정 커뮤니티 글 조회
+	public Community getCommunityInfoByNum(String communityNum) {
+		
+		Community community = communityMapper.getCommunityInfoByNum(communityNum);
+		
+		return community;
+	}
+	
 // ---------------------------------- 이용후기 관련 Service End --------------------------------------	
 	
 // ---------------------------------- 정보공유 관련 Service State --------------------------------------		

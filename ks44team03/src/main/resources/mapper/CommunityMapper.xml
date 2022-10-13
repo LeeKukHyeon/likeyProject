@@ -44,6 +44,7 @@
 		   cm_num
 		  ,id
 		  ,cm_title
+		  ,cm_content
 		  ,cm_view
 		  ,cm_date
 		FROM
@@ -94,8 +95,39 @@
 		WHERE 
 			c.id = #{communityId};
 	</select>
+	<!-- 이용후기 수정 -->
+	<update id="modifyReview" parameterType="Community">
+		UPDATE community
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="communityTitle != null and communityTitle != ''">
+				cm_title		= #{communityTitle}	
+			</if>
+			<if test="communityContent != null and communityContent != ''">
+				,cm_content 	= #{communityContent}		
+			</if>
+			<if test="communityImg != null and communityImg != ''">
+				,cm_img 	= #{communityImg}				
+			</if>	
+		</trim>
+		WHERE
+			cm_num = #{communityNum};
+	</update>
+	
 <!-- ########################### 이용후기 관련 mapper End ################################# -->		
-
+	<!-- 특정 커뮤니티 글 조회 -->
+	<select id="getCommunityInfoByNum" resultMap="communityResultMap">
+		/* 특정 커뮤니티 글 조회 */
+		SELECT
+			 cm_num
+			,id
+			,cm_title
+			,cm_content
+			,cm_date
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</select>
 <!-- ########################### 정보공유 관련 mapper State ################################# -->
 	<!-- 정보공유 목록 조회 -->
 	<select id="getPostbordeList" resultMap="communityResultMap"> 

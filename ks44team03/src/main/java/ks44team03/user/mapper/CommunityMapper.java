@@ -25,6 +25,12 @@ public interface CommunityMapper {
 	// 이용후기 아이디체크
 	public boolean reviewListIdCheck(String communityId);
 	
+	// 이용후기 수정
+	public int modifyReview(Community community);
+	
+	// 특정 커뮤니티 글 조회
+	public Community getCommunityInfoByNum(String communityNum);
+	
 	// 정보공유 등록
 	public int addPostborde(Community community); 
 	
