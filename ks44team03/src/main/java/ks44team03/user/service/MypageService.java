@@ -24,11 +24,13 @@ public class MypageService {
 		this.mypageMapper = mypageMapper;
 	}
 
-	/*
-	 * 임시저장 수정 public List<GoodsInfo> applicationEdit(String buyOrderCode){
-	 * List<GoodsInfo> applicationEdit = mypageMapper.applicationEdit(buyOrderCode);
-	 * return applicationEdit; }
-	 */
+	
+	 //임시저장 수정 
+	public List<GoodsInfo> applicationEdit(String buyOrderCode){
+	 List<GoodsInfo> applicationEdit = mypageMapper.applicationEdit(buyOrderCode);
+	  return applicationEdit; 
+	  }
+	 
 
 	public List<Nodata> nodataList(String u_id) {
 		List<Nodata> nodataList = mypageMapper.nodataList(u_id);
