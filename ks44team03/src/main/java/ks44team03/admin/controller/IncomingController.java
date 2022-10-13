@@ -35,6 +35,7 @@ public class IncomingController {
 		
 	}
 	
+	
 	//도착등록 ajax
 	@PostMapping("incomingGoodsDetailRegister")
 	@ResponseBody
@@ -71,11 +72,29 @@ public class IncomingController {
 	  return "incoming/incomingRegister";
 	 }
 	
+	//입고 도착 상품 체크박스로 등록
+	@PostMapping ("incomingCheck")
+	public String incomingCheck(@RequestParam(name = "check", required=false) String[] checks) {
+	
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("checks", checks);
+		incomingService.incomingCheck(paramMap);
+		return "redirect:incomingGoodsList";
+	}
+	
+	
 	//입고전 상품목록
 	@GetMapping("incomingGoodsList")
-	public String incomingGoodsList(Model model, @RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,Criteria cri) {
+	public String incomingGoodsList(Model model,
+		@RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,
+		@RequestParam(name = "searchKey",required=false ) String searchKey,
+		@RequestParam(name = "searchValue",required=false ) String searchValue,
+		Criteria cri) {		
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
 		paramMap.put("buyOrderCode", buyOrderCode);
 		paramMap.put("cri", cri);
 		
@@ -116,7 +135,7 @@ public class IncomingController {
 	public String deliveryComplete(Model model, 
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
 			@RequestParam(name = "searchValue",required=false ) String searchValue) {
-		System.out.println(searchKey);
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);

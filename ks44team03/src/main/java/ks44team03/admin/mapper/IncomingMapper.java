@@ -45,6 +45,9 @@ public interface IncomingMapper {
 	//일부입고 목록
 	public List<OrderInfo> partialArrival();
 	
+	/*입고된 상품목록 등록 체크박스*/
+	public int incomingCheck(Map<String, Object> paramMap);
+	
 	/*입고전 상품 목록(페이지 적용)*/
 	public int getListPaging(String buyOrderCode);	
 	
