@@ -49,5 +49,28 @@
 		WHERE
 			u.u_nick= #{uNick};
 	</select>
-	
+	<select id="getMemberInfoById" parameterType= "String" resultMap="UserInfoResultMap">
+		/* 로그인시 고객정보 확인 */
+		SELECT 
+			u.u_id
+			,u.user_grade_code
+			,u.u_pw
+			,u.user_pobox_code
+			,u.u_name
+			,u.u_level
+			,u.u_addr
+			,u.u_email
+			,u.u_birth
+			,u.u_phone
+			,u.u_nick
+			,u.u_insert_date
+			,u.u_dormant
+			,u.pay_completed_count
+			,u.friends_account
+			,u.bank_name
+		FROM
+			user_member AS u
+		WHERE 
+			u.u_id = #{uId};
+	</select>
 </mapper>

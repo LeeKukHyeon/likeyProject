@@ -3,6 +3,7 @@ package ks44team03.dto;
 public class UserInfo {
 	
 	private String uId; //이용자 아이디
+	
 	private String uGradeCode; //회원 등급 코드
 	private String nextGrade; // 다음 회원 등급
 	private int needBuy; // 더 사야하는 갯수
