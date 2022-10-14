@@ -4,39 +4,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-<head>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-$(function(){
-	var msg = [[${msg}]];
-	if(msg != null) alert(msg);
-		$("#loginBtn").click(function(){
-			console.log("버튼클릭해따!");
-			
-			var checkValid = true;
-			var inputObj = $('loginForm input');
-			
-			$.each(inputObj, function(){
-				var inputData = $(this).val();
-				if(typeof inputData == 'undefined' || inputData == null || inputData == '') {
-					checkValid = false;
-					var alertMsg = $('label[for="'+ $(this).attr('id') +'"]').text();
-					alert(alertMsg + " 를 입력해주세요");
-					$(this).focus();
-					return false;
-				}
-			});
-			
-			if(checkValid) $('#loginForm').submit()`;
-		});
-	});
-</script>
-</head>
-	<!-- default_layout.html에 정의한 main page 부분 -->
-	<body layout:fragment="content">
-	
-    <main>
+<body layout:fragment="content">
         <!-- Hero Area Start-->
         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
@@ -83,7 +51,7 @@ $(function(){
                                             <input type="checkbox" id="f-option" name="selector">
                                             <label for="f-option">아이디 기억하기</label>
                                         </div>
-                                        <button type="button" id="loginBtn" class="btn_3">
+                                        <button type="submit" id="loginBtn" class="btn_3">
                                         	로그인
                                         </button>
                                         <a class="lost_pass" th:href="@{/findIdPw}">비밀번호를 잊으셨나요?</a>
@@ -96,7 +64,32 @@ $(function(){
             </div>
         </section>
         <!--================login_part end =================-->
-    </main>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	var msg = [[${msg}]];
+	if(msg != null) alert(msg);
+	
+	$("#loginBtn").click(function(){
+		console.log("버튼클릭해따!");
+		
+		var checkValid = true;
+		var inputObj = $('loginForm input');
+		
+		$.each(inputObj, function(){
+			var inputData = $(this).val();
+			if(typeof inputData == 'undefined' || inputData == null || inputData == '') {
+				checkValid = false;
+				var alertMsg = $('label[for="'+ $(this).attr('id') +'"]').text();
+				alert(alertMsg + " 를 입력해주세요");
+				$(this).focus();
+				return false;
+			}
+		});
+		
+		if(checkValid) $('#loginForm').submit()`;
+	});
+});
+</script>
 </body>
 </html>
