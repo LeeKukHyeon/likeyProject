@@ -38,6 +38,7 @@ public class CompanyInfoService {
 		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);
 		return companyList;
 	}
+	
 	// 회사 목록 조회
 	public List<CompanyInfo> getCompanyList(){
 	  
