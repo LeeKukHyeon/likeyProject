@@ -28,6 +28,9 @@ public interface CommunityMapper {
 	// 이용후기 수정
 	public int modifyReview(Community community);
 	
+	// 이용후기 삭제
+	public void removeReview(String communityNum);
+	
 	// 특정 커뮤니티 글 조회
 	public Community getCommunityInfoByNum(String communityNum);
 	
@@ -43,6 +46,9 @@ public interface CommunityMapper {
 	// 정보공유 상세정보
 	public Community getPostbordeInfo(String communityNum);
 	
+	// 정보공유 수정
+	public int modifyPostborde(Community community);
+		
 	// 글조회시 조회수 증가
 	public void getCountHit(String communityNum);
 }
