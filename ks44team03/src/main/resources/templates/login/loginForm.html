@@ -5,29 +5,32 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <head>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	$(function(){
-		function loginSubmit(){
-			var memberCheck = $("#member").is(':checked');
+$(function(){
+	var msg = [[${msg}]];
+	if(msg != null) alert(msg);
+		$("#loginBtn").click(function(){
+			console.log("버튼클릭해따!");
 			
-			var $user = $("#user");
+			var checkValid = true;
+			var inputObj = $('loginForm input');
 			
-			var $username = $("#username");
-			var $password = $("#password");
+			$.each(inputObj, function(){
+				var inputData = $(this).val();
+				if(typeof inputData == 'undefined' || inputData == null || inputData == '') {
+					checkValid = false;
+					var alertMsg = $('label[for="'+ $(this).attr('id') +'"]').text();
+					alert(alertMsg + " 를 입력해주세요");
+					$(this).focus();
+					return false;
+				}
+			});
 			
-			if(memberCheck){
-				var username = $user.val()+" user"
-				$username.val(username);
-				//console.log("username : "+$username.val())
-				return true;
-			}else if(companyCheck){
-				var username = $user.val()+" com"
-				$username.val(username);
-				return true;
-			}else{
-				return false;
-			}
-	}
+			if(checkValid) $('#loginForm').submit()`;
+		});
+	});
 </script>
 </head>
 	<!-- default_layout.html에 정의한 main page 부분 -->
@@ -68,19 +71,19 @@
                             <div class="login_part_form_iner">
                                 <h3>역직구의 모든것! <br>
                                     	로그인 후 이용바랍니다</h3>
-                                <form class="row contact_form" action="#" method="post"onsubmit="return loginSubmit()" novalidate="novalidate" >
+                                <form class="login_form" th:action="@{/userLogin}" method="post">
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="아이디">
+                                        <input type="text" class="form-control" id="uId" name="uId" value="" placeholder="아이디">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="password" class="form-control" id="password" name="password" value="" placeholder="비밀번호">
+                                        <input type="password" class="form-control" id="uPw" name="uPw" value="" placeholder="비밀번호">
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <div class="creat_account d-flex align-items-center">
                                             <input type="checkbox" id="f-option" name="selector">
                                             <label for="f-option">아이디 기억하기</label>
                                         </div>
-                                        <button type="submit" value="submit" class="btn_3">
+                                        <button type="button" id="loginBtn" class="btn_3">
                                         	로그인
                                         </button>
                                         <a class="lost_pass" th:href="@{/findIdPw}">비밀번호를 잊으셨나요?</a>
