@@ -52,9 +52,9 @@
 						<div class="option_text">
 							<table cellspacing="0" border="0" id="tblVote" width="100%">
 									<tr th:each="l : ${applicationEdit}" onMouseover="document.all.tblVote.clickedRowIndex=this.rowIndex">
-										<td width="100%"><input type='hidden' name='item_id[]' value='0'>
+										<td width="100%" ><input type='hidden' name='item_id[]' value='0'>
 											<div class="detail_box2_wrap">
-												<div class="title">#1. 현재 신청 상태 : 입고대기 </div>
+												<div class="title"> <font th:text="${lStat.count}">#1.</font> 현재 신청 상태 : <font th:text="${l.deliveryCurrentStateDto.statInfo}"></font> </div>
 											</div>
 											
 											<!-- 상품 정보 입력 -->
@@ -91,7 +91,7 @@
 																<div>브랜드</div>
 																<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src="image/S_shipping_form_icon_10.gif"></div>
 															</td>
-															<td class="td2"><input type="text" name="package_brand[]" value="#"  maxlength="190"></td>
+															<td class="td2"><input type="text" name="package_brand[]" value="#"  maxlength="190" th:text="${l.gBrand}"></td>
 															<td class="td1 td3">상품가(USD)</td>
 															<td class="td2">
 															<input type="text" name="package_unitprice[]" value="#"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
