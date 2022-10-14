@@ -18,16 +18,18 @@
 					<th>회원 아이디</th>
 					<th>발급 일자</th>
 					<th>유효 기간</th>
+					<th>사용한 날짜</th>
 					<th>사용 여부</th>
 				</tr>
 				<tr th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
+					<td>쿠폰이름</td>
 					<td th:text="${l.userId}"></td>
 					<td th:text="${l.cDate}"></td>
-					<td th:text="${l.couponName}"></td>
 					<td th:text="${l.cEDate}"></td>
-					<td th:text="${l.cUse}"></td>
+					<td th:text="${l.cUseDate}"></td>
+					<td style="text-align: center;" th:text="${l.cUse}"></td>
 				</tr>
 			</tbody>
 		</table>
