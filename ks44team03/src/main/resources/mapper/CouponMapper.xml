@@ -24,20 +24,16 @@
 	<select id="couponUserList" resultMap="couponResultMap">
 	/* 회원이 보유한 쿠폰 리스트 확인  */	
 	select
-		cs.cs_code
-		,cs.c_code
-		,cs.u_id
-		,c.c_name
-		,cs.c_date
-		,cs.c_e_date
-		,cs.c_use_date
-		,cs.c_use
+		cs_code
+		,c_code
+		,u_id
+		,c_date
+		,c_e_date
+		,c_use_date
+		,c_use
 	from
-		coupon_status as cs
-		inner join
-		coupon as c
-		on
-		cs.c_code = c.c_code
+		coupon_status
+
 	</select>
 	
 	<!-- 쿠폰 등록 -->
