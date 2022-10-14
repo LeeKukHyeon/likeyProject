@@ -123,267 +123,7 @@ button {
 .olmessaget {color: blue; font-style: Italic;}
 </style>
 
-<!-- 아이디 비밀번호 입력되었는지 확인하는 함수  -->
- <script type="text/javascript">
-	 function checkValue() {
-	     if(!document.userInfo.id.value){
-	         alert("아이디를 입력하세요.");
-	         return false;
-	     }
-	     
-	     if(!document.userInfo.password.value){
-	         alert("비밀번호를 입력하세요.");
-	         return false;
-	     }
-	     
-	     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-	     if(document.userInfo.password.value != document.userInfo.passwordcheck.value ){
-	         alert("비밀번호를 동일하게 입력하세요.");
-	         return false;
-	     }
-	 }
-    </script>
 
-<!-- 생년월일 js -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
-$(document).ready(function(){            
-    var now = new Date();
-    var year = now.getFullYear();
-    var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
-    var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
-    //년도 selectbox만들기               
-    for(var i = 1900 ; i <= year ; i++) {
-        $('#year').append('<option value="' + i + '">' + i + '</option>');    
-    }
-
-    // 월별 selectbox 만들기            
-    for(var i=1; i <= 12; i++) {
-        var mm = i > 9 ? i : "0"+i ;            
-        $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
-    }
-    
-    // 일별 selectbox 만들기
-    for(var i=1; i <= 31; i++) {
-        var dd = i > 9 ? i : "0"+i ;            
-        $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
-    }
-    $("#year  > option[value="+year+"]").attr("selected", "true");        
-    $("#month  > option[value="+mon+"]").attr("selected", "true");    
-    $("#day  > option[value="+day+"]").attr("selected", "true");       
-  
-})
-</script>
-
-<!-- 아이디 중복확인 버튼 클릭시 중복체크  -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	var idchk = false; // 아이디 검사
-	
-	$(function() {
-	
-		var $uId = $("#uId");
-		var $id = $("#id");
-		
-		console.log("ㅠㅠ");
-		console.dir("uid : "+$uId);
-		
-		// 아이디 정규식
-		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
-			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
-			console.log('zzzzzzzzzzzzzzzzzzzzz');
-	
-			if (!regExp.test($uId.val())) { // id 가 공백인 경우 체크
-				idchk = false;
-				$id.html("<span id='check'>아이디를 입력해주세요.</span>");
-				$("#check").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-				})
-			} else { // 공백아니면 중복체크
-				$.ajax({
-					type : "POST",
-					url : "/signup/checkid",
-					data : {
-							"id" : $uId.val()
-							},
-					success : function(data) {
-						if (data == 1) { // 1이면 중복
-							idchk = false;
-							$id.html("<span id='check'>이미 존재하는 아이디입니다</span>")
-							$("#check").css({
-								"color" : "#FA3E3E",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-	
-							})
-							//console.log("중복아이디");
-						} else { // 아니면 중복아님
-							idchk = true;
-							$id.html("<span id='check'>사용가능한 아이디입니다</span>")
-	
-							$("#check").css({
-								"color" : "#0D6EFD",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-							})
-							//console.log("중복아닌 아이디");
-							}
-						}
-					});
-			}//
-		});
-	});
-
-</script>
-<script>
-	var pwdchk = false; // 패스워드
-	var pwdconfrimchk = false; // 패스워드 확인
-	
-	$(function() {
-		var $uPw = $("#uPw");
-		var $uRepw = $("#uRepw");
-		
-		console.log("패스워드 스크립트");
-		
-		// 비밀번호 정규식
-		$uPw.on("keyup", function() {
-			var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-			
-			if (!regExp.test($uPw.val())) {
-				$("#pwdnew").html("<span id='chkpwd'>패스워드 형식이 맞지 않습니다</span>")
-				$("#chkpwd").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				pwdchk = false;
-			} else {
-				//console.log("형식 확인");
-				$("#pwdnew").html("<span id='chkpwd'>올바른 패스워드 형식이네요!</span>")
-				$("#chkpwd").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				pwdchk = true;
-			}
-			
-		})
-		
-		// 패스워드 2중 검사
-		$uRepw.on("keyup", function() {
-			if ($uPw.val() != $uRepw.val()) {
-				pwdconfrimchk = false;
-				//console.log("불일치");
-				$("#pwdText").html("<span id='checkpwd'>비밀번호가 일치하지 않습니다</span>")
-				$("#checkpwd").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				} else {
-				pwdconfrimchk = true;
-				//console.log("동일한 비밀번호");
-				$("#pwdText").html("<span id='checkpwd'>비밀번호 일치 확인</span>")
-				$("#checkpwd").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				}
-		})
-	});
-</script>
-<script>
-	var emchk = false; // 이메일
-	
-	$(function() {
-		var $uEmail = $("#uEmail");
-		
-		// 이메일 정규식 검사
-		$uEmail.on("keyup",function() {
-			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			//console.log("email : "+$memail.val());
-			if (!regExp.test($uEmail.val())) {
-				//console.log("형식 미확인");
-				emchk  = false;
-
-				$("#mailTxt").html("<span id='chkmail'>이메일 형식이 맞지 않습니다</span>")
-				$("#chkmail").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-			} else {
-				emchk  = true;
-				//console.log("형식 확인");
-				$("#mailTxt").html("<span id='chkmail'>이메일을 형식을 확인했습니다</span>")
-				$("#chkmail").css({
-					"color" : "#0D6EFD",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-				}
-			})
-	});
-</script>
-<script>
-	var nickchk = false; //닉네임 검사
-	
-	$(function() {
-		
-		var $uNick = $("#uNick");
-		var $nickTxt = $("#nickTxt");
-		
-		console.log("닉네임검사하자");
-
-		// 닉네임 정규식
-		$uNick.on("keyup", function() {
-			var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
-			console.log("닉네임검사중검사중검사중ㅋㅋㅋ");
-			if (!regExp.test($uNick.val())) { // 닉네임이 공백인 경우 체크
-				nickchk = false;
-				$nickTxt.html("<span id='checkNick'>닉네임을 입력하세요.</span>")
-				$("#checkNick").css({
-					"color" : "#FA3E3E",
-					"font-weight" : "bold",
-					"font-size" : "15px"
-					})
-			} else{ // 공백아니면 중복체크
-				$.ajax({
-					type : "POST",
-					url : "/signup/checknick",
-					data : {
-							"nick" : $uNick.val()
-							},
-					success : function(data) {
-						if (data == 1) { // 1이면 중복
-							nickchk = false;
-							$nickTxt.html("<span id='checkNick'>사용중인 닉네임 입니다.</span>")
-							$("#checkNick").css({
-								"color" : "#FA3E3E",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-								})
-							//console.log("중복아이디");
-						} else { // 아니면 중복아님
-							nickchk = true;
-							$nickTxt.html("<span id='checkNick'>멋진 닉네임이네요!</span>")
-							$("#checkNick").css({
-								"color" : "#0D6EFD",
-								"font-weight" : "bold",
-								"font-size" : "15px"
-								})
-							//console.log("중복아닌 아이디");
-							}
-						}
-					});
-				}
-			});
-		});
-</script>
 
 </head>
 	<!-- 나중에 Container-fluid로 잡아주기  -->
@@ -401,7 +141,7 @@ $(document).ready(function(){
 		회원가입시 신규 가입 <strong>10% 할인쿠폰</strong>을 증정합니다.<br/>
 		</p>
 		
-		<form method="post" action="signup">
+		<form method="post" th:action="@{signup}" onSubmit="return data_check();">
 			<input type="hidden" name="action_type" value="MemJoin">
 			<input type="hidden" name="auth_num" value="">
 			
@@ -436,7 +176,7 @@ $(document).ready(function(){
 					<td class="td2">
 						<div class="form-group second">
 							<div><label for="uRepw" id="pwdText">위와 동일한 비밀번호를 입력해주세요.</label></div>
-							<div><input type="password" name="uRepw" id="uRepw" maxlength="20" class="input_add" /><div>
+							<div><input type="password" name="uRepw" id="uRepw" maxlength="30" class="input_add" /><div>
 							<div id="user_repwd-errmsg"></div>
 						</div>
 						
@@ -702,7 +442,7 @@ $(document).ready(function(){
 					<th class="td1">이메일 <span class="required-addon">*</span></th>
 					<td class="td2">
 						<div><label for="uEmail" id="mailTxt">이메일을 입력해주세요</label></div>
-						<input type="text" id="uEmail" name="uEmail" maxlength="30"  style="width:300px;" class="input_add" value=""/>
+						<input type="text" id="uEmail" name="uEmail" maxlength="50"  style="width:300px;" class="input_add" value=""/>
 					</td>
 				</tr>    
 				<tr>
@@ -738,5 +478,308 @@ $(document).ready(function(){
 		</form>
 	</div>
 	<!-- //오른쪽 내용 -->
+	
+<script>
+function data_check(){
+	if($('input[name="uId"]').val()==""){
+		alert("사용할 아이디를 입력해 주세요.");
+		$('input[name="uId"]').focus();
+		return false;
+	}
+	if($('input[name="uPw"]').val()==""){
+		alert("비밀번호를 입력해 주세요.");
+		$('input[name="uPw"]').focus();
+		return false;
+	}
+	if($('input[name="uRepw"]').val()==""){
+		alert("비밀번호 확인란을 입력해 주세요.");
+		$('input[name="uRepw"]').focus();
+		return false;
+	}
+	if($('input[name="uName"]').val()==""){
+		alert("이름을 입력해 주세요.");
+		$('input[name="uName"]').focus();
+		return false;
+	}
+	if($('input[name="uNick"]').val()==""){
+		alert("닉네임을 입력해 주세요.");
+		$('input[name="uNick"]').focus();
+		return false;
+	}
+	if($('input[name="hp"]').val()==""){
+		alert("핸드폰번호를 입력해 주세요.");
+		$('input[name="hp"]').focus();
+		return false;
+	}
+	if($('input[name="uEmail"]').val()==""){
+		alert("이메일을 입력해 주세요.");
+		$('input[name="uEmail"]').focus();
+		return false;
+	}
+	return true;
+};
+
+</script>	
+<!-- 아이디 비밀번호 입력되었는지 확인하는 함수  -->
+ <script type="text/javascript">
+	 function checkValue() {
+	     if(!document.userInfo.id.value){
+	         alert("아이디를 입력하세요.");
+	         return false;
+	     }
+	     
+	     if(!document.userInfo.password.value){
+	         alert("비밀번호를 입력하세요.");
+	         return false;
+	     }
+	     
+	     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+	     if(document.userInfo.password.value != document.userInfo.passwordcheck.value ){
+	         alert("비밀번호를 동일하게 입력하세요.");
+	         return false;
+	     }
+	 }
+    </script>
+
+<!-- 생년월일 js -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function(){            
+    var now = new Date();
+    var year = now.getFullYear();
+    var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+    var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
+    //년도 selectbox만들기               
+    for(var i = 1900 ; i <= year ; i++) {
+        $('#year').append('<option value="' + i + '">' + i + '</option>');    
+    }
+
+    // 월별 selectbox 만들기            
+    for(var i=1; i <= 12; i++) {
+        var mm = i > 9 ? i : "0"+i ;            
+        $('#month').append('<option value="' + mm + '">' + mm + '</option>');    
+    }
+    
+    // 일별 selectbox 만들기
+    for(var i=1; i <= 31; i++) {
+        var dd = i > 9 ? i : "0"+i ;            
+        $('#day').append('<option value="' + dd + '">' + dd+ '</option>');    
+    }
+    $("#year  > option[value="+year+"]").attr("selected", "true");        
+    $("#month  > option[value="+mon+"]").attr("selected", "true");    
+    $("#day  > option[value="+day+"]").attr("selected", "true");       
+  
+})
+</script>
+
+<!-- 아이디 중복확인 버튼 클릭시 중복체크  -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	var idchk = false; // 아이디 검사
+	
+	$(function() {
+	
+		var $uId = $("#uId");
+		var $id = $("#id");
+		
+		console.log("ㅠㅠ");
+		console.dir("uid : "+$uId);
+		
+		// 아이디 정규식
+		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
+			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
+			console.log('zzzzzzzzzzzzzzzzzzzzz');
+	
+			if (!regExp.test($uId.val())) { // id 가 공백인 경우 체크
+				idchk = false;
+				$id.html("<span id='check'>아이디를 입력해주세요.</span>");
+				$("#check").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+				})
+			} else { // 공백아니면 중복체크
+				$.ajax({
+					type : "POST",
+					url : "/signup/checkid",
+					data : {
+							"id" : $uId.val()
+							},
+					success : function(data) {
+						if (data == 1) { // 1이면 중복
+							idchk = false;
+							$id.html("<span id='check'>이미 존재하는 아이디입니다</span>")
+							$("#check").css({
+								"color" : "#FA3E3E",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+	
+							})
+							//console.log("중복아이디");
+						} else { // 아니면 중복아님
+							idchk = true;
+							$id.html("<span id='check'>사용가능한 아이디입니다</span>")
+	
+							$("#check").css({
+								"color" : "#0D6EFD",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+							})
+							//console.log("중복아닌 아이디");
+							}
+						}
+					});
+			}//
+		});
+	});
+
+</script>
+<script>
+	var pwdchk = false; // 패스워드
+	var pwdconfrimchk = false; // 패스워드 확인
+	
+	$(function() {
+		var $uPw = $("#uPw");
+		var $uRepw = $("#uRepw");
+		
+		console.log("패스워드 스크립트");
+		
+		// 비밀번호 정규식
+		$uPw.on("keyup", function() {
+			var regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+			
+			if (!regExp.test($uPw.val())) {
+				$("#pwdnew").html("<span id='chkpwd'>패스워드 형식이 맞지 않습니다</span>")
+				$("#chkpwd").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				pwdchk = false;
+			} else {
+				//console.log("형식 확인");
+				$("#pwdnew").html("<span id='chkpwd'>올바른 패스워드 형식이네요!</span>")
+				$("#chkpwd").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				pwdchk = true;
+			}
+			
+		})
+		
+		// 패스워드 2중 검사
+		$uRepw.on("keyup", function() {
+			if ($uPw.val() != $uRepw.val()) {
+				pwdconfrimchk = false;
+				//console.log("불일치");
+				$("#pwdText").html("<span id='checkpwd'>비밀번호가 일치하지 않습니다</span>")
+				$("#checkpwd").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				} else {
+				pwdconfrimchk = true;
+				//console.log("동일한 비밀번호");
+				$("#pwdText").html("<span id='checkpwd'>비밀번호 일치 확인</span>")
+				$("#checkpwd").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				}
+		})
+	});
+</script>
+<script>
+	var emchk = false; // 이메일
+	
+	$(function() {
+		var $uEmail = $("#uEmail");
+		
+		// 이메일 정규식 검사
+		$uEmail.on("keyup",function() {
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			//console.log("email : "+$memail.val());
+			if (!regExp.test($uEmail.val())) {
+				//console.log("형식 미확인");
+				emchk  = false;
+
+				$("#mailTxt").html("<span id='chkmail'>이메일 형식이 맞지 않습니다</span>")
+				$("#chkmail").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+			} else {
+				emchk  = true;
+				//console.log("형식 확인");
+				$("#mailTxt").html("<span id='chkmail'>이메일을 형식을 확인했습니다</span>")
+				$("#chkmail").css({
+					"color" : "#0D6EFD",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+				}
+			})
+	});
+</script>
+<script>
+	var nickchk = false; //닉네임 검사
+	
+	$(function() {
+		
+		var $uNick = $("#uNick");
+		var $nickTxt = $("#nickTxt");
+		
+		console.log("닉네임검사하자");
+
+		// 닉네임 정규식
+		$uNick.on("keyup", function() {
+			var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
+			console.log("닉네임검사중검사중검사중ㅋㅋㅋ");
+			if (!regExp.test($uNick.val())) { // 닉네임이 공백인 경우 체크
+				nickchk = false;
+				$nickTxt.html("<span id='checkNick'>닉네임을 입력하세요.</span>")
+				$("#checkNick").css({
+					"color" : "#FA3E3E",
+					"font-weight" : "bold",
+					"font-size" : "15px"
+					})
+			} else{ // 공백아니면 중복체크
+				$.ajax({
+					type : "POST",
+					url : "/signup/checknick",
+					data : {
+							"nick" : $uNick.val()
+							},
+					success : function(data) {
+						if (data == 1) { // 1이면 중복
+							nickchk = false;
+							$nickTxt.html("<span id='checkNick'>사용중인 닉네임 입니다.</span>")
+							$("#checkNick").css({
+								"color" : "#FA3E3E",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+								})
+							//console.log("중복아이디");
+						} else { // 아니면 중복아님
+							nickchk = true;
+							$nickTxt.html("<span id='checkNick'>멋진 닉네임이네요!</span>")
+							$("#checkNick").css({
+								"color" : "#0D6EFD",
+								"font-weight" : "bold",
+								"font-size" : "15px"
+								})
+							//console.log("중복아닌 아이디");
+							}
+						}
+					});
+				}
+			});
+		});
+</script>
 	</body>
 </html>

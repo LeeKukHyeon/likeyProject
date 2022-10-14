@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import ks44team03.user.mapper.MemberMapper;
 import ks44team03.dto.MemberDTO;
+import ks44team03.dto.UserInfo;
 
 @Service
 public class MemberService {
@@ -14,6 +15,13 @@ public class MemberService {
 	public MemberService(MemberMapper memberMapper) {
 		this.memberMapper = memberMapper;
 	}
+	
+	// 특정회원 조회
+	public UserInfo getMemberInfoById(String uId) {
+		UserInfo userInfo = memberMapper.getMemberInfoById(uId);
+	      return userInfo;
+	}
+	
 	// 회원가입 정보 등록처리
 	public int userSignup(MemberDTO member) {
 		int result = memberMapper.signup(member);
