@@ -112,7 +112,15 @@
 		WHERE
 			cm_num = #{communityNum};
 	</update>
-	
+	<!-- 이용후기 삭제 -->
+	<delete id="removeReview" parameterType="String">
+		/* 이용후기 삭제 */
+		DELETE
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</delete>
 <!-- ########################### 이용후기 관련 mapper End ################################# -->		
 	<!-- 특정 커뮤니티 글 조회 -->
 	<select id="getCommunityInfoByNum" resultMap="communityResultMap">
@@ -194,6 +202,23 @@
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 정보공유 수정 -->
+	<update id="modifyPostborde" parameterType="Community">
+		UPDATE community
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="communityTitle != null and communityTitle != ''">
+				cm_title		= #{communityTitle}	
+			</if>
+			<if test="communityContent != null and communityContent != ''">
+				,cm_content 	= #{communityContent}		
+			</if>
+			<if test="communityImg != null and communityImg != ''">
+				,cm_img 	= #{communityImg}				
+			</if>	
+		</trim>
+		WHERE
+			cm_num = #{communityNum};
+	</update>
 <!-- ########################### 정보공유 관련 mapper End ################################# -->			
 	<!-- 글조회시 조회수 증가 -->
 	<update id="getCountHit">

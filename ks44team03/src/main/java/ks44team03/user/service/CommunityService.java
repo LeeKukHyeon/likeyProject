@@ -70,6 +70,11 @@ public class CommunityService {
 	public void modifyReview(Community community) {
 		communityMapper.modifyReview(community);
 	}
+	// 이용후기 삭제
+	public void removeReview(String communityNum) {
+		communityMapper.removeReview(communityNum);
+	}
+	
 	// 특정 커뮤니티 글 조회
 	public Community getCommunityInfoByNum(String communityNum) {
 		
@@ -114,5 +119,9 @@ public class CommunityService {
 		Community postbordeInfo = communityMapper.getPostbordeInfo(communityNum);
 		return postbordeInfo;
 	}
+	// 정보공유 수정
+		public void modifyPostborde(Community community) {
+			communityMapper.modifyPostborde(community);
+		}
 // ---------------------------------- 정보공유 관련 Service End --------------------------------------
 }
