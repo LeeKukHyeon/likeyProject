@@ -26,11 +26,11 @@
 							<div th:fragment="searchFragment" >
 							        
 							        	<select name="searchKey" id="searchKey">
-							        		<option value="companyNum">상품정보 코드</option>
-							        		<option value="companyInfoName">택배회사</option>
-							        		<option value="companyName">구매 사이트</option>
-							        		<option value="companyAddr">상품명</option>
-							        		<option value="companyCate">운송장번호</option>
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="delivery_company">택배회사</option>
+							        		<option value="g_site">구매 사이트</option>
+							        		<option value="g_name">상품명</option>
+							        		<option value="tracking_num">운송장번호</option>
 							        	</select>
 							        	
 						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
@@ -91,7 +91,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>라이키패스 가입여부</th>
+								<th>라이키패스</th>
 								<td>
 								 	<label id="likeyPass"></label>	
 								</td>

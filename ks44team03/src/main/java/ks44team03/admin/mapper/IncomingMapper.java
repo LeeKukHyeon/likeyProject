@@ -17,7 +17,7 @@ public interface IncomingMapper {
 	public int incomingGoodsDetailRegister(String goodsInfoCode);
 	
 
-	//입고 등록
+	//입고 등록 대기 리스트
 	public List<GoodsInfo> regIncoming();
 	
 

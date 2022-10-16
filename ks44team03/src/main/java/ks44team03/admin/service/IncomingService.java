@@ -103,7 +103,7 @@ public class IncomingService {
 		return arriveWarehouse;
 	}
 	
-	//입고 등록
+	//입고 등록 대기 목록
 	public List<GoodsInfo> regIncoming(){
 		List<GoodsInfo> regIncoming = incomingMapper.regIncoming();
 		

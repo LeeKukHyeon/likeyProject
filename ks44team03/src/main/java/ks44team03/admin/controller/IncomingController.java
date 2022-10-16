@@ -25,7 +25,7 @@ import ks44team03.dto.PageMakerDTO;
 @Controller
 public class IncomingController {
 
-	private static final Logger log = LoggerFactory.getLogger(CompanyInfoController.class);
+	private static final Logger log = LoggerFactory.getLogger(IncomingController.class);
 	
 	private IncomingService incomingService;
 	
@@ -60,7 +60,7 @@ public class IncomingController {
 			return goodsDetail;
 	}
 
-	//입고 등록
+	//입고 등록 대기 목록
 	@GetMapping("/incomingRegister") 
 	public String regIncoming(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
 	  List<GoodsInfo> regIncoming = incomingService.regIncoming();

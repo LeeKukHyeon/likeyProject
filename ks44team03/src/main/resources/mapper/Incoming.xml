@@ -49,6 +49,22 @@
 		<result column="hscode" property="hsCode"/>
 	</resultMap>
 	
+	<resultMap type="IncomingInfo" id="incomingListResultMap">
+		<id column="incoming_code" property="incomingCode"/>
+		<result column="goods_info_code" property="goodsInfoCode"/>
+		<result column="e_code" property="eCode"/>
+		<result column="req_option_impli" property="reqOptionImpli"/>
+		<result column="photo_save" property="photoSave"/>
+		<result column="weight" property="incomingWeight"/>
+		<result column="volume" property="incomingVolume"/>
+		<result column="postpone" property="incomingPostpone"/>
+		<result column="sum_post" property="sumPost"/>
+		<result column="send_out" property="sendOut"/>
+		<result column="approval" property="incomingApproval"/>
+		<result column="out_tracking_num" property="outTrackingNum"/>
+		<result column="out_company" property="outCompany"/>
+	</resultMap>
+	
 	<resultMap type="ErrorIncoming" id="ErrorIncomingListResultMap">
 		<id column="error_code" property="errorCode"/>
 		<result column="goods_info_code" property="goodsInfoCode"/>
@@ -327,8 +343,28 @@
 		WHERE 
 			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{goodsInfoCode};
 	 </select>
-
-	
-	
-		
+<!-- 
+	<select id="regForwarding" resultMap="incomingListResultMap">
+	 	/*출고 등록 전 리스트*/
+		SELECT
+			i.goods_info_code
+			,g.likey_pass
+			,i.postpone
+			,i.sum_post
+			,i.req_option_impli
+			,i.approval
+		FROM
+			incoming AS i
+			INNER JOIN
+			delivery_current_state AS d
+			ON
+			i.goods_info_code = d.goods_info_code
+			INNER JOIN
+			goods_info AS g
+			ON
+			d.goods_info_code = g.goods_info_code
+		WHERE
+			d.stat_info = '입고 완료'
+	 </select>
+		 -->
 </mapper>

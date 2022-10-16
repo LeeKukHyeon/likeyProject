@@ -6,123 +6,159 @@
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
 <meta charset="UTF-8">
-<style>
-	h2 {
-		margin-bottom: 25px;
-		padding-bottom: 10px;
-		font-weight: bold;
-		border-bottom: 1px solid #c6c6c6;
-	}
-	td h2 {
-		margin-top: 20px;
-	}
-	.forwarding_register {
-		font-size: 15px;
-	}
-	#sub_btn{margin:0 auto; width:350px; height:65px; line-height:65px; background:#8d8d8d; color:#fff; font-size:18px; font-weight:bold; text-align:center; transition:0.5s all; overflow:hidden; float: left; margin-top: 30px; border: none;}
-	#sub_btn:hover{transform:scale(1.1);}
-	#sub_btn:after{content:''; position: absolute; top: calc(50% - 50px); left: -50px; width: 20px; height: 100px; background: white; -webkit-transform: rotate(30deg); transform:rotate(30deg); -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1); opacity: 0;}
-	#sub_btn:hover:after {left: calc(100% + 50px); opacity: 1;}
-	input {
-		margin-bottom: 5px;
-	}
-	.trans_group {
-		width: 206px;
-		margin-left: 3px;
-		margin-bottom: 5px;
-	}
-	.radio_group {
-		padding-left: 135px;
-	}
-	#req_option_impli_n, #postpone_n, #sum_post_n, #approval_n {
-		margin-top: 5px;
-		margin-left: 10px;
-	}
-</style>
+
 <!-- 출고등록 -->
 <title>출고등록</title>
 </head>
 
 <!-- ========== 출고등록 화면 ========== -->
 <body layout:fragment="adminContent">
+
 	<div class="content-wrapper">
 		<div class="row">
 			<div class="col-sm-12">
 				
 				<!-- ========== 출고등록 화면 시작 ========== -->
 				<h2>출고등록</h2>
+				
 				<div class="forwarding_register">
-					<form>
-						<table>
-							<!-- 출고등록 정보 -->
-							<tr>
-								<td><label for="name">수령인</label></td>
-								<td>&nbsp;<input type="text" style="padding-right: 26px;" id="name"></td>
-							</tr>
-							<tr>
-								<td><label for="transportation">운송수단</label></td>
-								<td>
-									<select class="trans_group">
-										<option disabled selected>선택</option>
-										<option value="domestic">국내 운송</option>
-										<option value="air transport">항공 운송</option>
-										<option value="shipping">해상 운송</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td><label for="out_company">배송회사</label></td>
-								<td>&nbsp;<input type="text" style="padding-right: 26px;" id="out_company"></td>
-							</tr>
-							<tr>
-								<td><label for="out_tracking_num">운송장 번호</label></td>
-								<td>&nbsp;<input type="text" style="padding-right: 26px;" id="out_tracking_num"></td>
-							</tr>
-							
-							<!-- 출고등록 기타 정보 -->
-							<tr>
-								<td colspan="2">
-									<h2>확인사항</h2>
-								</td>
-							</tr>
-							<tr>
-								<td>요청 옵션 이행 여부</td>
-								<td class="radio_group">&nbsp;
-								  <input type="radio" name="req_option_impli" id="req_option_impli_y"> <label for="req_option_impli_y">Y</label>
-								  <input type="radio" name="req_option_impli" id="req_option_impli_n"> <label for="req_option_impli_n">N</label>
-								</td>
-							</tr>
-							<tr>
-								<td>출고보류 여부</td>
-								<td class="radio_group">&nbsp;
-								  <input type="radio" name="postpone" id="postpone_y"> <label for="postpone_y">Y</label>
-								  <input type="radio" name="postpone" id="postpone_n"> <label for="postpone_n">N</label>
-								</td>
-							</tr>
-							<tr>
-								<td>묶음배송 여부</td>
-								<td class="radio_group">&nbsp;
-								  <input type="radio" name="sum_post" id="sum_post_y"> <label for="sum_post_y">Y</label>
-								  <input type="radio" name="sum_post" id="sum_post_n"> <label for="sum_post_n">N</label>
-								</td>
-							</tr>
-							<tr>
-								<td>관리자 출고승인 여부</td>
-								<td class="radio_group">&nbsp;
-								  <input type="radio" name="approval" id="approval_y"> <label for="approval_y">Y</label>
-								  <input type="radio" name="approval" id="approval_n"> <label for="approval_n">N</label>
-								</td>
-							</tr>
+					<form method="get" action="#">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="postpone">고객요청 출고보류</option>
+							        		<option value="sum_post">묶음배송</option>
+							        		<option value="req_option_impli">요청 옵션 이행</option>
+							        		<option value="approval">관리자 출고승인</option>
+							        	</select>
+							        	
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>라이키패스</th>
+									<th>고객요청 출고보류</th>
+									<th>묶음배송</th>
+									<th>요청 옵션 이행 여부</th>
+									<th>관리자 출고승인 여부</th>						
+									<th>출고 등록</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+								<tr th:each = "i :${regForwarding}">
+									<td><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.likeyPass}"></td>
+									<td th:text="${i.incomingPostpone}"></td>
+									<td th:text="${i.sumPost}"></td>
+									<td th:text="${i.reqOptionImpli}"></td>
+									<td th:text="${i.incomingApproval}"></td>
+									<td align="center">
+										<button type="button" id="incoming_modal_open">출고등록</button>
+									</td>
+								</tr>
+							  </tbody>
 						</table>
-						<button type="submit" id="sub_btn">등록</button>
 					</form>
 				</div>
 				
-				<!-- ========== 출고등록 화면 끝 ========== -->
+				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달 -->
+				<div class="modal">
+					<div class="incoming_modal_content">
+						
+					  <th:block>
+						
+						<form id="incoming_reg_form" action="#" method="#">
+						<table class="input_table"><tbody>
+						
+							<tr>
+								<th>주문정보 코드</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>상품정보 코드</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>라이키패스 가입여부</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>상품사진 등록</th>
+								<td> <input type="file" name="photoSave" id="photoSave"> </td>
+							</tr>
+							<tr>
+								<th>부피</th>
+								<td> <input type="text" name="volume" id="volume"> </td>
+							</tr>
+							<tr>
+								<th>중량</th>
+								<td> <input type="text" name="weight" id="weight"> </td>
+							</tr>
+						</tbody></table>
+						</form>
+						
+						<div class="incoming_modal_button" align="center">
+							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_form">등록</button>
+							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+						</div>
+						
+					  </th:block>
+					</div>
+				</div>
+				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달끝 -->
+			
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
 			</div>
           </div>
         </div>
+        
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
 
+	$(function(){
+		$(document).on('click', '#incoming_modal_open', function(){
+			var goodsInfoCode = $(this).parents('tr').children().eq(1).text();
+			
+			var request = $.ajax({
+				  url: "/incomingGoodsInfoByCode",
+				  method: "GET",
+				  data: { 'goodsInfoCode' : goodsInfoCode },
+				  dataType: "json"
+				});
+				 
+				request.done(function( data ) {
+					console.table(data)
+					$('#buyOrderCode').text(data.buyOrderCode);
+					$('#goodsInfoCode').text(data.goodsInfoCode);
+					$('#likeyPass').text(data.likeyPass);
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			$('.modal').css('display', 'block');
+		});
+		
+		$(document).on('click', '#incoming_modal_close', function(){
+			$('.modal').css('display', 'none');
+		});
+	});
 
+</script> -->
 </body>
+
 </html>
