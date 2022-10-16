@@ -10,7 +10,7 @@
 		<form id="noticeModifyForm" th:action="@{/noticeModify}" method="post">
 			<div style="width: 55%; margin-top: 10mm">
 				<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
-				<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeSearch}">공지사항</a></p>
+				<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeList}">공지사항</a></p>
 				<hr width="100%" color="gray">
 				<div>
 				 	<input id="noticeNumCode" name="noticeNumCode" th:value="${noticeRead.noticeNumCode}" style="display: none;">
@@ -24,11 +24,28 @@
 					</div>
 				</div>
 				<hr width="100%" color="gray">
-				<a th:href="@{noticeSearch}"><input type="button" value="목록" style="float: left;"></a>
-				<button type="submit" style="float: right;">수정하기</button>
+				<a th:href="@{noticeList}"><input type="button" value="목록" style="float: left;"></a>
+				<button id="submitBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>	
 	</div>
+			<!-- 유효성 검사 -->
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$('#submitBtn').click(function(){
+					var checkTitle = $('#noticeTitle').val()
+					var checkContent = $('#noticeContent').val()
+					if(checkTitle == 'undefined' || checkTitle == '' || checkTitle == null || checkTitle == ':::분류 선택:::'){
+						alert('제목을 설정 해주세요')
+						return false;
+					}
+				 	if(checkContent == 'undefined' || checkContent == '' || checkContent == null){
+					alert('내용을 써 주세요')
+					return false;
+					}
+				})
+			})
+			</script>
 
 </body>
 </html>

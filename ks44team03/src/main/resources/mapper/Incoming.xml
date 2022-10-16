@@ -49,7 +49,14 @@
 		<result column="hscode" property="hsCode"/>
 	</resultMap>
 	
-	
+	<resultMap type="ErrorIncoming" id="ErrorIncomingListResultMap">
+		<id column="error_code" property="errorCode"/>
+		<result column="goods_info_code" property="goodsInfoCode"/>
+		<result column="error_content" property="errorContent"/>
+		<result column="error_amount" property="errorAmount"/>
+		<result column="error_state" property="errorState"/>
+		<result column="error_comp_date" property="errorCompDate"/>
+	</resultMap>
 	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/

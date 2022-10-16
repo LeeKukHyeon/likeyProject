@@ -14,10 +14,53 @@
 		<result column="notice_img" property="noticeImg"/>
 		<result column="notice_date" property="noticeDate"/>
 		<result column="notice_view" property="noticeView"/>
+		<result column="notice_important" property="noticeImportant"/>
 	</resultMap>
+	
+	<!-- 공지사항 조회수 카운트  -->
+	<update id="countView">
+	/* 공지사항 조회수 카운트 */
+	UPDATE notice_center
+	SET
+		notice_view = notice_view + 1
+	where
+		notice_num = #{noticeNumCode};
+	</update>
+	
+	<!-- 공지사항 검색 -->
+	<select id="noticeSearch" parameterType="map" resultMap="csNoticeResultMap" fetchSize="100">
+	/* 공지사항 검색 */
+	SELECT
+		notice_num
+		,e_code
+		,notice_title
+		,notice_content
+		,notice_img
+		,notice_date
+		,notice_view
+	FROM
+		notice_center
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		notice_num
+	</select>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice" parameterType="NoticeCenter">
+	DELETE
+	FROM
+		notice_center
+	WHERE
+		notice_num = #{noticeNumCode}
+	</delete>
 	
 	<!-- 공지사항 수정 -->
 	<update id="modifyNotice" parameterType="NoticeCenter">
+	/* 공지사항 수정 */
 	UPDATE notice_center
 	SET
 		notice_num= #{noticeNumCode},
@@ -26,7 +69,6 @@
 		notice_img=#{noticeImg}
 	WHERE
 		notice_num= #{noticeNumCode}
-	
 	</update>
 	
 	<!-- 공지사항 등록 -->
@@ -39,9 +81,10 @@
 		,notice_content
 		,notice_img
 		,notice_date
-		,notice_view)
+		,notice_view
+		,notice_important)
 	VALUES 
-		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), #{noticeView})
+		(#{noticeNumCode}, #{employeeCode} , #{noticeTitle}, #{noticeContent}, #{noticeImg}, CURDATE(), 0 , #{noticeImportant})
 	</insert>
 	
 	<!-- 공지사항 제목 클릭시 나오는 내용 -->
@@ -69,6 +112,7 @@
 		,notice_img
 		,notice_date
 		,notice_view
+		,notice_important
 	FROM
 		notice_center
 	order by 

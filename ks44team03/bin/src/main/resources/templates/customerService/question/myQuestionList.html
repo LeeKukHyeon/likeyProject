@@ -25,7 +25,7 @@
 		  </tr>
   		  <tr th:if="${not #lists.isEmpty(QuestionList)}" th:each="l : ${QuestionList}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/MyQuestionRead(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/myQuestionRead(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="situation" th:text="${l.mtmSituation}"></td>
 		  </tr>

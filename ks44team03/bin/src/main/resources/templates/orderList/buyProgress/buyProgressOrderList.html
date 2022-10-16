@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body layout:fragment="adminContent">
+	 <div class="content-wrapper">
+   <!-- private String goodsInfoCode; 	  상품정보 코드
+		private String id;				  아이디
+		private String buyOrderCode;	  구매대행주문코드
+		private String groupingDelivery; 묶음배송그룹코드
+		private String gSite;			  구매사이트
+		private String goodsImgUrl;		  상품 이미지 url
+		private String goodsImgUpload;   상품 이미지 직접 업로드
+		private String gName;			  상품명
+		private String deliveryCompany;  쇼핑몰에서 보낸 택배의 택배사
+		private String trackingNum;		  운송장 번호
+		private String gSize;			  사이즈
+		private String gColor;			  색상
+		private String goodsOption;		  옵션
+		private int goodsPrice;			  상품 가격
+		private int gAmount;			  수량
+		private int totalPrice;			  각 상품 금액
+		private String likeyPass;		  라이키패스
+		private String barCode;			  바코드
+		private String arrival;			  상품도착여부
+		private String arrivalDate;		  입고일
+		private String hsCode;			  품목(HSCODE)
+		private String gBrand;			  브랜드
+		private String goodsUrl;		  제품URL
+		private String storeName;		  매장명
+		private String storeLocation;	  매장위치
+		
+		private OrderInfo orderInfoDto; // OrderInfo List DTO
+		private DeliveryCurrentState deliveryCurrentStateDto; // DeliveryCurrentState List DTO
+		
+		timeTracking  배송상태정보등록날짜-->
+		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/buyProgress/searchBuyProgressOrderList :: searchFragment"></div>
+	 	<table class="input_table" style="width:100%;">
+	 		<tr>
+	 			<th>상품정보코드</th>
+	 			<th>아이디</th>
+	 			<th>구매대행주문코드</th>
+	 			<th>묶음배송그룹코드</th>
+	 			<th>구매사이트</th>
+	 			<!-- <th>상품이미지url</th> -->
+	 			<th>상품명</th>
+	 			<th>운송장번호</th>
+	 			<th>상품가격</th>
+	 			<th>수량</th>
+	 			<th>총 금액</th>
+	 			<th>라이키패스</th>
+	 			<th>상품도착여부</th>
+	 			<th>입고일</th>
+	 			<th>정보등록날짜</th>
+	 			<th>상태정보</th>
+	 			<th>구매방식</th>
+	 		</tr>
+	 		<tbody>
+	 			<tr th:if="${not #lists.isEmpty(buyProgressOrderList)}" th:each="l : ${buyProgressOrderList}">
+	 				<td th:text="${l.goodsInfoCode}"></td>
+	 				<td th:text="${l.id}"></td>
+	 				<td th:text="${l.buyOrderCode}"></td>
+	 				<td th:text="${l.groupingDelivery}"></td>
+	 				<td th:text="${l.gSite}"></td>
+	 				<!-- <td th:text="${l.goodsImgUrl}"></td> -->
+	 				<td th:text="${l.gName}"></td>
+	 				<td th:text="${l.trackingNum}"></td>
+	 				<td th:text="${l.goodsPrice}"></td>
+	 				<td th:text="${l.gAmount}"></td>
+	 				<td th:text="${l.totalPrice}"></td>
+	 				<td th:text="${l.likeyPass}"></td>
+	 				<td th:text="${l.arrival}"></td>
+	 				<td th:text="${l.arrivalDate}"></td>
+	 				<td th:text="${l.deliveryCurrentStateDto.timeTracking}"></td>
+	 				<td th:text="${l.deliveryCurrentStateDto.statInfo}"></td>
+	 				<td th:text="${l.orderInfoDto.buyWay}"></td>
+	 			</tr>
+	 			<tr th:unless="${not #lists.isEmpty(buyProgressOrderList)}">
+	 				<td colspan="16" style="text-align: center;">등록된 주문서가 없습니다.</td>
+	 			</tr>
+	 		</tbody>
+	 	</table>
+	 </div>
+</body>
+</html>

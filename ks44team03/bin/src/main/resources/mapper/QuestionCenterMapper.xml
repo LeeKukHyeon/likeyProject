@@ -15,9 +15,55 @@
 		<result column="mtm_date" property="mtmDate"/>
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
+	
+	<!-- 1:1 문의 답변내용 유효성 검사 -->
+	<select id="mtmAnswerCheck" parameterType="String" resultType="Boolean">
+	  SELECT    IF(COUNT(*) = 1, 1, 0)
+	  FROM    question_center
+	  WHERE   mtm_answer  = #{mtmAnswer}
+	</select>
+	
+
+	<!-- 1:1문의 검색 -->
+	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
+	/* 1:1문의 검색 */
+	SELECT
+		mtm_num_code
+		,e_code
+		,mtm_cate
+		,mtm_title
+		,mtm_content
+		,mtm_answer
+		,mtm_img
+		,mtm_date
+		,mtm_situation
+	FROM
+		question_center
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		mtm_num_code
+	</select>
+
+
+	<!-- 1:1문의 삭제 -->
+	<delete id="deleteQuestion" parameterType="QuestionCenter">
+	/* 1:1문의 삭제 */
+	DELETE
+	FROM
+		question_center
+	WHERE
+		mtm_num_code = #{mtmNumCode}
+	</delete>
+
+
 
 	<!-- 1:1문의 답변 -->
 	<update id="regAnswer" parameterType="QuestionCenter">
+	/* 1:1문의 답변 */
 	UPDATE question_center
 	SET
 		mtm_num_code = #{mtmNumCode},
@@ -34,6 +80,7 @@
 
 	<!-- 1:1문의 수정 -->
 	<update id="myQuestionModify" parameterType="QuestionCenter">
+	/* 1:1문의 수정 */
 	UPDATE question_center
 	SET
 		mtm_num_code = #{mtmNumCode},
@@ -41,7 +88,7 @@
 		mtm_title=#{mtmTitle},
 		mtm_content=#{mtmContent},
 		mtm_img=#{mtmImg}
-	WHERE 
+	WHERE
 		mtm_num_code= #{mtmNumCode}
 	</update>
 
@@ -66,11 +113,12 @@
 
 	<!-- 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 -->
 	<update id="changeSituation" parameterType="QuestionCenter">
-		UPDATE question_center
-		SET
-			mtm_situation='답변중'
-		WHERE 
-			mtm_num_code = #{mtmNumCode}
+	/* 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경 */
+	UPDATE question_center
+	SET
+		mtm_situation=if(mtm_situation='답변 완료','답변 완료','답변중')
+	WHERE 
+		mtm_num_code = #{mtmNumCode}
 	</update>
 
 
@@ -84,6 +132,7 @@
 		,mtm_date
 		,mtm_title
 		,mtm_content
+		,mtm_img
 		,mtm_answer
 		,mtm_situation
 	FROM
@@ -107,7 +156,5 @@
 	ORDER BY
 		mtm_num_code DESC;
 	</select>
-
-
 
 </mapper>
