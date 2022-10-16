@@ -33,6 +33,29 @@ public class CompanyInfoService {
 		this.companyInfoMapper = companyInfoMapper;
 		this.commonMapper = commonMapper;
 	}
+	
+	@PostConstruct
+	public void companyInfoService() {
+		System.out.println("companyInfoService bean 생성");
+	}
+	// 회사등록 사업자등록번호 중복검사
+	public boolean companyNumCheck(String companyNum) {
+		boolean result = companyInfoMapper.companyNumCheck(companyNum);
+
+		log.info("companyNum 중복체크 : " + result);
+		return result;
+	}
+
+	// 회사 등록
+	public void addCompany(CompanyInfo companyInfo) {
+		String newCompanyCode = commonMapper.getCommonPkCode("company_info", "ci_code");
+		companyInfo.setCompanyCode(newCompanyCode);
+
+		log.info("companyInfo 입니다---------"+ companyInfo);
+		int result = companyInfoMapper.addCompany(companyInfo);
+
+		log.info("회사 등록 결과 : " + result);
+	}
 	// 회사 목록 검색
 	public List<CompanyInfo> getSearchCompanyList(Map<String, Object> paramMap){
 		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);
