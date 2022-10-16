@@ -52,7 +52,7 @@
 							</thead>
 							  <tbody>
 								<tr th:if="${not #lists.isEmpty(regIncoming)}" th:each = "i :${regIncoming}">
-									<td><input type="checkbox"></td>									
+									<td class="incoming_checkbox"><input type="checkbox"></td>									
 									<td th:text="${i.goodsInfoCode}"></td>
 									<td th:text="${i.deliveryCompany}"></td>
 									<td th:text="${i.gSite}"></td>

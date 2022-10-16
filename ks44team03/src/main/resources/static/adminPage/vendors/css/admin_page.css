@@ -136,6 +136,7 @@ h2{
 #modifyButton:hover{
 	background-color: #535353;
 }
+.incoming_checkbox {text-align: center; padding: 0px;}
 /* admin 페이지 modal css 처음 */
 #incoming_modal {
   display: none;

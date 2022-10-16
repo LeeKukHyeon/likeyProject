@@ -65,7 +65,7 @@
 		<result column="out_company" property="outCompany"/>
 	</resultMap>
 	
-	<resultMap type="ErrorIncoming" id="ErrorIncomingListResultMap">
+	<resultMap type="ErrorIncoming" id="errorIncomingListResultMap">
 		<id column="error_code" property="errorCode"/>
 		<result column="goods_info_code" property="goodsInfoCode"/>
 		<result column="error_content" property="errorContent"/>
@@ -343,7 +343,25 @@
 		WHERE 
 			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{goodsInfoCode};
 	 </select>
-<!-- 
+ 
+	<select id="errorIncomingList" resultMap="errorIncomingListResultMap">
+		/*오류입고 리스트*/
+		SELECT
+			 e.goods_info_code
+			,e.error_content
+			,e.error_amount
+			,e.error_state
+			,e.error_comp_date
+		FROM
+			error_incoming AS e
+		INNER JOIN
+			delivery_current_state AS d
+		ON
+			e.goods_info_code = d.goods_info_code
+		WHERE
+			d.stat_info = '오류입고'
+	</select>	
+<!--	
 	<select id="regForwarding" resultMap="incomingListResultMap">
 	 	/*출고 등록 전 리스트*/
 		SELECT
@@ -355,13 +373,13 @@
 			,i.approval
 		FROM
 			incoming AS i
-			INNER JOIN
+		INNER JOIN
 			delivery_current_state AS d
-			ON
+		ON
 			i.goods_info_code = d.goods_info_code
-			INNER JOIN
+		INNER JOIN
 			goods_info AS g
-			ON
+		ON
 			d.goods_info_code = g.goods_info_code
 		WHERE
 			d.stat_info = '입고 완료'

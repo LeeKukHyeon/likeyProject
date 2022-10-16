@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.IncomingService;
 import ks44team03.dto.Criteria;
+import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.PageMakerDTO;
@@ -238,5 +239,14 @@ public class IncomingController {
 		Map<String, Object> goodsInfo = incomingService.incomingGoodsInfoByCode(goodsInfoCode);
 		return goodsInfo;
 	}
+	
+	//오류입고 목록 2
+	@GetMapping("/errorIncoming2")
+	public String errorIncomingList(Model model) {
+		List<ErrorIncoming> errorIncomingList = incomingService.errorIncomingList(); 
+		
+		model.addAttribute("title", "오류 입고"); 
+		model.addAttribute("errorIncomingList",errorIncomingList); 
+		return "incoming/errorIncoming2"; }
 	
 }
