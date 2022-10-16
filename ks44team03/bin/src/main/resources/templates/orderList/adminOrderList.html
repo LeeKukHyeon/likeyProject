@@ -20,13 +20,14 @@
 		private String addr;			주소
 		private String totalPrice;		총 금액
 		private String goodsOrderDate;	(배송)주문등록날짜
-		private String temp;			임시 저장 여부
+		private String step3;			임시 저장 여부
 		private String DesiredCourier;  희망택배사
 		private String buyWay;			구매 방식
 		private String request;			고객요청사항
 		private String friendsDeCheck;	프렌즈 구매대행 대행자가 수락했는지 여부
 		private int commission;     	프렌즈 구매대행 이용자가 정한 수수료 -->
 		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/searchAdminOrderList :: searchFragment"></div>
 	 	<table class="input_table" style="width:100%;">
 	 		<tr>
 	 			<th>주문서코드</th>

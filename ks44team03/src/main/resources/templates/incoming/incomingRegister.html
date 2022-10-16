@@ -59,7 +59,10 @@
 									<td th:text="${i.gName}"></td>
 									<td th:text="${i.trackingNum}"></td>
 									<td th:text="${i.gAmount}"></td>
-									<td align="center"><button type="button" class="incoming_modal_open">등록</button></td>
+									<td align="center">
+										<button type="button" class="incoming_modal_open">입고등록</button>
+										<button type="button" class="error_modal_open">오류입고</button>
+									</td>
 								</tr>
 							  </tbody>
 						</table>
@@ -74,7 +77,7 @@
 						
 					  <th:block>
 						
-						<form>
+						<form id="incoming_reg_modal">
 						<table class="input_table"><tbody>
 						
 							<tr>
@@ -111,7 +114,7 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="button" id="incoming_modal_reg" class="add_button">등록</button>
+							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_modal">등록</button>
 							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
 						</div>
 						

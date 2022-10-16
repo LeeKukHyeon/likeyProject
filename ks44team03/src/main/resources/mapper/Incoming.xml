@@ -49,27 +49,13 @@
 		<result column="hscode" property="hsCode"/>
 	</resultMap>
 	
-	
-
-	<!-- 입출고 -->
-	<resultMap type="Incoming" id="incomingResultMap">
-		<!-- 입고 -->
-		<id column="idcoming_code" property="incomingCode" />
-		<result column="goods_info_code" property="goodsInfoCode" />
-		<result column="e_code" property="eCode" />
-		<result column="photo_save" property="photoSave" />
-		<result column="volume" property="volume" />
-		<result column="weight" property="weight" />
-		<!--
-		출고
-		<result column="req_option_impli" property="" />
-		<result column="postpone" property="" />
-		<result column="sum_post" property="" />
-		<result column="send_out" property="" />
-		<result column="approval" property="" />
-		<result column="out_tracking_num" property="" />
-		<result column="out_company" property="" />
-		-->
+	<resultMap type="ErrorIncoming" id="ErrorIncomingListResultMap">
+		<id column="error_code" property="errorCode"/>
+		<result column="goods_info_code" property="goodsInfoCode"/>
+		<result column="error_content" property="errorContent"/>
+		<result column="error_amount" property="errorAmount"/>
+		<result column="error_state" property="errorState"/>
+		<result column="error_comp_date" property="errorCompDate"/>
 	</resultMap>
 	
 	<update id="incomingCheck" parameterType="map"> 
@@ -81,8 +67,6 @@
 		 </foreach> 
 	</update>
 
-
-
 	<update id="incomingGoodsDetailRegister" parameterType="String"> 
 		UPDATE 
 			goods_info 
@@ -91,7 +75,6 @@
 		WHERE 
 			goods_info_code = #{goodsInfoCode};
 	</update>
-
 	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/

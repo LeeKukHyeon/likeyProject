@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 입고등록 -->
+<title>입고등록</title>
+</head>
+
+<!-- ========== 입고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고등록 화면 시작 ========== -->
+				<h2>상품도착등록</h2>
+				<div class="incoming_register">
+					<form method="post" th:action="@{/incomingGoodsList}">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="companyNum">상품정보 코드</option>
+							        		<option value="companyInfoName">택배회사</option>
+							        		<option value="companyName">구매 사이트</option>
+							        		<option value="companyAddr">상품명</option>
+							        		<option value="companyCate">운송장번호</option>
+							        	</select>
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+		       		</form>
+		       		<form th:action="@{/incomingCheck}" method="post">
+						<table class = "input_table" style="width:100%">
+						
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>택배회사</th>
+									<th>구매 사이트</th>
+									<th>상품명</th>
+									<th>운송장번호</th>
+									<th>수량</th>						
+								</tr>								
+							</thead>
+							  <tbody >
+							 	
+								<tr th:each = "i :${incomingGoodsList}">
+									<td><input type="checkbox" name="check" th:value="${i.goodsInfoCode}"></td>									
+									<td><a href="javascript:void(0);" th:text="${i.goodsInfoCode}"></a></td>
+									<td th:text="${i.deliveryCompany}">d</td>
+									<td th:text="${i.gSite}">d</td>
+									<td th:text="${i.gName}">d</td>
+									<td th:text="${i.trackingNum}">d</td>
+									<td th:text="${i.gAmount}">d</td>
+									
+								
+								</tr>
+							  </tbody>
+						</table>
+						<button type="submit" id="sub_btn" >등록</button>
+					</form>
+					
+					<div class="pageInfo_wrap">
+						<div class="pageInfo_area">
+							<ul id="pageInfo" class = "pageInfo">
+								<!-- 각 번호 페이지 버튼 -->
+								
+								<li th:if="${pageMake.prev}" class="pageInfo_btn previous"><a href="${pageMake.startPage-1}">Previous</a></li>
+								
+								<li th:if=${pageMake.endPage} !=0 class= "pageInfo_btn" th:each="idx,iterStat : ${#numbers.sequence(pageMake.startPage,pageMake.endPage)}">
+     								 <a class="number" th:href = "${idx}" th:text="${idx}"></a>
+								</li>
+								
+								<li th:if="${pageMake.next}" class="pageInfo_btn next"><a href="${pageMake.endPage+1}">Next</a></li>
+								
+
+							</ul>
+						</div>
+					</div>
+					<form id="moveForm" method="get">
+						<input type="hidden" name="pageNum" value="${pageMake.cri.pageNum}">
+						<input type="hidden" name="buyOrderCode" th:value="${buyOrderCode}">
+						<!-- <input type="hidden" name="amount" value="${pageMake.cri.amount}"> -->
+					</form>
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+        	
+	<div class="modal">
+		<div class="incoming_modal_content">
+			<table class="input_table">
+				  	<tbody>
+                  
+                     <tr>
+                        <th>주문정보 코드</th>
+                        <td id="goodsInfoCode"></td>
+                     </tr>
+                     <tr>
+                        <th>아이디</th>
+                        <td id="id"></td>
+                     </tr>
+                     <tr>
+                        <th>주문코드</th>
+                        <td id="buyOrderCode"></td>
+                     </tr>
+                     <tr>
+                        <th>구매사이트</th>
+                        <td id="gSite"></td>
+                     </tr>
+                     <tr>
+                        <th>상품이미지URL</th>
+                        <td id="goodsImgUrl"></td>
+                     </tr>
+                     <tr>
+                        <th>상품명</th>
+                        <td id="gName"></td>
+                     </tr>
+                     <tr>
+                        <th>택배회사</th>
+                        <td id="deliveryCompany"></td>
+                     </tr>
+                     <tr>
+                        <th>운송장번호</th>
+                        <td id="trackingNum"></td>
+                     </tr>
+                     <tr>
+                        <th>사이즈</th>
+                        <td id="gSize"></td>
+                     </tr>
+                     <tr>
+                        <th>색깔</th>
+                        <td id="gColor"></td>
+                     </tr>
+                     <tr>
+                        <th>상품옵션</th>
+                        <td id="goodsOption"></td>
+                     </tr>
+                     <tr>
+                        <th>상품가격</th>
+                        <td id="goodsPrice"></td>
+                     </tr>
+                     <tr>
+                        <th>상품개수</th>
+                        <td id="gAmount"></td>
+                     </tr>
+                     <tr>
+                        <th>총가격</th>
+                        <td id="totalPrice"></td>
+                     </tr>
+                     <tr>
+                        <th>라이키패스</th>
+                        <td id="likeyPass"></td>
+                     </tr>
+                     <tr>
+                        <th>품목</th>
+                        <td id="hsCode"></td>
+                     </tr>
+                     
+                  </tbody>
+                  
+			</table>
+			<button class="modal_button">등록</button>
+			<button class="modal_box button">취소</button>
+		</div>
+		
+	</div>	
+
+
+
+	<script>
+		let moveForm = $("#moveForm");
+		$(".pageInfo a").on("click", function(e){
+			e.preventDefault();
+			
+	        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        moveForm.attr("action", "/incomingGoodsList");
+	        moveForm.submit();
+		});
+		
+		
+		$('.input_table a').click(function(){
+			var code = $(this).text();
+			
+			$.ajax({
+				url : "goodsDetail",
+				type : 'POST',
+				data : {code:code},
+				success: function(data){
+					
+					$('#goodsInfoCode').text(data[0].goodsInfoCode );
+					$('#id').text(data[0].id );
+					$('#buyOrderCode').text(data[0].buyOrderCode );
+					$('#gSite').text(data[0].gSite );
+					$('#goodsImgUrl').text(data[0].goodsImgUrl );
+					$('#gName').text(data[0].gName );
+					$('#deliveryCompany').text(data[0].deliveryCompany );
+					$('#trackingNum').text(data[0].trackingNum );
+					$('#gSize').text(data[0].gSize );
+					$('#gColor').text(data[0].gColor );
+					$('#goodsOption').text(data[0].goodsOption );
+					$('#goodsPrice').text(data[0].goodsPrice );
+					$('#gAmount').text(data[0].gAmount );
+					$('#totalPrice').text(data[0].totalPrice );
+					$('#likeyPass').text(data[0].likeyPass );
+					$('#hsCode').text(data[0].hsCode );
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+    			{
+    				alert("호출에 실패했습니다." + errorThrown );
+    			}
+			});
+			$('.modal').fadeIn(1000);
+			
+		});
+
+		$('.modal_box').click(function(){
+			
+			$('.modal').fadeOut(1000);
+			
+		});
+		
+		$('.modal_button').click(function(){
+			
+			var goodsInfoCode = $('#goodsInfoCode').text()
+			$.ajax({
+				url : "incomingGoodsDetailRegister",
+				type : 'POST',
+				data : {goodsInfoCode:goodsInfoCode},
+				success: function(data){
+					var url = document.location.href;
+					var arr = url.split(/[/,=]/);
+					var path = arr[3] + "=" + $('#buyOrderCode').text();
+					
+					location.href = path;
+				
+				}
+				
+			})
+			
+
+			
+		});
+		
+		
+
+	</script>
+</body>
+
+</html>

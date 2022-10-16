@@ -41,13 +41,56 @@
 						<p style="margin-left: 18px; color: #FAC6C6">* 10MB 이하의 파일 3개까지 첨부하실 수 있으며 jpg, png, gif, pdf 파일형식만 첨부하실 수 있습니다.</p>
 					</td>
 				</tr>
+				<tr th:if="${#strings.equals(QuestionRead.mtmSituation,'답변 완료')}">
+					<td style="padding: 18px 13px;"><b>답변 내용</b>
+					</td>
+					<td>
+						<pre style="width: 90%; height: 10cm; margin: 18px;" id="mtmAnswer" th:text="${QuestionRead.mtmAnswer}"></pre>
+						<div style="margin-left: 18px; margin-bottom: 2mm">
+						</div>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 		<div style="width: 50%; margin-top: 3mm">
+		<div id="checkState" th:text="${QuestionRead.mtmSituation}" style="display: none;"></div>
 		<a th:href="@{/myQuestionList}"><input type="button" value="목록" style="float: left;"></a>
-		<a href="#"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm;"></a>
-		<a th:href="@{/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" value="수정하기" style="float: right;"></a>
+		<a th:href="@{/deleteQuestion(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm;"></a>
+		<a th:href="@{/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input id="modify" type="button" value="수정하기" style="float: right;"></a>
 		</div>
 	</div>
+	<!-- 접수 상태인것만 수정 가능 -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var checkState = $('#checkState').text()
+			if(checkState != '접수'){
+				$('#modify').hide();
+			}
+		})
+	</script>
+	
+
+	<!-- 유효성 검사 -->
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#mtmSituation').click(function(){
+			var checkCate = $('#mtmCate').val()
+			var checkTitle = $('#mtmTitle').val()
+			var checkContent = $('#mtmContent').val()
+			if(checkCate == 'undefined' || checkCate == '' || checkCate == null || checkCate == ':::분류 선택:::'){
+				alert('카테고리 설정을 해주세요')
+				return false;
+			}
+		 	if(checkTitle == 'undefined' || checkTitle == '' || checkTitle == null){
+			alert('문의 제목을 써 주세요')
+			return false;
+			}
+			if(checkContent == 'undefined' || checkContent == '' || checkContent == null){
+			alert('문의 내용을 써 주세요')
+			return false;
+			}
+		})
+	})
+	</script>
 </body>
 </html>

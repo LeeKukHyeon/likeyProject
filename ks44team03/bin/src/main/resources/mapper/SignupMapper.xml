@@ -2,9 +2,75 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ks44team03.user.mapper.SignupMapper">
+<mapper namespace="ks44team03.user.mapper.MemberMapper">
 	<resultMap type="UserInfo" id="UserInfoResultMap">
-
+		<id column="u_id" property="uId"/>
+			<result column="user_grade_code" property="uGradeCode"/>
+			<result column="u_pw" property="uPw"/>
+			<result column="user_pobox_code" property="uPostCode"/>
+			<result column="u_name" property="uName"/>
+			<result column="u_level" property="uLevel"/>
+			<result column="u_addr" property="uAddr"/>
+			<result column="u_email" property="uEmail"/>
+			<result column="u_birth" property="uBirth"/>
+			<result column="u_phone" property="uPhone"/>
+			<result column="u_nick" property="uNick"/>
+			<result column="u_insert_date" property="uInsertDate"/>
+			<result column="u_dormant" property="uDormant"/>
+			<result column="pay_completed_count" property="payCompletedCount"/>
+			<result column="friends_account" property="friendsAccount"/>
+			<result column="bank_name" property="bankName"/>
 	</resultMap>
+	<insert id="signup" parameterType="MemberDTO">
+		/* 회원가입 완료시 db에 정보 추가 */
+		INSERT INTO user_member
+			(u_id, u_pw, u_name, u_email, u_birth, u_phone, u_nick,
+			user_pobox_code, user_grade_code, u_insert_date, u_dormant, pay_completed_count, u_level)
+		VALUES
+			(#{uId}, #{uPw},#{uName},#{uEmail},concat(#{yy},'-', #{mm},'-',#{dd}), CONCAT(#{countryCode},#{hp}),#{uNick},
+			CONCAT(#{uNick},CURDATE()), 'grade_code1', CURDATE(), 'n', 0, '이용자');
+	</insert>
 	
+	<select id="checkIdUser" parameterType="String" resultType="string">
+		/* 회원가입 시 아이디 중복검사 */
+		SELECT
+			u.u_id
+		FROM
+			user_member As u
+		WHERE
+			u.u_id= #{uId};
+	</select>
+	<select id="checkNickUser" parameterType="String" resultType="string">
+		/* 회원가입 시 닉네임 중복검사 */
+		SELECT
+			u.u_nick
+		FROM
+			user_member As u
+		WHERE
+			u.u_nick= #{uNick};
+	</select>
+	<select id="getMemberInfoById" parameterType= "String" resultMap="UserInfoResultMap">
+		/* 로그인시 고객정보 확인 */
+		SELECT 
+			u.u_id
+			,u.user_grade_code
+			,u.u_pw
+			,u.user_pobox_code
+			,u.u_name
+			,u.u_level
+			,u.u_addr
+			,u.u_email
+			,u.u_birth
+			,u.u_phone
+			,u.u_nick
+			,u.u_insert_date
+			,u.u_dormant
+			,u.pay_completed_count
+			,u.friends_account
+			,u.bank_name
+		FROM
+			user_member AS u
+		WHERE 
+			u.u_id = #{uId};
+	</select>
 </mapper>
