@@ -26,11 +26,11 @@
 							<div th:fragment="searchFragment" >
 							        
 							        	<select name="searchKey" id="searchKey">
-							        		<option value="companyNum">상품정보 코드</option>
-							        		<option value="companyInfoName">택배회사</option>
-							        		<option value="companyName">구매 사이트</option>
-							        		<option value="companyAddr">상품명</option>
-							        		<option value="companyCate">운송장번호</option>
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="delivery_company">택배회사</option>
+							        		<option value="g_site">구매 사이트</option>
+							        		<option value="g_name">상품명</option>
+							        		<option value="tracking_num">운송장번호</option>
 							        	</select>
 							        	
 						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
@@ -52,7 +52,7 @@
 							</thead>
 							  <tbody>
 								<tr th:if="${not #lists.isEmpty(regIncoming)}" th:each = "i :${regIncoming}">
-									<td><input type="checkbox"></td>									
+									<td class="incoming_checkbox"><input type="checkbox"></td>									
 									<td th:text="${i.goodsInfoCode}"></td>
 									<td th:text="${i.deliveryCompany}"></td>
 									<td th:text="${i.gSite}"></td>
@@ -60,24 +60,22 @@
 									<td th:text="${i.trackingNum}"></td>
 									<td th:text="${i.gAmount}"></td>
 									<td align="center">
-										<button type="button" class="incoming_modal_open">입고등록</button>
-										<button type="button" class="error_modal_open">오류입고</button>
+										<button type="button" id="incoming_modal_open">입고등록</button>
+										<button type="button" id="error_modal_open">오류입고</button>
 									</td>
 								</tr>
 							  </tbody>
 						</table>
-				<!-- 		<button type="submit" id="sub_btn" >등록</button> -->
 					</form>
 				</div>
 				
 				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달 -->
-				
 				<div class="modal">
 					<div class="incoming_modal_content">
 						
 					  <th:block>
 						
-						<form id="incoming_reg_modal">
+						<form id="incoming_reg_form" action="#" method="#">
 						<table class="input_table"><tbody>
 						
 							<tr>
@@ -93,7 +91,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>라이키패스 가입여부</th>
+								<th>라이키패스</th>
 								<td>
 								 	<label id="likeyPass"></label>	
 								</td>
@@ -114,14 +112,54 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_modal">등록</button>
+							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_form">등록</button>
 							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
 						</div>
 						
 					  </th:block>
-					<div class="incoming_modal_layer"></div>
-					
+					</div>
 				</div>
+				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달끝 -->
+				
+				<!-- #error_modal_open 등록 버튼 누르면 출력되는 모달 -->
+                <div class="error_modal">
+					<div class="error_modal_content">	
+					  <th:block>
+						
+						<form id="error_reg_form" action="#" method="#">
+						  <table class="input_table"><tbody>
+						
+							<tr>
+								<th>상품정보 코드</th>
+								<td>
+								 	<label id="goodsInfoCode"></label>	
+								</td>
+							</tr>
+							<tr>
+								<th>오류 입고 내역</th>
+								<td>
+								 	<label id="likeyPass"></label>	
+								</td>
+							</tr>
+							<tr>
+								<th>오류 입고 개수</th>
+								<td> <input type="text" name="volume" id="volume"> </td>
+							</tr>
+
+						  </tbody></table>
+						</form>
+						
+						<div class="incoming_modal_button" align="center">
+							<button type="button" id="error_modal_reg" class="add_button" form="error_reg_form">등록</button>
+							<button type="button" id="error_modal_close" class="cancel_button">취소</button>
+						</div>
+						
+					  </th:block>
+                    </div>
+				</div>
+                <!-- #error_modal_open 등록 버튼 누르면 출력되는 모달끝 -->
+				
+				
 				<!-- ========== 입고등록 화면 끝 ========== -->
 
 			</div>
@@ -132,7 +170,7 @@
 <script type="text/javascript">
 
 	$(function(){
-		$(document).on('click', '.incoming_modal_open', function(){
+		$(document).on('click', '#incoming_modal_open', function(){
 			var goodsInfoCode = $(this).parents('tr').children().eq(1).text();
 			
 			var request = $.ajax({
@@ -154,8 +192,19 @@
 				});
 			$('.modal').css('display', 'block');
 		});
+		
 		$(document).on('click', '#incoming_modal_close', function(){
 			$('.modal').css('display', 'none');
+		});
+		
+		/* 오류입고 모달 왜 안뜸 ㅜㅜㅜㅜㅜㅜ */
+		
+		$(document).on('click', '#error_modal_open', function(){
+			$('.error_modal').css('display', 'block');
+		});
+		
+		$(document).on('click', '#error_modal_close', function(){
+			$('.error_modal').css('display', 'none');
 		});
 	});
 

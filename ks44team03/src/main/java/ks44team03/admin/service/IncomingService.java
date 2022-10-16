@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
+import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 
@@ -103,7 +104,7 @@ public class IncomingService {
 		return arriveWarehouse;
 	}
 	
-	//입고 등록
+	//입고 등록 대기 목록
 	public List<GoodsInfo> regIncoming(){
 		List<GoodsInfo> regIncoming = incomingMapper.regIncoming();
 		
@@ -132,4 +133,12 @@ public class IncomingService {
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode){
 		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
 	}
+	
+	//오류입고 목록2
+	public List<ErrorIncoming> errorIncomingList(){
+		List<ErrorIncoming> errorIncomingList = incomingMapper.errorIncomingList();
+		
+		return errorIncomingList;
+	}
+	
 }

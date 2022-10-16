@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.Criteria;
+import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 
@@ -17,7 +18,7 @@ public interface IncomingMapper {
 	public int incomingGoodsDetailRegister(String goodsInfoCode);
 	
 
-	//입고 등록
+	//입고 등록 대기 리스트
 	public List<GoodsInfo> regIncoming();
 	
 
@@ -62,4 +63,7 @@ public interface IncomingMapper {
 	
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode);
+	
+	//오류입고 목록2
+	public List<ErrorIncoming> errorIncomingList();
 }
