@@ -147,7 +147,7 @@ h2{
   
 }
 
-.modal .incoming_modal_content {
+.modal .incoming_modal_content, .error_modal .error_modal_content {
   width:480px;
   margin:100px auto;
   padding:20px 10px;
@@ -156,7 +156,7 @@ h2{
   
 }
 
-.modal {
+.modal, .error_modal {
   position:fixed;
   top:0;
   left:0;
