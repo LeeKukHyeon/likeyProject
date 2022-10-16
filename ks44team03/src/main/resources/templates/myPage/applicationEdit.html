@@ -91,17 +91,17 @@
 																<div>브랜드</div>
 																<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src="image/S_shipping_form_icon_10.gif"></div>
 															</td>
-															<td class="td2"><input type="text" name="package_brand[]" value="#"  maxlength="190" th:text="${l.gBrand}"></td>
+															<td class="td2"><input type="text" name="package_brand[]" th:value="${l.gBrand}"  maxlength="190" ></td>
 															<td class="td1 td3">상품가(USD)</td>
 															<td class="td2">
-															<input type="text" name="package_unitprice[]" value="#"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
+															<input type="text" name="package_unitprice[]" th:value="${l.goodsPrice}"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
 															<input type="hidden" name="package_price[]" value="123">
 															</td>
 														  </tr>
 														  
 														<tr valign="top">
 															<td class="td1">상품명</td>
-															<td class="td2"><input type="text" name="package_name[]" value="#"  maxlength="250"></td>
+															<td class="td2"><input type="text" name="package_name[]" th:value="${l.gName}"  maxlength="250"></td>
 															<td class="td1 td3">
 																<div>수량</div>
 																<div class="icon_text" title="수량과 관계된 내용을 입력해주세요."><img src="image/S_shipping_form_icon_10.gif"></div>
@@ -115,30 +115,31 @@
 																	
 																	<select name='package_cate[]' onChange="pkgCateNotice(this.value)">
 																		<option value=''>------품목 선택------</option>
-																		<option value="61||BABIES GARMENTS||유아의류"  ># </option>
-																		<option value="96||GENERAL GOODS||잡화(문구류/장식품/빗 등 잡화류)"  ># </option>
-																		<option value="49||PAPER PRINT MATERIAL||종이인쇄물  "  >#</option>
-																		<option value="38||SANITIZER||손세정제 젤타입" style='color:blue;' ># </option>
-																		<option value="38||SANITIZER||손세정제 티슈타입" style='color:blue;' ># </option>
-																		<option value="40||RUBBER PRODUCTS||고무제 제품"  >#</option>
-																		<option value="07||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제  " style='color:blue;' >#</option>
-																		<option value="49||DOCUMENT||서류"  ># </option>
-																		<option value="30||HYGIENE PRODUCT||여성 위생용품" style='color:blue;' ># </option>
-																		<option value="33||COSMETIC||화장품"  >#</option>
-																		<option value="03||FUNCTIONAL COSMETIC ||화장품 (기능성화장품)" style='color:blue;' ># </option>
-																		<option value="3307||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제" style='color:blue;' ># </option>
-																		<option value="84||Hard disk drive||내장형 하드디스크 드라이브"  ># </option>
-																		<option value="84||ELECTRONIC PARTS||목록통관 전자제품류"  >#</option>
-																		<option value="84||Sound cards||사운드카드/비디오카드"  ># </option>
-																		<option value="61||FABRIC CLOTH||의류"  ># </option>
-																		<option value="62||LEATHER CLOTH||가죽의류"  >#</option>
-																		<option value="42||BAG||가방 및 지갑"  ># </option>
-																		<option value="61||UNDERWEAR||속옷류"  ># </option>
-																		<option value="64||SHOES||신발"  >#</option>
-																		<option value="64||SHOES ACCESSORIES||신발 부분품"  ># </option>
-																		<option value="61||HANDKERCHIEF SOCKS||손수건/양말류"  ># </option>
-																		<option value="71||JEWELRY||보석"  ># </option>
-																		<option value="61||NECKTIE||넥타이/숄/스카프"  >#</option>
+																		<option th:if="${l.hsCode}" != null th:value="${l.hsCode}" selected="${l.hsCode}">
+																		<option value="61||BABIES GARMENTS||유아의류"  >유아의류(61) - 목록통관 </option>
+																		<option value="96||GENERAL GOODS||잡화(문구류/장식품/빗 등 잡화류)"  >잡화(문구류/장식품/빗 등 잡화류)(96) - 목록통관  </option>
+																		<option value="49||PAPER PRINT MATERIAL||종이인쇄물  "  >종이인쇄물(49) - 목록통관</option>
+																		<option value="38||SANITIZER||손세정제 젤타입" style='color:blue;' >손세정제 젤타입(38) - 목록통관</option>
+																		<option value="38||SANITIZER||손세정제 티슈타입" style='color:blue;' >손세정제 티슈타입(38) - 목록통관 </option>
+																		<option value="40||RUBBER PRODUCTS||고무제 제품"  >고무제 제품(40) - 목록통관</option>
+																		<option value="07||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제  " style='color:blue;' >면도크림, 모발의 양모, 염색, 제모등을 위한 제제(07) - 목록통관</option>
+																		<option value="49||DOCUMENT||서류"  >서류(49) - 목록통관</option>
+																		<option value="30||HYGIENE PRODUCT||여성 위생용품" style='color:blue;' >여성 위생용품(30) - 목록통관</option>
+																		<option value="33||COSMETIC||화장품"  >화장품(33) - 목록통관</option>
+																		<option value="03||FUNCTIONAL COSMETIC ||화장품 (기능성화장품)" style='color:blue;' >화장품 (기능성화장품)(03) - 목록통관 </option>
+																		<option value="3307||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제" style='color:blue;' >면도크림, 모발의 양모, 염색, 제모등을 위한 제제(3307) - 목록통관</option>
+																		<option value="84||Hard disk drive||내장형 하드디스크 드라이브"  >내장형 하드디스크 드라이브(84) - 목록통관 </option>
+																		<option value="84||ELECTRONIC PARTS||목록통관 전자제품류"  >목록통관 전자제품류(84) - 목록통관</option>
+																		<option value="84||Sound cards||사운드카드/비디오카드"  >사운드카드/비디오카드(84) - 목록통관</option>
+																		<option value="61||FABRIC CLOTH||의류"  >의류(61) - 목록통관 </option>
+																		<option value="62||LEATHER CLOTH||가죽의류"  >가죽의류(62) - 목록통관</option>
+																		<option value="42||BAG||가방 및 지갑"  >가방 및 지갑(42) - 목록통관 </option>
+																		<option value="61||UNDERWEAR||속옷류"  >속옷류(61) - 목록통관</option>
+																		<option value="64||SHOES||신발"  >신발(64) - 목록통관</option>
+																		<option value="64||SHOES ACCESSORIES||신발 부분품"  >신발 부분품(64) - 목록통관 </option>
+																		<option value="61||HANDKERCHIEF SOCKS||손수건/양말류"  >손수건/양말류(61) - 목록통관 </option>
+																		<option value="71||JEWELRY||보석"  >보석(71) - 목록통관 </option>
+																		<option value="61||NECKTIE||넥타이/숄/스카프"  >넥타이/숄/스카프(61) - 목록통관</option>
 																		<option value="65||HAT||모자"  >모자(65) - 목록통관 </option>
 																		<option value="90||GLASSES||선글래스/안경"  >선글래스/안경(90) - 목록통관 </option>
 																		<option value="42||GLASSES CASE||안경 케이스"  >안경 케이스(42) - 목록통관 </option>
@@ -300,7 +301,7 @@
 																		<option value="82||BOLT/SCREW/DRIVER||볼트/나사/드라이버"  >볼트/나사/드라이버(82) - 목록통관 </option>
 																		<option value="82||MACHINERY/PARTS||기계/기계부속품류"  >기계/기계부속품류(82) - 목록통관 </option>
 																		<option value="85||ELECTRIC PARTS||전기부속품류" style='color:blue;' >전기부속품류(85) - 일반통관 </option>
-																		<option value="94||FURNITURE||가구(의자/테이블/소파)" selected   >가구(의자/테이블/소파)(94) - 목록통관 </option>
+																		<option value="94||FURNITURE||가구(의자/테이블/소파)" >가구(의자/테이블/소파)(94) - 목록통관 </option>
 																		<option value="85||INDOOR LIGHTING||실내조명기구" style='color:blue;' >실내조명기구(85) - 일반통관 </option>
 																		<option value="33||PERFUME less than 60ml||향수 60ml 이하"  >향수 60ml 이하(33) - 목록통관 </option>
 																		<option value="08||Fruit/Nut||과실/견과류" style='color:blue;' >과실/견과류(08) - 일반통관 </option>
@@ -317,15 +318,15 @@
 																<div class="basic_bt" style="background-color:#282828">목록통관</div> -->
 															</td>
 															<td class="td1 td3">색상</td>
-															<td class="td2"><input type="text" name="package_color[]" value=""  maxlength="90"></td>
+															<td class="td2"><input type="text" name="package_color[]" th:value="${l.gColor}"  maxlength="90"></td>
 														  </tr>
 														  <tr valign="top">
 															<td class="td1">트레킹 번호</td>
 															<td class="td2">
-																<input type="text" name="tracking_num[]" value=""  maxlength="190" placeholder='상품별 트레킹번호 입력'>
+																<input type="text" name="tracking_num[]" th:value="${l.trackingNum}"  maxlength="190" placeholder='상품별 트레킹번호 입력'>
 															</td>
 															<td class="td1 td3">사이즈</td>
-															<td class="td2"><input type="text" name="package_size[]" value=""  maxlength="90"></td>
+															<td class="td2"><input type="text" name="package_size[]" th:value="${l.gSize}"  maxlength="90"></td>
 														  </tr>
 													</table>
 													
