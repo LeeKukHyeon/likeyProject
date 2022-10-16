@@ -16,7 +16,7 @@
 		<result column="cm_comment" property="communityComment"/>
 		<result column="cm_comment_date" property="communityDate"/>
 		<result column="cm_view" property="communityView"/>	
-		<result column="community_cate" property="communityView"/>	
+		<result column="community_cate" property="communityCate"/>	
 	</resultMap>
 <!-- ########################### 이용후기 관련 mapper State ################################# -->	
 	<!-- 이용후기 등록 -->
@@ -44,6 +44,7 @@
 		   cm_num
 		  ,id
 		  ,cm_title
+		  ,cm_content
 		  ,cm_view
 		  ,cm_date
 		FROM
@@ -52,12 +53,31 @@
 			community_cate = '이용후기'
 		ORDER BY cm_num DESC;
 	</select>
-	
+	<!-- 이용후기 목록 검색조회 -->
+	<select id="getSearchReviewList" resultMap="communityResultMap">
+		/* 이용후기 목록 검색조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND community_cate = '이용후기'
+		</trim>
+		ORDER BY cm_num DESC;
+	</select>
 	<!-- 이용후기 상세정보 -->
 	<select id="getReviewInfo" resultMap="communityResultMap">
 		/* 이용후기 상세정보 */	
 		SELECT
 			 cm_num
+			,id
 			,cm_title
 			,cm_content
 			,cm_date
@@ -66,8 +86,56 @@
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<select id="reviewListIdCheck" parameterType="String" resultType="Boolean">
+		/* 이용후기 아이디 체크 */
+		SELECT
+			COUNT(c.id)
+		FROM
+			community AS c
+		WHERE 
+			c.id = #{communityId};
+	</select>
+	<!-- 이용후기 수정 -->
+	<update id="modifyReview" parameterType="Community">
+		UPDATE community
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="communityTitle != null and communityTitle != ''">
+				cm_title		= #{communityTitle}	
+			</if>
+			<if test="communityContent != null and communityContent != ''">
+				,cm_content 	= #{communityContent}		
+			</if>
+			<if test="communityImg != null and communityImg != ''">
+				,cm_img 	= #{communityImg}				
+			</if>	
+		</trim>
+		WHERE
+			cm_num = #{communityNum};
+	</update>
+	<!-- 이용후기 삭제 -->
+	<delete id="removeReview" parameterType="String">
+		/* 이용후기 삭제 */
+		DELETE
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</delete>
 <!-- ########################### 이용후기 관련 mapper End ################################# -->		
-
+	<!-- 특정 커뮤니티 글 조회 -->
+	<select id="getCommunityInfoByNum" resultMap="communityResultMap">
+		/* 특정 커뮤니티 글 조회 */
+		SELECT
+			 cm_num
+			,id
+			,cm_title
+			,cm_content
+			,cm_date
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</select>
 <!-- ########################### 정보공유 관련 mapper State ################################# -->
 	<!-- 정보공유 목록 조회 -->
 	<select id="getPostbordeList" resultMap="communityResultMap"> 
@@ -82,6 +150,25 @@
 			community
 		WHERE 
 			community_cate = '정보공유'
+		ORDER BY cm_num DESC;
+	</select>
+	<!-- 정보공유 목록 검색조회 -->
+	<select id="getSearchPostbordeList" resultMap="communityResultMap">
+		/* 이용후기 목록 검색조회 */
+		SELECT
+		   cm_num
+		  ,id
+		  ,cm_title
+		  ,cm_view
+		  ,cm_date
+		FROM
+			community
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchValue != null and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue},'%')
+			</if>
+			AND community_cate = '정보공유'
+		</trim>
 		ORDER BY cm_num DESC;
 	</select>
 	<!-- 정보공유 등록 -->
@@ -115,6 +202,23 @@
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 정보공유 수정 -->
+	<update id="modifyPostborde" parameterType="Community">
+		UPDATE community
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="communityTitle != null and communityTitle != ''">
+				cm_title		= #{communityTitle}	
+			</if>
+			<if test="communityContent != null and communityContent != ''">
+				,cm_content 	= #{communityContent}		
+			</if>
+			<if test="communityImg != null and communityImg != ''">
+				,cm_img 	= #{communityImg}				
+			</if>	
+		</trim>
+		WHERE
+			cm_num = #{communityNum};
+	</update>
 <!-- ########################### 정보공유 관련 mapper End ################################# -->			
 	<!-- 글조회시 조회수 증가 -->
 	<update id="getCountHit">

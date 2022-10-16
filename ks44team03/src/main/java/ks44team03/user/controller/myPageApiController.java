@@ -26,17 +26,18 @@ public class myPageApiController {
 	
 	@PostMapping("api/shipOrderApi")
 	public String cdf(@RequestParam(value = "q_status", required = false) int test, Model model) {
-		System.out.println(test);
+		
 		String u_id = "id001";	
 		String stat_info = "";
 		List<ShipOrderApi> shipOrderApi = null;
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		if (test == 0) {
 			
-			stat_info = "임시저장";
+			stat_info = "n";
 			paramMap.put("u_id", u_id);
 			paramMap.put("stat_info", stat_info);
-			shipOrderApi = mypageService.shipOrderApi(paramMap);			
+			shipOrderApi = mypageService.shipOrderApi(paramMap);	
+			
 		}
 					
 		model.addAttribute("shipOrderApi", shipOrderApi);

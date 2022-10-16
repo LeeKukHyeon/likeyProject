@@ -53,6 +53,83 @@
 			<result column="nod_ discard_date" property="nodDiscardDate"/>
 	</resultMap>
 	
+	<resultMap type="GoodsInfo" id="GoodsInfoResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
+		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
+		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+		<result column="g_brand" property="gBrand"/>
+		<result column="goods__url" property="goodsUrl"/>
+		<result column="store_name" property="storeName"/>
+		<result column="store_location" property="storeLocation"/>
+		
+		<association property="orderInfoDto" javaType="OrderInfo">
+			<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="id" property="id"/>
+			<result column="transportation" property="transportation"/>
+			<result column="nation" property="nation"/>
+			<result column="order_num" property="orderNum"/>
+			<result column="user_name" property="userName"/>
+			<result column="phone" property="phone"/>
+			<result column="post_num" property="postNum"/>
+			<result column="addr" property="addr"/>
+			<result column="total_price" property="totalPrice"/>
+			<result column="goods_order_date" property="goodsOrderDate"/>
+			<result column="temp" property="temp"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="request" property="request"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+			<result column="commission" property="commission"/>
+			<result column="Personal_Customs_Clearance_Code" property="PersonalCustomsClearanceCode"/>
+			<result column="personal_use" property="personalUse"/>
+			<result column="trading" property="trading"/>
+		</association>
+		<association property="deliveryCurrentStateDto" javaType="DeliveryCurrentState">
+			<id column="delivery_status" property="deliveryStatus"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="stat_info" property="statInfo"/>
+		</association>
+		
+		
+	</resultMap>
+	
+	<select id="applicationEdit" parameterType="String" resultMap="GoodsInfoResultMap">
+		select 
+			* 
+		from
+			order_info as o
+		inner join
+			goods_info as g
+		on 
+			o.buy_order_code = g.buy_order_code
+		inner join
+			delivery_current_state as d
+		on 
+			d.goods_info_code = g.goods_info_code
+		where 
+			o.buy_order_code = #{buyOrderCode}
+			and o.step3 = 'n'
+			;
+	</select>
 	
 	
 	
@@ -76,8 +153,8 @@
 			,g.g_name as gName
 			,o.total_price as totalPrice
 			,o.user_name as userName
-			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
-			,CONCAT(o.step3, ' (',COUNT(o.step3), ')') AS statInfo
+			,CASE o.forwarding_hold WHEN 'n' THEN '출고보류' ELSE null END AS orderState
+			,CASE o.step3 WHEN 'n' THEN '임시저장' ELSE null END AS statInfo 
 			,g.buy_order_code as buyOrderCode
 		FROM 
 			goods_info AS g 
@@ -89,8 +166,8 @@
 			ON o.buy_order_code = os.buy_order_code
 		WHERE 
 			o.step3 = #{stat_info}  
-			AND o.id = #{u_id}
-		GROUP BY g.grouping_delivery;
+			AND o.id = #{u_id};
+		
 		
 	</select>	
 	

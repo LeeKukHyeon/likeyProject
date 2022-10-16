@@ -7,24 +7,28 @@ public class GoodsInfo {
 	private String buyOrderCode;
 	private String groupingDelivery;
 	private String gSite;
-	private String goodsImgUrl;
-	private String goodsImgUpload;
+	
+	private String goodsImgUrl;       //
+	private String goodsImgUpload;    //
 	private String gName;
 	private String deliveryCompany; 
 	private String trackingNum;
+	
 	private String gSize;
 	private String gColor;
 	private String goodsOption;
 	private int goodsPrice;
 	private int gAmount;
+	
 	private int totalPrice;
 	private String likeyPass;
 	private String barCode;
 	private String arrival;
 	private String arrivalDate;
+	
 	private String hsCode;
 	private String gBrand;
-	private String goodsUrl;
+	private String goodsUrl;         //
 	private String storeName;
 	private String storeLocation;
 	

@@ -58,6 +58,24 @@
 		<result column="error_comp_date" property="errorCompDate"/>
 	</resultMap>
 	
+	<update id="incomingCheck" parameterType="map"> 
+		<foreach collection="checks" item="item" > 
+		    UPDATE 	goods_info 
+		    SET		arrival= 'y' , arrival_date = curdate() 
+		  
+		    WHERE 	goods_info_code=#{item};
+		 </foreach> 
+	</update>
+
+	<update id="incomingGoodsDetailRegister" parameterType="String"> 
+		UPDATE 
+			goods_info 
+		SET 
+			arrival = "y" , arrival_date = curdate() 
+		WHERE 
+			goods_info_code = #{goodsInfoCode};
+	</update>
+	
 	<select id="goodsDetail" parameterType="String" resultMap="orderGoodsListResultMap">
 		/*ajax 호출*/
 		select 
@@ -65,7 +83,7 @@
 		from 
 			goods_info 
 		where
-			goods_info_code = #{code}
+			goods_info_code = #{code};
 	</select>
 	
 	<!-- 보관료 발생 리스트 -->
@@ -264,9 +282,12 @@
 	 		g.buy_order_code = o.buy_order_code
 	 	where
 	 		g.buy_order_code = #{buyOrderCode} 
-	 		and o.step3 = 'y'
+	 		and o.step3 = 'y' and arrival = 'n' 
+	 		<if test = "searchValue != '' and searchKey != null "> 
+	 			and ${searchKey} = #{searchValue}
+	 		</if> 
 	 		limit ${cri.skip}, ${cri.amount}
-	 
+	 ;
 	 	
 	 	
 	 </select>

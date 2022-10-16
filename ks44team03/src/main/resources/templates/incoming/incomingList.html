@@ -61,7 +61,7 @@
 								</tr>
 								
 							</thead>
-							  <tbody id="incomingCheckBody">
+							  <tbody >
 							 	
 								<tr th:each = "i :${incomingOrderList}">
 									<td><input type="checkbox" name="check" th:value="${i.buyOrderCode}"></td>
@@ -88,12 +88,7 @@
           </div>
       
         
-        <script>
-       	 $(document).on('click', '#sub_btn', function(){
-       		 
-       		 
-       	 });
-        </script>
+        
 
 	
 </body>

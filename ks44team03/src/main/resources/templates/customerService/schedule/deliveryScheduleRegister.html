@@ -31,33 +31,64 @@
 						<td style="padding: 18px 13px;"><b>파일첨부</b></td>
 						<td>
 							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName1" class="fileName"> 
-							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" onchange="javascript:document.getElementById('fileName1').value = this.value" class="imgcheck" name="scheduleImg">
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck1" name="scheduleImg">
 							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName2" class="fileName">
-							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" onchange="javascript:document.getElementById('fileName2').value = this.value" class="imgcheck">
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck2" name="scheduleImg">
 							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName3" class="fileName"> 
-							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" onchange="javascript:document.getElementById('fileName3').value = this.value" class="imgcheck">
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck3">
 							
+							<!-- 이미지파일 input 넣기 -->
 							<script type="text/javascript">
-							$('.imgcheck').change(function(){
-								var check = $('.imgcheck').val();
+							$('#imgcheck1').change(function(){
+								var check = $('#imgcheck1').val();
 								var lastVal = check.lastIndexOf('.');
 								var firstVal = check.lastIndexOf('fakepath')+9;
 								var check2 = check.substring(firstVal,lastVal)
-								alert(check2);
 								$('#fileName1').val(check2);
+							})
+							$('#imgcheck2').change(function(){
+								var check = $('#imgcheck2').val();
+								var lastVal = check.lastIndexOf('.');
+								var firstVal = check.lastIndexOf('fakepath')+9;
+								var check2 = check.substring(firstVal,lastVal)
 								$('#fileName2').val(check2);
+							})
+							$('#imgcheck3').change(function(){
+								var check = $('#imgcheck3').val();
+								var lastVal = check.lastIndexOf('.');
+								var firstVal = check.lastIndexOf('fakepath')+9;
+								var check2 = check.substring(firstVal,lastVal)
 								$('#fileName3').val(check2);
 							})
 							</script>
+							
+						
 						
 							<p style="margin-left: 18px; color: #FAC6C6">* 10MB 이하의 파일 3개까지 첨부하실 수 있으며 jpg, png, gif, pdf 파일형식만 첨부하실 수 있습니다.</p>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div style="width: 51%; margin-top: 10px"align="right"><button type="submit"style="margin-left: auto;">배송스케줄 등록</button></div>
+			<div style="width: 51%; margin-top: 10px"align="right"><button id="submitBtn" type="submit"style="margin-left: auto;">배송스케줄 등록</button></div>
 		</form>
 	</div>
+			<!-- 유효성 검사 -->
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$('#submitBtn').click(function(){
+					var checkTitle = $('#scheduleTitle').val()
+					var checkContent = $('#scheduleContent').val()
+					if(checkTitle == 'undefined' || checkTitle == '' || checkTitle == null){
+						alert('제목을 설정 해주세요')
+						return false;
+					}
+				 	if(checkContent == 'undefined' || checkContent == '' || checkContent == null){
+					alert('내용을 써 주세요')
+					return false;
+					}
+				})
+			})
+			</script>
 
 </body>
 </html>

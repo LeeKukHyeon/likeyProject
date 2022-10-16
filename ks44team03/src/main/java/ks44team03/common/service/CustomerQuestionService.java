@@ -21,6 +21,16 @@ public class CustomerQuestionService {
 		this.commonMapper = commonMapper;
 	}
 	
+	//1:1문의 답변 유효성 검사
+	public boolean mtmAnswerCheck(String mtmAnswer) {
+	
+		boolean result = customerQuestionMapper.mtmAnswerCheck(mtmAnswer);
+	
+		return result;
+	}
+	
+	
+	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> paramMap){
 		

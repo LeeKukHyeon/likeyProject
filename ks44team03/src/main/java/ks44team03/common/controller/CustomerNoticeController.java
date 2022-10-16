@@ -26,6 +26,7 @@ public class CustomerNoticeController {
 	//테스트 페이지
 	@GetMapping("/testPage")
 	public String TestPage(Model model) {
+
 		
 		return "/customerService/testPage";
 	}

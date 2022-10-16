@@ -8,13 +8,25 @@
 <body layout:fragment="content">
 	<div align="center">
 		<form id="myQuestionModifyForm" th:action="@{/myQuestionModify}" method="post">
-			<table border="1" style="width: 65%">
+			<table border="1" style="width: 50%">
 				<tbody>
 					<tr>
 						<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b>
 						<input id="mtmNumCode" name="mtmNumCode" th:value="${QuestionRead.mtmNumCode}" style="display: none;"></td>
 						<td style="padding-left: 18px;">
-							<div id="mtmCate" th:text="${QuestionRead.mtmCate}"></div>
+							<div>
+								<select style="align-content: center; text-align: center;" id="mtmCate" name="mtmCate" th:value="${QuestionRead.mtmCate}">
+									<option value=":::분류 선택:::" selected disabled>:::::분류 선택:::::</option>
+									<option value="회원정보">회원정보</option>
+									<option value="거래방법">거래방법</option>
+									<option value="거래취소/신고/보류">거래취소/신고/보류</option>
+									<option value="결제 및 환불">결제 및 환불</option>
+									<option value="서비스 이용">서비스 이용</option>
+									<option value="배송스케줄 신청">배송스케줄 신청</option>		
+									<option value="오류 제보">오류 제보</option>		
+									<option value="기타">기타</option>		
+								</select>
+							</div>
 							<div style="margin-top: 3px;">
 		 						<div style="text-decoration: underline; float: left;" th:text="'회원아이디 : '+${QuestionRead.userId}"></div>
 		 						<div style="font-family: inherit; text-align: right; margin-right: 11mm" th:text="'등록일  : '+${QuestionRead.mtmDate}"></div>
@@ -44,11 +56,33 @@
 					</tr>
 				</tbody>
 			</table>
-			<div style="width: 65%; margin-top: 3mm">
-			<button type="submit" style="float: right;">수정하기</button>
+			<div style="width: 50%; margin-top: 3mm">
+			<a th:href="@{/myQuestionList}"><input type="button" value="취소" style="float: right; margin-left: 3mm"></a>
+			<button id="subminBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>
-		
+						<!-- 유효성 검사 -->
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$('#subminBtn').click(function(){
+					var checkCate = $('#mtmCate').val()
+					var checkTitle = $('#mtmTitle').val()
+					var checkContent = $('#mtmContent').val()
+					if(checkCate == 'undefined' || checkCate == '' || checkCate == null || checkCate == ':::분류 선택:::'){
+						alert('카테고리 설정을 해주세요')
+						return false;
+					}
+				 	if(checkTitle == 'undefined' || checkTitle == '' || checkTitle == null){
+					alert('문의 제목을 써 주세요')
+					return false;
+					}
+					if(checkContent == 'undefined' || checkContent == '' || checkContent == null){
+					alert('문의 내용을 써 주세요')
+					return false;
+					}
+				})
+			})
+			</script>
 	</div>
 
 </body>

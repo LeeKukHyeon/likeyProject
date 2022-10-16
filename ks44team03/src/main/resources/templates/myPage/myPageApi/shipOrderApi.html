@@ -1,53 +1,54 @@
 <form name="frmMain" id="frmMain" method="get" action="">
 			<input type="hidden" name="action_type">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="applications_table">
-			  <tbody>
-				<th class="td0">
-					<input type="checkbox" name="allCheck" onchange="AllCheck();">
-				</th>
-				<th class="td1">
-					센터
-				</th>
-				<th class="td2">보관일<br><font>(신청일)</font><br>신청번호</th>
-				<th class="td3">주문사이트<br><font>(오더넘버)</font></th>
-				<th class="td4">대표 상품명<br><font>(옵션/수량)</font></th>
-				<th class="td5">총 가격</th>
-				<th class="td6">수령인</th>
-				<th class="td8">대표 트레킹 번호</th>
-				<th class="td7">상세상태<br><font>(총수량)</font></th>
-				<th class="td9">보류 여부</th>
-				
-			  
-			  
-				<tr  th:if="${#lists.isEmpty(shipOrderApi)}" valign="middle" bgcolor="#FFFFFF">
-					<td colspan="11" height="50" align="center" th:utext="${'<b>데이터가 존재하지 않습니다</b>'}"> 
-						<b>데이터가 존재하지 않습니다</b><br>123
-					</td>
-				</tr>			  
-			  	
-			  	<tr th:unless= "${#lists.isEmpty(shipOrderApi)}" th:each="s : ${shipOrderApi}"> 
-			  		<td ><input type="checkbox" name="arr_row_id"></td>
-			  		<td th:text="${s.logisticsCenter}"></td>
-			  		<td th:inline="text">
-					    [[${s.goodsOrderDate}]]
-					    <br/>
-					    [[${s.buyOrderCode}]]
-					   
-					</td>
-					<td th:text="${s.goodsUrl}"></td>
-					<td th:text="${s.gName}"> </td>
-					<td th:text="${s.totalPrice}"> </td>					
-					<td th:text="${s.userName}"> </td>
-					<td th:text="${s.trackingNum}"> </td>
-					<td th:text="${s.statInfo}"> </td>
-					<td th:text="${s.orderState}"> </td>
+				  <tbody>
+					<th class="td0">
+						<input type="checkbox" name="allCheck" onchange="AllCheck();">
+					</th>
+					<th class="td1">
+						센터
+					</th>
+					<th class="td2">보관일<br><font>(신청일)</font><br>신청번호</th>
+					<th class="td3">주문사이트<br><font>(오더넘버)</font></th>
+					<th class="td4">대표 상품명<br><font>(옵션/수량)</font></th>
+					<th class="td5">총 가격</th>
+					<th class="td6">수령인</th>
+					<th class="td8">대표 트레킹 번호</th>
+					<th class="td7">상세상태<br><font>(총수량)</font></th>
+					<th class="td9">보류 여부</th>
 					
-				</tr>
-			  
-			  
-			  
-			</tbody></table>
-			</form>
+				  
+				  
+					<tr  th:if="${#lists.isEmpty(shipOrderApi)}" valign="middle" bgcolor="#FFFFFF">
+						<td colspan="11" height="50" align="center" th:utext="${'<b>데이터가 존재하지 않습니다</b>'}"> 
+							<b>데이터가 존재하지 않습니다</b><br>123
+						</td>
+					</tr>			  
+				  	
+				  	<tr th:unless= "${#lists.isEmpty(shipOrderApi)}" th:each="s : ${shipOrderApi}"> 
+				  		<td ><input type="checkbox" name="arr_row_id"></td>
+				  		<td th:text="${s.logisticsCenter}"></td>
+				  		<td th:inline="text">
+						    [[${s.goodsOrderDate}]]
+						    <br/>
+						    <a th:href="@{/user/applicationEdit(buyOrderCode=${s.buyOrderCode})}">[[${s.buyOrderCode}]]</a>
+						   
+						</td>
+						<td th:text="${s.goodsUrl}"></td>
+						<td th:text="${s.gName}"> </td>
+						<td th:text="${s.totalPrice}"> </td>					
+						<td th:text="${s.userName}"> </td>
+						<td th:text="${s.trackingNum}"> </td>
+						<td th:text="${s.statInfo}"> </td>
+						<td th:text="${s.orderState}"> </td>
+						
+					</tr>
+				  
+				  
+				  
+				</tbody>
+			</table>
+</form>
 			
 			
 		<div class="pagination a1">

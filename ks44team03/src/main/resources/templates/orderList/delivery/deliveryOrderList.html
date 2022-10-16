@@ -40,6 +40,7 @@
 		
 		timeTracking  배송상태정보등록날짜-->
 		<h2 th:text="${title}"></h2>
+		<div th:include="orderList/delivery/searchDeliveryOrderList :: searchFragment"></div>
 	 	<table class="input_table" style="width:100%;">
 	 		<tr>
 	 			<th>상품정보코드</th>
@@ -58,7 +59,6 @@
 	 			<th>입고일</th>
 	 			<th>정보등록날짜</th>
 	 			<th>상태정보</th>
-	 			<th>구매방식</th>
 	 		</tr>
 	 		<tbody>
 	 			<tr th:if="${not #lists.isEmpty(deliveryOrderList)}" th:each="l : ${deliveryOrderList}">
@@ -78,7 +78,6 @@
 	 				<td th:text="${l.arrivalDate}"></td>
 	 				<td th:text="${l.deliveryCurrentStateDto.timeTracking}"></td>
 	 				<td th:text="${l.deliveryCurrentStateDto.statInfo}"></td>
-	 				<td th:text="${l.orderInfoDto.buyWay}"></td>
 	 			</tr>
 	 			<tr th:unless="${not #lists.isEmpty(deliveryOrderList)}">
 	 				<td colspan="16" style="text-align: center;">등록된 주문서가 없습니다.</td>

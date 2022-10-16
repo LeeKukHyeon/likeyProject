@@ -15,6 +15,14 @@
 		<result column="mtm_date" property="mtmDate"/>
 		<result column="mtm_situation" property="mtmSituation"/>
 	</resultMap>
+	
+	<!-- 1:1 문의 답변내용 유효성 검사 -->
+	<select id="mtmAnswerCheck" parameterType="String" resultType="Boolean">
+	  SELECT    IF(COUNT(*) = 1, 1, 0)
+	  FROM    question_center
+	  WHERE   mtm_answer  = #{mtmAnswer}
+	</select>
+	
 
 	<!-- 1:1문의 검색 -->
 	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
