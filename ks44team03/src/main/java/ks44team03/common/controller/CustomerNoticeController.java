@@ -26,6 +26,7 @@ public class CustomerNoticeController {
 	//테스트 페이지
 	@GetMapping("/testPage")
 	public String TestPage(Model model) {
+
 		
 		return "/customerService/testPage";
 	}
@@ -106,9 +107,12 @@ public class CustomerNoticeController {
 		return "/customerService/notice/noticeRegister";
 	}
 	
-	//공지사항 게시글 조회
+	//공지사항 게시글 조회 , 조회수 카운트(countView)
 	@GetMapping("/noticeRead")
 	public String viewNotice(@RequestParam(value = "noticeNumCode") String noticeNumCode, Model model) {
+		
+		customerNoticeService.countView(noticeNumCode);
+		
 		
 		// 게시물 내용
 		NoticeCenter noticeRead = customerNoticeService.getNoticeRead(noticeNumCode);

@@ -9,962 +9,971 @@
 	<body layout:fragment="content">
         <!-- code -->
 	
-	<th:block layout:fragment="customContents">
-		<div id = "body_container">
-				<div class="container">
-		
+		<th:block layout:fragment="customContents">
+			<div id = "body_container">
+					<div class="container">
 			
-			<!-- 마이페이지 상단부분 -->
-			<div class="sub_contents_wrap wrap ml-0">
-				<div class="sub_navi_text"> 
-					<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
-				</div>
-				<!-- 마이페이지 -->
-				<div class="mypage_main_title">
-					<div>마이페이지</div>
-					<div>다음 등급인 <font th:if = "${g.nextGrade}" th:text="${g.nextGrade}" th:each="g : ${grade}"> </font> 레벨로 상향되려면, 
-					<font th:if = "${g.needBuy}" th:text="${g.needBuy}" th:each="g : ${grade}">#</font>건 더 이용하시면 됩니다.</div>
-				</div>
-		
-				<ul class="mypage_top_menu">
-					<li><a href="memberModify">회원정보 수정</a></li>
-					
-					<li><a href="myAddrList">나의 주소록</a></li>
-					<li><a href="#">#배송요금표 보기</a></li>
-				</ul>
-	
-				<div style="clear:both;"></div>
-	
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
-				  <tr>
-					    <th class="rank">
-							<span>등급</span>
-							<div style="position:relative;">
-								<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
-									<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
-								</div>
-							</div>
-						</th>
+				
+				<!-- 마이페이지 상단부분 -->
+				<div class="sub_contents_wrap wrap ml-0">
+					<div class="sub_navi_text"> 
+						<div>HOME &nbsp;>&nbsp; <b>마이페이지</b></div>
+					</div>
+					<!-- 마이페이지 -->
+					<div class="mypage_main_title">
+						<div>마이페이지</div>
+						<div>다음 등급인 <font th:if = "${g.nextGrade}" th:text="${g.nextGrade}" th:each="g : ${grade}"> </font> 레벨로 상향되려면, 
+						<font th:if = "${g.needBuy}" th:text="${g.needBuy}" th:each="g : ${grade}">#</font>건 더 이용하시면 됩니다.</div>
+					</div>
+			
+					<ul class="mypage_top_menu">
+						<li><a href="memberModify">회원정보 수정</a></li>
 						
-						<th class="coupon"><span>쿠폰</span></th>
-						<!-- <th class="code"><span>추천코드</span></th> -->
-						<th class="hcash"><span>마이캐시</span></th>
-						<th class="usage"><span>이용실적</span></th>
-				  </tr>
-				  <tr th:each="u : ${userInfo}">
-					    <td th:text="${u.uGradeCode}" class="rank">#</td>
-						
-						<td class="coupon"><a href="cpn_valid_list.html"><font th:text="${couponCount}">#</font>장</a></td>
-						<!-- <td class="code">US123456</td> -->
-						<td class="hcash"><a href="mycash_list.html">#</a></td>
-						<td class="usage">
-							전월 이용건수 : <font th:text="${lastMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
-							당월 이용건수 : <font th:text="${thisMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
-							총 이용건수 : <font th:text="${totalCount}">#</font>건
-						</td>
-				  </tr>
-				</table>	
-		<!-- //마이페이지 상단 끝 -->
-			</div>
+						<li><a href="myAddrList">나의 주소록</a></li>
+						<li><a href="#">#배송요금표 보기</a></li>
+					</ul>
 		
+					<div style="clear:both;"></div>
 		
-		
-			<!-- //나의 배송현황 -->
-			<div class="mypage_shipping_status">
-				<div class="title">나의 배송 현황</div>
-		
-				<div class="order_bt">
-					<div class="bt1"><a href="">#구매대행 주문 조회</a></div>
-					<div class="bt2"><a href="">#SHOP 주문 배송 조회</a></div>
-				</div>
-				<div class="status_1">
-					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"  class="mypage_info_table">
 					  <tr>
-					    <td width="273">
-							<div class="icon"><a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><img src="image/S_mypage_icon_19.gif"></a></div>
-							<div class="text"><a href="javascript:void(0);" style="color:black;" onClick="OrderQuery('noPaid');">#통합결제 &nbsp;&nbsp; <span>0</span></a></div>
-						</td>
-						<td width="255">
-							<div class="icon"><a href="msg_list.html"><img src="image/S_mypage_icon_20.gif"></a></div>
-							<div class="text" ><a href="msg_list.html" style="color:black;">#알림 &nbsp;&nbsp; <span>0</span></a></div>
-						</td>
-						<td width="258">
-							<div class="icon"><img src="image/S_mypage_icon_21.gif"></div>
-							<div class="text">#미신청건 &nbsp;&nbsp; <span>0</span></div>
-						</td>
-						<td>
-							<a href="shipping.html"><div class="shipping_bt">#배송신청서 작성</a></div>
-						</td>
+						    <th class="rank">
+								<span>등급</span>
+								<div style="position:relative;">
+									<div style="position:absolute; width:12px; z-index:100; left:40px; top: -15px;">
+										<a href="#none" onclick="hd_bg2('level')"><img src="image/S_mypage_icon_02.gif"></a>
+									</div>
+								</div>
+							</th>
+							
+							<th class="coupon"><span>쿠폰</span></th>
+							<!-- <th class="code"><span>추천코드</span></th> -->
+							<th class="hcash"><span>마이캐시</span></th>
+							<th class="usage"><span>이용실적</span></th>
 					  </tr>
-					</table>
+					  <tr th:each="u : ${userInfo}">
+						    <td th:text="${u.uGradeCode}" class="rank">#</td>
+							
+							<td class="coupon"><a href="cpn_valid_list.html"><font th:text="${couponCount}">#</font>장</a></td>
+							<!-- <td class="code">US123456</td> -->
+							<td class="hcash"><a href="mycash_list.html">#</a></td>
+							<td class="usage">
+								전월 이용건수 : <font th:text="${lastMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
+								당월 이용건수 : <font th:text="${thisMonthCount}">#</font>건&nbsp;&nbsp;&nbsp;
+								총 이용건수 : <font th:text="${totalCount}">#</font>건
+							</td>
+					  </tr>
+					</table>	
+			<!-- //마이페이지 상단 끝 -->
 				</div>
 			
-				<div class="status_2">
+			
+			
+				<!-- //나의 배송현황 -->
+				<div class="mypage_shipping_status">
+					<div class="title">나의 배송 현황</div>
+			
+					<div class="order_bt">
+						<div class="bt1"><a href="">#구매대행 주문 조회</a></div>
+						<div class="bt2"><a href="">#SHOP 주문 배송 조회</a></div>
+					</div>
+					<div class="status_1">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-							<tr>
-								<td>
-								- <a href="javascript:void(0);" onClick="OrderQuery('All');"><font>전체 : #</a></font><br>
-								- <a href="javascript:void(0);" onClick="OrderQuery('Err');"><font>오류입고 : #</a></font><br>
-								- <a href="javascript:void(0);" onClick="OrderQuery('noDataCnt');"><font>신청서 미작성 입고 : #</a></font><br>
-								- <a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><font>미결제 : #</a></font>
-								</td>
-								
-								<td>
-									<ul class="progress">
-										<li>
-											<div onClick="OrderQuery('Imsi');" style="cursor:pointer">임시 저장</div>
-											<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">#</div>
-										</li>
-										
-										<li>
-											<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
-											<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;" th:text="${completedApplication}">#</div>
-										</li>
-										
-										<li>
-											<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
-											<div onClick="OrderQuery('ItemReady');" style="cursor:pointer" th:text="${arrivalCount}">#</div>
-										</li>
-										<li>
-											<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
-											<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" th:text="${forwardingCount}">#</div>
-										</li>
-										
-										<li>
-											<div onClick="OrderQuery('Out');" style="cursor:pointer">한국 출고</div>
-											<div onClick="OrderQuery('Out');" style="cursor:pointer">#</div>
-										</li>
-										<li>
-											<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
-											<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#</div>
-										</li>
-										<li>
-											<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">배송완료</div>
-											<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#</div>
-										</li>
-									</ul>
-								</td>
-							
-							</tr>
+						  <tr>
+						    <td width="273">
+								<div class="icon"><a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><img src="image/S_mypage_icon_19.gif"></a></div>
+								<div class="text"><a href="javascript:void(0);" style="color:black;" onClick="OrderQuery('noPaid');">#통합결제 &nbsp;&nbsp; <span>0</span></a></div>
+							</td>
+							<td width="255">
+								<div class="icon"><a href="msg_list.html"><img src="image/S_mypage_icon_20.gif"></a></div>
+								<div class="text" ><a href="msg_list.html" style="color:black;">#알림 &nbsp;&nbsp; <span>0</span></a></div>
+							</td>
+							<td width="258">
+								<div class="icon"><img src="image/S_mypage_icon_21.gif"></div>
+								<div class="text">#미신청건 &nbsp;&nbsp; <span>0</span></div>
+							</td>
+							<td>
+								<a href="shipping.html"><div class="shipping_bt">#배송신청서 작성</a></div>
+							</td>
+						  </tr>
 						</table>
 					</div>
-				</div>
-			<!-- //나의 배송현황 -->
-	
-	
-			<div style="margin:0 auto;" align="center">
-				<div class="shipping_list_open"><span>배송 신청 내역 <font id="shipping_list_toggle">열기</font></span></div>
-			</div>
-	
-			<script type="text/javascript">
-			$(function(){
-				$(".shipping_list_open").click(function(){
-					//$(".shipping_details_list").slideToggle();
-					
-					$('.shipping_details_list').slideToggle('slow', function () {
-						if ($('.shipping_details_list').is(':visible')) {
-							$("#shipping_list_toggle").text("닫기");
-						}
-						else {
-							$("#shipping_list_toggle").text("열기");
-						}
-					});
-				})
-			})
-			</script>
-		
-			<div class="shipping_details_list">
-				<!-- 배송신청 내역 -->
-				<div class="title">
-					<div>배송 신청 내역</div>
-					<div><font>★</font> 각 항목을 클릭하시면 <font>상세보기 및 수정 가능</font>합니다.</div>
-				</div>
-				<div style="clear:both;"></div>
-		
-				<div class="search">
-					<a href="">배송신청서 검색</a>
-				</div>
 				
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="list_table">
-				  <tr>
-				    <td>
-						<div id="orderCnt_1" onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">배송대행신청 미작성 입고(노데이터)</div>
-						<div onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;" th:text="${nodataCount}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_2" onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">무게측정 및 출고대기 / 결제대기</div>
-						<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;" th:text="${weightCheckNopaymentCount}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 배송 중</div>
-						<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">#0</div>
-					</td>
-					<td>
-						<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국외 배송 중</div>
-						<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">#0</div>
-					</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_5" onClick="OrderQuery('Imsi');" style="cursor:pointer">임시저장</div>
-						<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
-						<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer" th:text="${weightCheckPaymentCount}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국외도착 (통관중)</div>
-						<div onClick="OrderQuery('customsing');" style="cursor:pointer">#0</div>
-					</td>
-					<td>
-						<div id="orderCnt_8" onClick="OrderQuery('ShipClosed');" style="cursor:pointer">국내 배송 완료</div>
-						<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#0</div>
-					</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_9" onClick="OrderQuery('orderType1');" style="cursor:pointer">배송대행신청 완료</div>
-						<div onClick="OrderQuery('orderType1');" style="cursor:pointer" th:text="${packageForwardingApplication}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_10" onClick="OrderQuery('weightShipHold');" style="cursor:pointer">무게측정 및 출고보류</div>
-						<div onClick="OrderQuery('weightShipHold');" style="cursor:pointer" th:text="${weightCheckPostponeCount}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_11" onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
-						<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#0</div>
-					</td>
-					<td>
-						<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
-						<div onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">0</div>
-					</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_13" onClick="OrderQuery('buyingItem');" style="cursor:pointer">구매대행 신청완료</div>
-						<div onClick="OrderQuery('buyingItem');" style="cursor:pointer" th:text="${purchaseApplication}">0</div>
-					</td>
-					<td>
-						<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 </div>
-						<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">#0</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
-						<div onClick="OrderQuery('Arrived');" style="cursor:pointer" th:text="${warehouseArrivalCount}">0</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_18" onClick="OrderQuery('PartialStock');" style="cursor:pointer">일부입고</div>
-						<div onClick="OrderQuery('PartialStock');" style="cursor:pointer" th:text="${partialIncomingCount}">0</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_20" onClick="OrderQuery('AllIn');" style="cursor:pointer">도착(입고) 완료</div>
-						<div onClick="OrderQuery('AllIn');" style="cursor:pointer" th:text="${allArrivedCount}">0</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div id="orderCnt_21" onClick="OrderQuery('Err');" style="cursor:pointer">오류입고(확인요망)</div>
-						<div onClick="OrderQuery('Err');" style="cursor:pointer">#0</div>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				  </tr>
-				</table>
-				
-				<script>
-				//열기
-				function hd_bg(t,url){
-					$(".more_div").fadeIn();
-					$("."+t).fadeIn();
-		
-				}
-		
-				//닫기
-				function hd_bg_close(t){
-					$("."+t).fadeOut();
-					$(".more_div").fadeOut();
-				}
-				</script>
-				
-				<!-- //배송신청 내역 -->
-		
-				<div class="more_div" onclick="hd_bg_close('more1');hd_bg_close('more2');hd_bg_close('more3');hd_bg_close('more4');"></div>
-		
-				<div id="ship_step_info"></div>
-				
-				<!-- 배송대행신청 미작성 입고 건수 -->
-				<div class="shipping_nowrite_table" id="nodata_cnt">
-					<ul th:each="item : ${monthNodataCount}">
-						<li>#2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.twoMonthNodataCount}">0건</b></li>
-						<li>#2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.lastMonthNodataCount}">0건</b></li>
-						<li>#2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.thisMonthNodataCount}">0건</b></li>
-					</ul>
-					<div style="clear:both;height:15px;"></div>
-					<div class="text">미작성 입고 건수는 <b><font style="color:#ff9520;">입고일자</font></b> 기준입니다.</div>
-				</div>
-				
-				<!-- //배송대행신청 미작성 입고 건수 -->
-		
-		
-				
-				
-				<div class="nodata_wrap" id="nodata_list">
-				</div>
-				
-			
-				<div id="addPayList">
-				</div>
-									
-		
-				
-		
-				
-				<ul class="list_bt">
-					<li><a href="javascript:void(0);" onClick="doAction('delOrder')">신청서 삭제</a></li>
-					
-					<!--<li class="more"><a href="#none" onclick="hd_bg('more4')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
-					<li><a href="javascript:void(0);" onClick="doAction('delivery')" >보류해지</a></li>
-					<li><a href="javascript:void(0);" onClick="doAction('pending')" >출고보류</a></li>
-				
-					<!--<li class="more"><a href="#none" onclick="hd_bg('more3')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
-					<!--<li style="background-color:#8f8f8f"><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 취소하기</a></li>-->
-					<!--<li class="more"><a href="#none" onclick="hd_bg('more2')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
-					<li><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 신청하기</a></li>
-					<!--<li class="more"><a href="#none" onclick="hd_bg('more1')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
-				</ul>
-				
-				<div style="clear:both;"></div>
-							
-				
-				<!-- 묶음배송 신청하기 -->
-				<div class="more1 more_info">
-					<div>
-					
-						<div class="sub_title">
-							<div>묶음배송 신청하기</div>
-							<div class="close"><a href="#none" onclick="hd_bg_close('more1')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
-						</div>
-		
-						<div class="more_text1">
-							<div>- 묶음 배송 신청하기에 관한 내용을 적어주세요.</div>
-						</div>
-					
-					</div>
-				</div>
-				<!-- //묶음배송 신청하기 -->
-		
-		
-		
-				<!-- 묶음배송 취소하기 -->
-				<div class="more2 more_info">
-					<div>
-					
-						<div class="sub_title">
-							<div>묶음배송 취소하기</div>
-							<div class="close"><a href="#none" onclick="hd_bg_close('more2')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
-						</div>
-		
-						<div class="more_text1">
-							<div>- 묶음 배송 취소하기에 관한 내용을 적어주세요.</div>
-						</div>
-					
-					</div>
-				</div>
-				<!-- //묶음배송 신청하기 -->
-				
-			
-				
-		
-				<form action='mypage.html' method='GET' name='f'>
-					<input type='hidden' name='action_type' value='query'>
-					
-					<div class="open_search">
-						<div class="search_option">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option1">
+					<div class="status_2">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 								<tr>
-							    <td width="90">검색범위</td>
-								<td width="351" class="select">
-									<div>
-										<select name="q_order_type">
-											<option value='' selected >서비스 종류</option>
-											<option value='1'  >배송대행</option>
-											<option value='2'  >구매대행</option>
-										</select>
-									</div>
-									<div>
-										<select name="q_loc_cd">
-											<option value='' selected >국가 (지역)</option>
-											<option value='NJ'  >US NJ(NJ)</option>
-											<option value='DE'  >US DE(DE)</option>
-										</select>
-									</div>
-								</td>
-								<td width="70">검색기간</td>
-								<td class="date_input">
-									<div class="box">
-										<div><input type="text" name="q_from_date" value="2022-08-20" readonly></div>
-										<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_from_date);"></div>
-									</div>
-									<div style="width:23px;text-align:center;line-height:32px;">~</div>
-									<div class="box">
-										<div><input type="text" name="q_to_date" value="2022-09-21" readonly></div>
-										<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_to_date);"></div>
-									</div>
-									<div onClick="document.f.q_from_date.value='';document.f.q_to_date.value='';" class="bt" style="cursor:pointer">전체기간</div>
-								</td>
-							  </tr>
-							</table>
-							
-							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option2">
-								<tr>
-									<td width="90">검색어</td>
-									<td width="580">
-										<input type="radio" name="q_field" value="t1.invoice_no" checked > 신청번호&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="q_field" value="t1.mall_order_no"  > 오더번호&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="q_field" value="t2.package_name"  > 상품명&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="q_field" value="t1.recipient_name"  > 수령인&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="q_field" value="t2.tracking_num"  > 트레킹&nbsp;&nbsp;&nbsp;
-										<input type="radio" name="q_field" value="t1.mall_cd"  > 쇼핑몰주소&nbsp;&nbsp;&nbsp;
+									<td>
+									- <a href="javascript:void(0);" onClick="OrderQuery('All');"><font>전체 : #</a></font><br>
+									- <a href="javascript:void(0);" onClick="OrderQuery('Err');"><font>오류입고 : #</a></font><br>
+									- <a href="javascript:void(0);" onClick="OrderQuery('noDataCnt');"><font>신청서 미작성 입고 : #</a></font><br>
+									- <a href="javascript:void(0);" onClick="OrderQuery('noPaid');"><font>미결제 : #</a></font>
 									</td>
-									<td class="search2"><input type="text" name="q_keyword" value="" placeholder='검색어 입력' > </td>
+									
+									<td>
+										<ul class="progress">
+											<li>
+												<div onClick="OrderQuery('Imsi');" style="cursor:pointer">!임시 저장</div>
+												<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">#</div>
+											</li>
+											
+											<li>
+												<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
+												<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;" th:text="${completedApplication}">#</div>
+											</li>
+											
+											<li>
+												<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
+												<div onClick="OrderQuery('ItemReady');" style="cursor:pointer" th:text="${arrivalCount}">#</div>
+											</li>
+											<li>
+												<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
+												<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" th:text="${forwardingCount}">#</div>
+											</li>
+											
+											<li>
+												<div onClick="OrderQuery('Out');" style="cursor:pointer">한국 출고</div>
+												<div onClick="OrderQuery('Out');" style="cursor:pointer">#</div>
+											</li>
+											<li>
+												<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
+												<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#</div>
+											</li>
+											<li>
+												<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">배송완료</div>
+												<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#</div>
+											</li>
+										</ul>
+									</td>
+								
 								</tr>
 							</table>
 						</div>
-						<div class="search_bt" style="width:160px;"><a href="javascript:void(0);" onClick="OrderQuery('Form')">검색</a></div>
 					</div>
-				</form>
-				<div style="clear:both;"></div>
-				
-			
+				<!-- //나의 배송현황 -->
 		
-				<!-- 배송대행 신청 검색 -->
-				<div class="shipping_applications_search" id="shipOrderList"></div>
-				<!-- //배송대행 신청 검색 -->
-				<div style="height:0px;"></div>
-			</div>
-			<!------------------------------------ 오픈 여기까지 ------------------------------------>
-	
-	
-			<!-- 센터별 입출고 현황 안내 -->
-			<div class="mypage_sub_title1">
-				<div>- 센터별 입출고 현황 안내</div>
-				<div>(현지시각 기준)</div>
-			</div>
 		
-			<div style="clear:both;"></div>
-
-			<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_warehousing_table">
-			  <tr>
+				<div style="margin:0 auto;" align="center">
+					<div class="shipping_list_open"><span>배송 신청 내역 <font id="shipping_list_toggle">열기</font></span></div>
+				</div>
 		
-			    <td>
-					<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
-					<div class='country'>#US NJ(NJ)</div>
-					<div class='date'>#09.19 [도착입고중]</div>
-				</td>
-			    <td>
-					<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
-					<div class='country'>#US DE(DE)</div>
-					<div class='date'>#09.16 [도착입고중]</div>
-				</td>
-			  </tr>
-			</table>
-			<!-- //센터별 입출고 현황 안내 -->
-	
-
-	
-			<!-- 마이페이지 관리하기 -->
-			<div class="mypage_management_box">
-				<div class="title"><span>마이페이지 관리하기</span></div>
-		
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="management_type_table">
-				  <tr>
-				    <td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_10.gif"></div>
-							<div>계정관리</div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="/mem_edit.html">- 비밀번호, 회원정보 변경</a></li>
-								<li><a href="">- 나의 멤버십 등급</a></li>
-							</ul>
-						</div>
-					</td>
-					<td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_11.gif"></div>
-							<div>마이캐시</div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="#myCash">- 마이캐시 충전하기</a></li>
-								<li><a href="mycash_list.html">- 사용한 마이캐시 내역</a></li>
-							</ul>
-						</div>
-					</td>
-					
-					<td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_13.gif"></div>
-							<div>고객센터</div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="qna_list.html">- 1:1 Q&A</a></li>
-								
-								<li><a href="sub_1_1.html">- 도움말</a></li>
-							</ul>
-						</div>
-					</td>
-					<td>
-					&nbsp;
-					</td>
-				  </tr>
-				  <tr>
-				    <td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_14.gif"></div>
-							<div>쿠폰</div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="cpn_valid_list.html">- 쿠폰내역</a></li>
-								
-							</ul>
-						</div>
-					</td>
-					<td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_15.gif"></div>
-							<div>프렌즈 </div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="/mypoint_list.html">- 거래내역</a></li>
-								
-							</ul>
-						</div>
-					</td>
-					
-					<td>
-						<div class="left_title">
-							<div><img src="image/S_mypage_icon_16.gif"></div>
-							<div>마이프로필</div>
-						</div>
-						<div class="right_text">
-							<ul>
-								<li><a href="myaddr_list.html">- 나의 주소록</a></li>
-								
-								
-							</ul>
-						</div>
-					</td>
-					<td>
-					&nbsp;
-					</td>
-				  </tr>
-				</table>
-				
-			</div>
-			<!-- //마이페이지 관리하기 -->
-
-			
-			<!-- 공지/질문 -->
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_bbs_table">
-					  <tr>
-					    <td class="borard_box">
-							<div>
-								<div class="title">공지사항</div>
-								<div class="more"><a href="#" >#더보기</a></div>
-				
-								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-								
-				
-									  <tr>
-									    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=113&num=&page=1','notice','yes',830,500);">- #</a> <img src='image/S_bottom_tab_n.gif' border=0></td>
-										<td class='td2'>#2022.09.16</td>
-									  </tr>
-									  <tr>
-									    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=112&num=&page=1','notice','yes',830,500);">- #</a> <img src='image/S_bottom_tab_n.gif' border=0></td>
-										<td class='td2'>#2022.09.16</td>
-									  </tr>
-									  <tr>
-									    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=111&num=&page=1','notice','yes',830,500);">- #</a> </td>
-										<td class='td2'>#2022.09.10</td>
-									  </tr>
-									  <tr>
-									    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=110&num=&page=1','notice','yes',830,500);">- #</a> </td>
-										<td class='td2'>#2022.09.09</td>
-									  </tr>				
-								
-				
-								</table>
-							</div>
-						</td>
-						<td class="exchange_box">
-							<div class="title">관세청 고시환율</div>
-				
-							<div class="exchange_info">
-								<div class="date">
-									<div>#2022</div>
-									<div>#09.23</div>
-								</div>
-								<div class="country_exc">
-								
-				
-									<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
-									  <tr>
-									    <td>#미국</td>
-										<td>1 USD</td>
-										<td>#1312 KRW</td>
-									  </tr>
-									</table>
-				
-									<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
-									  <tr>
-									    <td>#중국</td>
-										<td>1 CNY</td>
-										<td>#189.77 KRW</td>
-									  </tr>
-									</table>
-				
-				
-								</div>
-							</div>
-						</td>
-				
+				<script type="text/javascript">
+				$(function(){
+					$(".shipping_list_open").click(function(){
+						//$(".shipping_details_list").slideToggle();
 						
-						<td class="borard_box">
-							<div>
-								<div class="title">나의 1:1 질문 <font>(최근 1개월 내역만 보여집니다)</font></div>
-								<div class="more"><a href="#">#더보기</a></div>
-				
-								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-								
-								
-				
-								</table>
-							</div>
+						$('.shipping_details_list').slideToggle('slow', function () {
+							if ($('.shipping_details_list').is(':visible')) {
+								$("#shipping_list_toggle").text("닫기");
+							}
+							else {
+								$("#shipping_list_toggle").text("열기");
+							}
+						});
+					})
+				})
+				</script>
+			
+				<div class="shipping_details_list">
+					<!-- 배송신청 내역 -->
+					<div class="title">
+						<div>배송 신청 내역</div>
+						<div><font>★</font> 각 항목을 클릭하시면 <font>상세보기 및 수정 가능</font>합니다.</div>
+					</div>
+					<div style="clear:both;"></div>
+			
+					<div class="search">
+						<a href="">배송신청서 검색</a>
+					</div>
+					
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="list_table">
+					  <tr>
+					    <td>
+							<div id="orderCnt_1" onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;">배송대행신청 미작성 입고(노데이터)</div>
+							<div onClick="OrderQuery('noDataCnt');"  style="cursor:pointer;" th:text="${nodataCount}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_2" onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;">무게측정 및 출고대기 / 결제대기</div>
+							<div onClick="OrderQuery('noOutNoPayCnt');" style="cursor:pointer;" th:text="${weightCheckNopaymentCount}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_3" onClick="OrderQuery('gsiOut');" style="cursor:pointer;">항공사(선사) 인계 / 배송 중</div>
+							<div onClick="OrderQuery('gsiOut');" style="cursor:pointer;">#0</div>
+						</td>
+						<td>
+							<div id="orderCnt_4" onClick="OrderQuery('localShipping');" style="cursor:pointer;">국외 배송 중</div>
+							<div onClick="OrderQuery('localShipping');" style="cursor:pointer;">#0</div>
 						</td>
 					  </tr>
-				</table>
-			<!-- 공지/질문 -->
-			
-			<!-- 최근 이용 내역 -->
-				<div class="mypage_point_use">
-					<div class="title">- 최근 거래 내역</div>
-			
-					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="use_table">
 					  <tr>
-					    <th class="date">거래 일시</th>
-						<th class="point">거래 캐시</th>
-						<th class="use">거래유형</th>
-						<th class="use">비고</th>
+					    <td>
+							<div id="orderCnt_5" onClick="OrderQuery('Imsi');" style="cursor:pointer">임시저장</div>
+							<div onClick="OrderQuery('Imsi');" style="cursor:pointer" th:text="${temp}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_6" onClick="OrderQuery('noOutPaid');" style="cursor:pointer">무게측정 및 출고대기 / 결제완료</div>
+							<div onClick="OrderQuery('noOutPaid');" style="cursor:pointer" th:text="${weightCheckPaymentCount}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_7" onClick="OrderQuery('customsing');" style="cursor:pointer">국외도착 (통관중)</div>
+							<div onClick="OrderQuery('customsing');" style="cursor:pointer">#0</div>
+						</td>
+						<td>
+							<div id="orderCnt_8" onClick="OrderQuery('ShipClosed');" style="cursor:pointer">국내 배송 완료</div>
+							<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#0</div>
+						</td>
 					  </tr>
-				  
+					  <tr>
+					    <td>
+							<div id="orderCnt_9" onClick="OrderQuery('orderType1');" style="cursor:pointer">배송대행신청 완료</div>
+							<div onClick="OrderQuery('orderType1');" style="cursor:pointer" th:text="${packageForwardingApplication}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_10" onClick="OrderQuery('weightShipHold');" style="cursor:pointer">무게측정 및 출고보류</div>
+							<div onClick="OrderQuery('weightShipHold');" style="cursor:pointer" th:text="${weightCheckPostponeCount}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_11" onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
+							<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#0</div>
+						</td>
+						<td>
+							<div id="orderCnt_17" onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">보관료 발생 (예정)</div>
+							<div onClick="OrderQuery('keepFeeCnt');" style="cursor:pointer">0</div>
+						</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div id="orderCnt_13" onClick="OrderQuery('buyingItem');" style="cursor:pointer">구매대행 신청완료</div>
+							<div onClick="OrderQuery('buyingItem');" style="cursor:pointer" th:text="${purchaseApplication}">0</div>
+						</td>
+						<td>
+							<div id="orderCnt_22" onClick="OrderQuery('outNoPay');" style="cursor:pointer">항공사 인계예정 </div>
+							<div onClick="OrderQuery('outNoPay');" style="cursor:pointer">#0</div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div id="orderCnt_16" onClick="OrderQuery('Arrived');" style="cursor:pointer">창고도착</div>
+							<div onClick="OrderQuery('Arrived');" style="cursor:pointer" th:text="${warehouseArrivalCount}">0</div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div id="orderCnt_18" onClick="OrderQuery('PartialStock');" style="cursor:pointer">일부입고</div>
+							<div onClick="OrderQuery('PartialStock');" style="cursor:pointer" th:text="${partialIncomingCount}">0</div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div id="orderCnt_20" onClick="OrderQuery('AllIn');" style="cursor:pointer">도착(입고) 완료</div>
+							<div onClick="OrderQuery('AllIn');" style="cursor:pointer" th:text="${allArrivedCount}">0</div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div id="orderCnt_21" onClick="OrderQuery('Err');" style="cursor:pointer">오류입고(확인요망)</div>
+							<div onClick="OrderQuery('Err');" style="cursor:pointer">#0</div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					  </tr>
+					</table>
+					
+					<script>
+					//열기
+					function hd_bg(t,url){
+						$(".more_div").fadeIn();
+						$("."+t).fadeIn();
 			
+					}
+			
+					//닫기
+					function hd_bg_close(t){
+						$("."+t).fadeOut();
+						$(".more_div").fadeOut();
+					}
+					</script>
+					
+					<!-- //배송신청 내역 -->
+			
+					<div class="more_div" onclick="hd_bg_close('more1');hd_bg_close('more2');hd_bg_close('more3');hd_bg_close('more4');"></div>
+			
+					<div id="ship_step_info"></div>
+					
+					<!-- 배송대행신청 미작성 입고 건수 -->
+					<div class="shipping_nowrite_table" id="nodata_cnt">
+						<ul th:each="item : ${monthNodataCount}">
+							<li>#2022년 07월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.twoMonthNodataCount}">0건</b></li>
+							<li>#2022년 08월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.lastMonthNodataCount}">0건</b></li>
+							<li>#2022년 09월 미작성 입고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b th:text = "${item.thisMonthNodataCount}">0건</b></li>
+						</ul>
+						<div style="clear:both;height:15px;"></div>
+						<div class="text">미작성 입고 건수는 <b><font style="color:#ff9520;">입고일자</font></b> 기준입니다.</div>
+					</div>
+					
+					<!-- //배송대행신청 미작성 입고 건수 -->
+			
+			
+					
+					
+					<div class="nodata_wrap" id="nodata_list">
+					</div>
+					
+				
+					<div id="addPayList">
+					</div>
+										
+			
+					
+			
+					
+					<ul class="list_bt">
+						<li><a href="javascript:void(0);" onClick="doAction('delOrder')">신청서 삭제</a></li>
+						
+						<!--<li class="more"><a href="#none" onclick="hd_bg('more4')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+						<li><a href="javascript:void(0);" onClick="doAction('delivery')" >보류해지</a></li>
+						<li><a href="javascript:void(0);" onClick="doAction('pending')" >출고보류</a></li>
+					
+						<!--<li class="more"><a href="#none" onclick="hd_bg('more3')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+						<!--<li style="background-color:#8f8f8f"><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 취소하기</a></li>-->
+						<!--<li class="more"><a href="#none" onclick="hd_bg('more2')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+						<li><a href="javascript:void(0);" onClick="doAction('group')" >묶음배송 신청하기</a></li>
+						<!--<li class="more"><a href="#none" onclick="hd_bg('more1')"><img src="image/S_mypage_icon_27.gif"></a></li>-->
+					</ul>
+					
+					<div style="clear:both;"></div>
+								
+					
+					<!-- 묶음배송 신청하기 -->
+					<div class="more1 more_info">
+						<div>
+						
+							<div class="sub_title">
+								<div>묶음배송 신청하기</div>
+								<div class="close"><a href="#none" onclick="hd_bg_close('more1')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+							</div>
+			
+							<div class="more_text1">
+								<div>- 묶음 배송 신청하기에 관한 내용을 적어주세요.</div>
+							</div>
+						
+						</div>
+					</div>
+					<!-- //묶음배송 신청하기 -->
+			
+			
+			
+					<!-- 묶음배송 취소하기 -->
+					<div class="more2 more_info">
+						<div>
+						
+							<div class="sub_title">
+								<div>묶음배송 취소하기</div>
+								<div class="close"><a href="#none" onclick="hd_bg_close('more2')"><img src="image/S_sub1_center_ov_close.gif"></a></div>
+							</div>
+			
+							<div class="more_text1">
+								<div>- 묶음 배송 취소하기에 관한 내용을 적어주세요.</div>
+							</div>
+						
+						</div>
+					</div>
+					<!-- //묶음배송 신청하기 -->
+					
+				
+					
+			
+					<form action='mypage.html' method='GET' name='f'>
+						<input type='hidden' name='action_type' value='query'>
+						
+						<div class="open_search">
+							<div class="search_option">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option1">
+									<tr>
+								    <td width="90">검색범위</td>
+									<td width="351" class="select">
+										<div>
+											<select name="q_order_type">
+												<option value='' selected >서비스 종류</option>
+												<option value='1'  >배송대행</option>
+												<option value='2'  >구매대행</option>
+											</select>
+										</div>
+										<div>
+											<select name="q_loc_cd">
+												<option value='' selected >국가 (지역)</option>
+												<option value='NJ'  >US NJ(NJ)</option>
+												<option value='DE'  >US DE(DE)</option>
+											</select>
+										</div>
+									</td>
+									<td width="70">검색기간</td>
+									<td class="date_input">
+										<div class="box">
+											<div><input type="text" name="q_from_date" value="2022-08-20" readonly></div>
+											<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_from_date);"></div>
+										</div>
+										<div style="width:23px;text-align:center;line-height:32px;">~</div>
+										<div class="box">
+											<div><input type="text" name="q_to_date" value="2022-09-21" readonly></div>
+											<div><img src="image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_to_date);"></div>
+										</div>
+										<div onClick="document.f.q_from_date.value='';document.f.q_to_date.value='';" class="bt" style="cursor:pointer">전체기간</div>
+									</td>
+								  </tr>
+								</table>
+								
+								<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="option2">
+									<tr>
+										<td width="90">검색어</td>
+										<td width="580">
+											<input type="radio" name="q_field" value="t1.invoice_no" checked > 신청번호&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="q_field" value="t1.mall_order_no"  > 오더번호&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="q_field" value="t2.package_name"  > 상품명&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="q_field" value="t1.recipient_name"  > 수령인&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="q_field" value="t2.tracking_num"  > 트레킹&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="q_field" value="t1.mall_cd"  > 쇼핑몰주소&nbsp;&nbsp;&nbsp;
+										</td>
+										<td class="search2"><input type="text" name="q_keyword" value="" placeholder='검색어 입력' > </td>
+									</tr>
+								</table>
+							</div>
+							<div class="search_bt" style="width:160px;"><a href="javascript:void(0);" onClick="OrderQuery('Form')">검색</a></div>
+						</div>
+					</form>
+					<div style="clear:both;"></div>
+					
+				
+			
+					<!-- 배송대행 신청 검색 -->
+					<div class="shipping_applications_search" id="shipOrderList"></div>
+					<!-- //배송대행 신청 검색 -->
+					<div style="height:0px;"></div>
+				</div>
+				<!------------------------------------ 오픈 여기까지 ------------------------------------>
+		
+		
+				<!-- 센터별 입출고 현황 안내 -->
+				<div class="mypage_sub_title1">
+					<div>- 센터별 입출고 현황 안내</div>
+					<div>(현지시각 기준)</div>
+				</div>
+			
+				<div style="clear:both;"></div>
+	
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_warehousing_table">
+				  <tr>
+			
+				    <td>
+						<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+						<div class='country'>#US NJ(NJ)</div>
+						<div class='date'>#09.19 [도착입고중]</div>
+					</td>
+				    <td>
+						<div class='flag'><img src='image/S_schedule_flag_01.gif'></div>
+						<div class='country'>#US DE(DE)</div>
+						<div class='date'>#09.16 [도착입고중]</div>
+					</td>
+				  </tr>
+				</table>
+				<!-- //센터별 입출고 현황 안내 -->
+		
+	
+		
+				<!-- 마이페이지 관리하기 -->
+				<div class="mypage_management_box">
+					<div class="title"><span>마이페이지 관리하기</span></div>
+			
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="management_type_table">
+					  <tr>
+					    <td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_10.gif"></div>
+								<div>계정관리</div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="/mem_edit.html">- 비밀번호, 회원정보 변경</a></li>
+									<li><a href="">- 나의 멤버십 등급</a></li>
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_11.gif"></div>
+								<div>마이캐시</div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="#myCash">- 마이캐시 충전하기</a></li>
+									<li><a href="mycash_list.html">- 사용한 마이캐시 내역</a></li>
+								</ul>
+							</div>
+						</td>
+						
+						<td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_13.gif"></div>
+								<div>고객센터</div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="qna_list.html">- 1:1 Q&A</a></li>
+									
+									<li><a href="sub_1_1.html">- 도움말</a></li>
+								</ul>
+							</div>
+						</td>
+						<td>
+						&nbsp;
+						</td>
+					  </tr>
+					  <tr>
+					    <td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_14.gif"></div>
+								<div>쿠폰</div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="cpn_valid_list.html">- 쿠폰내역</a></li>
+									
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_15.gif"></div>
+								<div>프렌즈 </div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="/mypoint_list.html">- 거래내역</a></li>
+									
+								</ul>
+							</div>
+						</td>
+						
+						<td>
+							<div class="left_title">
+								<div><img src="image/S_mypage_icon_16.gif"></div>
+								<div>마이프로필</div>
+							</div>
+							<div class="right_text">
+								<ul>
+									<li><a href="myaddr_list.html">- 나의 주소록</a></li>
+									
+									
+								</ul>
+							</div>
+						</td>
+						<td>
+						&nbsp;
+						</td>
+					  </tr>
 					</table>
 					
 				</div>
-				<!-- //최근 이용 내역 -->
-				<div style="clear:both;"></div>
+				<!-- //마이페이지 관리하기 -->
+	
 				
-		</div>
-			
-		</div>
-	
-			
-	</th:block>
+				<!-- 공지/질문 -->
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="mypage_bbs_table">
+						  <tr>
+						    <td class="borard_box">
+								<div>
+									<div class="title">공지사항</div>
+									<div class="more"><a href="#" >#더보기</a></div>
+					
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+									
+					
+										  <tr>
+										    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=113&num=&page=1','notice','yes',830,500);">- #</a> <img src='image/S_bottom_tab_n.gif' border=0></td>
+											<td class='td2'>#2022.09.16</td>
+										  </tr>
+										  <tr>
+										    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=112&num=&page=1','notice','yes',830,500);">- #</a> <img src='image/S_bottom_tab_n.gif' border=0></td>
+											<td class='td2'>#2022.09.16</td>
+										  </tr>
+										  <tr>
+										    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=111&num=&page=1','notice','yes',830,500);">- #</a> </td>
+											<td class='td2'>#2022.09.10</td>
+										  </tr>
+										  <tr>
+										    <td class='td1'><a href="javascript:void(0)" OnClick="javascript:screenPop('/bbs.php?board_id=notice&mode=view&row_id=110&num=&page=1','notice','yes',830,500);">- #</a> </td>
+											<td class='td2'>#2022.09.09</td>
+										  </tr>				
+									
+					
+									</table>
+								</div>
+							</td>
+							<td class="exchange_box">
+								<div class="title">관세청 고시환율</div>
+					
+								<div class="exchange_info">
+									<div class="date">
+										<div>#2022</div>
+										<div>#09.23</div>
+									</div>
+									<div class="country_exc">
+									
+					
+										<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
+										  <tr>
+										    <td>#미국</td>
+											<td>1 USD</td>
+											<td>#1312 KRW</td>
+										  </tr>
+										</table>
+					
+										<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
+										  <tr>
+										    <td>#중국</td>
+											<td>1 CNY</td>
+											<td>#189.77 KRW</td>
+										  </tr>
+										</table>
+					
+					
+									</div>
+								</div>
+							</td>
+					
+							
+							<td class="borard_box">
+								<div>
+									<div class="title">나의 1:1 질문 <font>(최근 1개월 내역만 보여집니다)</font></div>
+									<div class="more"><a href="#">#더보기</a></div>
+					
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+									
+									
+					
+									</table>
+								</div>
+							</td>
+						  </tr>
+					</table>
+				<!-- 공지/질문 -->
+				
+				<!-- 최근 이용 내역 -->
+					<div class="mypage_point_use">
+						<div class="title">- 최근 거래 내역</div>
+				
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="use_table">
+						  <tr>
+						    <th class="date">거래 일시</th>
+							<th class="point">거래 캐시</th>
+							<th class="use">거래유형</th>
+							<th class="use">비고</th>
+						  </tr>
+					  
+				
+						</table>
+						
+					</div>
+					<!-- //최근 이용 내역 -->
+					<div style="clear:both;"></div>
+					
+			</div>
+				
+			</div>
 		
-		<script>
-	    function OrderQuery(qType)
-	    {
+				
+		</th:block>
+			
+			<script>
+			var isFirst="Y";
+			jQuery( document ).ready( function(){
+				
+				
+				
+				isFirst="N";
+				
+			 $(".shipping_details_list").show(); } );
+			
+		    function OrderQuery(qType)
+		    {
+		    	
+		    	viewInfo(qType);
+		    	shipStepInfo(qType);
+		    	var arrData=[];
+		    	arrData['page']='1'; 
+		    	arrData['num_per_page']='10';
+		    	
+		    	if(qType=="Form") {
+		    		var frm = document.f;
+		    		arrData['q_paid_flg']='';
+		    		arrData['q_status']='';
+		    		arrData['q_item_status']='';
+		    		arrData['q_order_type']=frm.q_order_type.value;
+		    		arrData['q_loc_cd']=frm.q_loc_cd.value;
+		    		arrData['q_from_date']=frm.q_from_date.value;
+		    		arrData['q_to_date']=frm.q_to_date.value;
+		    		arrData['q_field']=frm.q_field.value;
+		    		arrData['q_keyword']=frm.q_keyword.value;
+		    	}
+		    	
+		    	else if(qType=="noDataCnt") {
+		    		arrData['q_query_type']='noDataCnt';
+		    		OrderQueryCss(1);
+		    		nodataQuery();
+		    	}else if(qType=="noOutNoPayCnt") {
+		    		arrData['q_status']='30';
+		    		arrData['q_paid_flg']='N';
+		    		arrData['q_query_type']='noOutNoPayCnt';
+		    		OrderQueryCss(2);	    		
+		    	}else if(qType=="gsiOut") {
+		    		arrData['q_status']='40';
+		    		arrData['q_agent_status']='2';
+		    		OrderQueryCss(3);
+		    	}else if(qType=="localShipping") {
+		    		arrData['q_status']='55';
+		    		OrderQueryCss(4);
+		    	}else if(qType=="Imsi") {
+		    		arrData['q_status']='0';
+		    		OrderQueryCss(5);
+		    	}else if(qType=="noOutPaid") {
+		    		arrData['q_status']='30';
+		    		arrData['q_paid_flg']='Y';
+		    		arrData['q_query_type']='noOutPaid';
+		    		OrderQueryCss(6);
+		    	}else if(qType=="customsing") {
+		    		arrData['q_status']='45';
+		    		OrderQueryCss(7);
+		    	}else if(qType=="ShipClosed") {
+		    		arrData['q_status']='60';
+		    		OrderQueryCss(8);
+		    	}else if(qType=="orderType1") {
+		    		arrData['q_status']='10';
+		    		arrData['q_order_type']='1';
+		    		OrderQueryCss(9);
+		    	}else if(qType=="weightShipHold") {
+		    		arrData['q_status']='30';
+		    		arrData['q_ship_hold_flag']='보류';
+		    		OrderQueryCss(10);
+		    	}else if(qType=="CustomsClosed") {
+		    		arrData['q_status']='50';
+		    		OrderQueryCss(11);
+		    	}else if(qType=="Arrived") {
+		    		arrData['q_status']='NoImsi';
+		    		arrData['q_item_status']='003';
+		    		OrderQueryCss(16);
+		    	}else if(qType=="keepFeeCnt") {
+		    		arrData['q_query_type']='keepFeeCnt';
+		    		OrderQueryCss(17);
+		    	}else if(qType=="PartialStock") {
+		    		arrData['q_query_type']='PartialStock';
+		    		OrderQueryCss(18);
+		    	}else if(qType=="AllIn") {
+		    		arrData['q_query_type']='AllIn';
+		    		OrderQueryCss(20);
+		    	}else if(qType=="Err") {
+		    		arrData['q_item_status']='010';
+		    		OrderQueryCss(21);
+		    	}else if(qType=="outNoPay") {
+		    		arrData['q_status']='40';
+		    		arrData['q_paid_flg']='N';
+		    		OrderQueryCss(22);
+		    	} 
+		    	if(qType!="noDataCnt"){
+		    		
+		    		shipOrderList(arrData);
+		    	}
+		    		
+		    	
+		    	$(".shipping_details_list").show();
+		    	
+		    	if(isFirst=="N")
+		    	{
+		    		var listPoint = document.querySelector(".shipping_details_list").offsetTop;
+		    		window.scrollTo({top:listPoint+200, behavior:'smooth'});
+		    	}
+		    }
+		    
+		    function viewInfo(mode)
+		    {
+		    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
+		    	
+		    		$(".list_bt").hide();
+		    		$(".open_search").hide();
+		    		$(".shipping_applications_search").hide();
+		    	} else {
+		    		$(".list_bt").show();
+		    		$(".open_search").show();
+		    		$(".shipping_applications_search").show();
+		    	}
+		    	
+		    	if(mode=="addPay" || mode=="noPaid") {
+		    		$("#addPayList").show();
+		    	} else {
+		    		$("#addPayList").hide();
+		    	}
+		    	
+		    	
+		    	if(mode=="noDataCnt") {
+		    		// $("#nodata_info").show();
+		    		$("#nodata_cnt").show();
+		    		$("#nodata_list").show();
+		    	} else {
+		    		// $("#nodata_info").hide();
+		    		$("#nodata_cnt").hide();
+		    		$("#nodata_list").hide();
+		    	}
+		
+		    	if(mode=="DePickup") {
+		    		//$("#de_pickup_info").show();
+		    		$("#de_pickup_cnt").show();
+		    		$(".shipping_pickup_check").show();
+		    	} else {
+		    		//$("#de_pickup_info").hide();
+		    		$("#de_pickup_cnt").hide();
+		    		$(".shipping_pickup_check").hide();
+		    	}
+		
+		    	if(mode=="rtnCnt") {
+		    		//$("#return_info").show();
+		    		$(".shipping_return").show();
+		    	} else {
+		    		//$("#return_info").hide();
+		    		$(".shipping_return").hide();
+		    	}
+		    	
+		    	$(".shipping_details_list").show();
+		
+		    }
 	    	
-	    	viewInfo(qType);
-	    	shipStepInfo(qType);
-	    	var arrData=[];
-	    	arrData['page']='1'; 
-	    	arrData['num_per_page']='10';
-	    	
-	    	if(qType=="Form") {
-	    		var frm = document.f;
-	    		arrData['q_paid_flg']='';
-	    		arrData['q_status']='';
-	    		arrData['q_item_status']='';
-	    		arrData['q_order_type']=frm.q_order_type.value;
-	    		arrData['q_loc_cd']=frm.q_loc_cd.value;
-	    		arrData['q_from_date']=frm.q_from_date.value;
-	    		arrData['q_to_date']=frm.q_to_date.value;
-	    		arrData['q_field']=frm.q_field.value;
-	    		arrData['q_keyword']=frm.q_keyword.value;
-	    	}
-	    	
-	    	else if(qType=="noDataCnt") {
-	    		arrData['q_query_type']='noDataCnt';
-	    		OrderQueryCss(1);
-	    		nodataQuery();
-	    	}else if(qType=="noOutNoPayCnt") {
-	    		arrData['q_status']='30';
-	    		arrData['q_paid_flg']='N';
-	    		arrData['q_query_type']='noOutNoPayCnt';
-	    		OrderQueryCss(2);	    		
-	    	}else if(qType=="gsiOut") {
-	    		arrData['q_status']='40';
-	    		arrData['q_agent_status']='2';
-	    		OrderQueryCss(3);
-	    	}else if(qType=="localShipping") {
-	    		arrData['q_status']='55';
-	    		OrderQueryCss(4);
-	    	}else if(qType=="Imsi") {
-	    		arrData['q_status']='0';
-	    		OrderQueryCss(5);
-	    	}else if(qType=="noOutPaid") {
-	    		arrData['q_status']='30';
-	    		arrData['q_paid_flg']='Y';
-	    		arrData['q_query_type']='noOutPaid';
-	    		OrderQueryCss(6);
-	    	}else if(qType=="customsing") {
-	    		arrData['q_status']='45';
-	    		OrderQueryCss(7);
-	    	}else if(qType=="ShipClosed") {
-	    		arrData['q_status']='60';
-	    		OrderQueryCss(8);
-	    	}else if(qType=="orderType1") {
-	    		arrData['q_status']='10';
-	    		arrData['q_order_type']='1';
-	    		OrderQueryCss(9);
-	    	}else if(qType=="weightShipHold") {
-	    		arrData['q_status']='30';
-	    		arrData['q_ship_hold_flag']='보류';
-	    		OrderQueryCss(10);
-	    	}else if(qType=="CustomsClosed") {
-	    		arrData['q_status']='50';
-	    		OrderQueryCss(11);
-	    	}else if(qType=="Arrived") {
-	    		arrData['q_status']='NoImsi';
-	    		arrData['q_item_status']='003';
-	    		OrderQueryCss(16);
-	    	}else if(qType=="keepFeeCnt") {
-	    		arrData['q_query_type']='keepFeeCnt';
-	    		OrderQueryCss(17);
-	    	}else if(qType=="PartialStock") {
-	    		arrData['q_query_type']='PartialStock';
-	    		OrderQueryCss(18);
-	    	}else if(qType=="AllIn") {
-	    		arrData['q_query_type']='AllIn';
-	    		OrderQueryCss(20);
-	    	}else if(qType=="Err") {
-	    		arrData['q_item_status']='010';
-	    		OrderQueryCss(21);
-	    	}else if(qType=="outNoPay") {
-	    		arrData['q_status']='40';
-	    		arrData['q_paid_flg']='N';
-	    		OrderQueryCss(22);
-	    	} 
-	    	if(qType!="noDataCnt"){
-	    		
-	    		shipOrderList(arrData);
-	    	}
-	    		
-	    	
-	    	$(".shipping_details_list").show();
-	    	
-	    	if(isFirst=="N")
-	    	{
-	    		var listPoint = document.querySelector(".shipping_details_list").offsetTop;
-	    		window.scrollTo({top:listPoint+200, behavior:'smooth'});
-	    	}
-	    }
 	    
-	    function viewInfo(mode)
-	    {
-	    	if(mode=="rtnCnt" || mode=="noDataCnt" || mode=="addPay") {
-	    	
-	    		$(".list_bt").hide();
-	    		$(".open_search").hide();
-	    		$(".shipping_applications_search").hide();
-	    	} else {
-	    		$(".list_bt").show();
-	    		$(".open_search").show();
-	    		$(".shipping_applications_search").show();
-	    	}
-	    	
-	    	if(mode=="addPay" || mode=="noPaid") {
-	    		$("#addPayList").show();
-	    	} else {
-	    		$("#addPayList").hide();
-	    	}
-	    	
-	    	
-	    	if(mode=="noDataCnt") {
-	    		// $("#nodata_info").show();
-	    		$("#nodata_cnt").show();
-	    		$("#nodata_list").show();
-	    	} else {
-	    		// $("#nodata_info").hide();
-	    		$("#nodata_cnt").hide();
-	    		$("#nodata_list").hide();
-	    	}
+		    function OrderQueryCss(num)
+		    {
+		    	for(var i=1 ; i<=22 ; i++){
+		    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
+		    	}
+		    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
+		    }
+		    
+		    
+		   
+		    function shipStepInfo(qType)
+		    {
+		    	
+		    	$.ajax({
+		    			type: 'POST',
+		    			url: "/shipStepInfo",
+		    			dataType:"html",
+		    			async:false,
+		    			data: {q_ship_step_type:qType,
+		    					action_type : 'ship_step_info'},
+		    			success: function(data) 
+		    			{
+		    				var content = $('#ship_step_info').html(data);
+		    				content.trigger( "create" );
+		    			},
+		    			error: function(jqXHR, textStatus, errorThrown) 
+		    			{
+		    				alert("호출에 실패했습니다." + errorThrown );
+		    			}
+		    		})
+		    }
+		    
+		    function nodataQuery()
+		    {
+		    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
+		    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
+		    	console.log(q_nodata_field);
+		    	$.ajax({
+		    			type: 'POST',
+		    			url: "/api/nodataListApi",
+		    			async:false,
+		    			data: {q_nodata_field:q_nodata_field,
+		    					q_nodata_search:q_nodata_search,
+		    					action_type : 'noDataList'},
+		    			dataType:"html",
+		    			success: function(data) 
+		    			{
+		    				var content = $('#nodata_list').html(data);
+		    				content.trigger( "create" );
+		    				
+		    				var content = $('#shipOrderList').html('');
+		    				content.trigger( "create" );
+		    			},
+		    			error: function(jqXHR, textStatus, errorThrown) 
+		    			{
+		    				alert("호출에 실패했습니다." + errorThrown );
+		    			}
+		    		})
+		    }
+		    
+		    function doAction(actType){
+		    
+		    	var frm = document.frmMain;
+		    	
+		    	var frmId = "frmMain";
+		    	if(actType=="reqStockIn" || actType=="nowStockIn" || actType=="chkStockIn")
+		    		var arr_checked_obj = $("form#"+ frmId +" input:checkbox[name='arr_row_id[]']:checked");
+		    	console.log(arr_checked_obj)
+		    	if (arr_checked_obj.length==0) {
+		      		window.alert('신청서를 선택해 주세요!');
+		      		return;
+		      	}
+		    }
+		    
+		    function shipOrderList(arrData)
+		    {
 	
-	    	if(mode=="DePickup") {
-	    		//$("#de_pickup_info").show();
-	    		$("#de_pickup_cnt").show();
-	    		$(".shipping_pickup_check").show();
-	    	} else {
-	    		//$("#de_pickup_info").hide();
-	    		$("#de_pickup_cnt").hide();
-	    		$(".shipping_pickup_check").hide();
-	    	}
+		    	$.ajax({
+		    			type: 'POST',
+		    			url: "/api/shipOrderApi",
+		    			async:false,
+		    			data: {q_item_status:arrData["q_item_status"],
+		    					q_paid_flg:arrData["q_paid_flg"],
+		    					q_status:arrData["q_status"],
+		    					q_order_type:arrData["q_order_type"],
+		    					q_loc_cd:arrData["q_loc_cd"],
+		    					q_from_date:arrData["q_from_date"],
+		    					q_to_date:arrData["q_to_date"],
+		    					q_field:arrData["q_field"],
+		    					q_keyword:arrData["q_keyword"],
+		    					q_query_type:arrData["q_query_type"],
+		    					q_agent_status:arrData["q_agent_status"],
+		    					q_ship_hold_flag:arrData["q_ship_hold_flag"],
+		    					page:arrData["page"],
+		    					num_per_page:arrData["num_per_page"],
+		    					action_type : 'shipOrderList'},
+		    			dataType:"html",
+		    			success: function(data) 
+		    			{
+		    				var content = $('#shipOrderList').html(data);
+		    				content.trigger( "create" );
+		    				
+		    				var content = $('#nodata_list').html('');
+		    				content.trigger( "create" );
+		    				
+		    				$(".shipping_details_list").show();
+		    			},
+		    			error: function(jqXHR, textStatus, errorThrown) 
+		    			{
+		    				alert("호출에 실패했습니다." + errorThrown );
+		    			}
+		    		})
+		    		
 	
-	    	if(mode=="rtnCnt") {
-	    		//$("#return_info").show();
-	    		$(".shipping_return").show();
-	    	} else {
-	    		//$("#return_info").hide();
-	    		$(".shipping_return").hide();
-	    	}
-	    	
-	    	$(".shipping_details_list").show();
-	
-	    }
-    	
-    
-	    function OrderQueryCss(num)
-	    {
-	    	for(var i=1 ; i<=22 ; i++){
-	    		$("#orderCnt_"+i+"").css({"font-weight":"normal"});
-	    	}
-	    	$("#orderCnt_"+num+"").css({"font-weight":"bold"});
-	    }
-	    
-	    
-	   
-	    function shipStepInfo(qType)
-	    {
-	    	
-	    	$.ajax({
-	    			type: 'POST',
-	    			url: "/shipStepInfo",
-	    			dataType:"html",
-	    			async:false,
-	    			data: {q_ship_step_type:qType,
-	    					action_type : 'ship_step_info'},
-	    			success: function(data) 
-	    			{
-	    				var content = $('#ship_step_info').html(data);
-	    				content.trigger( "create" );
-	    			},
-	    			error: function(jqXHR, textStatus, errorThrown) 
-	    			{
-	    				alert("호출에 실패했습니다." + errorThrown );
-	    			}
-	    		})
-	    }
-	    
-	    function nodataQuery()
-	    {
-	    	var q_nodata_field = $('select[name="q_nodata_field"]').val();
-	    	var q_nodata_search = $('input[name="q_nodata_search"]').val();
-	    	console.log(q_nodata_field);
-	    	$.ajax({
-	    			type: 'POST',
-	    			url: "/api/nodataListApi",
-	    			async:false,
-	    			data: {q_nodata_field:q_nodata_field,
-	    					q_nodata_search:q_nodata_search,
-	    					action_type : 'noDataList'},
-	    			dataType:"html",
-	    			success: function(data) 
-	    			{
-	    				var content = $('#nodata_list').html(data);
-	    				content.trigger( "create" );
-	    				
-	    				var content = $('#shipOrderList').html('');
-	    				content.trigger( "create" );
-	    			},
-	    			error: function(jqXHR, textStatus, errorThrown) 
-	    			{
-	    				alert("호출에 실패했습니다." + errorThrown );
-	    			}
-	    		})
-	    }
-	    
-	    function doAction(actType){
-	    
-	    	var frm = document.frmMain;
-	    	
-	    	var frmId = "frmMain";
-	    	if(actType=="reqStockIn" || actType=="nowStockIn" || actType=="chkStockIn")
-	    		var arr_checked_obj = $("form#"+ frmId +" input:checkbox[name='arr_row_id[]']:checked");
-	    	console.log(arr_checked_obj)
-	    	if (arr_checked_obj.length==0) {
-	      		window.alert('신청서를 선택해 주세요!');
-	      		return;
-	      	}
-	    }
-	    
-	    function shipOrderList(arrData)
-	    {
-
-	    	$.ajax({
-	    			type: 'POST',
-	    			url: "/api/shipOrderApi",
-	    			async:false,
-	    			data: {q_item_status:arrData["q_item_status"],
-	    					q_paid_flg:arrData["q_paid_flg"],
-	    					q_status:arrData["q_status"],
-	    					q_order_type:arrData["q_order_type"],
-	    					q_loc_cd:arrData["q_loc_cd"],
-	    					q_from_date:arrData["q_from_date"],
-	    					q_to_date:arrData["q_to_date"],
-	    					q_field:arrData["q_field"],
-	    					q_keyword:arrData["q_keyword"],
-	    					q_query_type:arrData["q_query_type"],
-	    					q_agent_status:arrData["q_agent_status"],
-	    					q_ship_hold_flag:arrData["q_ship_hold_flag"],
-	    					page:arrData["page"],
-	    					num_per_page:arrData["num_per_page"],
-	    					action_type : 'shipOrderList'},
-	    			dataType:"html",
-	    			success: function(data) 
-	    			{
-	    				var content = $('#shipOrderList').html(data);
-	    				content.trigger( "create" );
-	    				
-	    				var content = $('#nodata_list').html('');
-	    				content.trigger( "create" );
-	    				
-	    				$(".shipping_details_list").show();
-	    			},
-	    			error: function(jqXHR, textStatus, errorThrown) 
-	    			{
-	    				alert("호출에 실패했습니다." + errorThrown );
-	    			}
-	    		})
-	    		
-
-	    }
-	    
-    </script>
+		    }
+		    
+	    </script>
     </body>
     	 
 </html>

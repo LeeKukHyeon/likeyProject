@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.common.service.CustomerQuestionService;
 import ks44team03.dto.NoticeCenter;
@@ -32,6 +34,22 @@ public class CustomerQuestionController {
 	public void customerQuestionService() {
 		
 	}
+
+	//답변내용 유효성 검사
+	@GetMapping("/mtmAnswerCheck")
+	@ResponseBody
+	public boolean mtmAnswerCheck(@RequestParam(value = "mtmAnswer")String mtmAnswer) {
+		
+		System.out.println(mtmAnswer + "체크 대답");
+		
+		boolean result = customerQuestionService.mtmAnswerCheck(mtmAnswer);
+		
+		System.out.println(result + "체크 리졸트");
+		
+		return result;
+	}
+	
+	
 	//1:1문의 검색
 	@PostMapping("/personalQuestionSearchAdmin")
 	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
@@ -115,7 +133,7 @@ public class CustomerQuestionController {
 	}
 	
 	//나의 문의 게시글 보기
-	@GetMapping("/MyQuestionRead")
+	@GetMapping("/myQuestionRead")
 	public String viewMyQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
@@ -124,7 +142,7 @@ public class CustomerQuestionController {
 		
 		model.addAttribute("QuestionRead", QuestionRead);
 		
-		return "/customerService/question/MyQuestionRead";
+		return "/customerService/question/myQuestionRead";
 	}
 
 	

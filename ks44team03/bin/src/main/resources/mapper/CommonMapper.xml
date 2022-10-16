@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="ks44team03.common.mapper.CommonMapper">
+	
+	<!-- (공통) 코드 자동증가 -->
+	<select id="getCommonPkCode" resultType="String" parameterType="String">
+		/* (공통) 코드 자동증가 */
+		SELECT
+			CASE
+			WHEN COUNT(*) = 0 THEN CONCAT(#{tableName},'_code1')
+			ELSE 
+				CONCAT(#{tableName}, '_code', max(cast(SUBSTRING_INDEX(${columnName},'_code',-1)AS UNSIGNED)+1) )
+			END 
+		FROM 
+			${tableName};
+	</select>
+	
+	<!-- (공통) 코드 자동 숫자만 증가 -->
+	<select id="getCommonPkNumCode" resultType="String" parameterType="String">
+	/* (공통) 코드 자동 숫자만 증가 */
+	SELECT
+		CASE
+		WHEN COUNT(*) = 0 THEN CONCAT(1)
+		ELSE 
+		max(cast(SUBSTRING_INDEX(${columnName},'_code',-1)AS UNSIGNED)+1)
+		END 
+	FROM 
+		${tableName};
+	</select>
+	
+</mapper>
+
+

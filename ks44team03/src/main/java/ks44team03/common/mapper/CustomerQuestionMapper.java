@@ -10,6 +10,9 @@ import ks44team03.dto.QuestionCenter;
 @Mapper
 public interface CustomerQuestionMapper {
 	
+	//1:1문의 답변 유효성 검사
+	public boolean mtmAnswerCheck(String mtmAnswer);
+	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> searchMap);
 	

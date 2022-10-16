@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.common.mapper.CouponMapper">
+	<resultMap type="CouponList" id="couponListResultMap">
+		<id column="c_code" property="couponCode"/>
+		<result column="c_name" property="couponName"/>
+		<result column="c_price" property="couponPrice"/>
+		<result column="c_date" property="couponDate"/>
+	</resultMap>
+	<resultMap type="Coupon" id="couponResultMap">
+		<id column="cs_code" property="csCode"/>
+		<result column="c_code" property="cCode"/>
+		<result column="u_id" property="userId"/>	
+		<result column="c_date" property="cDate"/>	
+		<result column="c_e_date" property="cEDate"/>	
+		<result column="c_use_date" property="cUseDate"/>			
+		<result column="c_use" property="cUse"/>
+	</resultMap>
+	
+	<!-- 회원이 보유한 쿠폰 리스트 확인 -->
+	<select id="couponUserList" resultMap="couponResultMap">
+	/* 회원이 보유한 쿠폰 리스트 확인  */	
+	select
+		cs_code
+		,c_code
+		,u_id
+		,c_date
+		,c_e_date
+		,c_use_date
+		,c_use
+	from
+		coupon_status
+
+	</select>
+	
+	<!-- 쿠폰 등록 -->
+	<insert id="couponAdd" parameterType="CouponList">
+	/* 쿠폰 등록 */
+	INSERT INTO coupon
+	(c_code, c_name, c_price, c_date)
+	VALUES (#{couponCode}, #{couponName}, #{couponPrice}, CURDATE())
+	</insert>
+
+	<!-- 관리자 페이지에서 등록된 쿠폰 리스트 확인 -->
+	<select id="couponList" resultMap="couponListResultMap">
+	/* 관리자 페이지에서 등록된 쿠폰 리스트 확인 */
+	select
+		c_code
+		,c_name
+		,c_price
+		,c_date
+	from
+		coupon
+	</select>
+
+</mapper>

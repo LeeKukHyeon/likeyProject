@@ -411,7 +411,8 @@
                 <li class="nav-item"> <a class="nav-link" th:href="@{/partialArrival}">일부입고(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/arrivedAll}">도착(입고)완료(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/errorIncoming}">오류입고(이국현)</a></li>
-                <li class="nav-item"> <a class="nav-link" th:href="@{/incomingSearch}">입고현황조회</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/storageCharge}">보관료발생상품목록(이국현)</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" th:href="@{/incomingSearch}">입고현황조회</a></li> -->
               </ul>
             </div>
           </li>
@@ -424,6 +425,8 @@
             <div class="collapse" id="forwarding">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" th:href="@{/forwardingRegister}">출고등록</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/inTransit}">배송중인 상품목록조회(이국현)</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/deliveryComplete}">배송완료 상품목록조회(이국현)</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/forwardingSearch}">출고현황조회</a></li>
               </ul>
             </div>
@@ -480,6 +483,20 @@
                 <li class="nav-item"> <a class="nav-link" th:href="@{/waitingForwardingList}">출고대기/결제대기 주문서</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/completedForwardingList}">출고대기/결제완료 주문서</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/holdForwardingList}">출고보류 주문서</a></li>
+              </ul>
+            </div>
+            
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#couponLink" aria-expanded="false" >
+              <i class="menu-icon mdi mdi-card-text-outline"></i>
+              <span class="menu-title">쿠폰 관련</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="couponLink">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" th:href="@{/couponAdmin}">쿠폰 리스트 , 등록</a></li>
+                <li class="nav-item"> <a class="nav-link" th:href="@{/couponUserList}">회원 쿠폰 보유 현황</a></li>
               </ul>
             </div>
             

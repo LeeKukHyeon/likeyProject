@@ -4,193 +4,163 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
-<!-- <meta charset="UTF-8"> -->
-<head>
-<style>
-	.input_table .hp > div:first-child {font-size:14px;color:#515151;font-weight:bold;margin-bottom:10px;}
-	.input_table .hp > div:nth-child(2) > div {float:left;}
-	.save_bt {margin-top:0px;margin-left:4px;width:70px;height:30px;line-height:30px;background-color:#6e6e6e;border-radius:3px;text-align:center;}
-	.save_bt a {font-size:14px;color:#ffffff;font-weight:bold;}
+<meta charset="UTF-8">
 
-	.next_button {
-	  background-color: #535353;
-	  border: none;
-	  color: white;
-	  padding: 10px 10px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 17px;
-	  margin: 4px 2px;
-	  cursor: pointer;
-	  font-weight:bold;
-	  border-radius: 10px;
-		}
-
-	.cancel_button {
-	    background-color: #535353;
-	    border: 1px solid;
-	    color: white;
-	    padding: 10px 20px;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 17px;
-	    margin: 4px 2px;
-	    cursor: pointer;
-	    border-radius: 10px;
-		}
-	.sub_navi_text {
-	    height: 30px;
-	    border-bottom: 1px solid #d6d6d6;
-	    margin-bottom: 30px;
-		}
-	.sub_navi_text > div {
-	    background: url(/image/S_navi_home.gif) 0 50% no-repeat;
-	    padding-left: 20px;
-	    font-size: 13px;
-	    color: #6e6e6e;
-		}
-	.sub_contents_wrap {
-	    margin-top: 30px;
-		}
-	.wrap {
-	    width: 1200px;
-	    margin: 0 auto;
-		}
-		
-	.sub_contents_wrap {margin-top:30px;}
-	.sub_contents_wrap > div {float:left;}
-	
-	.sub_contents_wrap .left_menu {
-		width:210px;
-		margin-right:50px;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 1em;
-        border: none;
-	}
-	.sub_contents_wrap .left_menu > div {
-		height:38px;padding-left:20px;background-c   olor:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
-	.sub_contents_wrap .left_menu a {
-		letter-spacing:-1px;}
-	.sub_contents_wrap .left_menu > ul {
-		width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
-	.sub_contents_wrap .left_menu > ul > li > div {
-		height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
-	.sub_contents_wrap .left_menu > ul > li > div > a {
-		display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;padding-left:9px;}
-	
-	.sub_contents_wrap .left_menu > ul > li > ul > li {
-		background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
-	.sub_contents_wrap .left_menu > ul > li > ul > li > a {
-		display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
-	
-	.sub_contents_wrap .left_menu > ul > li > ul > li > ul {
-		background-color:#ffffff;padding:10px 0 10px 19px;}
-	.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {
-		font-size:13px;color:#878787;line-height:33px;}
-	
-	.sub_contents_wrap .right_text {
-		width:951px;letter-spacing:-1px;}
-	.input_table th {
-	    height: 30px;
-	    background-color: #f8f8f8;
-	    font-size: 15px;
-	    color: #535353;
-	    font-weight: bold;
-	    text-align: center;
-		}
-	.input_table th, .input_table td {
-	    border: 1px solid #c6c6c6;
-		}
-	address, caption, em, cite, th {
-	    font-weight: normal;
-	    font-style: normal;
-		}
-	th {
-	    display: table-cell;
-	    vertical-align: inherit;
-	    font-weight: bold;
-	    text-align: -internal-center;
-	}
-	input{
-		padding-right: 200px;
-	}
-	.button2{
-		margin-left: 393px;
-	}
-	
-</style>
-</head>
-<body layout:fragment="adminContent">
+<title th:text="${title}"></title>
+<th:block layout:fragment="adminContent">
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(function(){
+			function validationCheck(data){
+				var isValid = true;
+				//유효성검사
+				if(typeof data == 'object'){
+					
+					$.each(data, function(){
+						var inputValue = $(this).val();
+						if(typeof inputValue == 'undefined' || inputValue == null || inputValue == ''){
+							isValid = false;
+							alert('사업자등록번호를 입력해주세요.');
+							return false;
+						}
+					});
+				}
+				if(typeof data == 'string'){
+					if(typeof data == 'undefined' || data == null || data == ''){
+						isValid = false;
+						return false;
+					}
+				}
+				return isValid;
+			}
+			
+			$('#companyNum').on('keydown change input keyup blur', function(){
+				$('#companyNumCheckBtn').attr('data-ischecked','false');
+			});
+			
+			$(document).on('click', '#add_button', function(){
+				// 사업자등록번호 중복여부 체크하기위해
+				var isChecked = $('#companyNumCheckBtn').attr('data-ischecked');
+				
+				isChecked = (isChecked == 'true');
+				
+				if(!isChecked){
+					alert('사업자등록번호 중복체크 후 등록이 가능합니다.');
+					return false;
+				}
+				console.log(isChecked, '사업자등록번호 중복여부');
+				// 관리자 입력요소
+				var inputObj = $('#addCompanyForm input');
+				
+				isValid = validationCheck(inputObj);
+				
+				// 유효성 검사 후
+				if(isValid) $('#addCompanyForm').submit();
+			});
+			
+			$('#companyNumCheckBtn').click(function(){
+				
+				var companyNum = $('#companyNum').val();
+				
+				var result = validationCheck(companyNum);
+				
+				if(!result){
+					alert('사업자등록번호를 입력해주세요.')
+					return;
+				}
+				
+				var request = $.ajax({
+					url : '/companyNumCheck',
+					method : "GET",
+					data : { 'companyNum' : companyNum},
+					dataType : 'json'
+				});
+				
+				request.done(function( data ){
+					if(data){
+						alert('이미 등록된 사업자등록번호 입니다.');
+						$('#companyNum').focus();
+					}else{
+						$('#companyNumCheckBtn').attr('data-ischecked', 'true');
+						alert('등록가능한 사업자등록번호 입니다.');
+						$('#addCompanyForm input').prop('disabled', false);
+						$('#addCompanyForm select').prop('disabled', false);
+						$('#addCompanyForm button').prop('disabled', false);
+					}
+				});
+				request.fail(function( jqXHR, textStatus ){
+					alert( "Request failed:" + textStatus);
+				});
+			});
+		});
+	</script>
 	<div class="content-wrapper">
-	
-	<div class="right_text"  style="margin-left: %; margin-right: 10%;">
-	<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">회사 등록</h2>
-	<form name="form1" id="form1">
-		<table class="input_table" style="width:110%;">	
-		<colgroup>
-				<col width="15%"/><col width="35%"/>
-				<col width="15%"/><col width="35%"/>
-		</colgroup>	
-		<tbody>
-			<tr>	
-				<th class="td1">회사번호</th>
-				<td class="td2">
-					<input type="text" name=companyNum placeholder="회사번호를 입력해주세요.">	
-				</td>
-			</tr>
-			<tr>
-				<th class="td1">회사이름</th>	
-				<td class="td2">				
-					<input type="text" name=companyName placeholder="회사이름">	
-				</td>	
-			</tr>		
-			<tr>	
-				<th class="td1">회사대리인번호</th>
-				<td class="td2">
-					<input type="text" name=companyDelegateNum placeholder="회사대리인번호">	
-				</td>
-			</tr>
-			<tr>	
-				<th class="td1">회사주소</th>
-				<td class="td2">
-					<input type="text" name=companyAddr placeholder="회사주소">	
-				</td>
-			</tr>
-			<tr>	
-				<th class="td1">회사종목</th>
-				<td class="td2">
-					<input type="text" name=companyCate placeholder="회사종목">	
-				</td>
-			</tr>
-			<tr>	
-				<th class="td1">회사등록날짜</th>
-				<td class="td2">
-					<input type="text" name=companyBirth placeholder="회사등록날짜">	
-				</td>
-			</tr>
-			<tr>	
-				<th class="td1">회사정보</th>
-				<td class="td2">
-					<input type="text" name=companyInfoName placeholder="회사정보">	
-				</td>
-			</tr>
-		</tbody>
-		</table>
-	</form>
-	<div class="button2">
-	<button type="submit"  class="next_button">회사등록</button>
-	<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
-	</div>
-	</div>
-	</div>
-	
-	
-		
-		
-	
-	
-</body>
+		<div class="right_text" style="margin-left: 10%; margin-right: 10%;">
+			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;"></h2>
+			<form name="form1" id="addCompanyForm" th:action="@{/companyRegister}" method="post">
+				<table class="input_table" style="width:90%;">	
+					<colgroup>
+						<col width="15%"/><col width="35%"/>
+						<col width="15%"/><col width="35%"/>
+					</colgroup>	
+					<!-- <tr>	
+						<th class="td1">회사코드</th>
+						<td class="td2">
+							<input type="text" id=companyCode name=companyCode placeholder="회사코드">	
+						</td>
+					</tr> -->
+					<tr>
+						<th class="td1">회사사업자등록번호</th>	
+						<td class="td2">				
+							<input type="text" id=companyNum name=companyNum placeholder="회사사업자등록번호">	
+						</td>
+						<td style="border: none;">
+							<button type="button" id="companyNumCheckBtn" class="companyNumCheckBtn" data-ischecked="false">중복체크</button>
+						</td>
+					</tr>		
+					<tr>	
+						<th class="td1">회사대리인이름</th>
+						<td class="td2">
+							<input type="text" id=companyInfoName name=companyInfoName placeholder="회사대리인이름" disabled="disabled">	
+						</td>
+					</tr>
+					<tr>	
+						<th class="td1">대표주민등록번호</th>
+						<td class="td2">
+							<input type="text" id=companyDelegateNum name=companyDelegateNum placeholder="대표주민등록번호" disabled="disabled">	
+						</td>
+					</tr>
+					<tr>	
+						<th class="td1">회사주소</th>
+						<td class="td2">
+							<input type="text" id=companyAddr name=companyAddr placeholder="회사주소" disabled="disabled">	
+						</td>
+					</tr>
+					<tr>	
+						<th class="td1">회사종목</th>
+						<td class="td2">
+							<input type="text" id=companyCate name=companyCate placeholder="회사종목" disabled="disabled">	
+						</td>
+					</tr>
+					<tr>	
+						<th class="td1">회사설립날짜</th>
+						<td class="td2">
+							<input type="date" id=companyBirth name=companyBirth placeholder="회사설립날짜" disabled="disabled">	
+						</td>
+					</tr>
+					<tr>	
+						<th class="td1">회사명</th>
+						<td class="td2">
+							<input type="text" id=companyName name=companyName placeholder="회사명" disabled="disabled">	
+						</td>
+					</tr>
+				</table>
+				<div class="button2">
+					<button type="button" id="add_button" class="add_button">등록</button>
+					<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
+				</div>
+			</form>
+		</div>
+	</div>	
+</th:block>
 </html>
