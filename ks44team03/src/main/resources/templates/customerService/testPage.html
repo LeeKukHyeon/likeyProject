@@ -57,11 +57,13 @@ $(document).ready(function(){
 </div>
 
 
-
-String getVersion = org.springframe.core.SpringVersion.getVersion();
-
-System.out.println(getVersion);
-
+<table>
+	<tbody>
+		<tr th:if="${not #lists.isEmpty(memberInfo)}" th:each="l : ${memberInfo}">
+			<td th:text="${l.uId}"></td>
+		</tr>	
+	</tbody>
+</table>
 
 </body>
 </html>

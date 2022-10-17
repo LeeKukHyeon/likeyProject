@@ -1,6 +1,7 @@
 package ks44team03.common.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,17 @@ public class CouponSerive {
 		this.couponMapper = couponMapper;
 		this.commonMapper = commonMapper;
 	}
+	
+	
+	//쿠폰 보유 리스트에서 검색
+	public List<Coupon> couponSearch(Map<String, Object> paramMap){
+		
+		List<Coupon> couponSearch = couponMapper.couponSearch(paramMap);
+		
+		return couponSearch;
+		
+	}
+	
 	//회원이 보유한 쿠폰 리스트 확인
 	public List<Coupon> couponUserList(){
 		
@@ -45,7 +57,4 @@ public class CouponSerive {
 				
 		return couponList;
 	}
-
-	
-	
 }

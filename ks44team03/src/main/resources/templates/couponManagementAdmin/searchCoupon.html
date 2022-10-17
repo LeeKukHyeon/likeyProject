@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="searchCoupon">
+	        <form th:action="@{/couponUserList}" method="post" style="float: left">
+	        	<select name="searchKey">
+	        		<option value="userId">회원아이디</option>
+	        		<option value="couponName">쿠폰 이름</option>
+	        	</select>
+        		<input type="text" name="searchValue" style="width: 30mm;" th:value="${sv}">
+        		<button type="submit">검색</button>
+	        </form>
+	      	<input type="date" style="margin-left: 5mm"> ~ <input type="date"> <input type="button" value="조회" style="font-size: 15px">
+        </div>
+</html>

@@ -10,6 +10,7 @@
 		<result column="c_price" property="couponPrice"/>
 		<result column="c_date" property="couponDate"/>
 	</resultMap>
+	
 	<resultMap type="Coupon" id="couponResultMap">
 		<id column="cs_code" property="csCode"/>
 		<result column="c_code" property="cCode"/>
@@ -18,22 +19,60 @@
 		<result column="c_e_date" property="cEDate"/>	
 		<result column="c_use_date" property="cUseDate"/>			
 		<result column="c_use" property="cUse"/>
+			<association property="couponInfo" javaType="CouponList">
+				<id column="c_code" property="couponCode"/>
+				<result column="c_name" property="couponName"/>
+				<result column="c_price" property="couponPrice"/>
+				<result column="c_date" property="couponDate"/>
+			</association>
 	</resultMap>
+	
+	<!-- 쿠폰 보유 리스트에서 검색  -->
+	<select id="couponSearch" parameterType="map" resultMap="couponResultMap">
+	/* 쿠폰 보유 리스트에서 검색 */
+	SELECT
+		cs.cs_code
+		,cs.c_code
+		,c.c_name
+		,cs.u_id
+		,cs.c_date
+		,cs.c_e_date
+		,cs.c_use_date
+		,cs.c_use
+	FROM
+		coupon AS c
+		INNER join
+		coupon_status AS cs
+		on
+		c.c_code = cs.c_code
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		cs.cs_code
+	</select>
+	
 	
 	<!-- 회원이 보유한 쿠폰 리스트 확인 -->
 	<select id="couponUserList" resultMap="couponResultMap">
 	/* 회원이 보유한 쿠폰 리스트 확인  */	
-	select
-		cs_code
-		,c_code
-		,u_id
-		,c_date
-		,c_e_date
-		,c_use_date
-		,c_use
-	from
-		coupon_status
-
+	SELECT
+		cs.cs_code
+		,cs.c_code
+		,c.c_name
+		,cs.u_id
+		,cs.c_date
+		,cs.c_e_date
+		,cs.c_use_date
+		,cs.c_use
+	FROM
+		coupon AS c
+		INNER join
+		coupon_status AS cs
+		on
+		c.c_code = cs.c_code
 	</select>
 	
 	<!-- 쿠폰 등록 -->

@@ -14,16 +14,35 @@
 		<result column="mtm_img" property="mtmImg"/>
 		<result column="mtm_date" property="mtmDate"/>
 		<result column="mtm_situation" property="mtmSituation"/>
+			<association property="memberInfo" javaType="UserInfo">
+				<id column="u_id" property="uId"/>
+					<result column="user_grade_code" property="uGradeCode"/>
+					<result column="u_pw" property="uPw"/>
+					<result column="user_pobox_code" property="uPostCode"/>
+					<result column="u_name" property="uName"/>
+					<result column="u_level" property="uLevel"/>
+					<result column="u_addr" property="uAddr"/>
+					<result column="u_email" property="uEmail"/>
+					<result column="u_birth" property="uBirth"/>
+					<result column="u_phone" property="uPhone"/>
+					<result column="u_nick" property="uNick"/>
+					<result column="u_insert_date" property="uInsertDate"/>
+					<result column="u_dormant" property="uDormant"/>
+					<result column="pay_completed_count" property="payCompletedCount"/>
+					<result column="friends_account" property="friendsAccount"/>
+					<result column="bank_name" property="bankName"/>
+			</association>
 	</resultMap>
 	
-	<!-- 1:1 문의 답변내용 유효성 검사 -->
-	<select id="mtmAnswerCheck" parameterType="String" resultType="Boolean">
-	  SELECT    IF(COUNT(*) = 1, 1, 0)
-	  FROM    question_center
-	  WHERE   mtm_answer  = #{mtmAnswer}
+	<!-- 리스트 -->
+	<select id="memberInfo" resultType="UserInfo">
+	SELECT
+		u_id as uId
+	from
+		user_member
 	</select>
 	
-
+	
 	<!-- 1:1문의 검색 -->
 	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
 	/* 1:1문의 검색 */

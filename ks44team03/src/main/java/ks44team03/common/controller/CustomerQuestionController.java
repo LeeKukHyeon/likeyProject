@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ks44team03.common.service.CustomerQuestionService;
 import ks44team03.dto.NoticeCenter;
 import ks44team03.dto.QuestionCenter;
+import ks44team03.dto.UserInfo;
 
 @Controller
 public class CustomerQuestionController {
@@ -35,21 +36,6 @@ public class CustomerQuestionController {
 		
 	}
 
-	//답변내용 유효성 검사
-	@GetMapping("/mtmAnswerCheck")
-	@ResponseBody
-	public boolean mtmAnswerCheck(@RequestParam(value = "mtmAnswer")String mtmAnswer) {
-		
-		System.out.println(mtmAnswer + "체크 대답");
-		
-		boolean result = customerQuestionService.mtmAnswerCheck(mtmAnswer);
-		
-		System.out.println(result + "체크 리졸트");
-		
-		return result;
-	}
-	
-	
 	//1:1문의 검색
 	@PostMapping("/personalQuestionSearchAdmin")
 	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
@@ -114,19 +100,18 @@ public class CustomerQuestionController {
 	@PostMapping("/personalQuestionRegister")
 	public String regQuestion(QuestionCenter questionCenter) {
 		
-		System.out.println(questionCenter + "처리상태 테스트");
 		
 		customerQuestionService.regQuestion(questionCenter);
+		System.out.println(questionCenter + "처리상태 테스트 @$@#$@!Q$!@$#");
 		
 		
-		
-		return "redirect:/personalQuestionSearchAdmin";
+		return "redirect:/myQuestionList";
 	}
 	
 
 	// 1:1문의 등록
 	@GetMapping("/personalQuestionRegister")
-	public String regCustomerQuestion(Model model) {
+	public String regCustomerQuestion() {
 		
 		
 		return "customerService/question/personalQuestionRegister";
@@ -179,6 +164,7 @@ public class CustomerQuestionController {
 	public String viewMyQuestion(Model model) {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();
+		System.out.println();
 
 		model.addAttribute("QuestionList", QuestionList);
 		
