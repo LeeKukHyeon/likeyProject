@@ -165,11 +165,8 @@ h2{
   margin:15% auto;
   padding:20px;
   background:#fff;
-  border:2px solid #666;
-  
-  
+  border:2px solid #666; 
 }
-
 .modal {
   display:none;
   position:fixed;
@@ -188,9 +185,7 @@ h2{
 	/*<![CDATA[*//*]]>*/
 	$(function(){
 		$(document).ready(function(){
-			
-			
-			
+
 			var communityId = /*[[${reviewInfo.communityId}]]*/; 
 			var request = $.ajax({
 				url : '/reviewListIdCheck',
@@ -225,6 +220,7 @@ h2{
 	      });
 	      $(document).on('click', '#incoming_modal_close', function(){
 	         $('.modal').css('display', 'none');
+	         
 	      });
 	   });
 </script>

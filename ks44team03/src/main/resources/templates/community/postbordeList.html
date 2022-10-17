@@ -21,6 +21,7 @@
 	font-weight: bold;
 	background-color: white;
 	color: #565656;
+	display: none;
 }
 .addReviewBtn:hover{
 	background-color: #535353;
@@ -62,7 +63,19 @@
 	color: white;
 } 
 </style>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+	/*<![CDATA[*//*]]>*/
+	$(function(){
+		$(document).ready(function(){
+			var sId = /*[[${session.SID}]]*/;
+			if(sId != null){
+				$('.addReviewBtn').css('display', 'inline');
+			}else{
+				$('.addReviewBtn').css('display','none');
+			}
+		});			
+	});
+</script>
 <!-- <script>
 	$(function(){
 		$('#subjectEvn').click(function(){
@@ -100,7 +113,7 @@
 					</tr>
 				</tbody>
 					<tr th:unless="${not #lists.isEmpty(postbordeList)}">
-						<td colspan="5" style="text-align: center;">등록된 글이 없습니다.</td>
+						<td class="number" colspan="5" style="text-align: center;">등록된 글이 없습니다.</td>
 					</tr>
 			</table>
 			<div th:include="community/searchPostbordeList :: searchFragment"></div>
@@ -109,5 +122,6 @@
 			</label>
 		</div>
 	</div>
+	
 </th:block>
 </html>
