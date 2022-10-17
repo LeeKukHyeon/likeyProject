@@ -714,9 +714,31 @@
 		<!--  -->
 		
 		<script>
-			function addItem(action_type, index){
-				
-			}
+		
+		
+		function fncOnMouseOver(selectedIndex)
+		{
+			document.all.tblVote.clickedRowIndex = selectedIndex;
+		}
+			
+		var idNum=0;
+		
+		function addItem(action_type, index){
+			 var objTbl = document.getElementById("tblVote");				 
+			 var objRow = objTbl.insertRow(objTbl.rows.length);
+			
+			 objRow.onmouseover=function(){fncOnMouseOver(this.rowIndex)};				 
+			 var objCell = objRow.insertCell(0);
+			 var i = objTbl.rows.length-1;
+			 var objNum = i;
+			 item_count=i+1;
+			 idNum++;
+			 var uuid = Math.random().toString(36).slice(-6);
+			 console.log(uuid);
+			 
+			 
+			 
+		}
 		</script>
 	</body>
 </html>
