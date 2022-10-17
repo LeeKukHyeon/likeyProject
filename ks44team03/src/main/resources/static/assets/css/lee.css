@@ -320,7 +320,7 @@
 .detail_box3_wrap .option_text .option_data .img_wrap .upload_bt {width:149px;height:38px;margin:0 auto;border-radius:5px;margin-top:10px;background-color:#f47827;text-align:center;}
 .detail_box3_wrap .option_text .option_data .img_wrap .upload_bt a {display:inline-block;line-height:37px;font-size:14px;color:#ffffff;font-weight:bold;background:url(image/S_shipping_form_icon_12.gif) right 50% no-repeat;padding-right:18px;}
 
-
+.detail_box3_wrap .option_text .option_data .text_wrap .item_table td.td1 > div.icon_text {padding:14px 0 0 3px;}
 
 
 .detail_box3_wrap .option_text .option_data .text_wrap {float:left;width:710px;}
