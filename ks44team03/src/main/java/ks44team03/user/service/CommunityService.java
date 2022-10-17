@@ -6,34 +6,53 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import ks44team03.common.mapper.CommonMapper;
+import ks44team03.common.mapper.FileMapper;
 import ks44team03.dto.Community;
 import ks44team03.user.controller.CommunityController;
 import ks44team03.user.mapper.CommunityMapper;
+import ks44team03.dto.FileDto;
+import ks44team03.common.util.FileUtil;
 
 @Service
 public class CommunityService {
 	
 	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
 	
+	private final FileUtil fileUtil;
+	private final FileMapper fileMapper;
 	private final CommunityMapper communityMapper;
 	private final CommonMapper commonMapper;
 	
-	public CommunityService(CommunityMapper communityMapper, CommonMapper commonMapper) {
+	public CommunityService(CommunityMapper communityMapper, CommonMapper commonMapper,FileUtil fileUtil, FileMapper fileMapper) {
 		this.communityMapper = communityMapper;
 		this.commonMapper = commonMapper;
+		this.fileUtil = fileUtil;
+		this.fileMapper = fileMapper;
 	}
 	// ---------------------------------- 이용후기 관련 Service State --------------------------------------		
 	// 이용후기 등록
-	public void addReview(Community community) {
+	public void addReview(Community community,MultipartFile[] multipartFile, String fileRealPath, boolean isLocalhost) {
 		String newCommunityCode = commonMapper.getCommonPkNumCode("community", "cm_num");
+		
 		community.setCommunityNum(newCommunityCode);
 		
-		log.info("community 입니다------------"+ community);
+		
+		/* log.info("community 입니다------------"+ community); */
 		int result = communityMapper.addReview(community);
 		
-		log.info("이용후기 등록결과 : " + result);
+		List<FileDto> fileList= fileUtil.parseFileInfo(multipartFile, fileRealPath , isLocalhost,newCommunityCode);
+		
+		
+		
+		if(fileList != null) {
+			
+			fileMapper.addFile(fileList);
+		}
+		
+		/* log.info("이용후기 등록결과 : " + result); */
 	}
 	
 	// 이용후기 게시판 목록

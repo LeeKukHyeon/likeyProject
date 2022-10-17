@@ -87,7 +87,7 @@ a{
 	<div align="center">
 		<div class="reviewReg">
 			<h2 th:text="${title}"></h2>
-			<form class="reviewForm" th:action="@{/reviewRegister}" method="post">
+			<form class="reviewForm" th:action="@{/reviewRegister}" enctype="multipart/form-data" method="post">
 				<table class="addPostbordeForm">
 					<tr>
 						<td>

@@ -1,26 +1,36 @@
 package ks44team03.user.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import ks44team03.dto.Community;
 import ks44team03.user.service.CommunityService;
+import ks44team03.dto.FileDto;
+
 
 @Controller
 public class CommunityController {
 
 	private CommunityService communityService;
 	
-	public CommunityController(CommunityService communityService) {
+	
+	public CommunityController(CommunityService communityService ) {
 		this.communityService = communityService;
+		
+		
 	}
 // ------------------- 이용후기 게시판 관련 맵핑 state ---------------------------------------------
 	// 이용후기 게시판 목록
@@ -68,9 +78,25 @@ public class CommunityController {
 	
 	// 이용후기 등록
 	@PostMapping("/reviewRegister")
-	public String addReview(Community community) {
+	public String addReview(@RequestPart(name = "communityImg") MultipartFile[] multipartFile
+							,Community community
+							,HttpServletRequest request) {
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		boolean isLocalhost = true;
 		
-		communityService.addReview(community);
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			System.out.println(System.getProperty("user.dir"));
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+			isLocalhost = false;
+			fileRealPath = System.getProperty("user.dir") + "/resources/";
+		}
+		
+		
+		communityService.addReview(community,multipartFile, fileRealPath, isLocalhost);
 		
 		return"redirect:/reviewList";
 	}

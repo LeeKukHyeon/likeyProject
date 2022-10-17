@@ -11,7 +11,7 @@
 		<result column="id" property="communityId"/>
 		<result column="cm_title" property="communityTitle"/>
 		<result column="cm_content" property="communityContent"/>
-		<result column="cm_img" property="communityImg"/>
+	
 		<result column="cm_date" property="communityDate"/>
 		<result column="cm_comment" property="communityComment"/>
 		<result column="cm_comment_date" property="communityDate"/>
@@ -28,13 +28,13 @@
 		,id
 		,cm_title
 		,cm_content
-		,cm_img
+	
 		,cm_date
 		,cm_view
 		,community_cate
 		)
 		VALUES
-		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '이용후기');
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent},  CURDATE(), 0, '이용후기');
 	</insert>
 	
 	<!-- 이용후기 목록 조회 -->
