@@ -11,10 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.common.mapper.FileMapper;
 import ks44team03.dto.Community;
+
 import ks44team03.user.controller.CommunityController;
 import ks44team03.user.mapper.CommunityMapper;
 import ks44team03.dto.FileDto;
 import ks44team03.common.util.FileUtil;
+
 
 @Service
 public class CommunityService {
@@ -26,11 +28,16 @@ public class CommunityService {
 	private final CommunityMapper communityMapper;
 	private final CommonMapper commonMapper;
 	
+
 	public CommunityService(CommunityMapper communityMapper, CommonMapper commonMapper,FileUtil fileUtil, FileMapper fileMapper) {
+
 		this.communityMapper = communityMapper;
 		this.commonMapper = commonMapper;
+
+
 		this.fileUtil = fileUtil;
 		this.fileMapper = fileMapper;
+
 	}
 	// ---------------------------------- 이용후기 관련 Service State --------------------------------------		
 	// 이용후기 등록
@@ -52,7 +59,7 @@ public class CommunityService {
 			fileMapper.addFile(fileList);
 		}
 		
-		/* log.info("이용후기 등록결과 : " + result); */
+		//log.info("이용후기 등록결과 : " + result);
 	}
 	
 	// 이용후기 게시판 목록
@@ -105,6 +112,14 @@ public class CommunityService {
 	
 // ---------------------------------- 이용후기 관련 Service End --------------------------------------	
 	
+	// 게시판 유효성 검사
+	public boolean checkUserPw(String checkUserPw) {
+		boolean result = communityMapper.checkUserPw(checkUserPw);
+		
+		log.info("checkUserId 중복체크 ::::" + result);
+		return result;
+	}
+	
 // ---------------------------------- 정보공유 관련 Service State --------------------------------------		
 	// 정보공유 등록
 	public void addPostborde(Community community) {
@@ -138,9 +153,22 @@ public class CommunityService {
 		Community postbordeInfo = communityMapper.getPostbordeInfo(communityNum);
 		return postbordeInfo;
 	}
+	// 정보공유 아이디체크
+	public boolean postbordeListIdCheck(String communityId) {
+		boolean result = communityMapper.postbordeListIdCheck(communityId);
+		
+		log.info("communityId 아이디체크 :::" + result);
+		return result;
+	}
+	
 	// 정보공유 수정
-		public void modifyPostborde(Community community) {
-			communityMapper.modifyPostborde(community);
+	public void modifyPostborde(Community community) {
+		communityMapper.modifyPostborde(community);
+	}
+	
+	// 정보공유 삭제
+		public void removePostborde(String communityNum) {
+			communityMapper.removePostborde(communityNum);
 		}
 // ---------------------------------- 정보공유 관련 Service End --------------------------------------
 }

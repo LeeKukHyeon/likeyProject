@@ -7,14 +7,12 @@ public class Community {
 	private String communityId;	   //아이디
 	private String communityTitle; //제목
 	private String communityContent; //내용
-	
+	private String communityImg; // 이미지 파일
 	private String communityDate; //작성일
 	private String communityComment; // 댓글
 	private String communityCommentDate; //댓글 작성일
 	private int communityView;			//조회수
 	private String communityCate;		//등록글 카테고리
-	
-		
 	
 	public String getCommunityNum() {
 		return communityNum;
@@ -40,7 +38,12 @@ public class Community {
 	public void setCommunityContent(String communityContent) {
 		this.communityContent = communityContent;
 	}
-	
+	public String getCommunityImg() {
+		return communityImg;
+	}
+	public void setCommunityImg(String communityImg) {
+		this.communityImg = communityImg;
+	}
 	public String getCommunityDate() {
 		return communityDate;
 	}
@@ -71,15 +74,14 @@ public class Community {
 	public void setCommunityCate(String communityCate) {
 		this.communityCate = communityCate;
 	}
+	
 	@Override
 	public String toString() {
 		return "Community [communityNum=" + communityNum + ", communityId=" + communityId + ", communityTitle="
-				+ communityTitle + ", communityContent=" + communityContent + ", communityDate=" + communityDate
-				+ ", communityComment=" + communityComment + ", communityCommentDate=" + communityCommentDate
-				+ ", communityView=" + communityView + ", communityCate=" + communityCate + "]";
+				+ communityTitle + ", communityContent=" + communityContent + ", communityImg=" + communityImg
+				+ ", communityDate=" + communityDate + ", communityComment=" + communityComment
+				+ ", communityCommentDate=" + communityCommentDate + ", communityView=" + communityView
+				+ ", communityCate=" + communityCate + "]";
 	}
-	
-	
-	
 	
 }

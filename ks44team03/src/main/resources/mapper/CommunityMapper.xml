@@ -11,13 +11,28 @@
 		<result column="id" property="communityId"/>
 		<result column="cm_title" property="communityTitle"/>
 		<result column="cm_content" property="communityContent"/>
-	
+		<result column="cm_img" property="communityImg"/>
 		<result column="cm_date" property="communityDate"/>
 		<result column="cm_comment" property="communityComment"/>
 		<result column="cm_comment_date" property="communityDate"/>
 		<result column="cm_view" property="communityView"/>	
 		<result column="community_cate" property="communityCate"/>	
 	</resultMap>
+	
+	<!-- 게시판 유효성 검사 -->
+	<select id="checkUserPw" parameterType="String" resultType="Boolean">
+		/* 게시판 유효성 검사 */
+		SELECT
+			COUNT(u.u_pw)
+		FROM
+			community AS c
+			INNER JOIN 
+			user_member AS u
+			ON 
+			c.id = u.u_id
+		WHERE
+			u.u_pw = #{checkUserPw};
+	</select>
 <!-- ########################### 이용후기 관련 mapper State ################################# -->	
 	<!-- 이용후기 등록 -->
 	<insert id="addReview" parameterType="Community">
@@ -80,12 +95,14 @@
 			,id
 			,cm_title
 			,cm_content
+			,cm_img AS communityImg
 			,cm_date
 		FROM
 			community
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 이용후기 아이디 체크 -->
 	<select id="reviewListIdCheck" parameterType="String" resultType="Boolean">
 		/* 이용후기 아이디 체크 */
 		SELECT
@@ -129,6 +146,7 @@
 			 cm_num
 			,id
 			,cm_title
+			,cm_img
 			,cm_content
 			,cm_date
 		FROM
@@ -194,6 +212,7 @@
 		/* 정보공유 상세정보 */	
 		SELECT
 			 cm_num
+			,id
 			,cm_title
 			,cm_content
 			,cm_date
@@ -202,6 +221,17 @@
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 정보공유 아이디 체크 -->
+	<select id="postbordeListIdCheck" parameterType="String" resultType="Boolean">
+		/* 정보공유 아이디 체크 */
+		SELECT
+			COUNT(c.id)
+		FROM
+			community AS c
+		WHERE 
+			c.id = #{communityId};
+	</select>
+	
 	<!-- 정보공유 수정 -->
 	<update id="modifyPostborde" parameterType="Community">
 		UPDATE community
@@ -219,6 +249,15 @@
 		WHERE
 			cm_num = #{communityNum};
 	</update>
+	<!-- 정보공유 삭제 -->
+	<delete id="removePostborde" parameterType="String">
+		/* 정보공유 삭제 */
+		DELETE
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</delete>
 <!-- ########################### 정보공유 관련 mapper End ################################# -->			
 	<!-- 글조회시 조회수 증가 -->
 	<update id="getCountHit">
