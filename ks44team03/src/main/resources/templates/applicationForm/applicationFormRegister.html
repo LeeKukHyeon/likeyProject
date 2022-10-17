@@ -6,6 +6,8 @@
       layout:decorate="~{layout/default_layout.html}">
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{/assets/css/applcation_form.css}"/>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 	
 <!-- default_layout.html에 정의한 main page 부분 -->
@@ -112,8 +114,8 @@
 	        </div>
 	        
 	        <div class="col-md-6 mb-3">
-	            <input type="radio" name="ship_method" value="A"  class="radio_bt"> 항공 운송 <img src ="image/icon_a.png" width="50px;">
-	            <input type="radio" name="ship_method" value="S"  class="radio_bt"> 해상 운송 <img src ="image/icon_s.png" width="50px;">
+	            <input type="radio" name="ship_method" value="A"  class="radio_bt"> 항공 운송 <img src ="/image/icon_a.png" width="50px;">
+	            <input type="radio" name="ship_method" value="S"  class="radio_bt"> 해상 운송 <img src ="/image/icon_s.png" width="50px;">
 	        </div>
 	        
 			<div class="col-md-12 mb-3">
@@ -172,7 +174,7 @@
 	                            <div class="img_wrap">
 	                        		<div id="previewImg" class="image">
 					                	<a class="preview" target="_blank">
-					                	<img src="image/S_shipping_form_img_11.gif" border="0" width="223" height="223">
+					                	<img src="/image/S_shipping_form_img_11.gif" border="0" width="223" height="223">
 	                     				</a>
 	                  				</div>
 	                            	<div class="upload">
@@ -1161,9 +1163,9 @@ function addItem(action_type)
 	getOrderAmt();
 }
 
-
 // 이미지 파일 업로드
 function ajaxFileUpload(obj, idx, rowIdx){
+	console.log("이미지업로드");
 	$("#loading").ajaxStart(function(){
 		$(this).show();
 		})

@@ -49,7 +49,7 @@
 		<appender-ref ref="STDOUT" />
 	</logger>
 	<!-- 아직 싱글톤 안나가서 하지 않는 것이 맞음 -->
-	<logger name="org.springframework" level="OFF" additivity="false">
+	<logger name="org.springframework" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
