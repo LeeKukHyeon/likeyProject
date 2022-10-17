@@ -249,7 +249,8 @@ h2{
 			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
 			<h4 th:text="${reviewInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
-			<img src="/image/sinbal.png">
+			
+			<img th:src="${communityNumInfo.communityImg}">
 			<hr width="100%" color="#dddddd">
 			<!-- 14글자 제한 -->
 			<div>

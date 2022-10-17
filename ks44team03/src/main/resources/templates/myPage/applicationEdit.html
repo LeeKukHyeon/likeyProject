@@ -89,7 +89,7 @@
 														 <tr valign="top">
 															<td class="td1">
 																<div>브랜드</div>
-																<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src="image/S_shipping_form_icon_10.gif"></div>
+																<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src='/image/S_shipping_form_icon_10.gif'></div>
 															</td>
 															<td class="td2"><input type="text" name="package_brand[]" th:value="${l.gBrand}"  maxlength="190" ></td>
 															<td class="td1 td3">상품가(USD)</td>
@@ -104,9 +104,9 @@
 															<td class="td2"><input type="text" name="package_name[]" th:value="${l.gName}"  maxlength="250"></td>
 															<td class="td1 td3">
 																<div>수량</div>
-																<div class="icon_text" title="수량과 관계된 내용을 입력해주세요."><img src="image/S_shipping_form_icon_10.gif"></div>
+																<div class="icon_text" title="수량과 관계된 내용을 입력해주세요."><img src='/image/S_shipping_form_icon_10.gif'></div>
 															</td>
-															<td class="td2"><input type="text" name="package_qty[]" value="#"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^0-9]/g,'');" ></td>
+															<td class="td2"><input type="text" name="package_qty[]" th:value="${l.gAmount}"   onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^0-9]/g,'');" ></td>
 														  </tr>  
 														  <tr valign="top">
 															<td class="td1">품목</td>
@@ -331,10 +331,10 @@
 													</table>
 													
 													<div class="item_bt_list">
-														<div><a href="javascript:void(0);" onClick="itemTracking();">트레킹 확인</a></div>
+														
 														<div><a href="javascript:void(0);" onClick="javascript:addItem('copy', tblVote.clickedRowIndex);" >상품 복사하기</a></div>
 														<div><a href="javascript:void(0);" onclick="javascript:window.open('nodata.html', 'nodata', 'width=1100, height=620, left=40, top=40');">노데이터 목록</a></div>
-														<div><a href="javascript:void(0);" onclick="pickup();">DE 픽업요청</a></div>
+														
 														<div><a href="javascript:void(0);" onClick="deleteItem();">상품삭제</a></div>
 													</div>
 						
@@ -712,5 +712,11 @@
 			</div>
 		</div>
 		<!--  -->
+		
+		<script>
+			function addItem(action_type, index){
+				
+			}
+		</script>
 	</body>
 </html>

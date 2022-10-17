@@ -87,7 +87,7 @@ a{
 	<div align="center">
 		<div class="reviewReg">
 			<h2 th:text="${title}"></h2>
-			<form class="reviewForm" th:action="@{/reviewRegister}" method="post">
+			<form class="reviewForm" th:action="@{/reviewRegister}" enctype="multipart/form-data" method="post">
 				<table class="addPostbordeForm">
 					<tr>
 						<td>
@@ -102,12 +102,12 @@ a{
 					<tbody>
 						<tr>
 							<td>
-								<input type="file" id="reviewFile" name="communityImg" accept="image/*" alt="이미지">
+								<input type="file" id="reviewFile" name="communityImgPath" accept="image/*" alt="이미지">
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<img id="reviewImg" alt="이미지 영역" src="/image/sinbal.png">
+								<!-- <img id="reviewImg" alt="이미지 영역" src="/image/sinbal.png"> -->
 							</td>	
 						</tr>	
 					</tbody>

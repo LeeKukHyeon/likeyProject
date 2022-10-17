@@ -26,9 +26,9 @@
 			<li><a href="#">이벤트</a></li>
 			<li><a href="#">마이페이지</a></li>
 			<li><a th:if="${session.SID != null}" href='#'>회원수정</a></li>	
-			<li><a th:if="${session.SID == null}"th:href="@{/userForm}">회원가입</a></li>	
-			<li class="login_icon login_bt"><a th:if="${session.SID == null}" th:href="@{/loginForm}">로그인</a></li>
-			<li class="login_icon login_bt"><a th:if="${session.SID != null}" href='#'>로그아웃</a></li>
+			<li><a th:if="${session.SID == null}"th:href="@{/user/userForm}">회원가입</a></li>	
+			<li class="login_icon login_bt"><a th:if="${session.SID == null}" th:href="@{/user/loginForm}">로그인</a></li>
+			<li class="login_icon login_bt"><a th:if="${session.SID != null}" th:href="@{/user/logout}">로그아웃</a></li>
 		</ul>
 		<div th:if="${session.SID != null}" style="position:relative;">
 			<label>[[${session.SNAME + '님 반갑습니다.'}]]</label>
