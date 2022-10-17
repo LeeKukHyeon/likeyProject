@@ -9,7 +9,10 @@
 </head>
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
-		<table class="couponList" border="1" style="width: 70%;">
+	
+			<div th:include="couponManagementAdmin/searchCoupon :: searchCoupon"></div>
+	
+		<table class="couponList" border="1" style="width: 70%; margin-top: 5mm">
 			<tbody>
 				<tr>
 					<th>쿠폰 부여 순번 코드</th>
@@ -24,7 +27,7 @@
 				<tr th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
-					<td>쿠폰이름</td>
+					<td th:text="${l.couponInfo.couponName}">쿠폰이름</td>
 					<td th:text="${l.userId}"></td>
 					<td th:text="${l.cDate}"></td>
 					<td th:text="${l.cEDate}"></td>

@@ -9,7 +9,17 @@ public class Coupon {
 	private String cEDate;//쿠폰소멸날짜
 	private String cUseDate;//쿠폰사용날짜
 	private String cUse; // 쿠폰 사용 여부
-
+	
+	private CouponList couponInfo; //쿠폰 리스트
+	
+	public CouponList getCouponInfo() {
+		return couponInfo;
+	}
+	public void setCouponInfo(CouponList couponInfo) {
+		this.couponInfo = couponInfo;
+	}
+	
+	
 	public String getCsCode() {
 		return csCode;
 	}
@@ -55,7 +65,7 @@ public class Coupon {
 	@Override
 	public String toString() {
 		return "Coupon [csCode=" + csCode + ", cCode=" + cCode + ", userId=" + userId + ", cDate=" + cDate + ", cEDate="
-				+ cEDate + ", cUseDate=" + cUseDate + ", cUse=" + cUse + "]";
+				+ cEDate + ", cUseDate=" + cUseDate + ", cUse=" + cUse + ", couponInfo=" + couponInfo + "]";
 	}
 	
 }
