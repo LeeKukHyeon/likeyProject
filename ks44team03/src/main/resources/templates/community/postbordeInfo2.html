@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-  <div class="incoming_modal_layer"></div>     
+      
 <head>
 <style>
 .add_button {
@@ -141,7 +141,7 @@
   z-index:1500;
 }
 
-.modal .review_modal_content{
+.modal .postprde_modal_content{
   width: 20%;
   height: 20%;
   margin: 15% auto;
@@ -150,23 +150,30 @@
   border: 2px solid #666;
   border-radius: 10px;
 }
-.modal .review_modal_content input{
+.modal .postprde_modal_content input{
 	margin: 10px;
 	margin-left: 50px;
 	
 }
 </style>
-<!-- alert(/*[[${reviewInfo.communityDate}]]*/); -->
 <!-- 수정버튼 유효성 검사 -->
 <script th:inline="javascript">
 /*<![CDATA[*//*]]>*/
 $(function(){
 	$(document).ready(function(){
-		//alert(/*[[${session.SID}]]*/);
-		//alert(/*[[${reviewInfo.communityId}]]*/);
-		var communityId = /*[[${reviewInfo.communityId}]]*/;
+		alert(/*[[${session.SID}]]*/);
+		alert(/*[[${postbordeInfo.communityId}]]*/);
+		var communityId = /*[[${postbordeInfo.communityId}]]*/;
 		var sessionId = /*[[${session.SID}]]*/;
-			if(sessionId == communityId){
+		alert(communityId);
+		var request = $.ajax({
+			url : '/postbordeListIdCheck',
+			method : "GET",
+			data : {'communityId' : communityId},
+			dataType : 'json'
+		});
+		request.done(function(data){
+			if(/*[[${postbordeInfo.communityId}]]*/ == communityId){
 				 alert('아이디 일치');
 				$('.modifyCmnBtn').css('display','inline');
 				$('.removeCmnBtn').css('display','inline');
@@ -175,6 +182,10 @@ $(function(){
 				$('.removeCmnBtn').css('display','none');
 				alert('아이디 불일치!!!!');
 			}
+		});
+		request.fail(function( jqXHR, textStatus){
+			alert("Request failed:" + textStatus);	
+		});
 	});
 });
 </script>
@@ -187,15 +198,14 @@ $(function(){
 			$('body').css('overflow','hidden');
 			
 		});
-		$(document).on('click','#review_modal_close', function(){
+		$(document).on('click','#postborde_modal_close', function(){
 			$('.modal').css('display','none');
 			$('.main-header').css('display', 'block');
 			$('body').css('overflow','auto');
 		});
 	});
 </script>
-<script th:inline="javascript">
-/*<![CDATA[*//*]]>*/
+<script type="text/javascript">
 		$(function(){
 			function validationCheck(data){
 				var isValid = true;
@@ -218,8 +228,7 @@ $(function(){
 				}
 				return isValid;
 			}
-			$('#review_modal_reg').click(function(){
-				var checkUserId = /*[[${session.SID}]]*/;
+			$('#postborde_modal_reg').click(function(){
 				var checkUserPw = $('#checkUserPw').val();
 				var result = validationCheck(checkUserPw);
 				
@@ -229,10 +238,9 @@ $(function(){
 				}
 				
 				var request = $.ajax({
-					url : '/reviewCheckPw',
+					url : '/postbordeCheckPw',
 					method : "GET",
-					data : {'checkUserId' : checkUserId,
-							'checkUserPw' : checkUserPw},
+					data : {'checkUserPw' : checkUserPw },
 					dataType : 'json'
 				});
 				request.done(function(data){
@@ -255,46 +263,45 @@ $(function(){
 			});
 			
 		});
-</script>
-</head>
-<!-- main-header header-sticky sticky-bar sticky -->
-<body layout:fragment="content">
+</script>	
 
+
+</head>
+
+<body layout:fragment="content">
 	<div class="modal">
-		<div class="review_modal_content"> 
-       <h4 style="text-align: center;">비밀번호확인</h4>      
-       <form id="removeCmnForm" th:action="@{/removeReview}"> 
-       <input type="text" name="communityNum" th:value="${reviewInfo.communityNum}" style="display: none;">
+		<div class="postprde_modal_content"> 
+			<h4 style="text-align: center;">비밀번호확인</h4>
+			<form id="removeCmnForm" th:action="@{/removePostborde}">
+				<input type="text" name="communityNum" th:value="${postbordeInfo.communityNum}" style="display: none;">
 				<input type="password" name="checkUserPw" id="checkUserPw" placeholder="비밀번호를 입력해주세요.">
 			    <div class="incoming_modal_button" align="center">
-	                    <button type="button" id="review_modal_reg" class="add_button">확인</button>
-	                    <button type="button" id="review_modal_close" class="cancel_button">취소</button>
+	                    <button type="button" id="postborde_modal_reg" class="add_button">확인</button>
+	                    <button type="button" id="postborde_modal_close" class="cancel_button">취소</button>
 	            </div>        
 			</form>
     	</div>
-	</div>      
-
+	</div>
 	<div align="center">
 		<div class="communityInfo">
-		<!-- <button type="button" class="idCheckBtn"></button> -->
-			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/reviewList}">이용후기</a></p>
-			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
-			<h4 th:text="${reviewInfo.communityTitle}"></h4>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/postbordeList}">정보공유</a></p>
+			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${postbordeInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
+			<h4 th:text="${postbordeInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
 			<img th:src="${communityNumInfo.communityImg}">
 			<hr width="100%" color="#dddddd">
 			<!-- 14글자 제한 -->
 			<div>
 				<div style="text-align: left; color: black;" >
-					<p th:text="${reviewInfo.communityContent}"></p>
+					<p th:text="${postbordeInfo.communityContent}"></p>
 				</div>
 			</div>
-				<a th:href="@{/modifyReview(communityNum=${reviewInfo.communityNum})}"><button type="button" class="modifyCmnBtn">수정</button></a>
-				<a th:href="@{/reviewList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<a th:href="@{/modifyPostborde(communityNum=${postbordeInfo.communityNum})}"><button type="button" class="modifyCmnBtn">수정</button></a>
+				<a th:href="@{/postbordeList}"><button type="button" class="goListBtn">목록으로</button></a>
 				<button type="button" class="removeCmnBtn">삭제</button>
 				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
 		</div>	
 	</div>
-		
+	
 </body>
 </html>

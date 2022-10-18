@@ -163,15 +163,10 @@ $(function(){
 	$(document).ready(function(){
 		//alert(/*[[${session.SID}]]*/);
 		//alert(/*[[${postbordeInfo.communityId}]]*/);
-		var communityId = /*[[${session.SID}]]*/; 
-		var request = $.ajax({
-			url : '/postbordeListIdCheck',
-			method : "GET",
-			data : {'communityId' : communityId},
-			dataType : 'json'
-		});
-		request.done(function(data){
-			if(data){
+		var communityId = /*[[${postbordeInfo.communityId}]]*/;
+		var sessionId = /*[[${session.SID}]]*/;
+		//alert(communityId);
+			if(sessionId == communityId){
 				 alert('아이디 일치');
 				$('.modifyCmnBtn').css('display','inline');
 				$('.removeCmnBtn').css('display','inline');
@@ -180,15 +175,11 @@ $(function(){
 				$('.removeCmnBtn').css('display','none');
 				alert('아이디 불일치!!!!');
 			}
-		});
-		request.fail(function( jqXHR, textStatus){
-			alert("Request failed:" + textStatus);	
-		});
 	});
 });
 </script>
 <script type="text/javascript">
-	/* 아이디 유효성검사 modal */
+	/* 비밀번호 유효성검사 modal */
 	$(function(){
 		$(document).on('click', '.removeCmnBtn', function(){
 			$('.modal').css('display','block');
@@ -203,7 +194,8 @@ $(function(){
 		});
 	});
 </script>
-<script type="text/javascript">
+<script th:inline="javascript">
+/*<![CDATA[*//*]]>*/
 		$(function(){
 			function validationCheck(data){
 				var isValid = true;
@@ -227,6 +219,7 @@ $(function(){
 				return isValid;
 			}
 			$('#postborde_modal_reg').click(function(){
+				var checkUserId = /*[[${session.SID}]]*/;
 				var checkUserPw = $('#checkUserPw').val();
 				var result = validationCheck(checkUserPw);
 				
@@ -238,7 +231,8 @@ $(function(){
 				var request = $.ajax({
 					url : '/postbordeCheckPw',
 					method : "GET",
-					data : {'checkUserPw' : checkUserPw },
+					data : {'checkUserId' : checkUserId,
+							'checkUserPw' : checkUserPw},
 					dataType : 'json'
 				});
 				request.done(function(data){
@@ -262,10 +256,7 @@ $(function(){
 			
 		});
 </script>	
-
-
 </head>
-
 <body layout:fragment="content">
 	<div class="modal">
 		<div class="postprde_modal_content"> 
@@ -286,7 +277,7 @@ $(function(){
 			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${postbordeInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
 			<h4 th:text="${postbordeInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
-			<img src="/image/sinbal.png">
+			<img th:src="${communityNumInfo.communityImg}">
 			<hr width="100%" color="#dddddd">
 			<!-- 14글자 제한 -->
 			<div>
@@ -296,8 +287,7 @@ $(function(){
 			</div>
 				<a th:href="@{/modifyPostborde(communityNum=${postbordeInfo.communityNum})}"><button type="button" class="modifyCmnBtn">수정</button></a>
 				<a th:href="@{/postbordeList}"><button type="button" class="goListBtn">목록으로</button></a>
-				
-				<button class="removeCmnBtn">삭제</button>
+				<button type="button" class="removeCmnBtn">삭제</button>
 				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
 		</div>	
 	</div>
