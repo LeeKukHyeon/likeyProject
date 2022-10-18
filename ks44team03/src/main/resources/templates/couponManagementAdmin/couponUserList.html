@@ -24,18 +24,32 @@
 					<th>사용한 날짜</th>
 					<th>사용 여부</th>
 				</tr>
-				<tr th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
+				<tr th:id="${l.csCode}" th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
 					<td th:text="${l.couponInfo.couponName}">쿠폰이름</td>
 					<td th:text="${l.userId}"></td>
 					<td th:text="${l.cDate}"></td>
-					<td th:text="${l.cEDate}"></td>
+					<td class="EndDate" th:text="${l.cEDate}"></td>
 					<td th:text="${l.cUseDate}"></td>
 					<td style="text-align: center;" th:text="${l.cUse}"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#proviso').click(function(){
+			var dateFCheck = $('#dateF').val();
+			var dateScheck = $('#dateS').val();
+			var expiryDateCheck = $(".EndDate").text();
+			alert(expiryDateCheck)
+		})
+	})
+	</script>
+	
+	
+	
 </body>
 </html>
