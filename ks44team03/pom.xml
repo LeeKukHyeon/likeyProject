@@ -19,7 +19,7 @@
       <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
    </properties>
    <dependencies>
-      <dependency>
+      <dependency> <!-- 스프링에서 DB처리를 위한 dependency -->
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-data-jdbc</artifactId>
       </dependency>
@@ -31,7 +31,7 @@
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-web</artifactId>
       </dependency>
-      <dependency>
+      <dependency> <!-- 스프링에서 MyBatis 사용을 위한 dependency -->
          <groupId>org.mybatis.spring.boot</groupId>
          <artifactId>mybatis-spring-boot-starter</artifactId>
          <version>2.2.2</version>
@@ -44,7 +44,7 @@
          <optional>true</optional>
       </dependency>
       <dependency>
-         <groupId>mysql</groupId>
+         <groupId>mysql</groupId> <!-- MySQL 사용을 위한 dependency -->
          <artifactId>mysql-connector-java</artifactId>
          <scope>runtime</scope>
       </dependency>
@@ -97,7 +97,6 @@
 	        <groupId>javax.servlet</groupId>
 	        <artifactId>jstl</artifactId>
         </dependency>
-
    </dependencies>
 
 
