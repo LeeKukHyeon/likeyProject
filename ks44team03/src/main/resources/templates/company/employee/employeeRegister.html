@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<style>
+.button2{
+	margin-left: 390px;
+}	
+</style>
+</head>
+<title th:text="${title}"></title>
+<th:block layout:fragment="adminContent">
+	<div class="content-wrapper">
+		<div class="right_text" style="margin-left: 10%; margin-right: 10%;">
+			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;">사원 등록</h2>
+			<form name="form1" id="employeeRegFrom" th:action="@{/employeeRegister}" method="post">
+				<table class="input_table" style="width:90%;">
+					<colgroup>
+						<col width="15%"/><col width="35%"/>
+						<col width="15%"/><col width="35%"/>
+					</colgroup>
+				<!-- 	<tr>	
+						<th class="td1">사원코드</th>
+						<td class="td2">
+							<input type="text" name=employeeCode placeholder="사원코드">	
+						</td>
+					</tr> -->
+					<tr>
+						<th class="td1">사원권한</th>	
+						<td class="td2">
+							<select name="employeeLevelCode">
+								<th:block th:if="${not #lists.isEmpty(managementLevelList)}" th:each="l : ${managementLevelList}">
+									<option th:value="${l.eLevelCode}" th:text="${l.eLevelName}"></option>
+								</th:block>
+								<th:block th:unless="${not #lists.isEmpty(managementLevelList)}">
+									<option>등록된 부서코드가 없습니다.</option>
+								</th:block>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th class="td1">부서코드</th>	
+						<td class="td2">
+							<select name="departmentCode">
+								<th:block th:if="${not #lists.isEmpty(departmentList)}" th:each="l : ${departmentList}">
+									<option th:value="${l.departmentCode}" th:text="${l.departmentCode}"></option>
+								</th:block>
+								<th:block th:unless="${not #lists.isEmpty(departmentList)}">
+									<option>등록된 부서코드가 없습니다.</option>
+								</th:block>
+							</select>	
+						</td>
+					</tr>
+					<tr>
+						<th class="td1">사원명</th>	
+						<td class="td2">
+							<input type="text" name=employeeName placeholder="사원명">	
+						</td>
+					</tr>
+					<tr>
+						<th class="td1">사원비밀번호</th>	
+						<td class="td2">
+							<input type="password" name=employeePw placeholder="사원비밀번호">	
+						</td>
+					</tr>
+				</table>
+				<div class="button2">
+					<button type="submit"  class="add_button">등록</button>
+					<button type="button" onClick="location.href='/choiceCompany';" class="cancel_button">취소</button>
+				</div>
+			</form>
+		</div>	
+	</div>
+</th:block>
+</html>

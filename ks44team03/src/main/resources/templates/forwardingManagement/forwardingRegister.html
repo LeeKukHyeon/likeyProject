@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 출고등록 -->
+<title>출고등록</title>
+</head>
+
+<!-- ========== 출고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 출고등록 화면 시작 ========== -->
+				<h2>출고등록</h2>
+				
+				<div class="forwarding_register">
+					<form method="get" action="#">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="postpone">고객요청 출고보류</option>
+							        		<option value="sum_post">묶음배송</option>
+							        		<option value="req_option_impli">요청 옵션 이행</option>
+							        		<option value="approval">관리자 출고승인</option>
+							        	</select>
+							        	
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>라이키패스</th>
+									<th>고객요청 출고보류</th>
+									<th>묶음배송</th>
+									<th>요청 옵션 이행 여부</th>
+									<th>관리자 출고승인 여부</th>						
+									<th>출고 등록</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+								<tr th:each = "i :${regForwarding}">
+									<td class="incoming_checkbox"><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.likeyPass}"></td>
+									<td th:text="${i.incomingPostpone}"></td>
+									<td th:text="${i.sumPost}"></td>
+									<td th:text="${i.reqOptionImpli}"></td>
+									<td th:text="${i.incomingApproval}"></td>
+									<td align="center">
+										<button type="button" id="incoming_modal_open">출고등록</button>
+									</td>
+								</tr>
+							  </tbody>
+						</table>
+					</form>
+				</div>
+				
+				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달 -->
+				<div class="modal">
+					<div class="incoming_modal_content">
+						
+					  <th:block>
+						
+						<form id="incoming_reg_form" action="#" method="#">
+						<table class="input_table"><tbody>
+						
+							<tr>
+								<th>주문정보 코드</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>상품정보 코드</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>라이키패스 가입여부</th>
+								<td>
+								 	#
+								</td>
+							</tr>
+							<tr>
+								<th>상품사진 등록</th>
+								<td> <input type="file" name="photoSave" id="photoSave"> </td>
+							</tr>
+							<tr>
+								<th>부피</th>
+								<td> <input type="text" name="volume" id="volume"> </td>
+							</tr>
+							<tr>
+								<th>중량</th>
+								<td> <input type="text" name="weight" id="weight"> </td>
+							</tr>
+						</tbody></table>
+						</form>
+						
+						<div class="incoming_modal_button" align="center">
+							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_form">등록</button>
+							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+						</div>
+						
+					  </th:block>
+					</div>
+				</div>
+				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달끝 -->
+			
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+        
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		$(document).on('click', '#incoming_modal_open', function(){
+			var goodsInfoCode = $(this).parents('tr').children().eq(1).text();
+			
+			var request = $.ajax({
+				  url: "/incomingGoodsInfoByCode",
+				  method: "GET",
+				  data: { 'goodsInfoCode' : goodsInfoCode },
+				  dataType: "json"
+				});
+				 
+				request.done(function( data ) {
+					console.table(data)
+					$('#buyOrderCode').text(data.buyOrderCode);
+					$('#goodsInfoCode').text(data.goodsInfoCode);
+					$('#likeyPass').text(data.likeyPass);
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			$('.modal').css('display', 'block');
+		});
+		
+		$(document).on('click', '#incoming_modal_close', function(){
+			$('.modal').css('display', 'none');
+		});
+	});
+
+</script> -->
+</body>
+
+</html>

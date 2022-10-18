@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#selectBox').change(function(){
+	var result = $('#selectBox option:selected').val();
+	if(result == 'option0') {
+		$('#div1').show()
+		$('#div2').hide()
+		$('#div3').hide()
+	}else if(result == 'option2'){
+		$('#div1').hide()
+		$('#div2').show()
+		$('#div3').hide()
+	}else if(result == 'option3'){
+		$('#div1').hide()
+		$('#div2').hide()
+		$('#div3').show()
+	}else if(result == 'option1'){
+		$('#div1').show()
+		$('#div2').hide()
+		$('#div3').hide()
+	}else {
+		$('#div1').show()
+		$('#div2').hide()
+		$('#div3').hide()
+	}})
+})
+
+
+
+
+</script>
+
+<div align="center">
+	<select id="selectBox" name="selectBox">
+		<option value="option0" selected>:::선택::::</option>
+		<option value="option1" >1번</option>
+		<option value="option2" >2번</option>
+		<option value="option3" >3번</option>
+	</select>
+
+
+
+
+	<div id="div1">테스트 1번입니다.</div>
+	<div id="div2">테스트 2번입니다.</div>
+	<div id="div3">테스트 3번입니다.</div>
+
+</div>
+
+
+<table>
+	<tbody>
+		<tr th:if="${not #lists.isEmpty(memberInfo)}" th:each="l : ${memberInfo}">
+			<td th:text="${l.uId}"></td>
+		</tr>	
+	</tbody>
+</table>
+
+</body>
+</html>

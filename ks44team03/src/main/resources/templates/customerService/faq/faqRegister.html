@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<meta http-equiv="refresh" content="1;url=localhost/faqSearch" />
+<head>
+	<link rel="stylesheet" href="assets/css/temporarily.css">
+</head>
+<body layout:fragment="content">
+	<div align="center">
+		<table border = 1 style="width: 55%">
+			<tbody>
+				<tr>
+					<td class="faqLeft"><b>분류</b></td>
+					<td>
+						<select class="faqRight">
+							<option>::대분류::</option>
+							<option>배송대행신청</option>
+							<option>구매대행신청</option>
+							<option>입고</option>
+							<option>출고</option>
+							<option>통관</option>
+							<option>배송비/결제</option>
+							<option>반송</option>
+							<option>회원</option>
+							<option>보상</option>
+							<option>기타</option>
+							<option>제휴제안</option>
+						</select>
+						<select class="faqRight">
+							<option>::선택해주세요::</option>
+							<option>배송대행신청</option>
+							<option>구매대행신청</option>
+							<option>입고</option>
+<!-- 이 부분은 대분류의 값에 따라 달라지게 할거임 -->					<option>출고</option>
+							<option>통관</option>
+							<option>배송비/결제</option>
+							<option>반송</option>
+							<option>회원</option>
+							<option>보상</option>
+							<option>기타</option>
+							<option>제휴제안</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="faqLeft"><b>제목</b></td>
+					<td>
+						<input class="faqRight" type="text" style="width: 15cm;" value="-" >
+					</td>
+				</tr>
+				<tr>
+					<td class="faqLeft"><b>내용</b></td>
+					<td>
+						<textarea class="faqRight" style="width: 70%; height: 100mm; margin-top: 1.5mm"></textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="width: 55%; margin-top: 10px"align="right"><input type="button" value="글쓰기" style="margin-left: auto;"></div>
+	</div>
+</body>
+</html>

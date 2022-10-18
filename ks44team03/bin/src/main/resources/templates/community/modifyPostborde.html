@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<head>
+<style>
+	
+th{
+	border-bottom-radius: 10px;
+	background-color: #f5f5f5;
+}
+
+a{
+	font-size:12px; 
+	font-weight:bold;
+}
+.reviewTitle{
+	width: 825px;
+	border: 2px solid #dddddd;
+	border-radius: 5px;
+}
+/* .reviewReg{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 10%;
+	margin-top: 40px;
+	border: 1px solid #dddddd;
+	border-radius: 20px;
+	padding: 30px;
+} */
+
+#modifyReviewForm{
+	margin-left: 330px;
+	margin-right: 330px;
+	margin-bottom: 10%;
+	margin-top: 5px;
+	border: 2px solid #dddddd;
+	border-radius: 20px;
+	padding: 30px;
+	padding-top: 20px;
+	padding-bottom: 10%;
+}
+.reviewTextarea{
+	margin-top: 10px;
+	border: 2px solid #dddddd;
+	border-radius: 5px;
+	width: 825px;
+    resize: none
+}
+.addReviewBtn{
+	margin-left: 91%;
+	margin-top: 5px;	
+	padding: 10px 20px;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: white;
+	color: #565656;
+}
+.addReviewBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+#reviewFile{
+	border: 2px solid #dddddd;
+	border-radius: 5px;
+	width: 100%;
+}
+#reviewImg{
+	height: 100px;
+	width: 100px;
+	margin-top: 10px;
+	border: 2px solid #dddddd;
+	border-radius: 40px;
+	
+}
+</style>
+</head>
+<meta charset="UTF-8">
+
+<body layout:fragment="content">
+	<div align="center">
+		<div class="reviewReg">
+			<h2 th:text="${title}"></h2>
+			<form id="modifyPostbordeForm" th:action="@{/modifyPostborde}" method="post">
+				<table class="modifyPostbordeForm" th:object="${communityNumInfo}">
+					<tr>
+						<td>
+							<input type="text"name="communityNum" th:value="${communityNumInfo.communityNum}" style="display: none;">
+							<input type="text" class="reviewTitle" name="communityTitle" th:value="${communityNumInfo.communityTitle}" placeholder="제목을 입력해주세요.">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea class="reviewTextarea"cols="100" rows="20" name="communityContent" th:text="${communityNumInfo.communityContent}" placeholder="내용을 입력해주세요.">${communityNumInfo.communityContent}</textarea>
+						</td>
+					</tr>
+					<tbody>
+						<tr>
+							<td>
+								<input type="file" id="reviewFile" name="communityImg" accept="image/*" alt="이미지" th:value="${communityNumInfo.communityImg}">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img id="reviewImg" alt="이미지 영역" src="/image/sinbal.png">
+							</td>	
+						</tr>	
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>
+							<button type="submit"  class="addReviewBtn">수정</button>
+							<!-- <a th:href="@{/reviewInfo(communityNum=${communityNumInfo.communityNum})}"></a> -->
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="ko">
+<style>
+.sub_contents_wrap {margin-top:30px;margin-left:10px;}
+
+
+#sidebar {margin-left:5%;}
+.sub_title_main {margin-bottom : 10px;font-size: 24px;color: #f76c87;font-weight: bold;padding: 0px 20px 20px 4px;}
+</style>
+<!--sidebarFragment 선언-->
+	<div id="sidebar" th:fragment="sidebarFragment">
+		
+		
+			<div class="sub_contents_wrap wrap col-lg-4">
+				<div class="left_menu">
+					<div>마이페이지</div>
+						<ul>
+							<li>
+								<div><a href="/mypageScreen">마이홈</a></div>
+							</li>
+							<li>
+								<div><a href="/memberModify">회원정보수정</a></div>
+							</li>
+							<li>
+								<div><a href="/myAddrList" >나의 주소록 </a></div>
+							</li>
+
+						</ul>
+					</div>	<!-- //왼쪽 메뉴 -->
+				
+			</div>
+	</div>
+</html>

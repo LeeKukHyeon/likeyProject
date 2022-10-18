@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 입고등록 -->
+<title>입고등록</title>
+</head>
+
+<!-- ========== 입고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고등록 화면 시작 ========== -->
+				<h2>상품도착등록</h2>
+				<div class="incoming_register">
+					<form th:action="@{/incomingList}" method="get" class="searchBar">	
+						<div th:fragment="searchFragment" >
+								      
+					        	<select name="searchKey" id="searchKey">
+					        		<option value="buy_order_code">주문정보 코드</option>
+					        		<option value="user_pobox_code">사서함 번호</option>
+					        		<option value="id">이용자 아이디</option>
+					        		<option value="logistics_center">물류센터</option>
+					        		<option value="transportation">운송수단</option>
+					        		<option value="nation">국가</option>
+					        		<option value="order_num">주문 번호</option>
+					        		<option value="user_name">이름</option>
+					        		<option value="buy_way">구매방식</option>
+					        	</select>
+				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+				        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
+					       	</form>	
+       			 </div>
+        			<form th:action="@{/incomingList}" method="get" class="searchBar">
+						<table class = "input_table" style="width:100%">
+						
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>주문정보 코드</th>
+									<th>사서함 번호</th>
+									<th>이용자 아이디</th>
+									<th>물류센터</th>
+									<th>운송수단</th>
+									<th>국가</th>
+									<th>주문 번호</th>
+									<th>이름</th>												
+									
+									<th>구매방식</th>
+									
+																		
+									
+								</tr>
+								
+							</thead>
+							  <tbody >
+							 	
+								<tr th:each = "i :${incomingOrderList}">
+									<td><input type="checkbox" name="check" th:value="${i.buyOrderCode}"></td>
+									<td ><a th:href="@{/incomingGoodsList(buyOrderCode=${i.buyOrderCode})}" th:text="${i.buyOrderCode}"></a></td>
+									<td th:text="${i.userPoboxCode}"></td>
+									<td th:text="${i.id}">d</td>
+									<td th:text="${i.logisticsCenter}">d</td>
+									<td th:text="${i.transportation}">d</td>
+									<td th:text="${i.nation}">d</td>
+									<td th:text="${i.orderNum}">d</td>
+									<td th:text="${i.userName}">d</td>
+									<td th:text="${i.buyWay}">d</td>
+									
+								
+								</tr>
+							  </tbody>
+						</table>
+						<button type="submit" id="sub_btn" >등록</button>
+					</form>
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+      
+        
+        
+
+	
+</body>
+
+</html>

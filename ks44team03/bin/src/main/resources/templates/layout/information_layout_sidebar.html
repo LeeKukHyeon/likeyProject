@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+	<head>
+		<meta charset="UTF-8">
+		<title>역직구의 모든것, LIKEY</title>
+		<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+		
+		<!-- config.html -->
+	        <th:block th:replace="fragments/config::configFragment"></th:block>
+	</head>
+
+		<!-- start header  -->
+	<header th:replace="fragments/header::headerFragment"></header>
+		<!-- end header  -->
+	
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+	<div class="container-fluid">
+		<div class="row">
+			<body th:replace="fragments/information_sidebar::sidebarFragment"></body>
+			<body layout:fragment="content"></body>
+		</div>
+	</div>
+		    
+		<!-- start footer  -->
+	<footer th:replace="fragments/footer::footerFragment"></footer>
+		<!-- end footer  -->
+
+</html>

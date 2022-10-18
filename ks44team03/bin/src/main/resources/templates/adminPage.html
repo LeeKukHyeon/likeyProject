@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+   $(function(){
+      $(document).on('click', '.incoming_modal_open', function(){
+         $('.modal').css('display', 'block');
+      /*    $('ul').css('display','none');
+         $('nav').css('position','fixed'); */
+
+         
+      });
+      $(document).on('click', '#incoming_modal_close', function(){
+         $('.modal').css('display', 'none');
+      });
+   });
+</script>
+
+</head>
+	
+	<!-- default_layout.html에 정의한 main page 부분 -->
+	<body layout:fragment="adminContent">
+    	<!-- partial --><!-- 컨텐츠 -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+             	<h2>관리자 페이지 입니다.</h2>
+             	<a th:href="@{/}">홈으로</a> <!-- 컨텐츠? -->
+             	
+             	<button class="incoming_modal_open" style="margin-left: 50px; padding: 50px;">모달테스트</button>
+             <div class="modal">
+               <div class="incoming_modal_content">
+                  <h1 style="text-align: center;">모달테스트</h1>
+                  	<table class="input_table">
+                  		<tr>
+                  			<th>a</th>
+                  			<th>a</th>
+                  			<th>a</th>
+                  			<th>a</th>
+                  			<th>a</th>
+                  			<th>a</th>
+                  			<th>a</th>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		<tr>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  			<td>a</td>
+                  		</tr>
+                  		
+                  	</table>
+                 
+                  
+                 <div class="incoming_modal_button" align="center">
+                     <button type="button" id="incoming_modal_reg" class="add_button">등록</button>
+                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+                 </div>
+                  
+               </div>
+               <div class="incoming_modal_layer"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html
+        partial -->
+      </div>
+      <!-- main-panel ends --><!-- 컨텐츠 끝 -->
+      
+
+    </body>
+    
+</html>

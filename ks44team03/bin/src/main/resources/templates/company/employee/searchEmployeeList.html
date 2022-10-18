@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<!-- 목록조회 바 -->
+	<div th:fragment="searchFragment" >
+	        <form th:action="@{/employeeList}" method="post" class="searchBar">
+	        	<select name="searchKey">
+	        		<option value="employeeCode">사원코드</option>
+	        		<option value="managementLevelDto.eLevelName">권한</option>
+	        		<option value="departmentCode">부서코드</option>
+	        		<option value="employeeName">사원이름</option>
+	        		<option value="employeeDate">입사일</option>
+	        		<option value="employeeResignDate">퇴사일</option>
+	        	</select>
+        		<input type="text" name="searchValue" placeholder="검색어 를 입력해주세요.">
+        		<button type="submit" class="searchBtn">조회</button>
+	        </form>		
+        </div>
+</html>

@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ks44team03.user.mapper.MypageMapper">
+	<resultMap type="UserInfo" id="UserInfoResultMap">
+		<id column="u_id" property="uId"/>
+			<result column="user_grade_code" property="uGradeCode"/>
+			<result column="u_pw" property="uPw"/>
+			<result column="user_pobox_code" property="uPostCode"/>
+			<result column="u_name" property="uName"/>
+			<result column="u_level" property="uLevel"/>
+			<result column="u_addr" property="uAddr"/>
+			<result column="u_email" property="uEmail"/>
+			<result column="u_birth" property="uBirth"/>
+			<result column="u_phone" property="uPhone"/>
+			<result column="u_nick" property="uNick"/>
+			<result column="u_insert_date" property="uInsertDate"/>
+			<result column="u_dormant" property="uDormant"/>
+			<result column="pay_completed_count" property="payCompletedCount"/>
+			<result column="friends_account" property="friendsAccount"/>
+			<result column="bank_name" property="bankName"/>
+	</resultMap>
+	<resultMap type="Grade" id="GradeResultMap">
+		<id column="grade_code" property="gradeCode"/>
+			<result column="grade_name" property="gradeName"/>
+			<result column="rate" property="rate"/>
+			<result column="transaction_number" property="transactionNumber"/>
+			<result column="grade_date" property="gradeDate"/>
+	</resultMap>
+	
+	<resultMap type="OrderInfo" id="OrderInfoResultMap">
+		<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="order_num" property="orderNum;"/>
+			<result column="user_name;" property="userName;"/>
+			<result column="post_num;" property="postNum;"/>
+			<result column="total_price;" property="totalPrice;"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+	</resultMap>
+	
+	<resultMap type="Nodata" id="NodataResultMap">
+		<id column="nod_code" property="nodCode"/>
+			<result column="nod_user_pobox_code" property="nodUserPoboxCode"/>
+			<result column="nod_tracking_num" property="nodTrackingNum"/>
+			<result column="nod_e_code" property="nodECode"/>
+			<result column="nod_id" property="nodId"/>
+			<result column="nod_recipient" property="nodRecipient"/>
+			<result column="nod_pic" property="nodPic"/>
+			<result column="nod_arrival_date" property="nodArrivalDate"/>
+			<result column="nod_tracking_company" property="nodTrackingCompany"/>
+			<result column="nod_ discard_date" property="nodDiscardDate"/>
+	</resultMap>
+	
+	<resultMap type="GoodsInfo" id="GoodsInfoResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
+		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
+		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+		<result column="g_brand" property="gBrand"/>
+		<result column="goods__url" property="goodsUrl"/>
+		<result column="store_name" property="storeName"/>
+		<result column="store_location" property="storeLocation"/>
+		
+		<association property="orderInfoDto" javaType="OrderInfo">
+			<id column="buy_order_code" property="buyOrderCode"/>
+			<result column="id" property="id"/>
+			<result column="transportation" property="transportation"/>
+			<result column="nation" property="nation"/>
+			<result column="order_num" property="orderNum"/>
+			<result column="user_name" property="userName"/>
+			<result column="phone" property="phone"/>
+			<result column="post_num" property="postNum"/>
+			<result column="addr" property="addr"/>
+			<result column="total_price" property="totalPrice"/>
+			<result column="goods_order_date" property="goodsOrderDate"/>
+			<result column="temp" property="temp"/>
+			<result column="Desired_courier" property="DesiredCourier"/>
+			<result column="buy_way" property="buyWay"/>
+			<result column="request" property="request"/>
+			<result column="friends_de_check" property="friendsDeCheck"/>
+			<result column="commission" property="commission"/>
+			<result column="Personal_Customs_Clearance_Code" property="PersonalCustomsClearanceCode"/>
+			<result column="personal_use" property="personalUse"/>
+			<result column="trading" property="trading"/>
+		</association>
+		<association property="deliveryCurrentStateDto" javaType="DeliveryCurrentState">
+			<id column="delivery_status" property="deliveryStatus"/>
+			<result column="goods_info_code" property="goodsInfoCode"/>
+			<result column="time_tracking" property="timeTracking"/>
+			<result column="stat_info" property="statInfo"/>
+		</association>
+		
+		
+	</resultMap>
+	
+	<select id="applicationEdit" parameterType="String" resultMap="GoodsInfoResultMap">
+		select 
+			* 
+		from
+			order_info as o
+		inner join
+			goods_info as g
+		on 
+			o.buy_order_code = g.buy_order_code
+		inner join
+			delivery_current_state as d
+		on 
+			d.goods_info_code = g.goods_info_code
+		where 
+			o.buy_order_code = #{buyOrderCode}
+			and o.step3 = 'n'
+			;
+	</select>
+	
+	
+	
+	<select id="count" parameterType="String" resultType="MyPageCount">
+		SELECT COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) as lastMonthCount
+		from 
+			order_info		
+		 WHERE 
+		 	id=#{u_id};
+	
+	</select>
+		
+	<select id="shipOrderTemp" parameterType="map" resultType="shipOrderApi">
+		/*임시저장 목록 */
+		 SELECT 
+		 	o.logistics_center as logisticsCenter
+		 	,o.goods_order_date as goodsOrderDate 
+			,g.tracking_num as trackingNum
+			,g.grouping_delivery as groupingDelivery
+			,g.goods__url as goodsUrl
+			,g.g_name as gName
+			,o.total_price as totalPrice
+			,o.user_name as userName
+			,CASE o.forwarding_hold WHEN 'n' THEN '출고보류' ELSE null END AS orderState
+			,CASE o.step3 WHEN 'n' THEN '임시저장' ELSE null END AS statInfo 
+			,g.buy_order_code as buyOrderCode
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			order_info AS o
+		ON 
+			g.buy_order_code = o.buy_order_code 
+		INNER JOIN order_state AS os 
+			ON o.buy_order_code = os.buy_order_code
+		WHERE 
+			o.step3 = #{stat_info}  
+			AND o.id = #{u_id};
+		
+		
+	</select>	
+	
+	
+		
+		
+		
+	<select id="shipOrderApi" parameterType="map" resultType="shipOrderApi">
+		/*목록 출력*/
+		 
+		SELECT 
+			 o.logistics_center as logisticsCenter
+			,o.goods_order_date as goodsOrderDate
+			,g.tracking_num as trackingNum
+			,g.grouping_delivery as groupingDelivery
+			,g.goods__url as goodsUrl
+			,g.g_name as gName
+			,o.total_price as totalPrice
+			,CONCAT(d.stat_info, ' (',COUNT(d.stat_info), ')') AS statInfo
+			,o.user_name as userName
+			,CASE os.order_state WHEN null THEN null ELSE os.order_state END AS orderState
+			,g.buy_order_code as buyOrderCode
+			,g.id
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code
+			AND g.tracking_num IS NOT NULL 
+		INNER JOIN 
+			order_info AS o
+		ON 
+			g.buy_order_code = o.buy_order_code
+		INNER JOIN order_state AS os 
+			ON o.buy_order_code = os.buy_order_code
+		where 
+			g.id = #{u_id} and d.stat_info = #{stat_info} 
+		GROUP BY 
+			g.grouping_delivery, d.stat_info;
+	</select>
+		
+		
+	<select id="weightCheckPostponeCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고보류 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g 
+		ON 
+			o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i 
+		ON 
+			g.goods_info_code = i.goods_info_code
+		WHERE 
+			os.order_state='출고 보류' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.postpone = 'n' AND g.id = #{u_id}
+	</select>
+	
+	<select id="weightCheckPaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제완료 갯수*/
+		SELECT 
+			count(*) 
+		FROM 
+			order_info AS o INNER JOIN order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+		where 
+			os.order_state='입금 완료' 
+			AND i.weight IS NOT NULL 
+			AND i.volume IS NOT NULL 
+			AND i.approval = 'y' 
+			AND i.postpone = 'n' 
+			AND g.id = #{u_id};
+	</select>
+	
+	<select id="weightCheckNopaymentCount" parameterType="String" resultType="int">
+		/* 무게측정 및 출고대기/결제대기 갯수*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			order_info AS o 
+		INNER JOIN 
+			order_state AS os  
+		on 
+			o.buy_order_code = os.buy_order_code 
+		inner join 
+			goods_info AS g ON o.buy_order_code= g.buy_order_code
+		INNER JOIN 
+			incoming AS i ON g.goods_info_code = i.goods_info_code
+	 	where 
+	 		os.order_state='입금 전' 
+	 			AND i.weight IS NOT NULL 
+	 			AND i.volume IS NOT NULL 
+	 			AND i.approval = 'y' 
+	 			AND i.postpone = 'n' 
+	 			AND g.id = #{u_id};
+	</select>
+	
+	
+	<select id="allArrivedCount" parameterType="String" resultType="int">
+			/*도착완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM
+			 goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		 WHERE 
+		 	d.incoming_check = 'y' AND g.id = #{u_id};
+	</select>
+	
+	<select id="partialIncomingCount" parameterType="String" resultType="int">
+		/*일부입고 카운트*/
+		SELECT
+			 COUNT(if(arrival='y',1,null)) 
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			grouping_delivery_check AS d 
+		ON 
+			g.grouping_delivery = d.grouping_delivery
+		WHERE 
+			d.incoming_check = 'n' AND g.id = #{u_id};
+	</select>
+	
+	<select id="warehouseArrivalCount" parameterType="String" resultType="int">
+		/*창고도착 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ="입고 완료" AND g.id = #{u_id};
+	</select>
+	
+	<select id="purchaseApplication" parameterType="String" resultType="int">
+		/*구매대행 신청완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			order_info AS o 
+		ON 
+			g.buy_order_code = o.buy_order_code
+		 WHERE 
+		 	o.buy_way ="구매대행" AND o.id = #{u_id} AND g.arrival="n";
+	</select>
+	
+	
+	
+	<select id="packageForwardingApplication" parameterType="String" resultType="int">
+		/*배송대행 신청완료 카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			order_info AS o 
+		ON 
+			g.buy_order_code = o.buy_order_code
+		 WHERE 
+		 	o.buy_way ="배송대행" AND o.id = #{u_id} AND g.arrival="n";
+	</select>
+	
+	<select id="nodataList" parameterType="String" resultMap="NodataResultMap">
+		/*노데이터 리스트*/
+		SELECT * 
+		from 
+			user_member AS u 
+		INNER JOIN 
+			nodata_manage AS n 
+		ON 
+			u.user_pobox_code = n.nod_user_pobox_code 
+		WHERE 
+			u.u_id = #{u_id} AND nod_user_check = 'n'; 
+	</select>
+	
+	
+	<select id="monthNodataCount" parameterType="String" resultType="MyPageCount">
+		/*달별노데이터카운트*/
+		SELECT 
+			COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 2 MONTH  )),1,null)) as twoMonthNodataCount, 
+			COUNT(if(MONTH(nod_arrival_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) as lastMonthNodataCount,
+			COUNT(if(MONTH(nod_arrival_date) = month(CURDATE()),1,null)) as thisMonthNodataCount
+		from 
+			nodata_manage	AS n
+			INNER JOIN 
+			user_member AS u
+			ON n.nod_user_pobox_code = u.user_pobox_code	
+		 WHERE 
+		 	u.u_id=#{u_id}; 
+	</select>
+	
+	<select id="nodataCount" parameterType="String" resultType="int">
+		/*노데이터카운트*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			nodata_manage AS n 
+		INNER JOIN 
+			user_member AS u 
+		ON
+		 	n.nod_user_pobox_code = u.user_pobox_code 
+		WHERE 
+			u.u_id=#{u_id} and nod_user_check='n'; 
+	</select>
+	
+	<select id="forwardingCount" parameterType="String" resultType="int">
+		/*제품 포장완료 및 출고대기중*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			goods_info AS g 
+		INNER JOIN 
+			incoming AS i 
+		ON 
+			g.goods_info_code = i.goods_info_code 
+		WHERE 
+			g.id = #{u_id} AND i.approval = 'y';
+	</select>
+	
+	
+	<select id="arrivalCount" parameterType="String" resultType="int">
+		/*제품 입고중*/
+		select 
+			COUNT(if(arrival='y',1,null)) 
+		FROM 
+			goods_info 
+		WHERE 
+			id=#{u_id};
+	</select>
+	
+	
+	<select id="completedApplication" parameterType="String" resultType="int">
+		/*신청서 작성완료*/
+		SELECT 
+			COUNT(if(step3 ="y",1,null)) 
+		FROM 
+			order_info 
+		WHERE 
+			id=#{u_id};
+	</select>
+	
+	
+	<select id="temp" parameterType="String" resultType="int">
+		/*임시저장 건수*/
+		SELECT 
+			COUNT(if(step3='n',1,null)) 
+		FROM 
+			order_info 
+		WHERE
+			 id=#{u_id};
+	</select>
+	
+	<select id="thisMonthCount" parameterType="String" resultType="int">
+		/*이번달 이용건수 조회*/
+		SELECT 
+			COUNT(*) 
+		FROM 
+			order_info 
+		WHERE 
+			id=#{u_id} AND MONTH(goods_order_date) = MONTH(CURDATE());
+	</select>
+	
+	
+	<select id="lastMonthCount" parameterType="String" resultType="int">
+		/*지난달 이용건수 조회*/
+		SELECT 
+			COUNT(if(MONTH(goods_order_date) = month(DATE_SUB( curdate(),  INTERVAL 1 MONTH  )),1,null)) 
+		from 
+			order_info
+		 WHERE 
+		 	id=#{u_id};
+	</select>
+	
+	
+	
+	<select id="getUserInfo" parameterType="String" resultMap="UserInfoResultMap">
+		/*  목록 조회 */
+		SELECT
+		   g.grade_name as user_grade_code
+		   ,u_pw
+		   ,user_pobox_code 
+		   ,u_name
+		   ,u_level 
+		   ,u_addr
+		   ,u_email
+		   ,u_birth 
+		   , u_phone 
+		   ,u_nick
+		   ,u_insert_date
+		   ,u_dormant 
+		   ,pay_completed_count 
+		   ,friends_account 
+		   ,bank_name 
+		FROM 
+			user_member as u inner join grade as g on u.user_grade_code = g.grade_code where u_id = #{u_id};
+	</select>
+	
+	<select id="nextGrade" parameterType="String" resultType="Grade">
+			/* 다음 등급 알림 */
+			select 
+				grade_name as nextGrade, 
+				transaction_number -(select pay_completed_count 
+			from 
+				user_member 
+			where 
+				u_id = #{u_id}) as needBuy
+			from 
+				grade 
+			where 
+				grade_code = (select concat('grade_code', (select 
+							SUBSTRING_INDEX(grade_code,'_code',-1)
+							from grade as g
+							inner join user_member as u
+							on g.grade_code = u.user_grade_code
+					
+							where u.u_id = #{u_id})+1) );
+ 
+	</select >
+	
+	<select id="couponCount" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			coupon_status 
+		WHERE 
+			u_id = #{u_id} AND c_use = 'n'
+	</select>
+</mapper>

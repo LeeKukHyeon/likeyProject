@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<body layout:fragment="content">
+
+
+	<div align="center">
+		<div style="width: 51%">
+			<h2 align="left">1:1문의</h2>
+		</div>
+		<form name="form1" id="regQuestionForm" th:action="@{/personalQuestionRegister}" method="post">
+			<table border="1" style="width: 51%">
+				<tbody>
+					<tr>
+						<td style="padding: 18px 13px; width: 13%"><b>상담 분류</b></td>
+						<td style="padding-left: 18px;">
+							<select style="align-content: center; text-align: center;" id="mtmCate" name="mtmCate">
+								<option value=":::분류 선택:::" selected disabled>:::::분류 선택:::::</option>
+								<option value="회원정보">회원정보</option>
+								<option value="거래방법">거래방법</option>
+								<option value="거래취소/신고/보류">거래취소/신고/보류</option>
+								<option value="결제 및 환불">결제 및 환불</option>
+								<option value="서비스 이용">서비스 이용</option>
+								<option value="배송스케줄 신청">배송스케줄 신청</option>		
+								<option value="오류 제보">오류 제보</option>		
+								<option value="기타">기타</option>		
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td scope="row" style="padding: 18px 13px;"><b>제목 </b></td>
+						<td style="padding-left: 18px;">
+							<input type="text" style="width: 90%;" id="mtmTitle" name="mtmTitle">
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 18px 13px; vertical-align: top;"><b>문의내용</b></td>
+						<td>
+							<textarea style="width: 90%; height: 10cm; margin: 18px;" id="mtmContent" name="mtmContent"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 18px 13px;"><b>파일첨부</b></td>
+						<td>
+							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName1" > 
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck1"name="mtmImg">
+							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName2" > 
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck2"name="mtmImg">
+							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName3" > 
+							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck3"name="mtmImg">
+							<p style="margin-left: 18px; color: #FAC6C6">* 10MB 이하의 파일 3개까지 첨부하실 수 있으며 jpg, png, gif, pdf 파일형식만 첨부하실 수 있습니다.</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="width: 51%; margin-top: 10px"align="right"><button type="submit" style="margin-left: auto;" id="mtmSituation" name="mtmSituation" value="접수">문의하기</button></div>
+		</form>
+		
+			<!-- 이미지 파일 input 넣기  -->
+			<script type="text/javascript">
+			$('#imgcheck1').change(function(){
+				var check = $('#imgcheck1').val();
+				var lastVal = check.lastIndexOf('.');
+				var firstVal = check.lastIndexOf('fakepath')+9;
+				var check2 = check.substring(firstVal,lastVal)
+				$('#fileName1').val(check2);
+			})
+			$('#imgcheck2').change(function(){
+				var check = $('#imgcheck2').val();
+				var lastVal = check.lastIndexOf('.');
+				var firstVal = check.lastIndexOf('fakepath')+9;
+				var check2 = check.substring(firstVal,lastVal)
+				$('#fileName2').val(check2);
+			})
+			$('#imgcheck3').change(function(){
+				var check = $('#imgcheck3').val();
+				var lastVal = check.lastIndexOf('.');
+				var firstVal = check.lastIndexOf('fakepath')+9;
+				var check2 = check.substring(firstVal,lastVal)
+				$('#fileName3').val(check2);
+			})
+			</script>
+			
+			<!-- 유효성 검사 -->
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$('#mtmSituation').click(function(){
+					var checkCate = $('#mtmCate').val()
+					var checkTitle = $('#mtmTitle').val()
+					var checkContent = $('#mtmContent').val()
+					if(checkCate == 'undefined' || checkCate == '' || checkCate == null || checkCate == ':::분류 선택:::'){
+						alert('카테고리 설정을 해주세요')
+						return false;
+					}
+				 	if(checkTitle == 'undefined' || checkTitle == '' || checkTitle == null){
+					alert('문의 제목을 써 주세요')
+					return false;
+					}
+					if(checkContent == 'undefined' || checkContent == '' || checkContent == null){
+					alert('문의 내용을 써 주세요')
+					return false;
+					}
+				})
+			})
+			</script>
+			
+	</div>
+
+</body>
+</html>

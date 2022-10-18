@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<body layout:fragment="content">
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+            <div class="single-slider slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Login</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End-->
+        <!--================login_part Area =================-->
+        <section class="login_part section_padding ">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="login_part_text text-center">
+                            <div class="login_part_text_iner">
+                                <h2>처음 오셨나요?</h2>
+                                <p> 원하는게 있다면 놓지지 마세요. 역직구의 시작과 끝을 <br>
+                                   	 한국 대표 플랫폼 LIKEY와 함께 하세요. 지금 바로 가입하면 이벤트가 팡팡 ~ </p>
+                                <a th:href="@{/userForm}" class="btn_3">회원가입 하러가기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="login_part_form">
+                            <div class="login_part_form_iner">
+                                <h3>역직구의 모든것! <br>
+                                    	로그인 후 이용바랍니다</h3>
+                                <form class="login_form" th:action="@{/userLogin}" method="post">
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="uId" name="uId" value="" placeholder="아이디">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="password" class="form-control" id="uPw" name="uPw" value="" placeholder="비밀번호">
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <div class="creat_account d-flex align-items-center">
+                                            <input type="checkbox" id="f-option" name="selector">
+                                            <label for="f-option">아이디 기억하기</label>
+                                        </div>
+                                        <button type="submit" id="loginBtn" class="btn_3">
+                                        	로그인
+                                        </button>
+                                        <a class="lost_pass" th:href="@{/findIdPw}">비밀번호를 잊으셨나요?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================login_part end =================-->
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	var msg = [[${msg}]];
+	if(msg != null) alert(msg);
+	
+	$("#loginBtn").click(function(){
+		console.log("버튼클릭해따!");
+		
+		var checkValid = true;
+		var inputObj = $('loginForm input');
+		
+		$.each(inputObj, function(){
+			var inputData = $(this).val();
+			if(typeof inputData == 'undefined' || inputData == null || inputData == '') {
+				checkValid = false;
+				var alertMsg = $('label[for="'+ $(this).attr('id') +'"]').text();
+				alert(alertMsg + " 를 입력해주세요");
+				$(this).focus();
+				return false;
+			}
+		});
+		
+		if(checkValid) $('#loginForm').submit()`;
+	});
+});
+</script>
+</body>
+</html>

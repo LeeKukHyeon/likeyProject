@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>역직구의 모든것, LIKEY</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+		
+	<!-- config.html -->
+   	<th:block th:replace="fragments/config::configFragment"></th:block>
+<style>
+	.single_product_img{
+		width: 500px;
+		height: 200px;
+		padding-bottom: 300px;
+	}
+	.img-fluid{
+		padding-top: 60px;
+		padding-left: 100px;
+		padding-right: 80px;
+	}
+	.owl-prev{
+		margin-left: 70px;
+		margin-top: 70px;
+	}
+	.owl-next{
+		margin-right: 50px;
+		margin-top: 70px;
+	}
+	.product_image_area{
+		margin-top:100px;
+	}
+	.container{
+		margin:10px;
+		margin-left:200px; 
+		margin-top: 10px;
+	}
+	.goBtn{
+		width: 170px;
+		height: 70px;
+		margin: 10px;
+		background-color: white;
+		border-color: #dddddd;
+		border-radius: 10px;
+		font-size:12px; 
+		font-weight:bold;
+	}
+	.contentLabel{
+		border: 5px solid;
+		border-radius: 10px;
+		border-color: #dddddd;
+		height: 50%;
+		padding: 20px;
+	}
+	.contentLabel h3{
+		font-size:20px; 
+		font-weight:bold;
+	}
+	.contentLabel p{
+		font-size:15px; 
+		font-weight:bold;
+	}
+</style>
+</head>
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+<body>
+	<main> 
+		<!--================Single Product Area =================-->
+		<div class="product_image_area">
+		    <div class="container">
+		    	<div class="row"  style="padding-top: 60px;">
+					<div class="product_img_slide owl-carousel" style="width: 500px;">
+					    <div class="single_product_img">
+					        <img src="assets/img/gallery/gogo.png" alt="#" class="img-fluid">                             
+					    </div>
+					   <div class="single_product_img">
+					        <img src="assets/img/gallery/gallery3.jpg" alt="#" class="img-fluid">
+					    </div>
+					    <div class="single_product_img">
+					        <img src="assets/img/gallery/gallery4.jpg" alt="#" class="img-fluid">
+					    </div>
+					    <div class="single_product_img">
+					        <img src="assets/img/gallery/gallery5.jpg" alt="#" class="img-fluid">
+					    </div>
+					    <div class="single_product_img">
+					        <img src="assets/img/gallery/gallery6.jpg" alt="#" class="img-fluid">
+					    </div>
+					</div>
+		         	<div class="contentLabel" style="margin-top: 60px; width: 50%;">
+			          	<h3>팀프로젝트 소개</h3>
+			          	<p>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
+		          		<div>
+				           <a th:href="@{/adminPage}"><button type="button" class="goBtn">관리자페이지</button></a>
+				           <a th:href="@{/}"><button type="button" class="goBtn">사용자페이지</button></a>
+		         		</div>
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+        <!--================End Single Product Area =================-->
+	</main>
+    <!-- JS here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+
+        <!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+        <!-- Scroll up, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+        
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+        <!-- Jquery Plugins, main Jquery -->    
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+
+        <!-- swiper js -->
+        <script src="./assets/js/swiper.min.js"></script>
+            <!-- swiper js -->
+        <script src="./assets/js/mixitup.min.js"></script>
+        <script src="./assets/js/jquery.counterup.min.js"></script>
+        <script src="./assets/js/waypoints.min.js"></script>       
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+    

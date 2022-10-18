@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.top_login_wrap {height:35px;border-bottom:1px solid #dcdcdc}
+.top_login_wrap .wrap {position:relative;}
+
+.top_login_wrap .wrap .left_bookmark > li:first-child {border-left:1px solid #dcdcdc;}
+.top_login_wrap .wrap .left_bookmark > li {float:left;height:35px;border-right:1px solid #dcdcdc;padding:0 23px;}
+.top_login_wrap .wrap .left_bookmark > li a {display:inline-block;font-size:12px;color:#585858;font-weight:bold;line-height:34px;}
+.top_login_wrap .wrap .left_bookmark > li:first-child > a {background:url(image/S_top_bookmark.gif) 100% 50% no-repeat;padding-right:21px;}
+.top_login_wrap .wrap .left_bookmark > li:nth-child(2) {width:80px;}
+.top_login_wrap .wrap .left_bookmark > li:nth-child(2) > a {background:url(image/S_top_language.gif) 100% 50% no-repeat;padding-right:46px;}
+.top_login_wrap .wrap .left_bookmark > li > div > ul {display:none;position:absolute;top:0;left:-24px;width:106px;background-color:#ffffff;border:1px solid #dcdcdc;border-top:0;padding:10px;}
+.top_login_wrap .wrap .left_bookmark > li > div > ul > li {font-size:13px;line-height:25px;}
+
+.top_login_wrap .wrap .right_login {position:absolute;right:0;top:0;z-index:1;}
+.top_login_wrap .wrap .right_login > li {float:right;background:url(image/S_top_login_line.gif) 100% 50% no-repeat;padding:0 13px;}
+.top_login_wrap .wrap .right_login > li:first-child {padding-right:0;background:none;}
+.top_login_wrap .wrap .right_login > li > a {display:inline-block;line-height:34px;font-size:12px;color:#858585;font-weight:bold;}
+.top_login_wrap .wrap .right_login .login_icon > a {background:url(image/S_top_login.gif) 0 50% no-repeat;padding-left:14px;}
+
+.top_login_wrap .wrap .right_login .top_login_box {display:none;position:absolute;top:0;left:-55px;width:140px;background-color:#ffffff;border:1px solid #e7e7e7;border-top:0;padding:15px}
+.top_login_wrap .wrap .right_login .top_login_box > li > a {display:block;padding:10px 0;font-size:14px;color:#696969;font-weight:bold;border-bottom:1px solid #e7e7e7;}
+.top_login_wrap .wrap .right_login .top_login_box > li > ul {padding:10px 0 5px;}
+.top_login_wrap .wrap .right_login .top_login_box > li > ul > li > a {font-size:13px;color:#727272;line-height:30px;}
+
+.top_login_wrap .wrap .right_login .top_cs_box {display:none;position:absolute;top:0;left:-50px;width:130px;background-color:#ffffff;border:1px solid #e7e7e7;border-top:0;padding:15px}
+.top_login_wrap .wrap .right_login .top_cs_box > li > a {display:block;padding:7px 0;font-size:14px;color:#696969;font-weight:bold;}

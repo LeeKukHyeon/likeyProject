@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>라이키 관리자 페이지 </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!--adminConfig.html-->
+			<th:block th:replace="adminFragments/adminConfig::adminConfigFragment"></th:block>
+	</head>
+
+		<!-- start header  -->
+	<header th:replace="adminFragments/adminHeader::adminHeaderFragment"></header>
+		<!-- end header  -->
+	
+		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+	<body layout:fragment="adminContent"></body>
+		    
+		<!-- start footer  -->
+	<footer th:replace="adminFragments/adminFooter::adminFooterFragment"></footer>
+		<!-- end footer  -->
+
+</html>

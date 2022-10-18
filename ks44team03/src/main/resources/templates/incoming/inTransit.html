@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 입고등록 -->
+<title>입고등록</title>
+</head>
+
+<!-- ========== 입고등록 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고등록 화면 시작 ========== -->
+				<h2>상품도착등록</h2>
+				<div class="incoming_register">
+					<form method="get" th:action="@{/inTransit}">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="goods_info_code">상품정보 코드</option>
+							        		<option value="g_name">상품명</option>
+							        		<option value="out_company">택배회사</option>							        		
+							        		<option value="send_out">출고날짜</option>							        		
+							        		<option value="out_tracking_num">운송장번호</option>
+							        	</select>
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="submit" id = "btn_Search" class="searchBtn">조회</button>
+							       	
+		       				 </div>
+		       			</form>
+		       		<form method="get" th:action="@{/inTransit}">
+						<table class = "input_table" style="width:100%">
+						
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>상품명</th>
+									<th>택배회사</th>
+									<th>출고날짜</th>
+									<th>운송장번호</th>
+														
+								</tr>								
+							</thead>
+							  <tbody>
+							 	
+								<tr th:each = "i :${inTransit}">
+									<td><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.gName}">d</td>
+									<td th:text="${i.deliveryCompany}">d</td>
+									<td th:text="${i.arrivalDate}">d</td>
+									<td th:text="${i.trackingNum}">d</td>
+								
+									
+								
+								</tr>
+							  </tbody>
+						</table>
+						<button type="submit" id="sub_btn" >등록</button>
+					</form>
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+
+</body>
+
+</html>
