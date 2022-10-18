@@ -59,7 +59,7 @@ public class CommunityService {
 			fileMapper.addFile(fileList);
 		}
 		
-		//log.info("이용후기 등록결과 : " + result);
+		log.info("이용후기 등록결과 : " + result);
 	}
 	
 	// 이용후기 게시판 목록
@@ -113,8 +113,8 @@ public class CommunityService {
 // ---------------------------------- 이용후기 관련 Service End --------------------------------------	
 	
 	// 게시판 유효성 검사
-	public boolean checkUserPw(String checkUserPw) {
-		boolean result = communityMapper.checkUserPw(checkUserPw);
+	public boolean checkUserPw(String checkUserId, String checkUserPw) {
+		boolean result = communityMapper.checkUserPw(checkUserId, checkUserPw);
 		
 		log.info("checkUserId 중복체크 ::::" + result);
 		return result;
@@ -122,12 +122,23 @@ public class CommunityService {
 	
 // ---------------------------------- 정보공유 관련 Service State --------------------------------------		
 	// 정보공유 등록
-	public void addPostborde(Community community) {
+	public void addPostborde(Community community,MultipartFile[] multipartFile, String fileRealPath, boolean isLocalhost) {
 		String newCommunityCode = commonMapper.getCommonPkNumCode("community", "cm_num");
+		
 		community.setCommunityNum(newCommunityCode);
 		
-		log.info("community 입니다------------"+ community);
+		
+		/* log.info("community 입니다------------"+ community); */
 		int result = communityMapper.addPostborde(community);
+		
+		List<FileDto> fileList= fileUtil.parseFileInfo(multipartFile, fileRealPath , isLocalhost,newCommunityCode);
+		
+		
+		
+		if(fileList != null) {
+			
+			fileMapper.addFile(fileList);
+		}
 		
 		log.info("정보공유 등록결과 : " + result);
 	}
