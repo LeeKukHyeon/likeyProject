@@ -45,6 +45,7 @@ public class myPageApiController {
 		System.out.println(shipOrderApi);
 		return "myPage/myPageApi/shipOrderApi";
 	}
+	
 
 	@PostMapping("api/nodataListApi")
 	public String nodataListApi(Model model) {
@@ -53,8 +54,8 @@ public class myPageApiController {
 		model.addAttribute("nodataList", nodataList);
 		return "myPage/myPageApi/nodataList";
 	}
-
 	
+	 
 	@PostMapping("shipStepInfo")
 	public String shipStepInfo(@RequestParam(name="q_ship_step_type", defaultValue = "") String shipStepInfo) {
 		
