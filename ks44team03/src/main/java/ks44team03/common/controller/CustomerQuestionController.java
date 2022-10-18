@@ -54,10 +54,11 @@ public class CustomerQuestionController {
 		paramMap.put("sv", sv);
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.searchQuestion(paramMap);
+		System.out.println(QuestionList + " 검색했을때 받아오는값임!@#!@$!#$!#$!@#$@#$@#$!@#$!@$#!@");
 		
 		model.addAttribute("QuestionList", QuestionList);
 		model.addAttribute("sv", sv);
-		
+	
 		return "/customerService/question/personalQuestionSearchAdmin";
 	}
 	

@@ -32,18 +32,18 @@ public class CouponController {
 		
 		if("userId".equals(sk)) {
 			sk = "cs.u_id";
-		}else{
-			sk = "c_name";
+		}else if ("couponName".equals(sk)){
+			sk = "c.c_name";
 		}
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("sk", sk);
 		paramMap.put("sv", sv);
 		
-		List<Coupon> couponSearch = couponSerive.couponSearch(paramMap);
-		System.out.println(couponSearch + "couponSearch 검색확인!@@!@@@%^!%^@$@%^%!$@^%!$^%@$1%#!@");
+		List<Coupon> couponUserList = couponSerive.couponSearch(paramMap);
+		System.out.println(couponUserList + "couponSearch 검색확인!@@!@@@%^!%^@$@%^%!$@^%!$^%@$1%#!@");
 		
-		model.addAttribute("couponSearch", couponSearch);
+		model.addAttribute("couponUserList", couponUserList);
 		model.addAttribute("sv", sv);
 		
 		return "/couponManagementAdmin/couponUserList";

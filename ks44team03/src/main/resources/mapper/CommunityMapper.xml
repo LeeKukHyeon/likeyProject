@@ -23,7 +23,7 @@
 	<select id="checkUserPw" parameterType="String" resultType="Boolean">
 		/* 게시판 유효성 검사 */
 		SELECT
-			COUNT(u.u_pw)
+			COUNT(DISTINCT u.u_pw)
 		FROM
 			community AS c
 			INNER JOIN 
@@ -31,7 +31,7 @@
 			ON 
 			c.id = u.u_id
 		WHERE
-			u.u_pw = #{checkUserPw};
+		    c.id = #{checkUserId} AND u.u_pw = #{checkUserPw};
 	</select>
 <!-- ########################### 이용후기 관련 mapper State ################################# -->	
 	<!-- 이용후기 등록 -->
@@ -114,6 +114,7 @@
 	</select>
 	<!-- 이용후기 수정 -->
 	<update id="modifyReview" parameterType="Community">
+		/* 이용후기 수정 */
 		UPDATE community
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="communityTitle != null and communityTitle != ''">
@@ -172,7 +173,7 @@
 	</select>
 	<!-- 정보공유 목록 검색조회 -->
 	<select id="getSearchPostbordeList" resultMap="communityResultMap">
-		/* 이용후기 목록 검색조회 */
+		/* 정보공유 목록 검색조회 */
 		SELECT
 		   cm_num
 		  ,id
@@ -198,13 +199,13 @@
 		,id
 		,cm_title
 		,cm_content
-		,cm_img
+	
 		,cm_date
 		,cm_view
 		,community_cate
 		)
 		VALUES
-		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '정보공유');
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent},CURDATE(), 0, '정보공유');
 	</insert>
 
 	<!-- 정보공유 상세정보 -->
@@ -215,6 +216,7 @@
 			,id
 			,cm_title
 			,cm_content
+			,cm_img AS communityImg
 			,cm_date
 		FROM
 			community
@@ -234,6 +236,7 @@
 	
 	<!-- 정보공유 수정 -->
 	<update id="modifyPostborde" parameterType="Community">
+		/* 정보공유 수정 */
 		UPDATE community
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="communityTitle != null and communityTitle != ''">
