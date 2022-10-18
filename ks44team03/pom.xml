@@ -11,11 +11,12 @@
    <groupId>ks44team03</groupId>
    <artifactId>ks44team03</artifactId>
    <version>0.0.1-SNAPSHOT</version>
-   <packaging>war</packaging>
+   <packaging>jar</packaging>
    <name>ks44team03</name>
    <description>ks44team03 project for Spring Boot</description>
    <properties>
       <java.version>11</java.version>
+      <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
    </properties>
    <dependencies>
       <dependency>
