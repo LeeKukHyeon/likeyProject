@@ -10,6 +10,9 @@ import ks44team03.dto.NoticeCenter;
 @Mapper
 public interface CustomerNoticeMapper {
 	
+	//공지사항 조회수 카운터
+	public void countView(String noticeNumCode);
+	
 	//공지사항 검색
 	public List<NoticeCenter> noticeSearch(Map<String, Object> searchMap);
 	

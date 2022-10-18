@@ -4,85 +4,267 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
-      
+  <div class="incoming_modal_layer"></div>     
 <head>
 <style>
-	.goodsInfo{
-		margin-left: 10%;
-		margin-right: 10%;
-		margin-bottom: 10%;
-		margin-top: 40px;
-		border: 1px solid #dddddd;
-		border-radius: 20px;
-		padding: 30px;
+.add_button {
+	  background-color: #797979;
+	  border: none;
+	  color: white;
+	  padding: 10px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 13px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+	  border-radius: 10px;
+		}
+.add_button:hover{
+  background-color: #535353;
+}
+.cancel_button {
+    background-color: #797979;
+    border: 1px solid;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight:bold;
+    border-radius: 10px;
 	}
-	.goodsInfo img{
-		border: 2px solid #dddddd;
-		border-radius: 20px; 
-		width: 40%;
-		background-color: red;
-		vertical-align: top;
-		margin-left: 40px;
-	}
-	.goodsImg strong{
-		font-size: 30px; 
-	}
-	.goodsImgText{
-		width: 100%;
-		/* background-color: #dddddd; */
-		margin-top: 10px;
-	}
-	.receiptBtn{
-		margin-left: 85%;	
-		padding: 10px 20px;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		background-color: white;
-		color: #565656;
-	}
-	.receiptBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
-	.goListBtn{
-		padding: 10px 20px;
-		background-color: white;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		color: #565656;
-	}
-	.goListBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
-</style>
-</head>
-
-<body layout:fragment="content">
-	<div class="goodsInfo">
-		<span class="goodsImg">
-			<img src="/image/sinbal.png">
-			<!-- 14글자 제한 -->
-			<label class="goodsImgText">
-				<hr>
-				<strong th:text="${title}">(14글자)</strong>
-				<p th:text="${title}">상품 상세정보 내용</p>
-				<hr>				
-			</label>
-			<div>
-				<a href="/orderList"><button type="button" class="goListBtn">목록</button></a>
-				<a href="#"><button type="button" class="receiptBtn">접수</button></a>
-			</div>	
-		</span>
-	</div>
+.cancel_button:hover{
+	background-color: #535353;
+}
+.communityInfo{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 10%;
+	margin-top: 40px;
+	border: 1px solid #dddddd;
+	border-radius: 20px;
+	padding: 30px;
+}
+.communityInfo img{
+	border: 2px solid #dddddd;
+	border-radius: 20px; 
+	width: 40%;
+	background-color: red;
+	vertical-align: top;
 	
+}
+.reviewImg strong{
+	font-size: 30px; 
+}
+.reviewImgText{
+	width: 100%;
+	/* background-color: #dddddd; */
+	margin-top: 10px;
+}
+.receiptBtn{
+	margin-left: 100%;	
+	padding: 10px 20px;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: white;
+	color: #565656;
+}
+.receiptBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.goListBtn{
+	padding: 10px 20px;
+	background-color: white;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #565656;
+}
+.goListBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.modifyCmnBtn{
+	padding: 10px 20px;
+	background-color: white;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #565656;
+}	
+.modifyCmnBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.removeCmnBtn{
+	padding: 10px 20px;
+	background-color: white;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #565656;
+}
+.removeCmnBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
+.input_table th {
+	    background-color: #f8f8f8;
+	    font-size: 15px;
+	    color: #535353;
+	    font-weight: bold;
+	    text-align: center;
+	    
+}
+.input_table th, .input_table td {
+    border: 1px solid #c6c6c6;
+	}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+h2{
+	border-bottom: 1px solid #c6c6c6;
+	padding-bottom: 10px;
+}
+#incoming_modal {
+  display: none;
+  position: absolute;
+
+  height: 100px; /*100%*/
+  width: 1500px; /*100%*/
+  z-index:1;
+  
+}
+
+.modal .incoming_modal_content {
+  width:80%;
+  margin:15% auto;
+  padding:20px;
+  background:#fff;
+  border:2px solid #666; 
+}
+.modal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+ 
+  background:rgba(0, 0, 0, 0.3);
+  z-index:1500;
+}
+</style>
+<!-- alert(/*[[${reviewInfo.communityDate}]]*/); -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+	/*<![CDATA[*//*]]>*/
+	$(function(){
+		$(document).ready(function(){
+
+			var communityId = /*[[${reviewInfo.communityId}]]*/; 
+			var request = $.ajax({
+				url : '/reviewListIdCheck',
+				method : "GET",
+				data : {'communityId' : communityId},
+				dataType : 'json'
+			});
+			request.done(function(data){
+				if(data){
+					/* alert('아이디 일치'); */
+					$('.modifyCmnBtn').css('display','inline');
+				}else{
+					/* alert('아이디 불일치!!!!'); */
+					$('.modifyCmnBtn').css('display','inline');
+				}
+			});
+			request.fail(function( jqXHR, textStatus){
+				alert("Request failed:" + textStatus);	
+			});
+		// 이용후기 수정유효성검사 (미완성)!!
+		});
+	});
+	// 테스트 모달
+	 $(function(){
+	      $(document).on('click', '.incoming_modal_open', function(){
+	         $('.modal').css('display', 'block');
+	         $('.main-header').css('display', 'none');
+	      /*    $('ul').css('display','none');
+	         $('nav').css('position','fixed'); */
+
+	         
+	      });
+	      $(document).on('click', '#incoming_modal_close', function(){
+	         $('.modal').css('display', 'none');
+	         
+	      });
+	   });
+</script>
+</head>
+<!-- main-header header-sticky sticky-bar sticky -->
+<body layout:fragment="content">
+<div class="modal">
+	
+               <div class="incoming_modal_content">
+                  <h1 style="text-align: center;">모달테스트</h1>
+                  	
+                 
+                  
+                 <div class="incoming_modal_button" align="center">
+                     <button type="button" id="incoming_modal_reg" class="add_button">등록</button>
+                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+                 </div>
+                  
+               </div>
+              
+</div>
+	<div align="center">
+		<div class="communityInfo">
+		<!-- <button type="button" class="idCheckBtn"></button> -->
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/reviewList}">이용후기</a></p>
+			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${reviewInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
+			<h4 th:text="${reviewInfo.communityTitle}"></h4>
+			<hr width="100%" color="#dddddd">
+			
+			<img th:src="${communityNumInfo.communityImg}">
+			<hr width="100%" color="#dddddd">
+			<!-- 14글자 제한 -->
+			<div>
+				<div style="text-align: left; color: black;" >
+					<p th:text="${reviewInfo.communityContent}"></p>
+				</div>
+			</div>
+				<a th:href="@{/modifyReview(communityNum=${reviewInfo.communityNum})}"><button type="button" class="modifyCmnBtn">수정</button></a>
+				<a th:href="@{/reviewList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<a tH:href="@{/removeReview(communityNum=${reviewInfo.communityNum})}"><button type="button" class="removeCmnBtn">삭제</button></a>
+				<button class="incoming_modal_open" style="margin-left: 50px; padding: 50px;">모달테스트</button>
+				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
+		</div>	
+	</div>
+		
 </body>
 </html>

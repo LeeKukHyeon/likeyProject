@@ -15,7 +15,30 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
+
+<header>
+ <!--------------- 로그인 부분 --------------->
+<div class="top_login_wrap">
+	<div class="wrap">
+
+		<ul class="right_login">
+			<li class="cs_bt"><a href="#">고객센터</a></li>
+			<li><a href="#">이벤트</a></li>
+			<li><a href="#">마이페이지</a></li>
+			<li><a th:if="${session.SID != null}" href='#'>회원수정</a></li>	
+			<li><a th:if="${session.SID == null}"th:href="@{/userForm}">회원가입</a></li>	
+			<li class="login_icon login_bt"><a th:if="${session.SID == null}" th:href="@{/loginForm}">로그인</a></li>
+			<li class="login_icon login_bt"><a th:if="${session.SID != null}" href='#'>로그아웃</a></li>
+		</ul>
+		<div th:if="${session.SID != null}" style="position:relative;">
+			<label>[[${session.SNAME + '님 반갑습니다.'}]]</label>
+		</div>
+
+	</div>
+</div>
+<!--------------- //로그인 부분 --------------->
+    
+    
         <!-- Header Start -->
         <div class="header-area">
             <div class="main-header header-sticky">
@@ -29,33 +52,48 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="index.html">#회사소개</a></li>
-                                    <li><a href="#">#구매대행</a></li>
-                                    <li><a href="#">#배송대행</a></li>
-                                    <li class="hot"><a href="#">#프렌즈구매대행</a>
+                                    <!-- <li><a href="/index">#회사소개</a></li> -->
+                                    <li><a href="applicationFormRegister">!구매대행(문지혜)</a>
                                         <ul class="submenu">
-                                            <li><a href="shop.html"> Product list</a></li>
-                                            <li><a href="product_details.html"> Product Details</a></li>
+                                            <li><a href="/aboutPa">!구매대행이란?</a></li>
+                                            <li><a href="/applicationFormRegister">!신청서작성</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">#커뮤니티</a>
+                                    <li><a href="/applicationFormRegister">!배송대행(문지혜)</a>
                                         <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
+                                            <li><a href="/aboutDa">!배송대행이란?</a></li>
+                                            <li><a href="/applicationFormRegister">!신청서작성</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">#고객센터</a></li>
-                                    <li><a href="mypageScreen">!마이페이지</a>
+                                    <li class="hot"><a href="#">!프렌즈구매대행(문지혜)</a>
                                         <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
+                                            <li><a href="/aboutFriendsPa">!프렌즈구매대행이란?(문지혜)</a></li>
+                                            <li><a href="/friendsApplicationFormRegister">!신청서작성</a></li>
                                         </ul>
                                     </li>
-                                    <li><a th:href="@{/adminPage}">관리자페이지</a>
-                                    	
+                                    
+                                    <li><a href="#">!커뮤니티(김덕현)</a>
+                                        <ul class="submenu">
+                                            <li><a th:href="@{/reviewList}">!이용후기(김덕현)</a></li>
+                                            <li><a th:href="@{/postbordeList}">!정보공유(김덕현)</a></li>
+                                            <li><a th:href="@{/orderList}">#프렌즈 주문서게시판(김덕현)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">!고객센터</a>
+                                      <ul class="submenu">
+                                          <li><a th:href="@{/noticeList}">공지사항</a></li>
+                                          <li><a th:href="@{/personalQuestionRegister}">1:1문의하기</a></li>
+                                          <li><a th:href="@{/myQuestionList}">내 문의 내역</a></li>
+                                          <li><a th:href="@{/faqSearch}">자주하는질문</a></li>
+                                          <li><a th:href="@{/deliveryScheduleSearch}">배송 스케줄</a></li>
+                                          <li><a th:href="@{/testPage}">테스트 페이지</a></li>
+                                      </ul>
+                                  </li>
+                                    <li><a href="/user/mypageScreen">!마이페이지(이국현)</a>
+                                    
+                                    </li>
+                                    <li><a th:href="@{/adminPage}">!관리자페이지(김덕현)</a>
+                                       
                                     </li>
                                 </ul>
                             </nav>
@@ -68,7 +106,7 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="../login/loginForm.html"><span class="flaticon-user"></span></a></li>
+                                <li> <a href="/loginForm"><span class="flaticon-user"></span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
                         </div>
@@ -80,8 +118,8 @@
                 </div>
             </div>
         </div>
-        <!-- Header End -->
-    </header>
+</header>
+<!-- Header End -->
 
 
 </div>

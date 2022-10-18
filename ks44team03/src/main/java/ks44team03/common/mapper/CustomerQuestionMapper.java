@@ -6,9 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.QuestionCenter;
+import ks44team03.dto.UserInfo;
 
 @Mapper
 public interface CustomerQuestionMapper {
+	
+	//ass 테스트
+	public List<UserInfo> memberInfo();
 	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> searchMap);

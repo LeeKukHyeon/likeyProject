@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+	<link rel="stylesheet" href="assets/css/temporarily.css">
+</head>
+<body layout:fragment="adminContent">
+	<div class="content-wrapper">
+		<table class="couponList" border="1" style="width: 70%;">
+			<tbody>
+				<tr>
+					<th>쿠폰 부여 순번 코드</th>
+					<th>쿠폰 코드</th>
+					<th>쿠폰 이름</th>
+					<th>회원 아이디</th>
+					<th>발급 일자</th>
+					<th>유효 기간</th>
+					<th>사용한 날짜</th>
+					<th>사용 여부</th>
+				</tr>
+				<tr th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
+					<td th:text="${l.csCode}"></td>
+					<td th:text="${l.cCode}"></td>
+					<td>쿠폰이름</td>
+					<td th:text="${l.userId}"></td>
+					<td th:text="${l.cDate}"></td>
+					<td th:text="${l.cEDate}"></td>
+					<td th:text="${l.cUseDate}"></td>
+					<td style="text-align: center;" th:text="${l.cUse}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -5,7 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 
-<meta charset="UTF-8">
+
 <head>
 	<style>
 	h2{
@@ -19,15 +19,20 @@
 			margin: 15px;
 			background-color: white;
 			border: 1px solid #c6c6c6;
+			font-size: 15px;
+			font-weight: bold;
 				
 		}
 	.content-wrapper button:hover{
 			background-color: #535353;
-			
+			color: white;
 	}
 	a{
 		text-decoration: none;
 		color: black;
+	}
+	a:hover{
+		color: white;
 	}
 	</style>
 </head>
@@ -37,22 +42,16 @@
         <div class="content-wrapper">             
              	<h2 th:text="${title}"></h2> <!-- 컨텐츠? -->	
              	<div class="row">
-             		<div class="col-sm-12">		
-						<button type="button">
-							<strong><a th:href="@{/companyRegister}">회사등록</a></strong>
-						</button>
+             		<div class="col-sm-12">	 			
+						<a th:href="@{/companyRegister}"><button type="button">회사등록</button></a>
 						
-						<button type="button">
-							<strong><a th:href="@{/company/workplace/workPlaceRegister}">사업장등록</a></strong>
-						</button>
-						<button type="button">
-							<strong><a th:href="@{/company/department/departmentRegister}">부서등록</a></strong>
-						</button>
-						<button type="button">
-							<strong><a th:href="@{/company/employee/employeeRegister}">사원등록</a></strong>
-						</button>	
+						<a th:href="@{/workPlaceRegister}"><button type="button">사업장등록</button></a>
+										
+						<a th:href="@{/departmentRegister}"><button type="button">부서등록</button></a>
+																
+						<a th:href="@{/employeeRegister}"><button type="button">사원등록</button></a>	
 					</div>
-								      
+				</div>				      
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ks44team03.common.mapper.FileMapper">
+	<resultMap type="FileDto" id="fileResultMap">
+		
+		<result property="filePath" 	column="cm_img"/>
+		
+		
+	</resultMap>
+	
+	<update id="addFile" parameterType="java.util.List">
+		<foreach collection="fileList" item="data" index="index" separator=";">
+			update community
+			set		
+				cm_img = #{data.filePath}
+			where 
+				cm_num = ${data.newCommunityCode}
+		
+		</foreach>
+	</update>
+	
+	<select id="getFileList" resultMap="fileResultMap">
+		SELECT
+			 file_idx
+			,file_new_name
+			,file_original_name
+			,file_path
+			,file_size
+		FROM
+			tb_file
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			file_islocal = #{fileIsLocal};
+		</trim>
+	</select>
+
+	<select id="getFileInfoByIdx" parameterType="string" resultMap="fileResultMap">
+		SELECT
+			 file_idx
+			,file_new_name
+			,file_original_name
+			,file_path
+			,file_size
+		FROM
+			tb_file
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="fileIdx != null and fileIdx != ''">
+				file_idx = #{fileIdx}
+			</if>
+			<if test="fileIsLocal != null and fileIsLocal != ''">
+				AND file_islocal = #{fileIsLocal};
+			</if>
+		</trim>
+	</select>
+</mapper>

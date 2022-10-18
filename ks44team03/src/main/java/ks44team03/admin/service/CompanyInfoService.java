@@ -41,19 +41,19 @@ public class CompanyInfoService {
 	// 회사등록 사업자등록번호 중복검사
 	public boolean companyNumCheck(String companyNum) {
 		boolean result = companyInfoMapper.companyNumCheck(companyNum);
-		
+
 		log.info("companyNum 중복체크 : " + result);
 		return result;
 	}
-	
+
 	// 회사 등록
 	public void addCompany(CompanyInfo companyInfo) {
 		String newCompanyCode = commonMapper.getCommonPkCode("company_info", "ci_code");
 		companyInfo.setCompanyCode(newCompanyCode);
-		
+
 		log.info("companyInfo 입니다---------"+ companyInfo);
 		int result = companyInfoMapper.addCompany(companyInfo);
-		
+
 		log.info("회사 등록 결과 : " + result);
 	}
 	// 회사 목록 검색
@@ -61,6 +61,7 @@ public class CompanyInfoService {
 		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);
 		return companyList;
 	}
+	
 	// 회사 목록 조회
 	public List<CompanyInfo> getCompanyList(){
 	  

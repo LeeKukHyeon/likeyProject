@@ -25,6 +25,14 @@ public class CustomerNoticeService {
 	}
 	
 	
+	//배송스케줄 조회수 카운트
+	public void countView(String noticeNumCode) {
+		
+		customerNoticeMapper.countView(noticeNumCode);
+		
+	}
+	
+	
 	//공지사항 검색
 	public List<NoticeCenter> noticeSearch(Map<String, Object> paramMap){
 		

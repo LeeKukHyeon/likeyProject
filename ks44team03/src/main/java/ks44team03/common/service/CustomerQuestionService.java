@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.common.mapper.CustomerQuestionMapper;
 import ks44team03.dto.QuestionCenter;
+import ks44team03.dto.UserInfo;
 
 @Service
 public class CustomerQuestionService {
@@ -20,7 +21,7 @@ public class CustomerQuestionService {
 		this.customerQuestionMapper = customerQuestionMapper;
 		this.commonMapper = commonMapper;
 	}
-	
+
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> paramMap){
 		
@@ -28,8 +29,6 @@ public class CustomerQuestionService {
 		
 		return searchQuestion;
 	}
-
-	
 	
 	
 	//1:1문의 삭제
