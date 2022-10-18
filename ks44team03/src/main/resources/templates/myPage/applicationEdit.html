@@ -331,7 +331,7 @@
 													</table>
 													
 													<div class="item_bt_list">
-														
+														<div><a href='javascript:void(0);' onClick=\"itemTracking();\">트레킹 확인</a></div>
 														<div><a href="javascript:void(0);" onClick="javascript:addItem('copy', tblVote.clickedRowIndex);" >상품 복사하기</a></div>
 														<div><a href="javascript:void(0);" onclick="javascript:window.open('nodata.html', 'nodata', 'width=1100, height=620, left=40, top=40');">노데이터 목록</a></div>
 														
@@ -714,6 +714,83 @@
 		<!--  -->
 		
 		<script>
+		function getOrderAmt()
+		{
+			var package_qty_obj = document.getElementsByName("package_qty[]");
+			var package_unitprice_obj = document.getElementsByName("package_unitprice[]");
+			var package_price_obj = document.getElementsByName("package_price[]");
+			for (var i = 0 ; i < package_qty_obj.length; i++) 
+			{
+				qty = package_qty_obj[i].value;
+				unitprice = package_unitprice_obj[i].value;
+				package_price = package_price_obj[i].value;
+
+				var num = round(parseFloat(qty)*parseFloat(unitprice), 2);
+				if(isNaN(num)) num=0;
+				package_price_obj[i].value=num;
+			} 
+
+			sumPrice();
+		}
+		
+		function sumPrice()
+		{
+			var sumPrice=0;
+			var obj = document.getElementsByName("package_price[]"); 
+			for (var i = 0 ; i < obj.length; i++) 
+			{ 
+				var price = round(parseFloat(obj[i].value),2);
+				if(isNaN(price)) price=0;
+				sumPrice = parseFloat(sumPrice) + parseFloat(price);
+			}
+			
+			var ship_us = 0;
+			var package_tax = 0;
+			
+			sumPrice = sumPrice + ship_us + package_tax;
+			
+			$('input[name="sumPrice"]').val(round(sumPrice, 2));
+			
+			totalPrice();
+		}
+		
+		function totalPrice()
+		{
+			var sumPrice = $('input[name="sumPrice"]').val();
+			if(isNaN(sumPrice) || sumPrice=="") sumPrice=0;
+			
+			var buy_tax = $('input[name="buy_tax"]').val();
+			if(isNaN(buy_tax) || buy_tax=="") buy_tax=0;
+			
+			var buy_ship_fee = $('input[name="buy_ship_fee"]').val();
+			if(isNaN(buy_ship_fee) || buy_ship_fee=="") buy_ship_fee=0;
+			
+		    var buy_disc_rate = $('input[name="buy_disc_rate"]').val();
+		    var buy_disc_type = $('select[name="buy_disc_type"]').val();
+			var buy_disc_amt=0;
+		    if(buy_disc_rate!="" && !isNaN(buy_disc_rate))
+		    {
+		    	if(buy_disc_type=='percent')
+		    		buy_disc_amt = round(((Number(buy_disc_rate)/100)*parseFloat(sumPrice)),2);
+		    	else
+		    		buy_disc_amt = round(Number(buy_disc_rate) ,2);
+		    }
+
+			
+			$('input[name="buy_disc_amt"]').val(round(buy_disc_amt, 2));
+			
+			
+			buy_disc_amt = $('input[name="buy_disc_amt"]').val();
+			if(isNaN(buy_disc_amt) || buy_disc_amt=="") buy_disc_amt=0;
+			
+			var buy_etc_fee = $('input[name="buy_etc_fee"]').val();
+			if(isNaN(buy_etc_fee) || buy_etc_fee=="") buy_etc_fee=0;
+
+			var total_price = parseFloat(sumPrice) + parseFloat(buy_tax) + parseFloat(buy_ship_fee) - parseFloat(buy_disc_amt) + parseFloat(buy_etc_fee);
+			$('input[name="total_price"]').val(round(total_price, 2));
+			
+			$('#total_price_lbl').text("$ " + round(total_price, 2));
+		}
 		
 		
 		function fncOnMouseOver(selectedIndex)
@@ -734,9 +811,325 @@
 			 item_count=i+1;
 			 idNum++;
 			 var uuid = Math.random().toString(36).slice(-6);
-			 console.log(uuid);
+			 var src="";
+				src=src+"	<input type='hidden' name='item_id[]' value=''>";
+				src=src+"	<div class='option_data'>";
+				src=src+"		<div class='img_wrap'>";
+				src=src+"			<div id='previewImg' class='image'><img src='/image/S_detail_img_02.gif'></div>";
+				src=src+"			<div class='upload'>";
+				src=src+"				<div><input type='radio' name='"+ uuid +"' value='up' class='radio_bt' checked></div>";
+				src=src+"				<div class='bt_01'><a href='javascript:void(0);' style='position:relative;'>이미지파일 업로드";
+				src=src+"				<input type='file' id='package_img_file_"+ uuid +"' onChange=\"return ajaxFileUpload('package_img_file_"+ uuid +"', 0, "+ objNum +");\" name='package_img_file[]' style='position:absolute; top:0; left:0; filter:alpha(opacity=0); opacity:0; -moz-opacity:0; width:100%; height:38px;  cursor:pointer;'>";
+				src=src+"				</a></div>";
+				src=src+"			</div>";
+				src=src+"			<div style='clear:both;'></div>";
+				src=src+"			<div class='upload'>";
+				src=src+"				<div><input type='radio'  name='"+ uuid +"' value='url' class='radio_bt'></div>";
+				src=src+"				<div class='bt_02'><input type='text'  name='package_img_url[]' value=''  onBlur='imageLarge()' placeholder='이미지 URL 직접 입력'></div>";
+				src=src+"			</div>";
+				src=src+"			<div style='clear:both;'></div>";
+				src=src+"			<div class='upload'>";
+				src=src+"				<div><input type='radio'  name='"+ uuid +"' value='url' class='radio_bt'></div>";
+				src=src+"				<div class='bt_02'><input type='text'  name='package_url[]' maxlength='950' placeholder='제품 URL 직접 입력'></div>";
+				src=src+"			</div>";
+				src=src+"			<div style='clear:both;'></div>";
+				src=src+"		</div>";
+				src=src+"		<div class='text_wrap'>";
+				src=src+"			<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center' class='item_table'>";
+				src=src+"			  <tr valign='top'>";
+				src=src+"				<td class='td1'>";
+				src=src+"					<div>브랜드</div>";
+				src=src+"					<div class='icon_text' title='부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다.'><img src='image/S_shipping_form_icon_10.gif'></div>";
+				src=src+"				</td>";
+				src=src+"				<td class='td2'><input type='text' name='package_brand[]' value='' maxlength='190'></td>";
+				src=src+"				<td class='td1 td3'>상품가(USD)</td>";
+				src=src+"				<td class='td2'>";
+				src=src+"				<input type='text' name='package_unitprice[]' value='' onBlur='getOrderAmt();' onchange=\"this.value=this.value.replace(/[^.0-9]/g,'');\">";
+				src=src+"				<input type='hidden' name='package_price[]' value=''>";
+				src=src+"				</td>";
+				src=src+"			  </tr>";
+				src=src+"			  <tr valign='top'>";
+				src=src+"				<td class='td1'>상품명</td>";
+				src=src+"				<td class='td2'><input type='text' name='package_name[]' maxlength='250' value=''></td>";
+				src=src+"				<td class='td1 td3'>";
+				src=src+"					<div>수량</div>";
+				src=src+"					<div class='icon_text' title='수량과 관계된 내용을 입력해주세요.'><img src='image/S_shipping_form_icon_10.gif'></div>";
+				src=src+"				</td>";
+				src=src+"				<td class='td2'><input type='text' name='package_qty[]' value='' onBlur='getOrderAmt();' onchange=\"this.value=this.value.replace(/[^0-9]/g,'');\" ></td>";
+				src=src+"			  </tr>";
+				src=src+"			  <tr valign='top'>";
+				src=src+"				<td class='td1'>품목</td>";
+				src=src+"				<td class='td2'>";
+				src=src+"					<div>";	
+				src=src+"					<select name='package_cate[]' onChange='pkgCateNotice(this.value)' >";
+				src=src+"					<option value=''>------품목 선택------</option>";
+				src=src+"<option value='61||BABIES GARMENTS||유아의류'  >유아의류(61) - 목록통관 </option>"
+				src=src+"<option value='96||GENERAL GOODS||잡화(문구류/장식품/빗 등 잡화류)'  >잡화(문구류/장식품/빗 등 잡화류)(96) - 목록통관 </option>"
+				src=src+"<option value='49||PAPER PRINT MATERIAL||종이인쇄물  '  >종이인쇄물  (49) - 목록통관 </option>"
+				src=src+"<option value='38||SANITIZER||손세정제 젤타입' style='color:blue;' >손세정제 젤타입(38) - 일반통관 </option>"
+				src=src+"<option value='38||SANITIZER||손세정제 티슈타입' style='color:blue;' >손세정제 티슈타입(38) - 일반통관 </option>"
+				src=src+"<option value='40||RUBBER PRODUCTS||고무제 제품'  >고무제 제품(40) - 목록통관 </option>"
+				src=src+"<option value='07||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제  ' style='color:blue;' >면도크림, 모발의 양모, 염색, 제모등을 위한 제제  (07) - 일반통관 </option>"
+				src=src+"<option value='49||DOCUMENT||서류'  >서류(49) - 목록통관 </option>"
+				src=src+"<option value='30||HYGIENE PRODUCT||여성 위생용품' style='color:blue;' >여성 위생용품(30) - 일반통관 </option>"
+				src=src+"<option value='33||COSMETIC||화장품'  >화장품(33) - 목록통관 </option>"
+				src=src+"<option value='03||FUNCTIONAL COSMETIC ||화장품 (기능성화장품)' style='color:blue;' >화장품 (기능성화장품)(03) - 일반통관 </option>"
+				src=src+"<option value='3307||SHAVING CREAM||면도크림, 모발의 양모, 염색, 제모등을 위한 제제' style='color:blue;' >면도크림, 모발의 양모, 염색, 제모등을 위한 제제(3307) - 일반통관 </option>"
+				src=src+"<option value='84||Hard disk drive||내장형 하드디스크 드라이브'  >내장형 하드디스크 드라이브(84) - 목록통관 </option>"
+				src=src+"<option value='84||ELECTRONIC PARTS||목록통관 전자제품류'  >목록통관 전자제품류(84) - 목록통관 </option>"
+				src=src+"<option value='84||Sound cards||사운드카드/비디오카드'  >사운드카드/비디오카드(84) - 목록통관 </option>"
+				src=src+"<option value='61||FABRIC CLOTH||의류'  >의류(61) - 목록통관 </option>"
+				src=src+"<option value='62||LEATHER CLOTH||가죽의류'  >가죽의류(62) - 목록통관 </option>"
+				src=src+"<option value='42||BAG||가방 및 지갑'  >가방 및 지갑(42) - 목록통관 </option>"
+				src=src+"<option value='61||UNDERWEAR||속옷류'  >속옷류(61) - 목록통관 </option>"
+				src=src+"<option value='64||SHOES||신발'  >신발(64) - 목록통관 </option>"
+				src=src+"<option value='64||SHOES ACCESSORIES||신발 부분품'  >신발 부분품(64) - 목록통관 </option>"
+				src=src+"<option value='61||HANDKERCHIEF SOCKS||손수건/양말류'  >손수건/양말류(61) - 목록통관 </option>"
+				src=src+"<option value='71||JEWELRY||보석'  >보석(71) - 목록통관 </option>"
+				src=src+"<option value='61||NECKTIE||넥타이/숄/스카프'  >넥타이/숄/스카프(61) - 목록통관 </option>"
+				src=src+"<option value='65||HAT||모자'  >모자(65) - 목록통관 </option>"
+				src=src+"<option value='90||GLASSES||선글래스/안경'  >선글래스/안경(90) - 목록통관 </option>"
+				src=src+"<option value='42||GLASSES CASE||안경 케이스'  >안경 케이스(42) - 목록통관 </option>"
+				src=src+"<option value='61||STOCKINGS||스타킹'  >스타킹(61) - 목록통관 </option>"
+				src=src+"<option value='91||WATCH||시계 및 부품'  >시계 및 부품(91) - 목록통관 </option>"
+				src=src+"<option value='66||UMBRELLA||우산'  >우산(66) - 목록통관 </option>"
+				src=src+"<option value='61||FABRIC GLOVES||장갑(천소재)'  >장갑(천소재)(61) - 목록통관 </option>"
+				src=src+"<option value='62||LEATHER GLOVES||장갑(가죽소재)'  >장갑(가죽소재)(62) - 목록통관 </option>"
+				src=src+"<option value='94||TOWEL||타월'  >타월(94) - 목록통관 </option>"
+				src=src+"<option value='42||BACKPACK||배낭'  >배낭(42) - 목록통관 </option>"
+				src=src+"<option value='39||HAIR ACCESSORIES||헤어 악세사리'  >헤어 악세사리(39) - 목록통관 </option>"
+				src=src+"<option value='61||FABRIC BELT||벨트(천소재)'  >벨트(천소재)(61) - 목록통관 </option>"
+				src=src+"<option value='62||LEATHER BELT||벨트(가죽소재)'  >벨트(가죽소재)(62) - 목록통관 </option>"
+				src=src+"<option value='05||WILD ANIMAL PRODUCT||뱀피/악어가죽 제품' style='color:blue;' >뱀피/악어가죽 제품(05) - 일반통관 </option>"
+				src=src+"<option value='96||GENERAL GOODS||잡화(문구류/장식품/빗등 잡화류)'  >잡화(문구류/장식품/빗등 잡화류)(96) - 목록통관 </option>"
+				src=src+"<option value='95||GOLF SUPPLIES||골프용품'  >골프용품(95) - 목록통관 </option>"
+				src=src+"<option value='95||GOLF CLUB||골프채'  >골프채(95) - 목록통관 </option>"
+				src=src+"<option value='40||BALL||골프공'  >골프공(40) - 목록통관 </option>"
+				src=src+"<option value='95||FISHING SUPPLIES||낚시용품'  >낚시용품(95) - 목록통관 </option>"
+				src=src+"<option value='90||TELESCOPE||망원경'  >망원경(90) - 목록통관 </option>"
+				src=src+"<option value='90||TELESCOPE SUPPLIES||망원경 부분품'  >망원경 부분품(90) - 목록통관 </option>"
+				src=src+"<option value='97||BICYCLE||자전거'  >자전거(97) - 목록통관 </option>"
+				src=src+"<option value='40||BICYCLE TYRES||자전거타이어'  >자전거타이어(40) - 목록통관 </option>"
+				src=src+"<option value='97||BICYCLE EQUIPMENT||자전거 관련제품'  >자전거 관련제품(97) - 목록통관 </option>"
+				src=src+"<option value='61||SWIMWEAR||수영복'  >수영복(61) - 목록통관 </option>"
+				src=src+"<option value='90||SWIM SUPPLIES||물안경'  >물안경(90) - 목록통관 </option>"
+				src=src+"<option value='95||SWIM TUBE||튜브류'  >튜브류(95) - 목록통관 </option>"
+				src=src+"<option value='87||WATER SKI SUPPLIES||수상스키/윈드서핑'  >수상스키/윈드서핑(87) - 목록통관 </option>"
+				src=src+"<option value='95||SKI SUPPLIES||스키용품'  >스키용품(95) - 목록통관 </option>"
+				src=src+"<option value='65||SPORT HELMETS||스포츠용 헬멧'  >스포츠용 헬멧(65) - 목록통관 </option>"
+				src=src+"<option value='42||SPORT GLOVE||스포츠용 글러브'  >스포츠용 글러브(42) - 목록통관 </option>"
+				src=src+"<option value='95||SKATE||스케이트'  >스케이트(95) - 목록통관 </option>"
+				src=src+"<option value='61||SPORTSWEAR||스포츠의류'  >스포츠의류(61) - 목록통관 </option>"
+				src=src+"<option value='42||SPORTING GOODS||운동용구'  >운동용구(42) - 목록통관 </option>"
+				src=src+"<option value='42||BASEBALL GLOVE||야구글러브'  >야구글러브(42) - 목록통관 </option>"
+				src=src+"<option value='95||BALL||야구공/축구공등 공류'  >야구공/축구공등 공류(95) - 목록통관 </option>"
+				src=src+"<option value='95||RACKET||라켓'  >라켓(95) - 목록통관 </option>"
+				src=src+"<option value='63||TENT||텐트'  >텐트(63) - 목록통관 </option>"
+				src=src+"<option value='95||LEISURE SUPPLIES||기타레져용품'  >기타레져용품(95) - 목록통관 </option>"
+				src=src+"<option value='85||TV||TV' style='color:blue;' >TV(85) - 일반통관 </option>"
+				src=src+"<option value='85||TV PARTS||TV 부품' style='color:blue;' >TV 부품(85) - 일반통관 </option>"
+				src=src+"<option value='85||MP3||MP3' style='color:blue;' >MP3(85) - 일반통관 </option>"
+				src=src+"<option value='85||HOME APPLIANCES||가전기기' style='color:blue;' >가전기기(85) - 일반통관 </option>"
+				src=src+"<option value='85||RAZER||면도기/모발제거기' style='color:blue;' >면도기/모발제거기(85) - 일반통관 </option>"
+				src=src+"<option value='85||REMOTE CONTROLLER||무선원격조절기' style='color:blue;' >무선원격조절기(85) - 일반통관 </option>"
+				src=src+"<option value='96||FLASHLIGHT||손전등'  >손전등(96) - 목록통관 </option>"
+				src=src+"<option value='85||OVEN||오븐/쿠커/그릴러/로우스터' style='color:blue;' >오븐/쿠커/그릴러/로우스터(85) - 일반통관 </option>"
+				src=src+"<option value='85||PHONE||전화기' style='color:blue;' >전화기(85) - 일반통관 </option>"
+				src=src+"<option value='85||SEWING MACHINE||재봉기' style='color:blue;' >재봉기(85) - 일반통관 </option>"
+				src=src+"<option value='85||ELECTRONIC IRON||전기다리미/난방기' style='color:blue;' >전기다리미/난방기(85) - 일반통관 </option>"
+				src=src+"<option value='85||ELECTRONIC TOOTHBRUSH||전동칫솔' style='color:blue;' >전동칫솔(85) - 일반통관 </option>"
+				src=src+"<option value='96||ELECTRONIC CALCULATOR||전자계산기'  >전자계산기(96) - 목록통관 </option>"
+				src=src+"<option value='84||ELECTRONIC DICTIONARY||전자사전/전자수첩'  >전자사전/전자수첩(84) - 목록통관 </option>"
+				src=src+"<option value='85||ELECTRONIC ORGAN||전자올갠/신디사이저' style='color:blue;' >전자올갠/신디사이저(85) - 일반통관 </option>"
+				src=src+"<option value='85||COFFE MAKER||커피메이커' style='color:blue;' >커피메이커(85) - 일반통관 </option>"
+				src=src+"<option value='85||MOBILE||휴대폰' style='color:blue;' >휴대폰(85) - 일반통관 </option>"
+				src=src+"<option value='83||MOBILE PARTS||휴대폰 부분품'  >휴대폰 부분품(83) - 목록통관 </option>"
+				src=src+"<option value='85||HAIR DRYER||헤어드라이기/세팅기' style='color:blue;' >헤어드라이기/세팅기(85) - 일반통관 </option>"
+				src=src+"<option value='85||LAPTOP PC||노트북' style='color:blue;' >노트북(85) - 일반통관 </option>"
+				src=src+"<option value='85||LAPTOP PC SUPPLIES||노트북 부품' style='color:blue;' >노트북 부품(85) - 일반통관 </option>"
+				src=src+"<option value='85||LAPTOP PC ACCESSORIES||노트북 액세서리' style='color:blue;' >노트북 액세서리(85) - 일반통관 </option>"
+				src=src+"<option value='85||TABLET PC||태블릿 PC' style='color:blue;' >태블릿 PC(85) - 일반통관 </option>"
+				src=src+"<option value='85||DESK-TOP COMPUTER||데스크탑PC' style='color:blue;' >데스크탑PC(85) - 일반통관 </option>"
+				src=src+"<option value='85||PC SUPPLIES||PC부품' style='color:blue;' >PC부품(85) - 일반통관 </option>"
+				src=src+"<option value='85||PC ACCESSORIES||PC악세사리(전자)' style='color:blue;' >PC악세사리(전자)(85) - 일반통관 </option>"
+				src=src+"<option value='85||COMPUTER SUPPLIES||컴퓨터 주변기기' style='color:blue;' >컴퓨터 주변기기(85) - 일반통관 </option>"
+				src=src+"<option value='85||CAMERA||카메라' style='color:blue;' >카메라(85) - 일반통관 </option>"
+				src=src+"<option value='85||CAMERA SUPPLIES||카메라관련제품' style='color:blue;' >카메라관련제품(85) - 일반통관 </option>"
+				src=src+"<option value='85||CAMCORDER||캠코더' style='color:blue;' >캠코더(85) - 일반통관 </option>"
+				src=src+"<option value='85||DVD Player||DVD Player' style='color:blue;' >DVD Player(85) - 일반통관 </option>"
+				src=src+"<option value='85||RECORDER||녹음기/마이크/소형카세트' style='color:blue;' >녹음기/마이크/소형카세트(85) - 일반통관 </option>"
+				src=src+"<option value='85||AUDIO||오디오/앰프/스피커' style='color:blue;' >오디오/앰프/스피커(85) - 일반통관 </option>"
+				src=src+"<option value='85||CD Player||CD Player' style='color:blue;' >CD Player(85) - 일반통관 </option>"
+				src=src+"<option value='84||VINYL||레코드판,LD'  >레코드판,LD(84) - 목록통관 </option>"
+				src=src+"<option value='49||MAGAZINE||서책 및 잡지류'  >서책 및 잡지류(49) - 목록통관 </option>"
+				src=src+"<option value='84||MOVIE CD||영화 음악 CD DVD'  >영화 음악 CD DVD(84) - 목록통관 </option>"
+				src=src+"<option value='84||VIDEO TAPE||비디오테잎'  >비디오테잎(84) - 목록통관 </option>"
+				src=src+"<option value='84||GAME CD||게임CD'  >게임CD(84) - 목록통관 </option>"
+				src=src+"<option value='84||PROGRAM CD||프로그램 CD'  >프로그램 CD(84) - 목록통관 </option>"
+				src=src+"<option value='49||CARDS||카드류'  >카드류(49) - 목록통관 </option>"
+				src=src+"<option value='33||BATH PRODUCTS||목욕용품/샴푸류'  >목욕용품/샴푸류(33) - 목록통관 </option>"
+				src=src+"<option value='33||COSMETIC||화장품'  >화장품(33) - 목록통관 </option>"
+				src=src+"<option value='96||MAKE UP TOOLS||화장품 도구'  >화장품 도구(96) - 목록통관 </option>"
+				src=src+"<option value='33||LOTION||로션/크림류'  >로션/크림류(33) - 목록통관 </option>"
+				src=src+"<option value='21||DIET PRODUCTS||다이어트 제품' style='color:blue;' >다이어트 제품(21) - 일반통관 </option>"
+				src=src+"<option value='21||NUTRITIONAL PRODUCTS||영양제류' style='color:blue;' >영양제류(21) - 일반통관 </option>"
+				src=src+"<option value='21||HERB||허브' style='color:blue;' >허브(21) - 일반통관 </option>"
+				src=src+"<option value='21||VITAMIN||비타민' style='color:blue;' >비타민(21) - 일반통관 </option>"
+				src=src+"<option value='33||ORAL HYGIENE PRODUCT||구강 위생 제품' style='color:blue;' >구강 위생 제품(33) - 일반통관 </option>"
+				src=src+"<option value='30||BAND AID||반창고,부착용파스,임신테스트기등' style='color:blue;' >반창고,부착용파스,임신테스트기등(30) - 일반통관 </option>"
+				src=src+"<option value='30||MEDICAL SUPPLIES||의약품 /의료용품' style='color:blue;' >의약품 /의료용품(30) - 일반통관 </option>"
+				src=src+"<option value='30||FUNCTIONAL COSMETIC||기능성화장품 /썬크림' style='color:blue;' >기능성화장품 /썬크림(30) - 일반통관 </option>"
+				src=src+"<option value='3303||PERFUME||향수 60ml 이상, 한병초과' style='color:blue;' >향수 60ml 이상, 한병초과(3303) - 일반통관 </option>"
+				src=src+"<option value='24||CIGARETTE||담배 (1보루까지 면세)' style='color:blue;' >담배 (1보루까지 면세)(24) - 일반통관 </option>"
+				src=src+"<option value='17||CHOCOLATE||초콜릿/캔디' style='color:blue;' >초콜릿/캔디(17) - 일반통관 </option>"
+				src=src+"<option value='17||SAUCE||소스/쨈' style='color:blue;' >소스/쨈(17) - 일반통관 </option>"
+				src=src+"<option value='17||ARTIFICIAL HONEY||인조꿀 (6병까지)' style='color:blue;' >인조꿀 (6병까지)(17) - 일반통관 </option>"
+				src=src+"<option value='17||HONEY||천연꿀 (5kg까지)' style='color:blue;' >천연꿀 (5kg까지)(17) - 일반통관 </option>"
+				src=src+"<option value='17||COOKIES||비스킷, 쿠키, 크래커' style='color:blue;' >비스킷, 쿠키, 크래커(17) - 일반통관 </option>"
+				src=src+"<option value='17||FLOUR MIXES||가루 믹스(코코아/VIA등)' style='color:blue;' >가루 믹스(코코아/VIA등)(17) - 일반통관 </option>"
+				src=src+"<option value='17||TEA / COFFEE||차(TEA) / 커피' style='color:blue;' >차(TEA) / 커피(17) - 일반통관 </option>"
+				src=src+"<option value='09||WHISKY||위스키/주류' style='color:blue;' >위스키/주류(09) - 일반통관 </option>"
+				src=src+"<option value='09||WINE||와인' style='color:blue;' >와인(09) - 일반통관 </option>"
+				src=src+"<option value='09||DRINK||음료' style='color:blue;' >음료(09) - 일반통관 </option>"
+				src=src+"<option value='17||SPICE||향신료(후추/바닐라/허브등)' style='color:blue;' >향신료(후추/바닐라/허브등)(17) - 일반통관 </option>"
+				src=src+"<option value='30||HAIR PRODUCT||두발용 발모 제품' style='color:blue;' >두발용 발모 제품(30) - 일반통관 </option>"
+				src=src+"<option value='85||SHAVER||면도기/모발제거기' style='color:blue;' >면도기/모발제거기(85) - 일반통관 </option>"
+				src=src+"<option value='92||INSTRUMENTS||악기'  >악기(92) - 목록통관 </option>"
+				src=src+"<option value='92||INSTRUMENTS SUPPLIES||악기부품'  >악기부품(92) - 목록통관 </option>"
+				src=src+"<option value='97||PICTURE||그림'  >그림(97) - 목록통관 </option>"
+				src=src+"<option value='97||CERAMICS||일반도자제품'  >일반도자제품(97) - 목록통관 </option>"
+				src=src+"<option value='97||ORNAMENT||장식품'  >장식품(97) - 목록통관 </option>"
+				src=src+"<option value='49||STAMP||우표'  >우표(49) - 목록통관 </option>"
+				src=src+"<option value='97||SCULPTOR||조각/조각상'  >조각/조각상(97) - 목록통관 </option>"
+				src=src+"<option value='97||ENGRAVING||판화, 인쇄화, 석판화'  >판화, 인쇄화, 석판화(97) - 목록통관 </option>"
+				src=src+"<option value='97||ANTIQUE PRODUCTS||골동품'  >골동품(97) - 목록통관 </option>"
+				src=src+"<option value='96||SMOKING PIPES||끽연용 파이프'  >끽연용 파이프(96) - 목록통관 </option>"
+				src=src+"<option value='96||CIGAR-LIGHTER||담배용 라이터'  >담배용 라이터(96) - 목록통관 </option>"
+				src=src+"<option value='39||PLASTIC BATHTUB||목욕통 (플라스틱)'  >목욕통 (플라스틱)(39) - 목록통관 </option>"
+				src=src+"<option value='87||BABY WALKER||보행기'  >보행기(87) - 목록통관 </option>"
+				src=src+"<option value='04||BABY FOOD||분유/이유식' style='color:blue;' >분유/이유식(04) - 일반통관 </option>"
+				src=src+"<option value='40||NURSING PRODUCT||수유관련 용품'  >수유관련 용품(40) - 목록통관 </option>"
+				src=src+"<option value='87||STROLLER||유모차'  >유모차(87) - 목록통관 </option>"
+				src=src+"<option value='87||STROLLER SUPPLIES||유모차 부품'  >유모차 부품(87) - 목록통관 </option>"
+				src=src+"<option value='94||CAR SEAT||카시트 /카시트부품'  >카시트 /카시트부품(94) - 목록통관 </option>"
+				src=src+"<option value='39||BABY BOTTLE||젖병류'  >젖병류(39) - 목록통관 </option>"
+				src=src+"<option value='48||DIAPER||기저귀(종이 / 면)' style='color:blue;' >기저귀(종이 / 면)(48) - 일반통관 </option>"
+				src=src+"<option value='94||MATTRESS||매트리스'  >매트리스(94) - 목록통관 </option>"
+				src=src+"<option value='94||RUG||양탄자/러그(일반)'  >양탄자/러그(일반)(94) - 목록통관 </option>"
+				src=src+"<option value='94||LUXURIOUS RUG||양탄자/러그(고급)'  >양탄자/러그(고급)(94) - 목록통관 </option>"
+				src=src+"<option value='94||BLANKET/CUSHION/PILLOW||이불/쿠션/베게/방석'  >이불/쿠션/베게/방석(94) - 목록통관 </option>"
+				src=src+"<option value='94||BED COVER||침대덮개/커버'  >침대덮개/커버(94) - 목록통관 </option>"
+				src=src+"<option value='94||CURTAIN||커튼'  >커튼(94) - 목록통관 </option>"
+				src=src+"<option value='94||TABLE COVER/FABRICS||테이블커버/일반패브릭'  >테이블커버/일반패브릭(94) - 목록통관 </option>"
+				src=src+"<option value='95||TOY WITH WHEELS||바퀴가 있는 완구(세발자전거포함)'  >바퀴가 있는 완구(세발자전거포함)(95) - 목록통관 </option>"
+				src=src+"<option value='95||VIDEO GAME ACCESSORIES||비디오 게임용구'  >비디오 게임용구(95) - 목록통관 </option>"
+				src=src+"<option value='95||ENTERTAINMENT PRODUCT||오락용품'  >오락용품(95) - 목록통관 </option>"
+				src=src+"<option value='95||TOYDOLL||인형'  >인형(95) - 목록통관 </option>"
+				src=src+"<option value='95||CONSTRUCTION TOY||조립식 완구 (레고 등)'  >조립식 완구 (레고 등)(95) - 목록통관 </option>"
+				src=src+"<option value='95||TOYS||기타 완구'  >기타 완구(95) - 목록통관 </option>"
+				src=src+"<option value='73||FLATWARE||주방 소품(포크/나이프/국자 등)'  >주방 소품(포크/나이프/국자 등)(73) - 목록통관 </option>"
+				src=src+"<option value='39||PLASTIC KITCHEN ACCESSORIES||주방 소품 (플라스틱)'  >주방 소품 (플라스틱)(39) - 목록통관 </option>"
+				src=src+"<option value='69||GLASS TABLEWARE||그릇/식기(도자기,유리제품)'  >그릇/식기(도자기,유리제품)(69) - 목록통관 </option>"
+				src=src+"<option value='69||PLASTIC TABLEWARE||그릇/식기(플라스틱)'  >그릇/식기(플라스틱)(69) - 목록통관 </option>"
+				src=src+"<option value='73||STEEL TABLEWARE||그릇/식기(철제품)'  >그릇/식기(철제품)(73) - 목록통관 </option>"
+				src=src+"<option value='48||PATER KITCHENWARE||주방용품(종이류)'  >주방용품(종이류)(48) - 목록통관 </option>"
+				src=src+"<option value='96||PET ACCESSORIES||애완용 소품류'  >애완용 소품류(96) - 목록통관 </option>"
+				src=src+"<option value='23||PET SNACK||애완용 간식' style='color:blue;' >애완용 간식(23) - 일반통관 </option>"
+				src=src+"<option value='61||PET CLOTH||애완용 의류'  >애완용 의류(61) - 목록통관 </option>"
+				src=src+"<option value='87||CAR OIL||자동차 오일류'  >자동차 오일류(87) - 목록통관 </option>"
+				src=src+"<option value='40||RUBBER TIRE||자동차 타이어'  >자동차 타이어(40) - 목록통관 </option>"
+				src=src+"<option value='87||CAR PARTS||자동차 부품'  >자동차 부품(87) - 목록통관 </option>"
+				src=src+"<option value='87||CAR SUPPLIES||자동차 관련용품'  >자동차 관련용품(87) - 목록통관 </option>"
+				src=src+"<option value='87||CAR OTHER PARTS||기타자동차부품'  >기타자동차부품(87) - 목록통관 </option>"
+				src=src+"<option value='34||CANDLE/DIFFUSER||캔들/디퓨저/비누/세제/광택제/왁스'  >캔들/디퓨저/비누/세제/광택제/왁스(34) - 목록통관 </option>"
+				src=src+"<option value='33||AIR FRESHENER||방향제'  >방향제(33) - 목록통관 </option>"
+				src=src+"<option value='96||HOME USE PROPS||가정용소품'  >가정용소품(96) - 목록통관 </option>"
+				src=src+"<option value='85||GREARING TOOLS||전동공구류' style='color:blue;' >전동공구류(85) - 일반통관 </option>"
+				src=src+"<option value='82||BOLT/SCREW/DRIVER||볼트/나사/드라이버'  >볼트/나사/드라이버(82) - 목록통관 </option>"
+				src=src+"<option value='82||MACHINERY/PARTS||기계/기계부속품류'  >기계/기계부속품류(82) - 목록통관 </option>"
+				src=src+"<option value='85||ELECTRIC PARTS||전기부속품류' style='color:blue;' >전기부속품류(85) - 일반통관 </option>"
+				src=src+"<option value='94||FURNITURE||가구(의자/테이블/소파)'  >가구(의자/테이블/소파)(94) - 목록통관 </option>"
+				src=src+"<option value='85||INDOOR LIGHTING||실내조명기구' style='color:blue;' >실내조명기구(85) - 일반통관 </option>"
+				src=src+"<option value='33||PERFUME less than 60ml||향수 60ml 이하'  >향수 60ml 이하(33) - 목록통관 </option>"
+				src=src+"<option value='08||Fruit/Nut||과실/견과류' style='color:blue;' >과실/견과류(08) - 일반통관 </option>"
+				src=src+"<option value='10||Grain||곡물' style='color:blue;' >곡물(10) - 일반통관 </option>"
+				src=src+"<option value='11||Grain Powder||곡물가루/밀가루/전분' style='color:blue;' >곡물가루/밀가루/전분(11) - 일반통관 </option>"
+				src=src+"<option value='6504||HAT-Plant material||밀짚모자(식물성 재료)' style='color:blue;' >밀짚모자(식물성 재료)(6504) - 일반통관 </option>"
+				src=src+"<option value='24||ELECTRONIC CIGARETTE LIQUID||전자담배용액-통관불가(16년12월30일부터)' style='color:blue;' >전자담배용액-통관불가(16년12월30일부터)(24) - 일반통관 </option>"
+				src=src+"<option value='84||ELECTRONIC CIGARETTE PIPE||전자담배파이프'  >전자담배파이프(84) - 목록통관 </option>"
+				src=src+"				</select>";
+				src=src+"				</div>";
+				src=src+"			</td>";
+				src=src+"			<td class='td1 td3'>색상</td>";
+				src=src+"			<td class='td2'><input type='text' name='package_color[]' value='' maxlength='90'></td>";
+				src=src+"		  </tr>";
+				src=src+"		  <tr valign='top'>";
+				src=src+"			<td class='td1'>트레킹 번호</td>";
+				src=src+"			<td class='td2'>";
+				src=src+"				<input type='text' name='tracking_num[]' value='' maxlength='190' placeholder='상품별 트레킹번호 입력'>";
+				src=src+"			</td>";
+				src=src+"			<td class='td1 td3'>사이즈</td>";
+				src=src+"			<td class='td2'><input type='text' name='package_size[]' value='' maxlength='90'></td>";
+				src=src+"		  </tr>";
+				src=src+"		</table>";
+				src=src+"		<div class='item_bt_list'>";
+				src=src+"			<div><a href='javascript:void(0);' onClick=\"itemTracking();\">트레킹 확인</a></div>";
+				src=src+"			<div><a href='javascript:void(0);' onClick=\"javascript:addItem('copy', tblVote.clickedRowIndex);\">상품 복사하기</a></div>";
+				src=src+"			<div><a href='javascript:void(0);' onclick=\"javascript:window.open('nodata.html', 'nodata', 'width=1100, height=620, left=40, top=40');\">노데이터 목록</a></div>";
+				
+				src=src+"			<div><a href='javascript:void(0);' onClick='deleteItem();'>상품삭제</a></div>";
+				src=src+"		</div>";
+				src=src+"		<div class='cautions_text'>";
+				src=src+"		* 이미지 파일 또는 이미지 URL, 상품 상세 페이지 url 정보가 없을 경우 디테일한 검수가 불가하며 이에 대한";
+				src=src+"		오 배송 발생 시<br>보상이 불가합니다.";
+				src=src+"		</div>";
+				src=src+"		<div class='info_bt'><a href='sub_1_1_1.html#step3' target='_blank'>정보입력방법 보러가기</a></div>";
+				src=src+"	</div>";
+				src=src+"	<div style='clear:both;'></div>";
+				src=src+"</div>";
+
+				objCell.innerHTML =src;
+
 			 
-			 
+				if(action_type=='copy')
+			    {
+					var package_brand_obj = $("input[name='package_brand[]']");
+					var tracking_num_obj = $("input[name='tracking_num[]']");
+					var package_unitprice_obj = $("input[name='package_unitprice[]']");
+					var package_name_obj = $("input[name='package_name[]']");
+					var package_img_url_obj = $("input[name='package_img_url[]']");
+					var package_url_obj = $("input[name='package_url[]']");
+					var package_qty_obj = $("input[name='package_qty[]']");
+					var package_color_obj = $("input[name='package_color[]']");
+					var package_size_obj = $("input[name='package_size[]']");
+					var package_cate_obj = $("select[name='package_cate[]']");
+					var lastNum = package_brand_obj.length - 1;
+					
+					if(index < 0)
+						index = lastNum-1;
+
+					$(tracking_num_obj.get(lastNum)).val( $(tracking_num_obj.get(index)).val() );
+					$(package_cate_obj.get(lastNum)).val( $(package_cate_obj.get(index)).val() );
+					$(package_brand_obj.get(lastNum)).val( $(package_brand_obj.get(index)).val() );
+					$(package_unitprice_obj.get(lastNum)).val( $(package_unitprice_obj.get(index)).val() );
+					$(package_name_obj.get(lastNum)).val( $(package_name_obj.get(index)).val() );
+					$(package_img_url_obj.get(lastNum)).val( $(package_img_url_obj.get(index)).val() );
+					$(package_url_obj.get(lastNum)).val( $(package_url_obj.get(index)).val() );
+					$(package_qty_obj.get(lastNum)).val( $(package_qty_obj.get(index)).val() );
+					$(package_color_obj.get(lastNum)).val( $(package_color_obj.get(index)).val() );
+					$(package_size_obj.get(lastNum)).val( $(package_size_obj.get(index)).val() );
+					
+					var package_img_url = $(package_img_url_obj.get(lastNum)).val();
+					if(package_img_url=="") package_img_url="/image/S_detail_img_02.gif";
+					
+					var htmlImg = "<a href='"+ package_img_url +"' class='preview' target=_blank><img src='"+ package_img_url +"' border=0 width='303' height='303'></a>";
+					var previewImg_obj = $("div[id='previewImg']");
+					$(previewImg_obj.get(lastNum)).html( htmlImg );
+					
+			    }
+
+				
+				getOrderAmt();
 			 
 		}
 		</script>
