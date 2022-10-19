@@ -46,6 +46,14 @@ public class myPageApiController {
 		return "myPage/myPageApi/shipOrderApi";
 	}
 	
+	
+	@GetMapping("api/nodataListApi")
+	public String nodataList(Model model) {
+		String u_id = "id001";
+		List<Nodata> nodataList = mypageService.nodataList(u_id);
+		model.addAttribute("nodataList", nodataList);
+		return "myPage/myPageApi/nodataOpen";
+	}
 
 	@PostMapping("api/nodataListApi")
 	public String nodataListApi(Model model) {
