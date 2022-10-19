@@ -51,7 +51,7 @@
 								</tr>								
 							</thead>
 							  <tbody>
-								<tr th:if="${not #lists.isEmpty(regIncoming)}" th:each = "i :${regIncoming}">
+								<tr th:if="${not #lists.isEmpty(regIncomingList)}" th:each = "i :${regIncomingList}">
 									<td class="incoming_checkbox"><input type="checkbox"></td>									
 									<td th:text="${i.goodsInfoCode}"></td>
 									<td th:text="${i.deliveryCompany}"></td>
@@ -60,8 +60,8 @@
 									<td th:text="${i.trackingNum}"></td>
 									<td th:text="${i.gAmount}"></td>
 									<td align="center">
-										<button type="button" id="incoming_modal_open">입고등록</button>
-										<button type="button" id="error_modal_open">오류입고</button>
+										<button type="button" class="incoming_modal_open add_button">입고등록</button>
+										<button type="button" class="error_modal_open add_button">오류입고</button>
 									</td>
 								</tr>
 							  </tbody>
@@ -112,8 +112,8 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_form">등록</button>
-							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+							<button type="submit" class="add_button incoming_modal_reg" form="incoming_reg_form">등록</button>
+							<button type="button" class="cancel_button incoming_modal_close">취소</button>
 						</div>
 						
 					  </th:block>
@@ -132,26 +132,35 @@
 							<tr>
 								<th>상품정보 코드</th>
 								<td>
-								 	<label id="goodsInfoCode"></label>	
+								 	<label id="errorGoodsInfoCode"></label>	
 								</td>
 							</tr>
 							<tr>
 								<th>오류 입고 내역</th>
-								<td>
-								 	<label id="likeyPass"></label>	
-								</td>
+								<td> <input type="text" name="errorContent" id="errorContent"> </td>
 							</tr>
 							<tr>
 								<th>오류 입고 개수</th>
-								<td> <input type="text" name="volume" id="volume"> </td>
+								<td> <input type="text" name="errorAmount" id="errorAmount"> </td>
+							</tr>
+							<tr>
+								<th>물품 처리 상태</th>
+								<td>
+									<select name="errorState" id="errorState">
+										<option disabled selected>처리 상태</option>
+										<option value="대기 중">대기 중</option>
+										<option value="반송 요청">반송 요청</option>
+										<option value="수령 요청">수령 요청</option>
+									</select>
+								</td>
 							</tr>
 
 						  </tbody></table>
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="button" id="error_modal_reg" class="add_button" form="error_reg_form">등록</button>
-							<button type="button" id="error_modal_close" class="cancel_button">취소</button>
+							<button type="submit" class="add_button error_modal_reg" form="error_reg_form">등록</button>
+							<button type="button" class="cancel_button error_modal_close">취소</button>
 						</div>
 						
 					  </th:block>
@@ -168,9 +177,10 @@
         
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-
+	 
 	$(function(){
-		$(document).on('click', '#incoming_modal_open', function(){
+		// 입고등록 버튼 클릭 시 모달
+		$(document).on('click', '.incoming_modal_open', function(){
 			var goodsInfoCode = $(this).parents('tr').children().eq(1).text();
 			
 			var request = $.ajax({
@@ -193,21 +203,41 @@
 			$('.modal').css('display', 'block');
 		});
 		
-		$(document).on('click', '#incoming_modal_close', function(){
+		// 입고등록 모달 닫기 버튼
+		$(document).on('click', '.incoming_modal_close', function(){
 			$('.modal').css('display', 'none');
 		});
 		
-		/* 오류입고 모달 왜 안뜸 ㅜㅜㅜㅜㅜㅜ */
-		
-		$(document).on('click', '#error_modal_open', function(){
+		// 오류입고 버튼 클릭 시 모달
+		$(document).on('click', '.error_modal_open', function(){
+			var errorGoodsInfoCode = $(this).parents('tr').children().eq(1).text();
+			
+			var request = $.ajax({
+				  url: "/errorIncomingGoodsInfoByCode",
+				  method: "GET",
+				  data: { 'errorGoodsInfoCode' : errorGoodsInfoCode },
+				  dataType: "json"
+				});
+				 
+				request.done(function( data ) {
+					console.table(data)
+					$('#errorGoodsInfoCode').text(data.errorGoodsInfoCode);
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			
 			$('.error_modal').css('display', 'block');
 		});
 		
-		$(document).on('click', '#error_modal_close', function(){
+		// 오류입고 모달 닫기 버튼
+		$(document).on('click', '.error_modal_close', function(){
 			$('.error_modal').css('display', 'none');
 		});
+		
 	});
-
+	
 </script>
 </body>
 
