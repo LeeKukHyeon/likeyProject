@@ -5,7 +5,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-
+<style>
+	td{
+		border: 1px solid;
+		padding: 10px;
+	}
+	input{
+		padding: 10px;
+	}
+	#adminLoginBtn{
+		float: right;
+	}
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
    $(function(){
@@ -33,8 +44,28 @@
             <div class="col-sm-12">
              	<h2>관리자 페이지 입니다.</h2>
              	<a th:href="@{/}">홈으로</a> <!-- 컨텐츠? -->
-             	
-             	<button class="incoming_modal_open" style="margin-left: 50px; padding: 50px;">모달테스트</button>
+             	<h3 th:text="${session.SID}"></h3>
+             	<form id="adminLoginForm" th:action="@{/adminLogin}" method="post">
+             	<table border="1">
+             		<tr>
+             			<td>
+             				사원코드<input type="text" name="aId" placeholder="사원코드">
+             			</td>
+             		</tr>
+             		<tr>
+             			<td>
+             				비밀번호<input type="password" name="aPw" placeholder="비밀번호">
+             			</td>
+             		</tr>
+             		<tr>
+             			<td>
+             				<button type="submit" id="adminLoginBtn">로그인</button>
+             			</td>
+             		</tr>
+             	</table>
+             </form>
+            <a th:href="@{/adminLogout}">로그아웃</a>
+           <!-- <button class="incoming_modal_open" style="margin-left: 50px; padding: 50px;">모달테스트</button> -->
              <div class="modal">
                <div class="incoming_modal_content">
                   <h1 style="text-align: center;">모달테스트</h1>

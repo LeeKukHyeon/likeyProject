@@ -10,24 +10,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ks44team03.admin.service.OrderService;
+import ks44team03.admin.service.AdminOrderService;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 
 @Controller
 public class AdminOrderController {
 
-	private OrderService orderService; 
+	private AdminOrderService orderService; 
 	
-	public AdminOrderController(OrderService orderService) {
+	public AdminOrderController(AdminOrderService orderService) {
 		this.orderService = orderService;
 	}
 	
-	@GetMapping("/orderList")
+	@GetMapping("/friendsOrderList")
 	public String orderList(Model model) {
 		
+		List<GoodsInfo> friendsOrderList = orderService.getFriendsOrderList();
+		
+		model.addAttribute("friendsOrderList", friendsOrderList);
 		model.addAttribute("title", "프렌즈 주문서목록");
-		return "orderList/orderList";
+		return "orderList/friendsOrderList";
 	}
 	
 	@GetMapping("goodsInfo")

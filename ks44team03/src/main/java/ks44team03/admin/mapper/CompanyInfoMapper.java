@@ -15,6 +15,9 @@ import ks44team03.dto.WorkPlace;
 public interface CompanyInfoMapper {
 
 	
+	//특정 사원목록 조회
+	public Employee adminLogin(String aId);
+	
 	//회사 등록
 	public int addCompany(CompanyInfo companyInfo);
 	

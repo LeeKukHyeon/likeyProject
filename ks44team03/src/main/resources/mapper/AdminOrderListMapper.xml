@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ks44team03.admin.mapper.OrderMapper">
+<mapper namespace="ks44team03.admin.mapper.AdminOrderMapper">
 	<resultMap type="OrderInfo" id="orderListResultMap">
 		<id column="buy_order_code" property="buyOrderCode"/>
 		<result column="id" property="id"/>
@@ -102,6 +102,20 @@
 			<result column="order_state" property="orderState"/>
 		</association>
 	</resultMap>
+	
+<!-- friends 주문서 목록 -->
+	<select id="getgetFriendsOrderList" resultMap="goodsInfoResultMap">
+		SELECT
+			*
+		FROM 
+			order_info AS o
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+		WHERE 
+			o.step3 = 'y' AND o.friends_de_check = 'y';
+	</select>	
 <!-- adminpage 주문서 -->	
 	<!-- 이용자 주문서 목록 -->
 	<select id="getOrderList" resultMap="orderListResultMap">

@@ -38,6 +38,15 @@ public class CompanyInfoService {
 	public void companyInfoService() {
 		System.out.println("companyInfoService bean 생성");
 	}
+	
+	// admin 로그인
+	public Employee adminLogin(String aId) {
+		
+		Employee employeeInfo = companyInfoMapper.adminLogin(aId);
+		
+		return employeeInfo;
+	}
+	
 	// 회사등록 사업자등록번호 중복검사
 	public boolean companyNumCheck(String companyNum) {
 		boolean result = companyInfoMapper.companyNumCheck(companyNum);
