@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import ks44team03.dto.Nodata;
 import ks44team03.dto.ShipOrderApi;
@@ -23,6 +28,57 @@ public class myPageApiController {
 	public myPageApiController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	
+	@RequestMapping(value = {"/jusoPopup"}, method = RequestMethod.POST)
+	public ModelAndView jusoPopup(HttpServletRequest request, Model model) {
+		System.out.println("--------------------");
+	    
+		ModelAndView mav = new ModelAndView("/myPage/myPageApi/jusoPopup");
+
+		String inputYn = request.getParameter("inputYn");
+		String zipNo = request.getParameter("zipNo");
+		String roadAddrPart1 = request.getParameter("roadAddrPart1");
+		String roadAddrPart2 = request.getParameter("roadAddrPart2");
+		String addrDetail = request.getParameter("addrDetail");
+		String jibunAddr = request.getParameter("jibunAddr");
+
+		mav.addObject("inputYn", inputYn);
+		mav.addObject("zipNo", zipNo);
+		mav.addObject("roadAddrPart1", roadAddrPart1);
+		mav.addObject("roadAddrPart2", roadAddrPart2);
+		mav.addObject("jibunAddr", jibunAddr);
+		mav.addObject("addrDetail", addrDetail);
+
+		return mav;
+	  }
+	 
+	
+
+	@RequestMapping(value = {"/jusoPopup"})
+	  public String jusoGetPopup(HttpServletRequest request, Model model) {
+		String inputYn = request.getParameter("inputYn");
+		String zipNo = request.getParameter("zipNo");
+		String roadAddrPart1 = request.getParameter("roadAddrPart1");
+		String roadAddrPart2 = request.getParameter("roadAddrPart2");
+		String addrDetail = request.getParameter("addrDetail");
+		String jibunAddr = request.getParameter("jibunAddr");
+
+		model.addAttribute("inputYn", inputYn);
+		model.addAttribute("zipNo", zipNo);
+		model.addAttribute("roadAddrPart1", roadAddrPart1);
+		model.addAttribute("roadAddrPart2", roadAddrPart2);
+		model.addAttribute("jibunAddr", jibunAddr);
+		model.addAttribute("addrDetail", addrDetail);
+	    
+	    return "myPage/myPageApi/jusoPopup";
+	  }
+	
+	
+	
+	
+	
+	
 	
 	@PostMapping("api/shipOrderApi")
 	public String cdf(@RequestParam(value = "q_status", required = false) int test, Model model) {
