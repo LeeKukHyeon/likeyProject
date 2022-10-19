@@ -36,8 +36,7 @@ public class CustomerQuestionController {
 	}
 	
 	//내문의내역 페이지 내용 검색
-	@GetMapping("/questionContentCheck")
-	@ResponseBody
+	@PostMapping("/myQuestionList")
 	public String myQuestionSearch(@RequestParam(value = "searchKey" ) String sk , @RequestParam(value = "searchValue") String sv , Model model) {
 		
 		if ("mtmContent".equals(sk)) {
@@ -52,7 +51,7 @@ public class CustomerQuestionController {
 		System.out.println(sv + "받아오는 sv 값 확인");
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.myQuestionSearch(paramMap);
-
+		
 		model.addAttribute("QuestionList", QuestionList);
 		model.addAttribute("sv", sv);
 		
@@ -82,7 +81,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionList", QuestionList);
 		model.addAttribute("sv", sv);
 	
-		return "/customerService/question/personalQuestionSearchAdmin";
+		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
 	//1:1문의 삭제
@@ -162,7 +161,7 @@ public class CustomerQuestionController {
 		customerQuestionService.regAnswer(questionCenter);
 		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
 		
-		return "redirect:/personalQuestionSearchAdmin";
+		return "redirect:personalQuestionSearchAdmin";
 		
 	}
 	
@@ -180,7 +179,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionRead", QuestionRead);
 		
 		
-		return "/customerService/question/personalQuestionAnswerRegister";
+		return "customerService/question/personalQuestionAnswerRegister";
 	}
 	
 	//나의 문의 내역 보기
@@ -192,7 +191,7 @@ public class CustomerQuestionController {
 
 		model.addAttribute("QuestionList", QuestionList);
 		
-		return "/customerService/question/myQuestionList";
+		return "customerService/question/myQuestionList";
 	}
 	
 	//1:1 문의 목록 관리자 조회
@@ -206,7 +205,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionList", QuestionList);
 
 		
-		return "/customerService/question/personalQuestionSearchAdmin";
+		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
 }
