@@ -10,7 +10,10 @@ import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 
 @Mapper
-public interface OrderMapper {
+public interface AdminOrderMapper {
+	
+	// friends 주문서 목록
+	public List<GoodsInfo> getgetFriendsOrderList();
 	
 	//adminPage 이용자 주문서 목록조회
 	public List<OrderInfo> getOrderList();
