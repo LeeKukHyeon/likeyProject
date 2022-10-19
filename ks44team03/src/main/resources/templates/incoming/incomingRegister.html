@@ -88,8 +88,8 @@
 								<th>상품정보 코드</th>
 								<td>
 								 	<label id="goodsInfoCode"></label>	
+								 	<input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}">
 								</td>
-								<td> <input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}"> </td>
 							</tr>
 							<tr>
 								<th>라이키패스</th>
@@ -138,9 +138,8 @@
 								<th>상품정보 코드</th>
 								<td>
 								 	<label  id="errorGoodsInfoCode"  ></label>	
+								 	<input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}">
 								</td>
-								<td> <input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}"> </td>
-						
 							</tr>
 							<tr>
 								<th>오류 입고 내역</th>
