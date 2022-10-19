@@ -258,4 +258,14 @@ public class IncomingController {
 		Map<String, Object> errorGoodsInfo = incomingService.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
 		return errorGoodsInfo;
 	}
+	
+	// 오류입고
+	@PostMapping("/regErrorIncoming")
+	public String regErrorIncoming(ErrorIncoming errorIncoming) {
+		/* System.out.println(errorIncoming +"!!!!!@@@@@@@@@"); */
+		int result = incomingService.regErrorIncoming(errorIncoming);
+		
+	return "redirect:/errorIncomingList";
+	}
+	
 }

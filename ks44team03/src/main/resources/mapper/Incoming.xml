@@ -376,6 +376,13 @@
 			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{errorGoodsInfoCode};
 	</select>
 	
+	<insert id="regErrorIncoming" parameterType="ErrorIncoming">
+		/* 오류입고 */
+		INSERT INTO error_incoming
+			(error_code, goods_info_code, error_content, error_amount, error_state, error_comp_date)
+		VALUES
+			(#{errorCode}, #{goodsInfoCode}, #{errorContent}, ${errorAmount}, #{errorState}, CURDATE());
+	</insert>
 
 </mapper>
 

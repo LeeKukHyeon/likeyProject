@@ -98,7 +98,7 @@
 							</tr>
 							<tr>
 								<th>상품사진 등록</th>
-								<td> <input type="file" name="photoSave" id="photoSave"> </td>
+								<td> <input type="file" name="photoSave" id="photoSave" accept="image/*"> </td>
 							</tr>
 							<tr>
 								<th>부피</th>
@@ -126,14 +126,16 @@
 					<div class="error_modal_content">	
 					  <th:block>
 						
-						<form id="error_reg_form" action="#" method="#">
+						<form id="error_reg_form" th:action="@{/regErrorIncoming}" method="post">
 						  <table class="input_table"><tbody>
 						
 							<tr>
 								<th>상품정보 코드</th>
 								<td>
-								 	<label id="errorGoodsInfoCode"></label>	
+								 	<label  id="errorGoodsInfoCode"  ></label>	
 								</td>
+								<td> <input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}"> </td>
+						
 							</tr>
 							<tr>
 								<th>오류 입고 내역</th>
@@ -159,7 +161,7 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="submit" class="add_button error_modal_reg" form="error_reg_form">등록</button>
+							<button type="submit" class="add_button error_modal_reg" form="error_reg_form" >등록</button>
 							<button type="button" class="cancel_button error_modal_close">취소</button>
 						</div>
 						
