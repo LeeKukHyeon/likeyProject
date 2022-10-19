@@ -89,6 +89,7 @@
 								<td>
 								 	<label id="goodsInfoCode"></label>	
 								</td>
+								<td> <input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regIncomingList[0].goodsInfoCode}"> </td>
 							</tr>
 							<tr>
 								<th>라이키패스</th>
@@ -106,11 +107,11 @@
 							</tr>
 							<tr>
 								<th>부피</th>
-								<td> <input type="text" name="volume" id="volume"> </td>
+								<td> <input type="text" name="incomingVolume" id="incomingVolume"> </td>
 							</tr>
 							<tr>
 								<th>중량</th>
-								<td> <input type="text" name="weight" id="weight"> </td>
+								<td> <input type="text" name="incomingWeight" id="incomingWeight"> </td>
 							</tr>
 						</tbody></table>
 						</form>

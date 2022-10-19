@@ -132,9 +132,10 @@ public class IncomingService {
 	}
 	
 	//입고등록
-	public int regIncoming(IncomingInfo incominginfo) {
+	public int regIncoming(IncomingInfo incominginfo, String goodsInfoCode) {
 		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
 		incominginfo.setIncomingCode(newIncomingCode);
+		incomingMapper.updateIncoming(goodsInfoCode);
 		
 		int result = incomingMapper.regIncoming(incominginfo);
 		
@@ -144,6 +145,13 @@ public class IncomingService {
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode){
 		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
+	}
+	
+	//입고 완료 상품 리스트
+	public List<IncomingInfo> goodsIncomingList(){
+		List<IncomingInfo> goodsIncomingList = incomingMapper.goodsIncomingList();
+		
+		return goodsIncomingList;
 	}
 	
 	//오류입고 처리내역
