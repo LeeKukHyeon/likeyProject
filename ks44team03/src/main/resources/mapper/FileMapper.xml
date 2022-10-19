@@ -17,7 +17,16 @@
 				cm_img = #{data.filePath}
 			where 
 				cm_num = ${data.newCommunityCode}
-		
+		</foreach>
+	</update>
+	
+	<update id="addIncomingFile" parameterType="java.util.List">
+		<foreach collection="fileList" item="data" index="index" separator=";">
+			update incoming
+			set		
+				photo_save = #{data.filePath}
+			where 
+				incoming_code = ${data.newIncomingCode}
 		</foreach>
 	</update>
 	

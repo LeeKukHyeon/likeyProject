@@ -75,7 +75,7 @@
 						
 					  <th:block>
 						
-						<form id="incoming_reg_form" action="#" method="#">
+						<form id="incoming_reg_form" th:action="@{/regIncoming}" method="post">
 						<table class="input_table"><tbody>
 						
 							<tr>
@@ -95,6 +95,10 @@
 								<td>
 								 	<label id="likeyPass"></label>	
 								</td>
+							</tr>
+							<tr>
+								<th>사원코드</th>
+								<td> <input type="text" name="eCode" id="eCode" th:value="${session.SID}" readonly> </td>
 							</tr>
 							<tr>
 								<th>상품사진 등록</th>
