@@ -69,4 +69,7 @@ public interface IncomingMapper {
 
 	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
 	public Map<String, Object> errorIncomingGoodsInfoByCode(String errorGoodsInfoCode);
+	
+	//오류입고
+	public int regErrorIncoming(ErrorIncoming errorIncoming);
 }

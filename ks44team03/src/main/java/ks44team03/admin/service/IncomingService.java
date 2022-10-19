@@ -13,6 +13,7 @@ import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
+import ks44team03.dto.MemberDTO;
 import ks44team03.dto.OrderInfo;
 
 @Service
@@ -146,4 +147,14 @@ public class IncomingService {
 		return incomingMapper.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
 	}
 	
+	// 오류입고
+	public int regErrorIncoming(ErrorIncoming errorIncoming) {
+		String newErrorCode = commonMapper.getCommonPkCode("error_incoming", "error_code");
+		errorIncoming.setErrorCode(newErrorCode);
+
+		int result = incomingMapper.regErrorIncoming(errorIncoming);
+		
+		return result;
+	}
+
 }
