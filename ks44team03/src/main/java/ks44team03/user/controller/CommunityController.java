@@ -75,7 +75,16 @@ public class CommunityController {
 		model.addAttribute("title", "이용후기");
 		return "community/reviewInfo";
 	}
-	
+	// 이용후기 상세정보 유효성검사
+	@GetMapping("/reviewCheckPw")
+	@ResponseBody
+	public boolean reviewCheckPw(@RequestParam(name="checkUserPw")String checkUserPw,
+								 @RequestParam(name="checkUserId")String checkUserId) {
+		
+		boolean result = communityService.checkUserPw(checkUserId, checkUserPw);
+		
+		return result;
+	}
 	// 이용후기 등록
 	@PostMapping("/reviewRegister")
 	public String addReview(@RequestPart(name = "communityImgPath") MultipartFile[] multipartFile
@@ -123,9 +132,10 @@ public class CommunityController {
 							   Model model) {
 		
 		communityService.modifyReview(community);
-		
+		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
 		Community reviewInfo = communityService.getReviewInfo(communityNum);
-					
+		
+		model.addAttribute("communityNumInfo", communityNumInfo);
 		model.addAttribute("reviewInfo", reviewInfo);
 		model.addAttribute("title", "이용후기");
 		System.out.println("communityNum ->>>>>"+ communityNum);
@@ -178,9 +188,10 @@ public class CommunityController {
 	// 정보공유 상세정보 유효성검사
 	@GetMapping("/postbordeCheckPw")
 	@ResponseBody
-	public boolean postbordeCheckPw(@RequestParam(name="checkUserPw")String checkUserPw) {
+	public boolean postbordeCheckPw(@RequestParam(name="checkUserId")String checkUserId,
+									@RequestParam(name="checkUserPw")String checkUserPw) {
 		
-		boolean result = communityService.checkUserPw(checkUserPw);
+		boolean result = communityService.checkUserPw(checkUserId, checkUserPw);
 		
 		return result;
 	}
@@ -204,19 +215,35 @@ public class CommunityController {
 	public String getPostbordeInfo(@RequestParam(name="communityNum")String communityNum,
 								Model model) {
 		
-		
+		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
 		Community postbordeInfo = communityService.getPostbordeInfo(communityNum);
 		
-	
+		model.addAttribute("communityNumInfo", communityNumInfo);
 		model.addAttribute("postbordeInfo", postbordeInfo);
 		model.addAttribute("title", "이용후기");
 		return "community/postbordeInfo";
 	}
 	// 정보공유 등록
 	@PostMapping("/postbordeRegister")
-	public String addPostborde(Community community) {
+	public String addPostborde(@RequestPart(name = "communityImgPath") MultipartFile[] multipartFile
+							  ,Community community
+							  ,HttpServletRequest request) {
 		
-		communityService.addPostborde(community);
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		boolean isLocalhost = true;
+		
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			System.out.println(System.getProperty("user.dir"));
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+			isLocalhost = false;
+			fileRealPath = System.getProperty("user.dir") + "/resources/";
+		}
+		
+		communityService.addPostborde(community,multipartFile, fileRealPath, isLocalhost);
 		
 		return "redirect:/postbordeList";
 	}
@@ -236,8 +263,7 @@ public class CommunityController {
 		boolean result = communityService.postbordeListIdCheck(communityId);
 		
 		return result;
-	}
-	
+	}	
 	// 정보공유 수정
 	@PostMapping("/modifyPostborde")
 	public String modifyPostborde(Community community,
@@ -245,9 +271,10 @@ public class CommunityController {
 							   Model model) {
 		
 		communityService.modifyPostborde(community);
-		
+		Community communityNumInfo = communityService.getCommunityInfoByNum(communityNum);
 		Community postbordeInfo = communityService.getPostbordeInfo(communityNum);
 		
+		model.addAttribute("communityNumInfo", communityNumInfo);
 		model.addAttribute("postbordeInfo", postbordeInfo);
 		model.addAttribute("title", "이용후기");
 		System.out.println("communityNum ->>>>>"+ communityNum);

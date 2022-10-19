@@ -464,9 +464,6 @@ $(document).ready(function(){
 		var $uId = $("#uId");
 		var $id = $("#id");
 		
-		console.log("ㅠㅠ");
-		console.dir("uid : "+$uId);
-		
 		// 아이디 정규식
 		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
 			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
@@ -480,10 +477,10 @@ $(document).ready(function(){
 					"font-weight" : "bold",
 					"font-size" : "15px"
 				})
-			} else { // 공백아니면 중복체크
+			} else { // 공백아니면 중복체크 
 				$.ajax({
 					type : "POST",
-					url : "/signup/checkid",
+					url : "/user/signup/checkid",
 					data : {
 							"id" : $uId.val()
 							},
@@ -523,8 +520,6 @@ $(document).ready(function(){
 	$(function() {
 		var $uPw = $("#uPw");
 		var $uRepw = $("#uRepw");
-		
-		console.log("패스워드 스크립트");
 		
 		// 비밀번호 정규식
 		$uPw.on("keyup", function() {
@@ -615,8 +610,6 @@ $(document).ready(function(){
 		
 		var $uNick = $("#uNick");
 		var $nickTxt = $("#nickTxt");
-		
-		console.log("닉네임검사하자");
 
 		// 닉네임 정규식
 		$uNick.on("keyup", function() {
@@ -633,7 +626,7 @@ $(document).ready(function(){
 			} else{ // 공백아니면 중복체크
 				$.ajax({
 					type : "POST",
-					url : "/signup/checknick",
+					url : "/user/signup/checknick",
 					data : {
 							"nick" : $uNick.val()
 							},

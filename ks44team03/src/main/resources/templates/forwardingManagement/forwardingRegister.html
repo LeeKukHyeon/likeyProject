@@ -51,16 +51,16 @@
 								</tr>								
 							</thead>
 							  <tbody>
-								<tr th:each = "i :${regForwarding}">
+								<tr th:if="${not #lists.isEmpty(regForwardingList)}" th:each = "i :${regForwardingList}">
 									<td class="incoming_checkbox"><input type="checkbox"></td>									
 									<td th:text="${i.goodsInfoCode}"></td>
-									<td th:text="${i.likeyPass}"></td>
+									<td th:text="${i.goodsInfoDto.likeyPass}"></td>
 									<td th:text="${i.incomingPostpone}"></td>
 									<td th:text="${i.sumPost}"></td>
 									<td th:text="${i.reqOptionImpli}"></td>
 									<td th:text="${i.incomingApproval}"></td>
 									<td align="center">
-										<button type="button" id="incoming_modal_open">출고등록</button>
+										<button type="button" class="forwarding_modal_open add_button">출고등록</button>
 									</td>
 								</tr>
 							  </tbody>
@@ -68,51 +68,41 @@
 					</form>
 				</div>
 				
-				<!-- #incoming_modal_open 등록 버튼 누르면 출력되는 모달 -->
+				<!-- .forwarding_modal_open 등록 버튼 누르면 출력되는 모달 -->
 				<div class="modal">
 					<div class="incoming_modal_content">
 						
 					  <th:block>
 						
-						<form id="incoming_reg_form" action="#" method="#">
+						<form id="forwarding_reg_form" action="#" method="#">
 						<table class="input_table"><tbody>
 						
 							<tr>
-								<th>주문정보 코드</th>
-								<td>
-								 	#
-								</td>
-							</tr>
-							<tr>
 								<th>상품정보 코드</th>
 								<td>
-								 	#
+								 	<label id="goodsInfoCode"></label>
 								</td>
 							</tr>
 							<tr>
 								<th>라이키패스 가입여부</th>
 								<td>
-								 	#
+								 	<label id="likeyPass"></label>
 								</td>
 							</tr>
 							<tr>
-								<th>상품사진 등록</th>
-								<td> <input type="file" name="photoSave" id="photoSave"> </td>
+								<th>출고 배송회사</th>
+								<td> <input type="text" name="outCompany" id="outCompany"> </td>
 							</tr>
 							<tr>
-								<th>부피</th>
-								<td> <input type="text" name="volume" id="volume"> </td>
-							</tr>
-							<tr>
-								<th>중량</th>
-								<td> <input type="text" name="weight" id="weight"> </td>
+								<th>출고 운송장번호</th>
+								<td> <input type="text" name="outTrackingNum" id="outTrackingNum"> </td>
 							</tr>
 						</tbody></table>
 						</form>
 						
-						<div class="incoming_modal_button" align="center">
-							<button type="submit" id="incoming_modal_reg" class="add_button" form="incoming_reg_form">등록</button>
-							<button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+						<div class="forwarding_modal_button" align="center">
+							<button type="submit" class="forwarding_modal_reg add_button" form="forwarding_reg_form">등록</button>
+							<button type="button" class="forwarding_modal_close cancel_button">취소</button>
 						</div>
 						
 					  </th:block>
@@ -125,16 +115,17 @@
 			</div>
           </div>
         </div>
-        
-<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 
 	$(function(){
-		$(document).on('click', '#incoming_modal_open', function(){
+		//출고등록 버튼 클릭 시 모달
+		$(document).on('click', '.forwarding_modal_open', function(){
 			var goodsInfoCode = $(this).parents('tr').children().eq(1).text();
 			
 			var request = $.ajax({
-				  url: "/incomingGoodsInfoByCode",
+				  url: "/forwardingGoodsInfoByCode",
 				  method: "GET",
 				  data: { 'goodsInfoCode' : goodsInfoCode },
 				  dataType: "json"
@@ -142,7 +133,6 @@
 				 
 				request.done(function( data ) {
 					console.table(data)
-					$('#buyOrderCode').text(data.buyOrderCode);
 					$('#goodsInfoCode').text(data.goodsInfoCode);
 					$('#likeyPass').text(data.likeyPass);
 				});
@@ -153,12 +143,12 @@
 			$('.modal').css('display', 'block');
 		});
 		
-		$(document).on('click', '#incoming_modal_close', function(){
+		$(document).on('click', '.forwarding_modal_close', function(){
 			$('.modal').css('display', 'none');
 		});
 	});
 
-</script> -->
+</script>
 </body>
 
 </html>

@@ -77,7 +77,7 @@
 														
 														<div class="upload">
 															<div><input type="radio"  name="image" value="url" class="radio_bt"></div>
-															<div class="bt_02"><input type="text"  name="package_url[]" value=""  maxlength="950"  placeholder="제품 URL 직접 입력"></div>
+															<div class="bt_02"><input type="text"  name="package_url[]" th:value="${l.goodsImgUrl}"  maxlength="950"  placeholder="제품 URL 직접 입력"></div>
 														</div>
 							
 														<div style="clear:both;"></div>
@@ -331,9 +331,9 @@
 													</table>
 													
 													<div class="item_bt_list">
-														<div><a href='javascript:void(0);' onClick=\"itemTracking();\">트레킹 확인</a></div>
+														<div><a href='javascript:void(0);' onClick="itemTracking();">트레킹 확인</a></div>
 														<div><a href="javascript:void(0);" onClick="javascript:addItem('copy', tblVote.clickedRowIndex);" >상품 복사하기</a></div>
-														<div><a href="javascript:void(0);" onclick="javascript:window.open('nodata.html', 'nodata', 'width=1100, height=620, left=40, top=40');">노데이터 목록</a></div>
+														<div><a href="javascript:void(0);" onclick="javascript:window.open('/api/nodataListApi', 'nodata', 'width=1100, height=620, left=40, top=40');">노데이터 목록</a></div>
 														
 														<div><a href="javascript:void(0);" onClick="deleteItem();">상품삭제</a></div>
 													</div>
@@ -714,6 +714,27 @@
 		<!--  -->
 		
 		<script>
+		
+		// 아이템트래킹
+		function itemTracking()
+		{
+			var idx=tblVote.clickedRowIndex;
+			var tracking_num_obj = document.getElementsByName("tracking_num[]");
+			var tracking_num = tracking_num_obj[idx].value;
+			if(tracking_num=="")
+			{
+				alert("트래킹번호를 입력후 클릭해 주세요!");
+				return false;
+			}
+			else
+				var url = "https://www.aftership.com/ko/track/" + tracking_num;
+			window.open(url, '_blank');
+			
+			//javascript:
+		}
+		
+		
+		
 		function getOrderAmt()
 		{
 			var package_qty_obj = document.getElementsByName("package_qty[]");

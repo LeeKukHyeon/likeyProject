@@ -38,7 +38,7 @@ public interface CommunityMapper {
 	public int addPostborde(Community community); 
 	
 	// 게시판 유효성 검사
-	public boolean checkUserPw(String checkUserPw);
+	public boolean checkUserPw(String checkUserId, String checkUserPw);
 	
 	// 정보공유 목록
 	public List<Community> getPostbordeList();

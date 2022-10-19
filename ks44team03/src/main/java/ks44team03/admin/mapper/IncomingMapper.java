@@ -19,7 +19,7 @@ public interface IncomingMapper {
 	
 
 	//입고 등록 대기 리스트
-	public List<GoodsInfo> regIncoming();
+	public List<GoodsInfo> regIncomingList();
 	
 
 	//ajax 호출
@@ -64,6 +64,9 @@ public interface IncomingMapper {
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode);
 	
-	//오류입고 목록2
+	//오류입고 처리내역
 	public List<ErrorIncoming> errorIncomingList();
+
+	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
+	public Map<String, Object> errorIncomingGoodsInfoByCode(String errorGoodsInfoCode);
 }
