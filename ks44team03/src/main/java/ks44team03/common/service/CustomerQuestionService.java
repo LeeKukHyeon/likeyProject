@@ -21,7 +21,15 @@ public class CustomerQuestionService {
 		this.customerQuestionMapper = customerQuestionMapper;
 		this.commonMapper = commonMapper;
 	}
-
+	
+	//내문의내역 페이지 내용 검색
+	public List<QuestionCenter> myQuestionSearch(Map<String, Object> paramMap){
+		
+		List<QuestionCenter> QuestionList = customerQuestionMapper.myQuestionSearch(paramMap);
+		
+		return QuestionList;
+	}
+	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> paramMap){
 		

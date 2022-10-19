@@ -11,6 +11,9 @@ import ks44team03.dto.UserInfo;
 @Mapper
 public interface CustomerQuestionMapper {
 	
+	//내문의내역 페이지 내용 검색
+	public List<QuestionCenter> myQuestionSearch(Map<String, Object> searchMap);
+	
 	//ass 테스트
 	public List<UserInfo> memberInfo();
 	

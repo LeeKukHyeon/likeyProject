@@ -35,7 +35,26 @@
 		</tbody></table>
 		<!-- 게시판 끝 -->
 			
+		<div th:include="customerService/question/myQuestionSearch :: myQuestionSearch"></div>	
 	</div>
+	
+	<script type="text/javascript">
+	$(function(){
+		$('#searchBtn').click(function(){
+			$.ajax({
+				url : "/questionContentCheck",
+				method : "GET",
+				data : {'searchKey': searchKey , 'searchValue': searchValue},
+				success : function(data){
+					alert('안녕하세요')
+				}
+			});
+		});
+	});
+	
+	</script>
+	
+	
 </body>
 
 </html>
