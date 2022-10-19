@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
@@ -42,6 +45,39 @@ public class CompanyInfoController {
 	}
 	
 	// 회사관리 등록 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
+	
+	// 관리자 로그인
+	@PostMapping("/adminLogin")
+	public String adminLogin(@RequestParam("aId") String aId
+							,@RequestParam("aPw") String aPw
+							,RedirectAttributes reAttr
+							,HttpSession session) {
+		
+		log.info("aId :::::::::" + aId);
+		log.info("aPw :::::::::" + aPw);
+		Employee employeeInfo = companyInfoService.adminLogin(aId);
+		
+		if(employeeInfo != null) {
+			String checkPw = employeeInfo.getEmployeePw();
+			
+			if(aPw != null && checkPw.equals(aPw)) {
+				session.setAttribute("SID", aId);
+				session.setAttribute("SLEVEL", employeeInfo.getEmployeeLevelCode());
+				// 회원의 정보가 일치하면
+				return "adminPage";
+				
+			}
+		}
+		return "adminPage";
+	}
+	@GetMapping("/adminLogout")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/adminPage";
+	}
+	
+
 	// 회사등록 유효성 검사
 	@GetMapping("/companyNumCheck")
 	@ResponseBody
@@ -138,6 +174,28 @@ public class CompanyInfoController {
 	// 회사관리 등록 관련 맵핑 ----------- 끝 -------------------------------------------------------------------------------------
 	
 	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//회사 수정
+	@PostMapping("/modifyCompany")
+	public String modifyCompany(CompanyInfo companyCode) {
+		
+		companyInfoService.modifyCompany(companyCode);
+		
+		return "redirect:/companyList";
+	}
+	//회사 수정
+	@GetMapping("/modifyCompany")
+	public String modifyCompany(@RequestParam(value="companyCode", required = false)String companyCode, Model model) {
+		
+		CompanyInfo companyCodeInfo = companyInfoService.getCompanyInfoByCode(companyCode);
+		
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
+		
+		model.addAttribute("title", "회사 수정");
+		model.addAttribute("companyCodeInfo", companyCodeInfo);
+		model.addAttribute("companyList", companyList);
+		
+		return "company/modifyCompany";
+	}
 	//사업장 수정
 	@PostMapping("/modifyWorkPlace")
 	public String modifyWorkPlace(WorkPlace workPlace) {
@@ -211,7 +269,7 @@ public class CompanyInfoController {
 			
 			return "company/employee/modifyEmployee";
 		}
-	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//회사관리 수정 관련 맵핑 ------------------ 끝 ------------------------------------------------------------------------------------
 
 	// 회사관리 목록조회 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
 	@GetMapping("/companyManagement")
@@ -239,7 +297,7 @@ public class CompanyInfoController {
 	public String getCompanyList(@RequestParam(name="searchKey", defaultValue = "companyNum") String searchKey
 								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
 								,Model model){
-		/*<option value="companyInfoName">대표자성명</option>
+	  /*<option value="companyInfoName">대표자성명</option>
 		<option value="companyName">회사명</option>
 		<option value="companyAddr">회사주소</option>
 		<option value="companyCate">회사종목</option>

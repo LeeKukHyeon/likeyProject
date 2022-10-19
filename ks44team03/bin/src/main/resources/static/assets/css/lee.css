@@ -399,9 +399,9 @@
 
 .detail_box3_wrap .all_price .right_text {float:left;width:434px;height:342px;background-color:#f5f5f5;text-align:center;}
 .detail_box3_wrap .all_price .right_text > div:first-child {padding:66px 0 16px;font-size:22px;color:#3f3f3f;font-weight:bold;}
-.detail_box3_wrap .all_price .right_text > div:nth-child(2) {width:28px;height:2px;margin:0 auto;background-color:#8d8d8d}
+.detail_box3_wrap .all_price .right_text > div:nth-child(4) {width:28px;height:2px;margin:0 auto;background-color:#8d8d8d}
 .detail_box3_wrap .all_price .right_text > div:nth-child(3) {padding-top:33px;font-size:36px;color:#f47827;font-weight:bold;font-family:Tahoma;}
-.detail_box3_wrap .all_price .right_text > div:nth-child(4) {padding-top:10px;font-size:18px;color:#f47827;font-weight:bold;}
+.detail_box3_wrap .all_price .right_text > div:nth-child(2) {padding-top:10px;font-size:18px;color:#f47827;font-weight:bold;}
 .detail_box3_wrap .all_price .right_text > div:nth-child(5) {padding-top:35px;font-size:14px;color:#8a8a8a;}
 
 .detail_box3_wrap .sale_coupon table {border-collapse:collapse;}

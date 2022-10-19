@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import ks44team03.dto.Nodata;
 import ks44team03.dto.ShipOrderApi;
@@ -23,6 +28,24 @@ public class myPageApiController {
 	public myPageApiController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	
+	@GetMapping("/juso")
+	public String jusoRequest() {
+		return "myPage/myPageApi/jusoPopup";
+	}
+	
+	@PostMapping("/juso")
+	public String jusoResponse(String roadFullAddr, String inputYn, Model model) {
+		System.out.println("주소:" + roadFullAddr);
+		model.addAttribute("roadFullAddr", roadFullAddr);
+		model.addAttribute("inputYn", inputYn);
+		return "myPage/myPageApi/jusoPopup";
+	}
+	
+	
+	
+	
 	
 	@PostMapping("api/shipOrderApi")
 	public String cdf(@RequestParam(value = "q_status", required = false) int test, Model model) {
