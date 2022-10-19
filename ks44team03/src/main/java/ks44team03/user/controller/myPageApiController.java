@@ -30,51 +30,18 @@ public class myPageApiController {
 	}
 	
 	
-	@RequestMapping(value = {"/jusoPopup"}, method = RequestMethod.POST)
-	public ModelAndView jusoPopup(HttpServletRequest request, Model model) {
-		System.out.println("--------------------");
-	    
-		ModelAndView mav = new ModelAndView("/myPage/myPageApi/jusoPopup");
-
-		String inputYn = request.getParameter("inputYn");
-		String zipNo = request.getParameter("zipNo");
-		String roadAddrPart1 = request.getParameter("roadAddrPart1");
-		String roadAddrPart2 = request.getParameter("roadAddrPart2");
-		String addrDetail = request.getParameter("addrDetail");
-		String jibunAddr = request.getParameter("jibunAddr");
-
-		mav.addObject("inputYn", inputYn);
-		mav.addObject("zipNo", zipNo);
-		mav.addObject("roadAddrPart1", roadAddrPart1);
-		mav.addObject("roadAddrPart2", roadAddrPart2);
-		mav.addObject("jibunAddr", jibunAddr);
-		mav.addObject("addrDetail", addrDetail);
-
-		return mav;
-	  }
-	 
+	@GetMapping("/juso")
+	public String jusoRequest() {
+		return "myPage/myPageApi/jusoPopup";
+	}
 	
-
-	@RequestMapping(value = {"/jusoPopup"})
-	  public String jusoGetPopup(HttpServletRequest request, Model model) {
-		String inputYn = request.getParameter("inputYn");
-		String zipNo = request.getParameter("zipNo");
-		String roadAddrPart1 = request.getParameter("roadAddrPart1");
-		String roadAddrPart2 = request.getParameter("roadAddrPart2");
-		String addrDetail = request.getParameter("addrDetail");
-		String jibunAddr = request.getParameter("jibunAddr");
-
+	@PostMapping("/juso")
+	public String jusoResponse(String roadFullAddr, String inputYn, Model model) {
+		System.out.println("주소:" + roadFullAddr);
+		model.addAttribute("roadFullAddr", roadFullAddr);
 		model.addAttribute("inputYn", inputYn);
-		model.addAttribute("zipNo", zipNo);
-		model.addAttribute("roadAddrPart1", roadAddrPart1);
-		model.addAttribute("roadAddrPart2", roadAddrPart2);
-		model.addAttribute("jibunAddr", jibunAddr);
-		model.addAttribute("addrDetail", addrDetail);
-	    
-	    return "myPage/myPageApi/jusoPopup";
-	  }
-	
-	
+		return "myPage/myPageApi/jusoPopup";
+	}
 	
 	
 	
