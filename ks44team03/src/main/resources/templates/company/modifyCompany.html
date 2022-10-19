@@ -19,8 +19,8 @@
 	<div class="content-wrapper">
 		<div class="right_text" style="margin-left: 10%; margin-right: 10%;">
 			<h2 th:text="${title}" style=" padding-top:5px;border-bottom: 1px solid #c6c6c6; padding-bottom: 10px;"></h2>
-			<form name="form1" id="modifyCompanyForm" th:action="" method="post">
-				<table class="input_table" style="width:90%;">	
+			<form name="form1" id="modifyCompanyForm" th:action="@{/modifyCompany}" method="post">
+				<table class="input_table" style="width:90%;" th:object="${companyCodeInfo}">	
 					<colgroup>
 						<col width="15%"/><col width="35%"/>
 						<col width="15%"/><col width="35%"/>
@@ -34,43 +34,43 @@
 					<tr>
 						<th class="td1">회사사업자등록번호</th>	
 						<td class="td2">				
-							<input type="text" id=companyNum name=companyNum placeholder="회사사업자등록번호">	
+							<input type="text" id=companyNum name=companyNum th:value="${companyCodeInfo.companyNum}" readonly="readonly">	
 						</td>	
 					</tr>		
 					<tr>	
 						<th class="td1">회사대리인이름</th>
 						<td class="td2">
-							<input type="text" id=companyInfoName name=companyInfoName placeholder="회사대리인이름">	
+							<input type="text" id=companyInfoName name=companyInfoName th:value="${companyCodeInfo.companyInfoName}" readonly="readonly">	
 						</td>
 					</tr>
-					<tr>	
+					<!-- <tr>	
 						<th class="td1">대표주민등록번호</th>
 						<td class="td2">
 							<input type="text" id=companyDelegateNum name=companyDelegateNum placeholder="대표주민등록번호">	
 						</td>
-					</tr>
+					</tr> -->
 					<tr>	
 						<th class="td1">회사주소</th>
 						<td class="td2">
-							<input type="text" id=companyAddr name=companyAddr placeholder="회사주소">	
+							<input type="text" id=companyAddr name=companyAddr th:value="*{companyAddr}" placeholder="회사주소">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사종목</th>
 						<td class="td2">
-							<input type="text" id=companyCate name=companyCate placeholder="회사종목">	
+							<input type="text" id=companyCate name=companyCate th:value="*{companyCate}" placeholder="회사종목">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사설립날짜</th>
 						<td class="td2">
-							<input type="date" id=companyBirth name=companyBirth placeholder="회사설립날짜">	
+							<input type="text" id=companyBirth name=companyBirth th:value="${companyCodeInfo.companyBirth}" placeholder="회사설립날짜" readonly="readonly">	
 						</td>
 					</tr>
 					<tr>	
 						<th class="td1">회사명</th>
 						<td class="td2">
-							<input type="text" id=companyName name=companyName placeholder="회사명">	
+							<input type="text" id=companyName name=companyName th:value="*{companyName}" placeholder="회사명">	
 						</td>
 					</tr>
 				</table>

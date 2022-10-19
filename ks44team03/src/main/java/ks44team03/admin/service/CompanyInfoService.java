@@ -65,6 +65,18 @@ public class CompanyInfoService {
 
 		log.info("회사 등록 결과 : " + result);
 	}
+	// 회사 수정
+	public void modifyCompany(CompanyInfo companyCode) {
+		companyInfoMapper.modifyCompany(companyCode);	
+	}
+	// 특정회사 목록 조회
+		public CompanyInfo getCompanyInfoByCode(String companyCode) {
+			
+			CompanyInfo companyInfo = companyInfoMapper.getCompanyInfoByCode(companyCode);
+			
+			return companyInfo;
+		}
+	
 	// 회사 목록 검색
 	public List<CompanyInfo> getSearchCompanyList(Map<String, Object> paramMap){
 		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);

@@ -174,6 +174,28 @@ public class CompanyInfoController {
 	// 회사관리 등록 관련 맵핑 ----------- 끝 -------------------------------------------------------------------------------------
 	
 	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//회사 수정
+	@PostMapping("/modifyCompany")
+	public String modifyCompany(CompanyInfo companyCode) {
+		
+		companyInfoService.modifyCompany(companyCode);
+		
+		return "redirect:/companyList";
+	}
+	//회사 수정
+	@GetMapping("/modifyCompany")
+	public String modifyCompany(@RequestParam(value="companyCode", required = false)String companyCode, Model model) {
+		
+		CompanyInfo companyCodeInfo = companyInfoService.getCompanyInfoByCode(companyCode);
+		
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
+		
+		model.addAttribute("title", "회사 수정");
+		model.addAttribute("companyCodeInfo", companyCodeInfo);
+		model.addAttribute("companyList", companyList);
+		
+		return "company/modifyCompany";
+	}
 	//사업장 수정
 	@PostMapping("/modifyWorkPlace")
 	public String modifyWorkPlace(WorkPlace workPlace) {
