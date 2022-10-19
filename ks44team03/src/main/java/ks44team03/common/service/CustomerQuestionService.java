@@ -25,9 +25,9 @@ public class CustomerQuestionService {
 	//내문의내역 페이지 내용 검색
 	public List<QuestionCenter> myQuestionSearch(Map<String, Object> paramMap){
 		
-		List<QuestionCenter> QuestionList = customerQuestionMapper.myQuestionSearch(paramMap);
+		List<QuestionCenter> myQuestionList = customerQuestionMapper.myQuestionSearch(paramMap);
 		
-		return QuestionList;
+		return myQuestionList;
 	}
 	
 	//1:1문의 검색

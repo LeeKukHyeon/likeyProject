@@ -30,30 +30,21 @@
 			<td class="situation" th:text="${l.mtmSituation}"></td>
 		  </tr>
 		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
-			<td></td><td>등록된 게시물이 없습니다.</td><td></td><td></td>
+			<td colspan="4">등록된 게시물이 없습니다.</td>
 		  </tr>
 		</tbody></table>
 		<!-- 게시판 끝 -->
 			
-		<div th:include="customerService/question/myQuestionSearch :: myQuestionSearch"></div>	
+		<div th:fragment="myQuestionSearch" >
+	        <form th:action="@{/myQuestionList}" method="post">
+	        	<select name="searchKey" style="margin-top: 5mm;">
+	        		<option value="mtmContent">내용</option>
+	        	</select>
+        		<input type="text" name="searchValue" style="width: 30mm;" th:value="${sv}">
+        		<button id="searchBtn" type="submit">검색</button>
+	        </form>		
+        </div>	
 	</div>
-	
-	<script type="text/javascript">
-	$(function(){
-		$('#searchBtn').click(function(){
-			$.ajax({
-				url : "/questionContentCheck",
-				method : "GET",
-				data : {'searchKey': searchKey , 'searchValue': searchValue},
-				success : function(data){
-					alert('안녕하세요')
-				}
-			});
-		});
-	});
-	
-	</script>
-	
 	
 </body>
 

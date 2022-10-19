@@ -37,7 +37,7 @@
 	
 	<!-- 내 문의내역페이지에서 내용 검색 -->
 	<select id="myQuestionSearch" parameterType="map" resultMap="QuestionResultMap">
-	/* 1:1문의 검색 */
+	/* 내문의내역페이지에서 1:1문의 검색 */
 	SELECT
 		mtm_num_code
 		,e_code
