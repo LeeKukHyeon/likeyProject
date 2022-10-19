@@ -33,7 +33,6 @@
 								<th>회사종목</th>
 								<th>회사설립날짜</th>
 								<th>회사명</th>
-								<th>수정</th>
 							</tr>
 							<tbody>
 								<tr th:if="${not #lists.isEmpty(companyList)}" th:each="l : ${companyList}">
@@ -46,9 +45,6 @@
 									<td th:text="${l.companyCate}"></td>
 									<td th:text="${l.companyBirth}"></td>
 									<td th:text="${l.companyName}"></td>
-									<td>
-										<a th:href="@{/modifyCompany(companyCode=${l.companyCode})}">수정</a>
-									</td>
 								</tr>
 								<tr th:unless="${not #lists.isEmpty(companyList)}">
 									<td colspan="8" style="text-align: center;">등록된 회사가 없습니다.</td>

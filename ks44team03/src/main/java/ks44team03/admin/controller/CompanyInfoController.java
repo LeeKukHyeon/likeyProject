@@ -174,6 +174,28 @@ public class CompanyInfoController {
 	// 회사관리 등록 관련 맵핑 ----------- 끝 -------------------------------------------------------------------------------------
 	
 	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//회사 수정
+	@PostMapping("/modifyCompany")
+	public String modifyCompany(CompanyInfo companyCode) {
+		
+		companyInfoService.modifyCompany(companyCode);
+		
+		return "redirect:/companyList";
+	}
+	//회사 수정
+	@GetMapping("/modifyCompany")
+	public String modifyCompany(@RequestParam(value="companyCode", required = false)String companyCode, Model model) {
+		
+		CompanyInfo companyCodeInfo = companyInfoService.getCompanyInfoByCode(companyCode);
+		
+		List<CompanyInfo> companyList = companyInfoService.getCompanyList();
+		
+		model.addAttribute("title", "회사 수정");
+		model.addAttribute("companyCodeInfo", companyCodeInfo);
+		model.addAttribute("companyList", companyList);
+		
+		return "company/modifyCompany";
+	}
 	//사업장 수정
 	@PostMapping("/modifyWorkPlace")
 	public String modifyWorkPlace(WorkPlace workPlace) {
@@ -247,7 +269,7 @@ public class CompanyInfoController {
 			
 			return "company/employee/modifyEmployee";
 		}
-	//회사관리 수정 관련 맵핑 ------------------ 처음 ------------------------------------------------------------------------------------
+	//회사관리 수정 관련 맵핑 ------------------ 끝 ------------------------------------------------------------------------------------
 
 	// 회사관리 목록조회 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
 	@GetMapping("/companyManagement")
@@ -275,7 +297,7 @@ public class CompanyInfoController {
 	public String getCompanyList(@RequestParam(name="searchKey", defaultValue = "companyNum") String searchKey
 								,@RequestParam(name="searchValue", required = false, defaultValue = "") String searchValue
 								,Model model){
-		/*<option value="companyInfoName">대표자성명</option>
+	  /*<option value="companyInfoName">대표자성명</option>
 		<option value="companyName">회사명</option>
 		<option value="companyAddr">회사주소</option>
 		<option value="companyCate">회사종목</option>
