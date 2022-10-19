@@ -28,14 +28,37 @@ public class CustomerQuestionController {
 	public CustomerQuestionController(CustomerQuestionService customerQuestionService) {
 		this.customerQuestionService = customerQuestionService;
 		
-		
 	}
 	
 	@PostConstruct
 	public void customerQuestionService() {
 		
 	}
+	
+	//내문의내역 페이지 내용 검색
+	@GetMapping("/questionContentCheck")
+	@ResponseBody
+	public String myQuestionSearch(@RequestParam(value = "searchKey" ) String sk , @RequestParam(value = "searchValue") String sv , Model model) {
+		
+		if ("mtmContent".equals(sk)) {
+			sk= "mtm_content";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sk", sk);
+		paramMap.put("sv", sv);
+		
+		System.out.println(sk + "받아오는 sk 값 확인");
+		System.out.println(sv + "받아오는 sv 값 확인");
+		
+		List<QuestionCenter> QuestionList = customerQuestionService.myQuestionSearch(paramMap);
 
+		model.addAttribute("QuestionList", QuestionList);
+		model.addAttribute("sv", sv);
+		
+		return "customerService/question/myQuestionList";
+	}
+	
 	//1:1문의 검색
 	@PostMapping("/personalQuestionSearchAdmin")
 	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
