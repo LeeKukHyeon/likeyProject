@@ -328,6 +328,14 @@
 	 		; 			 	
 	 </select>
 	 
+	 <insert id="regIncoming" parameterType="IncomingInfo">
+	 	/* 입고 등록 */
+		INSERT INTO incoming
+			(incoming_code, goods_info_code, e_code, photo_save, weight, volume)
+		VALUES
+			(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, #{incomingWeight}, ${incomingVolume});
+	</insert>
+	 
 	<select id="incomingGoodsInfoByCode" parameterType="String" resultType="map">
 	 	/*입고 등록 시 특정 상품코드 조회*/
 	 	SELECT 
@@ -383,6 +391,16 @@
 		VALUES
 			(#{errorCode}, #{goodsInfoCode}, #{errorContent}, ${errorAmount}, #{errorState}, CURDATE());
 	</insert>
+	
+	<update id="updateErrorIncoming" parameterType="String">
+		/* 오류입고 상태 업데이트 */
+		UPDATE delivery_current_state
+		SET		
+			stat_info='오류입고'
+		WHERE
+		goods_info_code = #{goodsInfoCode};
+	</update>
+	
 
 </mapper>
 

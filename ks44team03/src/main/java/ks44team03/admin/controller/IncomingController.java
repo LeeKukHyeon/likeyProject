@@ -20,6 +20,7 @@ import ks44team03.admin.service.IncomingService;
 import ks44team03.dto.Criteria;
 import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
+import ks44team03.dto.IncomingInfo;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.PageMakerDTO;
 
@@ -232,6 +233,15 @@ public class IncomingController {
 		return "incoming/incomingList";
 	}
 	
+	//입고등록
+	@PostMapping("/regIncoming")
+	public String regIncoming(IncomingInfo incomingInfo) {
+		System.out.println(incomingInfo +"!!!!!@@@@@@@@@");
+		int result = incomingService.regIncoming(incomingInfo);
+		
+	return "redirect:/incomingList";
+	}
+	
 	//입고등록 모달 - 특정 상품코드 조회
 	@GetMapping("/incomingGoodsInfoByCode")
 	@ResponseBody
@@ -261,9 +271,9 @@ public class IncomingController {
 	
 	// 오류입고
 	@PostMapping("/regErrorIncoming")
-	public String regErrorIncoming(ErrorIncoming errorIncoming) {
+	public String regErrorIncoming(ErrorIncoming errorIncoming, String goodsInfoCode) {
 		/* System.out.println(errorIncoming +"!!!!!@@@@@@@@@"); */
-		int result = incomingService.regErrorIncoming(errorIncoming);
+		int result = incomingService.regErrorIncoming(errorIncoming, goodsInfoCode);
 		
 	return "redirect:/errorIncomingList";
 	}
