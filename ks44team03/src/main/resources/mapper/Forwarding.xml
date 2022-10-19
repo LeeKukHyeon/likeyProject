@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ks44team03.admin.mapper.ForwardingMapper">
+
+	<resultMap type="GoodsInfo" id="orderGoodsListResultMap">
+		<id column="goods_info_code" property="goodsInfoCode"/>
+		<result column="id" property="id"/>
+		<result column="buy_order_code" property="buyOrderCode"/>
+		<result column="grouping_delivery" property="groupingDelivery"/>
+		<result column="g_site" property="gSite"/>
+		<result column="goods_img_url" property="goodsImgUrl"/>
+		<result column="goods_img_upload" property="goodsImgUpload"/>
+		<result column="g_name" property="gName"/>
+		<result column="delivery_company" property="deliveryCompany"/>
+		<result column="tracking_num" property="trackingNum"/>
+		<result column="g_size" property="gSize"/>
+		<result column="g_color" property="gColor"/>
+		<result column="goods_option" property="goodsOption"/>
+		<result column="goods_price" property="goodsPrice"/>
+		<result column="g_amount" property="gAmount"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="likey_pass" property="likeyPass"/>
+		<result column="barcode" property="barCode"/>
+		<result column="arrival" property="arrival"/>
+		<result column="arrival_date" property="arrivalDate"/>
+		<result column="hscode" property="hsCode"/>
+	</resultMap>
+
+	<resultMap type="IncomingInfo" id="incomingListResultMap">
+		<id column="incoming_code" property="incomingCode"/>
+		<result column="goods_info_code" property="goodsInfoCode"/>
+		<result column="e_code" property="eCode"/>
+		<result column="req_option_impli" property="reqOptionImpli"/>
+		<result column="photo_save" property="photoSave"/>
+		<result column="weight" property="incomingWeight"/>
+		<result column="volume" property="incomingVolume"/>
+		<result column="postpone" property="incomingPostpone"/>
+		<result column="sum_post" property="sumPost"/>
+		<result column="send_out" property="sendOut"/>
+		<result column="approval" property="incomingApproval"/>
+		<result column="out_tracking_num" property="outTrackingNum"/>
+		<result column="out_company" property="outCompany"/>
+		<association property="goodsInfoDto" javaType="GoodsInfo">
+			<id column="goods_info_code" property="goodsInfoCode"/>
+			<result column="likey_pass" property="likeyPass"/>
+		</association>
+	</resultMap>
+	
+	<select id="regForwardingList" resultMap="incomingListResultMap">
+	 	/*출고 등록 전 리스트*/
+		SELECT
+			i.goods_info_code
+			,g.likey_pass
+			,i.postpone
+			,i.sum_post
+			,i.req_option_impli
+			,i.approval
+		FROM
+			incoming AS i
+		INNER JOIN
+			delivery_current_state AS d
+		ON
+			i.goods_info_code = d.goods_info_code
+		INNER JOIN
+			goods_info AS g
+		ON
+			d.goods_info_code = g.goods_info_code
+		WHERE
+			d.stat_info = '입고 완료'
+	 </select>
+	 
+	 <select id="forwardingGoodsInfoByCode" parameterType="String" resultType="map">
+	 	/*출고 등록 시 특정 상품코드 조회*/
+	 	SELECT 
+			g.goods_info_code	AS goodsInfoCode
+			,g.likey_pass		AS likeyPass
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info = '입고 완료' AND g.goods_info_code = #{goodsInfoCode};
+	 </select>
+	 
+	 
+	 
+	 
+</mapper>

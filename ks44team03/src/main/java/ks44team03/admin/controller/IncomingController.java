@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,13 +64,13 @@ public class IncomingController {
 
 	//입고 등록 대기 목록
 	@GetMapping("/incomingRegister") 
-	public String regIncoming(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
-	  List<GoodsInfo> regIncoming = incomingService.regIncoming();
+	public String regIncomingList(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
+	  List<GoodsInfo> regIncomingList = incomingService.regIncomingList();
 	  
 	  log.info("goodsInfoCode ::::" + goodsInfoCode);
 	  
 	  model.addAttribute("title", "입고 등록"); 
-	  model.addAttribute("regIncoming",regIncoming); 
+	  model.addAttribute("regIncomingList",regIncomingList); 
 	  return "incoming/incomingRegister";
 	 }
 	
@@ -165,7 +166,6 @@ public class IncomingController {
 				return "incoming/inTransit"; 
 			
 		}
-			
 	
 	//오류 입고
 	
@@ -240,13 +240,22 @@ public class IncomingController {
 		return goodsInfo;
 	}
 	
-	//오류입고 목록 2
-	@GetMapping("/errorIncoming2")
+	//오류입고 처리내역
+	@GetMapping("/errorIncomingList")
 	public String errorIncomingList(Model model) {
 		List<ErrorIncoming> errorIncomingList = incomingService.errorIncomingList(); 
 		
 		model.addAttribute("title", "오류 입고"); 
 		model.addAttribute("errorIncomingList",errorIncomingList); 
-		return "incoming/errorIncoming2"; }
+		return "incoming/errorIncomingList";
+	}
 	
+	
+	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
+	@GetMapping("/errorIncomingGoodsInfoByCode")
+	@ResponseBody
+	public Map<String,Object> errorIncomingGoodsInfoByCode(@RequestParam(value="errorGoodsInfoCode") String errorGoodsInfoCode){
+		Map<String, Object> errorGoodsInfo = incomingService.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
+		return errorGoodsInfo;
+	}
 }

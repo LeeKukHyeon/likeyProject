@@ -105,10 +105,10 @@ public class IncomingService {
 	}
 	
 	//입고 등록 대기 목록
-	public List<GoodsInfo> regIncoming(){
-		List<GoodsInfo> regIncoming = incomingMapper.regIncoming();
+	public List<GoodsInfo> regIncomingList(){
+		List<GoodsInfo> regIncomingList = incomingMapper.regIncomingList();
 		
-		return regIncoming;
+		return regIncomingList;
 	}
 	
 	//입고 전 상품목록 숫자
@@ -134,11 +134,16 @@ public class IncomingService {
 		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
 	}
 	
-	//오류입고 목록2
+	//오류입고 처리내역
 	public List<ErrorIncoming> errorIncomingList(){
 		List<ErrorIncoming> errorIncomingList = incomingMapper.errorIncomingList();
 		
 		return errorIncomingList;
+	}
+	
+	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
+	public Map<String, Object> errorIncomingGoodsInfoByCode(String errorGoodsInfoCode){
+		return incomingMapper.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
 	}
 	
 }

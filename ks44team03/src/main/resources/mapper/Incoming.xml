@@ -256,7 +256,7 @@
 	 
 	 </select>
 	 
-	 <select id="regIncoming" resultMap="orderGoodsListResultMap">
+	 <select id="regIncomingList" resultMap="orderGoodsListResultMap">
 	 	/*입고 등록 전 리스트*/
 		SELECT 
 			*
@@ -361,28 +361,22 @@
 		WHERE
 			d.stat_info = '오류입고'
 	</select>	
-<!--	
-	<select id="regForwarding" resultMap="incomingListResultMap">
-	 	/*출고 등록 전 리스트*/
-		SELECT
-			i.goods_info_code
-			,g.likey_pass
-			,i.postpone
-			,i.sum_post
-			,i.req_option_impli
-			,i.approval
-		FROM
-			incoming AS i
-		INNER JOIN
-			delivery_current_state AS d
-		ON
-			i.goods_info_code = d.goods_info_code
-		INNER JOIN
-			goods_info AS g
-		ON
-			d.goods_info_code = g.goods_info_code
-		WHERE
-			d.stat_info = '입고 완료'
-	 </select>
-		 -->
+	
+	<select id="errorIncomingGoodsInfoByCode" parameterType="String" resultType="map">
+	 	/*입고등록 화면에서 오류입고 모달 - 특정 상품코드 조회*/
+	 	SELECT 
+			g.goods_info_code  AS errorGoodsInfoCode
+		FROM 
+			goods_info AS g 
+		inner JOIN 
+			delivery_current_state AS d 
+		ON 
+			g.goods_info_code = d.goods_info_code 
+		WHERE 
+			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{errorGoodsInfoCode};
+	</select>
+	
+
 </mapper>
+
+
