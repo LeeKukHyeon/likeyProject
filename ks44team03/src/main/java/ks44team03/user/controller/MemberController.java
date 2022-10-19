@@ -1,26 +1,38 @@
 package ks44team03.user.controller;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import groovyjarjarpicocli.CommandLine.Model;
+import org.springframework.ui.Model;
 import ks44team03.dto.MemberDTO;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MemberService;
 
 @Controller
+@RequestMapping(value = "/user")
 public class MemberController {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
 	private MemberService memberService;
 	
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	
+	@PostConstruct
+	public void memberControllerInit() {
+		log.info("memberController 생성");
 	}
 	
 	// 로그인페이지로 이동
@@ -41,10 +53,21 @@ public class MemberController {
 		return "registration/userForm";
 	}
 	
+	//로그아웃 버튼 클릭시 로그아웃 완료 및 로그인페이지로 이동
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/user/loginForm";
+	}
+	
 	//로그인 버튼 클릭시 로그인 완료 및 마이페이지로 이동
-	@PostMapping("/userLogin")
-	public String loginProcess(@RequestParam("uId") String uId, @RequestParam("uPw") String uPw
-							,RedirectAttributes reAttr,HttpSession session){
+	@PostMapping("/login")
+	public String loginProcess(@RequestParam("uId") String uId
+							,@RequestParam("uPw") String uPw
+							,RedirectAttributes reAttr
+							,HttpSession session){
 		
 		UserInfo userinfo = memberService.getMemberInfoById(uId);
 
@@ -58,20 +81,21 @@ public class MemberController {
 				// 회원의 정보가 일치하면
 				return "myPage/member/mypageScreen";
 			}
-		}	
+		}
+		
+		// 회원의 정보가 일치하기 않으면
 		reAttr.addAttribute("msg", "회원의 정보가 일치하지 않습니다.");
 		return "redirect:/login/loginForm";
 	}
-	
-	//
-	@GetMapping("/userLogin")
+
+	@GetMapping("/login")
 	public String login(Model model
 					   ,@RequestParam(value="msg", required = false) String msg) {
 			
-		//model.addAttribute("title", "로그인 화면");
-		//if(msg != null) model.addAttribute("msg", msg);
+		model.addAttribute("title", "로그인 화면");
+		if(msg != null) model.addAttribute("msg", msg);
 			
-		return "/admin/login/adminLogin";
+		return "/user/login";
 	}
 	
 	

@@ -13,6 +13,19 @@ public class QuestionCenter {
 	private String mtmDate; //1:1문의 등록일
 	private String mtmSituation; //1:1문의 처리상태
 	
+	
+	private UserInfo memberInfo; //회원의 정보
+	
+	public UserInfo getMemberInfo() {
+		return memberInfo;
+	}
+	public void setMemberInfo(UserInfo memberInfo) {
+		this.memberInfo = memberInfo;
+	}
+	
+	
+	
+	
 	public String getMtmAnswer() {
 		return mtmAnswer;
 	}
@@ -77,7 +90,8 @@ public class QuestionCenter {
 	public String toString() {
 		return "QuestionCenter [mtmNumCode=" + mtmNumCode + ", userId=" + userId + ", employeeCode=" + employeeCode
 				+ ", mtmCate=" + mtmCate + ", mtmTitle=" + mtmTitle + ", mtmContent=" + mtmContent + ", mtmAnswer="
-				+ mtmAnswer + ", mtmImg=" + mtmImg + ", mtmDate=" + mtmDate + ", mtmSituation=" + mtmSituation + "]";
+				+ mtmAnswer + ", mtmImg=" + mtmImg + ", mtmDate=" + mtmDate + ", mtmSituation=" + mtmSituation
+				+ ", memberInfo=" + memberInfo + "]";
 	}
 	
 }

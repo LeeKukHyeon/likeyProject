@@ -37,6 +37,9 @@ public interface CommunityMapper {
 	// 정보공유 등록
 	public int addPostborde(Community community); 
 	
+	// 게시판 유효성 검사
+	public boolean checkUserPw(String checkUserId, String checkUserPw);
+	
 	// 정보공유 목록
 	public List<Community> getPostbordeList();
 	
@@ -46,8 +49,14 @@ public interface CommunityMapper {
 	// 정보공유 상세정보
 	public Community getPostbordeInfo(String communityNum);
 	
+	// 정보공유 아이디체크
+	public boolean postbordeListIdCheck(String communityId);
+	
 	// 정보공유 수정
 	public int modifyPostborde(Community community);
+	
+	// 정보공유 삭제
+	public void removePostborde(String communityNum);
 		
 	// 글조회시 조회수 증가
 	public void getCountHit(String communityNum);

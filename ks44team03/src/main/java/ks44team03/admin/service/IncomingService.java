@@ -11,7 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
+import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
+import ks44team03.dto.IncomingInfo;
+import ks44team03.dto.MemberDTO;
 import ks44team03.dto.OrderInfo;
 
 @Service
@@ -103,11 +106,11 @@ public class IncomingService {
 		return arriveWarehouse;
 	}
 	
-	//입고 등록
-	public List<GoodsInfo> regIncoming(){
-		List<GoodsInfo> regIncoming = incomingMapper.regIncoming();
+	//입고 등록 대기 목록
+	public List<GoodsInfo> regIncomingList(){
+		List<GoodsInfo> regIncomingList = incomingMapper.regIncomingList();
 		
-		return regIncoming;
+		return regIncomingList;
 	}
 	
 	//입고 전 상품목록 숫자
@@ -128,8 +131,50 @@ public class IncomingService {
 		return incomingOrderList;
 	}
 	
+	//입고등록
+	public int regIncoming(IncomingInfo incominginfo, String goodsInfoCode) {
+		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
+		incominginfo.setIncomingCode(newIncomingCode);
+		incomingMapper.updateIncoming(goodsInfoCode);
+		
+		int result = incomingMapper.regIncoming(incominginfo);
+		
+		return result;
+	}
+	
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode){
 		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
 	}
+	
+	//입고 완료 상품 리스트
+	public List<IncomingInfo> goodsIncomingList(){
+		List<IncomingInfo> goodsIncomingList = incomingMapper.goodsIncomingList();
+		
+		return goodsIncomingList;
+	}
+	
+	//오류입고 처리내역
+	public List<ErrorIncoming> errorIncomingList(){
+		List<ErrorIncoming> errorIncomingList = incomingMapper.errorIncomingList();
+		
+		return errorIncomingList;
+	}
+	
+	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
+	public Map<String, Object> errorIncomingGoodsInfoByCode(String errorGoodsInfoCode){
+		return incomingMapper.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
+	}
+	
+	// 오류입고
+	public int regErrorIncoming(ErrorIncoming errorIncoming, String goodsInfoCode) {
+		String newErrorCode = commonMapper.getCommonPkCode("error_incoming", "error_code");
+		errorIncoming.setErrorCode(newErrorCode);
+		incomingMapper.updateErrorIncoming(goodsInfoCode);
+		
+		int result = incomingMapper.regErrorIncoming(errorIncoming);
+		
+		return result;
+	}
+
 }

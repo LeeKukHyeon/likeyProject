@@ -12,12 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.IncomingService;
 import ks44team03.dto.Criteria;
+import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
+import ks44team03.dto.IncomingInfo;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.PageMakerDTO;
 
@@ -25,7 +28,7 @@ import ks44team03.dto.PageMakerDTO;
 @Controller
 public class IncomingController {
 
-	private static final Logger log = LoggerFactory.getLogger(CompanyInfoController.class);
+	private static final Logger log = LoggerFactory.getLogger(IncomingController.class);
 	
 	private IncomingService incomingService;
 	
@@ -60,15 +63,15 @@ public class IncomingController {
 			return goodsDetail;
 	}
 
-	//입고 등록
+	//입고 등록 대기 목록
 	@GetMapping("/incomingRegister") 
-	public String regIncoming(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
-	  List<GoodsInfo> regIncoming = incomingService.regIncoming();
+	public String regIncomingList(@RequestParam(value="goodsInfoCode", required = false) String goodsInfoCode, Model model) {
+	  List<GoodsInfo> regIncomingList = incomingService.regIncomingList();
 	  
 	  log.info("goodsInfoCode ::::" + goodsInfoCode);
 	  
 	  model.addAttribute("title", "입고 등록"); 
-	  model.addAttribute("regIncoming",regIncoming); 
+	  model.addAttribute("regIncomingList",regIncomingList); 
 	  return "incoming/incomingRegister";
 	 }
 	
@@ -164,7 +167,6 @@ public class IncomingController {
 				return "incoming/inTransit"; 
 			
 		}
-			
 	
 	//오류 입고
 	
@@ -231,12 +233,59 @@ public class IncomingController {
 		return "incoming/incomingList";
 	}
 	
+	//입고등록
+	@PostMapping("/regIncoming")
+	public String regIncoming(IncomingInfo incomingInfo, String goodsInfoCode) {
+		System.out.println(incomingInfo +"!!!!!@@@@@@@@@");
+		int result = incomingService.regIncoming(incomingInfo, goodsInfoCode);
+		
+	return "redirect:/goodsIncomingList";
+	}
+	
 	//입고등록 모달 - 특정 상품코드 조회
 	@GetMapping("/incomingGoodsInfoByCode")
 	@ResponseBody
 	public Map<String,Object> incomingGoodsInfoByCode(@RequestParam(value="goodsInfoCode") String goodsInfoCode){
 		Map<String, Object> goodsInfo = incomingService.incomingGoodsInfoByCode(goodsInfoCode);
 		return goodsInfo;
+	}
+	
+	//입고 완료 상품 리스트
+	@GetMapping("/goodsIncomingList") 
+	public String goodsIncomingList(Model model) {
+	  List<IncomingInfo> goodsIncomingList = incomingService.goodsIncomingList();
+	  
+	  model.addAttribute("title", "입고 완료 상품 리스트"); 
+	  model.addAttribute("goodsIncomingList",goodsIncomingList); 
+	  return "incoming/goodsIncomingList";
+	 }
+	
+	//오류입고 처리내역
+	@GetMapping("/errorIncomingList")
+	public String errorIncomingList(Model model) {
+		List<ErrorIncoming> errorIncomingList = incomingService.errorIncomingList(); 
+		
+		model.addAttribute("title", "오류 입고"); 
+		model.addAttribute("errorIncomingList",errorIncomingList); 
+		return "incoming/errorIncomingList";
+	}
+	
+	
+	//입고등록 화면 > 오류입고 모달 - 특정 상품코드 조회
+	@GetMapping("/errorIncomingGoodsInfoByCode")
+	@ResponseBody
+	public Map<String,Object> errorIncomingGoodsInfoByCode(@RequestParam(value="errorGoodsInfoCode") String errorGoodsInfoCode){
+		Map<String, Object> errorGoodsInfo = incomingService.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
+		return errorGoodsInfo;
+	}
+	
+	// 오류입고
+	@PostMapping("/regErrorIncoming")
+	public String regErrorIncoming(ErrorIncoming errorIncoming, String goodsInfoCode) {
+		/* System.out.println(errorIncoming +"!!!!!@@@@@@@@@"); */
+		int result = incomingService.regErrorIncoming(errorIncoming, goodsInfoCode);
+		
+	return "redirect:/errorIncomingList";
 	}
 	
 }

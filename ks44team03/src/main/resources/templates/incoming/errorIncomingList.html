@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 오류입고 -->
+<title>오류입고</title>
+</head>
+
+<!-- ========== 오류입고 화면 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 오류입고 화면 시작 ========== -->
+				<h2>오류입고</h2>
+				<div class="error_incoming_list">
+					<form method="get" action="#">
+							<div th:fragment="searchFragment" >
+							        
+							        	<select name="searchKey" id="searchKey">
+							        		<option value="goodsInfoCode">상품정보 코드</option>
+							        	</select>
+						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>						       	
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+						
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>오류입고 내역</th>
+									<th>오류입고 개수</th>
+									<th>물품 처리 상태</th>
+									<th>물품 처리 날짜</th>				
+								</tr>								
+							</thead>
+							  <tbody>
+							 	
+								<tr th:each = "i :${errorIncomingList}">
+									<td class="incoming_checkbox"><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.errorContent}"></td>
+									<td th:text="${i.errorAmount}"></td>
+									<td th:text="${i.errorState}"></td>
+									<td th:text="${i.errorCompDate}"></td>	
+								</tr>
+							  </tbody>
+						</table>
+					</form>
+				</div>
+				<!-- ========== 입고등록 화면 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+
+</body>
+
+</html>

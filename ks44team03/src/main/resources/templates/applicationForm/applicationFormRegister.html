@@ -6,6 +6,8 @@
       layout:decorate="~{layout/default_layout.html}">
 <head>
 <link rel="stylesheet" type="text/css" th:href="@{/assets/css/applcation_form.css}"/>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 	
 <!-- default_layout.html에 정의한 main page 부분 -->
@@ -112,8 +114,8 @@
 	        </div>
 	        
 	        <div class="col-md-6 mb-3">
-	            <input type="radio" name="ship_method" value="A"  class="radio_bt"> 항공 운송 <img src ="image/icon_a.png" width="50px;">
-	            <input type="radio" name="ship_method" value="S"  class="radio_bt"> 해상 운송 <img src ="image/icon_s.png" width="50px;">
+	            <input type="radio" name="ship_method" value="A"  class="radio_bt"> 항공 운송 <img src ="/image/icon_a.png" width="50px;">
+	            <input type="radio" name="ship_method" value="S"  class="radio_bt"> 해상 운송 <img src ="/image/icon_s.png" width="50px;">
 	        </div>
 	        
 			<div class="col-md-12 mb-3">
@@ -172,7 +174,7 @@
 	                            <div class="img_wrap">
 	                        		<div id="previewImg" class="image">
 					                	<a class="preview" target="_blank">
-					                	<img src="image/S_shipping_form_img_11.gif" border="0" width="223" height="223">
+					                	<img src="/image/S_shipping_form_img_11.gif" border="0" width="223" height="223">
 	                     				</a>
 	                  				</div>
 	                            	<div class="upload">
@@ -823,6 +825,67 @@ function totalPrice()
 }
 
 
+//이미지 파일 업로드
+function ajaxFileUpload(obj, idx, rowIdx){
+	$("#loading").ajaxStart(function(){
+		$(this).show();
+		})
+	.ajaxComplete(function(){
+		$(this).hide();
+		});
+	
+	console.log("이미지업로드");
+	$.ajaxFileUpload({
+			url:'/shipping_img_upload.html?idx=' + idx,
+			secureuri:false,
+			fileElementId:obj,
+			dataType: 'json',
+			data:{name:'logan', id:'id'},
+			success: function (data, status){
+				if(typeof(data.error) != 'undefined'){
+					if(data.error != ''){
+						alert(data.error);
+					}else{
+						var package_img_url_obj = $("input[name='package_img_url[]']");
+						$(package_img_url_obj.get(rowIdx)).val( data.package_img_url );
+						var htmlImg = "<a href='"+ data.package_img_url +"' class='preview' target=_blank><img src='"+ data.package_img_url +"' border=0 width='223' height='223'></a>";
+						var previewImg_obj = $("div[id='previewImg']");
+						$(previewImg_obj.get(rowIdx)).html( htmlImg );
+					}
+				}
+			},error: function (data, status, e){
+				alert(e);
+			}
+		});
+	return false;
+}
+
+
+function imageLarge()
+{
+	var htmlImg = "<img src='/image/S_shipping_form_img_11.gif'>";
+	var rowIdx = tblVote.clickedRowIndex;
+	var package_img_url_obj = $("input[name='package_addItemimg_url[]']");
+	var package_img_url = $(package_img_url_obj.get(rowIdx)).val();
+	
+	if(package_img_url!="") {
+		htmlImg = "<a href='"+ package_img_url +"' class='preview' target=_blank><img src='"+ package_img_url +"' border=0 width='223' height='223'></a>";
+	}
+	var previewImg_obj = $("div[id='previewImg']");
+	$(previewImg_obj.get(rowIdx)).html( htmlImg );
+}
+
+function imageDel()
+{
+	var rowIdx = tblVote.clickedRowIndex;
+	var package_img_url_obj = $("input[name='package_img_url[]']");
+	$(package_img_url_obj.get(rowIdx)).val('');
+	var htmlImg = "";
+	var previewImg_obj = $("div[id='previewImg']");
+	$(previewImg_obj.get(rowIdx)).html( htmlImg );
+}
+
+
 function fncOnMouseOver(selectedIndex)
 {
 	document.all.tblVote.clickedRowIndex = selectedIndex;
@@ -1161,65 +1224,6 @@ function addItem(action_type)
 	getOrderAmt();
 }
 
-
-// 이미지 파일 업로드
-function ajaxFileUpload(obj, idx, rowIdx){
-	$("#loading").ajaxStart(function(){
-		$(this).show();
-		})
-	.ajaxComplete(function(){
-		$(this).hide();
-		});
-	
-	$.ajaxFileUpload({
-			url:'/shipping_img_upload.html?idx=' + idx,
-			secureuri:false,
-			fileElementId:obj,
-			dataType: 'json',
-			data:{name:'logan', id:'id'},
-			success: function (data, status){
-				if(typeof(data.error) != 'undefined'){
-					if(data.error != ''){
-						alert(data.error);
-					}else{
-						var package_img_url_obj = $("input[name='package_img_url[]']");
-						$(package_img_url_obj.get(rowIdx)).val( data.package_img_url );
-						var htmlImg = "<a href='"+ data.package_img_url +"' class='preview' target=_blank><img src='"+ data.package_img_url +"' border=0 width='223' height='223'></a>";
-						var previewImg_obj = $("div[id='previewImg']");
-						$(previewImg_obj.get(rowIdx)).html( htmlImg );
-					}
-				}
-			},error: function (data, status, e){
-				alert(e);
-			}
-		});
-	return false;
-}
-
-
-function imageLarge()
-{
-	var htmlImg = "<img src='/image/S_shipping_form_img_11.gif'>";
-	var rowIdx = tblVote.clickedRowIndex;
-	var package_img_url_obj = $("input[name='package_addItemimg_url[]']");
-	var package_img_url = $(package_img_url_obj.get(rowIdx)).val();
-	
-	if(package_img_url!="") {
-		htmlImg = "<a href='"+ package_img_url +"' class='preview' target=_blank><img src='"+ package_img_url +"' border=0 width='223' height='223'></a>";
-	}
-	var previewImg_obj = $("div[id='previewImg']");
-	$(previewImg_obj.get(rowIdx)).html( htmlImg );
-}
-
-function imageDel()
-{
-	var rowIdx = tblVote.clickedRowIndex;
-	var package_img_url_obj = $("input[name='package_img_url[]']");
-	$(package_img_url_obj.get(rowIdx)).val('');
-	var htmlImg = "";
-	var previewImg_obj = $("div[id='previewImg']");
-	$(previewImg_obj.get(rowIdx)).html( htmlImg );
-}
 </script>   
       
       

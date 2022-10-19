@@ -21,7 +21,6 @@
 			<option value="option4">답변 완료</option>
 		</select>
 	</div>	
-
 		<table class="personal_question_list" style="width: 100%; margin-top: 5mm">
 		  <tbody><tr>
 		    <th class="number" style="width: 10%">번호</th>
@@ -65,7 +64,6 @@
 		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
 		
 		<!-- //게시판 -->
-		<div style="height: 15px; margin-right: 69mm;"></div>
 
 		<!-- 숫자 -->
 		<table border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_num">
@@ -80,6 +78,9 @@
 				</tbody></table>
 		</tbody></table>
 	</div>
+	
+	
+	<!-- SELECT OPTION의 VALUE에 따른 처리상태 화면 변화 -->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#selectBox').change(function(){

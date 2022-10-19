@@ -5,7 +5,38 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-
+<style>
+	td{
+		border: 1px solid;
+		padding: 10px;
+		font-weight:bold;
+	}
+	input{
+		padding: 10px;
+	}
+	h3{
+		font-weight:bold;
+	}
+	#adminLoginBtn{
+		float: right;
+	}
+	.incoming_modal_open{
+		border: 2px solid;
+		border-radius: 10px;
+		background:linear-gradient(45deg,black, gray);
+		width: 150px;
+		height: 70px;
+		font-weight:bold;
+		color: white;
+	}
+	.incoming_modal_open:hover{
+		background:linear-gradient(45deg,gray, black);
+	}
+	.incoming_modal_content{
+		border: 1px solid;
+		border-radius: 10px;
+	}
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
    $(function(){
@@ -21,7 +52,23 @@
       });
    });
 </script>
-
+<script type="text/javascript">
+	$(function(){
+		$('#incoming_modal_reg').click(function(){
+			var checkAid = $('#aId').val();
+			var checkApw = $('#aPw').val();
+			if(!checkAid){
+				alert("사원코드를 입력해 주세요.")
+			}else{
+				if(!checkApw){
+					alert("비밀번호를 입력해 주세요.")
+				}else{
+					$('#adminLoginForm').submit();
+				}
+			}
+		});
+	});
+</script>
 </head>
 	
 	<!-- default_layout.html에 정의한 main page 부분 -->
@@ -32,84 +79,53 @@
           <div class="row">
             <div class="col-sm-12">
              	<h2>관리자 페이지 입니다.</h2>
-             	<a th:href="@{/}">홈으로</a> <!-- 컨텐츠? -->
-             	
-             	<button class="incoming_modal_open" style="margin-left: 50px; padding: 50px;">모달테스트</button>
+             	<a th:href="@{/}">홈으로</a>
+             	<hr>
+           		<!-- 컨텐츠? -->
+             	<div th:if="${session.SID != null}">관리자 아이디 </div><h3 th:text="${session.SID}"></h3>
+             	<!-- <form id="adminLoginForm" th:action="@{/adminLogin}" method="post">
+             	<table border="1">
+             		<tr>
+             			<td>
+             				사원코드<input type="text" name="aId" placeholder="사원코드">
+             			</td>
+             		</tr>
+             		<tr>
+             			<td>
+             				비밀번호<input type="password" name="aPw" placeholder="비밀번호">
+             			</td>
+             		</tr>
+             		<tr>
+             			<td>
+             				<button type="submit" id="adminLoginBtn">로그인</button>
+             			</td>
+             		</tr>
+             	</table>
+             </form> -->
+            <button class="incoming_modal_open">로그인</button>
+            <a th:if="${session.SID != null}" th:href="@{/adminLogout}">로그아웃</a>
              <div class="modal">
                <div class="incoming_modal_content">
-                  <h1 style="text-align: center;">모달테스트</h1>
-                  	<table class="input_table">
-                  		<tr>
-                  			<th>a</th>
-                  			<th>a</th>
-                  			<th>a</th>
-                  			<th>a</th>
-                  			<th>a</th>
-                  			<th>a</th>
-                  			<th>a</th>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		<tr>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  			<td>a</td>
-                  		</tr>
-                  		
-                  	</table>
-                 
+                  <h3 style="text-align: center;">관리자 로그인</h3>
+                  <form id="adminLoginForm" th:action="@{/adminLogin}" method="post">
+	              	<table class="input_table">
+		              	<tr>
+		         			<td>
+		         				사원코드<input type="text" id="aId" name="aId" placeholder="사원코드">
+		         			</td>
+		         		</tr>
+		         		<tr>
+		         			<td>
+		         				비밀번호<input type="password" id="aPw" name="aPw" placeholder="비밀번호">
+		         			</td>
+		         		</tr>
+	          		</table>
+	                <div class="incoming_modal_button" align="center">
+		            	<button type="button" id="incoming_modal_reg" class="add_button">로그인</button>
+	                    <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+                 	</div>
+                </form> 
                   
-                 <div class="incoming_modal_button" align="center">
-                     <button type="button" id="incoming_modal_reg" class="add_button">등록</button>
-                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
-                 </div>
                   
                </div>
                <div class="incoming_modal_layer"></div>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ks44team03.common.service.CustomerQuestionService;
 import ks44team03.dto.NoticeCenter;
 import ks44team03.dto.QuestionCenter;
+import ks44team03.dto.UserInfo;
 
 @Controller
 public class CustomerQuestionController {
@@ -27,28 +28,35 @@ public class CustomerQuestionController {
 	public CustomerQuestionController(CustomerQuestionService customerQuestionService) {
 		this.customerQuestionService = customerQuestionService;
 		
-		
 	}
 	
 	@PostConstruct
 	public void customerQuestionService() {
 		
 	}
-
-	//답변내용 유효성 검사
-	@GetMapping("/mtmAnswerCheck")
-	@ResponseBody
-	public boolean mtmAnswerCheck(@RequestParam(value = "mtmAnswer")String mtmAnswer) {
-		
-		System.out.println(mtmAnswer + "체크 대답");
-		
-		boolean result = customerQuestionService.mtmAnswerCheck(mtmAnswer);
-		
-		System.out.println(result + "체크 리졸트");
-		
-		return result;
-	}
 	
+	//내문의내역 페이지 내용 검색
+	@PostMapping("/myQuestionList")
+	public String myQuestionSearch(@RequestParam(value = "searchKey" ) String sk , @RequestParam(value = "searchValue") String sv , Model model) {
+		
+		if ("mtmContent".equals(sk)) {
+			sk= "mtm_content";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sk", sk);
+		paramMap.put("sv", sv);
+		
+		System.out.println(sk + "받아오는 sk 값 확인");
+		System.out.println(sv + "받아오는 sv 값 확인");
+		
+		List<QuestionCenter> QuestionList = customerQuestionService.myQuestionSearch(paramMap);
+		
+		model.addAttribute("QuestionList", QuestionList);
+		model.addAttribute("sv", sv);
+		
+		return "customerService/question/myQuestionList";
+	}
 	
 	//1:1문의 검색
 	@PostMapping("/personalQuestionSearchAdmin")
@@ -68,11 +76,12 @@ public class CustomerQuestionController {
 		paramMap.put("sv", sv);
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.searchQuestion(paramMap);
+		System.out.println(QuestionList + " 검색했을때 받아오는값임!@#!@$!#$!#$!@#$@#$@#$!@#$!@$#!@");
 		
 		model.addAttribute("QuestionList", QuestionList);
 		model.addAttribute("sv", sv);
-		
-		return "/customerService/question/personalQuestionSearchAdmin";
+	
+		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
 	//1:1문의 삭제
@@ -114,19 +123,18 @@ public class CustomerQuestionController {
 	@PostMapping("/personalQuestionRegister")
 	public String regQuestion(QuestionCenter questionCenter) {
 		
-		System.out.println(questionCenter + "처리상태 테스트");
 		
 		customerQuestionService.regQuestion(questionCenter);
+		System.out.println(questionCenter + "처리상태 테스트 @$@#$@!Q$!@$#");
 		
 		
-		
-		return "redirect:/personalQuestionSearchAdmin";
+		return "redirect:/myQuestionList";
 	}
 	
 
 	// 1:1문의 등록
 	@GetMapping("/personalQuestionRegister")
-	public String regCustomerQuestion(Model model) {
+	public String regCustomerQuestion() {
 		
 		
 		return "customerService/question/personalQuestionRegister";
@@ -153,7 +161,7 @@ public class CustomerQuestionController {
 		customerQuestionService.regAnswer(questionCenter);
 		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
 		
-		return "redirect:/personalQuestionSearchAdmin";
+		return "redirect:personalQuestionSearchAdmin";
 		
 	}
 	
@@ -171,7 +179,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionRead", QuestionRead);
 		
 		
-		return "/customerService/question/personalQuestionAnswerRegister";
+		return "customerService/question/personalQuestionAnswerRegister";
 	}
 	
 	//나의 문의 내역 보기
@@ -179,10 +187,11 @@ public class CustomerQuestionController {
 	public String viewMyQuestion(Model model) {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();
+		System.out.println();
 
 		model.addAttribute("QuestionList", QuestionList);
 		
-		return "/customerService/question/myQuestionList";
+		return "customerService/question/myQuestionList";
 	}
 	
 	//1:1 문의 목록 관리자 조회
@@ -196,7 +205,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionList", QuestionList);
 
 		
-		return "/customerService/question/personalQuestionSearchAdmin";
+		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
 }

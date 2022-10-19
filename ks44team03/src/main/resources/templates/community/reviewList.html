@@ -6,13 +6,13 @@
       layout:decorate="~{layout/default_layout}">
 <head>
 <style>
-.addReviewA{
+.addCmnA{
 	margin-left: 45%;
 }
-.addReviewA a{
+.addCmnA a{
 	
 }
-.addReviewBtn{
+.addCmnBtn{
 	margin-top: 5px;	
 	padding: 10px 20px;
 	border: 2px solid #dddddd;
@@ -23,7 +23,7 @@
 	background-color: white;
 	color: #565656;
 }
-.addReviewBtn:hover{
+.addCmnBtn:hover{
 	background-color: #535353;
 	border: 2px solid #535353;
 	color: white;
@@ -63,20 +63,20 @@
 	color: white;
 }
 </style>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- <script>
+<script th:inline="javascript">
+	/*<![CDATA[*//*]]>*/
 	$(function(){
-		$('#subjectEvn').click(function(){
-			 var request = $.ajax({
-				url : '',
-				method : "GET",
-				data : {'' : },
-				dataType : 'json'
-			}); 
-		});
+		$(document).ready(function(){
+			var sId = /*[[${session.SID}]]*/;
+			if(sId != null){
+				$('.addCmnBtn').css('display', 'inline');
+			}else{
+				$('.addCmnBtn').css('display','none');
+			}
+		});			
 	});
-	
-</script> -->
+</script>
+
 </head>
 <th:block layout:fragment="content">	
 	<div align="center">
@@ -105,8 +105,8 @@
 					</tr>
 			</table>
 			<div th:include="community/searchReviewList :: searchFragment"></div>
-			<label class="addReviewA">
-				<a th:href="@{/reviewRegister}"><button class="addReviewBtn" onclick="">글등록</button></a>
+			<label class="addCmnA">
+				<a th:href="@{/reviewRegister}"><button class="addCmnBtn" onclick="">글등록</button></a>
 			</label>
 		</div>
 	</div>

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ks44team03.admin.service.CompanyInfoService;
 import ks44team03.dto.CompanyInfo;
@@ -42,6 +45,39 @@ public class CompanyInfoController {
 	}
 	
 	// 회사관리 등록 관련 맵핑 ----------- 처음 -------------------------------------------------------------------------------------
+	
+	// 관리자 로그인
+	@PostMapping("/adminLogin")
+	public String adminLogin(@RequestParam("aId") String aId
+							,@RequestParam("aPw") String aPw
+							,RedirectAttributes reAttr
+							,HttpSession session) {
+		
+		log.info("aId :::::::::" + aId);
+		log.info("aPw :::::::::" + aPw);
+		Employee employeeInfo = companyInfoService.adminLogin(aId);
+		
+		if(employeeInfo != null) {
+			String checkPw = employeeInfo.getEmployeePw();
+			
+			if(aPw != null && checkPw.equals(aPw)) {
+				session.setAttribute("SID", aId);
+				session.setAttribute("SLEVEL", employeeInfo.getEmployeeLevelCode());
+				// 회원의 정보가 일치하면
+				return "adminPage";
+				
+			}
+		}
+		return "adminPage";
+	}
+	@GetMapping("/adminLogout")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/adminPage";
+	}
+	
+
 	// 회사등록 유효성 검사
 	@GetMapping("/companyNumCheck")
 	@ResponseBody

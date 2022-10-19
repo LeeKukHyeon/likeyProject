@@ -51,28 +51,21 @@
 								<textarea style="width: 90%; height: 10cm; margin: 18px;" id="mtmAnswer" name="mtmAnswer" th:text="${QuestionRead.mtmAnswer}"></textarea>
 								<div style="margin-left: 18px; margin-bottom: 2mm">
 									<a th:href="@{/personalQuestionSearchAdmin}"><input type="button" style="padding: 1px;" value="목록"></a>
-									<button id="mtmSituation" type="button" style="padding: 1px; margin-left: 83mm" name="mtmSituation" value="답변 완료">답변등록</button>
+									<button id="mtmSituation" type="submit" style="padding: 1px; margin-left: 83mm" name="mtmSituation" value="답변 완료">답변등록</button>
 									<a th:href="@{/deleteQuestion(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" style="float: right; margin-right: 72px; padding: 1px" value="문의삭제" id="deleteBtn"></a>
 								</div>
+								
 								<script type="text/javascript">
-								$('#mtmSituation').click(function(){
-									
-									var mtmAnswer = $('#mtmAnswer').val();
-									var formSubmit = $('#regAnswerForm')
-									$.ajax({
-										url : '/mtmAnswerCheck',
-										type : 'GET',
-										data : { "mtmAnswer" : mtmAnswer},
-										success : function(data){
-											alert(data)
-											if(data == true){
-											formSubmit.submit();
-											}else{
-												alert('내용입력')
-											}
+								$(document).ready(function(){
+									$('#mtmSituation').click(function(){
+										var checkAnswer = $('#mtmAnswer').val()
+										if(checkAnswer == '' || checkAnswer == 'undefined' || checkAnswer == null){
+											alert('답변 내용을 입력해주세요')
+											return false;
 										}
 									})
 								})
+								
 								</script>
 							</td>
 						</tr>

@@ -9,8 +9,11 @@
 </head>
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
-		<table class="couponList" border="1" style="width: 70%;">
-			<tbody>
+	
+			<div th:include="couponManagementAdmin/searchCoupon :: searchCoupon"></div>
+	
+		<table class="couponList" border="1" style="width: 70%; margin-top: 5mm">
+			<thead>
 				<tr>
 					<th>쿠폰 부여 순번 코드</th>
 					<th>쿠폰 코드</th>
@@ -21,10 +24,12 @@
 					<th>사용한 날짜</th>
 					<th>사용 여부</th>
 				</tr>
-				<tr th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
+			</thead>
+			<tbody>
+				<tr class="checkTr" th:id="${l.cEDate}" th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
-					<td>쿠폰이름</td>
+					<td th:text="${l.couponInfo.couponName}">쿠폰이름</td>
 					<td th:text="${l.userId}"></td>
 					<td th:text="${l.cDate}"></td>
 					<td th:text="${l.cEDate}"></td>
@@ -34,5 +39,26 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#proviso').click(function(){
+			var dateFCheck = $('#dateF').val(); //날짜값
+			var dateScheck = $('#dateS').val(); //날짜값
+			var dateValCheck = $("#cs_code1").text() //날짜값
+			var checkTr = $('.checkTr').length // length 값나옴
+			var testDiv = $('#testDiv').parent();
+			
+			for(i = 0 ; i < checkTr ; i++){
+				var e = i
+				var result = $(".checkTr")[e].id;
+				if(dateFCheck < result && result < dateScheck){
+					console.log()
+				}
+			}
+		})
+	})
+	</script>
+	
 </body>
 </html>

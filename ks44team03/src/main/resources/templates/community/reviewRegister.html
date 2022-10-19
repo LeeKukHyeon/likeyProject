@@ -16,7 +16,7 @@ a{
 	font-size:12px; 
 	font-weight:bold;
 }
-.reviewTitle{
+.cmnTitle{
 	width: 825px;
 	border: 2px solid #dddddd;
 	border-radius: 5px;
@@ -31,7 +31,7 @@ a{
 	padding: 30px;
 } */
 
-.reviewForm{
+.cmnForm{
 	margin-left: 330px;
 	margin-right: 330px;
 	margin-bottom: 10%;
@@ -42,14 +42,14 @@ a{
 	padding-top: 20px;
 	padding-bottom: 10%;
 }
-.reviewTextarea{
+.cmnTextarea{
 	margin-top: 10px;
 	border: 2px solid #dddddd;
 	border-radius: 5px;
 	width: 825px;
     resize: none
 }
-.addReviewBtn{
+.addCmnBtn{
 	margin-left: 91%;
 	margin-top: 5px;	
 	padding: 10px 20px;
@@ -61,12 +61,12 @@ a{
 	background-color: white;
 	color: #565656;
 }
-.addReviewBtn:hover{
+.addCmnBtn:hover{
 	background-color: #535353;
 	border: 2px solid #535353;
 	color: white;
 }
-#reviewFile{
+#cmnFile{
 	border: 2px solid #dddddd;
 	border-radius: 5px;
 	width: 100%;
@@ -77,9 +77,30 @@ a{
 	margin-top: 10px;
 	border: 2px solid #dddddd;
 	border-radius: 40px;
-	
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		$('.addCmnBtn').click(function(){
+			var titleCheck = $('.cmnTitle').val();
+			var contentCheck = $('.cmnTextarea').val();
+			var fileCheck = $('#cmnFile').val();
+			if(!titleCheck){
+				alert("제목을 입력해 주세요.");
+			}
+			if(!contentCheck){
+				alert("내용을 입력해 주세요.");
+			}
+			if(!fileCheck){
+				alert("사진을 첨부해 주세요.");
+			}
+			if(titleCheck && contentCheck && fileCheck){
+				$('.cmnForm').submit();
+			}
+		});
+	});
+	// $('.cmnForm').submit();	
+</script>
 </head>
 <meta charset="UTF-8">
 
@@ -87,33 +108,38 @@ a{
 	<div align="center">
 		<div class="reviewReg">
 			<h2 th:text="${title}"></h2>
-			<form class="reviewForm" th:action="@{/reviewRegister}" method="post">
+			<form class="cmnForm" th:action="@{/reviewRegister}" enctype="multipart/form-data" method="post">
 				<table class="addPostbordeForm">
 					<tr>
 						<td>
-							<input type="text" class="reviewTitle" name="communityTitle" placeholder="제목을 입력해주세요.">
+							<input type="text" class="cmnId" th:value="${session.SID}" name="communityId"style="display: none;">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<textarea class="reviewTextarea"cols="100" rows="20" name="communityContent" placeholder="내용을 입력해주세요."></textarea>
+							<input type="text" class="cmnTitle" name="communityTitle" placeholder="제목을 입력해주세요.">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea class="cmnTextarea"cols="100" rows="20" name="communityContent" placeholder="내용을 입력해주세요."></textarea>
 						</td>
 					</tr>
 					<tbody>
 						<tr>
 							<td>
-								<input type="file" id="reviewFile" name="communityImg" accept="image/*" alt="이미지">
+								<input type="file" id="cmnFile" name="communityImgPath" accept="image/*" alt="이미지">
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<img id="reviewImg" alt="이미지 영역" src="/image/sinbal.png">
+								<!-- <img id="reviewImg" alt="이미지 영역" src="/image/sinbal.png"> -->
 							</td>	
 						</tr>	
 					</tbody>
 					<tfoot>
 						<tr>
-							<td><button type="submit" class="addReviewBtn">등록</button></td>
+							<td><button type="button" class="addCmnBtn">등록</button></td>
 						</tr>
 					</tfoot>
 				</table>

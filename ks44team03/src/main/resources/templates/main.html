@@ -4,38 +4,57 @@
 <head>
 	<meta charset="UTF-8">
 	<title>역직구의 모든것, LIKEY</title>
-	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
 		
 	<!-- config.html -->
    	<th:block th:replace="fragments/config::configFragment"></th:block>
+   	
 <style>
+	body{
+		/* background: linear-gradient(45deg, #FFCCCC, #FFCCFF, white); */
+		/* background-color: #FF99CC; */
+		width: 1300px;
+		height: 50px;
+	}
 	.single_product_img{
 		width: 500px;
 		height: 200px;
-		padding-bottom: 300px;
+		padding-bottom: 400px;
 	}
 	.img-fluid{
-		padding-top: 60px;
-		padding-left: 100px;
+		padding-left: 80px;
 		padding-right: 80px;
+		
+		object-fit: fill;
 	}
 	.owl-prev{
-		margin-left: 70px;
-		margin-top: 70px;
+		margin-left: 30px;
+		display: none;
+		
 	}
 	.owl-next{
-		margin-right: 50px;
-		margin-top: 70px;
+		margin-right: 40px;
+		display: none;
+		
+	}
+	.product_img_slide{
+		width: 500px;
 	}
 	.product_image_area{
 		margin-top:100px;
+		margin-bottom:100px;
+		margin-left: 200px;
+		width: 1300px;
+		/* border: 1px solid;
+		border-color: #dddddd;
+		border-radius: 10px; */
+		/* background-color: #FFF0F5; */
 	}
 	.container{
 		margin:10px;
 		margin-left:200px; 
 		margin-top: 10px;
 	}
-	.goBtn{
+	.goAdminBtn{
 		width: 170px;
 		height: 70px;
 		margin: 10px;
@@ -44,61 +63,114 @@
 		border-radius: 10px;
 		font-size:12px; 
 		font-weight:bold;
+		margin-top: 150px;
+		margin-left: 30px;
+	}
+	.goUserBtn{
+		width: 170px;
+		height: 70px;
+		margin: 10px;
+		background-color: white;
+		border-color: #dddddd;
+		border-radius: 10px;
+		font-size:12px; 
+		font-weight:bold;
+		margin-right: 60px;
 	}
 	.contentLabel{
-		border: 5px solid;
+		/* border: 2px solid;
 		border-radius: 10px;
-		border-color: #dddddd;
-		height: 50%;
-		padding: 20px;
+		border-color: #dddddd; */
+		height: 440px;
+		padding: 0px;
 	}
 	.contentLabel h3{
 		font-size:20px; 
 		font-weight:bold;
+		margin-left: 40px;
+		margin-top: 10px;
+	}
+	.contentLabel h4{
+		font-size: 15px;
+		font-weight: bold;
+		margin-left: 40px;
 	}
 	.contentLabel p{
 		font-size:15px; 
 		font-weight:bold;
+		margin-left: 40px;
+	}
+	.contentLabel ul{
+		font-size: 15px;
+		font-weight: bold;
+		margin-left: 40px;
+		list-style: disc;
+	}
+	.logo{
+		position: absolute;
+		width:200px;
+		height:72.45px;
+		margin-top: 40px;
+		margin-left: 700px;
+	}
+	.container{
+		margin-left: 10px;
+	}
+	.row{
+		border: 2px solid;
+		border-color: #dddddd;
+		border-radius: 10px;
+		height: 700px;
+		background-color: white;
+		
 	}
 </style>
 </head>
 		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
 <body>
-	<main> 
+	<img class="logo" src="/assets/img/logo/logo.png">
 		<!--================Single Product Area =================-->
 		<div class="product_image_area">
 		    <div class="container">
 		    	<div class="row"  style="padding-top: 60px;">
-					<div class="product_img_slide owl-carousel" style="width: 500px;">
+					<div class="product_img_slide owl-carousel">
 					    <div class="single_product_img">
-					        <img src="assets/img/gallery/gogo.png" alt="#" class="img-fluid">                             
+					        <img src="assets/img/gallery/testImg.png" alt="#" class="img-fluid">                             
 					    </div>
 					   <div class="single_product_img">
-					        <img src="assets/img/gallery/gallery3.jpg" alt="#" class="img-fluid">
+					        <img src="assets/img/gallery/testImg.png" alt="#" class="img-fluid">
 					    </div>
 					    <div class="single_product_img">
-					        <img src="assets/img/gallery/gallery4.jpg" alt="#" class="img-fluid">
+					        <img src="assets/img/gallery/testImg.png" alt="#" class="img-fluid">
 					    </div>
 					    <div class="single_product_img">
-					        <img src="assets/img/gallery/gallery5.jpg" alt="#" class="img-fluid">
+					        <img src="assets/img/gallery/testImg.png" alt="#" class="img-fluid">
 					    </div>
 					    <div class="single_product_img">
-					        <img src="assets/img/gallery/gallery6.jpg" alt="#" class="img-fluid">
+					        <img src="assets/img/gallery/testImg.png" alt="#" class="img-fluid">
 					    </div>
 					</div>
 		         	<div class="contentLabel" style="margin-top: 60px; width: 50%;">
 			          	<h3>팀프로젝트 소개</h3>
-			          	<p>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
+			          	<ul>
+				          	<li>구매대행 및 배송대행 서비스</li>
+			          		<li>공간적, 시간적 여유가 없는 현대인들을 위한 구매대행 및 배송대행 서비스</li>
+			          	</ul>
+			          	<h3>프로젝트 목적</h3>
+			          	<ul>
+				          	<li>구매를 원하는 소비자에게 공간적, 시간적 격차 해소</li>
+				          	<li>기존 배송대행지의 문제점을 보완</li>
+				          	<li>한류 열풍으로 한국에 관심이 많아져 현재 역직구 시장 성장단계</li>
+			          	</ul>
 		          		<div>
-				           <a th:href="@{/adminPage}"><button type="button" class="goBtn">관리자페이지</button></a>
-				           <a th:href="@{/}"><button type="button" class="goBtn">사용자페이지</button></a>
+				           <a th:href="@{/adminPage}"><button type="button" class="goAdminBtn">관리자페이지</button></a>
+				           <a th:href="@{/}"><button type="button" class="goUserBtn">사용자페이지</button></a>
 		         		</div>
 		        	</div>
 		    	</div>
 			</div>
 		</div>
         <!--================End Single Product Area =================-->
-	</main>
     <!-- JS here -->
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
         <!-- Jquery, Popper, Bootstrap -->

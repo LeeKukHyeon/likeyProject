@@ -7,6 +7,40 @@
       
 <head>
 <style>
+.add_button {
+	  background-color: #797979;
+	  border: none;
+	  color: white;
+	  padding: 10px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 13px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+	  border-radius: 10px;
+		}
+.add_button:hover{
+  background-color: #535353;
+}
+.cancel_button {
+    background-color: #797979;
+    border: 1px solid;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight:bold;
+    border-radius: 10px;
+	}
+.cancel_button:hover{
+	background-color: #535353;
+}
 .communityInfo{
 	margin-left: 10%;
 	margin-right: 10%;
@@ -63,6 +97,22 @@
 	border: 2px solid #535353;
 	color: white;
 }
+.removeCmnBtn{
+	padding: 10px 20px;
+	background-color: white;
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+	font-style: inherit;
+	font-size: 15px;
+	font-weight: bold;
+	color: #565656;
+	display: none;
+}
+.removeCmnBtn:hover{
+	background-color: #535353;
+	border: 2px solid #535353;
+	color: white;
+}
 .modifyCmnBtn{
 	padding: 10px 20px;
 	background-color: white;
@@ -72,23 +122,162 @@
 	font-size: 15px;
 	font-weight: bold;
 	color: #565656;
+	display: none;
+	
 }	
 .modifyCmnBtn:hover{
 	background-color: #535353;
 	border: 2px solid #535353;
 	color: white;
 }
-</style>
-</head>
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.3);
+  z-index:1500;
+}
 
+.modal .postprde_modal_content{
+  width: 20%;
+  height: 20%;
+  margin: 15% auto;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #666;
+  border-radius: 10px;
+}
+.modal .postprde_modal_content input{
+	margin: 10px;
+	margin-left: 50px;
+	
+}
+</style>
+<!-- 수정버튼 유효성 검사 -->
+<script th:inline="javascript">
+/*<![CDATA[*//*]]>*/
+$(function(){
+	$(document).ready(function(){
+		//alert(/*[[${session.SID}]]*/);
+		//alert(/*[[${postbordeInfo.communityId}]]*/);
+		var communityId = /*[[${postbordeInfo.communityId}]]*/;
+		var sessionId = /*[[${session.SID}]]*/;
+		//alert(communityId);
+			if(sessionId == communityId){
+				 alert('아이디 일치');
+				$('.modifyCmnBtn').css('display','inline');
+				$('.removeCmnBtn').css('display','inline');
+			}else{
+				$('.modifyCmnBtn').css('display','none');
+				$('.removeCmnBtn').css('display','none');
+				alert('아이디 불일치!!!!');
+			}
+	});
+});
+</script>
+<script type="text/javascript">
+	/* 비밀번호 유효성검사 modal */
+	$(function(){
+		$(document).on('click', '.removeCmnBtn', function(){
+			$('.modal').css('display','block');
+			$('.main-header').css('display', 'none');
+			$('body').css('overflow','hidden');
+			
+		});
+		$(document).on('click','#postborde_modal_close', function(){
+			$('.modal').css('display','none');
+			$('.main-header').css('display', 'block');
+			$('body').css('overflow','auto');
+		});
+	});
+</script>
+<script th:inline="javascript">
+/*<![CDATA[*//*]]>*/
+		$(function(){
+			function validationCheck(data){
+				var isValid = true;
+				//유효성 검사
+				if(typeof data == 'object'){
+					$.each(data, function(){
+						var inputValue = $(this).val();
+						if(typeof inputValue == 'undefined' || inputValue == null || inputValue == ''){
+							isValid = false;
+							alert('아이디를 입력해주세요.');
+							return false;
+						}
+					});
+				}
+				if(typeof data == 'string'){
+					if(typeof data == 'undefined' || data == null || data == ''){
+						isValid = false;
+						return false;
+					}
+				}
+				return isValid;
+			}
+			$('#postborde_modal_reg').click(function(){
+				var checkUserId = /*[[${session.SID}]]*/;
+				var checkUserPw = $('#checkUserPw').val();
+				var result = validationCheck(checkUserPw);
+				
+				if(!result){
+					alert('비밀번호를 입력해주세요.');
+					return;
+				}
+				
+				var request = $.ajax({
+					url : '/postbordeCheckPw',
+					method : "GET",
+					data : {'checkUserId' : checkUserId,
+							'checkUserPw' : checkUserPw},
+					dataType : 'json'
+				});
+				request.done(function(data){
+					if(data){
+						if(confirm('삭제하시겠습니까?') == true){
+							alert('삭제확인');
+							$('#removeCmnForm').submit();
+							
+						}else{
+							alert('삭제취소');
+						}
+					}else{
+						alert('비밀번호가 일치하지않습니다.');
+						
+					}
+				});
+				request.fail(function( jqXHR, textStatus){
+					alert("Request failed:" + textStatus);
+				}); 
+			});
+			
+		});
+</script>	
+</head>
 <body layout:fragment="content">
+	<div class="modal">
+		<div class="postprde_modal_content"> 
+			<h4 style="text-align: center;">비밀번호확인</h4>
+			<form id="removeCmnForm" th:action="@{/removePostborde}">
+				<input type="text" name="communityNum" th:value="${postbordeInfo.communityNum}" style="display: none;">
+				<input type="password" name="checkUserPw" id="checkUserPw" placeholder="비밀번호를 입력해주세요.">
+			    <div class="incoming_modal_button" align="center">
+	                    <button type="button" id="postborde_modal_reg" class="add_button">확인</button>
+	                    <button type="button" id="postborde_modal_close" class="cancel_button">취소</button>
+	            </div>        
+			</form>
+    	</div>
+	</div>
 	<div align="center">
 		<div class="communityInfo">
 			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/postbordeList}">정보공유</a></p>
 			<h6 style="float: right; font-family: inherit; margin-top: 2px" th:text="${postbordeInfo.communityDate}"></h6><div style="float: right;">등록일 :&nbsp</div>
 			<h4 th:text="${postbordeInfo.communityTitle}"></h4>
 			<hr width="100%" color="#dddddd">
-			<img src="/image/sinbal.png">
+			<img th:src="${communityNumInfo.communityImg}">
 			<hr width="100%" color="#dddddd">
 			<!-- 14글자 제한 -->
 			<div>
@@ -98,8 +287,10 @@
 			</div>
 				<a th:href="@{/modifyPostborde(communityNum=${postbordeInfo.communityNum})}"><button type="button" class="modifyCmnBtn">수정</button></a>
 				<a th:href="@{/postbordeList}"><button type="button" class="goListBtn">목록으로</button></a>
+				<button type="button" class="removeCmnBtn">삭제</button>
 				<!-- <a href="#"><button type="button" class="receiptBtn">접수</button></a> -->
 		</div>	
 	</div>
+	
 </body>
 </html>

@@ -1,12 +1,13 @@
 package ks44team03.dto;
 
+
 public class Community {
 	
 	private String communityNum;   //게시글 번호
 	private String communityId;	   //아이디
 	private String communityTitle; //제목
 	private String communityContent; //내용
-	private String communityImg;    //업로드한 이미지
+	private String communityImg; // 이미지 파일
 	private String communityDate; //작성일
 	private String communityComment; // 댓글
 	private String communityCommentDate; //댓글 작성일
@@ -82,6 +83,5 @@ public class Community {
 				+ ", communityCommentDate=" + communityCommentDate + ", communityView=" + communityView
 				+ ", communityCate=" + communityCate + "]";
 	}
-	
 	
 }

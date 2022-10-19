@@ -1,11 +1,14 @@
 package ks44team03.common.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CouponSerive;
 import ks44team03.dto.Coupon;
@@ -21,11 +24,37 @@ public class CouponController {
 		this.couponSerive = couponSerive;
 	}
 	
+	//쿠폰 보유 리스트에서 검색
+	@PostMapping("/couponUserList")
+	public String couponSearch(@RequestParam(value = "searchKey" , defaultValue = "userId") String sk,
+								@RequestParam(value = "searchValue" , defaultValue = "") String sv,
+								Model model){
+		
+		if("userId".equals(sk)) {
+			sk = "cs.u_id";
+		}else if ("couponName".equals(sk)){
+			sk = "c.c_name";
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sk", sk);
+		paramMap.put("sv", sv);
+		
+		List<Coupon> couponUserList = couponSerive.couponSearch(paramMap);
+		System.out.println(couponUserList + "couponSearch 검색확인!@@!@@@%^!%^@$@%^%!$@^%!$^%@$1%#!@");
+		
+		model.addAttribute("couponUserList", couponUserList);
+		model.addAttribute("sv", sv);
+		
+		return "/couponManagementAdmin/couponUserList";
+	}
+	
 	////회원이 보유한 쿠폰 리스트 확인
 	@GetMapping("/couponUserList")
 	public String couponUserList(Model model) {
 
 		List<Coupon> couponUserList = couponSerive.couponUserList();
+		System.out.println(couponUserList + "쿠폰 리스트 받아오는 값을 확인");
 		
 		model.addAttribute("couponUserList", couponUserList);
 		

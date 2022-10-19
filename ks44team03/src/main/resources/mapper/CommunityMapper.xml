@@ -18,6 +18,21 @@
 		<result column="cm_view" property="communityView"/>	
 		<result column="community_cate" property="communityCate"/>	
 	</resultMap>
+	
+	<!-- 게시판 유효성 검사 -->
+	<select id="checkUserPw" parameterType="String" resultType="Boolean">
+		/* 게시판 유효성 검사 */
+		SELECT
+			COUNT(DISTINCT u.u_pw)
+		FROM
+			community AS c
+			INNER JOIN 
+			user_member AS u
+			ON 
+			c.id = u.u_id
+		WHERE
+		    c.id = #{checkUserId} AND u.u_pw = #{checkUserPw};
+	</select>
 <!-- ########################### 이용후기 관련 mapper State ################################# -->	
 	<!-- 이용후기 등록 -->
 	<insert id="addReview" parameterType="Community">
@@ -28,13 +43,13 @@
 		,id
 		,cm_title
 		,cm_content
-		,cm_img
+	
 		,cm_date
 		,cm_view
 		,community_cate
 		)
 		VALUES
-		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '이용후기');
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent},  CURDATE(), 0, '이용후기');
 	</insert>
 	
 	<!-- 이용후기 목록 조회 -->
@@ -80,12 +95,14 @@
 			,id
 			,cm_title
 			,cm_content
+			,cm_img AS communityImg
 			,cm_date
 		FROM
 			community
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 이용후기 아이디 체크 -->
 	<select id="reviewListIdCheck" parameterType="String" resultType="Boolean">
 		/* 이용후기 아이디 체크 */
 		SELECT
@@ -97,6 +114,7 @@
 	</select>
 	<!-- 이용후기 수정 -->
 	<update id="modifyReview" parameterType="Community">
+		/* 이용후기 수정 */
 		UPDATE community
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="communityTitle != null and communityTitle != ''">
@@ -129,6 +147,7 @@
 			 cm_num
 			,id
 			,cm_title
+			,cm_img
 			,cm_content
 			,cm_date
 		FROM
@@ -154,7 +173,7 @@
 	</select>
 	<!-- 정보공유 목록 검색조회 -->
 	<select id="getSearchPostbordeList" resultMap="communityResultMap">
-		/* 이용후기 목록 검색조회 */
+		/* 정보공유 목록 검색조회 */
 		SELECT
 		   cm_num
 		  ,id
@@ -180,13 +199,13 @@
 		,id
 		,cm_title
 		,cm_content
-		,cm_img
+	
 		,cm_date
 		,cm_view
 		,community_cate
 		)
 		VALUES
-		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent}, #{communityImg}, CURDATE(), 0, '정보공유');
+		(#{communityNum}, #{communityId}, #{communityTitle}, #{communityContent},CURDATE(), 0, '정보공유');
 	</insert>
 
 	<!-- 정보공유 상세정보 -->
@@ -194,16 +213,30 @@
 		/* 정보공유 상세정보 */	
 		SELECT
 			 cm_num
+			,id
 			,cm_title
 			,cm_content
+			,cm_img AS communityImg
 			,cm_date
 		FROM
 			community
 		WHERE
 			cm_num = #{communityNum};
 	</select>
+	<!-- 정보공유 아이디 체크 -->
+	<select id="postbordeListIdCheck" parameterType="String" resultType="Boolean">
+		/* 정보공유 아이디 체크 */
+		SELECT
+			COUNT(c.id)
+		FROM
+			community AS c
+		WHERE 
+			c.id = #{communityId};
+	</select>
+	
 	<!-- 정보공유 수정 -->
 	<update id="modifyPostborde" parameterType="Community">
+		/* 정보공유 수정 */
 		UPDATE community
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="communityTitle != null and communityTitle != ''">
@@ -219,6 +252,15 @@
 		WHERE
 			cm_num = #{communityNum};
 	</update>
+	<!-- 정보공유 삭제 -->
+	<delete id="removePostborde" parameterType="String">
+		/* 정보공유 삭제 */
+		DELETE
+		FROM
+			community
+		WHERE
+			cm_num = #{communityNum};
+	</delete>
 <!-- ########################### 정보공유 관련 mapper End ################################# -->			
 	<!-- 글조회시 조회수 증가 -->
 	<update id="getCountHit">

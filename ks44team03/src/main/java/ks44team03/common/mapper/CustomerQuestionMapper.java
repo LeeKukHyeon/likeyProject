@@ -6,12 +6,16 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ks44team03.dto.QuestionCenter;
+import ks44team03.dto.UserInfo;
 
 @Mapper
 public interface CustomerQuestionMapper {
 	
-	//1:1문의 답변 유효성 검사
-	public boolean mtmAnswerCheck(String mtmAnswer);
+	//내문의내역 페이지 내용 검색
+	public List<QuestionCenter> myQuestionSearch(Map<String, Object> searchMap);
+	
+	//ass 테스트
+	public List<UserInfo> memberInfo();
 	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> searchMap);
