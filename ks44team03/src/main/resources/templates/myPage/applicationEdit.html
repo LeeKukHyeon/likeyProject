@@ -519,12 +519,12 @@
 											<td class="td1">수령 주소</td>
 											<td class="td2 address">
 												<div>
-													<div><input type="text" name="recipient_zipcode" th:value="${applicationEdit[0].orderInfoDto.postNum}" readonly maxlength="8" class="input_add gray"></div>
+													<div><input type="text" name="recipient_zipcode" id ="tp_address_add_zip_code" th:value="${applicationEdit[0].orderInfoDto.postNum}" readonly maxlength="8" class="input_add gray"></div>
 													<div><a href="javascript:void(0)" onclick="javascript:goPost('2');" >우편번호 검색</a></div>
 												</div>
 												<div style="clear:both;"></div>
-												<div><input type="text" name="recipient_address" value="#"  class="input_add" style="width:635px;"></div>
-												<div><input type="text" name="recipient_address2" value="#"  class="input_add" style="width:635px;"></div>
+												<div><input type="text" name="recipient_address" id="tp_address_add_road_address" value="#"  class="input_add" style="width:635px;"></div>
+												<div><input type="text" name="recipient_address2" id="tp_address_add_desc_address" value="#"  class="input_add" style="width:635px;"></div>
 											</td>
 										  </tr>
 										  
@@ -634,15 +634,13 @@
 		function goPost(screen_type)
 		{
 			var pop;
-			pop = window.open("/jusoPopup", "pop", "width=570, height=420, scrollbars=yes");
+			pop = window.open("/juso", "pop", "width=570, height=420, scrollbars=yes");
 		}
 		
-		function jusoCallBack(zipNo, roadAddrPart1, roadAddrPart2, jibunAddr, addrDetail){
-			$("#tp_address_add_zip_code").val(zipNo);
-			$("#tp_address_add_road_address").val(roadAddrPart1);
-			$("#tp_address_add_number_address").val(jibunAddr);
-			$("#tp_address_add_desc_address").val(roadAddrPart2 + " " + addrDetail);
-			
+		function jusoCallBack(roadFullAddr){
+		
+			$("#tp_address_add_road_address").val(roadFullAddr);
+		
 			
 		}
 		
