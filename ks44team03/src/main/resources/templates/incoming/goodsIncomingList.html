@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 입고 완료 상품 리스트 -->
+<title>입고 완료 상품 리스트</title>
+</head>
+
+<!-- ========== 입고 완료 상품 리스트 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 입고 완료 상품 리스트 시작 ========== -->
+				<h2>입고완료 상품목록</h2>
+				
+				<div class="incoming_register">
+							<div th:fragment="searchFragment" >
+					        	<select name="searchKey" id="searchKey">
+					        		<option value="goods_info_code">상품정보 코드</option>
+					        		<option value="buy_order_code">주문정보 코드</option>
+					        		<option value="e_code">사원 코드</option>
+					        	</select>
+					        	
+				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+				        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th>상품정보 코드</th>
+									<th>주문정보 코드</th>
+									<th>처리한 사원 코드</th>
+									<th>입고 물품 사진</th>
+									<th>중량</th>
+									<th>부피</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+								<tr th:if="${not #lists.isEmpty(goodsIncomingList)}" th:each = "i :${goodsIncomingList}">
+									<td class="incoming_checkbox"><input type="checkbox"></td>									
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.goodsInfoDto.buyOrderCode}"></td>
+									<td th:text="${i.eCode}"></td>
+									<td th:text="${i.photoSave}"></td>
+									<td th:text="${i.incomingWeight}"></td>
+									<td th:text="${i.incomingVolume}"></td>
+								</tr>
+							  </tbody>
+						</table>
+				</div>
+			
+				<!-- ========== 입고 완료 상품 리스트 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+</body>
+
+</html>

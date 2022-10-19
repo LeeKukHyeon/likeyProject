@@ -235,11 +235,11 @@ public class IncomingController {
 	
 	//입고등록
 	@PostMapping("/regIncoming")
-	public String regIncoming(IncomingInfo incomingInfo) {
+	public String regIncoming(IncomingInfo incomingInfo, String goodsInfoCode) {
 		System.out.println(incomingInfo +"!!!!!@@@@@@@@@");
-		int result = incomingService.regIncoming(incomingInfo);
+		int result = incomingService.regIncoming(incomingInfo, goodsInfoCode);
 		
-	return "redirect:/incomingList";
+	return "redirect:/goodsIncomingList";
 	}
 	
 	//입고등록 모달 - 특정 상품코드 조회
@@ -249,6 +249,16 @@ public class IncomingController {
 		Map<String, Object> goodsInfo = incomingService.incomingGoodsInfoByCode(goodsInfoCode);
 		return goodsInfo;
 	}
+	
+	//입고 완료 상품 리스트
+	@GetMapping("/goodsIncomingList") 
+	public String goodsIncomingList(Model model) {
+	  List<IncomingInfo> goodsIncomingList = incomingService.goodsIncomingList();
+	  
+	  model.addAttribute("title", "입고 완료 상품 리스트"); 
+	  model.addAttribute("goodsIncomingList",goodsIncomingList); 
+	  return "incoming/goodsIncomingList";
+	 }
 	
 	//오류입고 처리내역
 	@GetMapping("/errorIncomingList")

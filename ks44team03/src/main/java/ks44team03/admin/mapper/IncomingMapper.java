@@ -65,8 +65,14 @@ public interface IncomingMapper {
 	//입고등록
 	public int regIncoming(IncomingInfo incominginfo);
 	
+	//입고등록 상태 업데이트
+	public void updateIncoming(String goodsInfoCode);
+	
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode);
+	
+	//입고 완료 상품 리스트
+	public List<IncomingInfo> goodsIncomingList();
 	
 	//오류입고 처리내역
 	public List<ErrorIncoming> errorIncomingList();
