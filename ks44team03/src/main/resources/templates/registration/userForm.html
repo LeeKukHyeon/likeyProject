@@ -458,16 +458,13 @@ $(document).ready(function(){
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	var idchk = false; // 아이디 검사
-	
 	$(function() {
-	
 		var $uId = $("#uId");
 		var $id = $("#id");
-		
+
 		// 아이디 정규식
 		$uId.on("keyup", function() { // 키보드 눌렀을 때 실행
 			var regExp = /^[a-z]+[a-z0-9]{4,15}$/g;
-			console.log('zzzzzzzzzzzzzzzzzzzzz');
 	
 			if (!regExp.test($uId.val())) { // id 가 공백인 경우 체크
 				idchk = false;
@@ -614,7 +611,6 @@ $(document).ready(function(){
 		// 닉네임 정규식
 		$uNick.on("keyup", function() {
 			var regExp = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/;
-			console.log("닉네임검사중검사중검사중ㅋㅋㅋ");
 			if (!regExp.test($uNick.val())) { // 닉네임이 공백인 경우 체크
 				nickchk = false;
 				$nickTxt.html("<span id='checkNick'>닉네임을 입력하세요.</span>")

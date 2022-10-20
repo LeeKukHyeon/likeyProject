@@ -46,6 +46,17 @@ public class MemberController {
 	public String findIdPw() {
 		return "login/findIdPw";
 	}
+	
+	//
+	@PostMapping("/findMemberId")
+	@ResponseBody
+	public int findMemberId(@RequestParam("uName") String uName,
+						@RequestParam("uPhone") String uPhone) {
+		int result = memberService.findMemberId(uName, uPhone);
+		return result;
+	}
+	
+	
 
 	// 회원가입 페이지 이동
 	@GetMapping("/userForm")

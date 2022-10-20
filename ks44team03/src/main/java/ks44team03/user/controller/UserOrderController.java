@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.dto.ApplicationInfo;
 import ks44team03.user.service.UserOrderService;
@@ -43,6 +45,15 @@ public class UserOrderController {
 	}
 
 	// 주문서 내 이미지 업로드
+	@PostMapping("/user/shipping_img_upload.html?idx=")
+	@ResponseBody
+	public int imgUpload(@RequestParam("id") String id) {
+		//if (id.equals(orderService.checkID(id))) {
+		//	return 1;
+		//}else {
+			return 0;
+		//}
+	  }
 	
 
 }
