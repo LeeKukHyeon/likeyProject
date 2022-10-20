@@ -523,15 +523,15 @@
 													<div><a href="javascript:void(0)" onclick="javascript:goPost('2');" >우편번호 검색</a></div>
 												</div>
 												<div style="clear:both;"></div>
-												<div><input type="text" name="recipient_address" id="tp_address_add_road_address" value="#"  class="input_add" style="width:635px;"></div>
-												<div><input type="text" name="recipient_address2" id="tp_address_add_desc_address" value="#"  class="input_add" style="width:635px;"></div>
+												<div><input type="text" name="recipient_address" id="tp_address_add_road_address" th:value="${applicationEdit[0].orderInfoDto.addr}"  class="input_add" style="width:635px;"></div>
+												<div><input type="text" name="recipient_address2" id="tp_address_add_desc_address" th:value="${applicationEdit[0].orderInfoDto.addr2}"  class="input_add" style="width:635px;"></div>
 											</td>
 										  </tr>
 										  
 										  <tr>
 											<td class="td1">베송시 요청사항</td>
 											<td class="td2">
-												<input type="text" id="txtDelvMsg" name="ship_request" value=""   class="input_add" style="width:400px;" onfocus="$('#divDelvInfoLayer').css('display', '');" onblur="javascript:fnPopupLayerHide('divDelvInfoLayer');" maxlength="100" />
+												<input type="text" id="txtDelvMsg" name="ship_request" th:value="${applicationEdit[0].orderInfoDto.request}"   class="input_add" style="width:400px;" onfocus="$('#divDelvInfoLayer').css('display', '');" onblur="javascript:fnPopupLayerHide('divDelvInfoLayer');" maxlength="100" />
 												<div id="divDelvInfoLayer" class="pos_r" style="display: none; z-index:100;">
 													<ul class="box_sugg_deliMsg clearfix">
 													
@@ -582,10 +582,7 @@
 
 						<!-- 결제 -->
 						<div class="delivery_method">
-							<div class="step_sub_title">
-								<div>- 결제</div>
-								
-							</div>
+							
 				
 							<div style="clear:both;"></div>
 				
@@ -637,9 +634,10 @@
 			pop = window.open("/juso", "pop", "width=570, height=420, scrollbars=yes");
 		}
 		
-		function jusoCallBack(roadFullAddr){
-		
-			$("#tp_address_add_road_address").val(roadFullAddr);
+		function jusoCallBack(roadAddrPart1,zipNo){
+			$("#tp_address_add_road_address").val(roadAddrPart1);
+			
+			$("#tp_address_add_zip_code").val(zipNo);
 		
 			
 		}
