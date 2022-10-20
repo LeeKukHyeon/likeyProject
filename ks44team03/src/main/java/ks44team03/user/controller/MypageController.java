@@ -53,10 +53,10 @@ public class MypageController {
 		return "/myPage/member/myAddrList";
 	}
 
-	@GetMapping("/user/memberModify")
+	@GetMapping("user/memberModify")
 	public String modifyMemberInfo() {
 
-		return "/myPage/member/memberModify";
+		return "myPage/member/memberModify";
 	}
 
 	@GetMapping("user/mypageScreen")
