@@ -40,6 +40,12 @@ public class MemberService {
 		String checkNickUser = memberMapper.checkNickUser(uNick);
 		return checkNickUser;
 	}
-
+	
+	// 회원 아이디 찾기
+	public int findMemberId(String uName, String uPhone) {
+		int findMemberId = memberMapper.findMemberId(uName, uPhone);
+		return findMemberId;
+	}
+	
 }
  

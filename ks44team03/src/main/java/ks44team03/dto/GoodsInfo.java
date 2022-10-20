@@ -40,6 +40,9 @@ public class GoodsInfo {
 	private CouponList couponListDto; //couponList DTO
 	
 	
+	private Option optionDto; // Option Dto
+	private UserInfo userInfoDto; // UserInfo Dto
+	
 	
 	public String getGoodsInfoCode() {
 		return goodsInfoCode;

@@ -35,6 +35,35 @@
 	    font-size: 13px;
 	    color: #6e6e6e;
 	}
+
+	#idText {
+		color : #FA3E3E;
+		font-weight : bold;
+	}
+	.fint_input>img {
+		width: 200px;
+  		margin: 10px 0 30px 75px;
+	}
+	.fint_input>div>input  {
+		font-size: 12px;
+  		height: 50px;
+	}
+	.fint_input>div>label {
+  		padding: 14px;
+  	}
+	.mb-4>P {
+		color: #222;
+    	font-size: 20px;
+    	line-height: 24px;
+    	font-weight: 600;
+	}
+	.drivder {
+  		width: 354px;
+	}
+	.bg-white {
+		padding: 30px 0 20px 150px;
+	}
+	
 </style>
 </head>
 
@@ -79,28 +108,26 @@
 							이름
 						</td>
 						<td style="width:*;">
-							<input type="text" name="name" style="width:320px;" class="input_add">
+							<input type="text" name="mnameID" id="mnameID" style="width:320px;" class="input_add">
 						</td>
 						<td rowspan="2" style="width:38%;text-align:left;" align="left">
-							<button type="button" onclick="id_find_check();" class="next_button">확인</button>
+							<button type="button" id="findId" onclick="findId()" class="next_button">확인</button>
 						</td>
 					</tr>
 					<tr>
 						<td style="font-size:16px;font-weight:bold;">
 							핸드폰 번호
 						</td>
-						<td>
-							<select name="hp1" id="hp1" class="select_add" style="width:98px;">
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-							</select> - 
-							<input type="text" name="hp2" id="hp2" value="" maxlength="4" style="width:97px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');"> - 
-							<input type="text" name="hp3" id="hp3" value="" maxlength="4" style="width:97px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');">
-							
+						<td class="td2">
+							<div>
+								<select name="countryCode" id="countryCode"  class="select_add" style="width:115px;">
+									<optgroup label="Other countries">
+									<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+									
+									</optgroup>
+									</select>
+								<input type="text" name="hp" id="hp" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -130,7 +157,7 @@
 							아이디
 						</td>
 						<td colspan="2" style="width:*;">
-							<input type="text" name="pwd_user_id" style="width:320px;" class="input_add">
+							<input type="text" name="midPwd" id="midPwd" style="width:320px;" class="input_add">
 						</td>
 					</tr>
 					<tr>
@@ -138,42 +165,174 @@
 							이름
 						</td>
 						<td style="width:*;">
-							<input type="text" name="pwd_name" style="width:320px;" class="input_add">
+							<input type="text" name="mnamePwd" id="mnamePwd" tyle="width:320px;" class="input_add">
 						</td>
 						<td rowspan="2" style="width:38%;text-align:left;" align="left">
-							<button type="button" onclick="pwd_find_check();" class="next_button">확인</button>
+							<button type="button" onclick="findPwd();" class="next_button">확인</button>
 						</td>
 					</tr>
 					<tr>
 						<td style="font-size:16px;font-weight:bold;">
 							핸드폰 번호
 						</td>
-						<td>
-							<select name="pwd_hp1" id="pwd_hp1" class="select_add" style="width:98px;">
-							<option value="010">010</option>
-							<option value="011">011</option>
-							<option value="016">016</option>
-							<option value="017">017</option>
-							<option value="018">018</option>
-							<option value="019">019</option>
-							</select> - 
-							<input type="text" name="pwd_hp2" id="pwd_hp2" value="" maxlength="4" style="width:97px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');"> - 
-							<input type="text" name="pwd_hp3" id="pwd_hp3" value="" maxlength="4" style="width:97px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');">
-							
+						<td class="td2">
+							<div>
+								<select name="pwCountryCode" id="pwCountryCode"  class="select_add" style="width:115px;">
+									<optgroup label="Other countries">
+									<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+									<option data-countryCode="US" value="1">USA (+1)</option>
+									</optgroup>
+									</select>
+								<input type="text" name="hpPw" id="hpPw" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							</div>
 						</td>
 					</tr>
 					</tbody></table>
-					
 					<br><br>
-				</form></td>
+				</form>
+				</td>
 			</tr>
-		  
 		  </tbody>
 		</table>
 		</div>		
+		</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 
-	</div>
 
-	
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+	$(function(){
+		var $mnameID = $("#mnameID");
+		var $mphoneID = $("#countryCode")+= $("#hp");
+		var $idText = $("#idText");
+		
+		//var $midPwd = $("#midPwd");
+		//var $mnamePwd = $("#mnamePwd");
+		//var $mphonePwd = $("#pwCountryCode.value")+$("#hpPw");
+		
+		// JS 모달
+		var $findOk = new bootstrap.Modal(document.getElementById('findOk'));
+		var $findNone = new bootstrap.Modal(document.getElementById('findNone'));
+		
+		console.log("펑펑퍼퍼엎어펑ㅍ");
+		console.log($mphoneID);
+		
+		$("#findId").click(function(){
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/findMemberId",
+				data : {
+					"mname" : $mnameID.val(),
+					"mphone" : $mphoneID.val()
+				},
+				success : function(data){
+					alert(data);
+					if(data == ""){
+						//console.log("없음!")
+						$findNone.show();
+					}else{
+						//console.log("data :"+data)
+						$idText.text("회원님의 아이디 : "+data)
+						$idText.css({
+							"color" : "#0D6EFD",
+							"font-weight" : "bold",
+							"font-size" : "10px"
+						})
+						$findOk.show();	
+					}
+				}
+			})
+		})
+		
+		$("#findPwd").click(function(){
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/findMemberPwd",
+				data : {
+					"mid" : $midPwd.val(),
+					"mname" : $mnamePwd.val(),
+					"mphone" : $mphonePwd.val()
+				},
+				success : function(data){
+					if(data == ""){
+						//console.log("없음!")
+						$findNone.show();
+					}else{
+						//console.log("data :"+data)
+						$idText.text("회원님의 임시 비밀번호를 이메일로 발송하였습니다. 확인부탁드립니다.");
+						$idText.css({
+							"color" : "#0D6EFD",
+							"font-weight" : "bold",
+							"font-size" : "10px"
+						})
+						$findOk.show();	
+					}
+				}
+			})
+		})
+	})
+</script>
+<div class="modal fade" id="findOk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">계정 정보 확인</h4>
+      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+		  <div class="container-fluid">
+		    <div class="row">
+		      <div class="col-sm-9">
+		        <div class="row">
+		          <p id="idText"></p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      <div class="modal-footer">
+        <a th:href="@{/user/loginForm}"><button type="button" class="btn btn-default">로그인 화면으로 돌아가기</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="findNone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">계정 정보 확인</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+		  <div class="container-fluid">
+		    <div class="row">
+		      <div class="col-sm-9">
+		        <div class="row">
+		          <p id="idText">계정 정보를 확인 할 수 없습니다</p>
+		          <p id="idText">정확한 정보를 확인 후 다시 입력해주세요</p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      <div class="modal-footer">
+        <a th:href="@{/user/loginForm}"><button type="button" class="btn btn-default">로그인 화면으로 돌아가기</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>		
+
 	</body>
 </html>
