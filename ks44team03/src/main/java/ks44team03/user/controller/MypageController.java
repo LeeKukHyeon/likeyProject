@@ -33,21 +33,21 @@ public class MypageController {
 	/*
 	 * 임시저장 상품수정
 	 */
-	 @GetMapping("/user/applicationEdit") 
+	 @GetMapping("user/applicationEdit") 
 	 public String applicationEdit(@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
 		 List<GoodsInfo> applicationEdit = mypageService.applicationEdit(buyOrderCode); 
 		 System.out.println(applicationEdit);
 		 model.addAttribute("applicationEdit", applicationEdit);
-		 return "/myPage/applicationEdit";
+		 return "myPage/applicationEdit";
 	 }
 	 
 
-	@GetMapping("/user/applicationDetail")
+	@GetMapping("user/applicationDetail")
 	public String applicationDetailList() {
-		return "/myPage/applicationDetailSearch";
+		return "myPage/applicationDetailSearch";
 	}
 
-	@GetMapping("/user/myAddrList")
+	@GetMapping("user/myAddrList")
 	public String myAddrList() {
 
 		return "myPage/member/myAddrList";
@@ -59,7 +59,7 @@ public class MypageController {
 		return "myPage/member/memberModify";
 	}
 
-	@GetMapping("/user/mypageScreen")
+	@GetMapping("user/mypageScreen")
 	public String mypage(Model model) {
 		String u_id = "id001";
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
