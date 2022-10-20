@@ -59,7 +59,7 @@ public class MypageController {
 		return "myPage/member/memberModify";
 	}
 
-	@GetMapping("/user/mypageScreen")
+	@GetMapping("user/mypageScreen")
 	public String mypage(Model model) {
 		String u_id = "id001";
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
