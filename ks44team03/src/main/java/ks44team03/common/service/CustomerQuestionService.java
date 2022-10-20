@@ -38,12 +38,12 @@ public class CustomerQuestionService {
 		return searchQuestion;
 	}
 	
-	
 	//1:1문의 삭제
-	public void deleteQuestion(String mtmNumCode) {
+	public int deleteQuestion(String mtmNumCode) {
 		
-		customerQuestionMapper.deleteQuestion(mtmNumCode);
+		int result = customerQuestionMapper.deleteQuestion(mtmNumCode);
 		
+		return result;
 	}
 	
 	//관리자 답변 등록

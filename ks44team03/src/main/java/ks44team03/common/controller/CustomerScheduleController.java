@@ -56,7 +56,7 @@ public class CustomerScheduleController {
 		
 		model.addAttribute("scheduleRead", scheduleRead);
 		
-		return "/customerService/schedule/deliveryScheduleModify";
+		return "customerService/schedule/deliveryScheduleModify";
 	}
 	
 	
@@ -73,7 +73,7 @@ public class CustomerScheduleController {
 	@GetMapping("/deliveryScheduleRegister")
 	public String regScheduleForm(Model model) {
 		
-		return "/customerService/schedule/deliveryScheduleRegister";
+		return "customerService/schedule/deliveryScheduleRegister";
 	}
 	
 	//배송스케줄 게시글 조회 , 조회수 카운트(countView)
@@ -91,7 +91,7 @@ public class CustomerScheduleController {
 		model.addAttribute("scheduleRead", scheduleRead);
 	
 	
-		return "/customerService/schedule/deliveryScheduleSearchRead";
+		return "customerService/schedule/deliveryScheduleSearchRead";
 	}
 	
 	// 배송스케줄 목록 조회
@@ -102,6 +102,6 @@ public class CustomerScheduleController {
 	
 		model.addAttribute("ScheduleList", ScheduleList);
 	
-		return "/customerService/schedule/deliveryScheduleSearch";
+		return "customerService/schedule/deliveryScheduleSearch";
 	}
 }

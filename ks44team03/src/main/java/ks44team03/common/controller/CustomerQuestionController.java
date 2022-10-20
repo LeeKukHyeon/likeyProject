@@ -35,6 +35,8 @@ public class CustomerQuestionController {
 		
 	}
 	
+
+	
 	//내문의내역 페이지 내용 검색
 	@PostMapping("/myQuestionList")
 	public String myQuestionSearch(@RequestParam(value = "searchKey" ) String sk , @RequestParam(value = "searchValue") String sv , Model model) {
@@ -85,12 +87,13 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1문의 삭제
-	@GetMapping("/deleteQuestion")
-	public String deleteQuestion(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
+	@PostMapping("/deleteQuestion")
+	@ResponseBody
+	public int deleteQuestion(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
 		
-		customerQuestionService.deleteQuestion(mtmNumCode);
+	 	int result = customerQuestionService.deleteQuestion(mtmNumCode);
 		
-		return "redirect:/";
+		return result;
 		
 	}
 	
@@ -115,7 +118,7 @@ public class CustomerQuestionController {
 
 		model.addAttribute("QuestionRead", QuestionRead);
 		
-		return "/customerService/question/myQuestionModify";
+		return "customerService/question/myQuestionModify";
 	}
 	
 	
@@ -150,7 +153,7 @@ public class CustomerQuestionController {
 		
 		model.addAttribute("QuestionRead", QuestionRead);
 		
-		return "/customerService/question/myQuestionRead";
+		return "customerService/question/myQuestionRead";
 	}
 
 	
