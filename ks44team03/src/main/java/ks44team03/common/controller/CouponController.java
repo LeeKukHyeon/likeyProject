@@ -46,7 +46,7 @@ public class CouponController {
 		model.addAttribute("couponUserList", couponUserList);
 		model.addAttribute("sv", sv);
 		
-		return "/couponManagementAdmin/couponUserList";
+		return "couponManagementAdmin/couponUserList";
 	}
 	
 	////회원이 보유한 쿠폰 리스트 확인
@@ -58,7 +58,7 @@ public class CouponController {
 		
 		model.addAttribute("couponUserList", couponUserList);
 		
-		return "/couponManagementAdmin/couponUserList";
+		return "couponManagementAdmin/couponUserList";
 	}
 	
 	//관리자 페이지 등록한 쿠폰 리스트, 등록
@@ -80,7 +80,7 @@ public class CouponController {
 		
 		model.addAttribute("couponList", couponList);
 		
-		return "/couponManagementAdmin/couponAdmin";
+		return "couponManagementAdmin/couponAdmin";
 	}
 	
 	
