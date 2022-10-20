@@ -38,25 +38,25 @@ public class MypageController {
 		 List<GoodsInfo> applicationEdit = mypageService.applicationEdit(buyOrderCode); 
 		 System.out.println(applicationEdit);
 		 model.addAttribute("applicationEdit", applicationEdit);
-		 return "myPage/applicationEdit";
+		 return "/myPage/applicationEdit";
 	 }
 	 
 
 	@GetMapping("/user/applicationDetail")
 	public String applicationDetailList() {
-		return "myPage/applicationDetailSearch";
+		return "/myPage/applicationDetailSearch";
 	}
 
 	@GetMapping("/user/myAddrList")
 	public String myAddrList() {
 
-		return "myPage/member/myAddrList";
+		return "/myPage/member/myAddrList";
 	}
 
 	@GetMapping("/user/memberModify")
 	public String modifyMemberInfo() {
 
-		return "myPage/member/memberModify";
+		return "/myPage/member/memberModify";
 	}
 
 	@GetMapping("/user/mypageScreen")
@@ -124,6 +124,6 @@ public class MypageController {
 
 		model.addAttribute("grade", grade);
 		model.addAttribute("couponCount", couponCount);
-		return "myPage/member/mypageScreen";
+		return "/myPage/member/mypageScreen";
 	}
 }
