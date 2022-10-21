@@ -45,15 +45,28 @@
 		$('#proviso').click(function(){
 			var dateFCheck = $('#dateF').val(); //날짜값
 			var dateScheck = $('#dateS').val(); //날짜값
-			var dateValCheck = $("#cs_code1").text() //날짜값
 			var checkTr = $('.checkTr').length // length 값나옴
-			var testDiv = $('#testDiv').parent();
+			
+			if((dateFCheck == null || dateFCheck == 'undefined' ||  dateFCheck == '')
+				&& (dateScheck == null || dateScheck == 'undefined' ||  dateScheck == '')){
+				alert('날짜를 설정 해주세요')
+				return false;
+			}
 			
 			for(i = 0 ; i < checkTr ; i++){
-				var e = i
-				var result = $(".checkTr")[e].id;
-				if(dateFCheck < result && result < dateScheck){
-					console.log()
+				let e = i
+				let result = $('.checkTr')[e].id;
+				if(dateScheck < result){
+					let idCheck = $('#'+result)
+					idCheck.hide();
+				}
+			}
+			for(i = 0 ; i < checkTr ; i++){
+				let e = i
+				let result = $('.checkTr')[e].id;
+				if(dateFCheck > result){
+					let idCheck = $('#'+result)
+					idCheck.hide();
 				}
 			}
 		})
