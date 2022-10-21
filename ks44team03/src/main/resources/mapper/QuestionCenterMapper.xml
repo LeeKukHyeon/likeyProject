@@ -97,15 +97,16 @@
 
 
 	<!-- 1:1문의 삭제 -->
-	<select id="deleteQuestion" parameterType="String" resultType="int">
+	<delete id="deleteQuestion" parameterType="String">
 	/* 1:1문의 삭제 */
-	select
-		mtm_num_code
+	delete
 	FROM
 		question_center
 	WHERE
 		mtm_num_code = #{mtmNumCode}
-	</select>
+		and
+		mtm_situation = '접수'
+	</delete>
 
 
 	<!-- 1:1문의 답변 -->

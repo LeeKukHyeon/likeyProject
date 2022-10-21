@@ -91,7 +91,7 @@ public class CustomerQuestionController {
 	@ResponseBody
 	public int deleteQuestion(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
 		
-	 	int result = customerQuestionService.deleteQuestion(mtmNumCode);
+		int result = customerQuestionService.deleteQuestion(mtmNumCode);
 		
 		return result;
 		

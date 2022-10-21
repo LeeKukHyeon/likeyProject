@@ -94,23 +94,26 @@
 	})
 	</script>
 	
-		<script type="text/javascript">
+	<!-- 삭제 클릭 ajax -->
+	<script type="text/javascript">
 	$(document).ready(function(){
 			
 		$('#deleteBtn').click(function(){
 			
 			var mtmNumCode = $('#ajaxCheck').val()
 			var checkState = $('#checkState').val()
-			alert(mtmNumCode)
-			alert(checkState)
 			
 			$.ajax({
 				url : '/deleteQuestion',
 				type : 'POST',
 				data : {"mtmNumCode" : mtmNumCode},
 				success : function(data){
-					if(checkState == '접수'){
-						alert('안녕')
+					if(data == 1){
+						window.location.replace("/myQuestionList")
+					}
+					if(data == 0){
+						alert('처리 상태가 접수중이 아닌 문의는 삭제가 불가능 합니다.')
+						return false;
 					}
 				}
 			})
