@@ -42,7 +42,7 @@ public class CustomerQuestionService {
 	public int deleteQuestion(String mtmNumCode) {
 		
 		int result = customerQuestionMapper.deleteQuestion(mtmNumCode);
-		
+	
 		return result;
 	}
 	
