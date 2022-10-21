@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Coupon;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
@@ -24,6 +25,12 @@ public class MypageService {
 		this.mypageMapper = mypageMapper;
 	}
 
+	
+	//쿠폰정보 가져오기
+	public List<Coupon> couponCheck(String id){
+		List<Coupon> couponCheck = mypageMapper.couponCheck(id);
+		return couponCheck;
+	}
 	
 	 //임시저장 수정 
 	public List<GoodsInfo> applicationEdit(String buyOrderCode){

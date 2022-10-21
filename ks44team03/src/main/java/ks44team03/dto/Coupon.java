@@ -12,12 +12,33 @@ public class Coupon {
 	
 	private CouponList couponInfo; //쿠폰 리스트
 	
+	private UserInfo userInfo; //유저리스트
+	
+	
+	
+	
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
+
+
 	public CouponList getCouponInfo() {
 		return couponInfo;
 	}
+	
+	
+	
 	public void setCouponInfo(CouponList couponInfo) {
 		this.couponInfo = couponInfo;
 	}
+	
 	
 	
 	public String getCsCode() {
@@ -62,10 +83,16 @@ public class Coupon {
 	public void setcUseDate(String cUseDate) {
 		this.cUseDate = cUseDate;
 	}
+
+
+
 	@Override
 	public String toString() {
 		return "Coupon [csCode=" + csCode + ", cCode=" + cCode + ", userId=" + userId + ", cDate=" + cDate + ", cEDate="
-				+ cEDate + ", cUseDate=" + cUseDate + ", cUse=" + cUse + ", couponInfo=" + couponInfo + "]";
+				+ cEDate + ", cUseDate=" + cUseDate + ", cUse=" + cUse + ", couponInfo=" + couponInfo + ", userInfo="
+				+ userInfo + "]";
 	}
+	
+	
 	
 }

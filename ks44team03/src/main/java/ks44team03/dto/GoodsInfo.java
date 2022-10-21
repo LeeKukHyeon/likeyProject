@@ -36,8 +36,6 @@ public class GoodsInfo {
 	private DeliveryCurrentState deliveryCurrentStateDto; // DeliveryCurrentState List DTO
 	private IncomingInfo incomingInfoDto; // Incoming List DTO
 	private OrderState orderStateDto; // OrderState List DTO
-	private Coupon couponDto; // coupon DTO
-	private CouponList couponListDto; //couponList DTO
 	
 	
 	
@@ -216,24 +214,6 @@ public class GoodsInfo {
 		this.orderStateDto = orderStateDto;
 	}
 	
-	
-	public Coupon getCouponDto() {
-		return couponDto;
-	}
-	public void setCouponDto(Coupon couponDto) {
-		this.couponDto = couponDto;
-	}
-	
-	
-	
-	public CouponList getCouponListDto() {
-		return couponListDto;
-	}
-	public void setCouponListDto(CouponList couponListDto) {
-		this.couponListDto = couponListDto;
-	}
-	
-	
 	@Override
 	public String toString() {
 		return "GoodsInfo [goodsInfoCode=" + goodsInfoCode + ", id=" + id + ", buyOrderCode=" + buyOrderCode
@@ -245,9 +225,12 @@ public class GoodsInfo {
 				+ arrivalDate + ", hsCode=" + hsCode + ", gBrand=" + gBrand + ", goodsUrl=" + goodsUrl + ", storeName="
 				+ storeName + ", storeLocation=" + storeLocation + ", orderInfoDto=" + orderInfoDto
 				+ ", deliveryCurrentStateDto=" + deliveryCurrentStateDto + ", incomingInfoDto=" + incomingInfoDto
-				+ ", orderStateDto=" + orderStateDto + ", couponDto=" + couponDto + ", couponListDto=" + couponListDto
-				+ "]";
+				+ ", orderStateDto=" + orderStateDto + "]";
 	}
+	
+
+	
+	
 
 	
 	

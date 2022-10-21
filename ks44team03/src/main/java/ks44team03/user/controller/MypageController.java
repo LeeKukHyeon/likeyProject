@@ -3,6 +3,10 @@ package ks44team03.user.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.admin.service.CompanyInfoService;
+import ks44team03.dto.Coupon;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
@@ -34,9 +39,13 @@ public class MypageController {
 	 * 임시저장 상품수정
 	 */
 	 @GetMapping("user/applicationEdit") 
-	 public String applicationEdit(@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
+	 public String applicationEdit(HttpServletRequest request,@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
+		 HttpSession session = request.getSession();
+		 String id = (String) session.getAttribute("SID");
 		 List<GoodsInfo> applicationEdit = mypageService.applicationEdit(buyOrderCode); 
-		 System.out.println(applicationEdit);
+		 List<Coupon> coupon = mypageService.couponCheck(id);
+		 
+		 System.out.println(coupon);
 		 model.addAttribute("applicationEdit", applicationEdit);
 		 return "myPage/applicationEdit";
 	 }

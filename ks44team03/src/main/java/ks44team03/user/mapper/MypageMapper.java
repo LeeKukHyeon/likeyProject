@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ks44team03.dto.Coupon;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
@@ -20,6 +21,9 @@ public interface MypageMapper {
 	public List<Grade> nextGrade(String u_id);
 
 	public int couponCount(String u_id);
+	
+	//쿠폰 정보 가져오기
+	public List<Coupon> couponCheck(String id);
 
 	// 임시저장 수정
 	public List<GoodsInfo> applicationEdit(String buyOrderCode);
