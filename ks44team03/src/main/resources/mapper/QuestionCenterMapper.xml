@@ -72,7 +72,7 @@
 	
 	
 	<!-- 1:1문의 검색 -->
-	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
+	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap">
 	/* 1:1문의 검색 */
 	SELECT
 		mtm_num_code
