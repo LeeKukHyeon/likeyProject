@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,6 +42,7 @@ public class ForwardingController {
 	 	return "forwardingManagement/forwardingRegister";
  	}
  	
+ 
  	//출고등록 모달 - 특정 상품코드 조회
 	@GetMapping("/forwardingGoodsInfoByCode")
 	@ResponseBody

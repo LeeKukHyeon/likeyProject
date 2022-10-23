@@ -144,7 +144,7 @@
 		ON 
 			u.u_id = cs.u_id
 		WHERE 
-			u.u_id = ${id}
+			u.u_id = #{id}
 	</select>	
 	
 	<select id="applicationEdit" parameterType="String" resultMap="GoodsInfoResultMap">

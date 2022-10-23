@@ -40,9 +40,7 @@ public class myPageApiController {
 		String roadAddrPart1 = request.getParameter("roadAddrPart1");
 		String roadAddrPart2 = request.getParameter("roadAddrPart2");
 		String zipNo = request.getParameter("zipNo");
-		System.out.println(roadAddrPart1+"!!!!!!!@@@@@@@");
-		System.out.println(roadAddrPart2+"!!!!!!!@@@@@@@");
-		System.out.println(zipNo+"!!!!!!!@@@@@@@");
+		
 		model.addAttribute("roadAddrPart1", roadAddrPart1);
 		model.addAttribute("roadAddrPart2", roadAddrPart2);
 		model.addAttribute("zipNo", zipNo);
