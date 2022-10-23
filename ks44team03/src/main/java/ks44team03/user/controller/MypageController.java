@@ -9,6 +9,7 @@ import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,7 @@ import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
 import ks44team03.dto.Nodata;
+import ks44team03.dto.OrderInfo;
 import ks44team03.dto.ShipOrderApi;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MypageService;
@@ -34,9 +36,19 @@ public class MypageController {
 	public MypageController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	
+	/*임시저장 수정 후 적용*/
+	
+	
+	@PostMapping("user/applicationEdit")
+	public String resultApplicationEdit(OrderInfo orderInfo) {
+		System.out.println(orderInfo);
+		return "redirect:mypageScreen";
+	}
 
 	/*
-	 * 임시저장 상품수정
+	 * 임시저장 주문서 수정
 	 */
 	 @GetMapping("user/applicationEdit") 
 	 public String applicationEdit(HttpServletRequest request,@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
@@ -46,28 +58,34 @@ public class MypageController {
 		 List<Coupon> coupon = mypageService.couponCheck(id);
 		 
 		 System.out.println(coupon);
+		 
+		 model.addAttribute("coupon", coupon);
 		 model.addAttribute("applicationEdit", applicationEdit);
 		 return "myPage/applicationEdit";
 	 }
 	 
 
+	 //주문서 상세목록
 	@GetMapping("user/applicationDetail")
 	public String applicationDetailList() {
 		return "myPage/applicationDetailSearch";
 	}
 
+	//주소목록추가
 	@GetMapping("user/myAddrList")
 	public String myAddrList() {
 
 		return "myPage/member/myAddrList";
 	}
 
+	//회원정보수정
 	@GetMapping("user/memberModify")
 	public String modifyMemberInfo() {
 
 		return "myPage/member/memberModify";
 	}
 
+	//마이페이지 
 	@GetMapping("user/mypageScreen")
 	public String mypage(Model model) {
 		String u_id = "id001";
