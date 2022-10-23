@@ -236,7 +236,7 @@ public class IncomingController {
 	//입고등록
 	@PostMapping("/regIncoming")
 	public String regIncoming(IncomingInfo incomingInfo, String goodsInfoCode) {
-		System.out.println(incomingInfo +"!!!!!@@@@@@@@@");
+
 		int result = incomingService.regIncoming(incomingInfo, goodsInfoCode);
 		
 	return "redirect:/goodsIncomingList";

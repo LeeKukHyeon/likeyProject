@@ -24,12 +24,14 @@
 				</div>
 				<form name="f" action="/user/applicationEdit" method="post" enctype="multipart/form-data" onSubmit="return data_check('insert');">
 						<div class="detail_box1_wrap">
-							<div class="title" >물류센터 : <font th:text="${applicationEdit[0].orderInfoDto.logisticsCenter}">#</font></div>
+							<div class="title" >물류센터 :  <font th:text="${applicationEdit[0].orderInfoDto.logisticsCenter}">#</font></div>
+							<input type="hidden" name="logisticsCenter" th:value="${applicationEdit[0].orderInfoDto.logisticsCenter}">
 					
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="table_box">
 							  <tr>
 							    <td class="td1" style="width:377px;" >신청번호</td>
-								<td class="td2" th:text="${applicationEdit[0].buyOrderCode}">#</td>
+								<td class="td2"  th:text="${applicationEdit[0].buyOrderCode}">#</td>
+								<input type="hidden" name="buyOrderCode" th:value = "${applicationEdit[0].buyOrderCode}">
 							  </tr>
 							  <tr>
 							    <td class="td1">주문번호</td>
