@@ -53,16 +53,17 @@
 			</tbody>
 		</table>
 		<div style="width: 50%; margin-top: 3mm">
-		<div id="checkState" th:text="${QuestionRead.mtmSituation}" style="display: none;"></div>
+		<input id="checkState" th:value="${QuestionRead.mtmSituation}" style="display: none;">
 		<a th:href="@{/myQuestionList}"><input type="button" value="목록" style="float: left;"></a>
-		<a th:href="@{/deleteQuestion(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm;"></a>
+		<input id="deleteBtn" type="button" value="삭제하기" style="float: right; margin-left: 3mm;">
+		<input id="ajaxCheck" style="display: none;" th:value="${QuestionRead.mtmNumCode}">
 		<a th:href="@{/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input id="modify" type="button" value="수정하기" style="float: right;"></a>
 		</div>
 	</div>
 	<!-- 접수 상태인것만 수정 가능 -->
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var checkState = $('#checkState').text()
+			var checkState = $('#checkState').val()
 			if(checkState != '접수'){
 				$('#modify').hide();
 			}
@@ -92,5 +93,33 @@
 		})
 	})
 	</script>
+	
+	<!-- 삭제 클릭 ajax -->
+	<script type="text/javascript">
+	$(document).ready(function(){
+			
+		$('#deleteBtn').click(function(){
+			
+			var mtmNumCode = $('#ajaxCheck').val()
+			var checkState = $('#checkState').val()
+			
+			$.ajax({
+				url : '/deleteQuestion',
+				type : 'POST',
+				data : {"mtmNumCode" : mtmNumCode},
+				success : function(data){
+					if(data == 1){
+						window.location.replace("/myQuestionList")
+					}
+					if(data == 0){
+						alert('처리 상태가 접수중이 아닌 문의는 삭제가 불가능 합니다.')
+						return false;
+					}
+				}
+			})
+		})
+	})
+	</script>
+	
 </body>
 </html>

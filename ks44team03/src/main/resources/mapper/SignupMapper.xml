@@ -73,4 +73,15 @@
 		WHERE 
 			u.u_id = #{uId};
 	</select>
+	<select id="findMemberId" parameterType= "String" resultMap="UserInfoResultMap">
+		/* 아이디 찾기 */
+		SELECT
+			u.u_id
+		FROM
+			user_member AS u
+		WHERE
+			u.u_name =#{uName} AND u.u_phone = #{uPhone};
+	</select>
+	
+	
 </mapper>

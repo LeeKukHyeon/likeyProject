@@ -833,15 +833,16 @@ function ajaxFileUpload(obj, idx, rowIdx){
 	.ajaxComplete(function(){
 		$(this).hide();
 		});
-	
+	ㅍ
 	console.log("이미지업로드");
 	$.ajaxFileUpload({
-			url:'/shipping_img_upload.html?idx=' + idx,
+			url:'/user/shipping_img_upload.html?idx=' + idx,
 			secureuri:false,
 			fileElementId:obj,
 			dataType: 'json',
 			data:{name:'logan', id:'id'},
 			success: function (data, status){
+				console.log(이미지업로드성공시);
 				if(typeof(data.error) != 'undefined'){
 					if(data.error != ''){
 						alert(data.error);

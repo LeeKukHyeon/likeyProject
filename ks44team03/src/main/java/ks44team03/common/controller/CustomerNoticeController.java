@@ -43,7 +43,7 @@ public class CustomerNoticeController {
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("sv", sv);
 		
-		return "/customerService/notice/noticeList";
+		return "customerService/notice/noticeList";
 	}
 	
 	
@@ -79,7 +79,7 @@ public class CustomerNoticeController {
 		
 		model.addAttribute("noticeRead", noticeRead);
 		
-		return "/customerService/notice/noticeModify";
+		return "customerService/notice/noticeModify";
 	}
 	
 	//공지사항 등록
@@ -96,7 +96,7 @@ public class CustomerNoticeController {
 	@GetMapping("/noticeRegister")
 	public String regNotice(Model model) {
 		
-		return "/customerService/notice/noticeRegister";
+		return "customerService/notice/noticeRegister";
 	}
 	
 	//공지사항 게시글 조회 , 조회수 카운트(countView)
@@ -113,17 +113,17 @@ public class CustomerNoticeController {
 		
 		model.addAttribute("noticeRead", noticeRead);
 		
-		return "/customerService/notice/noticeRead";
+		return "customerService/notice/noticeRead";
 	}
-
-	
+		
+		
 	// 공지사항 게시물 목록 조회
 	@GetMapping("/noticeList")
 	public String viewNoticeList(Model model) {
-	
+		
 		List<NoticeCenter> noticeList = customerNoticeService.getNoticeList();
 		model.addAttribute("noticeList", noticeList);
-		 
-		return "/customerService/notice/noticeList";
+	 
+		return "customerService/notice/noticeList";
 	}
 }

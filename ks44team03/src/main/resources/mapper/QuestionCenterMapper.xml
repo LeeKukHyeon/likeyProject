@@ -35,6 +35,8 @@
 	</resultMap>
 	
 	
+	
+	
 	<!-- 내 문의내역페이지에서 내용 검색 -->
 	<select id="myQuestionSearch" parameterType="map" resultMap="QuestionResultMap">
 	/* 내문의내역페이지에서 1:1문의 검색 */
@@ -70,7 +72,7 @@
 	
 	
 	<!-- 1:1문의 검색 -->
-	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
+	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap">
 	/* 1:1문의 검색 */
 	SELECT
 		mtm_num_code
@@ -95,15 +97,16 @@
 
 
 	<!-- 1:1문의 삭제 -->
-	<delete id="deleteQuestion" parameterType="QuestionCenter">
+	<delete id="deleteQuestion" parameterType="String">
 	/* 1:1문의 삭제 */
-	DELETE
+	delete
 	FROM
 		question_center
 	WHERE
 		mtm_num_code = #{mtmNumCode}
+		and
+		mtm_situation = '접수'
 	</delete>
-
 
 
 	<!-- 1:1문의 답변 -->
