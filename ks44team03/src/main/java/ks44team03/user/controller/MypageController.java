@@ -42,8 +42,9 @@ public class MypageController {
 	
 	
 	@PostMapping("/user/applicationEdit")
-	public String resultApplicationEdit(OrderInfo orderInfo) {
+	public String resultApplicationEdit(OrderInfo orderInfo,GoodsInfo goodsInfo) {
 		System.out.println(orderInfo);
+		
 		return "redirect:mypageScreen";
 	}
 
