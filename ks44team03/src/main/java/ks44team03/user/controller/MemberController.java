@@ -18,13 +18,11 @@ import ks44team03.dto.MemberDTO;
 import ks44team03.dto.UserInfo;
 import ks44team03.user.service.MemberService;
 
-
 @Controller
 @RequestMapping(value = "/user")
 public class MemberController {
 	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
-
 	
 	private MemberService memberService;
 	
@@ -37,68 +35,38 @@ public class MemberController {
 		log.info("memberController 생성");
 	}
 	
-	/**
-	 * 로그인페이지로 이동
-	 */
+	// 로그인페이지로 이동
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "login/loginForm";
 	}
 
-	/**
-	 * 아이디 비밀번호 찾기 페이지로 이동
-	 */
+	// 아이디 비밀번호 찾기 페이지로 이동
 	@GetMapping("/findIdPw")
 	public String findIdPw() {
 		return "login/findIdPw";
 	}
 	
-	/**
-	 * 아이디 찾기
-	 */
+	//
 	@PostMapping("/findMemberId")
 	@ResponseBody
-	public String findMemberId(@RequestParam("mnameID") String uName,
+	public int findMemberId(@RequestParam("mnameID") String uName,
 						@RequestParam("phoneNumber") String uPhone) {
-		System.out.println(uName+ " : "+uPhone);
-		
-		return memberService.findMemberId(uName, uPhone);
-	}
-	/**
-	 * 비밀번호 찾기 및 임시 패스워드로 변경
-	 */
-	@PostMapping("/findMemberPwd")
-	@ResponseBody
-	public String findMemberPwd(@RequestParam("mid") String uId,
-			@RequestParam("mname") String uName,
-			@RequestParam("pwPhoneNumber") String uPhone) {
-		
-		System.out.println(uId + " : " + uName + " : " + uPhone);
-		
-		UserInfo userinfo = memberService.findMemberPwd(uId,uName,uPhone);
-		
-		if (userinfo != null) {
-			// 임시 패스워드 메일 발송 및 변수 저장
-			// String code = emailService.sendSimpleMessage(userinfo.getuEmail());
-			//log.info("인증코드 : " + code);
-	        //return code;
-			return null;
-		}
-		
-		return null;
+		System.out.println(uName + "제발젤브ㅓㅏㄹ더로저로");
+		System.out.println(uPhone+ "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+		//int result = memberService.findMemberId(uName, uPhone);
+		return 0;
 	}
 	
-	/**
-	 * 회원가입 페이지 이동
-	 */
+	
+
+	// 회원가입 페이지 이동
 	@GetMapping("/userForm")
 	public String userForm() {
 		return "registration/userForm";
 	}
 	
-	/** 
-	 * 로그아웃 버튼 클릭시 로그아웃 완료 및 로그인페이지로 이동
-	 */
+	//로그아웃 버튼 클릭시 로그아웃 완료 및 로그인페이지로 이동
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		
@@ -107,9 +75,7 @@ public class MemberController {
 		return "redirect:/user/loginForm";
 	}
 	
-	/**
-	 * 로그인 버튼 클릭시 로그인 완료 및 마이페이지로 이동 
-	 */
+	//로그인 버튼 클릭시 로그인 완료 및 마이페이지로 이동
 	@PostMapping("/login")
 	public String loginProcess(@RequestParam("uId") String uId
 							,@RequestParam("uPw") String uPw
@@ -146,22 +112,19 @@ public class MemberController {
 	}
 	
 	
-	/**
-	 * 회원가입 버튼 클릭시 회원가입 완료 및 로그인페이지로 이동
-	 */
-	@PostMapping("/signup")
-	public String signUp(MemberDTO member) {
-		int result = memberService.userSignup(member);
-		System.out.println(result); 
-		return "login/loginForm";
-	}
+	// 회원가입 버튼 클릭시 회원가입 완료 및 로그인페이지로 이동
+	  @PostMapping("/signup")
+	  public String signUp(MemberDTO member) {
+		  int result = memberService.userSignup(member);
+		  System.out.println(result); 
+		  return "login/loginForm";
+		  }
+	  
 	
-	/**
-	 * 회원가입 시 아이디 중복 검사
-	 */
-	@PostMapping("/signup/checkid")
-	@ResponseBody
-	public int checkId(@RequestParam("id") String id) {
+	  // 회원가입 시 아이디 중복 검사
+	  @PostMapping("/signup/checkid")
+	  @ResponseBody
+	  public int checkId(@RequestParam("id") String id) {
 		if (id.equals(memberService.checkID(id))) {
 			return 1;
 		}else {
@@ -169,16 +132,14 @@ public class MemberController {
 		}
 	  }
 	  
-	/**
-	 * 회원가입 시 닉네임 중복 검사
-	 */
-	@PostMapping("/signup/checknick")
-	@ResponseBody
-	public int checkNick(@RequestParam("nick") String nick) {
-		if (nick.equals(memberService.checkNick(nick))) {
-			return 1;
-		}else {
-			return 0;
-		}
-	}
+	  // 회원가입 시 닉네임 중복 검사
+	  @PostMapping("/signup/checknick")
+	  @ResponseBody
+	  public int checkNick(@RequestParam("nick") String nick) {
+		  if (nick.equals(memberService.checkNick(nick))) {
+			  return 1;
+		  }else {
+			  return 0;
+		  }
+	  }
 }
