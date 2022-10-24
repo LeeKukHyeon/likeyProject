@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/find_id_pw.css}"/>
+
+</head>
+<!-- default_layout.html에 정의한 main page 부분 -->
+<body layout:fragment="content">
+        
+	<div class="right_text">
+	<div class="sub_navi_text"> 
+		<div>HOME &nbsp;&gt;&nbsp; 회원관리 &nbsp;&gt;&nbsp; <b>아이디/비밀번호 찾기</b></div>
+	</div>
+
+	<div class="login_box" style="margin-left:20%;">
+	<table style="width:100%;border-collapse:collapse;">
+		<colgroup>
+			<col width="100%">
+		</colgroup>
+		<tbody>
+			<tr>
+				<td style="width:100%;border:1px solid #e5e5e5;" align="center">
+					<form id="id_find" method="post" action="member_process.html">
+					<input type="hidden" name="action_type" value="IdFind">
+
+					<table style="width:90%;padding-top:23px;color:#6e6e6e;border-collapse:collapse;">
+					<tbody>
+					<tr>
+						<td colspan="3" style="width:100%;height:100px;">
+							<p class="tit dot" style="margin-top:5%;">
+								<span style="font-size:24px;font-weight:bold;padding:0px 20px 20px 4px;color:#6e6e6e;">
+									<span style="color:#f76c87;">아이디</span>찾기
+								</span>
+								<br>
+								<span style="font-size:14px;font-weight:normal;padding:0px 20px 20px 4px;color:#6e6e6e;">
+								아이디를 잊어버리셨나요?
+								아래 입력사항에 가입하실때 작성하신 정보를 입력해 주세요!<br>
+								회원 아이디를 가입시 <span style="font-weight:bold;color:#f76c87;">이메일로 전송</span>해 드립니다.
+								</span>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%;font-size:16px;color:#6e6e6e;font-weight:bold;">
+							이름
+						</td>
+						<td style="width:*;">
+							<input type="text" name="mnameID" id="mnameID" style="width:320px;" class="input_add">
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:16px;font-weight:bold;">
+							핸드폰 번호
+						</td>
+						<td class="td2">
+							<div>
+								<select name="countryCode" id="countryCode"  class="select_add" style="width:115px;">
+									<optgroup label="Other countries">
+									<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+									
+									</optgroup>
+									</select>
+								<input type="text" name="hp" id="hp" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							</div>
+						</td>
+						<td rowspan="2" style="width:38%;text-align:left;" align="left">
+							<button type="button" id="findId" class="btn btn-block btn-primary" style="width: 30px; height:20px; margin-bottom: 10px;">아이디찾기</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" style="width:600px;height:30px;font-size:16px;">
+							<p class="dot">&nbsp; </p>
+						</td>
+					</tr>
+						
+
+					<tr>
+						<td colspan="3" style="width:100%;height:100px;">
+							<p class="tit dot">
+								<span style="font-size:24px;font-weight:bold;padding:0px 20px 20px 4px;color:#6e6e6e;">
+									<span style="color:#f76c87;">비밀번호</span>찾기
+								</span>
+								<br>
+								<span style="font-size:14px;font-weight:normal;padding:0px 20px 20px 4px;color:#6e6e6e;">
+								비밀번호를 잊어버리셨나요?
+								아래 입력사항에 가입하실때 작성하신 정보를 입력해 주세요!<br> 임시 비밀번호를 가입시 <span style="font-weight:bold;color:#f76c87;">이메일로 전송</span>해 드립니다.
+								</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%;font-size:16px;color:#6e6e6e;font-weight:bold;">
+							아이디
+						</td>
+						<td colspan="2" style="width:*;">
+							<input type="text" name="midPwd" id="midPwd" style="width:320px;" class="input_add">
+						</td>
+					</tr>
+					<tr>
+						<td style="width:15%;font-size:16px;color:#6e6e6e;font-weight:bold;">
+							이름
+						</td>
+						<td style="width:*;">
+							<input type="text" name="mnamePwd" id="mnamePwd" tyle="width:320px;" class="input_add">
+						</td>
+						<td rowspan="2" style="width:38%;text-align:left;" align="left">
+							<button type="button" onclick="findPwd();" class="next_button">확인</button>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:16px;font-weight:bold;">
+							핸드폰 번호
+						</td>
+						<td class="td2">
+							<div>
+								<select name="pwCountryCode" id="pwCountryCode"  class="select_add" style="width:115px;">
+									<optgroup label="Other countries">
+									<option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+									<option data-countryCode="US" value="1">USA (+1)</option>
+									</optgroup>
+									</select>
+								<input type="text" name="hpPw" id="hpPw" maxlength="20" style="width:200px;" class="input_add" onchange="this.value=this.value.replace(/[^0-9]/g,'');" /> 
+							</div>
+						</td>
+					</tr>
+					</tbody></table>
+					<br><br>
+				</form>
+				</td>
+			</tr>
+		  </tbody>
+		</table>
+		</div>		
+		</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+	$(function(){
+		var $mnameID = $("#mnameID");
+		var $mphoneID = $("#countryCode")+$("#hp");
+		var $idText = $("#idText");
+		
+		var $midPwd = $("#midPwd");
+		var $mnamePwd = $("#mnamePwd");
+		var $mphonePwd = $("#pwCountryCode")+$("#hpPw");
+		
+		// JS 모달
+		var $findOk = new bootstrap.Modal(document.getElementById('findOk'));
+		var $findNone = new bootstrap.Modal(document.getElementById('findNone'));
+		
+		console.log($mphoneID);
+		
+		$("#findId").click(function(){
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/findMemberId",
+				data : {
+					"mname" : $mnameID.val(),
+					"mphone" : $mphoneID.val()
+				},
+				success : function(data){
+					if(data == ""){
+						//console.log("없음!")
+						$findNone.show();
+					}else{
+						//console.log("data :"+data)
+						$idText.text("회원님의 아이디 : "+data)
+						$idText.css({
+							"color" : "#0D6EFD",
+							"font-weight" : "bold",
+							"font-size" : "10px"
+						})
+						$findOk.show();	
+					}
+				}
+			})
+		})
+		
+		$("#findPwd").click(function(){
+			
+			$.ajax({
+				type : "POST",
+				url : "/user/findMemberPwd",
+				data : {
+					"mid" : $midPwd.val(),
+					"mname" : $mnamePwd.val(),
+					"mphone" : $mphonePwd.val()
+				},
+				success : function(data){
+					if(data == ""){
+						//console.log("없음!")
+						$findNone.show();
+					}else{
+						//console.log("data :"+data)
+						$idText.text("회원님의 임시 비밀번호를 이메일로 발송하였습니다. 확인부탁드립니다.");
+						$idText.css({
+							"color" : "#0D6EFD",
+							"font-weight" : "bold",
+							"font-size" : "10px"
+						})
+						$findOk.show();	
+					}
+				}
+			})
+		})
+	})
+</script>
+<div class="modal fade" id="findOk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">계정 정보 확인</h4>
+      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+		  <div class="container-fluid">
+		    <div class="row">
+		      <div class="col-sm-9">
+		        <div class="row">
+		          <p id="idText"></p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      <div class="modal-footer">
+        <a th:href="@{/user/loginForm}"><button type="button" class="btn btn-default">로그인 화면으로 돌아가기</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="findNone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">계정 정보 확인</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+		  <div class="container-fluid">
+		    <div class="row">
+		      <div class="col-sm-9">
+		        <div class="row">
+		          <p id="idText">계정 정보를 확인 할 수 없습니다</p>
+		          <p id="idText">정확한 정보를 확인 후 다시 입력해주세요</p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      <div class="modal-footer">
+        <a th:href="@{/user/loginForm}"><button type="button" class="btn btn-default">로그인 화면으로 돌아가기</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>		
+
+	</body>
+</html>
