@@ -21,7 +21,15 @@ public class CustomerQuestionService {
 		this.customerQuestionMapper = customerQuestionMapper;
 		this.commonMapper = commonMapper;
 	}
-
+	
+	//내문의내역 페이지 내용 검색
+	public List<QuestionCenter> myQuestionSearch(Map<String, Object> paramMap){
+		
+		List<QuestionCenter> myQuestionList = customerQuestionMapper.myQuestionSearch(paramMap);
+		
+		return myQuestionList;
+	}
+	
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> paramMap){
 		
@@ -30,12 +38,12 @@ public class CustomerQuestionService {
 		return searchQuestion;
 	}
 	
-	
 	//1:1문의 삭제
-	public void deleteQuestion(String mtmNumCode) {
+	public int deleteQuestion(String mtmNumCode) {
 		
-		customerQuestionMapper.deleteQuestion(mtmNumCode);
-		
+		int result = customerQuestionMapper.deleteQuestion(mtmNumCode);
+	
+		return result;
 	}
 	
 	//관리자 답변 등록

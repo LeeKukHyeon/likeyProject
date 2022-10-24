@@ -37,6 +37,7 @@ public class GoodsInfo {
 	private IncomingInfo incomingInfoDto; // Incoming List DTO
 	private OrderState orderStateDto; // OrderState List DTO
 	
+	
 	private Option optionDto; // Option Dto
 	private UserInfo userInfoDto; // UserInfo Dto
 	
@@ -229,7 +230,15 @@ public class GoodsInfo {
 				+ ", deliveryCurrentStateDto=" + deliveryCurrentStateDto + ", incomingInfoDto=" + incomingInfoDto
 				+ ", orderStateDto=" + orderStateDto + "]";
 	}
+	
 
+	
+	
+
+	
+	
+	
+	
 	
 }
 

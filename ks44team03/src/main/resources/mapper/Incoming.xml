@@ -63,6 +63,10 @@
 		<result column="approval" property="incomingApproval"/>
 		<result column="out_tracking_num" property="outTrackingNum"/>
 		<result column="out_company" property="outCompany"/>
+		<association property="goodsInfoDto" javaType="GoodsInfo">
+			<id column="goods_info_code" property="goodsInfoCode"/>
+			<result column="buy_order_code" property="buyOrderCode"/>
+		</association>
 	</resultMap>
 	
 	<resultMap type="ErrorIncoming" id="errorIncomingListResultMap">
@@ -328,6 +332,23 @@
 	 		; 			 	
 	 </select>
 	 
+	 <insert id="regIncoming" parameterType="IncomingInfo">
+	 	/* 입고 등록 */
+		INSERT INTO incoming
+			(incoming_code, goods_info_code, e_code, photo_save, weight, volume)
+		VALUES
+			(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${incomingWeight}, ${incomingVolume});
+	</insert>
+	
+	<update id="updateIncoming" parameterType="String">
+		/* 오류입고 상태 업데이트 */
+		UPDATE delivery_current_state
+		SET		
+			stat_info='입고 완료'
+		WHERE
+		goods_info_code = #{goodsInfoCode};
+	</update>
+	 
 	<select id="incomingGoodsInfoByCode" parameterType="String" resultType="map">
 	 	/*입고 등록 시 특정 상품코드 조회*/
 	 	SELECT 
@@ -342,6 +363,29 @@
 			g.goods_info_code = d.goods_info_code 
 		WHERE 
 			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{goodsInfoCode};
+	 </select>
+	 
+	 <select id="goodsIncomingList" resultMap="incomingListResultMap">
+	 	/* 입고 완료 상품 리스트 */
+	 	SELECT
+			i.goods_info_code
+			,g.buy_order_code
+			,i.e_code
+			,i.photo_save
+			,i.weight
+			,i.volume
+		FROM
+			incoming AS i
+		INNER JOIN
+			delivery_current_state AS d
+		ON
+			i.goods_info_code = d.goods_info_code
+		INNER JOIN
+			goods_info AS g
+		ON
+				g.goods_info_code = d.goods_info_code
+		WHERE
+			d.stat_info = '입고 완료'
 	 </select>
  
 	<select id="errorIncomingList" resultMap="errorIncomingListResultMap">
@@ -375,6 +419,23 @@
 		WHERE 
 			d.stat_info ='입고 대기' AND g.arrival = 'y' AND g.goods_info_code = #{errorGoodsInfoCode};
 	</select>
+	
+	<insert id="regErrorIncoming" parameterType="ErrorIncoming">
+		/* 오류입고 */
+		INSERT INTO error_incoming
+			(error_code, goods_info_code, error_content, error_amount, error_state, error_comp_date)
+		VALUES
+			(#{errorCode}, #{goodsInfoCode}, #{errorContent}, ${errorAmount}, #{errorState}, CURDATE());
+	</insert>
+	
+	<update id="updateErrorIncoming" parameterType="String">
+		/* 오류입고 상태 업데이트 */
+		UPDATE delivery_current_state
+		SET		
+			stat_info='오류입고'
+		WHERE
+		goods_info_code = #{goodsInfoCode};
+	</update>
 	
 
 </mapper>

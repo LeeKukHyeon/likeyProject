@@ -17,12 +17,15 @@
 		<!-- end header  -->
 	
 		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
-	<div class="container-fluid">
-		<div class="row">
-			<body th:replace="fragments/information_sidebar::sidebarFragment"></body>
-			<body layout:fragment="content"></body>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div th:replace="fragments/information_sidebar::sidebarFragment"></div>
+				<div layout:fragment="content"></div>
+			</div>
 		</div>
-	</div>
+	</body>
+	
 		    
 		<!-- start footer  -->
 	<footer th:replace="fragments/footer::footerFragment"></footer>

@@ -13,6 +13,8 @@ import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
 import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
+import ks44team03.dto.IncomingInfo;
+import ks44team03.dto.MemberDTO;
 import ks44team03.dto.OrderInfo;
 
 @Service
@@ -129,9 +131,27 @@ public class IncomingService {
 		return incomingOrderList;
 	}
 	
+	//입고등록
+	public int regIncoming(IncomingInfo incominginfo, String goodsInfoCode) {
+		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
+		incominginfo.setIncomingCode(newIncomingCode);
+		incomingMapper.updateIncoming(goodsInfoCode);
+		
+		int result = incomingMapper.regIncoming(incominginfo);
+		
+		return result;
+	}
+	
 	//입고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> incomingGoodsInfoByCode(String goodsInfoCode){
 		return incomingMapper.incomingGoodsInfoByCode(goodsInfoCode);
+	}
+	
+	//입고 완료 상품 리스트
+	public List<IncomingInfo> goodsIncomingList(){
+		List<IncomingInfo> goodsIncomingList = incomingMapper.goodsIncomingList();
+		
+		return goodsIncomingList;
 	}
 	
 	//오류입고 처리내역
@@ -146,4 +166,15 @@ public class IncomingService {
 		return incomingMapper.errorIncomingGoodsInfoByCode(errorGoodsInfoCode);
 	}
 	
+	// 오류입고
+	public int regErrorIncoming(ErrorIncoming errorIncoming, String goodsInfoCode) {
+		String newErrorCode = commonMapper.getCommonPkCode("error_incoming", "error_code");
+		errorIncoming.setErrorCode(newErrorCode);
+		incomingMapper.updateErrorIncoming(goodsInfoCode);
+		
+		int result = incomingMapper.regErrorIncoming(errorIncoming);
+		
+		return result;
+	}
+
 }

@@ -27,6 +27,18 @@
 			</association>
 	</resultMap>
 	
+	
+	<!-- 쿠폰 삭제 -->
+	<delete id="couponDelete" parameterType="String">
+	/* 쿠폰삭제 */
+	DELETE
+	FROM
+		coupon
+	WHERE
+		c_code = #{couponCode}
+	</delete>
+	
+	
 	<!-- 쿠폰 보유 리스트에서 검색  -->
 	<select id="couponSearch" parameterType="map" resultMap="couponResultMap">
 	/* 쿠폰 보유 리스트에서 검색 */

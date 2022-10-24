@@ -34,6 +34,34 @@
 			</association>
 	</resultMap>
 	
+	
+	
+	
+	<!-- 내 문의내역페이지에서 내용 검색 -->
+	<select id="myQuestionSearch" parameterType="map" resultMap="QuestionResultMap">
+	/* 내문의내역페이지에서 1:1문의 검색 */
+	SELECT
+		mtm_num_code
+		,e_code
+		,mtm_cate
+		,mtm_title
+		,mtm_content
+		,mtm_answer
+		,mtm_img
+		,mtm_date
+		,mtm_situation
+	FROM
+		question_center
+	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		<if test="sv != null and sv != ''">
+			${sk} LIKE CONCAT('%',#{sv},'%')
+		</if>
+	</trim>
+	order by
+		mtm_num_code
+	</select>
+	
+	
 	<!-- 리스트 -->
 	<select id="memberInfo" resultType="UserInfo">
 	SELECT
@@ -44,7 +72,7 @@
 	
 	
 	<!-- 1:1문의 검색 -->
-	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap" fetchSize="100">
+	<select id="searchQuestion" parameterType="map" resultMap="QuestionResultMap">
 	/* 1:1문의 검색 */
 	SELECT
 		mtm_num_code
@@ -69,15 +97,16 @@
 
 
 	<!-- 1:1문의 삭제 -->
-	<delete id="deleteQuestion" parameterType="QuestionCenter">
+	<delete id="deleteQuestion" parameterType="String">
 	/* 1:1문의 삭제 */
-	DELETE
+	delete
 	FROM
 		question_center
 	WHERE
 		mtm_num_code = #{mtmNumCode}
+		and
+		mtm_situation = '접수'
 	</delete>
-
 
 
 	<!-- 1:1문의 답변 -->

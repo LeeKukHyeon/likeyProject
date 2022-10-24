@@ -36,9 +36,9 @@ public class MemberController {
 	}
 	
 	// 로그인페이지로 이동
-	@GetMapping("loginForm")
+	@GetMapping("/loginForm")
 	public String loginForm() {
-		return "/login/loginForm";
+		return "login/loginForm";
 	}
 
 	// 아이디 비밀번호 찾기 페이지로 이동
@@ -108,7 +108,7 @@ public class MemberController {
 		model.addAttribute("title", "로그인 화면");
 		if(msg != null) model.addAttribute("msg", msg);
 			
-		return "/user/login";
+		return "user/login";
 	}
 	
 	
@@ -117,7 +117,7 @@ public class MemberController {
 	  public String signUp(MemberDTO member) {
 		  int result = memberService.userSignup(member);
 		  System.out.println(result); 
-		  return "/login/loginForm";
+		  return "login/loginForm";
 		  }
 	  
 	

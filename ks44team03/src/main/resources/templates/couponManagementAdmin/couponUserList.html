@@ -13,7 +13,7 @@
 			<div th:include="couponManagementAdmin/searchCoupon :: searchCoupon"></div>
 	
 		<table class="couponList" border="1" style="width: 70%; margin-top: 5mm">
-			<tbody>
+			<thead>
 				<tr>
 					<th>쿠폰 부여 순번 코드</th>
 					<th>쿠폰 코드</th>
@@ -24,13 +24,15 @@
 					<th>사용한 날짜</th>
 					<th>사용 여부</th>
 				</tr>
-				<tr th:id="${l.csCode}" th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
+			</thead>
+			<tbody>
+				<tr class="checkTr" th:id="${l.cEDate}" th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
 					<td th:text="${l.couponInfo.couponName}">쿠폰이름</td>
 					<td th:text="${l.userId}"></td>
 					<td th:text="${l.cDate}"></td>
-					<td class="EndDate" th:text="${l.cEDate}"></td>
+					<td th:text="${l.cEDate}"></td>
 					<td th:text="${l.cUseDate}"></td>
 					<td style="text-align: center;" th:text="${l.cUse}"></td>
 				</tr>
@@ -41,15 +43,38 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#proviso').click(function(){
-			var dateFCheck = $('#dateF').val();
-			var dateScheck = $('#dateS').val();
-			var expiryDateCheck = $(".EndDate").text();
-			alert(expiryDateCheck)
+			var dateFCheck = $('#dateF').val(); //날짜값
+			var dateScheck = $('#dateS').val(); //날짜값
+			var checkTr = $('.checkTr').length // length 값나옴
+			
+			if((dateFCheck == null || dateFCheck == 'undefined' ||  dateFCheck == '')
+				&& (dateScheck == null || dateScheck == 'undefined' ||  dateScheck == '')){
+				alert('날짜를 설정 해주세요')
+				return false;
+			}else if (dateFCheck < dateScheck){
+				alert('날짜를 제대로 설정 해주세요')				
+				return false;
+			}
+			
+			for(i = 0 ; i < checkTr ; i++){
+				let e = i
+				let result = $('.checkTr')[e].id;
+				if(dateScheck < result){
+					let idCheck = $('#'+result)
+					idCheck.hide();
+				}
+			}
+			for(i = 0 ; i < checkTr ; i++){
+				let e = i
+				let result = $('.checkTr')[e].id;
+				if(dateFCheck > result){
+					let idCheck = $('#'+result)
+					idCheck.hide();
+				}
+			}
 		})
 	})
 	</script>
-	
-	
 	
 </body>
 </html>

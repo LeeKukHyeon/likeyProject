@@ -14,6 +14,7 @@ public class OrderInfo {
 	private String postNum;
 	
 	private String addr;
+	private String addr2;
 	private String totalPrice;
 	private String goodsOrderDate;	
 	private String step1;	
@@ -97,6 +98,14 @@ public class OrderInfo {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+	
+	
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 	public String getTotalPrice() {
 		return totalPrice;
 	}
@@ -177,18 +186,19 @@ public class OrderInfo {
 	public void setTrading(String trading) {
 		this.trading = trading;
 	}
-	
 	@Override
 	public String toString() {
 		return "OrderInfo [buyOrderCode=" + buyOrderCode + ", logisticsCenter=" + logisticsCenter + ", userPoboxCode="
 				+ userPoboxCode + ", id=" + id + ", transportation=" + transportation + ", nation=" + nation
 				+ ", orderNum=" + orderNum + ", userName=" + userName + ", phone=" + phone + ", postNum=" + postNum
-				+ ", addr=" + addr + ", totalPrice=" + totalPrice + ", goodsOrderDate=" + goodsOrderDate + ", step1="
-				+ step1 + ", step2=" + step2 + ", step3=" + step3 + ", DesiredCourier=" + DesiredCourier + ", buyWay="
-				+ buyWay + ", request=" + request + ", friendsDeCheck=" + friendsDeCheck + ", commission=" + commission
-				+ ", personalCustomsClearanceCode=" + personalCustomsClearanceCode + ", personalUse=" + personalUse
-				+ ", trading=" + trading + "]";
+				+ ", addr=" + addr + ", addr2=" + addr2 + ", totalPrice=" + totalPrice + ", goodsOrderDate="
+				+ goodsOrderDate + ", step1=" + step1 + ", step2=" + step2 + ", step3=" + step3 + ", DesiredCourier="
+				+ DesiredCourier + ", buyWay=" + buyWay + ", request=" + request + ", friendsDeCheck=" + friendsDeCheck
+				+ ", commission=" + commission + ", personalCustomsClearanceCode=" + personalCustomsClearanceCode
+				+ ", personalUse=" + personalUse + ", trading=" + trading + "]";
 	}
+	
+	
 
 	
 	

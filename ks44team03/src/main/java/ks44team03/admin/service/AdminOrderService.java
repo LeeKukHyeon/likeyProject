@@ -6,20 +6,27 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ks44team03.admin.mapper.OrderMapper;
+import ks44team03.admin.mapper.AdminOrderMapper;
 import ks44team03.dto.DeliveryCurrentState;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.OrderInfo;
 
 @Service
 @Transactional
-public class OrderService {
+public class AdminOrderService {
 	
-	private final OrderMapper orderMapper;
+	private final AdminOrderMapper orderMapper;
 	
-	public OrderService(OrderMapper orderMapper) {
+	public AdminOrderService(AdminOrderMapper orderMapper) {
 		this.orderMapper = orderMapper;
 	}
+	// friends 주문서 목록
+	public List<GoodsInfo> getFriendsOrderList(){
+		
+		List<GoodsInfo> friendsOrderList = orderMapper.getgetFriendsOrderList();
+		return friendsOrderList;
+	}
+	
 	//adminPage 이용자 주문서 목록조회
 	public List<OrderInfo> getOrderList(){
 		

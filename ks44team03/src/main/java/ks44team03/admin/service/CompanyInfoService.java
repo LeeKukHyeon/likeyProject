@@ -38,6 +38,15 @@ public class CompanyInfoService {
 	public void companyInfoService() {
 		System.out.println("companyInfoService bean 생성");
 	}
+	
+	// admin 로그인
+	public Employee adminLogin(String aId) {
+		
+		Employee employeeInfo = companyInfoMapper.adminLogin(aId);
+		
+		return employeeInfo;
+	}
+	
 	// 회사등록 사업자등록번호 중복검사
 	public boolean companyNumCheck(String companyNum) {
 		boolean result = companyInfoMapper.companyNumCheck(companyNum);
@@ -56,6 +65,18 @@ public class CompanyInfoService {
 
 		log.info("회사 등록 결과 : " + result);
 	}
+	// 회사 수정
+	public void modifyCompany(CompanyInfo companyCode) {
+		companyInfoMapper.modifyCompany(companyCode);	
+	}
+	// 특정회사 목록 조회
+		public CompanyInfo getCompanyInfoByCode(String companyCode) {
+			
+			CompanyInfo companyInfo = companyInfoMapper.getCompanyInfoByCode(companyCode);
+			
+			return companyInfo;
+		}
+	
 	// 회사 목록 검색
 	public List<CompanyInfo> getSearchCompanyList(Map<String, Object> paramMap){
 		List<CompanyInfo> companyList = companyInfoMapper.getSearchCompanyList(paramMap);

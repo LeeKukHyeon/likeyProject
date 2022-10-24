@@ -78,6 +78,19 @@
 		<result column="e_level" property="eLevelName"/>
 	</resultMap>
 	
+	<!-- 특정사원 정보조회 -->
+	<select id="adminLogin" resultMap="employeeResultMap">
+		SELECT
+			*
+		FROM 
+			employee_info AS e
+			INNER JOIN 
+			management_level AS m
+			ON 
+			e.e_level_code = m.e_level_code
+		WHERE
+			e.e_code = #{aId};
+	</select>
 	
 	<!-- 회사등록 -->
 	<insert id="addCompany" parameterType="CompanyInfo">
@@ -105,6 +118,44 @@
 			company_info AS c
 		WHERE 
 			c.company_number = #{companyNum};
+	</select>
+	
+	<!-- 회사정보 수정 -->
+	<update id="modifyCompany" parameterType="CompanyInfo">
+		/* 회사정보 수정 */
+		UPDATE company_info
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="companyAddr != null and companyAddr != ''">
+				company_addr		= #{companyAddr}	
+			</if>
+			<if test="companyCate != null and companyCate != ''">
+				,company_cate 	= #{companyCate}		
+			</if>
+			<if test="companyName != null and companyName != ''">
+				,company_name 	= #{companyName}				
+			</if>
+		</trim>
+		WHERE
+			company_number = #{companyNum};
+	</update>
+	
+	
+	<!-- 특정 회사정보 조회 -->
+	<select id="getCompanyInfoByCode" parameterType="String" resultMap="companyResultMap">
+		/* 특정 사업장정보 조회 */
+		SELECT 
+		   ci_code		
+		  ,company_number	 
+		  ,ci_name		 
+		  ,ci_delegate_num
+		  ,company_addr	 
+		  ,company_cate	
+		  ,company_birth	
+		  ,company_name
+		FROM 
+			company_info
+		WHERE
+			ci_code = #{companyCode};
 	</select>
 	
 	<!-- 회사 목록 조회 -->

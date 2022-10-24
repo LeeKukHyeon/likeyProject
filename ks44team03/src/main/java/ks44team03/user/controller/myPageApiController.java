@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import ks44team03.dto.Nodata;
 import ks44team03.dto.ShipOrderApi;
@@ -24,8 +29,31 @@ public class myPageApiController {
 		this.mypageService = mypageService;
 	}
 	
-	@PostMapping("api/shipOrderApi")
-	public String cdf(@RequestParam(value = "q_status", required = false) int test, Model model) {
+	
+	@GetMapping("/juso")
+	public String jusoRequest() {
+		return "myPage/myPageApi/jusoPopup";
+	}
+	
+	@PostMapping("/juso")
+	public String jusoResponse(HttpServletRequest request, String inputYn, Model model) {
+		String roadAddrPart1 = request.getParameter("roadAddrPart1");
+		String roadAddrPart2 = request.getParameter("roadAddrPart2");
+		String zipNo = request.getParameter("zipNo");
+		
+		model.addAttribute("roadAddrPart1", roadAddrPart1);
+		model.addAttribute("roadAddrPart2", roadAddrPart2);
+		model.addAttribute("zipNo", zipNo);
+		model.addAttribute("inputYn", inputYn);
+		return "myPage/myPageApi/jusoPopup";
+	}
+	
+	
+	
+	
+	//상태 선택에 따른 데이터 표로 출력
+	@PostMapping("/api/shipOrderApi")
+	public String shipOrderApi(@RequestParam(value = "q_status", required = false) int test, Model model) {
 		
 		String u_id = "id001";	
 		String stat_info = "";
@@ -46,8 +74,8 @@ public class myPageApiController {
 		return "myPage/myPageApi/shipOrderApi";
 	}
 	
-	
-	@GetMapping("api/nodataListApi")
+	//노데이터 창으로 출력
+	@GetMapping("/api/nodataListApi")
 	public String nodataList(Model model) {
 		String u_id = "id001";
 		List<Nodata> nodataList = mypageService.nodataList(u_id);
@@ -55,7 +83,8 @@ public class myPageApiController {
 		return "myPage/myPageApi/nodataOpen";
 	}
 
-	@PostMapping("api/nodataListApi")
+	//노데이터 목록 출력
+	@PostMapping("/api/nodataListApi")
 	public String nodataListApi(Model model) {
 		String u_id = "id001";
 		List<Nodata> nodataList = mypageService.nodataList(u_id);
@@ -63,8 +92,8 @@ public class myPageApiController {
 		return "myPage/myPageApi/nodataList";
 	}
 	
-	 
-	@PostMapping("shipStepInfo")
+	 // 마이페이지 각 단계 설명 
+	@PostMapping("/shipStepInfo")
 	public String shipStepInfo(@RequestParam(name="q_ship_step_type", defaultValue = "") String shipStepInfo) {
 		
 		
