@@ -1,0 +1,84 @@
+@charset "UTF-8";
+	.next_button {
+	  background-color: #5b95e5;
+	  border: none;
+	  color: white;
+	  padding: 15px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 17px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	  font-weight:bold;
+	}
+	.right_text {
+	    width: 951px;
+	    letter-spacing: -1px;
+	}
+	.sub_navi_text {
+    height: 30px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 30px;
+	}
+	.sub_navi_text > div {
+	    background: url(/image/S_navi_home.gif) 0 50% no-repeat;
+	    padding-left: 20px;
+	    font-size: 13px;
+	    color: #6e6e6e;
+	}
+
+	#idText {
+		color : #FA3E3E;
+		font-weight : bold;
+	}
+	.fint_input>img {
+		width: 200px;
+  		margin: 10px 0 30px 75px;
+	}
+	.fint_input>div>input  {
+		font-size: 12px;
+  		height: 50px;
+	}
+	.fint_input>div>label {
+  		padding: 14px;
+  	}
+	.mb-4>P {
+		color: #222;
+    	font-size: 20px;
+    	line-height: 24px;
+    	font-weight: 600;
+	}
+	.drivder {
+  		width: 354px;
+	}
+	.bg-white {
+		padding: 30px 0 20px 150px;
+	}
+	#idText {
+		color : #FA3E3E;
+		font-weight : bold;
+	}
+	.fint_input>img {
+		width: 200px;
+  		margin: 10px 0 30px 75px;
+	}
+	.fint_input>div>input  {
+		font-size: 12px;
+  		height: 50px;
+	}
+	.fint_input>div>label {
+  		padding: 14px;
+  	}
+	.mb-4>P {
+		color: #222;
+    	font-size: 20px;
+    	line-height: 24px;
+    	font-weight: 600;
+	}
+	.drivder {
+  		width: 354px;
+	}
+	.bg-white {
+		padding: 30px 0 20px 150px;
+	}

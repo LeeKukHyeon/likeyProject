@@ -50,10 +50,12 @@ public class MemberController {
 	//
 	@PostMapping("/findMemberId")
 	@ResponseBody
-	public int findMemberId(@RequestParam("uName") String uName,
-						@RequestParam("uPhone") String uPhone) {
-		int result = memberService.findMemberId(uName, uPhone);
-		return result;
+	public int findMemberId(@RequestParam("mnameID") String uName,
+						@RequestParam("phoneNumber") String uPhone) {
+		System.out.println(uName + "제발젤브ㅓㅏㄹ더로저로");
+		System.out.println(uPhone+ "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+		//int result = memberService.findMemberId(uName, uPhone);
+		return 0;
 	}
 	
 	

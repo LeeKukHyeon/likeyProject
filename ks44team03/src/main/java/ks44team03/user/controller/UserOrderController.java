@@ -27,6 +27,11 @@ public class UserOrderController {
 		return "applicationForm/applicationFormRegister";
 	}
 	
+	@GetMapping("/applicationFormRegisterPa")
+	public String applicationFormRegisterPa() {
+		return "applicationForm/applicationFormRegisterPa";
+	}
+	
 	@GetMapping("/friendsApplicationFormRegister")
 	public String ApplicationFormRegister() {
 		return "applicationForm/friendsApplicationFormRegister";
@@ -36,11 +41,8 @@ public class UserOrderController {
 	
 	// 주문서 내 신청완료 버튼 클릭시 주문서 작성 완료 및 마이페이지로 이동
 	@PostMapping("/submitOdf")
-	public String submiOdf(ApplicationInfo applicationInfo ) {
-		
-		System.out.println(applicationInfo + "aplicationinfo"); 
-		
-		int result = orderService.addOrderInfo(applicationInfo);
+	public String submiOdf(ApplicationInfo applicationInfo ) {		
+		// int result = orderService.addOrderInfo(applicationInfo);
 		return "myPage/member/mypageScreen"; 
 	}
 

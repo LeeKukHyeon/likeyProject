@@ -28,17 +28,26 @@ public class ApplicationInfo {
 	private String inspectionFlag;			//정밀검수
 	private String aircapFlag;				//신발/박스 제거
 	private String totalPrice;				//상품 총가격
+	private String mallCpnCd;				//구매대행신청시 할인쿠폰코드
+	private String orderMemo;				//구매대행신청시 구매관련 요청메모
 	
 	private String recipientName;			//수령인
 	private String usageCd;					//사용구분
 	private String recipientJoominNo;		//개인통관고유부호
 	private String recipientPhone1;			//연락처
+	private String nation;			
 	private String sample6Postcode;			//우편번호
 	private String sample6Address;			//주소
 	private String sample6Detailaddress;	//상세주소
 	private String sample6Extraaddress;		//참고항목
 	private String ivcTyCd;					//배송사 선택
 	private String shipRequest;				//배송시 요청사항
+	private String buyWay;					//배송시 요청사항
+	
+	private String buyOrderCode;
+
+	private Option optionDto; // Option Dto
+	private UserInfo userInfoDto; // UserInfo Dto
 	public String getLocCd() {
 		return locCd;
 	}
@@ -171,6 +180,18 @@ public class ApplicationInfo {
 	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	public String getMallCpnCd() {
+		return mallCpnCd;
+	}
+	public void setMallCpnCd(String mallCpnCd) {
+		this.mallCpnCd = mallCpnCd;
+	}
+	public String getOrderMemo() {
+		return orderMemo;
+	}
+	public void setOrderMemo(String orderMemo) {
+		this.orderMemo = orderMemo;
+	}
 	public String getRecipientName() {
 		return recipientName;
 	}
@@ -194,6 +215,12 @@ public class ApplicationInfo {
 	}
 	public void setRecipientPhone1(String recipientPhone1) {
 		this.recipientPhone1 = recipientPhone1;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
 	public String getSample6Postcode() {
 		return sample6Postcode;
@@ -231,6 +258,31 @@ public class ApplicationInfo {
 	public void setShipRequest(String shipRequest) {
 		this.shipRequest = shipRequest;
 	}
+	public String getBuyWay() {
+		return buyWay;
+	}
+	public void setBuyWay(String buyWay) {
+		this.buyWay = buyWay;
+	}
+	public String getBuyOrderCode() {
+		return buyOrderCode;
+	}
+	public void setBuyOrderCode(String buyOrderCode) {
+		this.buyOrderCode = buyOrderCode;
+	}
+	public Option getOptionDto() {
+		return optionDto;
+	}
+	public void setOptionDto(Option optionDto) {
+		this.optionDto = optionDto;
+	}
+	public UserInfo getUserInfoDto() {
+		return userInfoDto;
+	}
+	public void setUserInfoDto(UserInfo userInfoDto) {
+		this.userInfoDto = userInfoDto;
+	}
+	
 	@Override
 	public String toString() {
 		return "ApplicationInfo [locCd=" + locCd + ", shipMethod=" + shipMethod + ", shipType=" + shipType
@@ -242,16 +294,14 @@ public class ApplicationInfo {
 				+ ", packageSize=" + Arrays.toString(packageSize) + ", boxRemoveFlag=" + boxRemoveFlag
 				+ ", polybagFlag=" + polybagFlag + ", billRemoveFlag=" + billRemoveFlag + ", photoFlag=" + photoFlag
 				+ ", inspectionFlag=" + inspectionFlag + ", aircapFlag=" + aircapFlag + ", totalPrice=" + totalPrice
-				+ ", recipientName=" + recipientName + ", usageCd=" + usageCd + ", recipientJoominNo="
-				+ recipientJoominNo + ", recipientPhone1=" + recipientPhone1 + ", sample6Postcode=" + sample6Postcode
-				+ ", sample6Address=" + sample6Address + ", sample6Detailaddress=" + sample6Detailaddress
-				+ ", sample6Extraaddress=" + sample6Extraaddress + ", ivcTyCd=" + ivcTyCd + ", shipRequest="
-				+ shipRequest + "]";
+				+ ", mallCpnCd=" + mallCpnCd + ", orderMemo=" + orderMemo + ", recipientName=" + recipientName
+				+ ", usageCd=" + usageCd + ", recipientJoominNo=" + recipientJoominNo + ", recipientPhone1="
+				+ recipientPhone1 + ", nation=" + nation + ", sample6Postcode=" + sample6Postcode + ", sample6Address="
+				+ sample6Address + ", sample6Detailaddress=" + sample6Detailaddress + ", sample6Extraaddress="
+				+ sample6Extraaddress + ", ivcTyCd=" + ivcTyCd + ", shipRequest=" + shipRequest + ", buyWay=" + buyWay
+				+ ", buyOrderCode=" + buyOrderCode + ", optionDto=" + optionDto + ", userInfoDto=" + userInfoDto + "]";
 	}
 	
 	
-
-	
-
 }
 
