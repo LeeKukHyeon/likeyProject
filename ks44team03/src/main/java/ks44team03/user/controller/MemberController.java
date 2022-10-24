@@ -36,7 +36,7 @@ public class MemberController {
 	}
 	
 	// 로그인페이지로 이동
-	@GetMapping("loginForm")
+	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "/login/loginForm";
 	}

@@ -35,8 +35,8 @@
 							  </tr>
 							  <tr>
 							    <td class="td1">주문번호</td>
-								<td class="td2"><input type="text" name="mall_order_no"  maxlength='40' class="input_" th:if="${(applicationEdit[0].orderInfoDto.orderNum) == 'null' }" value=""></td>
-								<td class="td2"><input type="text" name="mall_order_no"  maxlength='40' class="input_" th:if="${(applicationEdit[0].orderInfoDto.orderNum) != 'null'}"  th:value="${applicationEdit[0].orderInfoDto.orderNum}"></td>
+								<td class="td2"><input type="text" name="orderNum"  maxlength='40' class="input_" th:if="${(applicationEdit[0].orderInfoDto.orderNum) == 'null' }" value=""></td>
+								<td class="td2"><input type="text" name="orderNum"  maxlength='40' class="input_" th:if="${(applicationEdit[0].orderInfoDto.orderNum) != 'null'}"  th:value="${applicationEdit[0].orderInfoDto.orderNum}"></td>
 							  </tr>
 							  <tr>
 							    <td class="td1">구매 사이트</td>
@@ -640,6 +640,15 @@
 		<!--  -->
 		
 		<script>
+		
+		function data_check(mode){
+			var frm=document.f;
+			rslt = item_check();
+		}
+		
+		function item_check(){
+			
+		}
 		
 		function goPost(screen_type)
 		{
