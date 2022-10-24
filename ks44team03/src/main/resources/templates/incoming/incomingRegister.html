@@ -75,7 +75,7 @@
 						
 					  <th:block>
 						
-						<form id="incoming_reg_form" th:action="@{/regIncoming}" method="post">
+						<form id="incoming_reg_form" th:action="@{/regIncoming}" enctype="multipart/form-data" method="post">
 						<table class="input_table"><tbody>
 						
 							<tr>
@@ -103,7 +103,7 @@
 							</tr>
 							<tr>
 								<th>상품사진 등록</th>
-								<td> <input type="file" name="photoSave" id="photoSave" accept="image/*"> </td>
+								<td> <input type="file" name="incomingImgPath" id="photoSave" accept="image/*"> </td>
 							</tr>
 							<tr>
 								<th>부피</th>
@@ -117,7 +117,7 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="submit" class="add_button incoming_modal_reg" form="incoming_reg_form">등록</button>
+							<button type="button" class="add_button incoming_modal_reg" form="incoming_reg_form">등록</button>
 							<button type="button" class="cancel_button incoming_modal_close">취소</button>
 						</div>
 						
@@ -165,7 +165,7 @@
 						</form>
 						
 						<div class="incoming_modal_button" align="center">
-							<button type="submit" class="add_button error_modal_reg" form="error_reg_form" >등록</button>
+							<button type="button" class="add_button error_modal_reg" form="error_reg_form" >등록</button>
 							<button type="button" class="cancel_button error_modal_close">취소</button>
 						</div>
 						
@@ -201,6 +201,26 @@
 					$('#buyOrderCode').text(data.buyOrderCode);
 					$('#goodsInfoCode').text(data.goodsInfoCode);
 					$('#likeyPass').text(data.likeyPass);
+					
+					$('.add_button').click(function(){
+						var photoCheck = $('#photoSave').val();
+						var volumeCheck = $('#incomingVolume').val();
+						var weightCheck = $('#incomingWeight').val();
+						
+						if(photoCheck != null && photoCheck != ""){
+							if(weightCheck != null && volumeCheck != null && volumeCheck != "" && weightCheck != ""){
+								$('#incoming_reg_form').submit();								
+							}else if(volumeCheck == null || volumeCheck == ""){
+								alert('부피를 입력해주세요.');	
+							}else if(weightCheck == null || weightCheck == ""){
+								alert('중량을 입력해주세요.');								
+							}
+						}else{
+							alert('사진을 등록해주세요.');
+						}
+						
+					});
+
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -228,6 +248,24 @@
 				request.done(function( data ) {
 					console.table(data)
 					$('#errorGoodsInfoCode').text(data.errorGoodsInfoCode);
+					
+					$('.add_button').click(function(){
+						var contentCheck = $('#errorContent').val();
+						var amountCheck = $('#errorAmount').val();
+						var stateCheck = $('#errorState').val();
+						
+						if(contentCheck != null && contentCheck != ""){
+							if(amountCheck != null && stateCheck != null && amountCheck != "" && stateCheck != ""){
+								$('#error_reg_form').submit();								
+							}else if(amountCheck == null || amountCheck == ""){
+								alert('오류 입고 개수를 입력해주세요.');	
+							}else if(stateCheck == null || stateCheck == ""){
+								alert('물품 처리 상태를 선택해주세요.');								
+							}
+						}else{
+							alert('오류 입고 내역을 등록해주세요.');
+						}
+					});
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {

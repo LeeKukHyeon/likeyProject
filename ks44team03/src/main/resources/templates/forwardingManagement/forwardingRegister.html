@@ -74,13 +74,14 @@
 						
 					  <th:block>
 						
-						<form id="forwarding_reg_form" action="#" method="#">
+						<form id="forwarding_reg_form" th:action="@{/regForwarding}" method="post">
 						<table class="input_table"><tbody>
 						
 							<tr>
 								<th>상품정보 코드</th>
 								<td>
 								 	<label id="goodsInfoCode"></label>
+								 	<input type="hidden" name="goodsInfoCode" id="goodsInfoCode" th:value="${regForwardingList[0].goodsInfoCode}">
 								</td>
 							</tr>
 							<tr>
@@ -135,12 +136,22 @@
 					console.table(data)
 					$('#goodsInfoCode').text(data.goodsInfoCode);
 					$('#likeyPass').text(data.likeyPass);
+					$('#incomingApproval').text(data.incomingApproval)
+					
+					var likeyCheck = data.likeyPass;
+					if(likeyCheck == 'y'){
+						$('.modal').css('display', 'block');
+					}else if(likeyCheck == 'n' && data.incomingApproval == 'n'){
+						alert("출고승인 필요");
+					}else if(likeyCheck == 'n' && data.incomingApproval == 'y'){
+						$('.modal').css('display', 'block');
+					}
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
 				  alert( "Request failed: " + textStatus );
 				});
-			$('.modal').css('display', 'block');
+			
 		});
 		
 		$(document).on('click', '.forwarding_modal_close', function(){
@@ -149,6 +160,15 @@
 	});
 
 </script>
+<!-- <script th:inline="javascript">
+	/*<![CDATA[*//*]]>*/
+	$(function(){
+		$('.forwarding_modal_open').click(function(){
+			var likeyCheck = /*[[${regForwardingList[0].goodsInfoDto.likeyPass}]]*/;
+			alert(likeyCheck);
+		});
+	});
+</script> -->
 </body>
 
 </html>

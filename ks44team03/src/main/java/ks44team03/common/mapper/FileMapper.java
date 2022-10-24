@@ -17,4 +17,7 @@ public interface FileMapper {
 	
 	//파일인덱스
 	public FileDto getFileInfoByIdx(String fileIdx, boolean fileIsLocal);
+	
+	//입고 파일 경로 삽입
+	public int addIncomingFile(List<FileDto> fileList);
 }

@@ -7,11 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import ks44team03.admin.controller.IncomingController;
 import ks44team03.admin.mapper.IncomingMapper;
 import ks44team03.common.mapper.CommonMapper;
+import ks44team03.common.mapper.FileMapper;
+import ks44team03.common.util.FileUtil;
 import ks44team03.dto.ErrorIncoming;
+import ks44team03.dto.FileDto;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.IncomingInfo;
 import ks44team03.dto.MemberDTO;
@@ -23,12 +27,17 @@ public class IncomingService {
 
 	private static final Logger log = LoggerFactory.getLogger(IncomingController.class);
 	//의존성 주입
+	private final FileUtil fileUtil;
+	private final FileMapper fileMapper;
 	private final IncomingMapper incomingMapper;
 	private final CommonMapper commonMapper;
 	
-	public IncomingService(IncomingMapper incomingMapper, CommonMapper commonMapper) {
+	public IncomingService(IncomingMapper incomingMapper, CommonMapper commonMapper, FileUtil fileUtil, FileMapper fileMapper) {
 		this.incomingMapper = incomingMapper;
 		this.commonMapper = commonMapper;
+		
+		this.fileUtil = fileUtil;
+		this.fileMapper = fileMapper;
 	}
 	
 	//ajax로 상품도착등록 업데이트
@@ -132,14 +141,21 @@ public class IncomingService {
 	}
 	
 	//입고등록
-	public int regIncoming(IncomingInfo incominginfo, String goodsInfoCode) {
+	public void regIncoming(IncomingInfo incominginfo, String goodsInfoCode, MultipartFile[] multipartFile, String fileRealPath, boolean isLocalhost) {
 		String newIncomingCode = commonMapper.getCommonPkCode("incoming", "incoming_code");
 		incominginfo.setIncomingCode(newIncomingCode);
 		incomingMapper.updateIncoming(goodsInfoCode);
 		
 		int result = incomingMapper.regIncoming(incominginfo);
 		
-		return result;
+		List<FileDto> fileList= fileUtil.incomingFileInfo(multipartFile, fileRealPath, isLocalhost, newIncomingCode);
+		
+		if(fileList != null) {
+			
+			log.info("fileRealPathㅁㅁㅁㅁㅁ {}::::::" + fileRealPath);
+			fileMapper.addIncomingFile(fileList);
+		}
+	
 	}
 	
 	//입고등록 모달 - 특정 상품코드 조회
@@ -175,6 +191,11 @@ public class IncomingService {
 		int result = incomingMapper.regErrorIncoming(errorIncoming);
 		
 		return result;
+	}
+	
+	//오류입고 물품 처리 상태 업데이트
+	public void updateErrorState(String goodsInfoCode, String errorState) {
+		incomingMapper.updateErrorState(goodsInfoCode, errorState);
 	}
 
 }
