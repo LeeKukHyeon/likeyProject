@@ -7,7 +7,7 @@ public class ApplicationInfo {
 	private String locCd;					//물류센터
 	private String shipMethod;				//운송방법 (항공 또는 해상)
 	private String shipType;				//일반출고냐 라이키패스냐
-	               		
+	              
 	private String mallOrderNo;				//주문번호
 	private String mallCd;					//구매사이트
 	private String image;					//상품이미지
@@ -20,6 +20,7 @@ public class ApplicationInfo {
 	private String packageColor[];			//컬러
 	private String trackingNum[];			//트레킹넘버
 	private String packageSize[];			//사이즈
+	
 	private String boxRemoveFlag;			//신발/박스 제거
 	private String polybagFlag;				//폴리백 포장
 	private String billRemoveFlag;			//인보이스/기프트박스 제거

@@ -107,10 +107,45 @@
 			<result column="goods_info_code" property="goodsInfoCode"/>
 			<result column="time_tracking" property="timeTracking"/>
 			<result column="stat_info" property="statInfo"/>
-		</association>
-		
+		</association>		
 		
 	</resultMap>
+	
+	<resultMap type="Coupon" id="couponListResultMap">
+			<id column="cs_code" property="csCode"/>
+			<result column="c_code" property="cCode"/>
+			<result column="u_id" property="userId"/>	
+			<result column="c_date" property="cDate"/>	
+			<result column="c_e_date" property="cEDate"/>	
+			<result column="c_use_date" property="cUseDate"/>			
+			<result column="c_use" property="cUse"/>
+			<association property="couponInfo" javaType="CouponList">
+				<id column="c_code" property="couponCode"/>
+				<result column="c_name" property="couponName"/>
+				<result column="c_price" property="couponPrice"/>
+				<result column="c_date" property="couponDate"/>
+			</association>
+			<association property="userInfo" javaType="UserInfo">
+				<id column="u_id" property="uId"/>
+			</association>
+	</resultMap>
+	
+	<select id="couponCheck" parameterType="String" resultMap="couponListResultMap">
+		SELECT 
+			* 
+		FROM 
+			coupon AS c
+		INNER JOIN 
+			coupon_status AS cs
+		on 
+			c.c_code = cs.c_code
+		INNER JOIN 
+			user_member AS u
+		ON 
+			u.u_id = cs.u_id
+		WHERE 
+			u.u_id = #{id}
+	</select>	
 	
 	<select id="applicationEdit" parameterType="String" resultMap="GoodsInfoResultMap">
 		select 
@@ -125,9 +160,19 @@
 			delivery_current_state as d
 		on 
 			d.goods_info_code = g.goods_info_code
+		inner join
+			coupon_status as cs
+		on
+			o.id = cs.u_id	
+		inner join
+			coupon as c
+		on 
+			c.c_code = cs.c_code 
+					
 		where 
 			o.buy_order_code = #{buyOrderCode}
 			and o.step3 = 'n'
+		
 			;
 	</select>
 	
@@ -139,6 +184,7 @@
 			order_info		
 		 WHERE 
 		 	id=#{u_id};
+		 	
 	
 	</select>
 		

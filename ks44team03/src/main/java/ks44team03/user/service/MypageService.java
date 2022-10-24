@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ks44team03.admin.mapper.CompanyInfoMapper;
 import ks44team03.dto.CompanyInfo;
+import ks44team03.dto.Coupon;
 import ks44team03.dto.GoodsInfo;
 import ks44team03.dto.Grade;
 import ks44team03.dto.MyPageCount;
@@ -25,23 +26,31 @@ public class MypageService {
 	}
 
 	
+	//쿠폰정보 가져오기
+	public List<Coupon> couponCheck(String id){
+		List<Coupon> couponCheck = mypageMapper.couponCheck(id);
+		return couponCheck;
+	}
+	
 	 //임시저장 수정 
 	public List<GoodsInfo> applicationEdit(String buyOrderCode){
 	 List<GoodsInfo> applicationEdit = mypageMapper.applicationEdit(buyOrderCode);
 	  return applicationEdit; 
 	  }
 	 
-
+	//노데이터 리스트
 	public List<Nodata> nodataList(String u_id) {
 		List<Nodata> nodataList = mypageMapper.nodataList(u_id);
 		return nodataList;
 	}
 
+	//이번달 노데이터 카운트
 	public List<MyPageCount> monthNodataCount(String u_id) {
 		List<MyPageCount> nodataCount = mypageMapper.monthNodataCount(u_id);
 		return nodataCount;
 	}
 
+	//마이페이지 카운트
 	public List<MyPageCount> count(String u_id) {
 		List<MyPageCount> count = mypageMapper.count(u_id);
 
@@ -107,53 +116,66 @@ public class MypageService {
 		int packageForwardingApplication = mypageMapper.packageForwardingApplication(u_id);
 		return packageForwardingApplication;
 	}
-
+	
+	
+	//노데이터 개수
 	public int nodataCount(String u_id) {
 		int nodataCount = mypageMapper.nodataCount(u_id);
 		return nodataCount;
 	}
-
+	
+	
+	//출고보류 개수
 	public int forwardingCount(String u_id) {
 		int forwardingCount = mypageMapper.forwardingCount(u_id);
 		return forwardingCount;
 	}
-
+	
+	
+	//상품도착개수
 	public int arrivalCount(String u_id) {
 		int arrivalCount = mypageMapper.arrivalCount(u_id);
 		return arrivalCount;
 	}
-
+	
+	//주문서 작성완료 조회
 	public int completedApplication(String u_id) {
 		int completedApplication = mypageMapper.completedApplication(u_id);
 		return completedApplication;
 	}
-
+	
+	//임시저장 조회
 	public int temp(String u_id) {
 		int temp = mypageMapper.temp(u_id);
 		return temp;
 	}
 
+	//이번달이용건수 조회
 	public int thisMonthCount(String u_id) {
 		int thisMonthCount = mypageMapper.thisMonthCount(u_id);
 		return thisMonthCount;
 	}
-
+	
+	//저번달 이용건수 조회
 	public int lastMonthCount(String u_id) {
 		int lastMonthCount = mypageMapper.lastMonthCount(u_id);
 		return lastMonthCount;
 	}
-
+	
+	//쿠폰카운트 조회
 	public int couponCount(String u_id) {
 		int couponCount = mypageMapper.couponCount(u_id);
 		return couponCount;
 	}
 
+	//다음 등급 조회
 	public List<Grade> nextGrade(String u_id) {
 		List<Grade> nextGrade = mypageMapper.nextGrade(u_id);
 
 		return nextGrade;
 	}
-
+	
+	//유저리스트 조회
 	public List<UserInfo> getUserList(String u_id) {
 
 		List<UserInfo> UserList = mypageMapper.getUserInfo(u_id);

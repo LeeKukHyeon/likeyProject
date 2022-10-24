@@ -27,7 +27,8 @@ public class CustomerFaqController {
 	//자주하는질문 등록
 	@GetMapping("/faqRegister")
 	public String faq1(Model model) {
-		return "/customerService/faq/faqRegister";
+		
+		return "customerService/faq/faqRegister";
 		
 	}
 	
@@ -38,6 +39,6 @@ public class CustomerFaqController {
 		List<FaqCenter> faqList = customerFaqService.faqList();
 		model.addAttribute("faqList", faqList);
 		
-		return "/customerService/faq/faqSearch";
+		return "customerService/faq/faqSearch";
 	}
 }

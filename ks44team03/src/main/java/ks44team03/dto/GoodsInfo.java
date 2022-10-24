@@ -38,6 +38,10 @@ public class GoodsInfo {
 	private OrderState orderStateDto; // OrderState List DTO
 	
 	
+	private Option optionDto; // Option Dto
+	private UserInfo userInfoDto; // UserInfo Dto
+	
+	
 	public String getGoodsInfoCode() {
 		return goodsInfoCode;
 	}
@@ -226,7 +230,15 @@ public class GoodsInfo {
 				+ ", deliveryCurrentStateDto=" + deliveryCurrentStateDto + ", incomingInfoDto=" + incomingInfoDto
 				+ ", orderStateDto=" + orderStateDto + "]";
 	}
+	
 
+	
+	
+
+	
+	
+	
+	
 	
 }
 
