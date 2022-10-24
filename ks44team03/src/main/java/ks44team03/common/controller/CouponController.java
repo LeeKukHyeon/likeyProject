@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ks44team03.common.service.CouponSerive;
 import ks44team03.dto.Coupon;
@@ -22,6 +23,17 @@ public class CouponController {
 	
 	public CouponController(CouponSerive couponSerive) {
 		this.couponSerive = couponSerive;
+	}
+	
+	
+	// 쿠폰 삭제
+	@GetMapping("/couponDelete")
+	@ResponseBody
+	public int couponDelete(@RequestParam(value = "couponCode") String couponCode) {
+		
+		int couponDelete = couponSerive.couponDelete(couponCode);
+		
+		return couponDelete;
 	}
 	
 	//쿠폰 보유 리스트에서 검색

@@ -18,12 +18,16 @@
 					<th >쿠폰 이름</th>
 					<th >쿠폰 할인금액</th>
 					<th >쿠폰 등록 날짜</th>
+					<th> / / / /</th>
 				</tr>
 				<tr th:if="${not #lists.isEmpty(couponList)}" th:each="l : ${couponList}">
 					<td th:text="${l.couponCode}"></td>
 					<td th:text="${l.couponName}"></td>
 					<td th:text="${l.couponPrice}"></td>
 					<td th:text="${l.couponDate}"></td>
+					<td>
+						<input type="button" class="couponDelete" th:value="${l.couponCode}">
+					</td>
 				</tr>
 				<tr th:unless="${not #lists.isEmpty(couponList)}">
 					<td style="border-left: 0px;" colspan="4">등록된 쿠폰이 없습니다.</td>
@@ -85,8 +89,26 @@
 		})	
 		
 	})
+	</script>
 	
-	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('.couponDelete').click(function(){
+			
+			var couponCode = $(this).text();
+			alert(couponCode)
+			
+			$.ajax({
+				url : '/couponDelete',
+				type : 'GET',
+				data : {"couponCode" : couponCode},
+				success : function(data){
+					window.location.replace("/couponAdmin")
+				}
+			})
+		})
+	})
 	</script>
 
 </body>
