@@ -52,7 +52,7 @@ public class myPageApiController {
 	
 	
 	//상태 선택에 따른 데이터 표로 출력
-	@PostMapping("api/shipOrderApi")
+	@PostMapping("/api/shipOrderApi")
 	public String shipOrderApi(@RequestParam(value = "q_status", required = false) int test, Model model) {
 		
 		String u_id = "id001";	
@@ -75,7 +75,7 @@ public class myPageApiController {
 	}
 	
 	//노데이터 창으로 출력
-	@GetMapping("api/nodataListApi")
+	@GetMapping("/api/nodataListApi")
 	public String nodataList(Model model) {
 		String u_id = "id001";
 		List<Nodata> nodataList = mypageService.nodataList(u_id);
@@ -84,7 +84,7 @@ public class myPageApiController {
 	}
 
 	//노데이터 목록 출력
-	@PostMapping("api/nodataListApi")
+	@PostMapping("/api/nodataListApi")
 	public String nodataListApi(Model model) {
 		String u_id = "id001";
 		List<Nodata> nodataList = mypageService.nodataList(u_id);
@@ -93,7 +93,7 @@ public class myPageApiController {
 	}
 	
 	 // 마이페이지 각 단계 설명 
-	@PostMapping("shipStepInfo")
+	@PostMapping("/shipStepInfo")
 	public String shipStepInfo(@RequestParam(name="q_ship_step_type", defaultValue = "") String shipStepInfo) {
 		
 		
