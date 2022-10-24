@@ -41,16 +41,17 @@ public class MypageController {
 	/*임시저장 수정 후 적용*/
 	
 	
-	@PostMapping("user/applicationEdit")
-	public String resultApplicationEdit(OrderInfo orderInfo) {
+	@PostMapping("/user/applicationEdit")
+	public String resultApplicationEdit(OrderInfo orderInfo,GoodsInfo goodsInfo) {
 		System.out.println(orderInfo);
+		
 		return "redirect:mypageScreen";
 	}
 
 	/*
 	 * 임시저장 주문서 수정
 	 */
-	 @GetMapping("user/applicationEdit") 
+	 @GetMapping("/user/applicationEdit") 
 	 public String applicationEdit(HttpServletRequest request,@RequestParam(name="buyOrderCode", required=false)String buyOrderCode,Model model) {
 		 HttpSession session = request.getSession();
 		 String id = (String) session.getAttribute("SID");
@@ -66,27 +67,27 @@ public class MypageController {
 	 
 
 	 //주문서 상세목록
-	@GetMapping("user/applicationDetail")
+	@GetMapping("/user/applicationDetail")
 	public String applicationDetailList() {
 		return "myPage/applicationDetailSearch";
 	}
 
 	//주소목록추가
-	@GetMapping("user/myAddrList")
+	@GetMapping("/user/myAddrList")
 	public String myAddrList() {
 
 		return "myPage/member/myAddrList";
 	}
 
 	//회원정보수정
-	@GetMapping("user/memberModify")
+	@GetMapping("/user/memberModify")
 	public String modifyMemberInfo() {
 
 		return "myPage/member/memberModify";
 	}
 
 	//마이페이지 
-	@GetMapping("user/mypageScreen")
+	@GetMapping("/user/mypageScreen")
 	public String mypage(Model model) {
 		String u_id = "id001";
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);

@@ -11,6 +11,9 @@ import ks44team03.dto.CouponList;
 @Mapper
 public interface CouponMapper {
 	
+	//쿠폰 삭제
+	public int couponDelete(String couponCode);
+	
 	//쿠폰 보유 리스트에서 검색
 	public List<Coupon> couponSearch(Map<String, Object> searchMap);
 	

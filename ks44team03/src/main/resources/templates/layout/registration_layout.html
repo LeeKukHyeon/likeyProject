@@ -11,23 +11,29 @@
 		<!-- config.html -->
 	        <th:block th:replace="fragments/config::configFragment"></th:block>
 	</head>
-
-		<!-- start header  -->
+	<!-- start header  -->
 	<header th:replace="fragments/header::headerFragment"></header>
-		<!-- end header  -->
+	<!-- end header  -->
+	
+	<body>
+	
+		<div class="container-fluid">
+			<div class="row">
 	
 	
-		<!-- 공통적이지 않은 부분이 들어가는 부분 -->
-	<div class="container-fluid">
-		<div class="row">
-			<body th:replace="fragments/registration_sidebar::sidebarFragment"></body>
-			<body layout:fragment="content"></body>
-		</div>
-	</div>
+			<!-- 공통적이지 않은 부분이 들어가는 부분 -->
+			<div th:replace="fragments/registration_sidebar::sidebarFragment"></div>
+				
+			<div layout:fragment="content"></div>
+			
 	
 		    
 		<!-- start footer  -->
+			</div>
+		</div>
+	
+	</body>
+		
 	<footer th:replace="fragments/footer::footerFragment"></footer>
 		<!-- end footer  -->
-
 </html>

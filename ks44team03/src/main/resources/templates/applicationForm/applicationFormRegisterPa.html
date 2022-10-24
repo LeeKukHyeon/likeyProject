@@ -16,7 +16,7 @@
 
 	<!-- 오른쪽 내용 -->
 	<div class="right_text">
-	<h2>신청서 작성</h2>
+	<h2>구매대행 신청서 작성</h2>
             
 		<!-- 주의사항 -->
 		<div class="right_precautions_wrap">
@@ -75,41 +75,11 @@
 		<!-- 1단계 작성 -->
 		<div class="right_step1_wrap">
 			<div class="col-md-12 mb-4" style="font-size:25px; margin-top:15px;">
-	            1단계 : 물류센터 & 운송수단 선택
+	            1단계 : 운송수단 선택
 	        </div>
-	        <div class="col-md-12 mb-3">
-	            1. 상품 주문시 배송지 주소로 기재한 물류센터를 선택해 주세요.
-	            (물류센터 선택은 추후 수정불가)
-	        </div>
-	        <div class="col-md-12 mb-6" >
-	            <table width="auto" border="0" class="form-control">
-	                <td>
-	                    <input type="radio" name="loc_cd" value="인천"  class="radio_bt"> 인천 (ICN) ㅤ
-	                </td>
-	                <td>
-	                    <input type="radio" name="loc_cd" value="군산"  class="radio_bt"> 군산 (KUV) ㅤ
-	                </td>
-	                <td>
-	                    <input type="radio" name="loc_cd" value="부산"  class="radio_bt"> 부산 (PUS) ㅤ
-	                </td>
-	                <td>
-	                    <input type="radio" name="loc_cd" value="제주" class="radio_bt"> 제주 (CJU) ㅤ
-	                </td>
-	                <td>
-	                    <input type="radio" name="loc_cd" value="김포" class="radio_bt"> 김포 (GMP) ㅤ
-	                </td>
-	            </table>
-	            
-		        <div style="font-size:12px;color:#ed8a5e;font-weight:bold;margin-top:5px;line-height:20px;">
-		        	* 상품이 도착하게 되는 물류센터를 잘못 선택하고 배송신청서를 등록하게 되면 상품 도착 후 입고가 되지않으며, 새로 배송신청서를 등록한 후에 1:1게시판에 입고 요청을 추가로 해야합니다.
-		        </div>
-		        <!-- 물류센터 선택시 -->
-				<span id="divisionInfo"></span>
-				<!-- //물류센터 선택시 -->
-	        ㅤ	</div>
 		        
 	        <div class="col-md-12 mb-3">
-	            2.운송수단을 선택해 주세요.
+	            1.운송수단을 선택해 주세요.
 	            (일본, 중국만 해상 운송 가능)
 	        </div>
 	        
@@ -119,7 +89,7 @@
 	        </div>
 	        
 			<div class="col-md-12 mb-3">
-				3. 배송방법을 선택해주세요.
+				2. 배송방법을 선택해주세요.
 			</div>
 			
 			<div style="margin-bottom:5px; color:#f47827; font-size:14px; line-height: 19px; padding-left: 15px;">
@@ -371,10 +341,35 @@
 			</div>
 			<!-- //총 상품 구매가 -->
 
+			<div style="height:40px;"></div>
+			
+			<!-- 할인쿠폰코드 -->
+			<div class="sale_coupon">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+				  <tr>
+				    <td class="td1">할인쿠폰코드</td>
+					<td class="td2"><input type="text" name="mall_cpn_cd" value=""></td>
+				  </tr>
+				  <tr>
+				    <td class="td1">구매 관련 요청 메모</td>
+					<td class="td2"><textarea name="order_memo"></textarea></td>
+				  </tr>
+				</table>
+				
+				<!-- 메모 -->
+				<ul class="sale_coupon_text">
+					<li><font>*</font> 표시는 필수 항목입니다.</li>
+					<li>색상, 사이즈 등의 옵션이 있는 경우 정확하게 입력해주시기 바랍니다.</li>
+					<li>
+						특정 사이트의 경우 하기 사유로 구매가 불가한 경우가 있습니다. 이에 따라 견적 및 1차 결제 이후 주문이 취소될 경우가 있음을 양해바랍니다.<br>
+						(현지 사이트에서 리셀러로 판단하는 경우 / 현지 사이트 서버가 한국 이외 지역일 경우 / 현지 사이트의 사기 및 클레임으로 카드사가 승인을 거절하는 경우)
+					</li>
+				</ul>
+				<!-- 메모 -->
+			</div>
+			<!-- //할인쿠폰코드 -->
 
 			<div style="height:25px;"></div>
-
-
 
 			<div class="step3 step_next_bt" style="cursor:pointer;"><span>(다음 단계) 수령인 정보 입력</span></div>
 
@@ -465,7 +460,7 @@
 	                </tr>
 	            </table>
 	            <div class="row">
-               		<button type="submit" value="배송대행" name="buy_way" id="buy_way"> 신청 완료 </button>
+               		<button type="submit" value="구매대행" name="buy_way" id="buy_way"> 신청 완료 </button>
                		<button type="button" href="javascript:void(0)" OnClick="javascript:tempSave()"> 임시저장 </button>
                	</div>
 	        </div>
@@ -605,12 +600,6 @@ function step2_check()
 	{
 		alert("신청서 작성시 주의사항을 체크해 주세요.");
 		$('input[name="notice_agree"]').focus();
-		return false;
-	}
-	if($('input[name="loc_cd"]:checked').length < 1 )
-	{
-		alert("물류센타를 선택해 주세요.");
-		$('input[name="loc_cd"]').focus();
 		return false;
 	}
 	if($('input[name="ship_method"]:checked').length < 1 )
@@ -842,37 +831,37 @@ function totalPrice()
 
 //이미지 파일 업로드
 function ajaxFileUpload(obj, idx, rowIdx){
-	$("#loading").ajaxStart(function(){
-		$(this).show();
+	$("#loading")
+		.ajaxStart(function(){
+			$(this).show();
 		})
-	.ajaxComplete(function(){
-		$(this).hide();
+		.ajaxComplete(function(){
+			$(this).hide();
 		});
 	
-	console.log("이미지업로드");
 	$.ajaxFileUpload({
-			url:'/user/shipping_img_upload.html?idx=' + idx,
-			secureuri:false,
-			fileElementId:obj,
-			dataType: 'json',
-			data:{name:'logan', id:'id'},
-			success: function (data, status){
-				console.log(이미지업로드성공시);
-				if(typeof(data.error) != 'undefined'){
-					if(data.error != ''){
-						alert(data.error);
-					}else{
-						var package_img_url_obj = $("input[name='package_img_url[]']");
-						$(package_img_url_obj.get(rowIdx)).val( data.package_img_url );
-						var htmlImg = "<a href='"+ data.package_img_url +"' class='preview' target=_blank><img src='"+ data.package_img_url +"' border=0 width='223' height='223'></a>";
-						var previewImg_obj = $("div[id='previewImg']");
-						$(previewImg_obj.get(rowIdx)).html( htmlImg );
-					}
+		url:'/shipping_img_upload.html?idx=' + idx,
+		secureuri:false,
+		fileElementId:obj,
+		dataType: 'json',
+		data:{name:'logan', id:'id'},
+		success: function (data, status){
+			if(typeof(data.error) != 'undefined'){
+				if(data.error != ''){
+					alert(data.error);
+				}else{
+					var package_img_url_obj = $("input[name='package_img_url[]']");
+					$(package_img_url_obj.get(rowIdx)).val( data.package_img_url );
+					var htmlImg = "<a href='"+ data.package_img_url +"' class='preview' target=_blank><img src='"+ data.package_img_url +"' border=0 width='223' height='223'></a>";
+					var previewImg_obj = $("div[id='previewImg']");
+					$(previewImg_obj.get(rowIdx)).html( htmlImg );
 				}
-			},error: function (data, status, e){
-				alert(e);
 			}
-		});
+		},
+		error: function (data, status, e){
+			alert(e);
+		}
+	})
 	return false;
 }
 

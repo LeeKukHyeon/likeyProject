@@ -36,9 +36,9 @@ public class MemberController {
 	}
 	
 	// 로그인페이지로 이동
-	@GetMapping("loginForm")
+	@GetMapping("/loginForm")
 	public String loginForm() {
-		return "/login/loginForm";
+		return "login/loginForm";
 	}
 
 	// 아이디 비밀번호 찾기 페이지로 이동
@@ -50,10 +50,12 @@ public class MemberController {
 	//
 	@PostMapping("/findMemberId")
 	@ResponseBody
-	public int findMemberId(@RequestParam("uName") String uName,
-						@RequestParam("uPhone") String uPhone) {
-		int result = memberService.findMemberId(uName, uPhone);
-		return result;
+	public int findMemberId(@RequestParam("mnameID") String uName,
+						@RequestParam("phoneNumber") String uPhone) {
+		System.out.println(uName + "제발젤브ㅓㅏㄹ더로저로");
+		System.out.println(uPhone+ "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+		//int result = memberService.findMemberId(uName, uPhone);
+		return 0;
 	}
 	
 	
@@ -106,7 +108,7 @@ public class MemberController {
 		model.addAttribute("title", "로그인 화면");
 		if(msg != null) model.addAttribute("msg", msg);
 			
-		return "/user/login";
+		return "user/login";
 	}
 	
 	
@@ -115,7 +117,7 @@ public class MemberController {
 	  public String signUp(MemberDTO member) {
 		  int result = memberService.userSignup(member);
 		  System.out.println(result); 
-		  return "/login/loginForm";
+		  return "login/loginForm";
 		  }
 	  
 	
