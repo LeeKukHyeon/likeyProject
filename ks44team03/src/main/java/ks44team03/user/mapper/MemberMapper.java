@@ -21,9 +21,6 @@ public interface MemberMapper{
 	public String checkNickUser(String uNick);
 	
 	// 아이디 찾기
-	public String findMemberId(String uName, String uPhone);
-	
-	// 패스워드 찾기 -> 계정정보 가져오기
-	public UserInfo findMemberPwd(String uId, String uName, String uPhone);
+	public int findMemberId(String uName, String uPhone);
 	
 }

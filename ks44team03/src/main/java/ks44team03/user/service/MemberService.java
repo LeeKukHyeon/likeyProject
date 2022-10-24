@@ -9,7 +9,7 @@ import ks44team03.dto.UserInfo;
 
 @Service
 public class MemberService {
-
+	
 	private MemberMapper memberMapper;
 	
 	public MemberService(MemberMapper memberMapper) {
@@ -42,15 +42,10 @@ public class MemberService {
 	}
 	
 	// 회원 아이디 찾기
-	public String findMemberId(String uName, String uPhone) {
-		String findMemberId = memberMapper.findMemberId(uName, uPhone);
+	public int findMemberId(String uName, String uPhone) {
+		int findMemberId = memberMapper.findMemberId(uName, uPhone);
 		return findMemberId;
 	}
 	
-	// 일반 회원 패스워드 찾기 -> 계정정보 가져오기
-	public UserInfo findMemberPwd(String mid, String mname, String uPhone) {
-		UserInfo findMemberPwd = memberMapper.findMemberPwd(mid, mname, uPhone);
-		return findMemberPwd;
-	}
 }
  
