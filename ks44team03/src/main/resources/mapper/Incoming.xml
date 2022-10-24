@@ -335,9 +335,9 @@
 	 <insert id="regIncoming" parameterType="IncomingInfo">
 	 	/* 입고 등록 */
 		INSERT INTO incoming
-			(incoming_code, goods_info_code, e_code, photo_save, weight, volume)
+			(incoming_code, goods_info_code, e_code, weight, volume)
 		VALUES
-			(#{incomingCode}, #{goodsInfoCode}, #{eCode}, #{photoSave}, ${incomingWeight}, ${incomingVolume});
+			(#{incomingCode}, #{goodsInfoCode}, #{eCode}, ${incomingWeight}, ${incomingVolume});
 	</insert>
 	
 	<update id="updateIncoming" parameterType="String">
@@ -437,7 +437,15 @@
 		goods_info_code = #{goodsInfoCode};
 	</update>
 	
-
+	<update id="updateErrorState" parameterType="String">
+		/* 오류입고 물품 처리 상태 업데이트 */
+		UPDATE error_incoming
+		SET
+			error_state = #{errorState}
+		WHERE
+			goods_info_code = #{goodsInfoCode};
+	</update>
+	
 </mapper>
 
 
