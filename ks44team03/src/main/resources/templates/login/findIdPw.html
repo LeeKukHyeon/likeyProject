@@ -57,8 +57,15 @@
 						<!-- <span>핸드폰 번호</span> -->
 						<div class="form-group last mb-4">
 							<label for="mphonePwd" id="phoneTxt">핸드폰번호를 입력해주세요 (번호만 입력)</label>
-							<input type="text" class="form-control" name="mphonePwd"
-								id="mphonePwd">
+							<select name="pwCountryCode" id="pwCountryCode"  class="select_add" style="width:115px;">
+									<optgroup label="Other countries">
+									<option value="">--선택--</option>
+									<option data-pwCountryCode="GB" value="44" >UK (+44)</option>
+									<option data-pwCountryCode="kp" value="82" >한국 (+82)</option>
+									
+									</optgroup>
+							</select>
+							<input type="text" class="form-control" name="mphonePwd" id="mphonePwd">
 						</div>
 
 						
@@ -68,82 +75,9 @@
 			</div>
 		</div>
 	</div>
-
-
-<script>
-	$(function(){
-		// var $midPwd = $("#midPwd");
-		// var $mnamePwd = $("#mnamePwd");
-		// var $mphonePwd = $("#pwCountryCode")+$("#hpPw");
-		
-		// JS 모달
-		var $findOk = new bootstrap.Modal(document.getElementById('findOk'));
-		var $findNone = new bootstrap.Modal(document.getElementById('findNone'));
-		
-		$(document).on("click","#findId",function(){
-			var $mnameID = $("#mnameID");
-			
-			var $countryCode = $("#countryCode").val();
-			var $mphoneID = $("#mphoneID").val();
-			var phoneNumber = $countryCode + $mphoneID;
-			
-			//var $idText = $("#idText");
-			
- 			$.ajax({
-				type : "POST",
-				url : "/user/findMemberId",
-				data : {
-						"mnameID" : $mnameID,
-						"phoneNumber" :phoneNumber
-						},
-				success : function(data){
-					if(data == 0){
-						console.log("없음!")
-						$findNone.show();
-					}else{
-						console.log("data :"+data)
-						$idText.text("회원님의 아이디 : "+data)
-						$idText.css({
-							"color" : "#0D6EFD",
-							"font-weight" : "bold",
-							"font-size" : "10px"
-						})
-						$findOk.show();	
-					}
-				}
-			});
-		});
-		
-		$("#findPwd").click(function(){
-			
-			$.ajax({
-				type : "POST",
-				url : "/user/findMemberPwd",
-				data : {
-					"mid" : $midPwd.val(),
-					"mname" : $mnamePwd.val(),
-					"mphone" : $mphonePwd.val()
-				},
-				success : function(data){
-					if(data == ""){
-						//console.log("없음!")
-						$findNone.show();
-					}else{
-						//console.log("data :"+data)
-						$idText.text("회원님의 임시 비밀번호를 이메일로 발송하였습니다. 확인부탁드립니다.");
-						$idText.css({
-							"color" : "#0D6EFD",
-							"font-weight" : "bold",
-							"font-size" : "10px"
-						})
-						$findOk.show();	
-					}
-				}
-			});
-		});
-	});
-</script>
-<div class="modal fade" id="findOk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	
+	
+	<div class="modal fade" id="findOk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -196,6 +130,79 @@
     </div>
   </div>
 </div>		
+	
+
+<script>
+	// JS 모달
+	var $findOk = new bootstrap.Modal(document.getElementById('findOk'));
+	var $findNone = new bootstrap.Modal(document.getElementById('findNone'));
+	$(function(){
+		$(document).on("click","#findId",function(){
+			var $mnameID = $("#mnameID");
+			var $countryCode = $("#countryCode").val();
+			var $mphoneID = $("#mphoneID").val();
+			var phoneNumber = $countryCode + $mphoneID;
+			var $idText = $("#idText");
+			
+ 			$.ajax({
+				type : "POST",
+				url : "/user/findMemberId",
+				data : {
+						"mnameID" : $mnameID.val(),
+						"phoneNumber" :phoneNumber
+						},
+				success : function(data){
+					if(data == ""){
+						//console.log("없음!")
+						$findNone.show();
+					}else{
+						//console.log("data :"+data)
+						$idText.text("회원님의 아이디 : "+data)
+						$idText.css({
+							"color" : "#0D6EFD",
+							"font-weight" : "bold",
+							"font-size" : "20px"
+						})
+						$findOk.show();	
+					}
+				}
+			});
+		});
+		
+		$(document).on("click","#findPwd",function(){
+	         var $midPwd = $("#midPwd");
+	         var $mnamePwd = $("#mnamePwd");
+	         var $pwCountryCode = $("#pwCountryCode").val();
+	         var $mphonePwd = $("#mphonePwd").val();
+	         var pwPhoneNumber = $pwCountryCode + $mphonePwd;
+	         
+	         $.ajax({
+	            type : "POST",
+	            url : "/user/findMemberPwd",
+	            data : {
+		               "mid" : $midPwd.val(),
+		               "mname" : $mnamePwd.val(),
+		               "pwPhoneNumber" : pwPhoneNumber
+		            	},
+	            success : function(data){
+	               if(data == ""){
+	                  console.log("없음!")
+	                  $findNone.show();
+	               }else{
+	                  console.log("data :"+data)
+	                  $idText.text("회원님의 임시 비밀번호를 이메일로 발송하였습니다. 확인부탁드립니다.");
+	                  $idText.css({
+	                     "color" : "#0D6EFD",
+	                     "font-weight" : "bold",
+	                     "font-size" : "10px"
+	                  })
+	                  $findOk.show();   
+	               }
+	            }
+	         });
+	      });
+	});
+</script>
 
 	</body>
 </html>

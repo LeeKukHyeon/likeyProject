@@ -315,6 +315,6 @@ public class IncomingController {
 	@GetMapping("/updateErrorState")
 	public void updateErrorState(String goodsInfoCode, String errorState) {
 		incomingService.updateErrorState(goodsInfoCode, errorState);
-		log.info("-_-;;;;;;;;;;;;;");)
+		log.info("-_-;;;;;;;;;;;;;");
 	}
 }
