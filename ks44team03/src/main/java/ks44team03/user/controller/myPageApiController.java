@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ks44team03.dto.Nodata;
@@ -28,6 +30,16 @@ public class myPageApiController {
 	public myPageApiController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	
+
+	@PostMapping("/user/addGoodsInfo")
+	@ResponseBody
+	public String addGoodsInfo(@RequestBody List<Map<String, Object>> goodsList) {
+		System.out.println(goodsList);
+		return "전송완료";
+	}
+
 	
 	
 	@GetMapping("/juso")

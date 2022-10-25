@@ -475,7 +475,7 @@
 										 
 										</table>	
 									</div>
-									<input type="hidden" name="total_price" value="123.00">
+									<input type="hidden" id = "total_price" name="total_price" value="123.00">
 									<div class="right_text">
 										<div>총 상품 구매가</div>
 										<div>₩</div>
@@ -657,6 +657,27 @@
 		
 		<script>
 		
+		
+		var ajaxFunc = function(array){
+			$.ajax({
+		        url     : '/user/addGoodsInfo',
+		        type    : 'POST',
+		        data    : JSON.stringify(array),
+		        contentType : 'application/json; charset=UTF-8',
+		        dataType: 'text',
+		        success : function(data) {
+		        	alert(data);
+		        },
+		        error : function(xhr,status,error) {
+		        	console.log("xhr: " + xhr);
+		        	console.log("status: " + status);
+		        	console.log("error: " + error);
+		        }
+		    });
+		};
+
+		
+		
 		$(document).on('click', '#applicationBtn', function(){
 			var submitObj = {};
 			
@@ -674,13 +695,16 @@
 			});
 			
 			var request = $('.request_text').eq(0).find('select');
-				let inputName = request.attr('name');
-				let inputData = request.val();
+				var inputName = request.attr('name');
+				var inputData = request.val();
 				
 				
 				submitObj.orderInfo[inputName] =	inputData	
 				
-			var selectService 
+			var totalPrice = $('.all_price').eq(0).find('#total_price')
+				var inputName = totalPrice.attr('name');
+				var inputData = totalPrice.val();
+				submitObj.orderInfo[inputName] = inputData
 			
 			
 			//상품 리스트
@@ -712,14 +736,17 @@
 				submitObj.goodsInfoList.push(goodsInfo);
 			});
 			
-			console.log(JSON.stringify(submitObj));
+			
 			
 			var selectObj = $('#applicationForm').eq(0).find('select');
 			var fileObj = $('#applicationForm').eq(0).find('input[type="file"]');
 			
 			
-			console.log(selectObj);
-			console.log(fileObj);
+			
+			ajaxFunc(submitObj.goodsInfoList)
+			
+			
+			
 		});
 		
 		function data_check(mode){
