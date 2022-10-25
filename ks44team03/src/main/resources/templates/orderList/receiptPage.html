@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+      
+<head>
+<style>
+	#receiptImg{
+		width: 50%;
+		text-align: center;
+		margin-left: 400px;
+		margin-top: 50px;
+		border: 2px solid #dddddd;
+		border-radius: 10px;
+	}
+	#receiptImg img{
+		margin-top: 30px;
+	}
+	#receiptImg h1{
+		margin: 50px;
+	}
+	.goListBtn{
+		padding: 10px 20px;
+		background-color: white;
+		border: 2px solid #dddddd;
+		border-radius: 10px;
+		font-style: inherit;
+		font-size: 15px;
+		font-weight: bold;
+		color: #565656;
+		margin-bottom: 20px;
+	}
+	.goListBtn:hover{
+		background-color: #FE4253;
+		border: 2px solid #FE4253;
+		color: white;
+	}
+</style>
+
+</head>
+
+<body layout:fragment="content">
+	<!-- <div class="goodsInfo">
+		<span class="goodsImg">
+			<img src="/image/sinbal.png">
+			14글자 제한
+			<label class="goodsImgText">
+				<hr>
+				<strong th:text="${title}">(14글자)</strong>
+				<p th:text="${title}">상품 상세정보 내용</p>
+				<hr>				
+			</label>
+			<div>
+				<a href="#"><button type="button" class="receiptBtn">접수</button></a>
+			</div>	
+		</span>
+	</div> -->
+	<div id="receiptImg">
+		<img src="/image/receipt.png">
+		<h1>접수가 완료 되었습니다.</h1>
+		<a href="/friendsOrderList"><button type="button" class="goListBtn">목록으로</button></a>
+	</div>
+	
+</body>
+</html>
