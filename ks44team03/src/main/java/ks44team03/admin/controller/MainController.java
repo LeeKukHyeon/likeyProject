@@ -12,7 +12,8 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(Model model, HttpSession session) {
-		session.setAttribute("SID", "id001");
+		session.setAttribute("TESTID", "id001");
+		session.setAttribute("TESTNAME", "일동");
 		return "main";
 	
 	}

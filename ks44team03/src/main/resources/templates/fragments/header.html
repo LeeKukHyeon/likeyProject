@@ -31,6 +31,9 @@
 		<div th:if="${session.SID != null}" style="position:relative;">
 			<label>[[${session.SNAME + '님 반갑습니다.'}]]</label>
 		</div>
+		<div th:unless="${session.SID != null}" style="position:relative;">
+			<label th:if="${session.TESTID != null}">[[${session.TESTNAME + '님 반갑습니다.'}]]</label>
+		</div>
 
 	</div>
 </div>
