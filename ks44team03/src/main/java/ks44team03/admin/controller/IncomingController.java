@@ -313,8 +313,13 @@ public class IncomingController {
 	
 	//오류입고 물품 처리 상태 업데이트
 	@GetMapping("/updateErrorState")
-	public void updateErrorState(String goodsInfoCode, String errorState) {
+	@ResponseBody
+	public void updateErrorState(@RequestParam(name="goodsInfoCode") String goodsInfoCode
+								,@RequestParam(name="errorState") String errorState) {
+		
+		log.info("goodsInfoCode ------------>" + goodsInfoCode);
+		log.info("errorState -------------->" + errorState );
 		incomingService.updateErrorState(goodsInfoCode, errorState);
-		log.info("-_-;;;;;;;;;;;;;");
+		log.info("aa=================bb=====================cc");
 	}
 }
