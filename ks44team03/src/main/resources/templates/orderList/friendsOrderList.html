@@ -39,7 +39,7 @@
 
 	<div class="orderList">
 			<div class="orderCard2" th:if="${not #lists.isEmpty(friendsOrderList)}"th:each="l : ${friendsOrderList}">
-				<img src="/image/gogo.png"> </br>
+				<img src="/image/sinbal.png"> </br>
 				<a th:href="@{/goodsInfo}" th:text="${l.gName}">신발</a>
 				<p th:text="${l.orderInfoDto.userName}"></p>
 				<p th:text="${l.orderInfoDto.buyWay}"></p>

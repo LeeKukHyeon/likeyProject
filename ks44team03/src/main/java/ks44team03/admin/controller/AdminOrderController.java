@@ -23,6 +23,13 @@ public class AdminOrderController {
 		this.orderService = orderService;
 	}
 	
+	@GetMapping("/receiptPage")
+	public String receiptPage(Model model) {
+		
+		model.addAttribute("title", "접수완료");
+		return "orderList//receiptPage";
+	}
+	
 	@GetMapping("/friendsOrderList")
 	public String orderList(Model model) {
 		
@@ -36,6 +43,9 @@ public class AdminOrderController {
 	@GetMapping("goodsInfo")
 	public String goodsInfo(Model model) {
 		
+		List<GoodsInfo> friendsOrderList = orderService.getFriendsOrderList();
+		
+		model.addAttribute("friendsOrderList", friendsOrderList);
 		model.addAttribute("title", "상품 상세정보");
 		return "orderList/goodsInfo";
 	}
