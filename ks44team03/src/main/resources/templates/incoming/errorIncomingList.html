@@ -21,15 +21,15 @@
 				<!-- ========== 오류입고 화면 시작 ========== -->
 				<h2>오류입고</h2>
 				<div class="error_incoming_list">
-					<form method="get" action="#">
-							<div th:fragment="searchFragment" >
-							        
-							        	<select name="searchKey" id="searchKey">
-							        		<option value="goodsInfoCode">상품정보 코드</option>
-							        	</select>
-						        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
-						        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>						       	
-		       				 </div>
+					<div th:fragment="searchFragment" >
+					        
+					        	<select name="searchKey" id="searchKey">
+					        		<option value="goodsInfoCode">상품정보 코드</option>
+					        	</select>
+				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+				        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>						       	
+       				</div>
+					<form id="updateErrorState" th:action="@{/updateErrorState}" method="get">
 						<table class = "input_table" style="width:100%">
 						
 							<thead>
@@ -51,7 +51,7 @@
 									<td th:text="${i.errorAmount}"></td>
 									<!-- <td th:text="${i.errorState}"></td> -->
 									<td>
-										<select name="errorState" id="errorState">
+										<select name="errorState" id="errorState" class="errorState">
 											<option th:text="${i.errorState}">처리 상태</option>
 											<option th:if="${i.errorState != '대기 중'}" value="대기 중">대기 중</option>
 											<option th:if="${i.errorState != '반송 요청'}" value="반송 요청">반송 요청</option>
@@ -74,18 +74,22 @@
 <script type="text/javascript">
 
 	$(function(){
-		$('#errorState').change(function(){
+		$(document).on('change','.errorState', function(){
+			var goodsInfoCode = $(this).parents('tr').find('td').eq(1).text();
+			var errorState = $(this).val();
+			
 			
 			var request = $.ajax({
 				  url: "/updateErrorState",
 				  method: "GET",
-				  data: { 'goodsInfoCode' : goodsInfoCode,
-					  	'errorState' : errorState},
+				  data: { 'goodsInfoCode' : goodsInfoCode ,
+					  	  'errorState' : errorState},
 				  dataType: "json"
-				});		
+				});
 			
+			alert('물품 처리 상태가 변경되었습니다.');	
 		});
-	});
+	});	
 
 </script>
 

@@ -437,7 +437,7 @@
 		goods_info_code = #{goodsInfoCode};
 	</update>
 	
-	<update id="updateErrorState" parameterType="String">
+	<update id="updateErrorState" parameterType="ErrorIncoming">
 		/* 오류입고 물품 처리 상태 업데이트 */
 		UPDATE error_incoming
 		SET
