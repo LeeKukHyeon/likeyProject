@@ -20,6 +20,15 @@ public class AdminOrderService {
 	public AdminOrderService(AdminOrderMapper orderMapper) {
 		this.orderMapper = orderMapper;
 	}
+	
+	// friends 주문서 상품 상세정보
+	public GoodsInfo getGoodsInfoBy(String goodsInfoCode) {
+		
+		GoodsInfo goodsInfoBy = orderMapper.getGoodsInfoBy(goodsInfoCode);
+		
+		return goodsInfoBy;
+	}
+	
 	// friends 주문서 목록
 	public List<GoodsInfo> getFriendsOrderList(){
 		
