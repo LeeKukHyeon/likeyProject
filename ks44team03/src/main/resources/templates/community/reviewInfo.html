@@ -167,13 +167,13 @@ $(function(){
 		var communityId = /*[[${reviewInfo.communityId}]]*/;
 		var sessionId = /*[[${session.SID}]]*/;
 			if(sessionId == communityId){
-				 alert('아이디 일치');
+				 /* alert('아이디 일치'); */
 				$('.modifyCmnBtn').css('display','inline');
 				$('.removeCmnBtn').css('display','inline');
 			}else{
 				$('.modifyCmnBtn').css('display','none');
 				$('.removeCmnBtn').css('display','none');
-				alert('아이디 불일치!!!!');
+				/* alert('아이디 불일치!!!!'); */
 			}
 	});
 });

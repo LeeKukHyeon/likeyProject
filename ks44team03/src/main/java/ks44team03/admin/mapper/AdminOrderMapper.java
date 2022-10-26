@@ -15,6 +15,9 @@ public interface AdminOrderMapper {
 	// friends 주문서 목록
 	public List<GoodsInfo> getgetFriendsOrderList();
 	
+	// friends 주문서 상품 상세정보
+	public GoodsInfo getGoodsInfoBy(String goodsInfoCode);
+	
 	//adminPage 이용자 주문서 목록조회
 	public List<OrderInfo> getOrderList();
 	
