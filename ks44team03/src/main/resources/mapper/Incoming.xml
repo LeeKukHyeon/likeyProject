@@ -66,6 +66,7 @@
 		<association property="goodsInfoDto" javaType="GoodsInfo">
 			<id column="goods_info_code" property="goodsInfoCode"/>
 			<result column="buy_order_code" property="buyOrderCode"/>
+			<result column="arrival_date" property="arrivalDate"/>
 		</association>
 	</resultMap>
 	
@@ -77,7 +78,7 @@
 		<result column="error_state" property="errorState"/>
 		<result column="error_comp_date" property="errorCompDate"/>
 	</resultMap>
-	
+
 	<update id="incomingCheck" parameterType="map"> 
 		<foreach collection="checks" item="item" > 
 		    UPDATE 	goods_info 
@@ -374,6 +375,7 @@
 			,i.photo_save
 			,i.weight
 			,i.volume
+			,g.arrival_date
 		FROM
 			incoming AS i
 		INNER JOIN

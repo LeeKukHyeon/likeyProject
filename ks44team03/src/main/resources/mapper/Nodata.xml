@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ks44team03.admin.mapper.IncomingWarehouseManageMapper">
+	
+	<resultMap type="Nodata" id="NodataListResultMap">
+		<id column="nodata_manage_code" property="nodataManageCode"/>
+		<result column="nod_user_pobox_code" property="nodUserPoboxCode"/>
+		<result column="nod_order_form_yn" property="nodOrderFormYn"/>
+		<result column="nod_tracking_num" property="nodTrackingNum"/>
+		<result column="nod_e_code" property="nodECode"/>
+		<result column="nod_id" property="nodId"/>
+		<result column="nod_recipient" property="nodRecipient"/>
+		<result column="nod_pic" property="nodPic"/>
+		<result column="nod_arrival_date" property="nodArrivalDate"/>
+		<result column="nod_tracking_company" property="nodTrackingCompany"/>
+		<result column="nod_discard_date" property="nodDiscardDate"/>
+		<result column="nod_user_check" property="nodUserCheck"/>
+	</resultMap>
+
+	<insert id="regNodata" parameterType="Nodata">
+	 	/* 노데이터 입고 등록 */
+		INSERT INTO nodata_manage
+			(nodata_manage_code, nod_user_pobox_code, nod_order_form_yn, nod_tracking_num, nod_e_code, nod_id, nod_recipient, nod_pic, nod_arrival_date, nod_tracking_company, nod_discard_date, nod_user_check); 
+		VALUES
+			(#{nodataManageCode}, #{nodUserPoboxCode}, #{nodOrderFormYn}, #{nodTrackingNum}, #{nodECode}, #{nodId}, #{nodRecipient}, #{nodPic}, CURDATE(), #{nodTrackingCompany}, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), #{nodUserCheck});
+	</insert>
+	
+</mapper>
+	

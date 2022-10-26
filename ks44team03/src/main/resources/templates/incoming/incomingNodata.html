@@ -44,8 +44,8 @@
 	</style>  
 </head>
 
-	<!-- adminDefault_layout.html에 정의한 공통적이지 않은 부분이 들어가는 부분-->
-	<body layout:fragment="adminContent">
+<!-- adminDefault_layout.html에 정의한 공통적이지 않은 부분이 들어가는 부분-->
+<body layout:fragment="adminContent">
 	  <!-- code -->
 	  
       <!-- partial -->
@@ -54,38 +54,29 @@
         		  <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body" style="padding-bottom:0px; padding-right:300px;">
+                
+				  <!-- =========== 노데이터 입고 등록 부분 =========== -->
                   <h4 class="card-title">노데이터 입고등록</h4>
                   <div class="form-group">
+				   
+				   <form form="nodata_reg_form" th:action="@{/regNodata}" method="post">
                     <div class="input-group">
-<!-- 	                    <div class="input-group-prepend">
-	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">전체기간</button>
-	                        <div class="dropdown-menu">
-	                          <a class="dropdown-item" href="#">전체기간</a>
-	                          <a class="dropdown-item" href="#">최근 1주</a>
-	                          <a class="dropdown-item" href="#">최근 1달</a>
-	                          <div role="separator" class="dropdown-divider"></div>
-	                          <a class="dropdown-item" href="#">직접 설정</a>
-	                        </div>
-	                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디</button>
-	                        <div class="dropdown-menu">
-	                          <a class="dropdown-item" href="#">아이디</a>
-	                          <a class="dropdown-item" href="#">상태</a>
-	                          <a class="dropdown-item" href="#">IP</a>
-	                        </div>
-	                      </div> -->
-					  <div class="input_group">
-                     	 <input type="text" class="form-control" placeholder="수취인명" id="nod_recipient">
-                     	 <input type="text" class="form-control" placeholder="배송회사" id="nod_tracking_company">
-                     	 <input type="text" class="form-control" placeholder="운송장 번호" id="nod_tracking_num">
-                     	 <input type="text" class="form-control" placeholder="사서함번호" id="nod_user_pobox_code">
-                     	 <input type="file" class="form-control" placeholder="개봉한 물품 사진" id="nod_pic">		 
-                     	 <input type="text" class="form-control" placeholder="입고일" id="nod_arrival_date">
-                      </div>
-                      <div class="input-group-append">
-                        <button class="btn btn-sm btn-primary" type="button">등록</button>
-                      </div>
+					   <div class="input_group">
+                     	 <input type="text" class="form-control" placeholder="수취인명" id="nodRecipient" name="nodRecipient">
+                     	 <input type="text" class="form-control" placeholder="배송회사" id="nodTrackingCompany" name="nodTrackingCompany">
+                     	 <input type="text" class="form-control" placeholder="운송장 번호" id="nodTrackingNum" name="nodTrackingNum">
+                     	 <input type="text" class="form-control" placeholder="사서함 번호" id="nodUserPoboxCode" name="nodUserPoboxCode">
+                     	 <input type="file" class="form-control" placeholder="개봉한 물품 사진" id="nodPic" name="nodPic" accept="image/*">		 
+                     	 <input type="hidden" id="nodECode" name="nodECode" th:value="${session.SID}">
+                       </div>
+                       <div class="input-group-append">
+                        <button class="btn btn-sm btn-primary nodata_reg" type="button" form="nodata_reg_form">등록</button>
+                       </div>
                     </div>
+                   </form>
+                   
                   </div>
+                  <!-- =========== 노데이터 입고 등록 부분 =========== -->
                   
                 </div>
               </div>
@@ -96,14 +87,6 @@
                 <div class="card-body">
                   <div class="table-responsive pt-3">
                     <table class="table table-bordered">
-                    	<!-- <colgroup>
-                    		<col width="5%">
-                    		<col width="15%">
-                    		<col width="15%">
-                    		<col width="15%">
-                    		<col width="25%">
-                    		<col width="25%">
-                    	</colgroup> -->
                       <thead>
                         <tr>
                           <th>
@@ -128,7 +111,7 @@
                             	신청서 작성 여부
                           </th>
                           <th>
-                            	입고일
+                            	폐기일
                           </th>
                           <th>
                             	이용자 확인 여부
@@ -347,7 +330,11 @@
             </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
+        
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+</script>
 	
-	
-	</body>
+</body>
 </html>
