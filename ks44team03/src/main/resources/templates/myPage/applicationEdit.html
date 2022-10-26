@@ -106,7 +106,7 @@
 																		<div>브랜드</div>
 																		<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src='/image/S_shipping_form_icon_10.gif'></div>
 																	</td>
-																	<td class="td2"><input type="text" name="gBrand" th:value="${l.gBrand}"  maxlength="190" ></td>
+																	<td class="td2"><input type="text" name="gBrand" th:value="${l.gBrand}"  maxlength="190" onchange="this.value=this.value.replace(/[^.0-9]/g,'')"></td>
 																	<td class="td1 td3">상품가</td>
 																	<td class="td2">
 																	<input type="text" name="package_unitprice[]" th:value="${l.goodsPrice}"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
@@ -663,6 +663,8 @@
 		        url     : '/user/addGoodsInfo',
 		        type    : 'POST',
 		        data    : JSON.stringify(array),
+		        			
+		        
 		        contentType : 'application/json; charset=UTF-8',
 		        dataType: 'text',
 		        success : function(data) {
@@ -684,6 +686,8 @@
 			
 			//물류센터
 			// order info 객체생성
+			
+			submitObj.orderInfoList = [];
 			var logisticObj = $('#applicationForm').eq(0).find('.detail_box1_wrap input');
 			submitObj.orderInfo = {};
 			$.each(logisticObj, function(){
@@ -692,6 +696,10 @@
 				if(typeof inputName != 'undefined' && inputName != null && inputName != ''){
 					submitObj.orderInfo[inputName] = inputData;
 				}
+				
+				
+				
+				
 			});
 			
 			var request = $('.request_text').eq(0).find('select');
@@ -706,6 +714,7 @@
 				var inputData = totalPrice.val();
 				submitObj.orderInfo[inputName] = inputData
 			
+			submitObj.orderInfoList.push(submitObj.orderInfo);
 			
 			//상품 리스트
 			submitObj.goodsInfoList = [];
@@ -743,7 +752,7 @@
 			
 			
 			
-			ajaxFunc(submitObj.goodsInfoList)
+			ajaxFunc(submitObj);
 			
 			
 			
