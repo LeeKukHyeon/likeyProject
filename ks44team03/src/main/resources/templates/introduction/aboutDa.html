@@ -5,160 +5,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <head>
-<style>
-.sub_contents_wrap {margin-top:30px;}
-.sub_contents_wrap > div {float:left;}
-
-.sub_contents_wrap .left_menu {width:179px;margin-right:70px;}
-.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
-
-.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
-.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
-.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
-.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
-
-.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
-.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
-
-.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
-.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
-
-.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
-
-
-		.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:30px;}
-		.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;padding-left:20px;font-size:13px;color:#6e6e6e;}
-
-
-		.sub1_title {font-size:22px;color:#3f3f3f;font-weight:bold;padding-right:28px;}
-		.sub1_text {font-size:16px;color:#252525;line-height:34px;padding-top:25px;}
-		.sub1_text font {color:#f47827;font-weight:bold;}
-		
-
-		.more_bt {margin-top:15px;}
-		.more_bt li {float:left;padding-right:11px;}
-		
-		.sub1_tab_bt {margin-top:15px;}
-		.sub1_tab_bt td {cursor:pointer;}
-
-		.sub1_tab_box {background-color:#f5f5f5;padding:25px;margin-top:15px;}
-		.sub1_tab_box .sub1_title {margin-bottom:0px;}
-		
-		.more_box {border:1px solid #cccccc;margin-bottom:0px;padding:20px;}
-		.more_box .title {font-size:20px;color:#f58340;font-weight:bold;background:url(image/S_sub_2_5_2_icon_01.gif) 0 50% no-repeat;padding-left:20px;margin-bottom:15px;}
-		.more_box table {margin-bottom:20px;}
-		.more_box table td {font-size:15px;color:#515151;line-height:25px;}
-		.more_box table td:first-child {background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding:0 14px 0 11px;}
-
-		.more_box ul li {font-size:16px;color:#515151;line-height:30px;}
-
-		.step_box {background-color:#f8f8f8;padding:18px 35px;margin-bottom:15px;}
-		.step_box .title {font-size:22px;color:#3f3f3f;font-weight:bold;margin-bottom:20px;background:url(image/sub_1_2_step2_icon_01.gif) 0 50% no-repeat;padding-left:17px;}
-		.step_box .title font {color:#ff793a}
-		.step_box .text {font-size:16px;color:#515151;line-height:25px;}
-		.step_box .img {margin-top:15px;}
-
-				.sub1_2_1_tab_bt {border-collapse:collapse;}
-				.sub1_2_1_tab_bt td {width:16.5%;border:1px solid #cccccc;text-align:center;padding:35px 0;filter:alpha(opacity=50);opacity:.5;}
-				.sub1_2_1_tab_bt td .country_font {font-size:15px;color:#4a4a4a;padding-top:13px;}
-
-				.sub1_2_1_table {border-collapse:collapse;margin-top:8px;}
-				.sub1_2_1_table th, .sub1_2_1_table td {border:1px solid #cccccc;text-align:center;}
-
-				.sub1_2_1_table th {background-color:#f3f3f3;padding:12px 0;font-size:17px;color:#447b9a;font-weight:bold;}
-				.sub1_2_1_table th.td1 {width:184px;}
-				.sub1_2_1_table th.td2 {width:97px;}
-				.sub1_2_1_table th.td3 {width:220px;}
-				.sub1_2_1_table th.td4 {width:146px;}
-
-				.sub1_2_1_table td {padding:12px 0;font-size:15px;color:#565656;line-height:22px;background-color:#ffffff;}
-				.sub1_2_1_table td.td1 {font-size:17px;color:#4a4a4a;font-weight:bold;}
-
-</style>
-
-</head>
-
-
-	<!-- default_layout.html에 정의한 main page 부분 -->
-	<body layout:fragment="content">
-		<!------------------------------ 중간 내용 여기서부터 ------------------------------>
-
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/introduction.css}"/>
+</head> 
+<!-- default_layout.html에 정의한 main page 부분 -->
+<body layout:fragment="content">
+<!------------------------------ 중간 내용 여기서부터 ------------------------------>
 <div class="sub_contents_wrap wrap">
-
-	<!-- 왼쪽 메뉴 -->
-	<div class="left_menu">
-		<div>이용안내</div>
-		<ul>
-			<li>
-				<div><a href="sub_1_1.html">LIKEY 소개</a></div>
-
-				<ul>
-					<li>
-						<a href="sub_1_1.html">배송 대행이란?</a>
-						
-						<ul>
-							<li><a href="sub_1_1_1.html">- 배송대행 신청 가이드</a></li>
-							<li><a href="sub_1_1_2.html">- 묶음배송 신청 방법</a></li>
-							<li><a href="">- 트래킹 번호 분할 방법</a></li>
-							<li><a href="sub_1_1_4.html">- 상품 분할 신청 방법</a></li>
-							<li><a href="sub_1_1_5.html">- 개인 통관 부호란?</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="sub_1_2.html">구매 대행이란?</a>
-
-						<ul>
-							<li><a href="sub_1_2_1.html">- 구매대행 신청 가이드</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_1_3.html">선출고 서비스</a></li>
-					<li><a href="sub_1_4.html">물류센터 소개</a></li>
-					<!-- <li><a href="sub_1_5.html">365일 부피무게면제</a></li> -->
-				</ul>
-			</li>
-			<li>
-				<div><a href="sub_2.html">LIKEY 서비스</a></div>
-
-				<ul>
-					<li><a href="sub_2_1.html">해외 직구 가이드</a></li>
-					<li>
-						<a href="sub_2_2_1.html">등급할인/쿠폰혜택/포인트</a>
-
-						<ul>
-							<li><a href="sub_2_2_1.html">- 등급할인</a></li>
-							<li><a href="sub_2_2_2.html">- 쿠폰혜택</a></li>
-							<li><a href="sub_2_2_3.html">-포인트</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_2_3.html">무검수 LIKEY PASS</a></li>
-					<li><a href="sub_2_4.html">안심보상 안내</a></li>
-					<li>
-						<a href="sub_2_5_1.html">검수 포장 가이드</a>
-
-						<ul>
-							<li><a href="sub_2_5_1.html">- 검수가이드</a></li>
-							<li><a href="sub_2_5_2.html">- 포장가이드</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_2_6.html">반송절차</a></li>
-					<li><a href="sub_2_7.html">검수/기타 수수료</a></li>
-					<li><a href="sub_2_8.html">관/부가세</a></li>
-					<li><a href="sub_2_9.html">일반/목록통관 안내</a></li>
-					<li><a href="sub_2_10.html">통관/적재 불가 상품</a></li>
-				</ul>
-			</li>
-			<li>
-				<div><a href="sub_3_1.html">LIKEY 배송요금</a></div>
-
-				<ul>
-					<li><a href="sub_3_1.html">배송요금 안내</a></li>
-					<li><a href="#none" onclick="javascript:window.open('sub_3_2.html', 'calculator', 'width=610, height=750, left=40, top=40');">배송비 계산기</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>	<!-- //왼쪽 메뉴 -->
-
-
 	<!-- 오른쪽 내용 -->
 	<div class="right_text">
 
@@ -177,7 +29,7 @@
 		<table border="0" cellspacing="0" cellpadding="0">
 		  <tr>
 		    <td class="sub1_title">- 배송대행이란?</td>
-			<td width="1"><a href="sub_1_1_1.html" target="_blank"><img src="/image/S_sub1_bt_01.gif"></a></td>
+			<td width="1"><a th:href="@{#}" target="_blank"><img src="/image/S_sub1_bt_01.gif"></a></td>
 		  </tr>
 		</table>
 
@@ -198,28 +50,6 @@
 
 
 
-		<script>
-		var autonum3=1;
-
-		//교체
-		function subtab1(layerid){
-			
-			//이미지교체
-			for(i=1 ; i<=7 ; i++){
-				$(".sub1_tab_"+i).hide();
-			}
-
-			$(".sub1_tab_"+layerid).show();
-
-			//버튼교체
-
-			for(var i=1 ; i<=7 ; i++){
-				$(".sub1_tab_"+i+"_bt").attr("src","/image/S_sub1_process1_0"+i+".gif");
-			}
-			$(".sub1_tab_"+layerid+"_bt").attr("src","/image/S_sub1_process1_0"+layerid+"_ov.gif");
-			
-		}
-		</script>
 
 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_tab_bt">
@@ -254,8 +84,6 @@
 				<div class="text">
 				LIKEY 사이트 우측 상단의 회원가입을 선택하여 LIKEY에 회원 가입합니다.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step1_img_01.jpg"></div>
 			</div>
 
 
@@ -264,8 +92,6 @@
 				<div class="text">
 				LIKEY에 로그인 후 사이트 상단의 해외 배송지 주소 보기에서 지역별 주소를 확인하실 수 있습니다.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step1_img_02.jpg"></div>
 			</div>
 
 
@@ -325,8 +151,6 @@
 				LIKEY 사이트 우측 상단의 나의 배송대행지 중 지역을 선택하여 오픈 되는 물류센터 주소 팝업의 복사 기능을 사용하여 상품을<br>
 				구매하려는 해외 쇼핑몰의 배송지 주소(Shipping Address)에 LIKEY 물류센터 주소를 입력합니다.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step2_img_01.jpg"></div>
 			</div>
 
 
@@ -348,7 +172,7 @@
 				<table border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 				    <td width="462">직구 정보 > 해외 인기 쇼핑몰에서 인기 있는 해외 쇼핑몰을 알려드립니다.</td>
-					<td><a href="https://cafe.naver.com/hoyausa?iframe_url=/ArticleList.nhn%3Fsearch.clubid=23520608%26search.menuid=79%26search.boardtype=L" target="_blank"><img src="/image/sub_1_2_step1_bt_01.jpg"></a></td>
+					<td><a th:href="@{#}" target="_blank"><img src="/image/sub_1_2_step1_bt_01.jpg"></a></td>
 				  </tr>
 				  <tr>
 				    <td colspan="2" style="background:none;">쇼핑몰 Amazon , Toms, Gap, Diapers, 6pm, ideeli, Boscovs, oldnavy, Zulily, Nordstrom, A/X, AE, rakuten 등)</td>
@@ -358,10 +182,11 @@
 				<table border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 				    <td>해외 유명 브랜드의 핫딜 정보를 보려면?</td>
-					<td><a href="https://cafe.naver.com/hoyausa?iframe_url=/ArticleList.nhn%3Fsearch.clubid=23520608%26search.menuid=35%26search.boardtype=L" target="_blank"><img src="/image/sub_1_2_step1_bt_02.jpg"></a></td>
+					<td><a th:href="@{#}" target="_blank"><img src="/image/sub_1_2_step1_bt_02.jpg"></a></td>
 				  </tr>
 				</table>
 			</div>
+
 
 
 			<div class="more_box">
@@ -416,11 +241,9 @@
 
 				<div style="position:relative;">
 					<div style="position:absolute; width:150px; z-index:1; right: 0px; top: -30px;">
-						<a href="shipping.html" target="_blank"><img src="/image/sub_1_2_step2_bt_01.gif"></a>
+						<a th:href="@{#}" target="_blank"></a>
 					</div>
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step3_img_01_.jpg"></div>
 			</div>
 
 
@@ -430,7 +253,6 @@
 				배송대행 신청 시 주의사항을 잘 읽은 후 팝업을 닫으시고 주의사항 동의에 체크합니다.
 				</div>
 
-				<div class="img"><img src="/image/S_sub1_3_step3_img_02_.jpg"></div>
 			</div>
 
 
@@ -439,8 +261,6 @@
 				<div class="text">
 				물류센터 선택 후 주의 사항을 확인하며, 배송방법을 선택합니다.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step3_img_03.jpg"></div>
 			</div>
 
 
@@ -452,8 +272,6 @@
 				트래킹 번호란 미국 내 운송장 번호이며, 구매 후 1~3일 후에 주문하신 해외 쇼핑몰에서 확인하여 LIKEY 배송 신청서 ‘수정’을 통해 트래킹 <br> 
 				번호를 추가 입력합니다. 배송에 문제가 있을 경우 트래킹 번호가 꼭 필요하며, 트래킹 번호 미입력 시 입고가 지연될 수 있습니다.<br>
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step3_img_04.jpg"></div>
 			</div>
 
 
@@ -464,8 +282,6 @@
 				개인통관고유부호는 관세청에서 발급하는 번호이며, 수령인명의 개인통관 고유부호를 넣어야 정상적인 통관이 가능합니다.<br>
 				수령인 주소는 무게 측정된 이후에는 수정이 불가능하오니 꼭 미리 작성해주세요.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step3_img_05.jpg"></div>
 			</div>
 
 
@@ -485,8 +301,6 @@
 				LIKEY 배송 신청서 ‘수정’을 통해 트래킹 번호를 추가 입력합니다. 배송에 문제가 있을 경우 트래킹 번호가 꼭 필요하며, <br>
 				트래킹 번호 미입력 시 입고가 지연될 수 있습니다.
 				</div>
-
-				<div class="img"><img src="/image/S_sub1_3_step3_img_06.jpg"></div>
 			</div>
 
 
@@ -570,13 +384,6 @@
 				상품의 수량, 색상, 사이즈 등을 배송신청서와 비교하여 검수를 진행합니다.
 				</div>
 
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="img">
-				  <tr>
-				    <td><a href=""><img src="/image/sub_1_2_step4_img_01.jpg"></a></td>
-					<td><a href=""><img src="/image/sub_1_2_step4_img_02.jpg"></a></td>
-					<td><a href=""><img src="/image/sub_1_2_step4_img_03.jpg"></a></td>
-				  </tr>
-				</table>
 			</div>
 
 
@@ -649,7 +456,7 @@
 				<div class="sub1_text">
 			
 				저희 LIKEY는 선출고 시스템으로 상품 입고와 동시에 포장 및 무게측정이 이루어지며, 무게측정 후 95% 이상 당일 출고됩니다. <br>
-				무게측정 시 배송비가 책정되면 문자 및 알림으로 배송비 결제를 알려드립니다. <a href="sub_1_3.html" target="_blank"><img src="/image/S_sub1_3_step1_bt_01_1"></a><br>
+				무게측정 시 배송비가 책정되면 문자 및 알림으로 배송비 결제를 알려드립니다.<br>
                 ※선출고 후 24시간 이내에 미결제 시 국내 배송 지연 및 반환수수료가 청구되오니 이부분 유의 부탁드립니다.<br>
 
 				</div>
@@ -701,27 +508,22 @@
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_bt">
 				  <tr>
 					<td class="sub1_2_1_tab_1_bt" onclick="sub1_2_1tab('1')" style="filter:alpha(opacity=100);opacity:1;background-color:#ffffff;">
-						<div><img src="/image/S_schedule_flag_01.gif"></div>
+						
 						<div class="country_font">미국(USA)</div>
 					</td>
 					<td  class="sub1_2_1_tab_2_bt" onclick="sub1_2_1tab('2')">
-						<div><img src="/image/S_schedule_flag_02.gif"></div>
 						<div class="country_font">중국 (CN)</div>
 					</td>
 					<td  class="sub1_2_1_tab_3_bt" onclick="sub1_2_1tab('3')">
-						<div><img src="/image/S_schedule_flag_04.gif"></div>
 						<div class="country_font">일본 (JP)</div>
 					</td>
 					<td  class="sub1_2_1_tab_4_bt" onclick="sub1_2_1tab('4')">
-						<div><img src="/image/S_schedule_flag_06.gif"></div>
 						<div class="country_font">영국 (UK)</div>
 					</td>
 					<td  class="sub1_2_1_tab_5_bt" onclick="sub1_2_1tab('5')">
-						<div><img src="/image/S_schedule_flag_03.gif"></div>
 						<div class="country_font">독일 (GER)</div>
 					</td>
 					<td  class="sub1_2_1_tab_6_bt" onclick="sub1_2_1tab('6')">
-						<div><img src="/image/S_schedule_flag_05.gif"></div>
 						<div class="country_font">한국 (KR)</div>
 					</td>
 				  </tr>
@@ -949,7 +751,6 @@
 				관부가세 발생 시 LIKEY 관할 관세사에서 개별로 안내드리며, 결제가 완료되어야 국내 배송이 진행됩니다.
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step6_img_01.jpg"></div>
 			</div>
 		</div>
 
@@ -1081,7 +882,29 @@
 </div>
 <div style="clear:both;"></div>
 <!------------------------------ //중간 내용 여기서부터 ------------------------------>
+
+<script>
+var autonum3=1;
+
+//교체
+function subtab1(layerid){
 	
+	//이미지교체
+	for(i=1 ; i<=7 ; i++){
+		$(".sub1_tab_"+i).hide();
+	}
+
+	$(".sub1_tab_"+layerid).show();
+
+	//버튼교체
+
+	for(var i=1 ; i<=7 ; i++){
+		$(".sub1_tab_"+i+"_bt").attr("src","/image/S_sub1_process1_0"+i+".gif");
+	}
+	$(".sub1_tab_"+layerid+"_bt").attr("src","/image/S_sub1_process1_0"+layerid+"_ov.gif");
 	
-	</body>
+}
+</script>	
+	
+</body>
 </html>
