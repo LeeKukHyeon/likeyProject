@@ -134,6 +134,7 @@
 						<li><div>- </div></li>
 					</ul>
 				</div>
+		<!--------------------------------------- start jquery 활용하여 분류 밑에있는 글 클릭 시 동적으로 일어나는 div 글 내용 --------------------------------------->		
 		<div class="faqList" style="float: left; border: 1">
 			<div id="ffaq1" style="display: none;">
 				<h4>- 배송대행 신청서는 왜 작성 하나요?</h4>
@@ -179,6 +180,7 @@
 				<p>저희 호야USA는 제품의 안전한 배송을 최우선으로 생각하기 때문에 입고 담당자의 판단하에 폴리백 포장 요청이 반영되지 않을 수 있습니다.</p>
 			</div>
 		</div>
+		<!--------------------------------------- end jquery 활용하여 분류 밑에있는 글 클릭 시 동적으로 일어나는 div 글 내용 --------------------------------------->
 			<div style="clear: both; text-align: right; margin-right: 17mm;">
 				<a th:href="@{/faqRegister}">
 					<button type="button" style="border-radius: 3px; border: solid 1px gray; font-size: 10px">글쓰기</button>
@@ -187,6 +189,7 @@
 		</div>
 	</div>
 		
+	<!---------------------------------------- start 자주하는 질문 글 클릭시 클릭한 내용 나오고 기존 내용 없어지는 jquery ---------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#faq1').click(function(){
@@ -216,6 +219,7 @@
 		
 	})
 	</script>
+	<!---------------------------------------- start 자주하는 질문 글 클릭시 클릭한 내용 나오고 기존 내용 없어지는 jquery ---------------------------------------->
 	
 </body>
 </html>

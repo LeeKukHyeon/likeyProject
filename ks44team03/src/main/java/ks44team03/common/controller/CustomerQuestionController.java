@@ -86,6 +86,18 @@ public class CustomerQuestionController {
 		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
+	//1:1문의 삭제 어드민 답변에서
+	@PostMapping("/deleteQuestionAdmin")
+	@ResponseBody
+	public int deleteQuestionAdmin(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
+		
+		int result = customerQuestionService.deleteQuestionAdmin(mtmNumCode);
+		
+		return result;
+		
+	}
+	
+	
 	//1:1문의 삭제
 	@PostMapping("/deleteQuestion")
 	@ResponseBody
@@ -167,7 +179,7 @@ public class CustomerQuestionController {
 		return "redirect:personalQuestionSearchAdmin";
 		
 	}
-	
+		
 	//1:1문의 게시글 관리자 조회 , 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	@GetMapping("/personalQuestionAnswerRegister")
 	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode,  QuestionCenter questionCenter ,  Model model ) {

@@ -13,6 +13,9 @@
 			<h2 align="left">1:1문의</h2>
 		</div>
 		<form name="form1" id="regQuestionForm" th:action="@{/personalQuestionRegister}" method="post">
+		
+		
+		<!--------------------------------------- start 1:1문의 작성하는 테이블 태그 ---------------------------------------------------->
 			<table border="1" style="width: 51%">
 				<tbody>
 					<tr>
@@ -57,10 +60,12 @@
 					</tr>
 				</tbody>
 			</table>
+			<!--------------------------------------- end 1:1문의 작성하는 테이블 태그 ---------------------------------------------------->
+			
 			<div style="width: 51%; margin-top: 10px"align="right"><button type="submit" style="margin-left: auto;" id="mtmSituation" name="mtmSituation" value="접수">문의하기</button></div>
 		</form>
 		
-			<!-- 이미지 파일 input 넣기  -->
+		<!--------------------------------------- start 이미지 파일 선택시 옆 input에 파일명이 들어가는 jquery---------------------------------------------------->
 			<script type="text/javascript">
 			$('#imgcheck1').change(function(){
 				var check = $('#imgcheck1').val();
@@ -84,8 +89,10 @@
 				$('#fileName3').val(check2);
 			})
 			</script>
+		<!--------------------------------------- end 이미지 파일 선택시 옆 input에 파일명이 들어가는 jquery---------------------------------------------------->	
 			
-			<!-- 유효성 검사 -->
+			
+		<!--------------------------------------- start 카테고리 제목 내용 빈값 확인하는 jquery ---------------------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#mtmSituation').click(function(){
@@ -107,6 +114,7 @@
 				})
 			})
 			</script>
+		<!--------------------------------------- end 카테고리 제목 내용 빈값 확인하는 jquery ---------------------------------------------------->
 			
 	</div>
 

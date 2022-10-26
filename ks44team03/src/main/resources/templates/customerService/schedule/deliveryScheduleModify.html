@@ -7,6 +7,8 @@
 
 <body layout:fragment="content">
 	<div align="center">
+	
+	<!---------------------------------------- start 배송스케줄 수정하는 테이블 form 태그 ---------------------------------------->
 		<form id="modifyScheduleForm" th:action="@{/deliveryScheduleModify}" method="post">
 			<div style="width: 55%; margin-top: 10mm">
 				<h2 style="font-weight: bold; text-align: left;" >배송스케줄</h2>
@@ -26,8 +28,9 @@
 			<button id="submitBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>
+	<!---------------------------------------- end 배송스케줄 수정하는 테이블 form 태그 ---------------------------------------->
 	</div>
-			<!-- 유효성 검사 -->
+	<!---------------------------------------- start 제목 내용 빈값 검사하는 jquery ---------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#submitBtn').click(function(){
@@ -44,5 +47,7 @@
 				})
 			})
 			</script>
+	<!---------------------------------------- start 제목 내용 빈값 검사하는 jquery ---------------------------------------->
+	
 </body>
 </html>

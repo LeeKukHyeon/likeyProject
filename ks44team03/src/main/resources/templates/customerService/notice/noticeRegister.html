@@ -10,8 +10,11 @@
 
 	<div align="center">
 	
-	<h2 style="font-family: serif; margin-right: auto; width: 59%;">공지사항 등록</h2>
-	
+		<h2 style="font-family: serif; margin-right: auto; width: 59%;">공지사항 등록</h2>
+		
+		
+		
+		<!--------------------------------------- start 공지사항 등록 내용  ---------------------------------------------------->
 		<form name="form1" id="regNoticeForm" th:action="@{/noticeRegister}" method="post">
 			<table border="1" style="width: 51%">
 				<tbody>
@@ -47,7 +50,10 @@
 			</table>
 			<div style="width: 51%; margin-top: 10px"align="right"><button id="submitBtn" type="submit" style="margin-left: auto;">공지사항 등록</button></div>
 		</form>
-			<!-- 유효성 검사 -->
+		<!--------------------------------------- end 공지사항 등록 내용  ---------------------------------------------------->
+		
+		
+		<!--------------------------------------- start  제목 , 내용 유효성 검사 ---------------------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#submitBtn').click(function(){
@@ -64,7 +70,7 @@
 				})
 			})
 			</script>
-		
+		<!--------------------------------------- end  제목 , 내용 유효성 검사 ---------------------------------------------------->
 	</div>
 
 </body>

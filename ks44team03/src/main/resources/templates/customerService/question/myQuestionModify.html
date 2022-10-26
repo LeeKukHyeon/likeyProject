@@ -7,6 +7,8 @@
 
 <body layout:fragment="content">
 	<div align="center">
+	
+	<!--------------------------------------- start 분류 제목 내용 수정하는 테이블 ---------------------------------------------------->
 		<form id="myQuestionModifyForm" th:action="@{/myQuestionModify}" method="post">
 			<table border="1" style="width: 50%">
 				<tbody>
@@ -61,7 +63,9 @@
 			<button id="subminBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>
-						<!-- 유효성 검사 -->
+		<!--------------------------------------- end 분류 제목 내용 수정하는 테이블 ---------------------------------------------------->
+		
+		<!--------------------------------------- start 카테고리, 제목 , 내용 빈값 체크 jquery ---------------------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#subminBtn').click(function(){
@@ -83,6 +87,7 @@
 				})
 			})
 			</script>
+			<!--------------------------------------- end 카테고리, 제목 , 내용 빈값 체크 jquery ---------------------------------------------------->
 	</div>
 
 </body>

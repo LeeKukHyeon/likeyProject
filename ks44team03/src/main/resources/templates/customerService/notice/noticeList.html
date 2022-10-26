@@ -15,52 +15,59 @@
 			<hr style="height: 1px; background: gray;">
 		</div>
 		
-		<table width="55%">
-
-		<tbody><tr>
-		  <td align="center">
-		
-			<table width="100%"class="schedule_board_list">
-			  <tbody><tr>
-				<th class="number">번호</th>
-				<th class="subject">제목</th>
-				<th class="hit">조회</th>
-				<th class="date">등록일</th>
-			  </tr>
-				<tr th:if="${not #lists.isEmpty(noticeList)} and ${#strings.equals(l.noticeImportant,'[공지]' )}" th:each="l : ${noticeList}">
-					<td class="number" th:if="${l.noticeImportant}" th:text="${l.noticeImportant}"></td>
-					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
-					<td class="hit" th:text="${l.noticeView}"></td>
-					<td class="date" th:text="${l.noticeDate}"></td>
-				</tr>
-				<tr th:if="${not #lists.isEmpty(noticeList)}  and ${#strings.isEmpty(l.noticeImportant)}" th:each="l : ${noticeList}">
-					<td class="number" th:text="${l.noticeNumCode}"></td>
-					<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
-					<td class="hit" th:text="${l.noticeView}"></td>
-					<td class="date" th:text="${l.noticeDate}"></td>
-				</tr>
-				<tr th:unless="${not #lists.isEmpty(noticeList)}">
-					<td style="border-left: 0px;" colspan="4">등록된 게시물이 없습니다.</td>
-				</tr>
-		    </tbody></table>
-		
-		    <table border="0" cellspacing="0" cellpadding="0" width="100%">
-		      <tbody><tr>
-		        <td width="70%" id="notice_page_move">
-		        &nbsp; <b>1</b>&nbsp;
-		        </td>
-		        <td align="right" width="30%">
-		           <a th:href="@{/noticeRegister}"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px" >글쓰기</button></a>
-		        </td>
-		      </tr>
-		    </tbody></table>
-	
+		<table style="width : 55%">
+			<tbody>
+				<tr>
+				  <td align="center">
+						<table style="width : 100%" class="schedule_board_list">
+							<tbody>
+							<tr>
+								<th class="number">번호</th>
+								<th class="subject">제목</th>
+								<th class="hit">조회</th>
+								<th class="date">등록일</th>
+							 </tr>
+			 <!--------------------------------------- start 등록할때 [공지]체크한 게시물 ---------------------------------------------------->
+							 <tr th:if="${not #lists.isEmpty(noticeList)} and ${#strings.equals(l.noticeImportant,'[공지]' )}" th:each="l : ${noticeList}">
+									<td class="number" th:if="${l.noticeImportant}" th:text="${l.noticeImportant}"></td>
+									<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+									<td class="hit" th:text="${l.noticeView}"></td>
+									<td class="date" th:text="${l.noticeDate}"></td>
+							 </tr>
+			<!--------------------------------------- end 등록할때 [공지]체크한 게시물 ---------------------------------------------------->
+								<tr th:if="${not #lists.isEmpty(noticeList)}  and ${#strings.isEmpty(l.noticeImportant)}" th:each="l : ${noticeList}">
+									<td class="number" th:text="${l.noticeNumCode}"></td>
+									<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+									<td class="hit" th:text="${l.noticeView}"></td>
+									<td class="date" th:text="${l.noticeDate}"></td>
+							 </tr>
+							 <tr th:unless="${not #lists.isEmpty(noticeList)}">
+									<td style="border-left: 0px;" colspan="4">등록된 게시물이 없습니다.</td>
+							 </tr>
+						    </tbody>
+						</table>
+				<!--------------------------------------- start 페이징 표시 테이블 ---------------------------------------------------->
+					    <table style="width : 100%; text-align: center;">
+							<tbody>
+								<tr>
+							 		<td id="notice_page_move">
+							 			&nbsp; <b>1</b>&nbsp;
+								 	</td>
+									<td align="right" width="30%">
+								   		<a th:href="@{/noticeRegister}"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px" >글쓰기</button></a>
+								    </td>
+							  </tr>
+							</tbody>
+				  	  	</table>
+			  	 <!--------------------------------------- end 페이징 표시 테이블 ---------------------------------------------------->
+		    		</td>
+		    	</tr>
+		    </tbody>
+	    </table>
+    
+		<!--------------------------------------- start 공지사항 검색 ---------------------------------------------------->
 		<div th:include="customerService/notice/noticeSearch :: noticeSearch"></div>
-		
-		
-		  </td>
-		</tr>
-		</tbody></table>
+		<!--------------------------------------- end 공지사항 검색 ---------------------------------------------------->
 	</div>
 </body>
 </html>

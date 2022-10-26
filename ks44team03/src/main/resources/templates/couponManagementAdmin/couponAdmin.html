@@ -11,6 +11,7 @@
 	<div class="content-wrapper">
 		<h3>쿠폰 리스트</h3>
 		<hr style="width: 70%">
+		
 		<table class="couponList" border="1" style="width: 50%;">
 			<tbody>
 				<tr>
@@ -20,6 +21,7 @@
 					<th >쿠폰 등록 날짜</th>
 					<th style="text-align: center;"> 삭제</th>
 				</tr>
+				<!--------------------------------------- start 쿠폰 리스트 나열 --------------------------------------->
 				<tr th:if="${not #lists.isEmpty(couponList)}" th:each="l : ${couponList}">
 					<td th:text="${l.couponCode}"></td>
 					<td th:text="${l.couponName}"></td>
@@ -32,36 +34,42 @@
 				<tr th:unless="${not #lists.isEmpty(couponList)}">
 					<td style="border-left: 0px;" colspan="4">등록된 쿠폰이 없습니다.</td>
 				</tr>
+				<!--------------------------------------- end 쿠폰 리스트 나열 --------------------------------------->
 			</tbody>
 		</table>
-			<div style="margin-top: 3mm">
-			<button class="incoming_modal_open">쿠폰 등록</button>
-				<form id="couponAddForm" th:action="@{couponAdmin}" method="post">	
-					<div class="modal" style="display: none;">
-		               <div class="incoming_modal_content">
-		                  <h3 style="text-align: center;">쿠폰 추가</h3>
 		
-		                  	<table class="input_table">
-		                  		<tbody>
-		                  		<tr>
-		                  			<th>쿠폰 이름</th>
-		                  			<td><input type="text" placeholder="쿠폰 이름을 입력 해주세요" id="couponName" name="couponName"></td>
-		                  		</tr>
-		                  		<tr>
-		                  			<th>쿠폰 할인금액</th>
-		                  			<td><input type="number" placeholder="할인 금액을 입력 해주세요" id="couponPrice" name="couponPrice"></td>
-		                  		</tr>
-		                  	</tbody></table>
-		                 <div class="incoming_modal_button" align="center">
-		                     <button type="submit" id="incoming_modal_reg" class="add_button">등록</button>
-		                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
-		                 </div>
-		               </div>
-		               <div class="incoming_modal_layer"></div>
-		            </div>
-				</form>
-			</div>
+		<div style="margin-top: 3mm">
+			<!--------------------------------------- start 쿠폰등록 모달창 생성 ---------------------------------------------------->
+			<button class="incoming_modal_open">쿠폰 등록</button>
+			<form id="couponAddForm" th:action="@{couponAdmin}" method="post">	
+				<div class="modal" style="display: none;">
+	               <div class="incoming_modal_content">
+	                  <h3 style="text-align: center;">쿠폰 추가</h3>
+	
+	                  	<table class="input_table">
+	                  		<tbody>
+	                  		<tr>
+	                  			<th>쿠폰 이름</th>
+	                  			<td><input type="text" placeholder="쿠폰 이름을 입력 해주세요" id="couponName" name="couponName"></td>
+	                  		</tr>
+	                  		<tr>
+	                  			<th>쿠폰 할인금액</th>
+	                  			<td><input type="number" placeholder="할인 금액을 입력 해주세요" id="couponPrice" name="couponPrice"></td>
+	                  		</tr>
+	                  	</tbody></table>
+	                 <div class="incoming_modal_button" align="center">
+	                     <button type="submit" id="incoming_modal_reg" class="add_button">등록</button>
+	                     <button type="button" id="incoming_modal_close" class="cancel_button">취소</button>
+	                 </div>
+	               </div>
+	               <div class="incoming_modal_layer"></div>
+	            </div>
+			</form>
+			<!--------------------------------------- end 쿠폰등록 모달창 생성 ---------------------------------------------------->
+		</div>
 	</div>
+	
+	<!--------------------------------------- start 클릭시 쿠폰등록 모달 생성 --------------------------------------->
 	<script type="text/javascript">
    $(function(){
       $(document).on('click', '.incoming_modal_open', function(){
@@ -73,6 +81,9 @@
       });
    });
 	</script>
+		<!--------------------------------------- end 클릭시 쿠폰등록 모달 생성 --------------------------------------->
+	
+	<!--------------------------------------- start 쿠폰 등록시 이름 , 금액이 없으면 alert 생성 --------------------------------------->
 	<script type="text/javascript">
 	$(function(){
 		$('#incoming_modal_reg').click(function(){
@@ -90,7 +101,9 @@
 		
 	})
 	</script>
+	<!--------------------------------------- end 쿠폰 등록시 이름 , 금액이 없으면 alert 생성 --------------------------------------->
 	
+	<!-------------------------------------- start 테이블 삭제 th에 있는 td(쿠폰코드) 누르면 해당 쿠폰 코드로 조회하여 삭제하는 ajax -------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -110,6 +123,8 @@
 		})
 	})
 	</script>
+	<!-------------------------------------- end 테이블 삭제 th에 있는 td(쿠폰코드) 누르면 해당 쿠폰 코드로 조회하여 삭제하는 ajax -------------------------------------->
+
 
 </body>
 </html>

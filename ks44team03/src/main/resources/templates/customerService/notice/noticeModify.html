@@ -7,6 +7,8 @@
       
 <body layout:fragment="content">
 	<div align="center">
+		
+		<!--------------------------------------- start 공지사항 내용 , 수정할 내용  ---------------------------------------------------->
 		<form id="noticeModifyForm" th:action="@{/noticeModify}" method="post">
 			<div style="width: 55%; margin-top: 10mm">
 				<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
@@ -28,8 +30,10 @@
 				<button id="submitBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>	
+		<!--------------------------------------- end 공지사항 내용 , 수정할 내용 ---------------------------------------------------->
 	</div>
-			<!-- 유효성 검사 -->
+	
+		<!--------------------------------------- start 분류 , 제목 , 내용 유효성 검사 ---------------------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#submitBtn').click(function(){
@@ -46,6 +50,6 @@
 				})
 			})
 			</script>
-
+		<!--------------------------------------- end 분류 , 제목 , 내용 유효성 검사 ---------------------------------------------------->
 </body>
 </html>
