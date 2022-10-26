@@ -19,7 +19,10 @@ public class UserOrderService {
 		this.orderMapper = userOrderMapper;
 		this.commonMapper = commonMapper;
 	}
-	// 주문서 정보 등록처리
+	
+	/**
+	 * 주문서 정보 등록처리
+	 */
 	public int addOrderInfo(ApplicationInfo order) {
 		
 		// String newBuyOrderCode = commonMapper.getCommonPkNumCode("order_info","buy_order_code");

@@ -21,7 +21,7 @@
 <div class="top_login_wrap">
 	<div class="wrap">
 
-		<ul class="right_login">
+		<ul class="right_login" style="margin-right:10%;">
 			<li class="cs_bt"><a href="#">고객센터</a></li>
 			<li><a th:if="${session.SID != null}" href='#'>회원수정</a></li>	
 			<li><a th:if="${session.SID == null}"th:href="@{/user/userForm}">회원가입</a></li>	
@@ -31,7 +31,7 @@
 		<div th:if="${session.SID != null}" style="position:relative;">
 			<label>[[${session.SNAME + '님 반갑습니다.'}]]</label>
 		</div>
-		<div th:unless="${session.SID != null}" style="position:relative;">
+		<div th:unless="${session.SID != null}" style="position:relative; margin-left:8%;">
 			<label th:if="${session.TESTID != null}">[[${session.TESTNAME + '님 반갑습니다.'}]]</label>
 		</div>
 
