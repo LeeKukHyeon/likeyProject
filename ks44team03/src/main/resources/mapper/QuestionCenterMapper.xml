@@ -95,7 +95,16 @@
 		mtm_num_code
 	</select>
 
-
+	<!-- 1:1문의 삭제 어드민 답변에서 -->
+	<delete id="deleteQuestionAdmin" parameterType="String">
+	/* 1:1문의 삭제 어드민 답변에서  */
+	delete
+	FROM
+		question_center
+	WHERE
+		mtm_num_code = #{mtmNumCode}
+	</delete>
+	
 	<!-- 1:1문의 삭제 -->
 	<delete id="deleteQuestion" parameterType="String">
 	/* 1:1문의 삭제 */
@@ -107,7 +116,6 @@
 		and
 		mtm_situation = '접수'
 	</delete>
-
 
 	<!-- 1:1문의 답변 -->
 	<update id="regAnswer" parameterType="QuestionCenter">

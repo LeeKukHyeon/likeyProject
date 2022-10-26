@@ -23,6 +23,9 @@ public interface CustomerQuestionMapper {
 	//1:1문의 검색
 	public List<QuestionCenter> searchQuestion(Map<String, Object> searchMap);
 	
+	//1:1문의 삭제 어드민 답변에서
+	public int deleteQuestionAdmin(String mtmNumCode);
+	
 	//1:1문의 삭제
 	public int deleteQuestion(String mtmNumCode);
 	

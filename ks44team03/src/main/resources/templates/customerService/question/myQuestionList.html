@@ -35,6 +35,8 @@
 		</tbody></table>
 		<!-- 게시판 끝 -->
 			
+			
+		<!--------------------------------------- start 내용으로 검색하기 ---------------------------------------------------->	
 		<div th:fragment="myQuestionSearch" >
 	        <form th:action="@{/myQuestionList}" method="post">
 	        	<select name="searchKey" style="margin-top: 5mm;">
@@ -44,6 +46,7 @@
         		<button id="searchBtn" type="submit">검색</button>
 	        </form>		
         </div>	
+        <!--------------------------------------- end 내용으로 검색하기 ---------------------------------------------------->
 	</div>
 	
 </body>

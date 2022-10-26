@@ -14,27 +14,31 @@
 			<hr style="height: 1px; background: gray;">
 		</div>
 	
-		<!-- 게시판 -->
+	<!--------------------------------------- start 배송스케줄 리스트를 확인하는 테이블 태그 ---------------------------------------------------->	
 		<table width="50%" border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_list" style="margin: auto;">
-		  <tbody><tr>
-		    <th class="number">번호</th>
-			<th class="subject">제목</th>
-			<th class="date">등록일</th>
-			<th class="hit">조회</th>
-		  </tr>
-		  <tr th:if="${not #lists.isEmpty(ScheduleList)}" th:each="l : ${ScheduleList}">
-		    <td class="number" th:text="${l.scheduleNumCode}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/deliveryScheduleSearchRead(scheduleNumCode=${l.scheduleNumCode})}" th:text="${l.scheduleTitle}"  ></a></td>
-			<td class="date" th:text="${l.scheduleDate}"></td>
-			<td class="hit" th:text="${l.scheduleView}"></td>
-		  </tr>
-		  <tr th:unless="${not #lists.isEmpty(ScheduleList)}">
-		  	<td style="border-left: 0px;" colspan="4">등록된 게시물이 없습니다.</td>
-		  </tr>
-		</tbody></table>
+			<tbody>
+				<tr>
+				    <th class="number">번호</th>
+					<th class="subject">제목</th>
+					<th class="date">등록일</th>
+					<th class="hit">조회</th>
+				</tr>
+				<tr th:if="${not #lists.isEmpty(ScheduleList)}" th:each="l : ${ScheduleList}">
+				    <td class="number" th:text="${l.scheduleNumCode}"></td>
+					<td class="subject" style="width: 30%"><a th:href="@{/deliveryScheduleSearchRead(scheduleNumCode=${l.scheduleNumCode})}" th:text="${l.scheduleTitle}"  ></a></td>
+					<td class="date" th:text="${l.scheduleDate}"></td>
+					<td class="hit" th:text="${l.scheduleView}"></td>
+				</tr>
+				<tr th:unless="${not #lists.isEmpty(ScheduleList)}">
+				  	<td style="border-left: 0px;" colspan="4">등록된 게시물이 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+	<!--------------------------------------- start 배송스케줄 리스트를 확인하는 테이블 태그 ---------------------------------------------------->
+		
 		<!-- //게시판 -->
 		<div style="width: 950px" align="left">
-   		         <a th:href="@{/deliveryScheduleRegister}" style="float: right; padding-top: 4px;"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px;" >글쓰기</button></a>
+			<a th:href="@{/deliveryScheduleRegister}" style="float: right; padding-top: 4px;"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px;" >글쓰기</button></a>
         </div>
 		<div style="height: 15px"></div>
 
