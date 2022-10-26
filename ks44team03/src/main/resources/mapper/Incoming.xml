@@ -219,12 +219,15 @@
 			goods_info AS g
 		INNER JOIN 
 			order_info AS o			
-		ON g.buy_order_code = o.buy_order_code
+		ON 
+			g.buy_order_code = o.buy_order_code
 		
 		
-		WHERE g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
-		
-		GROUP BY o.buy_order_code
+		WHERE 
+			g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') 
+			AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+		GROUP BY 
+			o.buy_order_code;
 	 
 	 </select>
 	 
@@ -241,7 +244,7 @@
 		
 		WHERE g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
 		
-		GROUP BY o.buy_order_code
+		GROUP BY o.buy_order_code;
 	 
 	 </select>
 	 

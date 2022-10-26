@@ -37,7 +37,7 @@
 					  </tr>
 					  <tr>
 					    <td class="td1">구매 사이트</td>
-						<td class="td2"><input type="text" name="mall_cd" th:value="${applicationEdit[0].gSite}"  maxlength='100' class="input_"></td>
+						<td class="td2"><input type="text" name="mall_cd" th:value="${applicationEdit[0].gSite}"  onchange="this.value=this.value.replace(/[^.0-9]/g,'' maxlength='100' class="input_"></td>
 					  </tr>
 					  <tr>
 					    <td class="td1">대표 상품명</td>
