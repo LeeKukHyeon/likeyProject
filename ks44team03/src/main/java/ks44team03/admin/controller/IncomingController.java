@@ -29,7 +29,7 @@ import ks44team03.dto.IncomingInfo;
 import ks44team03.dto.OrderInfo;
 import ks44team03.dto.PageMakerDTO;
 
-@RequestMapping("/admin")
+
 @Controller
 public class IncomingController {
 
