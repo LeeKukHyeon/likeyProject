@@ -10,7 +10,7 @@
 	
 		<div style="width: 50%">
 			<h2 align="left">나의 문의 내역</h2>
-			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{myQuestion}">나의 문의 내역</a></p>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/user/myQuestion}">나의 문의 내역</a></p>
 			<hr style="height: 1px; background: gray;">
 		</div>
 	
@@ -25,7 +25,7 @@
 		  </tr>
   		  <tr th:if="${not #lists.isEmpty(QuestionList)}" th:each="l : ${QuestionList}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/myQuestionRead(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/user/myQuestionRead(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="situation" th:text="${l.mtmSituation}"></td>
 		  </tr>
@@ -38,7 +38,7 @@
 			
 		<!--------------------------------------- start 내용으로 검색하기 ---------------------------------------------------->	
 		<div th:fragment="myQuestionSearch" >
-	        <form th:action="@{/myQuestionList}" method="post">
+	        <form th:action="@{/user/myQuestionList}" method="post">
 	        	<select name="searchKey" style="margin-top: 5mm;">
 	        		<option value="mtmContent">내용</option>
 	        	</select>

@@ -9,10 +9,10 @@
 	<div align="center">
 		
 		<!--------------------------------------- start 공지사항 내용 , 수정할 내용  ---------------------------------------------------->
-		<form id="noticeModifyForm" th:action="@{/noticeModify}" method="post">
+		<form id="noticeModifyForm" th:action="@{/user/noticeModify}" method="post">
 			<div style="width: 55%; margin-top: 10mm">
 				<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
-				<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeList}">공지사항</a></p>
+				<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/user/noticeList}">공지사항</a></p>
 				<hr width="100%" color="gray">
 				<div>
 				 	<input id="noticeNumCode" name="noticeNumCode" th:value="${noticeRead.noticeNumCode}" style="display: none;">
@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<hr width="100%" color="gray">
-				<a th:href="@{noticeList}"><input type="button" value="목록" style="float: left;"></a>
+				<a th:href="@{/user/noticeList}"><input type="button" value="목록" style="float: left;"></a>
 				<button id="submitBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>	

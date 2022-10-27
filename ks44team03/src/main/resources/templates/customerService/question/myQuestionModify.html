@@ -9,7 +9,7 @@
 	<div align="center">
 	
 	<!--------------------------------------- start 분류 제목 내용 수정하는 테이블 ---------------------------------------------------->
-		<form id="myQuestionModifyForm" th:action="@{/myQuestionModify}" method="post">
+		<form id="myQuestionModifyForm" th:action="@{/user/myQuestionModify}" method="post">
 			<table border="1" style="width: 50%">
 				<tbody>
 					<tr>
@@ -59,7 +59,7 @@
 				</tbody>
 			</table>
 			<div style="width: 50%; margin-top: 3mm">
-			<a th:href="@{/myQuestionList}"><input type="button" value="취소" style="float: right; margin-left: 3mm"></a>
+			<a th:href="@{/user/myQuestionList}"><input type="button" value="취소" style="float: right; margin-left: 3mm"></a>
 			<button id="subminBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>
