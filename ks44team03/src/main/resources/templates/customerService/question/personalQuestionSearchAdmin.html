@@ -5,13 +5,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-	<link rel="stylesheet" href="assets/css/temporarily.css">
+	<link rel="stylesheet" href="/assets/css/temporarily.css">
 </head>
 
 
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
-		<!-- 게시판 -->
+	
 	<div id="selectBoxP">		
 		<select id="selectBox" name="selectBox">
 			<option value="" selected>전체</option>
@@ -29,6 +29,7 @@
 			<th class="date" style="width: 20%">등록일</th>
 			<th class="situation" style="width: 23%">처리상태</th>
 		  </tr>
+ <!--------------------------------------- start select option의 값, 상태에 따라 show hide 하기 위함 ---------------------------------------------------->
  		<tr class="nomal" th:each="l : ${QuestionList}" style="display: none;">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
@@ -57,15 +58,16 @@
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 		  </tr>
+ <!--------------------------------------- end select option의 값, 상태에 따라 show hide 하기 위함 ---------------------------------------------------->
 		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
   			<td style="border-left: none;" colspan="5">등록된 게시물이 없습니다.</td>
 		  </tr>
 		</tbody></table>
-		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
 		
-		<!-- //게시판 -->
+<!--------------------------------------- start 제목, 회원아이디  , 내용  검색---------------------------------------------------->
+		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
+<!--------------------------------------- end 제목, 회원아이디  , 내용  검색---------------------------------------------------->		
 
-		<!-- 숫자 -->
 		<table border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_num">
 		  <tbody><tr>
 			<td class="numbering">
@@ -80,7 +82,7 @@
 	</div>
 	
 	
-	<!-- SELECT OPTION의 VALUE에 따른 처리상태 화면 변화 -->
+	<!---------------------------------------- start SELECT OPTION의 VALUE에 따른 처리상태 화면 변화 ---------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#selectBox').change(function(){
@@ -113,5 +115,7 @@
 		}})
 	})
 	</script>
+	<!---------------------------------------- end SELECT OPTION의 VALUE에 따른 처리상태 화면 변화 ---------------------------------------->
+	
 </body>
 </html>

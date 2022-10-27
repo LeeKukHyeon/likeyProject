@@ -42,8 +42,9 @@ public class MypageController {
 	
 	
 	@PostMapping("/user/applicationEdit")
-	public String resultApplicationEdit(OrderInfo orderInfo) {
+	public String resultApplicationEdit(OrderInfo orderInfo,GoodsInfo goodsInfo) {
 		System.out.println(orderInfo);
+		
 		return "redirect:mypageScreen";
 	}
 
@@ -87,8 +88,13 @@ public class MypageController {
 
 	//마이페이지 
 	@GetMapping("/user/mypageScreen")
-	public String mypage(Model model) {
-		String u_id = "id001";
+	public String mypage(Model model, HttpSession session) {
+		String u_id = null;	
+		if (session.getAttribute("TESTID") == null) {
+			u_id = (String)session.getAttribute("SID");
+		}else {
+			u_id = (String)session.getAttribute("TESTID");
+		}
 		List<UserInfo> userInfo = mypageService.getUserList(u_id);
 		List<Grade> grade = mypageService.nextGrade(u_id);
 		List<MyPageCount> count = mypageService.count(u_id);

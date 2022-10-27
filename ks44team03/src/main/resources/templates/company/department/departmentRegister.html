@@ -29,11 +29,11 @@
 						</td>
 					</tr> -->
 				    <tr>
-						<th class="td1">사업장이름</th>	
+						<th class="td1">사업장</th>	
 						<td class="td2">
 							<select name="deWorkPlaceCode">
 								<th:block th:if="${not #lists.isEmpty(workPlaceList)}" th:each="l : ${workPlaceList}">
-									<option th:value="${l.workPlaceCode}" th:text="${l.workPlaceName}"></option>
+									<option th:value="${l.workPlaceCode}" th:text="${l.wpCompanyNumber}"></option>
 								</thLblock>
 								<th:block th:unless="${not #lists.isEmpty(workPlaceList)}">
 									<option value="">등록된 사업장이름이 없습니다.</option>

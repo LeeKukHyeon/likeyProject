@@ -45,6 +45,7 @@
 		<result column="out_company" property="outCompany"/>
 		<association property="goodsInfoDto" javaType="GoodsInfo">
 			<id column="goods_info_code" property="goodsInfoCode"/>
+			<result column="buy_order_code" property="buyOrderCode"/>
 			<result column="likey_pass" property="likeyPass"/>
 		</association>
 	</resultMap>
@@ -77,17 +78,64 @@
 	 	SELECT 
 			g.goods_info_code	AS goodsInfoCode
 			,g.likey_pass		AS likeyPass
+			,i.approval			AS incomingApproval
 		FROM 
 			goods_info AS g 
-		inner JOIN 
+		INNER JOIN 
 			delivery_current_state AS d 
 		ON 
-			g.goods_info_code = d.goods_info_code 
+			g.goods_info_code = d.goods_info_code
+		INNER JOIN
+			incoming AS i
+		ON
+			d.goods_info_code = i.goods_info_code
 		WHERE 
 			d.stat_info = '입고 완료' AND g.goods_info_code = #{goodsInfoCode};
 	 </select>
 	 
+	<update id="regForwarding" parameterType="IncomingInfo">
+		/* 출고 등록 */
+		UPDATE incoming
+		SET
+			 send_out = curdate()
+			,out_tracking_num = #{outTrackingNum}
+			,out_company = #{outCompany}
+		WHERE
+			goods_info_code = #{goodsInfoCode};
+	</update>
+	
+	<update id="updateForwarding" parameterType="String">
+		/* 출고 등록 상태 업데이트 */
+		UPDATE delivery_current_state
+		SET		
+			stat_info='출고 완료'
+		WHERE
+		goods_info_code = #{goodsInfoCode};
+	</update>
 	 
+	 <select id="forwardingList" resultMap="incomingListResultMap">
+		/*출고완료 상품목록*/
+		SELECT
+			  i.goods_info_code
+			 ,g.buy_order_code
+			 ,i.e_code
+			 ,i.out_company
+			 ,i.out_tracking_num
+			 ,i.send_out
+		FROM
+			incoming AS i
+		INNER JOIN
+			goods_info AS g
+		ON
+			i.goods_info_code = g.goods_info_code
+		INNER JOIN
+			delivery_current_state AS d
+		ON
+			d.goods_info_code = g.goods_info_code
+		WHERE
+			d.stat_info = '출고 완료'
+		ORDER BY i.send_out;
+	</select>	
 	 
 	 
 </mapper>

@@ -85,4 +85,7 @@ public interface IncomingMapper {
 	
 	//오류입고 상태 업데이트
 	public void updateErrorIncoming(String goodsInfoCode);
+	
+	//오류입고 물품 처리 상태 업데이트
+	public int updateErrorState(String goodsInfoCode, String errorState);
 }

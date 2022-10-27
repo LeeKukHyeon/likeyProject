@@ -12,6 +12,8 @@
 	<div align="center">
 	
 	<h2 style="font-family: serif; margin-right: auto; width: 61%;">배송 스케줄 등록</h2>
+	
+	<!---------------------------------------- start 배송스케줄 등록하는 테이블 form 태그 ---------------------------------------->
 		<form name="form1" id="regScheduleForm" th:action="@{/deliveryScheduleRegister}" method="post">
 			<table border="1" style="width: 51%">
 				<tbody>
@@ -37,7 +39,7 @@
 							<input type="text" readonly style="width: 500px; margin-left: 18px; background: #dcdcdc;" id="fileName3" class="fileName"> 
 							<input type="file" value="파일찾기" style="margin-top: 3mm;" accept=".jpg, .png, .gif, .pdf" id="imgcheck3">
 							
-							<!-- 이미지파일 input 넣기 -->
+				<!--------------------------------------- start 이미지 파일 선택시 옆 input에 파일명이 들어가는 jquery---------------------------------------------------->
 							<script type="text/javascript">
 							$('#imgcheck1').change(function(){
 								var check = $('#imgcheck1').val();
@@ -61,6 +63,7 @@
 								$('#fileName3').val(check2);
 							})
 							</script>
+				<!--------------------------------------- end 이미지 파일 선택시 옆 input에 파일명이 들어가는 jquery---------------------------------------------------->
 							
 						
 						
@@ -71,8 +74,11 @@
 			</table>
 			<div style="width: 51%; margin-top: 10px"align="right"><button id="submitBtn" type="submit"style="margin-left: auto;">배송스케줄 등록</button></div>
 		</form>
+		
+	<!---------------------------------------- start 배송스케줄 등록하는 테이블 form 태그 ---------------------------------------->
+		
 	</div>
-			<!-- 유효성 검사 -->
+	<!--------------------------------------- start 제목 내용의 빈값을 확인하는 jquery ---------------------------------------------------->
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#submitBtn').click(function(){
@@ -89,6 +95,7 @@
 				})
 			})
 			</script>
+	<!--------------------------------------- end 제목 내용의 빈값을 확인하는 jquery ---------------------------------------------------->
 
 </body>
 </html>

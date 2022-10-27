@@ -22,7 +22,14 @@ public class AdminOrderController {
 	public AdminOrderController(AdminOrderService orderService) {
 		this.orderService = orderService;
 	}
-	
+	// 접수완료 화면
+	@GetMapping("/receiptPage")
+	public String receiptPage(Model model) {
+		
+		model.addAttribute("title", "접수완료");
+		return "orderList//receiptPage";
+	}
+	// 프랜즈 주문서 목록
 	@GetMapping("/friendsOrderList")
 	public String orderList(Model model) {
 		
@@ -32,10 +39,15 @@ public class AdminOrderController {
 		model.addAttribute("title", "프렌즈 주문서목록");
 		return "orderList/friendsOrderList";
 	}
-	
-	@GetMapping("goodsInfo")
-	public String goodsInfo(Model model) {
+	// 주문서 상품 상세조회
+	@GetMapping("/goodsInfo")
+	public String goodsInfo(@RequestParam(name="goodsInfoCode")String goodsInfoCode, Model model) {
 		
+		GoodsInfo goodsInfoBy = orderService.getGoodsInfoBy(goodsInfoCode);
+		List<GoodsInfo> friendsOrderList = orderService.getFriendsOrderList();
+		
+		model.addAttribute("goodsInfoBy", goodsInfoBy);
+		model.addAttribute("friendsOrderList", friendsOrderList);
 		model.addAttribute("title", "상품 상세정보");
 		return "orderList/goodsInfo";
 	}

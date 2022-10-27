@@ -211,8 +211,10 @@
 		INNER JOIN order_state AS os 
 			ON o.buy_order_code = os.buy_order_code
 		WHERE 
-			o.step3 = #{stat_info}  
-			AND o.id = #{u_id};
+			o.step3 = 'n' 
+			AND o.id = #{u_id}
+		group by 
+			o.buy_order_code;
 		
 		
 	</select>	
@@ -223,8 +225,8 @@
 		
 	<select id="shipOrderApi" parameterType="map" resultType="shipOrderApi">
 		/*목록 출력*/
-		 
-		SELECT 
+		 WITH test AS 
+		(SELECT 
 			 o.logistics_center as logisticsCenter
 			,o.goods_order_date as goodsOrderDate
 			,g.tracking_num as trackingNum
@@ -251,14 +253,66 @@
 		INNER JOIN order_state AS os 
 			ON o.buy_order_code = os.buy_order_code
 		where 
-			g.id = #{u_id} and d.stat_info = #{stat_info} 
-		GROUP BY 
-			g.grouping_delivery, d.stat_info;
+			g.id = #{u_id} 
+			/*배송대행 신청서 작성*/
+			<if test="q_status_name == 'orderType1'">
+			
+					and o.step3 = 'y' 
+					and g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='y') 
+					and o.buy_way = '배송대행' 				
+				GROUP BY 
+					o.buy_order_code;
+			</if>
+			
+			/*구매대행 신청서 작성*/
+			<if test="q_status_name == 'buyingItem'">
+			
+				and o.step3 = 'y' 
+				and g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='y') 
+				and o.buy_way = '구매대행' 				
+			GROUP BY 
+				o.buy_order_code;
+			</if>
+			
+			/*창고도착*/
+			<if test="q_status_name == 'Arrived'">
+			
+				and o.step3 = 'y' 
+				and g.arrival='y' 
+				and d.stat_info = '입고 완료'  				
+			GROUP BY 
+				o.buy_order_code;
+				
+			</if>		
+			
+			<if test="q_status_name == 'PartialStock'">
+				and g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') 
+				AND g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')
+				and g.arrival='y'; 			
+				
+			</if>	
+			
+			<if test="q_status_name == 'AllIn'">
+				and d.stat_info ="입고 완료"
+				and g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n')
+				and g.arrival='y' 			
+				and o.step3 = 'y'			
+				
+			</if>	
+			
+			<if test="q_status_name == 'Err'">
+				and d.stat_info ="오류입고"
+								
+			</if>	
+			
+			
+			)
+			SELECT * FROM test WHERE test.logisticsCenter IS NOT NULL;
 	</select>
 		
 		
 	<select id="weightCheckPostponeCount" parameterType="String" resultType="int">
-		/* 무게측정 및 출고보류 갯수*/
+		/* 무게측정 및 출고보류 개수*/
 		SELECT 
 			count(*) 
 		FROM 
@@ -283,7 +337,7 @@
 	</select>
 	
 	<select id="weightCheckPaymentCount" parameterType="String" resultType="int">
-		/* 무게측정 및 출고대기/결제완료 갯수*/
+		/* 무게측정 및 출고대기/결제완료 개수*/
 		SELECT 
 			count(*) 
 		FROM 
@@ -304,7 +358,7 @@
 	</select>
 	
 	<select id="weightCheckNopaymentCount" parameterType="String" resultType="int">
-		/* 무게측정 및 출고대기/결제대기 갯수*/
+		/* 무게측정 및 출고대기/결제대기 개수*/
 		SELECT 
 			COUNT(*) 
 		FROM 
@@ -329,44 +383,66 @@
 	
 	<select id="allArrivedCount" parameterType="String" resultType="int">
 			/*도착완료 카운트*/
-		SELECT 
-			COUNT(*) 
-		FROM
-			 goods_info AS g 
+		select 
+			COUNT(if((d.stat_info ="입고 완료" ) 
+			AND (g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n')) 
+			AND (g.id = #{u_id}) 
+			AND (g.arrival='y')
+			and (o.step3 = 'y')
+			,1,null)) 
+		FROM 
+			goods_info AS g
 		INNER JOIN 
-			grouping_delivery_check AS d 
+			order_info AS o			
 		ON 
-			g.grouping_delivery = d.grouping_delivery
-		 WHERE 
-		 	d.incoming_check = 'y' AND g.id = #{u_id};
+			g.buy_order_code = o.buy_order_code
+		inner join
+			delivery_current_state as d
+		on 
+			g.goods_info_code = d.goods_info_code
 	</select>
 	
 	<select id="partialIncomingCount" parameterType="String" resultType="int">
 		/*일부입고 카운트*/
-		SELECT
-			 COUNT(if(arrival='y',1,null)) 
+		select 
+			COUNT(if((g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='n') ) 
+			AND (g.buy_order_code IN (SELECT buy_order_code FROM goods_info WHERE arrival='y')) 
+			AND (g.id = #{u_id}) 
+			AND (g.arrival='y')
+			and (d.stat_info='입고 완료'),1,null)) 
 		FROM 
-			goods_info AS g 
+			goods_info AS g
 		INNER JOIN 
-			grouping_delivery_check AS d 
+			order_info AS o			
 		ON 
-			g.grouping_delivery = d.grouping_delivery
-		WHERE 
-			d.incoming_check = 'n' AND g.id = #{u_id};
+			g.buy_order_code = o.buy_order_code
+		inner join
+			delivery_current_state as d
+		on 
+			g.goods_info_code = d.goods_info_code
+	
+	 
 	</select>
 	
 	<select id="warehouseArrivalCount" parameterType="String" resultType="int">
 		/*창고도착 카운트*/
-		SELECT 
-			COUNT(*) 
+		select 
+			COUNT(if((d.stat_info ="입고 완료" ) 
+			AND (g.buy_order_code not IN (SELECT buy_order_code FROM goods_info WHERE arrival='n')) 
+			AND (g.id = 'id001') 
+			AND (g.arrival='y')
+			and (o.step3 = 'y')
+			and (d.stat_info='입고 완료'),1,null)) 
 		FROM 
-			goods_info AS g 
-		inner JOIN 
-			delivery_current_state AS d 
+			goods_info AS g
+		INNER JOIN 
+			order_info AS o			
 		ON 
-			g.goods_info_code = d.goods_info_code 
-		WHERE 
-			d.stat_info ="입고 완료" AND g.id = #{u_id};
+			g.buy_order_code = o.buy_order_code
+		inner join
+			delivery_current_state as d
+		on 
+			g.goods_info_code = d.goods_info_code
 	</select>
 	
 	<select id="purchaseApplication" parameterType="String" resultType="int">

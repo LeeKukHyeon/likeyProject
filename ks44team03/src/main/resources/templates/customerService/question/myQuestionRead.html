@@ -8,6 +8,9 @@
 
 <body layout:fragment="content">
 	<div align="center">
+	
+	
+		<!--------------------------------------- start 1:1문의 게시글 읽기 ----------------------------------------------------->
 		<table border="1" style="width: 50%">
 			<tbody>
 				<tr>
@@ -52,15 +55,17 @@
 				</tr>
 			</tbody>
 		</table>
+		<!--------------------------------------- end 1:1문의 게시글 읽기 ---------------------------------------------------->
+		
 		<div style="width: 50%; margin-top: 3mm">
 		<input id="checkState" th:value="${QuestionRead.mtmSituation}" style="display: none;">
-		<a th:href="@{/myQuestionList}"><input type="button" value="목록" style="float: left;"></a>
+		<a th:href="@{/user/myQuestionList}"><input type="button" value="목록" style="float: left;"></a>
 		<input id="deleteBtn" type="button" value="삭제하기" style="float: right; margin-left: 3mm;">
 		<input id="ajaxCheck" style="display: none;" th:value="${QuestionRead.mtmNumCode}">
-		<a th:href="@{/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input id="modify" type="button" value="수정하기" style="float: right;"></a>
+		<a th:href="@{/user/myQuestionModify(mtmNumCode=${QuestionRead.mtmNumCode})}"><input id="modify" type="button" value="수정하기" style="float: right;"></a>
 		</div>
 	</div>
-	<!-- 접수 상태인것만 수정 가능 -->
+	<!--------------------------------------- start 상태가 접수가 아니면 수정버튼이 비활성화 되는 jquery  ---------------------------------------------------->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var checkState = $('#checkState').val()
@@ -69,9 +74,9 @@
 			}
 		})
 	</script>
+	<!--------------------------------------- end 상태가 접수가 아니면 수정버튼이 비활성화 되는 jquery  ---------------------------------------------------->
 
-
-	<!-- 유효성 검사 -->
+	<!--------------------------------------- start 카테고리 제목 내용 빈값 확인하는 jquery  ---------------------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#mtmSituation').click(function(){
@@ -93,8 +98,9 @@
 		})
 	})
 	</script>
+	<!--------------------------------------- end 카테고리 제목 내용 빈값 확인하는 jquery  ---------------------------------------------------->
 	
-	<!-- 삭제 클릭 ajax -->
+	<!--------------------------------------- start 처리 상태가 접수 인것만 삭제가 가능한 ajax  ---------------------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 			
@@ -104,22 +110,22 @@
 			var checkState = $('#checkState').val()
 			
 			$.ajax({
-				url : '/deleteQuestion',
+				url : '/user/deleteQuestion',
 				type : 'POST',
 				data : {"mtmNumCode" : mtmNumCode},
 				success : function(data){
 					if(data == 1){
-						window.location.replace("/myQuestionList")
+						window.location.replace("/user/myQuestionList")
 					}
 					if(data == 0){
 						alert('처리 상태가 접수중이 아닌 문의는 삭제가 불가능 합니다.')
-						return false;
 					}
 				}
 			})
 		})
 	})
 	</script>
+	<!--------------------------------------- end 처리 상태가 접수 인것만 삭제가 가능한 ajax  ---------------------------------------------------->
 	
 </body>
 </html>

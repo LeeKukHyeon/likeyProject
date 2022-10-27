@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +30,7 @@ public class CustomerQuestionController {
 		this.customerQuestionService = customerQuestionService;
 		
 	}
-	
+		
 	@PostConstruct
 	public void customerQuestionService() {
 		
@@ -38,7 +39,7 @@ public class CustomerQuestionController {
 
 	
 	//내문의내역 페이지 내용 검색
-	@PostMapping("/myQuestionList")
+	@PostMapping("/user/myQuestionList")
 	public String myQuestionSearch(@RequestParam(value = "searchKey" ) String sk , @RequestParam(value = "searchValue") String sv , Model model) {
 		
 		if ("mtmContent".equals(sk)) {
@@ -57,7 +58,7 @@ public class CustomerQuestionController {
 		model.addAttribute("QuestionList", QuestionList);
 		model.addAttribute("sv", sv);
 		
-		return "customerService/question/myQuestionList";
+		return "user/customerService/question/myQuestionList";
 	}
 	
 	//1:1문의 검색
@@ -86,8 +87,20 @@ public class CustomerQuestionController {
 		return "customerService/question/personalQuestionSearchAdmin";
 	}
 	
+	//1:1문의 삭제 어드민 답변에서
+	@PostMapping("/deleteQuestionAdmin")
+	@ResponseBody
+	public int deleteQuestionAdmin(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
+		
+		int result = customerQuestionService.deleteQuestionAdmin(mtmNumCode);
+		
+		return result;
+		
+	}
+		
+	
 	//1:1문의 삭제
-	@PostMapping("/deleteQuestion")
+	@PostMapping("/user/deleteQuestion")
 	@ResponseBody
 	public int deleteQuestion(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
 		
@@ -98,19 +111,19 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1문의 수정
-	@PostMapping("/myQuestionModify")	
+	@PostMapping("/user/myQuestionModify")	
 	public String myQuestionModify(QuestionCenter questionCenter) {
 		
 		customerQuestionService.myQuestionModify(questionCenter);
 		System.out.println(questionCenter + ":::::::::::::::::: 1:1문의 수정 값 받아오는거");
 		
 		
-		return "redirect:/myQuestionList";
+		return "redirect:/user/myQuestionList";
 		
 	}
 	
 	//1:1문의 수정
-	@GetMapping("/myQuestionModify")
+	@GetMapping("/user/myQuestionModify")
 	public String myQuestionModify(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
 		//1:1문의 내용
@@ -123,7 +136,7 @@ public class CustomerQuestionController {
 	
 	
 	//1:1문의 등록
-	@PostMapping("/personalQuestionRegister")
+	@PostMapping("/user/personalQuestionRegister")
 	public String regQuestion(QuestionCenter questionCenter) {
 		
 		
@@ -131,12 +144,12 @@ public class CustomerQuestionController {
 		System.out.println(questionCenter + "처리상태 테스트 @$@#$@!Q$!@$#");
 		
 		
-		return "redirect:/myQuestionList";
+		return "redirect:/user/myQuestionList";
 	}
 	
 
 	// 1:1문의 등록
-	@GetMapping("/personalQuestionRegister")
+	@GetMapping("/user/personalQuestionRegister")
 	public String regCustomerQuestion() {
 		
 		
@@ -144,7 +157,7 @@ public class CustomerQuestionController {
 	}
 	
 	//나의 문의 게시글 보기
-	@GetMapping("/myQuestionRead")
+	@GetMapping("/user/myQuestionRead")
 	public String viewMyQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode, Model model) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
@@ -164,10 +177,10 @@ public class CustomerQuestionController {
 		customerQuestionService.regAnswer(questionCenter);
 		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
 		
-		return "redirect:personalQuestionSearchAdmin";
+		return "redirect:/personalQuestionSearchAdmin";
 		
 	}
-	
+		
 	//1:1문의 게시글 관리자 조회 , 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
 	@GetMapping("/personalQuestionAnswerRegister")
 	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode,  QuestionCenter questionCenter ,  Model model ) {
@@ -186,7 +199,7 @@ public class CustomerQuestionController {
 	}
 	
 	//나의 문의 내역 보기
-	@GetMapping("/myQuestionList")
+	@GetMapping("/user/myQuestionList")
 	public String viewMyQuestion(Model model) {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();

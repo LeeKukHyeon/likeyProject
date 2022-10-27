@@ -10,8 +10,10 @@
 <body layout:fragment="adminContent">
 	<div class="content-wrapper">
 	
+			<!--------------------------------------- start 회원아이디, 쿠폰이름으로 검색 --------------------------------------->
 			<div th:include="couponManagementAdmin/searchCoupon :: searchCoupon"></div>
-	
+			<!--------------------------------------- end 회원아이디, 쿠폰이름으로 검색 --------------------------------------->
+			
 		<table class="couponList" border="1" style="width: 70%; margin-top: 5mm">
 			<thead>
 				<tr>
@@ -26,6 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
+				<!--------------------------------------- start 회원이 보유한 쿠폰 리스트 나열 --------------------------------------->
 				<tr class="checkTr" th:id="${l.cEDate}" th:if="${not #lists.isEmpty(couponUserList)}" th:each="l : ${couponUserList}">
 					<td th:text="${l.csCode}"></td>
 					<td th:text="${l.cCode}"></td>
@@ -36,10 +39,15 @@
 					<td th:text="${l.cUseDate}"></td>
 					<td style="text-align: center;" th:text="${l.cUse}"></td>
 				</tr>
+				<tr th:unless="${not #lists.isEmpty(couponUserList)}">
+					<td style="border-left: 0px;" colspan="4">쿠폰을 보유한 회원이 없습니다.</td>
+				</tr>
+				<!--------------------------------------- end 회원이 보유한 쿠폰 리스트 나열 --------------------------------------->	
 			</tbody>
 		</table>
 	</div>
 	
+	<!--------------------------------------- start 날짜 조건으로 유효기간 검색하는 jquery --------------------------------------->
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#proviso').click(function(){
@@ -50,6 +58,9 @@
 			if((dateFCheck == null || dateFCheck == 'undefined' ||  dateFCheck == '')
 				&& (dateScheck == null || dateScheck == 'undefined' ||  dateScheck == '')){
 				alert('날짜를 설정 해주세요')
+				return false;
+			}else if (dateFCheck > dateScheck){
+				alert('날짜를 제대로 설정 해주세요')				
 				return false;
 			}
 			
@@ -72,6 +83,7 @@
 		})
 	})
 	</script>
+	<!--------------------------------------- end 날짜 조건으로 유효기간 검색하는 jquery --------------------------------------->
 	
 </body>
 </html>

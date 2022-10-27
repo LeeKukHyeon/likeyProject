@@ -5,9 +5,21 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 
-	<style></style>
+	<th:block layout:fragment="customStyle">
+		<style>
+			#applicationBtn{
+				background: url( "/image/S_shipping_form_bt_01.gif" ) no-repeat;
+        		border: none;
+        		width: 240px;
+        		height: 60px;
+        		cursor: pointer;
+			}
+		</style>
+    </th:block>
 
 	<body layout:fragment="content">
+		
+		
 		<div id = "body_container">
 		<div class="container" >
 		
@@ -22,7 +34,7 @@
 					
 					
 				</div>
-				<form name="f" action="/user/applicationEdit" method="post" enctype="multipart/form-data" onSubmit="return data_check('insert');">
+				<form id="applicationForm" action="/user/applicationEdit" method="post" enctype="multipart/form-data" onSubmit="return data_check('insert');">
 						<div class="detail_box1_wrap">
 							<div class="title" >물류센터 :  <font th:text="${applicationEdit[0].orderInfoDto.logisticsCenter}">#</font></div>
 							<input type="hidden" name="logisticsCenter" th:value="${applicationEdit[0].orderInfoDto.logisticsCenter}">
@@ -40,7 +52,7 @@
 							  </tr>
 							  <tr>
 							    <td class="td1">구매 사이트</td>
-								<td class="td2"><input type="text" name="mall_cd" th:value="${applicationEdit[0].gSite}"  maxlength='100' class="input_"></td>
+								<td class="td2"><input type="text" name="gSite" th:value="${applicationEdit[0].gSite}"  maxlength='100' class="input_"></td>
 							  </tr>
 							  <tr>
 							    <td class="td1">대표 상품명</td>
@@ -94,7 +106,7 @@
 																		<div>브랜드</div>
 																		<div class="icon_text" title="부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다."><img src='/image/S_shipping_form_icon_10.gif'></div>
 																	</td>
-																	<td class="td2"><input type="text" name="package_brand[]" th:value="${l.gBrand}"  maxlength="190" ></td>
+																	<td class="td2"><input type="text" name="gBrand" th:value="${l.gBrand}"  maxlength="190" onchange="this.value=this.value.replace(/[^.0-9]/g,'')"></td>
 																	<td class="td1 td3">상품가</td>
 																	<td class="td2">
 																	<input type="text" name="package_unitprice[]" th:value="${l.goodsPrice}"  onBlur="getOrderAmt();" onchange="this.value=this.value.replace(/[^.0-9]/g,'');">
@@ -463,7 +475,7 @@
 										 
 										</table>	
 									</div>
-									<input type="hidden" name="total_price" value="123.00">
+									<input type="hidden" id = "total_price" name="total_price" value="123.00">
 									<div class="right_text">
 										<div>총 상품 구매가</div>
 										<div>₩</div>
@@ -552,7 +564,7 @@
 									<div class="title">
 										<table border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
 										  <tr>
-											<td>결제 방법</td>
+											<td>쿠폰</td>
 											<td width="1"><!--<a href="#none" onclick="hd_bg2('level')"><img src="image/S_shipping_info_icon.png"></a>--></td>
 										  </tr>
 										</table>
@@ -612,7 +624,11 @@
 						
 										<table border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
 											  <tr>
-												<td style="padding-right:9px;"><input type="image" src="/image/S_shipping_form_bt_01.gif"></td>
+												<td style="padding-right:9px;">
+													<button type="button" id="applicationBtn"></button>
+													
+
+													<!-- <input type="image" src="/image/S_shipping_form_bt_01.gif"> --></td>
 												<td><a href="javascript:void(0)" OnClick="javascript:tempSave()"><img src="/image/S_shipping_form_bt_02.gif"></a></td>
 											  </tr>
 										</table>
@@ -641,12 +657,140 @@
 		
 		<script>
 		
+		
+		var ajaxFunc = function(array){
+			$.ajax({
+		        url     : '/user/addGoodsInfo',
+		        type    : 'POST',
+		        data    : JSON.stringify(array),
+		        			
+		        
+		        contentType : 'application/json; charset=UTF-8',
+		        dataType: 'text',
+		        success : function(data) {
+		        	alert(data);
+		        },
+		        error : function(xhr,status,error) {
+		        	console.log("xhr: " + xhr);
+		        	console.log("status: " + status);
+		        	console.log("error: " + error);
+		        }
+		    });
+		};
+
+		
+		
+		$(document).on('click', '#applicationBtn', function(){
+			var submitObj = {};
+			
+			
+			//물류센터
+			// order info 객체생성
+			
+			submitObj.orderInfoList = [];
+			var logisticObj = $('#applicationForm').eq(0).find('.detail_box1_wrap input');
+			submitObj.orderInfo = {};
+			$.each(logisticObj, function(){
+				let inputName = $(this).attr('name');
+				let inputData = $(this).val();
+				if(typeof inputName != 'undefined' && inputName != null && inputName != ''){
+					submitObj.orderInfo[inputName] = inputData;
+				}
+				
+				
+				
+				
+			});
+			
+			var request = $('.request_text').eq(0).find('select');
+				var inputName = request.attr('name');
+				var inputData = request.val();
+				
+				
+				submitObj.orderInfo[inputName] =	inputData	
+				
+			var totalPrice = $('.all_price').eq(0).find('#total_price')
+				var inputName = totalPrice.attr('name');
+				var inputData = totalPrice.val();
+				submitObj.orderInfo[inputName] = inputData
+			
+			submitObj.orderInfoList.push(submitObj.orderInfo);
+			
+			//상품 리스트
+			submitObj.goodsInfoList = [];
+			var goodsInfoObj = $('#applicationForm').eq(0).find('.option_data');
+			var goodsSelectObj = $('#applicationForm').eq(0).find('.option_data');
+			var goodsInfo = {};
+			$.each(goodsInfoObj, function(){
+				let goodsInfoInputObj = $(this).find('input');
+				let goodsInfoSelectObj = $(this).find('select');
+
+				$.each(goodsInfoInputObj, function(){
+					let inputName = $(this).attr('name');
+					let inputData = $(this).val();
+					if(typeof inputName != 'undefined' && inputName != null && inputName != ''){
+						goodsInfo[inputName] = inputData;
+					}
+				})
+				
+				
+				$.each(goodsSelectObj, function(){
+					let selectName = $(this).attr('name');
+					let selectData = $(this).val();
+					if(typeof selectName != 'undefined' && selectName != null && selectName != ''){
+						goodsInfo[selectName] = selectData;
+					}
+				});
+				
+				submitObj.goodsInfoList.push(goodsInfo);
+			});
+			
+			
+			
+			var selectObj = $('#applicationForm').eq(0).find('select');
+			var fileObj = $('#applicationForm').eq(0).find('input[type="file"]');
+			
+			
+			
+			ajaxFunc(submitObj);
+			
+			
+			
+		});
+		
 		function data_check(mode){
 			var frm=document.f;
 			rslt = item_check();
+			if(rslt==false) return false;
+			
+			var objTbl = document.getElementById("tblVote");
+			for(var i = 0; i < objTbl.rows.length; i++){
+				var goodsInfo = {};
+				var bindElement = addMembers.eq(i).find('input[type="text"]');
+				
+			}
+			
+			
 		}
 		
 		function item_check(){
+			if($('input[name="orderNum"]').val()=="" )
+			{
+				alert("주문번호를 입력하여 주세요.");
+				$('input[name="orderNum"]').focus();
+				return false;
+			}
+			
+			if($('input[name="gSite"]').val()=="" )
+			{
+				alert("구매 사이트를 입력하여 주세요.");
+				$('input[name="gSite"]').focus();
+				return false;
+			}
+			
+			var objTbl = document.getElementById("tblVote");
+			var item_count = objTbl.rows.length;
+			
 			
 		}
 		
@@ -839,7 +983,7 @@
 				src=src+"					<div>브랜드</div>";
 				src=src+"					<div class='icon_text' title='부정확하게 기재된 물품은 통관상 불이익을 받을 수 있으니 반드시<br>정확한 브랜드/상품명을 특수문자(기호) 없이 영문으로 입력 바랍니다.'><img src='/image/S_shipping_form_icon_10.gif'></div>";
 				src=src+"				</td>";
-				src=src+"				<td class='td2'><input type='text' name='package_brand[]' value='' maxlength='190'></td>";
+				src=src+"				<td class='td2'><input type='text' name='gBrand' value='' maxlength='190'></td>";
 				src=src+"				<td class='td1 td3'>상품가</td>";
 				src=src+"				<td class='td2'>";
 				src=src+"				<input type='text' name='package_unitprice[]' value='' onBlur='getOrderAmt();' onchange=\"this.value=this.value.replace(/[^.0-9]/g,'');\">";

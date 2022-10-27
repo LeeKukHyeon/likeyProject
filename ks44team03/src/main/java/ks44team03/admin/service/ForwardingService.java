@@ -33,11 +33,27 @@ public class ForwardingService {
 
 		return regForwardingList;
 	}
+	
+	//출고 등록
+	public int regForwarding(IncomingInfo incominginfo, String goodsInfoCode) {
+		forwardingMapper.updateForwarding(goodsInfoCode);
+		
+		int result = forwardingMapper.regForwarding(incominginfo);
+		
+		return result;
+	}
   
 	//출고등록 모달 - 특정 상품코드 조회
 	public Map<String, Object> forwardingGoodsInfoByCode(String goodsInfoCode){
 		return forwardingMapper.forwardingGoodsInfoByCode(goodsInfoCode);
 	}
+	
+	//출고완료 상품목록
+		public List<IncomingInfo> forwardingList(){
+			List<IncomingInfo> forwardingList = forwardingMapper.forwardingList();
+			
+			return forwardingList;
+		}
   
  }
  

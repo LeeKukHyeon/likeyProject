@@ -38,6 +38,7 @@
 		,notice_img
 		,notice_date
 		,notice_view
+		,notice_important
 	FROM
 		notice_center
 	<trim prefix="WHERE" prefixOverrides="AND |OR ">

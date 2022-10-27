@@ -73,7 +73,7 @@
 		WHERE 
 			u.u_id = #{uId};
 	</select>
-	<select id="findMemberId" parameterType= "String" resultMap="UserInfoResultMap">
+	<select id="findMemberId" parameterType= "String" resultType="string">
 		/* 아이디 찾기 */
 		SELECT
 			u.u_id
@@ -81,6 +81,30 @@
 			user_member AS u
 		WHERE
 			u.u_name =#{uName} AND u.u_phone = #{uPhone};
+	</select>
+	<select id="findMemberPwd" parameterType= "String" resultMap="UserInfoResultMap">
+		/* 패스워드 찾기 시 계정 정보 확인 찾기 */
+		SELECT
+			u.u_id
+			,u.user_grade_code
+			,u.u_pw
+			,u.user_pobox_code
+			,u.u_name
+			,u.u_level
+			,u.u_addr
+			,u.u_email
+			,u.u_birth
+			,u.u_phone
+			,u.u_nick
+			,u.u_insert_date
+			,u.u_dormant
+			,u.pay_completed_count
+			,u.friends_account
+			,u.bank_name
+		FROM
+			user_member AS u
+		WHERE
+			u.u_id = #{uId} AND u.u_name = #{uName} AND u.u_phone = #{uPhone};
 	</select>
 	
 	

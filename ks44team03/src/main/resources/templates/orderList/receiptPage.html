@@ -5,7 +5,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
       
-<body>
-
+<body layout:fragment="content">
+	<div id="receiptImg">
+		<img src="/image/receipt.png">
+		<h1>접수가 완료 되었습니다.</h1>
+		<a href="/friendsOrderList"><button type="button" class="receiptGoListBtn">목록으로</button></a>
+	</div>
 </body>
 </html>

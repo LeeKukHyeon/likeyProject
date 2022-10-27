@@ -12,7 +12,7 @@
 	
 <!-- default_layout.html에 정의한 main page 부분 -->
 <body layout:fragment="content">
-<div class="container" style="margin-left:220px;">
+<div class="container" style="margin-left:20%;">
 
 	<!-- 오른쪽 내용 -->
 	<div class="right_text">
@@ -84,19 +84,19 @@
 	        <div class="col-md-12 mb-6" >
 	            <table width="auto" border="0" class="form-control">
 	                <td>
-	                    <input type="radio" name="loc_cd" value="ICN"  class="radio_bt"> 인천 (ICN) ㅤ
+	                    <input type="radio" name="loc_cd" value="인천"  class="radio_bt"> 인천 (ICN) ㅤ
 	                </td>
 	                <td>
-	                    <input type="radio" name="loc_cd" value="KUV"  class="radio_bt"> 군산 (KUV) ㅤ
+	                    <input type="radio" name="loc_cd" value="군산"  class="radio_bt"> 군산 (KUV) ㅤ
 	                </td>
 	                <td>
-	                    <input type="radio" name="loc_cd" value="PUS"  class="radio_bt"> 부산 (PUS) ㅤ
+	                    <input type="radio" name="loc_cd" value="부산"  class="radio_bt"> 부산 (PUS) ㅤ
 	                </td>
 	                <td>
-	                    <input type="radio" name="loc_cd" value="CJU" class="radio_bt"> 제주 (CJU) ㅤ
+	                    <input type="radio" name="loc_cd" value="제주" class="radio_bt"> 제주 (CJU) ㅤ
 	                </td>
 	                <td>
-	                    <input type="radio" name="loc_cd" value="GMP" class="radio_bt"> 김포 (GMP) ㅤ
+	                    <input type="radio" name="loc_cd" value="김포" class="radio_bt"> 김포 (GMP) ㅤ
 	                </td>
 	            </table>
 	            
@@ -114,8 +114,8 @@
 	        </div>
 	        
 	        <div class="col-md-6 mb-3">
-	            <input type="radio" name="ship_method" value="A"  class="radio_bt"> 항공 운송 <img src ="/image/icon_a.png" width="50px;">
-	            <input type="radio" name="ship_method" value="S"  class="radio_bt"> 해상 운송 <img src ="/image/icon_s.png" width="50px;">
+	            <input type="radio" name="ship_method" value="항공운송"  class="radio_bt"> 항공 운송 <img src ="/image/icon_a.png" width="50px;">
+	            <input type="radio" name="ship_method" value="해상운송"  class="radio_bt"> 해상 운송 <img src ="/image/icon_s.png" width="50px;">
 	        </div>
 	        
 			<div class="col-md-12 mb-3">
@@ -417,9 +417,24 @@
 	                  <td align="center" class="td1">연락처1</td>
 	                  <td class="td2">
 	                      <input type="text" name="recipient_phone1" value="" maxlength="30" onchange="this.value=this.value.replace(/[^-0-9]/g,'');" class="input_add" >
-	                      <div>
-
-							</div>
+	                  </td>
+	                </tr>
+	                <tr>
+	                  <td align="center" class="td1">국가</td>
+	                  <td class="td2">
+	                      <select name="nation" id="nation" title="배송국가" onchange="" style="width:150px; margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
+								<option value="">--선택--</option>
+								<option value="South Korea">South Korea</option>
+								<option value="USA">USA</option>
+								<option value="Australia">Australia</option>
+								<option value="Austria">Austria</option>
+								<option value="Canada">Canada</option>
+								<option value="China">China</option>
+								<option value="France">France</option>
+								<option value="Germany">Germany</option>
+								<option value="France">France</option>
+								<option value="Japan">Japan</option>
+							</select>
 	                  </td>
 	                </tr>
 	                <tr>
@@ -450,7 +465,7 @@
 	                </tr>
 	            </table>
 	            <div class="row">
-               		<button type="submit"> 신청 완료 </button>
+               		<button type="submit" value="배송대행" name="buy_way" id="buy_way"> 신청 완료 </button>
                		<button type="button" href="javascript:void(0)" OnClick="javascript:tempSave()"> 임시저장 </button>
                	</div>
 	        </div>
@@ -833,7 +848,7 @@ function ajaxFileUpload(obj, idx, rowIdx){
 	.ajaxComplete(function(){
 		$(this).hide();
 		});
-	ㅍ
+	
 	console.log("이미지업로드");
 	$.ajaxFileUpload({
 			url:'/user/shipping_img_upload.html?idx=' + idx,

@@ -206,3 +206,18 @@
 	.right_step2_wrap .all_price .right_text > div:nth-child(3) {padding-top:33px;font-size:36px;color:#f47827;font-weight:bold;font-family:Tahoma;}
 	.right_step2_wrap .all_price .right_text > div:nth-child(4) {padding-top:10px;font-size:18px;color:#f47827;font-weight:bold;}
 	.right_step2_wrap .all_price .right_text > div:nth-child(5) {padding-top:35px;font-size:14px;color:#8a8a8a;}
+
+
+	.right_step2_wrap .sale_coupon table {border-collapse:collapse;}
+	.right_step2_wrap .sale_coupon table td {border:1px solid #c2c2c2;}
+	.right_step2_wrap .sale_coupon table td.td1 {width:150px;background-color:#f5f5f5;text-align:center;font-size:14px;color:#6a6a6a;font-weight:bold;}
+	.right_step2_wrap .sale_coupon table td.td2 {padding:10px 20px;}
+	.right_step2_wrap .sale_coupon table td.td2 input {width:96%;height:36px;border:1px solid #c2c2c2;padding-left:10px;line-height:36px;color:#6a6a6a;}
+	.right_step2_wrap .sale_coupon table td.td2 textarea {width:95%;height:100px;border:1px solid #c2c2c2;padding:10px;line-height:22px;color:#6a6a6a;}
+	
+	.right_step2_wrap .sale_coupon_text {margin-top:20px;}
+	.right_step2_wrap .sale_coupon_text > li {font-size:14px;color:#515151;line-height:25px;margin-bottom:15px;background:url(image/S_sub_1_5_icon_01.gif) 0 5px no-repeat;padding-left:26px;}
+	.right_step2_wrap .sale_coupon_text > li font {color:#ed7632;font-weight:bold;}
+
+	
+	

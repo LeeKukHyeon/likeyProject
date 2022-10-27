@@ -23,6 +23,14 @@ public class CouponSerive {
 		this.commonMapper = commonMapper;
 	}
 	
+	// 쿠폰 삭제
+	public int couponDelete(String couponCode) {
+		
+		int couponDelete = couponMapper.couponDelete(couponCode);
+		
+		return couponDelete;
+	}
+	
 	
 	//쿠폰 보유 리스트에서 검색
 	public List<Coupon> couponSearch(Map<String, Object> paramMap){

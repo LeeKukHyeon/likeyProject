@@ -5,150 +5,22 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <head>
-<style>
-.sub_contents_wrap {margin-top:30px;}
-.sub_contents_wrap > div {float:left;}
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/introduction.css}"/>
+</head> 
+<!-- default_layout.html에 정의한 main page 부분 -->
+<body layout:fragment="content">
 
-.sub_contents_wrap .left_menu {width:179px;margin-right:70px;}
-.sub_contents_wrap .left_menu > div {height:38px;padding-left:20px;background-color:#303030;border-radius:5px 5px 0 0;font-size:13px;color:#ffffff;line-height:38px;}
-
-.sub_contents_wrap .left_menu a {letter-spacing:-1px;}
-.sub_contents_wrap .left_menu > ul {width:177px;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;}
-.sub_contents_wrap .left_menu > ul > li > div {height:47px;border-bottom:1px solid #c4c4c4;padding-left:20px;}
-.sub_contents_wrap .left_menu > ul > li > div > a {display:inline-block;line-height:46px;font-size:15px;color:#303030;font-weight:bold;background:url(image/S_sub_menu_icon_01.gif) 0 50% no-repeat;padding-left:9px;}
-
-.sub_contents_wrap .left_menu > ul > li > ul > li {background-color:#f5f5f5;border-bottom:1px solid #e7e7e7}
-.sub_contents_wrap .left_menu > ul > li > ul > li > a {display:inline-block;line-height:39px;font-size:14px;color:#6d6d6d;font-weight:bold;padding-left:19px;}
-
-.sub_contents_wrap .left_menu > ul > li > ul > li > ul {background-color:#ffffff;padding:10px 0 10px 19px;}
-.sub_contents_wrap .left_menu > ul > li > ul > li > ul > li > a {font-size:13px;color:#878787;line-height:33px;}
-
-.sub_contents_wrap .right_text {width:951px;letter-spacing:-1px;}
-
-
-		.more_box {border:1px solid #cccccc;margin-bottom:8px;padding:30px;}
-		.more_box .title {font-size:20px;color:#f58340;font-weight:bold;background:url(image/S_sub_2_5_2_icon_01.gif) 0 50% no-repeat;padding-left:20px;margin-bottom:15px;}
-		.more_box table {margin-bottom:10px;}
-		.more_box table td {font-size:16px;color:#515151;line-height:25px;}
-		.more_box table td:first-child {background:url(image/S_sub2_2_1_icon_03.gif) 0 50% no-repeat;padding:0 14px 0 11px;}
-		.more_box ul li {font-size:15px;color:#515151;line-height:30px;}
-		.step_box {background-color:#f8f8f8;padding:32px 39px;margin-bottom:15px;}
-		.step_box .title {font-size:20px;color:#3f3f3f;font-weight:bold;margin-bottom:23px;background:url(image/sub_1_2_step2_icon_01.gif) 0 50% no-repeat;padding-left:17px;}
-		.step_box .title font {color:#ff793a}
-		.step_box .text {font-size:15px;color:#515151;line-height:25px;}
-		.step_box .img {margin-top:30px;}
-
-</style>
-
-</head>
-
-
-	<!-- default_layout.html에 정의한 main page 부분 -->
-	<body layout:fragment="content">
 <!------------------------------ 중간 내용 여기서부터 ------------------------------>
-
-
-<div class="sub_contents_wrap wrap">
-
-	<!-- 왼쪽 메뉴 -->
-	<div class="left_menu">
-		<div>이용안내</div>
-		<ul>
-			<li>
-				<div><a href="sub_1_1.html">LIKEY 소개</a></div>
-
-				<ul>
-					<li>
-						<a href="sub_1_1.html">배송 대행이란?</a>
-						
-						<ul>
-							<li><a href="sub_1_1_1.html">- 배송대행 신청 가이드</a></li>
-							<li><a href="sub_1_1_2.html">- 묶음배송 신청 방법</a></li>
-							<li><a href="">- 트래킹 번호 분할 방법</a></li>
-							<li><a href="sub_1_1_4.html">- 상품 분할 신청 방법</a></li>
-							<li><a href="sub_1_1_5.html">- 개인 통관 부호란?</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="sub_1_2.html">구매 대행이란?</a>
-
-						<ul>
-							<li><a href="sub_1_2_1.html">- 구매대행 신청 가이드</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_1_3.html">선출고 서비스</a></li>
-					<li><a href="sub_1_4.html">물류센터 소개</a></li>
-					<!-- <li><a href="sub_1_5.html">365일 부피무게면제</a></li> -->
-				</ul>
-			</li>
-			<li>
-				<div><a href="sub_2.html">LIKEY 서비스</a></div>
-
-				<ul>
-					<li><a href="sub_2_1.html">해외 직구 가이드</a></li>
-					<li>
-						<a href="sub_2_2_1.html">등급할인/쿠폰혜택/포인트</a>
-
-						<ul>
-							<li><a href="sub_2_2_1.html">- 등급할인</a></li>
-							<li><a href="sub_2_2_2.html">- 쿠폰혜택</a></li>
-							<li><a href="sub_2_2_3.html">-포인트</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_2_3.html">무검수 LIKEY PASS</a></li>
-					<li><a href="sub_2_4.html">안심보상 안내</a></li>
-					<li>
-						<a href="sub_2_5_1.html">검수 포장 가이드</a>
-
-						<ul>
-							<li><a href="sub_2_5_1.html">- 검수가이드</a></li>
-							<li><a href="sub_2_5_2.html">- 포장가이드</a></li>
-						</ul>
-					</li>
-					<li><a href="sub_2_6.html">반송절차</a></li>
-					<li><a href="sub_2_7.html">검수/기타 수수료</a></li>
-					<li><a href="sub_2_8.html">관/부가세</a></li>
-					<li><a href="sub_2_9.html">일반/목록통관 안내</a></li>
-					<li><a href="sub_2_10.html">통관/적재 불가 상품</a></li>
-				</ul>
-			</li>
-			<li>
-				<div><a href="sub_3_1.html">LIKEY 배송요금</a></div>
-
-				<ul>
-					<li><a href="sub_3_1.html">배송요금 안내</a></li>
-					<li><a href="#none" onclick="javascript:window.open('sub_3_2.html', 'calculator', 'width=610, height=750, left=40, top=40');">배송비 계산기</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>	<!-- //왼쪽 메뉴 -->
-
-
-
-
-
-
+<div class="sub_contents_wrap wrap" style="margin-left:20%;">
 
 	<!-- 오른쪽 내용 -->
 	<div class="right_text">
-
-
-		<style>
-		.sub_navi_text {height:30px;border-bottom:1px solid #d6d6d6;margin-bottom:25px;}
-		.sub_navi_text > div {background:url(image/S_navi_home.gif) 0 50% no-repeat;padding-left:20px;font-size:13px;color:#6e6e6e;}
-		</style>
 
 		<div class="sub_navi_text"> 
 			<div>HOME &nbsp;>&nbsp; LIKEY 소개 &nbsp;>&nbsp; <b>구매대행이란?</b></div>
 		</div>
 
 		<div style="margin-top:30px;"></div>
-		
-		<style>
-		.sub1_title {font-size:22px;color:#3f3f3f;font-weight:bold;padding-right:28px;}
-		.sub1_text {font-size:16px;color:#252525;line-height:20px;padding-top:15px;}
-		</style>
-
 
 		<table border="0" cellspacing="0" cellpadding="0">
 		  <tr>
@@ -161,37 +33,6 @@
 		해외 직구 시 해외 사이트 이용 및 카드결제 등의 문제로 해외직구가 어려울 때에 구매부터 배송까지 LIKEY가 대행해드리는 서비스입니다.
 		</div>
 
-
-		<style>
-		.sub1_tab_bt {margin-top:15px;}
-		.sub1_tab_bt td {cursor:pointer;}
-
-		.sub1_tab_box {background-color:#f5f5f5;padding:30px;margin-top:15px;}
-		.sub1_tab_box .sub1_title {margin-bottom:0px;}
-		</style>
-
-		<script>
-		var autonum4=1;
-
-		//교체
-		function subtab2(layerid){
-			
-			//이미지교체
-			for(i=1 ; i<=7 ; i++){
-				$(".sub2_tab_"+i).hide();
-			}
-
-			$(".sub2_tab_"+layerid).show();
-
-			//버튼교체
-
-			for(var i=1 ; i<=7 ; i++){
-				$(".sub2_tab_"+i+"_bt").attr("src","/image/S_sub1_process2_0"+i+".gif");
-			}
-			$(".sub2_tab_"+layerid+"_bt").attr("src","/image/S_sub1_process2_0"+layerid+"_ov.gif");
-			
-		}
-		</script>
 
 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_tab_bt">
@@ -295,13 +136,7 @@
 				한 구매대행 신청서에는 동일한 쇼핑몰만 신청할 수 있습니다. (라쿠텐의 경우 동일 셀러만 한번에 신청 가능) 
 				</div>
 
-				<div style="position:relative;">
-					<div style="position:absolute; width:150px; z-index:1; right: 0px; top: -30px;">
-						<a href=""><img src="/image/sub_1_2_step2_bt_01.gif"></a>
-					</div>
-				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step2_img_01.jpg"></div>
 			</div>
 
 
@@ -312,7 +147,6 @@
 				구매대행 신청 시 주의사항을 잘 읽은 후 주의사항에 동의에 체크합니다.
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step2_img_02.jpg"></div>
 			</div>
 
 
@@ -329,7 +163,6 @@
 					</div>
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step2_img_03.jpg"></div>
 			</div>
 
 
@@ -342,7 +175,6 @@
 				더 빠른 진행이 가능합니다.
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step2_img_04.jpg"></div>
 			</div>
 
 
@@ -356,7 +188,6 @@
 				수령인 주소는 배송비 결제 시 최종 수정이 가능합니다.<br>
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step2_img_05.jpg"></div>
 			</div>
 
 		</div>
@@ -380,8 +211,6 @@
 				<div class="text">
 				LIKEY 상단 마이페이지 > 배송 신청 내역으로 이동합니다.
 				</div>
-
-				<div class="img"><img src="/image/sub_1_2_step3_img_01.jpg"></div>
 			</div>
 
 
@@ -391,8 +220,6 @@
 				<div class="text">
 				해당 신청서 리스트에서 신청서를 확인 하신 후 수령하기 버튼을 클릭하여 결제합니다.
 				</div>
-
-				<div class="img"><img src="/image/sub_1_2_step3_img_02.jpg"></div>
 			</div>
 
 
@@ -403,7 +230,6 @@
 				상품가 결제가 완료되면 현지 쇼핑몰에 구매가 신청되며 신청이 완료 되면 주문번호가 배송이 시작되면 트래킹 번호가 노출 됩니다. 
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step3_img_03.jpg"></div>
 			</div>
 			
 
@@ -476,13 +302,6 @@
 				상품의 개수, 색상, 사이즈 등을 배송신청서와 비교하여 검수를 진행합니다.
 				</div>
 
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="img">
-				  <tr>
-				    <td><a href=""><img src="/image/sub_1_2_step4_img_01.jpg"></a></td>
-					<td><a href=""><img src="/image/sub_1_2_step4_img_02.jpg"></a></td>
-					<td><a href=""><img src="/image/sub_1_2_step4_img_03.jpg"></a></td>
-				  </tr>
-				</table>
 			</div>
 
 
@@ -572,75 +391,27 @@
 
 				<div style="height:34px;"></div>
 
-				
-				<script>
-				var autonum=1;
-
-				//교체
-				function sub1_2_1tab(layerid){
-					
-					//이미지교체
-					for(i=1 ; i<=6 ; i++){
-						$(".sub1_2_1_tab_"+i).hide();
-					}
-
-					$(".sub1_2_1_tab_"+layerid).show();
-
-					//버튼교체
-
-					for(var i=1 ; i<=6 ; i++){
-						$(".sub1_2_1_tab_"+i+"_bt").css({"filter":"alpha(opacity=50)","opacity":".5","background-color":"#f3f3f3"});
-					}
-					$(".sub1_2_1_tab_"+layerid+"_bt").css({"filter":"alpha(opacity=100)","opacity":"1","background-color":"#ffffff"});
-					
-				}
-				</script>
-
-
-				<style>
-				.sub1_2_1_tab_bt {border-collapse:collapse;}
-				.sub1_2_1_tab_bt td {width:16.5%;border:1px solid #cccccc;text-align:center;padding:35px 0;filter:alpha(opacity=50);opacity:.5;}
-				.sub1_2_1_tab_bt td .country_font {font-size:15px;color:#4a4a4a;padding-top:13px;}
-
-				.sub1_2_1_table {border-collapse:collapse;margin-top:8px;}
-				.sub1_2_1_table th, .sub1_2_1_table td {border:1px solid #cccccc;text-align:center;}
-
-				.sub1_2_1_table th {background-color:#f3f3f3;padding:12px 0;font-size:17px;color:#447b9a;font-weight:bold;}
-				.sub1_2_1_table th.td1 {width:184px;}
-				.sub1_2_1_table th.td2 {width:97px;}
-				.sub1_2_1_table th.td3 {width:220px;}
-				.sub1_2_1_table th.td4 {width:146px;}
-
-				.sub1_2_1_table td {padding:12px 0;font-size:15px;color:#565656;line-height:22px;background-color:#ffffff;}
-				.sub1_2_1_table td.td1 {font-size:17px;color:#4a4a4a;font-weight:bold;}
-				</style>
 
 
 				<!-- 나라 탭 -->
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="sub1_2_1_tab_bt">
 				  <tr>
 					<td class="sub1_2_1_tab_1_bt" onclick="sub1_2_1tab('1')" style="filter:alpha(opacity=100);opacity:1;background-color:#ffffff;">
-						<div><img src="/image/S_schedule_flag_01.gif"></div>
 						<div class="country_font">미국(USA)</div>
 					</td>
 					<td  class="sub1_2_1_tab_2_bt" onclick="sub1_2_1tab('2')">
-						<div><img src="/image/S_schedule_flag_02.gif"></div>
 						<div class="country_font">중국 (CN)</div>
 					</td>
 					<td  class="sub1_2_1_tab_3_bt" onclick="sub1_2_1tab('3')">
-						<div><img src="/image/S_schedule_flag_04.gif"></div>
 						<div class="country_font">일본 (JP)</div>
 					</td>
 					<td  class="sub1_2_1_tab_4_bt" onclick="sub1_2_1tab('4')">
-						<div><img src="/image/S_schedule_flag_06.gif"></div>
 						<div class="country_font">영국 (UK)</div>
 					</td>
 					<td  class="sub1_2_1_tab_5_bt" onclick="sub1_2_1tab('5')">
-						<div><img src="/image/S_schedule_flag_03.gif"></div>
 						<div class="country_font">독일 (GER)</div>
 					</td>
 					<td  class="sub1_2_1_tab_6_bt" onclick="sub1_2_1tab('6')">
-						<div><img src="/image/S_schedule_flag_05.gif"></div>
 						<div class="country_font">한국 (KR)</div>
 					</td>
 				  </tr>
@@ -887,8 +658,6 @@
 				<div class="text">
 				통관 과정에서 이상이 없으면 국내 배송사로 상품이 전달되며 수령 주소로 배송해드립니다. 
 				</div>
-
-				<div style="padding-top:15px;"><a href=""><img src="/image/sub_1_2_step6_bt_01.gif"></a></div>
 			</div>
 
 			<div class="step_box">
@@ -898,9 +667,6 @@
 				결제 확인 건에 대해서 당일 납부 처리됩니다. 결제가 완료되어야 국내 배송이 진행됩니다. 
 				</div>
 
-				<div style="padding-top:15px;"><a href=""><img src="/image/sub_1_2_step6_bt_01.gif"></a></div>
-
-				<div class="img"><img src="/image/sub_1_2_step6_img_01.jpg"></div>
 			</div>
 
 
@@ -925,7 +691,6 @@
 				  </tr>
 				</table>
 
-				<div style="padding-top:5px;"><a href=""><img src="/image/sub_1_2_step6_bt_02.gif"></a></div>
 			</div>
 		</div>
 		<!-- //6 -->
@@ -953,7 +718,6 @@
 				회원 혜택 및 다양한 이벤트의 거래 건수는 배송완료 기준이므로 상품 수령 시 꼭 수령확인 버튼을 클릭 해 주시기 바랍니다.
 				</div>
 
-				<div class="img"><img src="/image/sub_1_2_step7_img_01.jpg"></div>
 			</div>
 
 
@@ -988,6 +752,50 @@
 </div>
 <div style="clear:both;"></div>
 <!------------------------------ //중간 내용 여기서부터 ------------------------------>
-	
+		<script>
+		var autonum4=1;
+
+		//교체
+		function subtab2(layerid){
+			
+			//이미지교체
+			for(i=1 ; i<=7 ; i++){
+				$(".sub2_tab_"+i).hide();
+			}
+
+			$(".sub2_tab_"+layerid).show();
+
+			//버튼교체
+
+			for(var i=1 ; i<=7 ; i++){
+				$(".sub2_tab_"+i+"_bt").attr("src","/image/S_sub1_process2_0"+i+".gif");
+			}
+			$(".sub2_tab_"+layerid+"_bt").attr("src","/image/S_sub1_process2_0"+layerid+"_ov.gif");
+			
+		}
+		</script>
+						<script>
+				var autonum=1;
+
+				//교체
+				function sub1_2_1tab(layerid){
+					
+					//이미지교체
+					for(i=1 ; i<=6 ; i++){
+						$(".sub1_2_1_tab_"+i).hide();
+					}
+
+					$(".sub1_2_1_tab_"+layerid).show();
+
+					//버튼교체
+
+					for(var i=1 ; i<=6 ; i++){
+						$(".sub1_2_1_tab_"+i+"_bt").css({"filter":"alpha(opacity=50)","opacity":".5","background-color":"#f3f3f3"});
+					}
+					$(".sub1_2_1_tab_"+layerid+"_bt").css({"filter":"alpha(opacity=100)","opacity":"1","background-color":"#ffffff"});
+					
+				}
+				</script>
+
 	</body>
 </html>

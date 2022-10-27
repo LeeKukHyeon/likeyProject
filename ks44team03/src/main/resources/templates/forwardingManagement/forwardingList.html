@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{adminLayout/adminDefault_layout}">
+<head>
+<meta charset="UTF-8">
+
+<!-- 출고완료 상품목록 -->
+<title>출고완료 상품목록</title>
+</head>
+
+<!-- ========== 입고 완료 상품 리스트 ========== -->
+<body layout:fragment="adminContent">
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<!-- ========== 출고완료 상품목록 시작 ========== -->
+				<h2>출고완료 상품목록</h2>
+				
+				<div class="forwarindg_list">
+							<div th:fragment="searchFragment" >
+					        	<select name="searchKey" id="searchKey">
+					        		<option value="goods_info_code">상품정보 코드</option>
+					        		<option value="buy_order_code">주문정보 코드</option>
+					        		<option value="e_code">사원 코드</option>
+					        		<option value="out_tracking_num">출고 운송장 번호</option>
+					        	</select>
+					        	
+				        		<input type="text" name="searchValue" id ="searchValue" placeholder="검색어 를 입력해주세요.">
+				        		<button type="button" id = "btn_Search" class="searchBtn">조회</button>
+		       				 </div>
+						<table class = "input_table" style="width:100%">
+							<thead>
+								<tr>
+									<th>상품정보 코드</th>
+									<th>주문정보 코드</th>
+									<th>처리한 사원 코드</th>
+									<th>출고 배송회사</th>
+									<th>출고 운송장 번호</th>						
+									<th>출고 날짜</th>						
+								</tr>								
+							</thead>
+							  <tbody>
+								<tr th:if="${not #lists.isEmpty(forwardingList)}" th:each = "i :${forwardingList}">								
+									<td th:text="${i.goodsInfoCode}"></td>
+									<td th:text="${i.goodsInfoDto.buyOrderCode}"></td>
+									<td th:text="${i.eCode}"></td>
+									<td th:text="${i.outCompany}"></td>
+									<td th:text="${i.outTrackingNum}"></td>
+									<td th:text="${i.sendOut}"></td>
+								</tr>
+							  </tbody>
+						</table>
+				</div>
+			
+				<!-- ========== 출고완료 상품목록 끝 ========== -->
+
+			</div>
+          </div>
+        </div>
+</body>
+
+</html>

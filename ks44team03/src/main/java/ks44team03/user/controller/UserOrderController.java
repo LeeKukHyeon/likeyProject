@@ -21,12 +21,25 @@ public class UserOrderController {
 		this.orderService = orderService;
 	}
 	
-	
+	/**
+	 * 배송대행 주문서 등록화면
+	 */
 	@GetMapping("/applicationFormRegister")
 	public String applicationFormRegister() {
 		return "applicationForm/applicationFormRegister";
 	}
 	
+	/**
+	 * 구매대행 주문서 등록화면
+	 */
+	@GetMapping("/applicationFormRegisterPa")
+	public String applicationFormRegisterPa() {
+		return "applicationForm/applicationFormRegisterPa";
+	}
+	
+	/**
+	 * 프렌즈구매대행 주문서 등록화면
+	 */
 	@GetMapping("/friendsApplicationFormRegister")
 	public String ApplicationFormRegister() {
 		return "applicationForm/friendsApplicationFormRegister";
@@ -34,17 +47,18 @@ public class UserOrderController {
 	
 	
 	
-	// 주문서 내 신청완료 버튼 클릭시 주문서 작성 완료 및 마이페이지로 이동
+	/**
+	 * 주문서 내 신청완료 버튼 클릭시 주문서 작성 완료 및 마이페이지로 이동
+	 */
 	@PostMapping("/submitOdf")
-	public String submiOdf(ApplicationInfo applicationInfo ) {
-		
-		System.out.println(applicationInfo + "aplicationinfo"); 
-		
-		int result = orderService.addOrderInfo(applicationInfo);
+	public String submiOdf(ApplicationInfo applicationInfo ) {		
+		// int result = orderService.addOrderInfo(applicationInfo);
 		return "myPage/member/mypageScreen"; 
 	}
 
-	// 주문서 내 이미지 업로드
+	/**
+	 * 주문서 내 이미지 업로드
+	 */
 	@PostMapping("/user/shipping_img_upload.html?idx=")
 	@ResponseBody
 	public int imgUpload(@RequestParam("id") String id) {

@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerNoticeService;
 import ks44team03.dto.NoticeCenter;
 
 @Controller
+@RequestMapping(value = "/user")
 public class CustomerNoticeController {
 	
 	private CustomerNoticeService customerNoticeService;
@@ -53,7 +55,7 @@ public class CustomerNoticeController {
 		
 		customerNoticeService.deleteNotice(noticeNumCode);
 		
-		return "redirect:/noticeList";
+		return "redirect:/user/noticeList";
 	}
 	
 	//공지사항 수정
@@ -64,7 +66,7 @@ public class CustomerNoticeController {
 		System.out.println(noticeCenter + "수정하는 게시물 값 받아오는가?");
 
 		
-		return "redirect:/noticeList";
+		return "redirect:/user/noticeList";
 	}
 	
 	
@@ -88,7 +90,7 @@ public class CustomerNoticeController {
 		
 		customerNoticeService.regNotice(noticeCenter);
 		
-		return "redirect:/noticeList";
+		return "redirect:/user/noticeList";
 	}
 	
 	

@@ -9,13 +9,8 @@ public class FileDto {
 	private Long fileSize;
 	private boolean fileIsLocal;
 	private String newCommunityCode;
+	private String newIncomingCode;
 	
-	public String getNewCommunityCode() {
-		return newCommunityCode;
-	}
-	public void setNewCommunityCode(String newCommunityCode) {
-		this.newCommunityCode = newCommunityCode;
-	}
 	public String getFileIdx() {
 		return fileIdx;
 	}
@@ -40,28 +35,38 @@ public class FileDto {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
-	public void setFileSize(Long fileSize) {
-		this.fileSize = fileSize;
-	}
-	
 	public Long getFileSize() {
 		return fileSize;
 	}
-	
-	public boolean getFileIsLocal() {
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
+	}
+	public boolean isFileIsLocal() {
 		return fileIsLocal;
 	}
-	
 	public void setFileIsLocal(boolean fileIsLocal) {
 		this.fileIsLocal = fileIsLocal;
 	}
+	public String getNewCommunityCode() {
+		return newCommunityCode;
+	}
+	public void setNewCommunityCode(String newCommunityCode) {
+		this.newCommunityCode = newCommunityCode;
+	}
+	public String getNewIncomingCode() {
+		return newIncomingCode;
+	}
+	public void setNewIncomingCode(String newIncomingCode) {
+		this.newIncomingCode = newIncomingCode;
+	}
+	
 	@Override
 	public String toString() {
 		return "FileDto [fileIdx=" + fileIdx + ", fileOriginalName=" + fileOriginalName + ", fileNewName=" + fileNewName
 				+ ", filePath=" + filePath + ", fileSize=" + fileSize + ", fileIsLocal=" + fileIsLocal
-				+ ", newCommunityCode=" + newCommunityCode + "]";
+				+ ", newCommunityCode=" + newCommunityCode + ", newIncomingCode=" + newIncomingCode + "]";
 	}
+	
 	
 	
 	

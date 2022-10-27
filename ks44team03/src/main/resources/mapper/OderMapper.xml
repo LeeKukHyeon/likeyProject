@@ -82,9 +82,20 @@
 	
 	<insert id="addOrderInfo" parameterType="ApplicationInfo">
 		/* 주문서 작성시 db에 정보 추가 */
-		
-		
-		
+<!-- 
+		INSERT INTO order_info
+			(buy_order_code, logistics_center, user_pobox_code, id, transportation, 
+			nation, order_num, user_name, phone, post_num, addr, addr2, total_price, 
+			goods_order_date, step3, Desired_courier, buy_way, request, friends_de_check, 
+			commission, Personal_Customs_Clearance_Code, personal_use, trading, forwarding_hold)
+		VALUES
+			(#{buyOrderCode}, #{locCd}, #{user_pobox_code}, #{SID},#{shipMethod},
+			#{nation}, #{mallOrderNo}, #{recipientName}, #{recipientPhone1}, #{}, #{}, #{}, #{totalPrice},
+			curdate(), #{}, #{ivcTyCd}, '배송대행',#{shipRequest},'N',
+			'NULL', #{uPostCode}, #{}, 'N', 'NULL'}
+			);
+
+		 -->
 	</insert>
 
 </mapper>

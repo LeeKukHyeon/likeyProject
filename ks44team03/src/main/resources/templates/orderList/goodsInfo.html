@@ -7,78 +7,36 @@
       
 <head>
 <style>
-	.goodsInfo{
-		margin-left: 10%;
-		margin-right: 10%;
-		margin-bottom: 10%;
-		margin-top: 40px;
-		border: 1px solid #dddddd;
-		border-radius: 20px;
-		padding: 30px;
-	}
-	.goodsInfo img{
-		border: 2px solid #dddddd;
-		border-radius: 20px; 
-		width: 40%;
-		background-color: red;
-		vertical-align: top;
-		margin-left: 40px;
-	}
-	.goodsImg strong{
-		font-size: 30px; 
-	}
-	.goodsImgText{
-		width: 100%;
-		/* background-color: #dddddd; */
-		margin-top: 10px;
-	}
-	.receiptBtn{
-		margin-left: 85%;	
-		padding: 10px 20px;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		background-color: white;
-		color: #565656;
-	}
-	.receiptBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
-	.goListBtn{
-		padding: 10px 20px;
-		background-color: white;
-		border: 2px solid #dddddd;
-		border-radius: 10px;
-		font-style: inherit;
-		font-size: 15px;
-		font-weight: bold;
-		color: #565656;
-	}
-	.goListBtn:hover{
-		background-color: #535353;
-		border: 2px solid #535353;
-		color: white;
-	}
+	
 </style>
+<script type="text/javascript">
+	$(function(){
+		$('.receiptBtn').click(function(){
+			if(confirm('접수 하시겠습니까?') == true){
+				alert('접수확인');
+				location.href="/receiptPage";
+			}else{
+				alert('접수취소');
+			}
+		});
+	});
+</script>
+
 </head>
 
 <body layout:fragment="content">
 	<div class="goodsInfo">
 		<span class="goodsImg">
-			<img src="/image/sinbal.png">
+			<img th:src="${goodsInfoBy.goodsImgUpload}" style="width: 400px; height: 400px;">
 			<!-- 14글자 제한 -->
 			<label class="goodsImgText">
 				<hr>
-				<strong th:text="${title}">(14글자)</strong>
+				<strong th:text="${goodsInfoBy.gName}">(14글자)</strong>
 				<p th:text="${title}">상품 상세정보 내용</p>
 				<hr>				
 			</label>
 			<div>
-				<a href="/orderList"><button type="button" class="goListBtn">목록</button></a>
+				<a href="/friendsOrderList"><button type="button" class="goListBtn">목록</button></a>
 				<a href="#"><button type="button" class="receiptBtn">접수</button></a>
 			</div>	
 		</span>

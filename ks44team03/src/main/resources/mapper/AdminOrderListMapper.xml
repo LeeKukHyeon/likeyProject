@@ -102,7 +102,22 @@
 			<result column="order_state" property="orderState"/>
 		</association>
 	</resultMap>
-	
+
+<!-- friends 주문서 상품 상세정보  -->
+	<select id="getGoodsInfoBy" resultMap="goodsInfoResultMap">
+		/* friends 주문서 상품 상세정보 */
+		SELECT
+		*
+		FROM 
+			order_info AS o
+			INNER JOIN 
+			goods_info AS g
+			ON 
+			o.buy_order_code = g.buy_order_code
+		WHERE 
+			o.step3 = 'y' AND o.friends_de_check = 'y' AND g.goods_info_code=#{goodsInfoCode};
+	</select>
+
 <!-- friends 주문서 목록 -->
 	<select id="getgetFriendsOrderList" resultMap="goodsInfoResultMap">
 		SELECT

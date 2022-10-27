@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import ks44team03.admin.service.IncomingService;
+import ks44team03.dto.Community;
 import ks44team03.dto.Criteria;
 import ks44team03.dto.ErrorIncoming;
 import ks44team03.dto.GoodsInfo;
@@ -40,7 +45,7 @@ public class IncomingController {
 	
 	
 	//도착등록 ajax
-	@PostMapping("incomingGoodsDetailRegister")
+	@PostMapping("/incomingGoodsDetailRegister")
 	@ResponseBody
 	public int incomingGoodsDetailRegister(@RequestParam(value = "goodsInfoCode")String goodsInfoCode) {
 		
@@ -76,7 +81,7 @@ public class IncomingController {
 	 }
 	
 	//입고 도착 상품 체크박스로 등록
-	@PostMapping ("incomingCheck")
+	@PostMapping ("/incomingCheck")
 	public String incomingCheck(@RequestParam(name = "check", required=false) String[] checks) {
 	
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -87,7 +92,7 @@ public class IncomingController {
 	
 	
 	//입고전 상품목록
-	@GetMapping("incomingGoodsList")
+	@GetMapping("/incomingGoodsList")
 	public String incomingGoodsList(Model model,
 		@RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,
 		@RequestParam(name = "searchKey",required=false ) String searchKey,
@@ -117,7 +122,7 @@ public class IncomingController {
 	
 	//보관료 발생 목록 조회
 	
-	@GetMapping("storageCharge")
+	@GetMapping("/storageCharge")
 	public String storageCharge(Model model, 
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
 			@RequestParam(name = "searchValue",required=false ) String searchValue) {
@@ -134,7 +139,7 @@ public class IncomingController {
 	}
 	//배송완료 상품 목록 조회
 	
-	@GetMapping("deliveryComplete")
+	@GetMapping("/deliveryComplete")
 	public String deliveryComplete(Model model, 
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
 			@RequestParam(name = "searchValue",required=false ) String searchValue) {
@@ -152,7 +157,7 @@ public class IncomingController {
 	
 	//배송중인 상품 목록 조회
 	
-		@GetMapping("inTransit")
+		@GetMapping("/inTransit")
 		public String inTransit(Model model, 
 				@RequestParam(name = "searchKey",required=false ) String searchKey,
 				@RequestParam(name = "searchValue",required=false ) String searchValue) {
@@ -235,9 +240,27 @@ public class IncomingController {
 	
 	//입고등록
 	@PostMapping("/regIncoming")
-	public String regIncoming(IncomingInfo incomingInfo, String goodsInfoCode) {
-
-		int result = incomingService.regIncoming(incomingInfo, goodsInfoCode);
+	public String regIncoming(@RequestPart(name = "incomingImgPath") MultipartFile[] multipartFile
+			,HttpServletRequest request
+			,IncomingInfo incomingInfo, String goodsInfoCode) {
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		boolean isLocalhost = true;
+		
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			System.out.println(System.getProperty("user.dir"));
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+			isLocalhost = false;
+			fileRealPath = System.getProperty("user.dir") + "/resources/";
+		}
+		
+		incomingService.regIncoming(incomingInfo, goodsInfoCode, multipartFile, fileRealPath, isLocalhost);
+		log.info("깐츄롤라:::::::::::::: ");
+		
+		
 		
 	return "redirect:/goodsIncomingList";
 	}
@@ -254,7 +277,7 @@ public class IncomingController {
 	@GetMapping("/goodsIncomingList") 
 	public String goodsIncomingList(Model model) {
 	  List<IncomingInfo> goodsIncomingList = incomingService.goodsIncomingList();
-	  
+	
 	  model.addAttribute("title", "입고 완료 상품 리스트"); 
 	  model.addAttribute("goodsIncomingList",goodsIncomingList); 
 	  return "incoming/goodsIncomingList";
@@ -288,4 +311,15 @@ public class IncomingController {
 	return "redirect:/errorIncomingList";
 	}
 	
+	//오류입고 물품 처리 상태 업데이트
+	@GetMapping("/updateErrorState")
+	@ResponseBody
+	public void updateErrorState(@RequestParam(name="goodsInfoCode") String goodsInfoCode
+								,@RequestParam(name="errorState") String errorState) {
+		
+		log.info("goodsInfoCode ------------>" + goodsInfoCode);
+		log.info("errorState -------------->" + errorState );
+		incomingService.updateErrorState(goodsInfoCode, errorState);
+		log.info("aa=================bb=====================cc");
+	}
 }

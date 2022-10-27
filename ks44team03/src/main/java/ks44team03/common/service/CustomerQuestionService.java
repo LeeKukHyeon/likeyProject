@@ -38,6 +38,14 @@ public class CustomerQuestionService {
 		return searchQuestion;
 	}
 	
+	//1:1문의 삭제 어드민 답변에서
+	public int deleteQuestionAdmin(String mtmNumCode) {
+		
+		int result = customerQuestionMapper.deleteQuestionAdmin(mtmNumCode);
+		
+		return result;
+	}
+	
 	//1:1문의 삭제
 	public int deleteQuestion(String mtmNumCode) {
 		

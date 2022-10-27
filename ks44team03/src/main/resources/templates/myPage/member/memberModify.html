@@ -7,7 +7,7 @@
 
 	<!-- default_layout.html에 정의한 main page 부분 -->
 	<body layout:fragment="content">
-		<div class="container">
+		
 			
         <!-- code -->
         	<div class="right_text">
@@ -18,7 +18,7 @@
 		
 				<div class="sub_title_main">- 회원정보수정 신청서 작성</div>
 				
-				<form name="form1" id="form1" method="post" action="#">
+				<form name="form1" id="form1" method="get" action="#">
 					<input type="hidden" name="action_type" value="MemEdit">
 					<input type="hidden" name="auth_num" value="">
 		
@@ -158,6 +158,6 @@
 			
 			
 			
-		</div>
+		
 	</body>
 </html>

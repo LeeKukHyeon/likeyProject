@@ -6,6 +6,7 @@
 	<resultMap type="FileDto" id="fileResultMap">
 		
 		<result property="filePath" 	column="cm_img"/>
+		<result property="filePath" 	column="photo_save"/>
 		
 		
 	</resultMap>
@@ -26,7 +27,7 @@
 			set		
 				photo_save = #{data.filePath}
 			where 
-				incoming_code = ${data.newIncomingCode}
+				incoming_code = #{data.newIncomingCode}
 		</foreach>
 	</update>
 	

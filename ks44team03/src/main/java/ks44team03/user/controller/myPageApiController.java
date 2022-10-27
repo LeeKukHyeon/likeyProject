@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ks44team03.dto.Nodata;
@@ -28,6 +31,18 @@ public class myPageApiController {
 	public myPageApiController(MypageService mypageService) {
 		this.mypageService = mypageService;
 	}
+	
+	
+
+	@PostMapping("/user/addGoodsInfo")
+	@ResponseBody
+	public String addGoodsInfo(@RequestBody Map<String, Object> ResultList) {
+		
+		System.out.println(ResultList);
+		
+		return "전송완료";
+	}
+
 	
 	
 	@GetMapping("/juso")
@@ -53,24 +68,27 @@ public class myPageApiController {
 	
 	//상태 선택에 따른 데이터 표로 출력
 	@PostMapping("/api/shipOrderApi")
-	public String shipOrderApi(@RequestParam(value = "q_status", required = false) int test, Model model) {
+	public String shipOrderApi(@RequestParam(value = "q_status_name", required = false) String q_status_name, Model model,HttpSession session) {
+		String u_id = null;	
+		if (session.getAttribute("TESTID") == null) {
+			u_id = (String)session.getAttribute("SID");
+		}else {
+			u_id = (String)session.getAttribute("TESTID");
+		}
 		
-		String u_id = "id001";	
-		String stat_info = "";
+		System.out.println(q_status_name);
 		List<ShipOrderApi> shipOrderApi = null;
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		if (test == 0) {
+		
+		paramMap.put("u_id", u_id);
+		paramMap.put("q_status_name", q_status_name);
+		shipOrderApi = mypageService.shipOrderApi(paramMap);	
 			
-			stat_info = "n";
-			paramMap.put("u_id", u_id);
-			paramMap.put("stat_info", stat_info);
-			shipOrderApi = mypageService.shipOrderApi(paramMap);	
-			
-		}
-					
+		
+		
 		model.addAttribute("shipOrderApi", shipOrderApi);
 		
-		System.out.println(shipOrderApi);
+	
 		return "myPage/myPageApi/shipOrderApi";
 	}
 	

@@ -10,6 +10,10 @@
 	<body layout:fragment="adminContent">
 		<div class="content-wrapper">
 			<form id="regAnswerForm" th:action="@{/personalQuestionAnswerRegister}" method="post">
+				
+				
+				
+		<!--------------------------------------- start 문의글 내용 확인 , 답변 등록하는 테이블 태그 ---------------------------------------------------->
 				<table border="1" style="width: 65%">
 					<tbody>
 						<tr>
@@ -45,33 +49,65 @@
 						</tr>
 						<tr>
 							<td style="padding: 18px 13px;"><b>답변 내용</b>
-							<input th:value="${mtmSituation}" style="display: none;">
+							<input id="checkSituation" th:value="${QuestionRead.mtmSituation}" style="display: none;">
 							</td>
 							<td>
 								<textarea style="width: 90%; height: 10cm; margin: 18px;" id="mtmAnswer" name="mtmAnswer" th:text="${QuestionRead.mtmAnswer}"></textarea>
 								<div style="margin-left: 18px; margin-bottom: 2mm">
 									<a th:href="@{/personalQuestionSearchAdmin}"><input type="button" style="padding: 1px;" value="목록"></a>
 									<button id="mtmSituation" type="submit" style="padding: 1px; margin-left: 83mm" name="mtmSituation" value="답변 완료">답변등록</button>
-									<a th:href="@{/deleteQuestion(mtmNumCode=${QuestionRead.mtmNumCode})}"><input type="button" style="float: right; margin-right: 72px; padding: 1px" value="문의삭제" id="deleteBtn"></a>
+									<input id="deleteBtn" type="button" value="삭제하기" style="float: right; margin-left: 3mm;">
+									<input id="ajaxCheck" style="display: none;" th:value="${QuestionRead.mtmNumCode}">
 								</div>
 								
-								<script type="text/javascript">
-								$(document).ready(function(){
-									$('#mtmSituation').click(function(){
-										var checkAnswer = $('#mtmAnswer').val()
-										if(checkAnswer == '' || checkAnswer == 'undefined' || checkAnswer == null){
-											alert('답변 내용을 입력해주세요')
-											return false;
-										}
-									})
-								})
-								
-								</script>
+
 							</td>
 						</tr>
 					</tbody>
 				</table>
+			<!--------------------------------------- end 문의글 내용 확인 , 답변 등록하는 테이블 태그 ---------------------------------------------------->
+			
 			</form>	
 		</div>
+		
+			<!--------------------------------------- start 답변내용 유효성 검사 ---------------------------------------------------->
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$('#mtmSituation').click(function(){
+							var checkAnswer = $('#mtmAnswer').val()
+							if(checkAnswer == '' || checkAnswer == 'undefined' || checkAnswer == null){
+								alert('답변 내용을 입력해주세요')
+								return false;
+							}
+						})
+					})
+					</script>
+	<!--------------------------------------- end 답변내용 유효성 검사 ---------------------------------------------------->
+		
+		
+	<!--------------------------------------- start 삭제 클릭 ajax ---------------------------------------------------->
+					<script type="text/javascript">
+					$(document).ready(function(){
+							
+						$('#deleteBtn').click(function(){
+							
+							var mtmNumCode = $('#ajaxCheck').val()
+							var checkState = $('#checkState').val()
+							var checkSituation = $('#checkSituation').val()
+							
+							$.ajax({
+								url : '/deleteQuestionAdmin',
+								type : 'POST',
+								data : {"mtmNumCode" : mtmNumCode},
+								success : function(data){
+									if(data == 1){
+										window.location.replace("/personalQuestionSearchAdmin")
+									}
+								}
+							})
+						})
+					})
+					</script>
+		<!--------------------------------------- start 삭제 클릭 ajax ---------------------------------------------------->
 </body>
 </html>
