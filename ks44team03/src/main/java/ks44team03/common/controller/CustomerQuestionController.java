@@ -62,7 +62,7 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1문의 검색
-	@PostMapping("/admin/personalQuestionSearchAdmin")
+	@PostMapping("/personalQuestionSearchAdmin")
 	public String searchQuestion(@RequestParam(value = "searchKey" , defaultValue = "mtmTitle") String sk,
 								@RequestParam(value = "searchValue" , defaultValue = "") String sv , Model model) {
 		
@@ -88,7 +88,7 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1문의 삭제 어드민 답변에서
-	@PostMapping("/admin/deleteQuestionAdmin")
+	@PostMapping("/deleteQuestionAdmin")
 	@ResponseBody
 	public int deleteQuestionAdmin(@RequestParam(value = "mtmNumCode")String mtmNumCode) {
 		
@@ -171,18 +171,18 @@ public class CustomerQuestionController {
 
 	
 	//1:1문의 답변 & 1:1문의 관리자 수정
-	@PostMapping("/admin/personalQuestionAnswerRegister")
+	@PostMapping("/personalQuestionAnswerRegister")
 	public String regAnswer(QuestionCenter questionCenter) {
 		
 		customerQuestionService.regAnswer(questionCenter);
 		System.out.println(questionCenter + "답변 값을 받아오느짖다 ㅗ러새ㅣ확인앟ㄴㅇㄱㄴ하는거임");
 		
-		return "redirect:/user/personalQuestionSearchAdmin";
+		return "redirect:/personalQuestionSearchAdmin";
 		
 	}
 		
 	//1:1문의 게시글 관리자 조회 , 관리자페이지에서 문의 클릭시 처리상태 처리중으로 변경
-	@GetMapping("/admin/personalQuestionAnswerRegister")
+	@GetMapping("/personalQuestionAnswerRegister")
 	public String regResponseCustomerQuestion(@RequestParam(value = "mtmNumCode") String mtmNumCode,  QuestionCenter questionCenter ,  Model model ) {
 		
 		QuestionCenter QuestionRead = customerQuestionService.getQuestionRead(mtmNumCode);
@@ -211,7 +211,7 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1 문의 목록 관리자 조회
-	@GetMapping("/admin/personalQuestionSearchAdmin")
+	@GetMapping("/personalQuestionSearchAdmin")
 	public String viewQuestionListAdmin(Model model) {
 		
 		List<QuestionCenter> QuestionList = customerQuestionService.getQuestionList();
