@@ -30,14 +30,14 @@
 			 <!--------------------------------------- start 등록할때 [공지]체크한 게시물 ---------------------------------------------------->
 							 <tr th:if="${not #lists.isEmpty(noticeList)} and ${#strings.equals(l.noticeImportant,'[공지]' )}" th:each="l : ${noticeList}">
 									<td class="number" th:if="${l.noticeImportant}" th:text="${l.noticeImportant}"></td>
-									<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+									<td class="subject"><a th:href="@{/user/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
 									<td class="hit" th:text="${l.noticeView}"></td>
 									<td class="date" th:text="${l.noticeDate}"></td>
 							 </tr>
 			<!--------------------------------------- end 등록할때 [공지]체크한 게시물 ---------------------------------------------------->
 								<tr th:if="${not #lists.isEmpty(noticeList)}  and ${#strings.isEmpty(l.noticeImportant)}" th:each="l : ${noticeList}">
 									<td class="number" th:text="${l.noticeNumCode}"></td>
-									<td class="subject"><a th:href="@{/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
+									<td class="subject"><a th:href="@{/user/noticeRead(noticeNumCode=${l.noticeNumCode})}" th:text="${l.noticeTitle}"></a></td>
 									<td class="hit" th:text="${l.noticeView}"></td>
 									<td class="date" th:text="${l.noticeDate}"></td>
 							 </tr>
@@ -54,7 +54,7 @@
 							 			&nbsp; <b>1</b>&nbsp;
 								 	</td>
 									<td align="right" width="30%">
-								   		<a th:href="@{/noticeRegister}"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px" >글쓰기</button></a>
+								   		<a th:href="@{/user/noticeRegister}"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px" >글쓰기</button></a>
 								    </td>
 							  </tr>
 							</tbody>

@@ -9,7 +9,7 @@
 	<div align="center">
 		<div style="width: 55%; margin-top: 10mm" th:object="${scheduleRead}">
 			<h2 style="font-weight: bold; text-align: left;" >공지사항</h2>
-			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{noticeList}">공지사항</a></p>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/user/noticeList}">공지사항</a></p>
 			<hr width="100%" color="gray">
 			<div>
 			
@@ -25,9 +25,9 @@
 			<!--------------------------------------- end 공지사항 내용  ---------------------------------------------------->
 			
 			<hr width="100%" color="gray">
-			<a th:href="@{noticeList}"><input type="button" value="목록" style="float: left;"></a>
-			<a th:href="@{/noticeDelete(noticeNumCode=${noticeRead.noticeNumCode})}"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
-			<a th:href="@{/noticeModify(noticeNumCode=${noticeRead.noticeNumCode})}"><input type="button" value="수정하기" style="float: right; font-size: 5px"></a>
+			<a th:href="@{/user/noticeList}"><input type="button" value="목록" style="float: left;"></a>
+			<a th:href="@{/user/noticeDelete(noticeNumCode=${noticeRead.noticeNumCode})}"><input type="button" value="삭제하기" style="float: right; margin-left: 3mm; font-size: 5px"></a>
+			<a th:href="@{/user/noticeModify(noticeNumCode=${noticeRead.noticeNumCode})}"><input type="button" value="수정하기" style="float: right; font-size: 5px"></a>
 		</div>
 	</div>
 
