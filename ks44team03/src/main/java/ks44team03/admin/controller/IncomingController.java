@@ -45,7 +45,7 @@ public class IncomingController {
 	
 	
 	//도착등록 ajax
-	@PostMapping("incomingGoodsDetailRegister")
+	@PostMapping("/incomingGoodsDetailRegister")
 	@ResponseBody
 	public int incomingGoodsDetailRegister(@RequestParam(value = "goodsInfoCode")String goodsInfoCode) {
 		
@@ -81,7 +81,7 @@ public class IncomingController {
 	 }
 	
 	//입고 도착 상품 체크박스로 등록
-	@PostMapping ("incomingCheck")
+	@PostMapping ("/incomingCheck")
 	public String incomingCheck(@RequestParam(name = "check", required=false) String[] checks) {
 	
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -92,7 +92,7 @@ public class IncomingController {
 	
 	
 	//입고전 상품목록
-	@GetMapping("incomingGoodsList")
+	@GetMapping("/incomingGoodsList")
 	public String incomingGoodsList(Model model,
 		@RequestParam(value = "buyOrderCode",required = false) String buyOrderCode,
 		@RequestParam(name = "searchKey",required=false ) String searchKey,
@@ -122,7 +122,7 @@ public class IncomingController {
 	
 	//보관료 발생 목록 조회
 	
-	@GetMapping("storageCharge")
+	@GetMapping("/storageCharge")
 	public String storageCharge(Model model, 
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
 			@RequestParam(name = "searchValue",required=false ) String searchValue) {
@@ -139,7 +139,7 @@ public class IncomingController {
 	}
 	//배송완료 상품 목록 조회
 	
-	@GetMapping("deliveryComplete")
+	@GetMapping("/deliveryComplete")
 	public String deliveryComplete(Model model, 
 			@RequestParam(name = "searchKey",required=false ) String searchKey,
 			@RequestParam(name = "searchValue",required=false ) String searchValue) {
@@ -157,7 +157,7 @@ public class IncomingController {
 	
 	//배송중인 상품 목록 조회
 	
-		@GetMapping("inTransit")
+		@GetMapping("/inTransit")
 		public String inTransit(Model model, 
 				@RequestParam(name = "searchKey",required=false ) String searchKey,
 				@RequestParam(name = "searchValue",required=false ) String searchValue) {
