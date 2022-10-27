@@ -33,38 +33,40 @@
  		<tr class="nomal" th:each="l : ${QuestionList}" style="display: none;">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 	   	  </tr>
 		<tr class="request" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'접수')}">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 	   	  </tr>
 		   <tr class="ing" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변중')}">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>	
 		  </tr>
 		  <tr class="end" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변 완료')}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 		  </tr>
- <!--------------------------------------- start select option의 값, 상태에 따라 show hide 하기 위함 ---------------------------------------------------->
+ <!--------------------------------------- end select option의 값, 상태에 따라 show hide 하기 위함 ---------------------------------------------------->
 		  <tr th:unless="${not #lists.isEmpty(QuestionList)}">
   			<td style="border-left: none;" colspan="5">등록된 게시물이 없습니다.</td>
 		  </tr>
 		</tbody></table>
-		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
 		
+<!--------------------------------------- start 제목, 회원아이디  , 내용  검색---------------------------------------------------->
+		<div th:include="customerService/question/searchQuestion :: searchQuestion"></div>
+<!--------------------------------------- end 제목, 회원아이디  , 내용  검색---------------------------------------------------->		
 
 		<table border="0" cellspacing="0" cellpadding="0" align="center" class="schedule_board_num">
 		  <tbody><tr>
