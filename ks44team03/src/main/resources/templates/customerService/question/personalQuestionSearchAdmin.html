@@ -5,7 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{adminLayout/adminDefault_layout}">
 <head>
-	<link rel="stylesheet" href="assets/css/temporarily.css">
+	<link rel="stylesheet" href="/assets/css/temporarily.css">
 </head>
 
 
@@ -33,28 +33,28 @@
  		<tr class="nomal" th:each="l : ${QuestionList}" style="display: none;">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 	   	  </tr>
 		<tr class="request" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'접수')}">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 	   	  </tr>
 		   <tr class="ing" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변중')}">
   		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>	
 		  </tr>
 		  <tr class="end" th:each="l : ${QuestionList}" th:if="${#strings.equals(l.mtmSituation,'답변 완료')}">
 		    <td class="number" th:text="${l.mtmNumCode}"></td>
 	    	<td class="userId" th:text="${l.userId}"></td>
-			<td class="subject" style="width: 30%"><a th:href="@{/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
+			<td class="subject" style="width: 30%"><a th:href="@{/admin/personalQuestionAnswerRegister(mtmNumCode=${l.mtmNumCode})}" th:text="${l.mtmTitle}" id="mtmSituation"></a></td>
 			<td class="date" th:text="${l.mtmDate}"></td>
 			<td class="date"  th:text="${l.mtmSituation}"></td>
 		  </tr>
