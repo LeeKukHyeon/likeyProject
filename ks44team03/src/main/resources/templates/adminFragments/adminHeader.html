@@ -370,13 +370,13 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/admin/choiceCompany}">
+            <a class="nav-link" th:href="@{/admin/choiceCompany}">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">!관리등록(김덕현)</span>
             </a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/admin/companyManagement}">
+            <a class="nav-link" th:href="@{/admin/companyManagement}">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">!회사관리(김덕현)</span>
             </a>
@@ -414,7 +414,7 @@
                 <li class="nav-item"> <a class="nav-link" th:href="@{/admin/errorIncoming}">오류입고(이국현)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/admin/errorIncomingList}">오류입고 처리내역(한효송)</a></li>
                 <li class="nav-item"> <a class="nav-link" th:href="@{/admin/storageCharge}">보관료발생상품목록(이국현)</a></li>
-                <!-- <li class="nav-item"> <a class="nav-link" th:href="@{/admin/incomingSearch}">입고현황조회</a></li> -->
+                <!-- <li class="nav-item"> <a class="nav-link" th:href="@{/incomingSearch}">입고현황조회</a></li> -->
               </ul>
             </div>
           </li>
@@ -426,15 +426,22 @@
             </a>
             <div class="collapse" id="forwarding">
               <ul class="nav flex-column sub-menu">
+
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/forwardingRegister}">출고등록(한효송)</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/forwardingList}">출고완료 상품조회(한효송)</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/inTransit}">배송중인 상품목록조회(이국현)</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/deliveryComplete}">배송완료 상품목록조회(이국현)</a></li>
+
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/forwardingRegister}">출고등록(한효송)</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/forwardingList}">출고완료 상품조회(한효송)</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/inTransit}">배송중인 상품목록조회(이국현)</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/deliveryComplete}">배송완료 상품목록조회(이국현)</a></li>
+
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/admin/personalQuestionSearchAdmin}">
+            <a class="nav-link" th:href="@{/personalQuestionSearchAdmin}">
               <i class="menu-icon mdi mdi-layers-outline"></i>
               <span class="menu-title">1:1문의 답변</span>
             </a>
