@@ -54,7 +54,7 @@
 					  <tr th:each="u : ${userInfo}">
 						    <td th:text="${u.uGradeCode}" class="rank">#</td>
 							
-							<td class="coupon"><a href="cpn_valid_list.html"><font th:text="${couponCount}">#</font>장</a></td>
+							<td class="coupon"><a href="#"><font th:text="${couponCount}">#</font>장</a></td>
 							<!-- <td class="code">US123456</td> -->
 							<td class="hcash"><a href="mycash_list.html">#</a></td>
 							<td class="usage">
@@ -117,30 +117,30 @@
 											</li>
 											
 											<li>
-												<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
-												<div onClick="OrderQuery('Reg');" style="cursor:pointer; padding-top:20px;" th:text="${completedApplication}">#</div>
+												<div onClick="#" style="cursor:pointer; padding-top:20px;"  >신청서<br>작성완료</div>
+												<div onClick="#" style="cursor:pointer; padding-top:20px;" th:text="${completedApplication}">#</div>
 											</li>
 											
 											<li>
-												<div onClick="OrderQuery('ItemReady');" style="cursor:pointer">제품입고 중</div>
-												<div onClick="OrderQuery('ItemReady');" style="cursor:pointer" th:text="${arrivalCount}">#</div>
+												<div onClick="#" style="cursor:pointer">제품입고 중</div>
+												<div onClick="#" style="cursor:pointer" th:text="${arrivalCount}">#</div>
 											</li>
 											<li>
-												<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
-												<div onClick="OrderQuery('Packing');" style="cursor:pointer ; padding-top:20px;" th:text="${forwardingCount}">#</div>
+												<div onClick="#" style="cursor:pointer ; padding-top:20px;" >포장완료 및<br>출고대기 중</div>
+												<div onClick="#" style="cursor:pointer ; padding-top:20px;" th:text="${forwardingCount}">#</div>
 											</li>
 											
 											<li>
-												<div onClick="OrderQuery('Out');" style="cursor:pointer">한국 출고</div>
-												<div onClick="OrderQuery('Out');" style="cursor:pointer">#</div>
+												<div onClick="#" style="cursor:pointer">한국 출고</div>
+												<div onClick="#" style="cursor:pointer">#</div>
 											</li>
 											<li>
-												<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">통관 완료</div>
-												<div onClick="OrderQuery('CustomsClosed');" style="cursor:pointer">#</div>
+												<div onClick="#" style="cursor:pointer">통관 완료</div>
+												<div onClick="#" style="cursor:pointer">#</div>
 											</li>
 											<li>
-												<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">배송완료</div>
-												<div onClick="OrderQuery('ShipClosed');" style="cursor:pointer">#</div>
+												<div onClick="#" style="cursor:pointer">배송완료</div>
+												<div onClick="#" style="cursor:pointer">#</div>
 											</li>
 										</ul>
 									</td>
@@ -280,10 +280,11 @@
 						<td>&nbsp;</td>
 					  </tr>
 					  <tr>
-					    <td>
+					  	<td>&nbsp;</td>
+					    <!-- <td>
 							<div id="orderCnt_21" onClick="OrderQuery('Err');" style="cursor:pointer">오류입고(확인요망)</div>
 							<div onClick="OrderQuery('Err');" style="cursor:pointer">#0</div>
-						</td>
+						</td> -->
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -422,12 +423,12 @@
 									<td class="date_input">
 										<div class="box">
 											<div><input type="text" name="q_from_date" value="2022-08-20" readonly></div>
-											<div><img src="/image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_from_date);"></div>
+											
 										</div>
 										<div style="width:23px;text-align:center;line-height:32px;">~</div>
 										<div class="box">
 											<div><input type="text" name="q_to_date" value="2022-09-21" readonly></div>
-											<div><img src="/image/S_mypage_icon_30.gif" onclick="javascript:f_datepicker(document.f.q_to_date);"></div>
+											
 										</div>
 										<div onClick="document.f.q_from_date.value='';document.f.q_to_date.value='';" class="bt" style="cursor:pointer">전체기간</div>
 									</td>
@@ -480,8 +481,8 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="/mem_edit.html">- 비밀번호, 회원정보 변경</a></li>
-									<li><a href="">- 나의 멤버십 등급</a></li>
+									<li><a href="#">- 비밀번호, 회원정보 변경</a></li>
+									<li><a href="#">- 나의 멤버십 등급</a></li>
 								</ul>
 							</div>
 						</td>
@@ -492,8 +493,8 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="#myCash">- 마이캐시 충전하기</a></li>
-									<li><a href="mycash_list.html">- 사용한 마이캐시 내역</a></li>
+									<li><a href="#">- 마이캐시 충전하기</a></li>
+									<li><a href="#">- 사용한 마이캐시 내역</a></li>
 								</ul>
 							</div>
 						</td>
@@ -505,9 +506,9 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="qna_list.html">- 1:1 Q&A</a></li>
+									<li><a href="#">- 1:1 Q&A</a></li>
 									
-									<li><a href="sub_1_1.html">- 도움말</a></li>
+									<li><a href="#">- 도움말</a></li>
 								</ul>
 							</div>
 						</td>
@@ -523,7 +524,7 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="cpn_valid_list.html">- 쿠폰내역</a></li>
+									<li><a href="#">- 쿠폰내역</a></li>
 									
 								</ul>
 							</div>
@@ -535,7 +536,7 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="/mypoint_list.html">- 거래내역</a></li>
+									<li><a href="#">- 거래내역</a></li>
 									
 								</ul>
 							</div>
@@ -548,7 +549,7 @@
 							</div>
 							<div class="right_text">
 								<ul>
-									<li><a href="myaddr_list.html">- 나의 주소록</a></li>
+									<li><a href="#">- 나의 주소록</a></li>
 									
 									
 								</ul>
