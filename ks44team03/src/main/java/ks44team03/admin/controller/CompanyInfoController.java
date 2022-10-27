@@ -24,7 +24,7 @@ import ks44team03.dto.Employee;
 import ks44team03.dto.ManagementLevel;
 import ks44team03.dto.WorkPlace;
 
-@RequestMapping("/admin")
+
 @Controller
 
 public class CompanyInfoController {
