@@ -59,7 +59,7 @@
 				&& (dateScheck == null || dateScheck == 'undefined' ||  dateScheck == '')){
 				alert('날짜를 설정 해주세요')
 				return false;
-			}else if (dateFCheck < dateScheck){
+			}else if (dateFCheck > dateScheck){
 				alert('날짜를 제대로 설정 해주세요')				
 				return false;
 			}

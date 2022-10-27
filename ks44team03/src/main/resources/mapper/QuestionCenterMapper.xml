@@ -76,6 +76,7 @@
 	/* 1:1문의 검색 */
 	SELECT
 		mtm_num_code
+		,id
 		,e_code
 		,mtm_cate
 		,mtm_title
