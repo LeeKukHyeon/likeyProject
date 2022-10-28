@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import ks44team03.common.service.CustomerFaqService;
 import ks44team03.dto.FaqCenter;
 
 @Controller
+@RequestMapping(value = "/user")
 public class CustomerFaqController {
 
 	

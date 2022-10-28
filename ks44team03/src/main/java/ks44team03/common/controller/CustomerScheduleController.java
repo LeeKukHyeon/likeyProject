@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ks44team03.common.service.CustomerScheduleService;
 import ks44team03.dto.ScheduleCenter;
 
 @Controller
+@RequestMapping(value = "/user")
 public class CustomerScheduleController {
 	
 	private CustomerScheduleService customerScheduleService;
@@ -34,7 +36,7 @@ public class CustomerScheduleController {
 		
 		customerScheduleService.deleteSchedule(scheduleNumCode);
 		
-		return "redirect:/deliveryScheduleSearch";
+		return "redirect:/user/deliveryScheduleSearch";
 	}
 	
 	//배송스케줄 게시물 수정
@@ -44,7 +46,7 @@ public class CustomerScheduleController {
 		customerScheduleService.modifySchedule(scheduleCenter);
 		System.out.println(scheduleCenter + "수정하는 게시물 값 받아오는가?");
 		
-		return "redirect:/deliveryScheduleSearch";
+		return "redirect:/user/deliveryScheduleSearch";
 	}
 	
 	//배송스케줄 게시물 수정
@@ -66,7 +68,7 @@ public class CustomerScheduleController {
 		
 		customerScheduleService.regSchedule(scheduleCenter);
 		
-		return "redirect:/deliveryScheduleSearch";
+		return "redirect:/user/deliveryScheduleSearch";
 	}
 	
 	//배송스케줄 등록
