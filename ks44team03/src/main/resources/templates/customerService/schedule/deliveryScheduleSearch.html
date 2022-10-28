@@ -10,7 +10,7 @@
 	
 		<div style="width: 50%">
 			<h2 align="left">배송 스케줄</h2>
-			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{deliveryScheduleSearch}">배송스케줄</a></p>
+			<p align="left" style="font-size: 14px">HOME > <a id="return" th:href="@{/user/deliveryScheduleSearch}">배송스케줄</a></p>
 			<hr style="height: 1px; background: gray;">
 		</div>
 	
@@ -25,7 +25,7 @@
 				</tr>
 				<tr th:if="${not #lists.isEmpty(ScheduleList)}" th:each="l : ${ScheduleList}">
 				    <td class="number" th:text="${l.scheduleNumCode}"></td>
-					<td class="subject" style="width: 30%"><a th:href="@{/deliveryScheduleSearchRead(scheduleNumCode=${l.scheduleNumCode})}" th:text="${l.scheduleTitle}"  ></a></td>
+					<td class="subject" style="width: 30%"><a th:href="@{/user/deliveryScheduleSearchRead(scheduleNumCode=${l.scheduleNumCode})}" th:text="${l.scheduleTitle}"  ></a></td>
 					<td class="date" th:text="${l.scheduleDate}"></td>
 					<td class="hit" th:text="${l.scheduleView}"></td>
 				</tr>
@@ -38,7 +38,7 @@
 		
 		<!-- //게시판 -->
 		<div style="width: 950px" align="left">
-			<a th:href="@{/deliveryScheduleRegister}" style="float: right; padding-top: 4px;"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px;" >글쓰기</button></a>
+			<a th:href="@{/user/deliveryScheduleRegister}" style="float: right; padding-top: 4px;"><button type="button" style="color: black; border-radius: 3px; border: solid 1px gray; font-size: 10px;" >글쓰기</button></a>
         </div>
 		<div style="height: 15px"></div>
 
