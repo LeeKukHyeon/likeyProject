@@ -9,7 +9,7 @@
 	<div align="center">
 	
 	<!---------------------------------------- start 배송스케줄 수정하는 테이블 form 태그 ---------------------------------------->
-		<form id="modifyScheduleForm" th:action="@{/deliveryScheduleModify}" method="post">
+		<form id="modifyScheduleForm" th:action="@{/user/deliveryScheduleModify}" method="post">
 			<div style="width: 55%; margin-top: 10mm">
 				<h2 style="font-weight: bold; text-align: left;" >배송스케줄</h2>
 				<hr width="100%" color="gray">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<hr width="100%" color="gray">
-			<a th:href="@{/deliveryScheduleSearch}"><input type="button" value="목록" style="float: left;"></a>
+			<a th:href="@{/user/deliveryScheduleSearch}"><input type="button" value="목록" style="float: left;"></a>
 			<button id="submitBtn" type="submit" style="float: right;">수정하기</button>
 			</div>
 		</form>

@@ -111,7 +111,7 @@ public class CustomerQuestionController {
 	}
 	
 	//1:1문의 수정
-	@PostMapping("/user/myQuestionModify")	
+	@PostMapping("/user/myQuestionModify")
 	public String myQuestionModify(QuestionCenter questionCenter) {
 		
 		customerQuestionService.myQuestionModify(questionCenter);
